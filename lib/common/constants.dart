@@ -750,4 +750,8 @@ class ApiEndPoint {
   /// Danh sách khách hàng.
   /// API: GET /Customer/get-customers.
   static const String getCustomerList = '/Customer/get-customers';
+
+  /// Chi tiết khách hàng.
+  /// API: GET /Customer/get-detail?id=3.
+  static const String getCustomerDetail = '/Customer/get-detail';
 }

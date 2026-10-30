@@ -48,6 +48,7 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
         loadFilesPo: (customerContactId) =>
             _onLoadFilesPo(emit, customerContactId: customerContactId),
         loadFormOptions: () => _onLoadFormOptions(emit),
+        loadCustomerDetail: (id) => _onLoadCustomerDetail(emit, id: id),
       );
     });
   }
@@ -312,6 +313,41 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
     customers.fold(
       (l) => _log.logE('Get customers failed: $l'),
       (r) => emit(state.copyWith(customers: r)),
+    );
+  }
+
+  /// Tải chi tiết khách hàng để fill sẵn thông tin doanh nghiệp lên form.
+  ///
+  /// Chi tiết khách hàng chứa sẵn `CustomerIndustriesID`,
+  /// `CustomerSpecializationID`, `Province` và `Address` nên người dùng
+  /// không phải tự chọn lại 4 trường này.
+  Future<void> _onLoadCustomerDetail(
+    Emitter<LeadMarketingState> emit, {
+    required int id,
+  }) async {
+    emit(state.copyWith(
+      customerDetailStatus: BaseStateStatus.loading,
+      customerDetailMessage: null,
+    ));
+
+    final res = await _repo.getCustomerDetail(id: id);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get customer detail failed: $l');
+        emit(state.copyWith(
+          customerDetailStatus: BaseStateStatus.failed,
+          customerDetailMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Get customer detail success - id: $id');
+        emit(state.copyWith(
+          customerDetailStatus: BaseStateStatus.success,
+          customerDetail: r,
+          customerDetailMessage: null,
+        ));
+      },
     );
   }
 

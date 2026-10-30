@@ -60,4 +60,9 @@ abstract class LeadMarketingRepo {
 
   /// Lấy danh sách khách hàng.
   Future<Either<BaseError, List<LeadCustomer>>> getCustomers();
+
+  /// Lấy chi tiết khách hàng.
+  Future<Either<BaseError, LeadCustomer>> getCustomerDetail({
+    required int id,
+  });
 }

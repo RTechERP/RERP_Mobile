@@ -230,9 +230,12 @@ class LeadCustomer with _$LeadCustomer {
 
 /// Loại khách hàng.
 ///
-/// Backend chưa có API danh sách nên tạm đặt cố định 3 giá trị, giá trị gửi
-/// API sẽ chốt sau.
+/// Backend chưa có API danh sách nên tạm đặt cố định 4 giá trị (gồm
+/// "Không có"), giá trị gửi API sẽ chốt sau.
 enum LeadCustomerType {
+  /// Không thuộc nhóm nào.
+  none(0, 'Trống'),
+
   /// Thị trường nội bộ.
   domestic(1, 'TM'),
 

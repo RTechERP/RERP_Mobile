@@ -51,4 +51,10 @@ class LeadMarketingEvent with _$LeadMarketingEvent {
   /// Tải toàn bộ danh mục cần cho form tạo phiếu lead: nhóm hàng, lĩnh vực,
   /// ngành nghề, business field, tỉnh/thành và khách hàng.
   const factory LeadMarketingEvent.loadFormOptions() = _LoadFormOptions;
+
+  /// Tải chi tiết khách hàng để fill sẵn lĩnh vực, ngành nghề, tỉnh/thành
+  /// và địa chỉ lên form tạo phiếu lead.
+  const factory LeadMarketingEvent.loadCustomerDetail({
+    required int id,
+  }) = _LoadCustomerDetail;
 }

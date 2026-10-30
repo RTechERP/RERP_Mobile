@@ -99,6 +99,15 @@ class LeadMarketingState extends BaseBlocState {
   /// Danh sách khách hàng.
   final List<LeadCustomer> customers;
 
+  /// Chi tiết khách hàng đang chọn trong form tạo phiếu lead.
+  final LeadCustomer? customerDetail;
+
+  /// Trạng thái tải chi tiết khách hàng.
+  final BaseStateStatus customerDetailStatus;
+
+  /// Thông báo lỗi khi tải chi tiết khách hàng thất bại.
+  final String? customerDetailMessage;
+
   const LeadMarketingState({
     required super.status,
     super.message,
@@ -134,6 +143,9 @@ class LeadMarketingState extends BaseBlocState {
     this.businessFields = const [],
     this.provinces = const [],
     this.customers = const [],
+    this.customerDetail,
+    this.customerDetailStatus = BaseStateStatus.init,
+    this.customerDetailMessage,
   });
 
   factory LeadMarketingState.init() => const LeadMarketingState(
@@ -234,5 +246,8 @@ class LeadMarketingState extends BaseBlocState {
         businessFields,
         provinces,
         customers,
+        customerDetail,
+        customerDetailStatus,
+        customerDetailMessage,
       ];
 }

@@ -31,6 +31,7 @@ mixin _$LeadMarketingEvent {
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +48,7 @@ mixin _$LeadMarketingEvent {
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +65,7 @@ mixin _$LeadMarketingEvent {
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,6 +81,7 @@ mixin _$LeadMarketingEvent {
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -92,6 +96,7 @@ mixin _$LeadMarketingEvent {
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -106,6 +111,7 @@ mixin _$LeadMarketingEvent {
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -179,6 +185,7 @@ class _$InitImpl implements _Init {
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
   }) {
     return init();
   }
@@ -198,6 +205,7 @@ class _$InitImpl implements _Init {
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
   }) {
     return init?.call();
   }
@@ -217,6 +225,7 @@ class _$InitImpl implements _Init {
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -238,6 +247,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
   }) {
     return init(this);
   }
@@ -255,6 +265,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
   }) {
     return init?.call(this);
   }
@@ -272,6 +283,7 @@ class _$InitImpl implements _Init {
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -372,6 +384,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -391,6 +404,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -410,6 +424,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -431,6 +446,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
   }) {
     return changeDateRange(this);
   }
@@ -448,6 +464,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
   }) {
     return changeDateRange?.call(this);
   }
@@ -465,6 +482,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -563,6 +581,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
   }) {
     return changeKeyword(keyword);
   }
@@ -582,6 +601,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
   }) {
     return changeKeyword?.call(keyword);
   }
@@ -601,6 +621,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -622,6 +643,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
   }) {
     return changeKeyword(this);
   }
@@ -639,6 +661,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
   }) {
     return changeKeyword?.call(this);
   }
@@ -656,6 +679,7 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -726,6 +750,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
   }) {
     return refresh();
   }
@@ -745,6 +770,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
   }) {
     return refresh?.call();
   }
@@ -764,6 +790,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -785,6 +812,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
   }) {
     return refresh(this);
   }
@@ -802,6 +830,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
   }) {
     return refresh?.call(this);
   }
@@ -819,6 +848,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -956,6 +986,7 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
   }) {
     return applyFilter(
         leadSourceId, marketingEmployeeId, saleEmployeeId, includeOpen, stage);
@@ -976,6 +1007,7 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
   }) {
     return applyFilter?.call(
         leadSourceId, marketingEmployeeId, saleEmployeeId, includeOpen, stage);
@@ -996,6 +1028,7 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -1018,6 +1051,7 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
   }) {
     return applyFilter(this);
   }
@@ -1035,6 +1069,7 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
   }) {
     return applyFilter?.call(this);
   }
@@ -1052,6 +1087,7 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -1130,6 +1166,7 @@ class _$ClearFilterImpl implements _ClearFilter {
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
   }) {
     return clearFilter();
   }
@@ -1149,6 +1186,7 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
   }) {
     return clearFilter?.call();
   }
@@ -1168,6 +1206,7 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (clearFilter != null) {
@@ -1189,6 +1228,7 @@ class _$ClearFilterImpl implements _ClearFilter {
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
   }) {
     return clearFilter(this);
   }
@@ -1206,6 +1246,7 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
   }) {
     return clearFilter?.call(this);
   }
@@ -1223,6 +1264,7 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (clearFilter != null) {
@@ -1313,6 +1355,7 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
   }) {
     return loadDetail(id);
   }
@@ -1332,6 +1375,7 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
   }) {
     return loadDetail?.call(id);
   }
@@ -1351,6 +1395,7 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -1372,6 +1417,7 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
   }) {
     return loadDetail(this);
   }
@@ -1389,6 +1435,7 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
   }) {
     return loadDetail?.call(this);
   }
@@ -1406,6 +1453,7 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -1502,6 +1550,7 @@ class _$LoadFilesImpl implements _LoadFiles {
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
   }) {
     return loadFiles(customerContactId);
   }
@@ -1521,6 +1570,7 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
   }) {
     return loadFiles?.call(customerContactId);
   }
@@ -1540,6 +1590,7 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (loadFiles != null) {
@@ -1561,6 +1612,7 @@ class _$LoadFilesImpl implements _LoadFiles {
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
   }) {
     return loadFiles(this);
   }
@@ -1578,6 +1630,7 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
   }) {
     return loadFiles?.call(this);
   }
@@ -1595,6 +1648,7 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (loadFiles != null) {
@@ -1692,6 +1746,7 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
   }) {
     return loadFilesPo(customerContactId);
   }
@@ -1711,6 +1766,7 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
   }) {
     return loadFilesPo?.call(customerContactId);
   }
@@ -1730,6 +1786,7 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (loadFilesPo != null) {
@@ -1751,6 +1808,7 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
   }) {
     return loadFilesPo(this);
   }
@@ -1768,6 +1826,7 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
   }) {
     return loadFilesPo?.call(this);
   }
@@ -1785,6 +1844,7 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (loadFilesPo != null) {
@@ -1855,6 +1915,7 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
     required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
   }) {
     return loadFormOptions();
   }
@@ -1874,6 +1935,7 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
     TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
   }) {
     return loadFormOptions?.call();
   }
@@ -1893,6 +1955,7 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
     TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (loadFormOptions != null) {
@@ -1914,6 +1977,7 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
   }) {
     return loadFormOptions(this);
   }
@@ -1931,6 +1995,7 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
   }) {
     return loadFormOptions?.call(this);
   }
@@ -1948,6 +2013,7 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     required TResult orElse(),
   }) {
     if (loadFormOptions != null) {
@@ -1959,4 +2025,200 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
 
 abstract class _LoadFormOptions implements LeadMarketingEvent {
   const factory _LoadFormOptions() = _$LoadFormOptionsImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadCustomerDetailImplCopyWith<$Res> {
+  factory _$$LoadCustomerDetailImplCopyWith(_$LoadCustomerDetailImpl value,
+          $Res Function(_$LoadCustomerDetailImpl) then) =
+      __$$LoadCustomerDetailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$LoadCustomerDetailImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$LoadCustomerDetailImpl>
+    implements _$$LoadCustomerDetailImplCopyWith<$Res> {
+  __$$LoadCustomerDetailImplCopyWithImpl(_$LoadCustomerDetailImpl _value,
+      $Res Function(_$LoadCustomerDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$LoadCustomerDetailImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
+  const _$LoadCustomerDetailImpl({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.loadCustomerDetail(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadCustomerDetailImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadCustomerDetailImplCopyWith<_$LoadCustomerDetailImpl> get copyWith =>
+      __$$LoadCustomerDetailImplCopyWithImpl<_$LoadCustomerDetailImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+  }) {
+    return loadCustomerDetail(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+  }) {
+    return loadCustomerDetail?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    required TResult orElse(),
+  }) {
+    if (loadCustomerDetail != null) {
+      return loadCustomerDetail(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+  }) {
+    return loadCustomerDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+  }) {
+    return loadCustomerDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    required TResult orElse(),
+  }) {
+    if (loadCustomerDetail != null) {
+      return loadCustomerDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadCustomerDetail implements LeadMarketingEvent {
+  const factory _LoadCustomerDetail({required final int id}) =
+      _$LoadCustomerDetailImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$LoadCustomerDetailImplCopyWith<_$LoadCustomerDetailImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

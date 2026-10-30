@@ -77,6 +77,12 @@ abstract class _$LeadMarketingStateCWProxy {
 
   LeadMarketingState customers(List<LeadCustomer> customers);
 
+  LeadMarketingState customerDetail(LeadCustomer? customerDetail);
+
+  LeadMarketingState customerDetailStatus(BaseStateStatus customerDetailStatus);
+
+  LeadMarketingState customerDetailMessage(String? customerDetailMessage);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeadMarketingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -118,6 +124,9 @@ abstract class _$LeadMarketingStateCWProxy {
     List<LeadBusinessField>? businessFields,
     List<LeadProvince>? provinces,
     List<LeadCustomer>? customers,
+    LeadCustomer? customerDetail,
+    BaseStateStatus? customerDetailStatus,
+    String? customerDetailMessage,
   });
 }
 
@@ -257,6 +266,19 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
       this(customers: customers);
 
   @override
+  LeadMarketingState customerDetail(LeadCustomer? customerDetail) =>
+      this(customerDetail: customerDetail);
+
+  @override
+  LeadMarketingState customerDetailStatus(
+          BaseStateStatus customerDetailStatus) =>
+      this(customerDetailStatus: customerDetailStatus);
+
+  @override
+  LeadMarketingState customerDetailMessage(String? customerDetailMessage) =>
+      this(customerDetailMessage: customerDetailMessage);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeadMarketingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -299,6 +321,9 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
     Object? businessFields = const $CopyWithPlaceholder(),
     Object? provinces = const $CopyWithPlaceholder(),
     Object? customers = const $CopyWithPlaceholder(),
+    Object? customerDetail = const $CopyWithPlaceholder(),
+    Object? customerDetailStatus = const $CopyWithPlaceholder(),
+    Object? customerDetailMessage = const $CopyWithPlaceholder(),
   }) {
     return LeadMarketingState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -451,6 +476,21 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
           ? _value.customers
           // ignore: cast_nullable_to_non_nullable
           : customers as List<LeadCustomer>,
+      customerDetail: customerDetail == const $CopyWithPlaceholder()
+          ? _value.customerDetail
+          // ignore: cast_nullable_to_non_nullable
+          : customerDetail as LeadCustomer?,
+      customerDetailStatus:
+          customerDetailStatus == const $CopyWithPlaceholder() ||
+                  customerDetailStatus == null
+              ? _value.customerDetailStatus
+              // ignore: cast_nullable_to_non_nullable
+              : customerDetailStatus as BaseStateStatus,
+      customerDetailMessage:
+          customerDetailMessage == const $CopyWithPlaceholder()
+              ? _value.customerDetailMessage
+              // ignore: cast_nullable_to_non_nullable
+              : customerDetailMessage as String?,
     );
   }
 }

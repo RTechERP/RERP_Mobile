@@ -251,6 +251,50 @@ class LeadMarketingService extends DioBaseApiService {
     );
   }
 
+  /// Lấy chi tiết khách hàng.
+  ///
+  /// API: GET /Customer/get-detail?id=X.
+  ///
+  /// BE bọc thông tin khách hàng trong key `model` (đôi khi trong `data`),
+  /// nên phải bóc ra trước khi parse — nếu không mọi field sẽ ra null và
+  /// form không fill được.
+  Future<BaseData<LeadCustomer>> getCustomerDetail({
+    required int id,
+  }) async {
+    return get<BaseData<LeadCustomer>>(
+      ApiEndPoint.getCustomerDetail,
+      query: {'id': id},
+      parser: (json) => _parseCustomerDetail(json),
+    );
+  }
+
+  /// Parse response chi tiết khách hàng, hỗ trợ nhiều shape của BE.
+  ///
+  /// Các shape đã biết:
+  /// - `{ status, message, data: { model: { ... } } }`
+  /// - `{ status, message, data: { ... } }`
+  /// - `{ model: { ... } }`
+  BaseData<LeadCustomer> _parseCustomerDetail(dynamic json) {
+    final root = json is Map
+        ? Map<String, dynamic>.from(json)
+        : <String, dynamic>{};
+
+    dynamic payload = root['data'] ?? root['result'] ?? root;
+    if (payload is Map) {
+      payload = payload['model'] ?? payload['data'] ?? payload;
+    }
+
+    final model = payload is Map
+        ? Map<String, dynamic>.from(payload)
+        : <String, dynamic>{};
+
+    return BaseData<LeadCustomer>(
+      // BE đôi khi không trả `status` → coi như thành công nếu có dữ liệu.
+      status: (root['status'] as num?)?.toInt() ?? 1,
+      data: LeadCustomer.fromJson(model),
+    );
+  }
+
   /// Định dạng ngày theo chuẩn `yyyy-MM-dd` mà API mong đợi.
   String _formatDate(DateTime date) {
     return '${date.year.toString().padLeft(4, '0')}-'
