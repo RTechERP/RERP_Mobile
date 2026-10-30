@@ -1236,6 +1236,139 @@ class DialogService {
     return confirmed;
   }
 
+  /// Dialog xác nhận TT không phù hợp (loại bỏ lead) / huỷ xác nhận TT
+  /// không phù hợp (mở lại lead).
+  ///
+  /// Hiển thị thông tin phiếu lead (mã + công ty) kèm ô nhập lý do/ghi chú.
+  /// Trả về nội dung đã nhập nếu người dùng bấm "Lưu", `null` nếu huỷ.
+  ///
+  /// [isDisqualify] = true → thao tác loại bỏ (màu đỏ, icon khoá, bắt buộc
+  /// nhập lý do); `false` → thao tác mở lại (màu xanh, icon mở khoá, ghi chú
+  /// không bắt buộc).
+  static Future<String?> showLeadStageReasonDialog({
+    required BuildContext context,
+    required bool isDisqualify,
+    String? leadCode,
+    String? companyName,
+  }) async {
+    final formKey = GlobalKey<FormBuilderState>();
+
+    final code = (leadCode ?? '').trim();
+    final company = (companyName ?? '').trim();
+
+    // Màu tương phản: loại bỏ dùng đỏ, mở lại dùng xanh.
+    final accentColor = isDisqualify
+        ? AppColors.stateErrorColor
+        : AppColors.stateSuccessColor;
+    final title = isDisqualify
+        ? 'Xác nhận TT không phù hợp'
+        : 'Huỷ xác nhận TT không phù hợp';
+    // Nút xác nhận khác nhau theo thao tác: loại bỏ vs mở lại.
+    final confirmText = isDisqualify ? 'Loại bỏ' : 'Mở lại';
+
+    // Thông tin phiếu lead: mã phiếu + tên công ty.
+    final leadInfoWidget = Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          code.isEmpty ? 'Lead' : 'Lead:$code',
+          style: AppStyles.body2.copyWith(
+            fontWeight: FontWeight.w700,
+            color: AppColors.neutralText,
+          ),
+        ),
+        if (company.isNotEmpty) ...[
+          const SizedBox(height: 4),
+          Text(
+            company,
+            style: AppStyles.body2.copyWith(
+              color: AppColors.textSecondaryColor,
+            ),
+          ),
+        ],
+      ],
+    );
+
+    final descriptionWidget = Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        FormLeftBorderCard(
+          icon: isDisqualify
+              ? Icons.block_outlined
+              : Icons.lock_open_outlined,
+          iconColor: accentColor,
+          borderColor: accentColor,
+          backgroundColor: accentColor.withValues(alpha: 0.08),
+          child: leadInfoWidget,
+        ),
+        SizedBox(height: AppUICommons.mediumVerticalSpacing),
+        FormBuilder(
+          key: formKey,
+          child: FormInputField(
+            nameForm: 'lead_stage_reason_form',
+            nameTextField: 'lead_stage_reason_field',
+            // Loại bỏ thì bắt buộc nhập lý do, mở lại chỉ là ghi chú nên không bắt buộc.
+            label: isDisqualify ? 'Lý do loại bỏ' : 'Ghi chú',
+            icon: Icons.edit_note,
+            isRequired: isDisqualify,
+            maxLines: 4,
+            autoExpand: true,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
+            maxLength: 500,
+            validator: isDisqualify
+                ? FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                      errorText: 'Vui lòng nhập lý do loại bỏ',
+                    ),
+                    FormBuilderValidators.minLength(
+                      3,
+                      errorText: 'Lý do phải có ít nhất 3 ký tự',
+                    ),
+                  ])
+                : null,
+          ),
+        ),
+      ],
+    );
+
+    return await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: Container(
+        width: 64,
+        height: 64,
+        decoration: BoxDecoration(
+          color: accentColor.withValues(alpha: 0.12),
+          shape: BoxShape.circle,
+        ),
+        child: Icon(
+          isDisqualify ? Icons.block_outlined : Icons.lock_open_outlined,
+          size: 34,
+          color: accentColor,
+        ),
+      ),
+      title: title,
+      descriptionWidget: descriptionWidget,
+      contentTopButton: confirmText,
+      colorTopButton: accentColor,
+      topButtonFunc: () {
+        final state = formKey.currentState;
+        if (state?.saveAndValidate() ?? false) {
+          // Mở lại không bắt buộc nhập → ghi chú có thể rỗng.
+          final value = state!.value['lead_stage_reason_field'] as String? ?? '';
+          context.pop(value);
+        }
+      },
+      contentBottomButton: 'Huỷ bỏ',
+      colorTextBottomButton: accentColor,
+      bottomButtonFunc: () {
+        onBack(context);
+      },
+    );
+  }
+
   static Future<void> showCancelBooking({
     required BuildContext context,
     VoidCallback? onConfirm,

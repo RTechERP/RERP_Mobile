@@ -152,6 +152,12 @@ class _LeadMarketingScreenState extends BaseShareState<
       case 'activity':
         _goToAddActivityScreen(item);
         break;
+      case 'disqualify':
+        await _confirmDisqualifyLead(context, item);
+        break;
+      case 'reopen':
+        await _confirmReopenLead(context, item);
+        break;
       case 'delete':
         await _confirmDeleteLead(context, item);
         break;
@@ -228,6 +234,49 @@ class _LeadMarketingScreenState extends BaseShareState<
     bloc.add(LeadMarketingEvent.deleteLead(id: id));
   }
 
+  /// Xác nhận TT không phù hợp — loại bỏ phiếu lead.
+  ///
+  /// Mở dialog nhập lý do loại bỏ, sau đó gọi `POST /Lead/disqualify`.
+  /// Thông báo kết quả được hiển thị qua listener của bloc trong [renderUI].
+  Future<void> _confirmDisqualifyLead(
+    BuildContext context,
+    LeadMarketingItem item,
+  ) async {
+    final id = item.id;
+    if (id == null) return;
+
+    final note = await DialogService.showLeadStageReasonDialog(
+      context: context,
+      isDisqualify: true,
+      leadCode: item.leadCode,
+      companyName: item.companyName,
+    );
+    if (!context.mounted || note == null) return;
+
+    bloc.add(LeadMarketingEvent.disqualifyLead(id: id, note: note));
+  }
+
+  /// Huỷ xác nhận TT không phù hợp — mở lại phiếu lead.
+  ///
+  /// Mở dialog nhập lý do mở lại, sau đó gọi `POST /Lead/reopen`.
+  Future<void> _confirmReopenLead(
+    BuildContext context,
+    LeadMarketingItem item,
+  ) async {
+    final id = item.id;
+    if (id == null) return;
+
+    final note = await DialogService.showLeadStageReasonDialog(
+      context: context,
+      isDisqualify: false,
+      leadCode: item.leadCode,
+      companyName: item.companyName,
+    );
+    if (!context.mounted || note == null) return;
+
+    bloc.add(LeadMarketingEvent.reopenLead(id: id, note: note));
+  }
+
   @override
   Widget renderUI(BuildContext context) {
     return BlocConsumer<LeadMarketingBloc, LeadMarketingState>(
@@ -243,7 +292,8 @@ class _LeadMarketingScreenState extends BaseShareState<
           previous.keyword != current.keyword ||
           previous.stageFilter != current.stageFilter,
       listenWhen: (previous, current) =>
-          previous.deleteStatus != current.deleteStatus,
+          previous.deleteStatus != current.deleteStatus ||
+          previous.stageActionStatus != current.stageActionStatus,
       listener: (context, state) {
         // Kết quả xoá phiếu lead — thông báo rồi tải lại danh sách.
         if (state.deleteStatus == BaseStateStatus.success) {
@@ -259,6 +309,22 @@ class _LeadMarketingScreenState extends BaseShareState<
             type: SnackBarType.error,
           );
           bloc.add(const LeadMarketingEvent.clearDeleteState());
+        }
+
+        // Kết quả loại bỏ / mở lại lead.
+        if (state.stageActionStatus == BaseStateStatus.success) {
+          context.showMessage(
+            state.stageActionMessage ?? 'Thành công!',
+            type: SnackBarType.success,
+          );
+          bloc.add(const LeadMarketingEvent.clearStageActionState());
+          bloc.add(const LeadMarketingEvent.refresh());
+        } else if (state.stageActionStatus == BaseStateStatus.failed) {
+          context.showMessage(
+            state.stageActionMessage ?? 'Thất bại',
+            type: SnackBarType.error,
+          );
+          bloc.add(const LeadMarketingEvent.clearStageActionState());
         }
       },
       builder: (context, state) {

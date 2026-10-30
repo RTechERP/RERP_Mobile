@@ -41,6 +41,22 @@ class LeadMenuItem {
     color: Color(0xFF8E24AA),
   );
 
+  /// Thao tác xác nhận TT không phù hợp — loại bỏ lead.
+  static const LeadMenuItem disqualify = LeadMenuItem(
+    id: 'disqualify',
+    name: 'TT không phù hợp',
+    icon: Icons.block_outlined,
+    color: Color(0xFFED3A3A),
+  );
+
+  /// Thao tác huỷ xác nhận TT không phù hợp — mở lại lead.
+  static const LeadMenuItem reopen = LeadMenuItem(
+    id: 'reopen',
+    name: 'Huỷ TT không phù hợp',
+    icon: Icons.lock_open_outlined,
+    color: Color(0xFF33B469),
+  );
+
   /// Thao tác xoá phiếu lead.
   static const LeadMenuItem delete = LeadMenuItem(
     id: 'delete',
@@ -50,7 +66,14 @@ class LeadMenuItem {
   );
 
   /// Danh sách thao tác mặc định của phiếu lead.
-  static const List<LeadMenuItem> menuItems = [detail, edit, activity, delete];
+  static const List<LeadMenuItem> menuItems = [
+    detail,
+    edit,
+    activity,
+    disqualify,
+    reopen,
+    delete,
+  ];
 }
 
 /// Bottom sheet hiển thị menu thao tác của một phiếu lead.

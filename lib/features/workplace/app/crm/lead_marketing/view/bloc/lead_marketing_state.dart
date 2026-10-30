@@ -146,6 +146,15 @@ class LeadMarketingState extends BaseBlocState {
   /// Thông báo lỗi khi tải danh sách loại nhóm thất bại.
   final String? activityTypesMessage;
 
+  /// Trạng thái đang loại bỏ / mở lại lead.
+  final BaseStateStatus stageActionStatus;
+
+  /// Thông báo kết quả loại bỏ / mở lại lead (thành công / thất bại).
+  final String? stageActionMessage;
+
+  /// Danh sách ID lead đã loại bỏ / mở lại thành công.
+  final List<int> stageActionIds;
+
   /// Thông tin người dùng hiện tại — dùng để mặc định NV marketing phụ trách.
   final User? currentUser;
 
@@ -199,6 +208,9 @@ class LeadMarketingState extends BaseBlocState {
     this.activityTypes = const [],
     this.activityTypesStatus = BaseStateStatus.init,
     this.activityTypesMessage,
+    this.stageActionStatus = BaseStateStatus.init,
+    this.stageActionMessage,
+    this.stageActionIds = const [],
     this.currentUser,
   });
 
@@ -315,6 +327,9 @@ class LeadMarketingState extends BaseBlocState {
         activityTypes,
         activityTypesStatus,
         activityTypesMessage,
+        stageActionStatus,
+        stageActionMessage,
+        stageActionIds,
         currentUser,
       ];
 }

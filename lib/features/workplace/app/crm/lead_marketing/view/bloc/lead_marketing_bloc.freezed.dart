@@ -42,6 +42,9 @@ mixin _$LeadMarketingEvent {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,6 +71,9 @@ mixin _$LeadMarketingEvent {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -94,6 +100,9 @@ mixin _$LeadMarketingEvent {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,6 +128,10 @@ mixin _$LeadMarketingEvent {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -143,6 +156,9 @@ mixin _$LeadMarketingEvent {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -167,6 +183,9 @@ mixin _$LeadMarketingEvent {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -251,6 +270,9 @@ class _$InitImpl implements _Init {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return init();
   }
@@ -280,6 +302,9 @@ class _$InitImpl implements _Init {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return init?.call();
   }
@@ -309,6 +334,9 @@ class _$InitImpl implements _Init {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -340,6 +368,10 @@ class _$InitImpl implements _Init {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return init(this);
   }
@@ -367,6 +399,9 @@ class _$InitImpl implements _Init {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return init?.call(this);
   }
@@ -394,6 +429,9 @@ class _$InitImpl implements _Init {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -505,6 +543,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -534,6 +575,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -563,6 +607,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -594,6 +641,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return changeDateRange(this);
   }
@@ -621,6 +672,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return changeDateRange?.call(this);
   }
@@ -648,6 +702,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -757,6 +814,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return changeKeyword(keyword);
   }
@@ -786,6 +846,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return changeKeyword?.call(keyword);
   }
@@ -815,6 +878,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -846,6 +912,10 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return changeKeyword(this);
   }
@@ -873,6 +943,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return changeKeyword?.call(this);
   }
@@ -900,6 +973,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -981,6 +1057,9 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return refresh();
   }
@@ -1010,6 +1089,9 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return refresh?.call();
   }
@@ -1039,6 +1121,9 @@ class _$RefreshImpl implements _Refresh {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -1070,6 +1155,10 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return refresh(this);
   }
@@ -1097,6 +1186,9 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return refresh?.call(this);
   }
@@ -1124,6 +1216,9 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -1272,6 +1367,9 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return applyFilter(
         leadSourceId, marketingEmployeeId, saleEmployeeId, includeOpen, stage);
@@ -1302,6 +1400,9 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return applyFilter?.call(
         leadSourceId, marketingEmployeeId, saleEmployeeId, includeOpen, stage);
@@ -1332,6 +1433,9 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -1364,6 +1468,10 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return applyFilter(this);
   }
@@ -1391,6 +1499,9 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return applyFilter?.call(this);
   }
@@ -1418,6 +1529,9 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -1507,6 +1621,9 @@ class _$ClearFilterImpl implements _ClearFilter {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return clearFilter();
   }
@@ -1536,6 +1653,9 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return clearFilter?.call();
   }
@@ -1565,6 +1685,9 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (clearFilter != null) {
@@ -1596,6 +1719,10 @@ class _$ClearFilterImpl implements _ClearFilter {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return clearFilter(this);
   }
@@ -1623,6 +1750,9 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return clearFilter?.call(this);
   }
@@ -1650,6 +1780,9 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (clearFilter != null) {
@@ -1751,6 +1884,9 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return loadDetail(id);
   }
@@ -1780,6 +1916,9 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return loadDetail?.call(id);
   }
@@ -1809,6 +1948,9 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -1840,6 +1982,10 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return loadDetail(this);
   }
@@ -1867,6 +2013,9 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return loadDetail?.call(this);
   }
@@ -1894,6 +2043,9 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -2001,6 +2153,9 @@ class _$LoadFilesImpl implements _LoadFiles {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return loadFiles(customerContactId);
   }
@@ -2030,6 +2185,9 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return loadFiles?.call(customerContactId);
   }
@@ -2059,6 +2217,9 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (loadFiles != null) {
@@ -2090,6 +2251,10 @@ class _$LoadFilesImpl implements _LoadFiles {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return loadFiles(this);
   }
@@ -2117,6 +2282,9 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return loadFiles?.call(this);
   }
@@ -2144,6 +2312,9 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (loadFiles != null) {
@@ -2252,6 +2423,9 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return loadFilesPo(customerContactId);
   }
@@ -2281,6 +2455,9 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return loadFilesPo?.call(customerContactId);
   }
@@ -2310,6 +2487,9 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (loadFilesPo != null) {
@@ -2341,6 +2521,10 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return loadFilesPo(this);
   }
@@ -2368,6 +2552,9 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return loadFilesPo?.call(this);
   }
@@ -2395,6 +2582,9 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (loadFilesPo != null) {
@@ -2476,6 +2666,9 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return loadFormOptions();
   }
@@ -2505,6 +2698,9 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return loadFormOptions?.call();
   }
@@ -2534,6 +2730,9 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (loadFormOptions != null) {
@@ -2565,6 +2764,10 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return loadFormOptions(this);
   }
@@ -2592,6 +2795,9 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return loadFormOptions?.call(this);
   }
@@ -2619,6 +2825,9 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (loadFormOptions != null) {
@@ -2721,6 +2930,9 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return loadCustomerDetail(id);
   }
@@ -2750,6 +2962,9 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return loadCustomerDetail?.call(id);
   }
@@ -2779,6 +2994,9 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (loadCustomerDetail != null) {
@@ -2810,6 +3028,10 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return loadCustomerDetail(this);
   }
@@ -2837,6 +3059,9 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return loadCustomerDetail?.call(this);
   }
@@ -2864,6 +3089,9 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (loadCustomerDetail != null) {
@@ -2978,6 +3206,9 @@ class _$SubmitLeadImpl implements _SubmitLead {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return submitLead(payload);
   }
@@ -3007,6 +3238,9 @@ class _$SubmitLeadImpl implements _SubmitLead {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return submitLead?.call(payload);
   }
@@ -3036,6 +3270,9 @@ class _$SubmitLeadImpl implements _SubmitLead {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (submitLead != null) {
@@ -3067,6 +3304,10 @@ class _$SubmitLeadImpl implements _SubmitLead {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return submitLead(this);
   }
@@ -3094,6 +3335,9 @@ class _$SubmitLeadImpl implements _SubmitLead {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return submitLead?.call(this);
   }
@@ -3121,6 +3365,9 @@ class _$SubmitLeadImpl implements _SubmitLead {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (submitLead != null) {
@@ -3238,6 +3485,9 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return confirmDuplicateSave(payload);
   }
@@ -3267,6 +3517,9 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return confirmDuplicateSave?.call(payload);
   }
@@ -3296,6 +3549,9 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (confirmDuplicateSave != null) {
@@ -3327,6 +3583,10 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return confirmDuplicateSave(this);
   }
@@ -3354,6 +3614,9 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return confirmDuplicateSave?.call(this);
   }
@@ -3381,6 +3644,9 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (confirmDuplicateSave != null) {
@@ -3464,6 +3730,9 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return cancelDuplicateSave();
   }
@@ -3493,6 +3762,9 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return cancelDuplicateSave?.call();
   }
@@ -3522,6 +3794,9 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (cancelDuplicateSave != null) {
@@ -3553,6 +3828,10 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return cancelDuplicateSave(this);
   }
@@ -3580,6 +3859,9 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return cancelDuplicateSave?.call(this);
   }
@@ -3607,6 +3889,9 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (cancelDuplicateSave != null) {
@@ -3682,6 +3967,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return clearSubmitState();
   }
@@ -3711,6 +3999,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return clearSubmitState?.call();
   }
@@ -3740,6 +4031,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -3771,6 +4065,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return clearSubmitState(this);
   }
@@ -3798,6 +4096,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return clearSubmitState?.call(this);
   }
@@ -3825,6 +4126,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -3926,6 +4230,9 @@ class _$DeleteLeadImpl implements _DeleteLead {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return deleteLead(id);
   }
@@ -3955,6 +4262,9 @@ class _$DeleteLeadImpl implements _DeleteLead {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return deleteLead?.call(id);
   }
@@ -3984,6 +4294,9 @@ class _$DeleteLeadImpl implements _DeleteLead {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (deleteLead != null) {
@@ -4015,6 +4328,10 @@ class _$DeleteLeadImpl implements _DeleteLead {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return deleteLead(this);
   }
@@ -4042,6 +4359,9 @@ class _$DeleteLeadImpl implements _DeleteLead {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return deleteLead?.call(this);
   }
@@ -4069,6 +4389,9 @@ class _$DeleteLeadImpl implements _DeleteLead {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (deleteLead != null) {
@@ -4149,6 +4472,9 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return clearDeleteState();
   }
@@ -4178,6 +4504,9 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return clearDeleteState?.call();
   }
@@ -4207,6 +4536,9 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (clearDeleteState != null) {
@@ -4238,6 +4570,10 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return clearDeleteState(this);
   }
@@ -4265,6 +4601,9 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return clearDeleteState?.call(this);
   }
@@ -4292,6 +4631,9 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (clearDeleteState != null) {
@@ -4367,6 +4709,9 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return loadActivityTypes();
   }
@@ -4396,6 +4741,9 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return loadActivityTypes?.call();
   }
@@ -4425,6 +4773,9 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (loadActivityTypes != null) {
@@ -4456,6 +4807,10 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return loadActivityTypes(this);
   }
@@ -4483,6 +4838,9 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return loadActivityTypes?.call(this);
   }
@@ -4510,6 +4868,9 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (loadActivityTypes != null) {
@@ -4618,6 +4979,9 @@ class _$SaveActivityImpl implements _SaveActivity {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return saveActivity(payload);
   }
@@ -4647,6 +5011,9 @@ class _$SaveActivityImpl implements _SaveActivity {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return saveActivity?.call(payload);
   }
@@ -4676,6 +5043,9 @@ class _$SaveActivityImpl implements _SaveActivity {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (saveActivity != null) {
@@ -4707,6 +5077,10 @@ class _$SaveActivityImpl implements _SaveActivity {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return saveActivity(this);
   }
@@ -4734,6 +5108,9 @@ class _$SaveActivityImpl implements _SaveActivity {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return saveActivity?.call(this);
   }
@@ -4761,6 +5138,9 @@ class _$SaveActivityImpl implements _SaveActivity {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (saveActivity != null) {
@@ -4842,6 +5222,9 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     required TResult Function() loadActivityTypes,
     required TResult Function(Map<String, dynamic> payload) saveActivity,
     required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
   }) {
     return clearActivityState();
   }
@@ -4871,6 +5254,9 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     TResult? Function()? loadActivityTypes,
     TResult? Function(Map<String, dynamic> payload)? saveActivity,
     TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
   }) {
     return clearActivityState?.call();
   }
@@ -4900,6 +5286,9 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     TResult Function()? loadActivityTypes,
     TResult Function(Map<String, dynamic> payload)? saveActivity,
     TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
     required TResult orElse(),
   }) {
     if (clearActivityState != null) {
@@ -4931,6 +5320,10 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     required TResult Function(_LoadActivityTypes value) loadActivityTypes,
     required TResult Function(_SaveActivity value) saveActivity,
     required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
   }) {
     return clearActivityState(this);
   }
@@ -4958,6 +5351,9 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult? Function(_SaveActivity value)? saveActivity,
     TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
   }) {
     return clearActivityState?.call(this);
   }
@@ -4985,6 +5381,9 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     TResult Function(_LoadActivityTypes value)? loadActivityTypes,
     TResult Function(_SaveActivity value)? saveActivity,
     TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
     required TResult orElse(),
   }) {
     if (clearActivityState != null) {
@@ -4996,4 +5395,801 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
 
 abstract class _ClearActivityState implements LeadMarketingEvent {
   const factory _ClearActivityState() = _$ClearActivityStateImpl;
+}
+
+/// @nodoc
+abstract class _$$DisqualifyLeadImplCopyWith<$Res> {
+  factory _$$DisqualifyLeadImplCopyWith(_$DisqualifyLeadImpl value,
+          $Res Function(_$DisqualifyLeadImpl) then) =
+      __$$DisqualifyLeadImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id, String note});
+}
+
+/// @nodoc
+class __$$DisqualifyLeadImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$DisqualifyLeadImpl>
+    implements _$$DisqualifyLeadImplCopyWith<$Res> {
+  __$$DisqualifyLeadImplCopyWithImpl(
+      _$DisqualifyLeadImpl _value, $Res Function(_$DisqualifyLeadImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? note = null,
+  }) {
+    return _then(_$DisqualifyLeadImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DisqualifyLeadImpl implements _DisqualifyLead {
+  const _$DisqualifyLeadImpl({required this.id, required this.note});
+
+  @override
+  final int id;
+  @override
+  final String note;
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.disqualifyLead(id: $id, note: $note)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DisqualifyLeadImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.note, note) || other.note == note));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, note);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DisqualifyLeadImplCopyWith<_$DisqualifyLeadImpl> get copyWith =>
+      __$$DisqualifyLeadImplCopyWithImpl<_$DisqualifyLeadImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteLead,
+    required TResult Function() clearDeleteState,
+    required TResult Function() loadActivityTypes,
+    required TResult Function(Map<String, dynamic> payload) saveActivity,
+    required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
+  }) {
+    return disqualifyLead(id, note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteLead,
+    TResult? Function()? clearDeleteState,
+    TResult? Function()? loadActivityTypes,
+    TResult? Function(Map<String, dynamic> payload)? saveActivity,
+    TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
+  }) {
+    return disqualifyLead?.call(id, note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteLead,
+    TResult Function()? clearDeleteState,
+    TResult Function()? loadActivityTypes,
+    TResult Function(Map<String, dynamic> payload)? saveActivity,
+    TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
+    required TResult orElse(),
+  }) {
+    if (disqualifyLead != null) {
+      return disqualifyLead(id, note);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteLead value) deleteLead,
+    required TResult Function(_ClearDeleteState value) clearDeleteState,
+    required TResult Function(_LoadActivityTypes value) loadActivityTypes,
+    required TResult Function(_SaveActivity value) saveActivity,
+    required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
+  }) {
+    return disqualifyLead(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteLead value)? deleteLead,
+    TResult? Function(_ClearDeleteState value)? clearDeleteState,
+    TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult? Function(_SaveActivity value)? saveActivity,
+    TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
+  }) {
+    return disqualifyLead?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteLead value)? deleteLead,
+    TResult Function(_ClearDeleteState value)? clearDeleteState,
+    TResult Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult Function(_SaveActivity value)? saveActivity,
+    TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
+    required TResult orElse(),
+  }) {
+    if (disqualifyLead != null) {
+      return disqualifyLead(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DisqualifyLead implements LeadMarketingEvent {
+  const factory _DisqualifyLead(
+      {required final int id,
+      required final String note}) = _$DisqualifyLeadImpl;
+
+  int get id;
+  String get note;
+  @JsonKey(ignore: true)
+  _$$DisqualifyLeadImplCopyWith<_$DisqualifyLeadImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ReopenLeadImplCopyWith<$Res> {
+  factory _$$ReopenLeadImplCopyWith(
+          _$ReopenLeadImpl value, $Res Function(_$ReopenLeadImpl) then) =
+      __$$ReopenLeadImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id, String note});
+}
+
+/// @nodoc
+class __$$ReopenLeadImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$ReopenLeadImpl>
+    implements _$$ReopenLeadImplCopyWith<$Res> {
+  __$$ReopenLeadImplCopyWithImpl(
+      _$ReopenLeadImpl _value, $Res Function(_$ReopenLeadImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? note = null,
+  }) {
+    return _then(_$ReopenLeadImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ReopenLeadImpl implements _ReopenLead {
+  const _$ReopenLeadImpl({required this.id, required this.note});
+
+  @override
+  final int id;
+  @override
+  final String note;
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.reopenLead(id: $id, note: $note)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReopenLeadImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.note, note) || other.note == note));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, note);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReopenLeadImplCopyWith<_$ReopenLeadImpl> get copyWith =>
+      __$$ReopenLeadImplCopyWithImpl<_$ReopenLeadImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteLead,
+    required TResult Function() clearDeleteState,
+    required TResult Function() loadActivityTypes,
+    required TResult Function(Map<String, dynamic> payload) saveActivity,
+    required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
+  }) {
+    return reopenLead(id, note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteLead,
+    TResult? Function()? clearDeleteState,
+    TResult? Function()? loadActivityTypes,
+    TResult? Function(Map<String, dynamic> payload)? saveActivity,
+    TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
+  }) {
+    return reopenLead?.call(id, note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteLead,
+    TResult Function()? clearDeleteState,
+    TResult Function()? loadActivityTypes,
+    TResult Function(Map<String, dynamic> payload)? saveActivity,
+    TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
+    required TResult orElse(),
+  }) {
+    if (reopenLead != null) {
+      return reopenLead(id, note);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteLead value) deleteLead,
+    required TResult Function(_ClearDeleteState value) clearDeleteState,
+    required TResult Function(_LoadActivityTypes value) loadActivityTypes,
+    required TResult Function(_SaveActivity value) saveActivity,
+    required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
+  }) {
+    return reopenLead(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteLead value)? deleteLead,
+    TResult? Function(_ClearDeleteState value)? clearDeleteState,
+    TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult? Function(_SaveActivity value)? saveActivity,
+    TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
+  }) {
+    return reopenLead?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteLead value)? deleteLead,
+    TResult Function(_ClearDeleteState value)? clearDeleteState,
+    TResult Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult Function(_SaveActivity value)? saveActivity,
+    TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
+    required TResult orElse(),
+  }) {
+    if (reopenLead != null) {
+      return reopenLead(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ReopenLead implements LeadMarketingEvent {
+  const factory _ReopenLead(
+      {required final int id, required final String note}) = _$ReopenLeadImpl;
+
+  int get id;
+  String get note;
+  @JsonKey(ignore: true)
+  _$$ReopenLeadImplCopyWith<_$ReopenLeadImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearStageActionStateImplCopyWith<$Res> {
+  factory _$$ClearStageActionStateImplCopyWith(
+          _$ClearStageActionStateImpl value,
+          $Res Function(_$ClearStageActionStateImpl) then) =
+      __$$ClearStageActionStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearStageActionStateImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$ClearStageActionStateImpl>
+    implements _$$ClearStageActionStateImplCopyWith<$Res> {
+  __$$ClearStageActionStateImplCopyWithImpl(_$ClearStageActionStateImpl _value,
+      $Res Function(_$ClearStageActionStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearStageActionStateImpl implements _ClearStageActionState {
+  const _$ClearStageActionStateImpl();
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.clearStageActionState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearStageActionStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteLead,
+    required TResult Function() clearDeleteState,
+    required TResult Function() loadActivityTypes,
+    required TResult Function(Map<String, dynamic> payload) saveActivity,
+    required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
+  }) {
+    return clearStageActionState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteLead,
+    TResult? Function()? clearDeleteState,
+    TResult? Function()? loadActivityTypes,
+    TResult? Function(Map<String, dynamic> payload)? saveActivity,
+    TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
+  }) {
+    return clearStageActionState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteLead,
+    TResult Function()? clearDeleteState,
+    TResult Function()? loadActivityTypes,
+    TResult Function(Map<String, dynamic> payload)? saveActivity,
+    TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
+    required TResult orElse(),
+  }) {
+    if (clearStageActionState != null) {
+      return clearStageActionState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteLead value) deleteLead,
+    required TResult Function(_ClearDeleteState value) clearDeleteState,
+    required TResult Function(_LoadActivityTypes value) loadActivityTypes,
+    required TResult Function(_SaveActivity value) saveActivity,
+    required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
+  }) {
+    return clearStageActionState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteLead value)? deleteLead,
+    TResult? Function(_ClearDeleteState value)? clearDeleteState,
+    TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult? Function(_SaveActivity value)? saveActivity,
+    TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
+  }) {
+    return clearStageActionState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteLead value)? deleteLead,
+    TResult Function(_ClearDeleteState value)? clearDeleteState,
+    TResult Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult Function(_SaveActivity value)? saveActivity,
+    TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
+    required TResult orElse(),
+  }) {
+    if (clearStageActionState != null) {
+      return clearStageActionState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearStageActionState implements LeadMarketingEvent {
+  const factory _ClearStageActionState() = _$ClearStageActionStateImpl;
 }

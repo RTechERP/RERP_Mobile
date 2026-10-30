@@ -343,6 +343,47 @@ class LeadMarketingRepoImpl implements LeadMarketingRepo {
   }
 
   @override
+  Future<Either<BaseError, List<int>>> disqualifyLeads({
+    required List<int> ids,
+    required String note,
+  }) async {
+    try {
+      final res = await _service.disqualifyLeads(ids: ids, note: note);
+      // Chỉ coi là thành công khi API trả `message` và `data` có dữ liệu.
+      if (res.status == 1 && res.data != null && res.data!.isNotEmpty) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Xác nhận TT không phù hợp thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<int>>> reopenLeads({
+    required List<int> ids,
+    required String note,
+  }) async {
+    try {
+      final res = await _service.reopenLeads(ids: ids, note: note);
+      if (res.status == 1 && res.data != null && res.data!.isNotEmpty) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Huỷ xác nhận TT không phù hợp thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
   Future<Either<BaseError, List<LeadActivityType>>> getActivityTypes() async {
     try {
       final res = await _service.getActivityTypes();

@@ -105,4 +105,19 @@ class LeadMarketingEvent with _$LeadMarketingEvent {
 
   /// Xóa trạng thái kết quả ghi hoạt động.
   const factory LeadMarketingEvent.clearActivityState() = _ClearActivityState;
+
+  /// Xác nhận TT không phù hợp — loại bỏ lead.
+  const factory LeadMarketingEvent.disqualifyLead({
+    required int id,
+    required String note,
+  }) = _DisqualifyLead;
+
+  /// Huỷ xác nhận TT không phù hợp — mở lại lead.
+  const factory LeadMarketingEvent.reopenLead({
+    required int id,
+    required String note,
+  }) = _ReopenLead;
+
+  /// Xóa trạng thái kết quả loại bỏ / mở lại lead.
+  const factory LeadMarketingEvent.clearStageActionState() = _ClearStageActionState;
 }

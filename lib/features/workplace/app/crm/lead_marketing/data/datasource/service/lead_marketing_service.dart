@@ -195,6 +195,39 @@ class LeadMarketingService extends DioBaseApiService {
     );
   }
 
+  /// Xác nhận TT không phù hợp — loại bỏ lead.
+  ///
+  /// API: POST /Lead/disqualify.
+  /// Body: `{ "Ids": [11337], "Note": "lý do" }`.
+  /// Response: `{ status, message, data: [11337] }` — `data` là danh sách ID
+  /// đã xử lý thành công.
+  Future<BaseData<List<int>>> disqualifyLeads({
+    required List<int> ids,
+    required String note,
+  }) async {
+    return post<BaseData<List<int>>>(
+      ApiEndPoint.disqualifyLead,
+      body: {'Ids': ids, 'Note': note},
+      parser: (json) => _parseDeletedIds(json),
+    );
+  }
+
+  /// Huỷ xác nhận TT không phù hợp — mở lại lead.
+  ///
+  /// API: POST /Lead/reopen.
+  /// Body: `{ "Ids": [11337], "Note": "lý do" }`.
+  /// Response: `{ status, message, data: [11337] }`.
+  Future<BaseData<List<int>>> reopenLeads({
+    required List<int> ids,
+    required String note,
+  }) async {
+    return post<BaseData<List<int>>>(
+      ApiEndPoint.reopenLead,
+      body: {'Ids': ids, 'Note': note},
+      parser: (json) => _parseDeletedIds(json),
+    );
+  }
+
   /// Lấy danh sách loại nhóm dùng cho hoạt động của phiếu lead.
   ///
   /// API: GET /DailyReportSale/get-mainindex.

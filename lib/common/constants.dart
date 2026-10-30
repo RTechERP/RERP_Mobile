@@ -745,6 +745,14 @@ class ApiEndPoint {
   /// API: POST /Lead/save-activity.
   static const String saveLeadActivity = '/Lead/save-activity';
 
+  /// Xác nhận TT không phù hợp — loại bỏ lead khỏi danh sách theo dõi.
+  /// API: POST /Lead/disqualify — body `{ "Ids": [11337], "Note": "..." }`.
+  static const String disqualifyLead = '/Lead/disqualify';
+
+  /// Huỷ xác nhận TT không phù hợp — mở lại lead.
+  /// API: POST /Lead/reopen — body `{ "Ids": [11337], "Note": "..." }`.
+  static const String reopenLead = '/Lead/reopen';
+
   // CRM - Danh mục khách hàng (dùng khi tạo phiếu lead)
   /// Danh sách lĩnh vực của khách hàng.
   /// API: GET /Customer/get-customer-industry.

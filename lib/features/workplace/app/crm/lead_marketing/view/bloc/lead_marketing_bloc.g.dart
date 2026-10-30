@@ -107,6 +107,12 @@ abstract class _$LeadMarketingStateCWProxy {
 
   LeadMarketingState activityTypesMessage(String? activityTypesMessage);
 
+  LeadMarketingState stageActionStatus(BaseStateStatus stageActionStatus);
+
+  LeadMarketingState stageActionMessage(String? stageActionMessage);
+
+  LeadMarketingState stageActionIds(List<int> stageActionIds);
+
   LeadMarketingState currentUser(User? currentUser);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeadMarketingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -165,6 +171,9 @@ abstract class _$LeadMarketingStateCWProxy {
     List<LeadActivityType>? activityTypes,
     BaseStateStatus? activityTypesStatus,
     String? activityTypesMessage,
+    BaseStateStatus? stageActionStatus,
+    String? stageActionMessage,
+    List<int>? stageActionIds,
     User? currentUser,
   });
 }
@@ -366,6 +375,18 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
       this(activityTypesMessage: activityTypesMessage);
 
   @override
+  LeadMarketingState stageActionStatus(BaseStateStatus stageActionStatus) =>
+      this(stageActionStatus: stageActionStatus);
+
+  @override
+  LeadMarketingState stageActionMessage(String? stageActionMessage) =>
+      this(stageActionMessage: stageActionMessage);
+
+  @override
+  LeadMarketingState stageActionIds(List<int> stageActionIds) =>
+      this(stageActionIds: stageActionIds);
+
+  @override
   LeadMarketingState currentUser(User? currentUser) =>
       this(currentUser: currentUser);
 
@@ -427,6 +448,9 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
     Object? activityTypes = const $CopyWithPlaceholder(),
     Object? activityTypesStatus = const $CopyWithPlaceholder(),
     Object? activityTypesMessage = const $CopyWithPlaceholder(),
+    Object? stageActionStatus = const $CopyWithPlaceholder(),
+    Object? stageActionMessage = const $CopyWithPlaceholder(),
+    Object? stageActionIds = const $CopyWithPlaceholder(),
     Object? currentUser = const $CopyWithPlaceholder(),
   }) {
     return LeadMarketingState(
@@ -650,6 +674,20 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
           ? _value.activityTypesMessage
           // ignore: cast_nullable_to_non_nullable
           : activityTypesMessage as String?,
+      stageActionStatus: stageActionStatus == const $CopyWithPlaceholder() ||
+              stageActionStatus == null
+          ? _value.stageActionStatus
+          // ignore: cast_nullable_to_non_nullable
+          : stageActionStatus as BaseStateStatus,
+      stageActionMessage: stageActionMessage == const $CopyWithPlaceholder()
+          ? _value.stageActionMessage
+          // ignore: cast_nullable_to_non_nullable
+          : stageActionMessage as String?,
+      stageActionIds: stageActionIds == const $CopyWithPlaceholder() ||
+              stageActionIds == null
+          ? _value.stageActionIds
+          // ignore: cast_nullable_to_non_nullable
+          : stageActionIds as List<int>,
       currentUser: currentUser == const $CopyWithPlaceholder()
           ? _value.currentUser
           // ignore: cast_nullable_to_non_nullable

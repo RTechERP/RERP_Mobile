@@ -63,6 +63,10 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
         loadActivityTypes: () => _onLoadActivityTypes(emit),
         saveActivity: (payload) => _onSaveActivity(emit, payload: payload),
         clearActivityState: () async => _onClearActivityState(emit),
+        disqualifyLead: (id, note) =>
+            _onDisqualifyLead(emit, id: id, note: note),
+        reopenLead: (id, note) => _onReopenLead(emit, id: id, note: note),
+        clearStageActionState: () async => _onClearStageActionState(emit),
       );
     });
   }
@@ -616,6 +620,81 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
       activityStatus: BaseStateStatus.init,
       activityMessage: null,
       activityResult: null,
+    ));
+  }
+
+  /// Xác nhận TT không phù hợp — loại bỏ lead.
+  Future<void> _onDisqualifyLead(
+    Emitter<LeadMarketingState> emit, {
+    required int id,
+    required String note,
+  }) async {
+    emit(state.copyWith(
+      stageActionStatus: BaseStateStatus.loading,
+      stageActionMessage: null,
+      stageActionIds: const [],
+    ));
+
+    final res = await _repo.disqualifyLeads(ids: [id], note: note);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Disqualify lead failed: $l');
+        emit(state.copyWith(
+          stageActionStatus: BaseStateStatus.failed,
+          stageActionMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Disqualify lead success - ids: $r');
+        emit(state.copyWith(
+          stageActionStatus: BaseStateStatus.success,
+          stageActionMessage: 'Đã loại bỏ lead!',
+          stageActionIds: r,
+        ));
+      },
+    );
+  }
+
+  /// Huỷ xác nhận TT không phù hợp — mở lại lead.
+  Future<void> _onReopenLead(
+    Emitter<LeadMarketingState> emit, {
+    required int id,
+    required String note,
+  }) async {
+    emit(state.copyWith(
+      stageActionStatus: BaseStateStatus.loading,
+      stageActionMessage: null,
+      stageActionIds: const [],
+    ));
+
+    final res = await _repo.reopenLeads(ids: [id], note: note);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Reopen lead failed: $l');
+        emit(state.copyWith(
+          stageActionStatus: BaseStateStatus.failed,
+          stageActionMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Reopen lead success - ids: $r');
+        emit(state.copyWith(
+          stageActionStatus: BaseStateStatus.success,
+          stageActionMessage: 'Đã mở lại lead!',
+          stageActionIds: r,
+        ));
+      },
+    );
+  }
+
+  /// Xóa trạng thái kết quả loại bỏ / mở lại lead.
+  void _onClearStageActionState(Emitter<LeadMarketingState> emit) {
+    emit(state.copyWith(
+      stageActionStatus: BaseStateStatus.init,
+      stageActionMessage: null,
+      stageActionIds: const [],
     ));
   }
 
