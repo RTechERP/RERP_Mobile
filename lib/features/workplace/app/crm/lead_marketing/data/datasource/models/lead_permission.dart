@@ -34,6 +34,9 @@ class LeadPermission {
   /// Mã giai đoạn lớn nhất mà nhân viên marketing vẫn được thao tác.
   static const int marketingMaxStageCode = 4;
 
+  /// Mã giai đoạn lớn nhất mà thao tác bàn giao Sale còn khả dụng.
+  static const int handoverMaxStageCode = 2;
+
   /// Thông báo khi người dùng không có quyền thao tác phiếu lead.
   static const String noPermissionMessage =
       'Bạn không có quyền thao tác phiếu lead ở trạng thái này';
@@ -203,5 +206,20 @@ class LeadPermission {
       return customerPoMessage;
     }
     return noPermissionMessage;
+  }
+
+  /// Người dùng hiện tại có được phép bàn giao phiếu lead cho Leader Sale hay
+  /// không.
+  ///
+  /// Thao tác bàn giao chỉ dành cho nhân viên đặc biệt và chỉ khả dụng khi
+  /// phiếu ở giai đoạn 1–2.
+  static bool canHandover({
+    required int? stageCode,
+    required LeadRoleContext? roleContext,
+    required User? user,
+  }) {
+    if (!isSpecialUser(roleContext: roleContext, user: user)) return false;
+    if (stageCode == null) return true;
+    return stageCode <= handoverMaxStageCode;
   }
 }

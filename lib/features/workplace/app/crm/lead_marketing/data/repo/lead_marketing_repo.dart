@@ -113,4 +113,26 @@ abstract class LeadMarketingRepo {
 
   /// Lấy danh sách loại nhóm dùng cho hoạt động của phiếu lead.
   Future<Either<BaseError, List<LeadActivityType>>> getActivityTypes();
+
+  /// Lấy danh sách Leader Sale nhận bàn giao.
+  Future<Either<BaseError, List<LeadEmployee>>> getSaleLeaders();
+
+  /// Lấy danh sách Admin Sale.
+  Future<Either<BaseError, List<LeadEmployee>>> getSaleAdmins();
+
+  /// Lấy ID Admin Sale tương ứng với Leader Sale đã chọn.
+  Future<Either<BaseError, int>> getAdminSaleId({
+    required int leaderSaleId,
+  });
+
+  /// Bàn giao lead cho Leader Sale.
+  ///
+  /// [ids] là danh sách ID phiếu cần bàn giao. Trả về kết quả gồm thông báo
+  /// từ API và danh sách ID đã bàn giao thành công.
+  Future<Either<BaseError, LeadHandoverResult>> handoverLeads({
+    required List<int> ids,
+    required int leaderEmployeeId,
+    required int adminSaleId,
+    required String note,
+  });
 }

@@ -155,6 +155,30 @@ class LeadMarketingState extends BaseBlocState {
   /// Danh sách ID lead đã loại bỏ / mở lại thành công.
   final List<int> stageActionIds;
 
+  /// Danh sách Leader Sale nhận bàn giao.
+  final List<LeadEmployee> saleLeaders;
+
+  /// Danh sách Admin Sale.
+  final List<LeadEmployee> saleAdmins;
+
+  /// Trạng thái tải danh sách Leader Sale / Admin Sale.
+  final BaseStateStatus handoverOptionsStatus;
+
+  /// Thông báo lỗi khi tải danh sách Leader Sale / Admin Sale thất bại.
+  final String? handoverOptionsMessage;
+
+  /// ID Admin Sale tương ứng với Leader Sale vừa chọn (null khi chưa chọn).
+  final int? adminSaleId;
+
+  /// Trạng thái đang bàn giao lead.
+  final BaseStateStatus handoverStatus;
+
+  /// Thông báo kết quả bàn giao lead (thành công / thất bại).
+  final String? handoverMessage;
+
+  /// Danh sách ID lead đã bàn giao thành công.
+  final List<int> handoverIds;
+
   /// Thông tin người dùng hiện tại — dùng để mặc định NV marketing phụ trách.
   final User? currentUser;
 
@@ -211,6 +235,14 @@ class LeadMarketingState extends BaseBlocState {
     this.stageActionStatus = BaseStateStatus.init,
     this.stageActionMessage,
     this.stageActionIds = const [],
+    this.saleLeaders = const [],
+    this.saleAdmins = const [],
+    this.handoverOptionsStatus = BaseStateStatus.init,
+    this.handoverOptionsMessage,
+    this.adminSaleId,
+    this.handoverStatus = BaseStateStatus.init,
+    this.handoverMessage,
+    this.handoverIds = const [],
     this.currentUser,
   });
 
@@ -330,6 +362,14 @@ class LeadMarketingState extends BaseBlocState {
         stageActionStatus,
         stageActionMessage,
         stageActionIds,
+        saleLeaders,
+        saleAdmins,
+        handoverOptionsStatus,
+        handoverOptionsMessage,
+        adminSaleId,
+        handoverStatus,
+        handoverMessage,
+        handoverIds,
         currentUser,
       ];
 }

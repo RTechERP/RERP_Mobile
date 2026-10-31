@@ -228,6 +228,110 @@ class LeadMarketingService extends DioBaseApiService {
     );
   }
 
+  /// Lấy danh sách Leader Sale nhận bàn giao.
+  ///
+  /// API: GET /Lead/get-sale-leaders.
+  /// Response: `{ status, message, data: [ { ID, Code, FullName, DepartmentID } ] }`.
+  Future<BaseData<List<LeadEmployee>>> getSaleLeaders() async {
+    return get<BaseData<List<LeadEmployee>>>(
+      ApiEndPoint.getLeadSaleLeaders,
+      parser: (json) => BaseData<List<LeadEmployee>>.fromJson(json, (data) {
+        return _parseList<LeadEmployee>(
+          data,
+          LeadEmployee.fromJson,
+        );
+      }),
+    );
+  }
+
+  /// Lấy danh sách Admin Sale.
+  ///
+  /// API: GET /Lead/get-sale-admin.
+  /// Response: `{ status, message, data: [ { ID, Code, FullName, DepartmentID } ] }`.
+  Future<BaseData<List<LeadEmployee>>> getSaleAdmins() async {
+    return get<BaseData<List<LeadEmployee>>>(
+      ApiEndPoint.getLeadSaleAdmin,
+      parser: (json) => BaseData<List<LeadEmployee>>.fromJson(json, (data) {
+        return _parseList<LeadEmployee>(
+          data,
+          LeadEmployee.fromJson,
+        );
+      }),
+    );
+  }
+
+  /// Lấy ID Admin Sale tương ứng với Leader Sale đã chọn.
+  ///
+  /// API: GET /Lead/admin-sale-id?leaderSaleId=36.
+  /// Response: `{ status, message, data: 29 }` — `data` là ID Admin Sale.
+  Future<BaseData<int>> getAdminSaleId({
+    required int leaderSaleId,
+  }) async {
+    return get<BaseData<int>>(
+      ApiEndPoint.getLeadAdminSaleId,
+      query: {'leaderSaleId': leaderSaleId},
+      parser: (json) {
+        final root = json is Map
+            ? Map<String, dynamic>.from(json)
+            : <String, dynamic>{};
+        final data = root['data'];
+        return BaseData<int>(
+          status: (root['status'] as num?)?.toInt(),
+          data: data is num ? data.toInt() : null,
+        )..message = root['message'] as String?;
+      },
+    );
+  }
+
+  /// Bàn giao lead cho Leader Sale.
+  ///
+  /// API: POST /Lead/handover.
+  /// Body: `{ "Ids": [11340], "LeaderEmployeeID": 23, "AdminSaleID": 518,
+  /// "Note": "test" }`.
+  /// Response: `{ status, message, data: [11340] }` — `data` là danh sách ID
+  /// đã bàn giao thành công.
+  Future<BaseData<LeadHandoverResult>> handoverLeads({
+    required List<int> ids,
+    required int leaderEmployeeId,
+    required int adminSaleId,
+    required String note,
+  }) async {
+    return post<BaseData<LeadHandoverResult>>(
+      ApiEndPoint.handoverLead,
+      body: {
+        'Ids': ids,
+        'LeaderEmployeeID': leaderEmployeeId,
+        'AdminSaleID': adminSaleId,
+        'Note': note,
+      },
+      parser: (json) => _parseHandoverResult(json),
+    );
+  }
+
+  /// Parse response bàn giao — lấy `status`/`message` ở envelope và danh sách
+  /// ID đã bàn giao trong `data`.
+  BaseData<LeadHandoverResult> _parseHandoverResult(dynamic json) {
+    final root = json is Map
+        ? Map<String, dynamic>.from(json)
+        : <String, dynamic>{};
+
+    final data = root['data'];
+    final message = root['message'] as String?;
+
+    final handoverIds = data is List
+        ? data.whereType<num>().map((e) => e.toInt()).toList()
+        : const <int>[];
+
+    return BaseData<LeadHandoverResult>(
+      // BE đôi khi không trả `status` → coi như thành công nếu có dữ liệu.
+      status: (root['status'] as num?)?.toInt() ?? (handoverIds.isEmpty ? 0 : 1),
+      data: LeadHandoverResult(
+        message: message,
+        ids: handoverIds,
+      ),
+    )..message = message;
+  }
+
   /// Lấy danh sách loại nhóm dùng cho hoạt động của phiếu lead.
   ///
   /// API: GET /DailyReportSale/get-mainindex.

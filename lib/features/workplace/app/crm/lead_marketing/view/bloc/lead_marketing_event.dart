@@ -120,4 +120,28 @@ class LeadMarketingEvent with _$LeadMarketingEvent {
 
   /// Xóa trạng thái kết quả loại bỏ / mở lại lead.
   const factory LeadMarketingEvent.clearStageActionState() = _ClearStageActionState;
+
+  /// Tải danh sách Leader Sale và Admin Sale dùng cho thao tác bàn giao.
+  const factory LeadMarketingEvent.loadHandoverOptions() =
+      _LoadHandoverOptions;
+
+  /// Lấy Admin Sale tương ứng với Leader Sale đã chọn.
+  ///
+  /// [leaderSaleId] là ID của Leader Sale được chọn.
+  const factory LeadMarketingEvent.loadAdminSaleId({
+    required int leaderSaleId,
+  }) = _LoadAdminSaleId;
+
+  /// Bàn giao phiếu lead cho Leader Sale.
+  ///
+  /// [id] là ID phiếu lead cần bàn giao.
+  const factory LeadMarketingEvent.handoverLead({
+    required int id,
+    required int leaderEmployeeId,
+    required int adminSaleId,
+    required String note,
+  }) = _HandoverLead;
+
+  /// Xóa trạng thái kết quả bàn giao lead.
+  const factory LeadMarketingEvent.clearHandoverState() = _ClearHandoverState;
 }

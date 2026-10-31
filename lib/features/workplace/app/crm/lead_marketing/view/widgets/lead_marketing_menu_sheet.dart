@@ -73,7 +73,18 @@ class LeadMenuItem {
     color: Color(0xFFE53935),
   );
 
+  /// Thao tác bàn giao lead cho Leader Sale — chỉ dành cho nhân viên đặc biệt.
+  static const LeadMenuItem handover = LeadMenuItem(
+    id: 'handover',
+    name: 'Bàn giao Sale',
+    icon: Icons.swap_horiz,
+    color: Color(0xFF00897B),
+  );
+
   /// Danh sách thao tác mặc định của phiếu lead.
+  ///
+  /// Mục "Bàn giao Sale" được lọc thêm theo vai trò và giai đoạn ở màn danh
+  /// sách — xem [LeadPermission.canHandover].
   static const List<LeadMenuItem> menuItems = [
     detail,
     edit,
@@ -81,6 +92,7 @@ class LeadMenuItem {
     disqualify,
     reopen,
     delete,
+    handover,
   ];
 }
 

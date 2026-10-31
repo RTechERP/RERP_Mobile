@@ -342,6 +342,24 @@ class LeadSaveResult with _$LeadSaveResult {
       _$LeadSaveResultFromJson(json);
 }
 
+/// Kết quả bàn giao phiếu lead cho Leader Sale.
+///
+/// API: POST /Lead/handover.
+/// Response: `{ status, message, data: [11340] }`.
+@freezed
+class LeadHandoverResult with _$LeadHandoverResult {
+  const factory LeadHandoverResult({
+    /// Thông báo từ API (vd "Đã bàn giao 1 lead cho Leader Lê Thị Hải!").
+    @JsonKey(name: 'message') String? message,
+
+    /// Danh sách ID phiếu lead đã bàn giao thành công.
+    @JsonKey(name: 'data') List<int>? ids,
+  }) = _LeadHandoverResult;
+
+  factory LeadHandoverResult.fromJson(Map<String, dynamic> json) =>
+      _$LeadHandoverResultFromJson(json);
+}
+
 /// Kết quả ghi hoạt động lên phiếu lead.
 ///
 /// API: POST /Lead/save-activity.

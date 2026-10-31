@@ -3690,6 +3690,194 @@ abstract class _LeadSaveResult implements LeadSaveResult {
       throw _privateConstructorUsedError;
 }
 
+LeadHandoverResult _$LeadHandoverResultFromJson(Map<String, dynamic> json) {
+  return _LeadHandoverResult.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LeadHandoverResult {
+  /// Thông báo từ API (vd "Đã bàn giao 1 lead cho Leader Lê Thị Hải!").
+  @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+
+  /// Danh sách ID phiếu lead đã bàn giao thành công.
+  @JsonKey(name: 'data')
+  List<int>? get ids => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LeadHandoverResultCopyWith<LeadHandoverResult> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LeadHandoverResultCopyWith<$Res> {
+  factory $LeadHandoverResultCopyWith(
+          LeadHandoverResult value, $Res Function(LeadHandoverResult) then) =
+      _$LeadHandoverResultCopyWithImpl<$Res, LeadHandoverResult>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<int>? ids});
+}
+
+/// @nodoc
+class _$LeadHandoverResultCopyWithImpl<$Res, $Val extends LeadHandoverResult>
+    implements $LeadHandoverResultCopyWith<$Res> {
+  _$LeadHandoverResultCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+    Object? ids = freezed,
+  }) {
+    return _then(_value.copyWith(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ids: freezed == ids
+          ? _value.ids
+          : ids // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LeadHandoverResultImplCopyWith<$Res>
+    implements $LeadHandoverResultCopyWith<$Res> {
+  factory _$$LeadHandoverResultImplCopyWith(_$LeadHandoverResultImpl value,
+          $Res Function(_$LeadHandoverResultImpl) then) =
+      __$$LeadHandoverResultImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<int>? ids});
+}
+
+/// @nodoc
+class __$$LeadHandoverResultImplCopyWithImpl<$Res>
+    extends _$LeadHandoverResultCopyWithImpl<$Res, _$LeadHandoverResultImpl>
+    implements _$$LeadHandoverResultImplCopyWith<$Res> {
+  __$$LeadHandoverResultImplCopyWithImpl(_$LeadHandoverResultImpl _value,
+      $Res Function(_$LeadHandoverResultImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+    Object? ids = freezed,
+  }) {
+    return _then(_$LeadHandoverResultImpl(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ids: freezed == ids
+          ? _value._ids
+          : ids // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LeadHandoverResultImpl implements _LeadHandoverResult {
+  const _$LeadHandoverResultImpl(
+      {@JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'data') final List<int>? ids})
+      : _ids = ids;
+
+  factory _$LeadHandoverResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LeadHandoverResultImplFromJson(json);
+
+  /// Thông báo từ API (vd "Đã bàn giao 1 lead cho Leader Lê Thị Hải!").
+  @override
+  @JsonKey(name: 'message')
+  final String? message;
+
+  /// Danh sách ID phiếu lead đã bàn giao thành công.
+  final List<int>? _ids;
+
+  /// Danh sách ID phiếu lead đã bàn giao thành công.
+  @override
+  @JsonKey(name: 'data')
+  List<int>? get ids {
+    final value = _ids;
+    if (value == null) return null;
+    if (_ids is EqualUnmodifiableListView) return _ids;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'LeadHandoverResult(message: $message, ids: $ids)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LeadHandoverResultImpl &&
+            (identical(other.message, message) || other.message == message) &&
+            const DeepCollectionEquality().equals(other._ids, _ids));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, message, const DeepCollectionEquality().hash(_ids));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LeadHandoverResultImplCopyWith<_$LeadHandoverResultImpl> get copyWith =>
+      __$$LeadHandoverResultImplCopyWithImpl<_$LeadHandoverResultImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LeadHandoverResultImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LeadHandoverResult implements LeadHandoverResult {
+  const factory _LeadHandoverResult(
+      {@JsonKey(name: 'message') final String? message,
+      @JsonKey(name: 'data') final List<int>? ids}) = _$LeadHandoverResultImpl;
+
+  factory _LeadHandoverResult.fromJson(Map<String, dynamic> json) =
+      _$LeadHandoverResultImpl.fromJson;
+
+  @override
+
+  /// Thông báo từ API (vd "Đã bàn giao 1 lead cho Leader Lê Thị Hải!").
+  @JsonKey(name: 'message')
+  String? get message;
+  @override
+
+  /// Danh sách ID phiếu lead đã bàn giao thành công.
+  @JsonKey(name: 'data')
+  List<int>? get ids;
+  @override
+  @JsonKey(ignore: true)
+  _$$LeadHandoverResultImplCopyWith<_$LeadHandoverResultImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 LeadActivitySaveResult _$LeadActivitySaveResultFromJson(
     Map<String, dynamic> json) {
   return _LeadActivitySaveResult.fromJson(json);

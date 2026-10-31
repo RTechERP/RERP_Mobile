@@ -113,6 +113,23 @@ abstract class _$LeadMarketingStateCWProxy {
 
   LeadMarketingState stageActionIds(List<int> stageActionIds);
 
+  LeadMarketingState saleLeaders(List<LeadEmployee> saleLeaders);
+
+  LeadMarketingState saleAdmins(List<LeadEmployee> saleAdmins);
+
+  LeadMarketingState handoverOptionsStatus(
+      BaseStateStatus handoverOptionsStatus);
+
+  LeadMarketingState handoverOptionsMessage(String? handoverOptionsMessage);
+
+  LeadMarketingState adminSaleId(int? adminSaleId);
+
+  LeadMarketingState handoverStatus(BaseStateStatus handoverStatus);
+
+  LeadMarketingState handoverMessage(String? handoverMessage);
+
+  LeadMarketingState handoverIds(List<int> handoverIds);
+
   LeadMarketingState currentUser(User? currentUser);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeadMarketingState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -174,6 +191,14 @@ abstract class _$LeadMarketingStateCWProxy {
     BaseStateStatus? stageActionStatus,
     String? stageActionMessage,
     List<int>? stageActionIds,
+    List<LeadEmployee>? saleLeaders,
+    List<LeadEmployee>? saleAdmins,
+    BaseStateStatus? handoverOptionsStatus,
+    String? handoverOptionsMessage,
+    int? adminSaleId,
+    BaseStateStatus? handoverStatus,
+    String? handoverMessage,
+    List<int>? handoverIds,
     User? currentUser,
   });
 }
@@ -387,6 +412,39 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
       this(stageActionIds: stageActionIds);
 
   @override
+  LeadMarketingState saleLeaders(List<LeadEmployee> saleLeaders) =>
+      this(saleLeaders: saleLeaders);
+
+  @override
+  LeadMarketingState saleAdmins(List<LeadEmployee> saleAdmins) =>
+      this(saleAdmins: saleAdmins);
+
+  @override
+  LeadMarketingState handoverOptionsStatus(
+          BaseStateStatus handoverOptionsStatus) =>
+      this(handoverOptionsStatus: handoverOptionsStatus);
+
+  @override
+  LeadMarketingState handoverOptionsMessage(String? handoverOptionsMessage) =>
+      this(handoverOptionsMessage: handoverOptionsMessage);
+
+  @override
+  LeadMarketingState adminSaleId(int? adminSaleId) =>
+      this(adminSaleId: adminSaleId);
+
+  @override
+  LeadMarketingState handoverStatus(BaseStateStatus handoverStatus) =>
+      this(handoverStatus: handoverStatus);
+
+  @override
+  LeadMarketingState handoverMessage(String? handoverMessage) =>
+      this(handoverMessage: handoverMessage);
+
+  @override
+  LeadMarketingState handoverIds(List<int> handoverIds) =>
+      this(handoverIds: handoverIds);
+
+  @override
   LeadMarketingState currentUser(User? currentUser) =>
       this(currentUser: currentUser);
 
@@ -451,6 +509,14 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
     Object? stageActionStatus = const $CopyWithPlaceholder(),
     Object? stageActionMessage = const $CopyWithPlaceholder(),
     Object? stageActionIds = const $CopyWithPlaceholder(),
+    Object? saleLeaders = const $CopyWithPlaceholder(),
+    Object? saleAdmins = const $CopyWithPlaceholder(),
+    Object? handoverOptionsStatus = const $CopyWithPlaceholder(),
+    Object? handoverOptionsMessage = const $CopyWithPlaceholder(),
+    Object? adminSaleId = const $CopyWithPlaceholder(),
+    Object? handoverStatus = const $CopyWithPlaceholder(),
+    Object? handoverMessage = const $CopyWithPlaceholder(),
+    Object? handoverIds = const $CopyWithPlaceholder(),
     Object? currentUser = const $CopyWithPlaceholder(),
   }) {
     return LeadMarketingState(
@@ -688,6 +754,45 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
           ? _value.stageActionIds
           // ignore: cast_nullable_to_non_nullable
           : stageActionIds as List<int>,
+      saleLeaders:
+          saleLeaders == const $CopyWithPlaceholder() || saleLeaders == null
+              ? _value.saleLeaders
+              // ignore: cast_nullable_to_non_nullable
+              : saleLeaders as List<LeadEmployee>,
+      saleAdmins:
+          saleAdmins == const $CopyWithPlaceholder() || saleAdmins == null
+              ? _value.saleAdmins
+              // ignore: cast_nullable_to_non_nullable
+              : saleAdmins as List<LeadEmployee>,
+      handoverOptionsStatus:
+          handoverOptionsStatus == const $CopyWithPlaceholder() ||
+                  handoverOptionsStatus == null
+              ? _value.handoverOptionsStatus
+              // ignore: cast_nullable_to_non_nullable
+              : handoverOptionsStatus as BaseStateStatus,
+      handoverOptionsMessage:
+          handoverOptionsMessage == const $CopyWithPlaceholder()
+              ? _value.handoverOptionsMessage
+              // ignore: cast_nullable_to_non_nullable
+              : handoverOptionsMessage as String?,
+      adminSaleId: adminSaleId == const $CopyWithPlaceholder()
+          ? _value.adminSaleId
+          // ignore: cast_nullable_to_non_nullable
+          : adminSaleId as int?,
+      handoverStatus: handoverStatus == const $CopyWithPlaceholder() ||
+              handoverStatus == null
+          ? _value.handoverStatus
+          // ignore: cast_nullable_to_non_nullable
+          : handoverStatus as BaseStateStatus,
+      handoverMessage: handoverMessage == const $CopyWithPlaceholder()
+          ? _value.handoverMessage
+          // ignore: cast_nullable_to_non_nullable
+          : handoverMessage as String?,
+      handoverIds:
+          handoverIds == const $CopyWithPlaceholder() || handoverIds == null
+              ? _value.handoverIds
+              // ignore: cast_nullable_to_non_nullable
+              : handoverIds as List<int>,
       currentUser: currentUser == const $CopyWithPlaceholder()
           ? _value.currentUser
           // ignore: cast_nullable_to_non_nullable

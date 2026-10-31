@@ -67,6 +67,18 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
             _onDisqualifyLead(emit, id: id, note: note),
         reopenLead: (id, note) => _onReopenLead(emit, id: id, note: note),
         clearStageActionState: () async => _onClearStageActionState(emit),
+        loadHandoverOptions: () => _onLoadHandoverOptions(emit),
+        loadAdminSaleId: (leaderSaleId) =>
+            _onLoadAdminSaleId(emit, leaderSaleId: leaderSaleId),
+        handoverLead: (id, leaderEmployeeId, adminSaleId, note) =>
+            _onHandoverLead(
+          emit,
+          id: id,
+          leaderEmployeeId: leaderEmployeeId,
+          adminSaleId: adminSaleId,
+          note: note,
+        ),
+        clearHandoverState: () async => _onClearHandoverState(emit),
       );
     });
   }
@@ -695,6 +707,136 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
       stageActionStatus: BaseStateStatus.init,
       stageActionMessage: null,
       stageActionIds: const [],
+    ));
+  }
+
+  /// Tải danh sách Leader Sale và Admin Sale dùng cho thao tác bàn giao.
+  ///
+  /// Lỗi tải một danh sách không chặn danh sách còn lại.
+  Future<void> _onLoadHandoverOptions(
+    Emitter<LeadMarketingState> emit,
+  ) async {
+    emit(state.copyWith(
+      handoverOptionsStatus: BaseStateStatus.loading,
+      handoverOptionsMessage: null,
+    ));
+
+    final leaders = await _repo.getSaleLeaders();
+    await leaders.fold(
+      (l) async {
+        _log.logE('Get sale leaders failed: $l');
+        emit(state.copyWith(
+          handoverOptionsStatus: BaseStateStatus.failed,
+          handoverOptionsMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Get sale leaders success - count: ${r.length}');
+        emit(state.copyWith(
+          saleLeaders: r,
+          handoverOptionsStatus: BaseStateStatus.success,
+        ));
+      },
+    );
+
+    final admins = await _repo.getSaleAdmins();
+    await admins.fold(
+      (l) async {
+        _log.logE('Get sale admins failed: $l');
+        emit(state.copyWith(
+          handoverOptionsStatus: BaseStateStatus.failed,
+          handoverOptionsMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Get sale admins success - count: ${r.length}');
+        emit(state.copyWith(
+          saleAdmins: r,
+          handoverOptionsStatus: BaseStateStatus.success,
+        ));
+      },
+    );
+  }
+
+  /// Lấy Admin Sale tương ứng với Leader Sale đã chọn.
+  ///
+  /// API trả về ID Admin Sale → lưu vào state để dựng payload bàn giao.
+  Future<void> _onLoadAdminSaleId(
+    Emitter<LeadMarketingState> emit, {
+    required int leaderSaleId,
+  }) async {
+    emit(state.copyWith(adminSaleId: null));
+
+    final res = await _repo.getAdminSaleId(leaderSaleId: leaderSaleId);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get admin sale id failed: $l');
+        emit(state.copyWith(
+          handoverOptionsStatus: BaseStateStatus.failed,
+          handoverOptionsMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Get admin sale id success - id: $r');
+        emit(state.copyWith(
+          adminSaleId: r,
+          handoverOptionsStatus: BaseStateStatus.success,
+          handoverOptionsMessage: null,
+        ));
+      },
+    );
+  }
+
+  /// Bàn giao phiếu lead cho Leader Sale.
+  ///
+  /// Chỉ coi là thành công khi API trả `message` và `data` có chứa ID đã bàn
+  /// giao.
+  Future<void> _onHandoverLead(
+    Emitter<LeadMarketingState> emit, {
+    required int id,
+    required int leaderEmployeeId,
+    required int adminSaleId,
+    required String note,
+  }) async {
+    emit(state.copyWith(
+      handoverStatus: BaseStateStatus.loading,
+      handoverMessage: null,
+      handoverIds: const [],
+    ));
+
+    final res = await _repo.handoverLeads(
+      ids: [id],
+      leaderEmployeeId: leaderEmployeeId,
+      adminSaleId: adminSaleId,
+      note: note,
+    );
+
+    await res.fold(
+      (l) async {
+        _log.logE('Handover lead failed: $l');
+        emit(state.copyWith(
+          handoverStatus: BaseStateStatus.failed,
+          handoverMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Handover lead success - ids: ${r.ids}');
+        emit(state.copyWith(
+          handoverStatus: BaseStateStatus.success,
+          handoverMessage: r.message ?? 'Bàn giao lead thành công!',
+          handoverIds: r.ids ?? const [],
+        ));
+      },
+    );
+  }
+
+  /// Xóa trạng thái kết quả bàn giao lead.
+  void _onClearHandoverState(Emitter<LeadMarketingState> emit) {
+    emit(state.copyWith(
+      handoverStatus: BaseStateStatus.init,
+      handoverMessage: null,
+      handoverIds: const [],
     ));
   }
 

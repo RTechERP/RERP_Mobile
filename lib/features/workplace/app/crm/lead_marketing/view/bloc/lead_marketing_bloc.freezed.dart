@@ -45,6 +45,12 @@ mixin _$LeadMarketingEvent {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,6 +80,12 @@ mixin _$LeadMarketingEvent {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -103,6 +115,12 @@ mixin _$LeadMarketingEvent {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -132,6 +150,10 @@ mixin _$LeadMarketingEvent {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -159,6 +181,10 @@ mixin _$LeadMarketingEvent {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -186,6 +212,10 @@ mixin _$LeadMarketingEvent {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -273,6 +303,12 @@ class _$InitImpl implements _Init {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return init();
   }
@@ -305,6 +341,12 @@ class _$InitImpl implements _Init {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return init?.call();
   }
@@ -337,6 +379,12 @@ class _$InitImpl implements _Init {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -372,6 +420,10 @@ class _$InitImpl implements _Init {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return init(this);
   }
@@ -402,6 +454,10 @@ class _$InitImpl implements _Init {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return init?.call(this);
   }
@@ -432,6 +488,10 @@ class _$InitImpl implements _Init {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -546,6 +606,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -578,6 +644,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -610,6 +682,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -645,6 +723,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return changeDateRange(this);
   }
@@ -675,6 +757,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return changeDateRange?.call(this);
   }
@@ -705,6 +791,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -817,6 +907,12 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return changeKeyword(keyword);
   }
@@ -849,6 +945,12 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return changeKeyword?.call(keyword);
   }
@@ -881,6 +983,12 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -916,6 +1024,10 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return changeKeyword(this);
   }
@@ -946,6 +1058,10 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return changeKeyword?.call(this);
   }
@@ -976,6 +1092,10 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -1060,6 +1180,12 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return refresh();
   }
@@ -1092,6 +1218,12 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return refresh?.call();
   }
@@ -1124,6 +1256,12 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -1159,6 +1297,10 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return refresh(this);
   }
@@ -1189,6 +1331,10 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return refresh?.call(this);
   }
@@ -1219,6 +1365,10 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -1370,6 +1520,12 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return applyFilter(
         leadSourceId, marketingEmployeeId, saleEmployeeId, includeOpen, stage);
@@ -1403,6 +1559,12 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return applyFilter?.call(
         leadSourceId, marketingEmployeeId, saleEmployeeId, includeOpen, stage);
@@ -1436,6 +1598,12 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -1472,6 +1640,10 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return applyFilter(this);
   }
@@ -1502,6 +1674,10 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return applyFilter?.call(this);
   }
@@ -1532,6 +1708,10 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (applyFilter != null) {
@@ -1624,6 +1804,12 @@ class _$ClearFilterImpl implements _ClearFilter {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return clearFilter();
   }
@@ -1656,6 +1842,12 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return clearFilter?.call();
   }
@@ -1688,6 +1880,12 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (clearFilter != null) {
@@ -1723,6 +1921,10 @@ class _$ClearFilterImpl implements _ClearFilter {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return clearFilter(this);
   }
@@ -1753,6 +1955,10 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return clearFilter?.call(this);
   }
@@ -1783,6 +1989,10 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (clearFilter != null) {
@@ -1887,6 +2097,12 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return loadDetail(id);
   }
@@ -1919,6 +2135,12 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return loadDetail?.call(id);
   }
@@ -1951,6 +2173,12 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -1986,6 +2214,10 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return loadDetail(this);
   }
@@ -2016,6 +2248,10 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return loadDetail?.call(this);
   }
@@ -2046,6 +2282,10 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (loadDetail != null) {
@@ -2156,6 +2396,12 @@ class _$LoadFilesImpl implements _LoadFiles {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return loadFiles(customerContactId);
   }
@@ -2188,6 +2434,12 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return loadFiles?.call(customerContactId);
   }
@@ -2220,6 +2472,12 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (loadFiles != null) {
@@ -2255,6 +2513,10 @@ class _$LoadFilesImpl implements _LoadFiles {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return loadFiles(this);
   }
@@ -2285,6 +2547,10 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return loadFiles?.call(this);
   }
@@ -2315,6 +2581,10 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (loadFiles != null) {
@@ -2426,6 +2696,12 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return loadFilesPo(customerContactId);
   }
@@ -2458,6 +2734,12 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return loadFilesPo?.call(customerContactId);
   }
@@ -2490,6 +2772,12 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (loadFilesPo != null) {
@@ -2525,6 +2813,10 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return loadFilesPo(this);
   }
@@ -2555,6 +2847,10 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return loadFilesPo?.call(this);
   }
@@ -2585,6 +2881,10 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (loadFilesPo != null) {
@@ -2669,6 +2969,12 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return loadFormOptions();
   }
@@ -2701,6 +3007,12 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return loadFormOptions?.call();
   }
@@ -2733,6 +3045,12 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (loadFormOptions != null) {
@@ -2768,6 +3086,10 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return loadFormOptions(this);
   }
@@ -2798,6 +3120,10 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return loadFormOptions?.call(this);
   }
@@ -2828,6 +3154,10 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (loadFormOptions != null) {
@@ -2933,6 +3263,12 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return loadCustomerDetail(id);
   }
@@ -2965,6 +3301,12 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return loadCustomerDetail?.call(id);
   }
@@ -2997,6 +3339,12 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (loadCustomerDetail != null) {
@@ -3032,6 +3380,10 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return loadCustomerDetail(this);
   }
@@ -3062,6 +3414,10 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return loadCustomerDetail?.call(this);
   }
@@ -3092,6 +3448,10 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (loadCustomerDetail != null) {
@@ -3209,6 +3569,12 @@ class _$SubmitLeadImpl implements _SubmitLead {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return submitLead(payload);
   }
@@ -3241,6 +3607,12 @@ class _$SubmitLeadImpl implements _SubmitLead {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return submitLead?.call(payload);
   }
@@ -3273,6 +3645,12 @@ class _$SubmitLeadImpl implements _SubmitLead {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (submitLead != null) {
@@ -3308,6 +3686,10 @@ class _$SubmitLeadImpl implements _SubmitLead {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return submitLead(this);
   }
@@ -3338,6 +3720,10 @@ class _$SubmitLeadImpl implements _SubmitLead {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return submitLead?.call(this);
   }
@@ -3368,6 +3754,10 @@ class _$SubmitLeadImpl implements _SubmitLead {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (submitLead != null) {
@@ -3488,6 +3878,12 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return confirmDuplicateSave(payload);
   }
@@ -3520,6 +3916,12 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return confirmDuplicateSave?.call(payload);
   }
@@ -3552,6 +3954,12 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (confirmDuplicateSave != null) {
@@ -3587,6 +3995,10 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return confirmDuplicateSave(this);
   }
@@ -3617,6 +4029,10 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return confirmDuplicateSave?.call(this);
   }
@@ -3647,6 +4063,10 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (confirmDuplicateSave != null) {
@@ -3733,6 +4153,12 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return cancelDuplicateSave();
   }
@@ -3765,6 +4191,12 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return cancelDuplicateSave?.call();
   }
@@ -3797,6 +4229,12 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (cancelDuplicateSave != null) {
@@ -3832,6 +4270,10 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return cancelDuplicateSave(this);
   }
@@ -3862,6 +4304,10 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return cancelDuplicateSave?.call(this);
   }
@@ -3892,6 +4338,10 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (cancelDuplicateSave != null) {
@@ -3970,6 +4420,12 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return clearSubmitState();
   }
@@ -4002,6 +4458,12 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return clearSubmitState?.call();
   }
@@ -4034,6 +4496,12 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -4069,6 +4537,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return clearSubmitState(this);
   }
@@ -4099,6 +4571,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return clearSubmitState?.call(this);
   }
@@ -4129,6 +4605,10 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -4233,6 +4713,12 @@ class _$DeleteLeadImpl implements _DeleteLead {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return deleteLead(id);
   }
@@ -4265,6 +4751,12 @@ class _$DeleteLeadImpl implements _DeleteLead {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return deleteLead?.call(id);
   }
@@ -4297,6 +4789,12 @@ class _$DeleteLeadImpl implements _DeleteLead {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (deleteLead != null) {
@@ -4332,6 +4830,10 @@ class _$DeleteLeadImpl implements _DeleteLead {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return deleteLead(this);
   }
@@ -4362,6 +4864,10 @@ class _$DeleteLeadImpl implements _DeleteLead {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return deleteLead?.call(this);
   }
@@ -4392,6 +4898,10 @@ class _$DeleteLeadImpl implements _DeleteLead {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (deleteLead != null) {
@@ -4475,6 +4985,12 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return clearDeleteState();
   }
@@ -4507,6 +5023,12 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return clearDeleteState?.call();
   }
@@ -4539,6 +5061,12 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (clearDeleteState != null) {
@@ -4574,6 +5102,10 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return clearDeleteState(this);
   }
@@ -4604,6 +5136,10 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return clearDeleteState?.call(this);
   }
@@ -4634,6 +5170,10 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (clearDeleteState != null) {
@@ -4712,6 +5252,12 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return loadActivityTypes();
   }
@@ -4744,6 +5290,12 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return loadActivityTypes?.call();
   }
@@ -4776,6 +5328,12 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (loadActivityTypes != null) {
@@ -4811,6 +5369,10 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return loadActivityTypes(this);
   }
@@ -4841,6 +5403,10 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return loadActivityTypes?.call(this);
   }
@@ -4871,6 +5437,10 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (loadActivityTypes != null) {
@@ -4982,6 +5552,12 @@ class _$SaveActivityImpl implements _SaveActivity {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return saveActivity(payload);
   }
@@ -5014,6 +5590,12 @@ class _$SaveActivityImpl implements _SaveActivity {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return saveActivity?.call(payload);
   }
@@ -5046,6 +5628,12 @@ class _$SaveActivityImpl implements _SaveActivity {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (saveActivity != null) {
@@ -5081,6 +5669,10 @@ class _$SaveActivityImpl implements _SaveActivity {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return saveActivity(this);
   }
@@ -5111,6 +5703,10 @@ class _$SaveActivityImpl implements _SaveActivity {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return saveActivity?.call(this);
   }
@@ -5141,6 +5737,10 @@ class _$SaveActivityImpl implements _SaveActivity {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (saveActivity != null) {
@@ -5225,6 +5825,12 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return clearActivityState();
   }
@@ -5257,6 +5863,12 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return clearActivityState?.call();
   }
@@ -5289,6 +5901,12 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (clearActivityState != null) {
@@ -5324,6 +5942,10 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return clearActivityState(this);
   }
@@ -5354,6 +5976,10 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return clearActivityState?.call(this);
   }
@@ -5384,6 +6010,10 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (clearActivityState != null) {
@@ -5497,6 +6127,12 @@ class _$DisqualifyLeadImpl implements _DisqualifyLead {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return disqualifyLead(id, note);
   }
@@ -5529,6 +6165,12 @@ class _$DisqualifyLeadImpl implements _DisqualifyLead {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return disqualifyLead?.call(id, note);
   }
@@ -5561,6 +6203,12 @@ class _$DisqualifyLeadImpl implements _DisqualifyLead {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (disqualifyLead != null) {
@@ -5596,6 +6244,10 @@ class _$DisqualifyLeadImpl implements _DisqualifyLead {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return disqualifyLead(this);
   }
@@ -5626,6 +6278,10 @@ class _$DisqualifyLeadImpl implements _DisqualifyLead {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return disqualifyLead?.call(this);
   }
@@ -5656,6 +6312,10 @@ class _$DisqualifyLeadImpl implements _DisqualifyLead {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (disqualifyLead != null) {
@@ -5776,6 +6436,12 @@ class _$ReopenLeadImpl implements _ReopenLead {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return reopenLead(id, note);
   }
@@ -5808,6 +6474,12 @@ class _$ReopenLeadImpl implements _ReopenLead {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return reopenLead?.call(id, note);
   }
@@ -5840,6 +6512,12 @@ class _$ReopenLeadImpl implements _ReopenLead {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (reopenLead != null) {
@@ -5875,6 +6553,10 @@ class _$ReopenLeadImpl implements _ReopenLead {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return reopenLead(this);
   }
@@ -5905,6 +6587,10 @@ class _$ReopenLeadImpl implements _ReopenLead {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return reopenLead?.call(this);
   }
@@ -5935,6 +6621,10 @@ class _$ReopenLeadImpl implements _ReopenLead {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (reopenLead != null) {
@@ -6022,6 +6712,12 @@ class _$ClearStageActionStateImpl implements _ClearStageActionState {
     required TResult Function(int id, String note) disqualifyLead,
     required TResult Function(int id, String note) reopenLead,
     required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
   }) {
     return clearStageActionState();
   }
@@ -6054,6 +6750,12 @@ class _$ClearStageActionStateImpl implements _ClearStageActionState {
     TResult? Function(int id, String note)? disqualifyLead,
     TResult? Function(int id, String note)? reopenLead,
     TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
   }) {
     return clearStageActionState?.call();
   }
@@ -6086,6 +6788,12 @@ class _$ClearStageActionStateImpl implements _ClearStageActionState {
     TResult Function(int id, String note)? disqualifyLead,
     TResult Function(int id, String note)? reopenLead,
     TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
     required TResult orElse(),
   }) {
     if (clearStageActionState != null) {
@@ -6121,6 +6829,10 @@ class _$ClearStageActionStateImpl implements _ClearStageActionState {
     required TResult Function(_ReopenLead value) reopenLead,
     required TResult Function(_ClearStageActionState value)
         clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
   }) {
     return clearStageActionState(this);
   }
@@ -6151,6 +6863,10 @@ class _$ClearStageActionStateImpl implements _ClearStageActionState {
     TResult? Function(_DisqualifyLead value)? disqualifyLead,
     TResult? Function(_ReopenLead value)? reopenLead,
     TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
   }) {
     return clearStageActionState?.call(this);
   }
@@ -6181,6 +6897,10 @@ class _$ClearStageActionStateImpl implements _ClearStageActionState {
     TResult Function(_DisqualifyLead value)? disqualifyLead,
     TResult Function(_ReopenLead value)? reopenLead,
     TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
     required TResult orElse(),
   }) {
     if (clearStageActionState != null) {
@@ -6192,4 +6912,1176 @@ class _$ClearStageActionStateImpl implements _ClearStageActionState {
 
 abstract class _ClearStageActionState implements LeadMarketingEvent {
   const factory _ClearStageActionState() = _$ClearStageActionStateImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadHandoverOptionsImplCopyWith<$Res> {
+  factory _$$LoadHandoverOptionsImplCopyWith(_$LoadHandoverOptionsImpl value,
+          $Res Function(_$LoadHandoverOptionsImpl) then) =
+      __$$LoadHandoverOptionsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadHandoverOptionsImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$LoadHandoverOptionsImpl>
+    implements _$$LoadHandoverOptionsImplCopyWith<$Res> {
+  __$$LoadHandoverOptionsImplCopyWithImpl(_$LoadHandoverOptionsImpl _value,
+      $Res Function(_$LoadHandoverOptionsImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoadHandoverOptionsImpl implements _LoadHandoverOptions {
+  const _$LoadHandoverOptionsImpl();
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.loadHandoverOptions()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadHandoverOptionsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteLead,
+    required TResult Function() clearDeleteState,
+    required TResult Function() loadActivityTypes,
+    required TResult Function(Map<String, dynamic> payload) saveActivity,
+    required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
+  }) {
+    return loadHandoverOptions();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteLead,
+    TResult? Function()? clearDeleteState,
+    TResult? Function()? loadActivityTypes,
+    TResult? Function(Map<String, dynamic> payload)? saveActivity,
+    TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
+  }) {
+    return loadHandoverOptions?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteLead,
+    TResult Function()? clearDeleteState,
+    TResult Function()? loadActivityTypes,
+    TResult Function(Map<String, dynamic> payload)? saveActivity,
+    TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (loadHandoverOptions != null) {
+      return loadHandoverOptions();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteLead value) deleteLead,
+    required TResult Function(_ClearDeleteState value) clearDeleteState,
+    required TResult Function(_LoadActivityTypes value) loadActivityTypes,
+    required TResult Function(_SaveActivity value) saveActivity,
+    required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
+  }) {
+    return loadHandoverOptions(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteLead value)? deleteLead,
+    TResult? Function(_ClearDeleteState value)? clearDeleteState,
+    TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult? Function(_SaveActivity value)? saveActivity,
+    TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
+  }) {
+    return loadHandoverOptions?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteLead value)? deleteLead,
+    TResult Function(_ClearDeleteState value)? clearDeleteState,
+    TResult Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult Function(_SaveActivity value)? saveActivity,
+    TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (loadHandoverOptions != null) {
+      return loadHandoverOptions(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadHandoverOptions implements LeadMarketingEvent {
+  const factory _LoadHandoverOptions() = _$LoadHandoverOptionsImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadAdminSaleIdImplCopyWith<$Res> {
+  factory _$$LoadAdminSaleIdImplCopyWith(_$LoadAdminSaleIdImpl value,
+          $Res Function(_$LoadAdminSaleIdImpl) then) =
+      __$$LoadAdminSaleIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int leaderSaleId});
+}
+
+/// @nodoc
+class __$$LoadAdminSaleIdImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$LoadAdminSaleIdImpl>
+    implements _$$LoadAdminSaleIdImplCopyWith<$Res> {
+  __$$LoadAdminSaleIdImplCopyWithImpl(
+      _$LoadAdminSaleIdImpl _value, $Res Function(_$LoadAdminSaleIdImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? leaderSaleId = null,
+  }) {
+    return _then(_$LoadAdminSaleIdImpl(
+      leaderSaleId: null == leaderSaleId
+          ? _value.leaderSaleId
+          : leaderSaleId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadAdminSaleIdImpl implements _LoadAdminSaleId {
+  const _$LoadAdminSaleIdImpl({required this.leaderSaleId});
+
+  @override
+  final int leaderSaleId;
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.loadAdminSaleId(leaderSaleId: $leaderSaleId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadAdminSaleIdImpl &&
+            (identical(other.leaderSaleId, leaderSaleId) ||
+                other.leaderSaleId == leaderSaleId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, leaderSaleId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadAdminSaleIdImplCopyWith<_$LoadAdminSaleIdImpl> get copyWith =>
+      __$$LoadAdminSaleIdImplCopyWithImpl<_$LoadAdminSaleIdImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteLead,
+    required TResult Function() clearDeleteState,
+    required TResult Function() loadActivityTypes,
+    required TResult Function(Map<String, dynamic> payload) saveActivity,
+    required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
+  }) {
+    return loadAdminSaleId(leaderSaleId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteLead,
+    TResult? Function()? clearDeleteState,
+    TResult? Function()? loadActivityTypes,
+    TResult? Function(Map<String, dynamic> payload)? saveActivity,
+    TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
+  }) {
+    return loadAdminSaleId?.call(leaderSaleId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteLead,
+    TResult Function()? clearDeleteState,
+    TResult Function()? loadActivityTypes,
+    TResult Function(Map<String, dynamic> payload)? saveActivity,
+    TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (loadAdminSaleId != null) {
+      return loadAdminSaleId(leaderSaleId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteLead value) deleteLead,
+    required TResult Function(_ClearDeleteState value) clearDeleteState,
+    required TResult Function(_LoadActivityTypes value) loadActivityTypes,
+    required TResult Function(_SaveActivity value) saveActivity,
+    required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
+  }) {
+    return loadAdminSaleId(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteLead value)? deleteLead,
+    TResult? Function(_ClearDeleteState value)? clearDeleteState,
+    TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult? Function(_SaveActivity value)? saveActivity,
+    TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
+  }) {
+    return loadAdminSaleId?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteLead value)? deleteLead,
+    TResult Function(_ClearDeleteState value)? clearDeleteState,
+    TResult Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult Function(_SaveActivity value)? saveActivity,
+    TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (loadAdminSaleId != null) {
+      return loadAdminSaleId(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadAdminSaleId implements LeadMarketingEvent {
+  const factory _LoadAdminSaleId({required final int leaderSaleId}) =
+      _$LoadAdminSaleIdImpl;
+
+  int get leaderSaleId;
+  @JsonKey(ignore: true)
+  _$$LoadAdminSaleIdImplCopyWith<_$LoadAdminSaleIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$HandoverLeadImplCopyWith<$Res> {
+  factory _$$HandoverLeadImplCopyWith(
+          _$HandoverLeadImpl value, $Res Function(_$HandoverLeadImpl) then) =
+      __$$HandoverLeadImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id, int leaderEmployeeId, int adminSaleId, String note});
+}
+
+/// @nodoc
+class __$$HandoverLeadImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$HandoverLeadImpl>
+    implements _$$HandoverLeadImplCopyWith<$Res> {
+  __$$HandoverLeadImplCopyWithImpl(
+      _$HandoverLeadImpl _value, $Res Function(_$HandoverLeadImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? leaderEmployeeId = null,
+    Object? adminSaleId = null,
+    Object? note = null,
+  }) {
+    return _then(_$HandoverLeadImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      leaderEmployeeId: null == leaderEmployeeId
+          ? _value.leaderEmployeeId
+          : leaderEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      adminSaleId: null == adminSaleId
+          ? _value.adminSaleId
+          : adminSaleId // ignore: cast_nullable_to_non_nullable
+              as int,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$HandoverLeadImpl implements _HandoverLead {
+  const _$HandoverLeadImpl(
+      {required this.id,
+      required this.leaderEmployeeId,
+      required this.adminSaleId,
+      required this.note});
+
+  @override
+  final int id;
+  @override
+  final int leaderEmployeeId;
+  @override
+  final int adminSaleId;
+  @override
+  final String note;
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.handoverLead(id: $id, leaderEmployeeId: $leaderEmployeeId, adminSaleId: $adminSaleId, note: $note)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HandoverLeadImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.leaderEmployeeId, leaderEmployeeId) ||
+                other.leaderEmployeeId == leaderEmployeeId) &&
+            (identical(other.adminSaleId, adminSaleId) ||
+                other.adminSaleId == adminSaleId) &&
+            (identical(other.note, note) || other.note == note));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, leaderEmployeeId, adminSaleId, note);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HandoverLeadImplCopyWith<_$HandoverLeadImpl> get copyWith =>
+      __$$HandoverLeadImplCopyWithImpl<_$HandoverLeadImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteLead,
+    required TResult Function() clearDeleteState,
+    required TResult Function() loadActivityTypes,
+    required TResult Function(Map<String, dynamic> payload) saveActivity,
+    required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
+  }) {
+    return handoverLead(id, leaderEmployeeId, adminSaleId, note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteLead,
+    TResult? Function()? clearDeleteState,
+    TResult? Function()? loadActivityTypes,
+    TResult? Function(Map<String, dynamic> payload)? saveActivity,
+    TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
+  }) {
+    return handoverLead?.call(id, leaderEmployeeId, adminSaleId, note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteLead,
+    TResult Function()? clearDeleteState,
+    TResult Function()? loadActivityTypes,
+    TResult Function(Map<String, dynamic> payload)? saveActivity,
+    TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (handoverLead != null) {
+      return handoverLead(id, leaderEmployeeId, adminSaleId, note);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteLead value) deleteLead,
+    required TResult Function(_ClearDeleteState value) clearDeleteState,
+    required TResult Function(_LoadActivityTypes value) loadActivityTypes,
+    required TResult Function(_SaveActivity value) saveActivity,
+    required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
+  }) {
+    return handoverLead(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteLead value)? deleteLead,
+    TResult? Function(_ClearDeleteState value)? clearDeleteState,
+    TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult? Function(_SaveActivity value)? saveActivity,
+    TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
+  }) {
+    return handoverLead?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteLead value)? deleteLead,
+    TResult Function(_ClearDeleteState value)? clearDeleteState,
+    TResult Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult Function(_SaveActivity value)? saveActivity,
+    TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (handoverLead != null) {
+      return handoverLead(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _HandoverLead implements LeadMarketingEvent {
+  const factory _HandoverLead(
+      {required final int id,
+      required final int leaderEmployeeId,
+      required final int adminSaleId,
+      required final String note}) = _$HandoverLeadImpl;
+
+  int get id;
+  int get leaderEmployeeId;
+  int get adminSaleId;
+  String get note;
+  @JsonKey(ignore: true)
+  _$$HandoverLeadImplCopyWith<_$HandoverLeadImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearHandoverStateImplCopyWith<$Res> {
+  factory _$$ClearHandoverStateImplCopyWith(_$ClearHandoverStateImpl value,
+          $Res Function(_$ClearHandoverStateImpl) then) =
+      __$$ClearHandoverStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearHandoverStateImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$ClearHandoverStateImpl>
+    implements _$$ClearHandoverStateImplCopyWith<$Res> {
+  __$$ClearHandoverStateImplCopyWithImpl(_$ClearHandoverStateImpl _value,
+      $Res Function(_$ClearHandoverStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearHandoverStateImpl implements _ClearHandoverState {
+  const _$ClearHandoverStateImpl();
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.clearHandoverState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearHandoverStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteLead,
+    required TResult Function() clearDeleteState,
+    required TResult Function() loadActivityTypes,
+    required TResult Function(Map<String, dynamic> payload) saveActivity,
+    required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
+  }) {
+    return clearHandoverState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteLead,
+    TResult? Function()? clearDeleteState,
+    TResult? Function()? loadActivityTypes,
+    TResult? Function(Map<String, dynamic> payload)? saveActivity,
+    TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
+  }) {
+    return clearHandoverState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteLead,
+    TResult Function()? clearDeleteState,
+    TResult Function()? loadActivityTypes,
+    TResult Function(Map<String, dynamic> payload)? saveActivity,
+    TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (clearHandoverState != null) {
+      return clearHandoverState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteLead value) deleteLead,
+    required TResult Function(_ClearDeleteState value) clearDeleteState,
+    required TResult Function(_LoadActivityTypes value) loadActivityTypes,
+    required TResult Function(_SaveActivity value) saveActivity,
+    required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
+  }) {
+    return clearHandoverState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteLead value)? deleteLead,
+    TResult? Function(_ClearDeleteState value)? clearDeleteState,
+    TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult? Function(_SaveActivity value)? saveActivity,
+    TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
+  }) {
+    return clearHandoverState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteLead value)? deleteLead,
+    TResult Function(_ClearDeleteState value)? clearDeleteState,
+    TResult Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult Function(_SaveActivity value)? saveActivity,
+    TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (clearHandoverState != null) {
+      return clearHandoverState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearHandoverState implements LeadMarketingEvent {
+  const factory _ClearHandoverState() = _$ClearHandoverStateImpl;
 }

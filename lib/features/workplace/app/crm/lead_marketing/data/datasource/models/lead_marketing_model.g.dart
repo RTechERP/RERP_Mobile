@@ -288,6 +288,22 @@ Map<String, dynamic> _$$LeadSaveResultImplToJson(
       'idConCus': instance.idConCus,
     };
 
+_$LeadHandoverResultImpl _$$LeadHandoverResultImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LeadHandoverResultImpl(
+      message: json['message'] as String?,
+      ids: (json['data'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+    );
+
+Map<String, dynamic> _$$LeadHandoverResultImplToJson(
+        _$LeadHandoverResultImpl instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'data': instance.ids,
+    };
+
 _$LeadActivitySaveResultImpl _$$LeadActivitySaveResultImplFromJson(
         Map<String, dynamic> json) =>
     _$LeadActivitySaveResultImpl(

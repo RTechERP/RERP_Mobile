@@ -16,6 +16,7 @@ import '../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/lead_marketing_model.dart';
 import '../../data/datasource/models/lead_permission.dart';
 import '../../view/bloc/lead_marketing_bloc.dart';
+import '../../view/widgets/lead_handover_sheet.dart';
 import '../../view/widgets/lead_marketing_card.dart';
 import '../../view/widgets/lead_marketing_detail_sheet.dart';
 import '../../view/widgets/lead_marketing_filter_sheet.dart';
@@ -180,6 +181,9 @@ class _LeadMarketingScreenState extends BaseShareState<
       case 'delete':
         await _confirmDeleteLead(context, item);
         break;
+      case 'handover':
+        await _confirmHandoverLead(context, item);
+        break;
     }
   }
 
@@ -188,6 +192,8 @@ class _LeadMarketingScreenState extends BaseShareState<
   /// - [canOperate] = false → chỉ hiện mục xem (chi tiết, ghi hoạt động).
   /// - Phiếu đã ở giai đoạn "Không phù hợp" thì hiện "Huỷ TT không phù hợp",
   ///   ngược lại hiện "TT không phù hợp".
+  /// - Thao tác "Bàn giao Sale" chỉ hiện cho nhân viên đặc biệt khi phiếu ở
+  ///   giai đoạn 1–2.
   List<LeadMenuItem> _menuItemsFor(
     LeadMarketingItem item, {
     required bool canOperate,
@@ -195,11 +201,26 @@ class _LeadMarketingScreenState extends BaseShareState<
     final isDisqualified = item.stage == LeadPermission.disqualifiedStageCode ||
         LeadStage.notMatched.matches(item.stageName);
 
-    return LeadMenuItem.menuItems.where((menu) {
+    final stageCode = LeadPermission.resolveStageCode(
+      stageCode: item.stage,
+      stageName: item.stageName,
+    );
+    final canHandover = LeadPermission.canHandover(
+      stageCode: stageCode,
+      roleContext: bloc.state.roleContext,
+      user: bloc.state.currentUser,
+    );
+
+    final items = LeadMenuItem.menuItems.toList();
+
+    return items.where((menu) {
       if (!canOperate && menu.requiresOperationPermission) return false;
 
       if (menu.id == LeadMenuItem.disqualify.id) return !isDisqualified;
       if (menu.id == LeadMenuItem.reopen.id) return isDisqualified;
+
+      // Bàn giao Sale là thao tác riêng của nhân viên đặc biệt.
+      if (menu.id == LeadMenuItem.handover.id) return canHandover;
 
       return true;
     }).toList();
@@ -379,6 +400,38 @@ class _LeadMarketingScreenState extends BaseShareState<
     bloc.add(LeadMarketingEvent.reopenLead(id: id, note: note));
   }
 
+  /// Bàn giao phiếu lead cho Leader Sale.
+  ///
+  /// Mở dialog chọn Leader Sale nhận bàn giao, Admin Sale xử lý và ghi chú.
+  /// Thông báo kết quả được hiển thị qua listener của bloc trong [renderUI].
+  Future<void> _confirmHandoverLead(
+    BuildContext context,
+    LeadMarketingItem item,
+  ) async {
+    final id = item.id;
+    if (id == null) return;
+
+    // Tải danh sách Leader Sale / Admin Sale trước khi mở bottom sheet.
+    bloc.add(const LeadMarketingEvent.loadHandoverOptions());
+
+    final selection = await LeadHandoverSheet.show(
+      context,
+      bloc: bloc,
+      leadCode: item.leadCode,
+      companyName: item.companyName,
+    );
+    if (!context.mounted || selection == null) return;
+
+    bloc.add(
+      LeadMarketingEvent.handoverLead(
+        id: id,
+        leaderEmployeeId: selection.leaderEmployeeId,
+        adminSaleId: selection.adminSaleId,
+        note: selection.note,
+      ),
+    );
+  }
+
   @override
   Widget renderUI(BuildContext context) {
     return BlocConsumer<LeadMarketingBloc, LeadMarketingState>(
@@ -395,7 +448,8 @@ class _LeadMarketingScreenState extends BaseShareState<
           previous.stageFilter != current.stageFilter,
       listenWhen: (previous, current) =>
           previous.deleteStatus != current.deleteStatus ||
-          previous.stageActionStatus != current.stageActionStatus,
+          previous.stageActionStatus != current.stageActionStatus ||
+          previous.handoverStatus != current.handoverStatus,
       listener: (context, state) {
         // Kết quả xoá phiếu lead — thông báo rồi tải lại danh sách.
         if (state.deleteStatus == BaseStateStatus.success) {
@@ -427,6 +481,22 @@ class _LeadMarketingScreenState extends BaseShareState<
             type: SnackBarType.error,
           );
           bloc.add(const LeadMarketingEvent.clearStageActionState());
+        }
+
+        // Kết quả bàn giao lead cho Leader Sale.
+        if (state.handoverStatus == BaseStateStatus.success) {
+          context.showMessage(
+            state.handoverMessage ?? 'Bàn giao lead thành công!',
+            type: SnackBarType.success,
+          );
+          bloc.add(const LeadMarketingEvent.clearHandoverState());
+          bloc.add(const LeadMarketingEvent.refresh());
+        } else if (state.handoverStatus == BaseStateStatus.failed) {
+          context.showMessage(
+            state.handoverMessage ?? 'Bàn giao lead thất bại',
+            type: SnackBarType.error,
+          );
+          bloc.add(const LeadMarketingEvent.clearHandoverState());
         }
       },
       builder: (context, state) {

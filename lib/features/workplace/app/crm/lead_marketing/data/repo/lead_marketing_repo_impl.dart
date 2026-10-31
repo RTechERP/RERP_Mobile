@@ -397,4 +397,87 @@ class LeadMarketingRepoImpl implements LeadMarketingRepo {
       return left(e.baseError);
     }
   }
+
+  @override
+  Future<Either<BaseError, List<LeadEmployee>>> getSaleLeaders() async {
+    try {
+      final res = await _service.getSaleLeaders();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<LeadEmployee>>> getSaleAdmins() async {
+    try {
+      final res = await _service.getSaleAdmins();
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, int>> getAdminSaleId({
+    required int leaderSaleId,
+  }) async {
+    try {
+      final res = await _service.getAdminSaleId(leaderSaleId: leaderSaleId);
+      final adminSaleId = res.data;
+      if (res.status == 1 && adminSaleId != null && adminSaleId > 0) {
+        return right(adminSaleId);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Không tìm thấy Admin Sale tương ứng',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, LeadHandoverResult>> handoverLeads({
+    required List<int> ids,
+    required int leaderEmployeeId,
+    required int adminSaleId,
+    required String note,
+  }) async {
+    try {
+      final res = await _service.handoverLeads(
+        ids: ids,
+        leaderEmployeeId: leaderEmployeeId,
+        adminSaleId: adminSaleId,
+        note: note,
+      );
+      // Chỉ coi là thành công khi API trả `message` và `data` có dữ liệu.
+      final result = res.data;
+      final handoverIds = result?.ids;
+      if (res.status == 1 &&
+          result != null &&
+          handoverIds != null &&
+          handoverIds.isNotEmpty) {
+        return right(result);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Bàn giao lead thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 }

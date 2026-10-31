@@ -753,6 +753,23 @@ class ApiEndPoint {
   /// API: POST /Lead/reopen — body `{ "Ids": [11337], "Note": "..." }`.
   static const String reopenLead = '/Lead/reopen';
 
+  /// Danh sách Leader Sale nhận bàn giao.
+  /// API: GET /Lead/get-sale-leaders.
+  static const String getLeadSaleLeaders = '/Lead/get-sale-leaders';
+
+  /// Danh sách Admin Sale.
+  /// API: GET /Lead/get-sale-admin.
+  static const String getLeadSaleAdmin = '/Lead/get-sale-admin';
+
+  /// Lấy Admin Sale tương ứng với Leader Sale đã chọn.
+  /// API: GET /Lead/admin-sale-id?leaderSaleId=36.
+  static const String getLeadAdminSaleId = '/Lead/admin-sale-id';
+
+  /// Bàn giao lead cho Leader Sale.
+  /// API: POST /Lead/handover — body `{ "Ids": [11340], "LeaderEmployeeID": 23,
+  /// "AdminSaleID": 518, "Note": "..." }`.
+  static const String handoverLead = '/Lead/handover';
+
   // CRM - Danh mục khách hàng (dùng khi tạo phiếu lead)
   /// Danh sách lĩnh vực của khách hàng.
   /// API: GET /Customer/get-customer-industry.
