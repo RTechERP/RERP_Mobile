@@ -14,6 +14,7 @@ import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/date_range_picker.dart';
 import '../../../../../../../../routes/route_names.dart';
 import '../../data/datasource/models/lead_marketing_model.dart';
+import '../../data/datasource/models/lead_permission.dart';
 import '../../view/bloc/lead_marketing_bloc.dart';
 import '../../view/widgets/lead_marketing_card.dart';
 import '../../view/widgets/lead_marketing_detail_sheet.dart';
@@ -130,15 +131,33 @@ class _LeadMarketingScreenState extends BaseShareState<
 
   /// Mở menu thao tác khi bấm vào card phiếu lead.
   ///
-  /// Menu gồm: xem chi tiết, chỉnh sửa, ghi hoạt động, xoá phiếu. Xoá phiếu
-  /// cần xác nhận trước.
+  /// Menu gồm: xem chi tiết, chỉnh sửa, ghi hoạt động, TT không phù hợp,
+  /// xoá phiếu. Các mục cần quyền thao tác (sửa/xoá/TT không phù hợp) chỉ
+  /// hiện khi người dùng có quyền theo giai đoạn của phiếu.
+  ///
+  /// Quyền sở hữu phiếu được kiểm tra khi bấm vào thao tác, để người dùng thường
+  /// thao tác nhầm phiếu của người khác sẽ nhận được thông báo báo lỗi.
   Future<void> _openMenu(
     BuildContext context,
     LeadMarketingItem item,
   ) async {
+    final stageCode = LeadPermission.resolveStageCode(
+      stageCode: item.stage,
+      stageName: item.stageName,
+    );
+
+    // Người dùng không có quyền thao tác theo giai đoạn phiếu → chỉ cho xem.
+    final blockedMessage = LeadPermission.blockedMessage(
+      stageCode: stageCode,
+      roleContext: bloc.state.roleContext,
+      user: bloc.state.currentUser,
+    );
+    final canOperate = blockedMessage == null;
+
     final actionId = await LeadMenuSheet.show(
       context,
       leadCode: item.leadCode,
+      menuItems: _menuItemsFor(item, canOperate: canOperate),
     );
     if (!context.mounted || actionId == null) return;
 
@@ -164,6 +183,93 @@ class _LeadMarketingScreenState extends BaseShareState<
     }
   }
 
+  /// Danh sách thao tác hiển thị trong menu theo quyền của người dùng.
+  ///
+  /// - [canOperate] = false → chỉ hiện mục xem (chi tiết, ghi hoạt động).
+  /// - Phiếu đã ở giai đoạn "Không phù hợp" thì hiện "Huỷ TT không phù hợp",
+  ///   ngược lại hiện "TT không phù hợp".
+  List<LeadMenuItem> _menuItemsFor(
+    LeadMarketingItem item, {
+    required bool canOperate,
+  }) {
+    final isDisqualified = item.stage == LeadPermission.disqualifiedStageCode ||
+        LeadStage.notMatched.matches(item.stageName);
+
+    return LeadMenuItem.menuItems.where((menu) {
+      if (!canOperate && menu.requiresOperationPermission) return false;
+
+      if (menu.id == LeadMenuItem.disqualify.id) return !isDisqualified;
+      if (menu.id == LeadMenuItem.reopen.id) return isDisqualified;
+
+      return true;
+    }).toList();
+  }
+
+  /// Kiểm tra quyền thao tác phiếu lead theo giai đoạn.
+  ///
+  /// Áp dụng cho chỉnh sửa, ghi hoạt động, xác nhận / huỷ TT không phù hợp.
+  ///
+  /// Trả về `true` nếu được phép; `false` kèm thông báo đã hiển thị.
+  bool _checkOperationPermission(
+    BuildContext context,
+    LeadMarketingItem item,
+  ) {
+    final stageCode = LeadPermission.resolveStageCode(
+      stageCode: item.stage,
+      stageName: item.stageName,
+    );
+
+    final blockedMessage = LeadPermission.blockedMessage(
+      stageCode: stageCode,
+      roleContext: bloc.state.roleContext,
+      user: bloc.state.currentUser,
+    );
+    if (blockedMessage == null) return true;
+
+    context.showMessage(blockedMessage, type: SnackBarType.error);
+    return false;
+  }
+
+  /// Kiểm tra quyền **xoá** phiếu lead.
+  ///
+  /// Quyền xoá phụ thuộc giai đoạn của phiếu; quyền xoá phiếu của người khác
+  /// do API quyết định.
+  ///
+  /// Trả về `true` nếu được phép; `false` kèm thông báo đã hiển thị.
+  bool _checkDeletePermission(
+    BuildContext context,
+    LeadMarketingItem item,
+  ) {
+    final blockedMessage = LeadPermission.blockedDeleteMessage(
+      item: item,
+      roleContext: bloc.state.roleContext,
+      user: bloc.state.currentUser,
+    );
+    if (blockedMessage == null) return true;
+
+    context.showMessage(blockedMessage, type: SnackBarType.error);
+    return false;
+  }
+
+  /// Kiểm tra giai đoạn của phiếu có phù hợp để xác nhận / huỷ TT không phù hợp
+  /// hay không.
+  ///
+  /// Giai đoạn "Chờ phân công" không được phép dùng 2 thao tác này.
+  ///
+  /// Trả về `true` nếu được phép; `false` kèm thông báo đã hiển thị.
+  bool _checkStageActionPermission(
+    BuildContext context,
+    LeadMarketingItem item,
+  ) {
+    final blockedMessage = LeadPermission.blockedStageActionMessage(
+      item: item,
+    );
+    if (blockedMessage == null) return true;
+
+    context.showMessage(blockedMessage, type: SnackBarType.error);
+    return false;
+  }
+
   /// Mở màn chỉnh sửa phiếu lead.
   ///
   /// Truyền `ID`, giai đoạn hiện tại và thông tin khách hàng qua `extra` để
@@ -171,6 +277,7 @@ class _LeadMarketingScreenState extends BaseShareState<
   void _goToEditScreen(LeadMarketingItem item) {
     final id = item.id;
     if (id == null) return;
+    if (!_checkOperationPermission(context, item)) return;
 
     // Ảnh chụp thông tin khách hàng từ danh sách để dựng payload khi API
     // chi tiết khách hàng chưa kịp về (các field API chi tiết phiếu không
@@ -205,25 +312,16 @@ class _LeadMarketingScreenState extends BaseShareState<
 
   /// Xác nhận rồi xoá phiếu lead.
   ///
-  /// Chỉ cho xoá khi phiếu đang ở giai đoạn khác (không phải Đang xử lý,
-  /// Đã chốt KH hoặc Đã PO). Thông báo kết quả được hiển thị qua listener
-  /// của bloc trong [renderUI].
+  /// Quyền xoá phụ thuộc giai đoạn của phiếu và người phụ trách phiếu — kiểm
+  /// tra trước khi gọi API.
+  /// Thông báo kết quả được hiển thị qua listener của bloc trong [renderUI].
   Future<void> _confirmDeleteLead(
     BuildContext context,
     LeadMarketingItem item,
   ) async {
     final id = item.id;
     if (id == null) return;
-
-    // Chặn trước khi gọi API: chỉ lead mới mới được xoá, các giai đoạn
-    // khác đều báo thông báo chặn.
-    if (!LeadStage.isDeletable(item.stageName)) {
-      context.showMessage(
-        LeadStage.blockedDeleteMessage,
-        type: SnackBarType.error,
-      );
-      return;
-    }
+    if (!_checkDeletePermission(context, item)) return;
 
     final confirmed = await DialogService.showConfirmDeleteLead(
       context: context,
@@ -244,6 +342,8 @@ class _LeadMarketingScreenState extends BaseShareState<
   ) async {
     final id = item.id;
     if (id == null) return;
+    if (!_checkOperationPermission(context, item)) return;
+    if (!_checkStageActionPermission(context, item)) return;
 
     final note = await DialogService.showLeadStageReasonDialog(
       context: context,
@@ -265,6 +365,8 @@ class _LeadMarketingScreenState extends BaseShareState<
   ) async {
     final id = item.id;
     if (id == null) return;
+    if (!_checkOperationPermission(context, item)) return;
+    if (!_checkStageActionPermission(context, item)) return;
 
     final note = await DialogService.showLeadStageReasonDialog(
       context: context,

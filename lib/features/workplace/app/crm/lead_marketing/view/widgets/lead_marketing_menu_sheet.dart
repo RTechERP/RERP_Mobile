@@ -9,6 +9,7 @@ class LeadMenuItem {
     required this.name,
     required this.icon,
     required this.color,
+    this.requiresOperationPermission = true,
   });
 
   /// Khóa tra cứu duy nhất (vd: 'detail', 'delete').
@@ -17,12 +18,18 @@ class LeadMenuItem {
   final IconData icon;
   final Color color;
 
+  /// Mục này cần quyền thao tác theo giai đoạn của phiếu.
+  ///
+  /// Mục chỉ xem (chi tiết) thì không cần quyền.
+  final bool requiresOperationPermission;
+
   /// Thao tác xem chi tiết phiếu lead.
   static const LeadMenuItem detail = LeadMenuItem(
     id: 'detail',
     name: 'Chi tiết phiếu',
     icon: Icons.info_outline,
     color: Color(0xFF1E88E5),
+    requiresOperationPermission: false,
   );
 
   /// Thao tác chỉnh sửa phiếu lead.
@@ -39,6 +46,7 @@ class LeadMenuItem {
     name: 'Ghi hoạt động',
     icon: Icons.history_toggle_off_outlined,
     color: Color(0xFF8E24AA),
+    requiresOperationPermission: false,
   );
 
   /// Thao tác xác nhận TT không phù hợp — loại bỏ lead.
