@@ -236,8 +236,6 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
                                 _glassChip(_orDash(item.stageName)),
                                 if ((item.customerType ?? '').trim().isNotEmpty)
                                   _glassChip(item.customerType!.trim()),
-                                if ((item.poTypeName ?? '').trim().isNotEmpty)
-                                  _glassChip(item.poTypeName!.trim()),
                                 if ((item.leadSourceName ?? '').trim().isNotEmpty)
                                   _glassChip(item.leadSourceName!.trim()),
                               ],
@@ -282,10 +280,6 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
             value: _formatMoney(item.estimatedValue),
           ),
           _StatItem(
-            label: 'Số HĐ',
-            value: '${item.activityCount ?? 0}',
-          ),
-          _StatItem(
             label: 'Hẹn liên hệ',
             value: _formatDate(item.nextFollowUpDate),
             highlight: hasFollowUp,
@@ -325,6 +319,12 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
         ? state.filesPo.length
         : 0;
 
+    // Số hoạt động chỉ lấy từ chi tiết đúng phiếu đang xem.
+    final detail = state.detail?.lead?.id == widget.item.id
+        ? state.detail
+        : null;
+    final activitiesCount = detail?.activities?.length ?? 0;
+
     return Container(
       color: Colors.white,
       child: TabBar(
@@ -346,7 +346,7 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
         ),
         tabs: [
           const Tab(text: 'Thông tin'),
-          const Tab(text: 'Hoạt động'),
+          Tab(text: 'Hoạt động ($activitiesCount)'),
           Tab(text: 'Files ($filesCount)'),
           Tab(text: 'Files PO ($filesPoCount)'),
           const Tab(text: 'Lịch sử'),
@@ -386,13 +386,13 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
             ),
             _gridRow(
               _gridCell(
+                'Chức vụ',
+                _first(lead?.contactPosition, item.contactPosition),
+              ),
+              _gridCell(
                 'Email',
                 _first(lead?.contactEmail, item.contactEmail),
               ),
-              _gridCell('Tỉnh/thành', _orDash(item.province)),
-            ),
-            _gridRow(
-              _gridCell('Địa chỉ', _orDash(item.address)),
             ),
           ],
         ),
@@ -409,14 +409,6 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
               _gridCell(
                 'Chiến dịch',
                 _first(lead?.campaignName, item.campaignName),
-              ),
-            ),
-            _gridRow(
-              _gridCell(
-                'Ngày thu thập',
-                _formatDate(
-                  _first(lead?.collectedDate, item.collectedDate),
-                ),
               ),
               _gridCell('Đánh giá', _orDash(item.ratingName)),
             ),
@@ -458,9 +450,9 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
             ),
             _gridRow(
               _gridCell(
-                'Ngày bàn giao',
-                _formatDateTime(
-                  _first(lead?.handoverDate, item.handoverDate),
+                'Ngày thu thập',
+                _formatDate(
+                  _first(lead?.collectedDate, item.collectedDate),
                 ),
               ),
               _gridCell(
@@ -472,15 +464,15 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
             ),
             _gridRow(
               _gridCell(
-                'Hẹn liên hệ',
+                'Ngày bàn giao',
                 _formatDateTime(
-                  _first(lead?.nextFollowUpDate, item.nextFollowUpDate),
+                  _first(lead?.handoverDate, item.handoverDate),
                 ),
               ),
               _gridCell(
-                'Ngày qualify',
+                'Hẹn liên hệ',
                 _formatDate(
-                  _first(lead?.qualifiedDate, item.qualifiedDate),
+                  _first(lead?.nextFollowUpDate, item.nextFollowUpDate),
                 ),
               ),
             ),
@@ -494,13 +486,13 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
             _gridRow(
               _gridCell('Số HĐ', '${item.activityCount ?? 0}'),
               _gridCell('HĐ gần nhất', _formatDateTime(item.lastActivityDate)),
+              _gridCell('Mã KH liên kết', _orDash(item.customerCode)),
             ),
             _gridRow(
               _gridCell(
                 'Khách hàng liên kết',
                 _orDash(item.customerName),
               ),
-              _gridCell('Mã KH liên kết', _orDash(item.customerCode)),
             ),
             _gridRow(
               _gridCell('Tổng tiền PO', _formatMoney(item.totalMoneyPo)),
@@ -670,9 +662,10 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
           ),
           const SizedBox(height: 10),
           _gridRow(
+            _gridCell('MST', _orDash(item.taxCode)),
             _gridCell(
               'Loại khách hàng',
-              _first(lead?.customerType.toString(), item.customerType),
+              _customerTypeLabel(lead, item),
             ),
             _gridCell('Mã KH', _orDash(item.customerCode)),
           ),
@@ -681,7 +674,6 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
               'Công ty',
               _orDash(item.companyName ?? item.customerName),
             ),
-            _gridCell('MST', _orDash(item.taxCode)),
           ),
           _gridRow(
             _gridCell('Nhóm hàng', _orDash(item.poTypeName)),
@@ -689,6 +681,12 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
           ),
           _gridRow(
             _gridCell('Lĩnh vực', _orDash(item.businessFieldName)),
+          ),
+          _gridRow(
+            _gridCell('Tỉnh thành', _orDash(item.province)),
+          ),
+          _gridRow(
+            _gridCell('Địa chỉ', _orDash(item.address)),
           ),
         ],
       ),
@@ -792,19 +790,26 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
     );
   }
 
-  /// Hàng lưới 2 cột trong các khối thông tin.
+  /// Hàng lưới thông tin trong các khối.
   ///
-  /// Cột bên trái chiếm 1 phần, cột bên phải chiếm 1 phần. Khi chỉ có 1 ô
-  /// thì ô đó chiếm toàn bộ chiều rộng.
-  Widget _gridRow(Widget first, [Widget? second]) {
+  /// Khi có đủ 2 ô thì mỗi ô chiếm 1 phần chiều rộng. Khi chỉ có 1 ô thì ô
+  /// đó chiếm toàn bộ chiều rộng — nếu không, giá trị dài sẽ bị wrap vô ích.
+  /// Hỗ trợ tối đa 3 ô trên một hàng.
+  Widget _gridRow(Widget first, [Widget? second, Widget? third]) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(child: first),
-          const SizedBox(width: 12),
-          Expanded(child: second ?? const SizedBox.shrink()),
+          if (second != null) ...[
+            const SizedBox(width: 12),
+            Expanded(child: second),
+          ],
+          if (third != null) ...[
+            const SizedBox(width: 12),
+            Expanded(child: third),
+          ],
         ],
       ),
     );
@@ -879,6 +884,21 @@ class _LeadMarketingDetailSheetState extends State<LeadMarketingDetailSheet>
       default:
         return '-';
     }
+  }
+
+  /// Tên loại khách hàng.
+  ///
+  /// Ưu tiên tên hiển thị từ danh sách; nếu không có thì map mã số từ API
+  /// chi tiết sang nhãn tương ứng. Không có loại khách hàng → '-'.
+  String _customerTypeLabel(LeadDetailLead? lead, LeadMarketingItem item) {
+    final fromList = (item.customerType ?? '').trim();
+    if (fromList.isNotEmpty) {
+      return fromList == LeadCustomerType.none.label ? '-' : fromList;
+    }
+
+    final type = lead?.customerType;
+    if (type == null || type == LeadCustomerType.none.value) return '-';
+    return LeadCustomerType.labelOf(type) ?? '-';
   }
 
   /// Lấy giá trị đầu tiên khác null trong chuỗi ưu tiên, trả về '-'

@@ -423,6 +423,17 @@ enum LeadCustomerType {
 
   /// Mã hiển thị cho người dùng.
   final String label;
+
+  /// Tên hiển thị theo mã, trả về `null` khi mã không hợp lệ.
+  ///
+  /// Dùng để hiển thị loại khách hàng từ dữ liệu chi tiết (API trả mã số).
+  static String? labelOf(int? value) {
+    if (value == null) return null;
+    for (final type in LeadCustomerType.values) {
+      if (type.value == value) return type.label;
+    }
+    return null;
+  }
 }
 
 /// Một phiếu lead trong danh sách.
