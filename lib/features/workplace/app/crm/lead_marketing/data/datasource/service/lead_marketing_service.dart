@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/dio/dio_base_api_service.dart';
 
@@ -405,6 +407,37 @@ class LeadMarketingService extends DioBaseApiService {
     );
   }
 
+  /// Parse response customer-po — lấy `status`/`message` ở envelope và file
+  /// trong `data`.
+  ///
+  /// BE trả về 1 object file (không phải mảng) — có thể bọc trong `data`
+  /// hoặc `model`, nên phải bóc ra trước khi parse.
+  BaseData<List<LeadFile>> _parseCustomerPoFiles(dynamic json) {
+    final root = json is Map
+        ? Map<String, dynamic>.from(json)
+        : <String, dynamic>{};
+
+    dynamic payload = root['data'] ?? root['result'];
+    if (payload is Map) {
+      payload = payload['data'] ?? payload['model'] ?? payload;
+    }
+
+    final files = payload is List
+        ? payload
+              .whereType<Map>()
+              .map((e) => LeadFile.fromJson(Map<String, dynamic>.from(e)))
+              .toList()
+        : (payload is Map
+              ? [LeadFile.fromJson(Map<String, dynamic>.from(payload))]
+              : const <LeadFile>[]);
+
+    return BaseData<List<LeadFile>>(
+      // BE đôi khi không trả `status` → coi như thành công nếu có dữ liệu.
+      status: (root['status'] as num?)?.toInt() ?? (files.isEmpty ? 0 : 1),
+      data: files,
+    )..message = root['message'] as String?;
+  }
+
   /// Parse response delete — lấy `status`/`message` ở envelope và danh sách
   /// ID đã xoá trong `data`.
   BaseData<List<int>> _parseDeletedIds(dynamic json) {
@@ -463,6 +496,81 @@ class LeadMarketingService extends DioBaseApiService {
           LeadFile.fromJson,
         );
       }),
+    );
+  }
+
+  /// Lưu file đính kèm của phiếu lead.
+  ///
+  /// API: POST /Lead/customer-po?customerContactId=11342&fileType=1&note=.
+  /// Body multipart/form-data gồm `customerContactId`, `fileType`, `note` và
+  /// `files` (danh sách file cần lưu).
+  ///
+  /// [customerContactId] là ID của phiếu lead, [fileType] là nhóm file
+  /// (1 = file thường, 2 = file PO), [note] là ghi chú đính kèm.
+  Future<BaseData<List<LeadFile>>> saveLeadFiles({
+    required int customerContactId,
+    required int fileType,
+    required List<PlatformFile> files,
+    String note = '',
+  }) async {
+    final formData = FormData();
+
+    for (final file in files) {
+      final path = file.path;
+      if (path != null && path.trim().isNotEmpty) {
+        formData.files.add(
+          MapEntry(
+            'files',
+            await MultipartFile.fromFile(path, filename: file.name),
+          ),
+        );
+      } else if (file.bytes != null) {
+        formData.files.add(
+          MapEntry(
+            'files',
+            MultipartFile.fromBytes(file.bytes!, filename: file.name),
+          ),
+        );
+      }
+    }
+
+    formData.fields.addAll([
+      MapEntry('customerContactId', '$customerContactId'),
+      MapEntry('fileType', '$fileType'),
+      MapEntry('note', note),
+    ]);
+
+    return post<BaseData<List<LeadFile>>>(
+      ApiEndPoint.leadCustomerPo,
+      query: {
+        'customerContactId': customerContactId,
+        'fileType': fileType,
+        'note': note,
+      },
+      body: formData,
+      options: Options(contentType: 'multipart/form-data'),
+      parser: (json) => _parseCustomerPoFiles(json),
+    );
+  }
+
+  /// Xoá file đính kèm của phiếu lead.
+  ///
+  /// API: GET /Lead/deleted-files?customerContactFileId=10.
+  /// [customerContactFileId] là ID của file cần xoá.
+  Future<BaseData<void>> deleteLeadFile({
+    required int customerContactFileId,
+  }) async {
+    return get<BaseData<void>>(
+      ApiEndPoint.deleteLeadFile,
+      query: {'customerContactFileId': customerContactFileId},
+      parser: (json) {
+        final root = json is Map
+            ? Map<String, dynamic>.from(json)
+            : <String, dynamic>{};
+        return BaseData<void>(
+          status: (root['status'] as num?)?.toInt(),
+        )..message = root['message'] as String?;
+      },
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
 
@@ -140,6 +141,54 @@ class LeadMarketingRepoImpl implements LeadMarketingRepo {
       }
       return left(
         BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<LeadFile>>> saveLeadFiles({
+    required int customerContactId,
+    required int fileType,
+    required List<PlatformFile> files,
+    String note = '',
+  }) async {
+    try {
+      final res = await _service.saveLeadFiles(
+        customerContactId: customerContactId,
+        fileType: fileType,
+        files: files,
+        note: note,
+      );
+      if (res.status == 1) {
+        return right(res.data ?? const <LeadFile>[]);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Lưu file đính kèm thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, void>> deleteLeadFile({
+    required int customerContactFileId,
+  }) async {
+    try {
+      final res = await _service.deleteLeadFile(
+        customerContactFileId: customerContactFileId,
+      );
+      if (res.status == 1) {
+        return right(null);
+      }
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Xoá file đính kèm thất bại',
+        ),
       );
     } on DioException catch (e) {
       return left(e.baseError);

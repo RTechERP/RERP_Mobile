@@ -63,6 +63,12 @@ abstract class _$LeadMarketingStateCWProxy {
 
   LeadMarketingState filesPoLeadId(int? filesPoLeadId);
 
+  LeadMarketingState fileActionStatus(BaseStateStatus fileActionStatus);
+
+  LeadMarketingState fileActionMessage(String? fileActionMessage);
+
+  LeadMarketingState deletingFileId(int? deletingFileId);
+
   LeadMarketingState poTypes(List<LeadPoType> poTypes);
 
   LeadMarketingState customerIndustries(
@@ -167,6 +173,9 @@ abstract class _$LeadMarketingStateCWProxy {
     BaseStateStatus? filesPoStatus,
     String? filesPoMessage,
     int? filesPoLeadId,
+    BaseStateStatus? fileActionStatus,
+    String? fileActionMessage,
+    int? deletingFileId,
     List<LeadPoType>? poTypes,
     List<LeadCustomerIndustry>? customerIndustries,
     List<LeadCustomerSpecialization>? customerSpecializations,
@@ -311,6 +320,18 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
   @override
   LeadMarketingState filesPoLeadId(int? filesPoLeadId) =>
       this(filesPoLeadId: filesPoLeadId);
+
+  @override
+  LeadMarketingState fileActionStatus(BaseStateStatus fileActionStatus) =>
+      this(fileActionStatus: fileActionStatus);
+
+  @override
+  LeadMarketingState fileActionMessage(String? fileActionMessage) =>
+      this(fileActionMessage: fileActionMessage);
+
+  @override
+  LeadMarketingState deletingFileId(int? deletingFileId) =>
+      this(deletingFileId: deletingFileId);
 
   @override
   LeadMarketingState poTypes(List<LeadPoType> poTypes) =>
@@ -485,6 +506,9 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
     Object? filesPoStatus = const $CopyWithPlaceholder(),
     Object? filesPoMessage = const $CopyWithPlaceholder(),
     Object? filesPoLeadId = const $CopyWithPlaceholder(),
+    Object? fileActionStatus = const $CopyWithPlaceholder(),
+    Object? fileActionMessage = const $CopyWithPlaceholder(),
+    Object? deletingFileId = const $CopyWithPlaceholder(),
     Object? poTypes = const $CopyWithPlaceholder(),
     Object? customerIndustries = const $CopyWithPlaceholder(),
     Object? customerSpecializations = const $CopyWithPlaceholder(),
@@ -642,6 +666,19 @@ class _$LeadMarketingStateCWProxyImpl implements _$LeadMarketingStateCWProxy {
           ? _value.filesPoLeadId
           // ignore: cast_nullable_to_non_nullable
           : filesPoLeadId as int?,
+      fileActionStatus: fileActionStatus == const $CopyWithPlaceholder() ||
+              fileActionStatus == null
+          ? _value.fileActionStatus
+          // ignore: cast_nullable_to_non_nullable
+          : fileActionStatus as BaseStateStatus,
+      fileActionMessage: fileActionMessage == const $CopyWithPlaceholder()
+          ? _value.fileActionMessage
+          // ignore: cast_nullable_to_non_nullable
+          : fileActionMessage as String?,
+      deletingFileId: deletingFileId == const $CopyWithPlaceholder()
+          ? _value.deletingFileId
+          // ignore: cast_nullable_to_non_nullable
+          : deletingFileId as int?,
       poTypes: poTypes == const $CopyWithPlaceholder() || poTypes == null
           ? _value.poTypes
           // ignore: cast_nullable_to_non_nullable

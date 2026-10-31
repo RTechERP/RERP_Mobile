@@ -8284,6 +8284,18 @@ mixin _$LeadFile {
   @JsonKey(name: 'FileType')
   int? get fileType => throw _privateConstructorUsedError;
 
+  /// Người tạo file (mã nhân viên) — dùng để so khớp quyền xoá.
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+
+  /// Ngày tạo file.
+  @JsonKey(name: 'CreatedDate')
+  String? get createdDate => throw _privateConstructorUsedError;
+
+  /// File đã bị xoá hay chưa.
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LeadFileCopyWith<LeadFile> get copyWith =>
@@ -8301,7 +8313,10 @@ abstract class $LeadFileCopyWith<$Res> {
       @JsonKey(name: 'ServerPath') String? serverPath,
       @JsonKey(name: 'OriginPath') String? originPath,
       @JsonKey(name: 'CustomerContactID') int? customerContactId,
-      @JsonKey(name: 'FileType') int? fileType});
+      @JsonKey(name: 'FileType') int? fileType,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
 }
 
 /// @nodoc
@@ -8323,6 +8338,9 @@ class _$LeadFileCopyWithImpl<$Res, $Val extends LeadFile>
     Object? originPath = freezed,
     Object? customerContactId = freezed,
     Object? fileType = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? isDeleted = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -8349,6 +8367,18 @@ class _$LeadFileCopyWithImpl<$Res, $Val extends LeadFile>
           ? _value.fileType
           : fileType // ignore: cast_nullable_to_non_nullable
               as int?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -8367,7 +8397,10 @@ abstract class _$$LeadFileImplCopyWith<$Res>
       @JsonKey(name: 'ServerPath') String? serverPath,
       @JsonKey(name: 'OriginPath') String? originPath,
       @JsonKey(name: 'CustomerContactID') int? customerContactId,
-      @JsonKey(name: 'FileType') int? fileType});
+      @JsonKey(name: 'FileType') int? fileType,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
 }
 
 /// @nodoc
@@ -8387,6 +8420,9 @@ class __$$LeadFileImplCopyWithImpl<$Res>
     Object? originPath = freezed,
     Object? customerContactId = freezed,
     Object? fileType = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? isDeleted = freezed,
   }) {
     return _then(_$LeadFileImpl(
       id: freezed == id
@@ -8413,6 +8449,18 @@ class __$$LeadFileImplCopyWithImpl<$Res>
           ? _value.fileType
           : fileType // ignore: cast_nullable_to_non_nullable
               as int?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -8426,7 +8474,10 @@ class _$LeadFileImpl implements _LeadFile {
       @JsonKey(name: 'ServerPath') this.serverPath,
       @JsonKey(name: 'OriginPath') this.originPath,
       @JsonKey(name: 'CustomerContactID') this.customerContactId,
-      @JsonKey(name: 'FileType') this.fileType});
+      @JsonKey(name: 'FileType') this.fileType,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
 
   factory _$LeadFileImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadFileImplFromJson(json);
@@ -8450,9 +8501,24 @@ class _$LeadFileImpl implements _LeadFile {
   @JsonKey(name: 'FileType')
   final int? fileType;
 
+  /// Người tạo file (mã nhân viên) — dùng để so khớp quyền xoá.
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+
+  /// Ngày tạo file.
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final String? createdDate;
+
+  /// File đã bị xoá hay chưa.
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
   @override
   String toString() {
-    return 'LeadFile(id: $id, fileName: $fileName, serverPath: $serverPath, originPath: $originPath, customerContactId: $customerContactId, fileType: $fileType)';
+    return 'LeadFile(id: $id, fileName: $fileName, serverPath: $serverPath, originPath: $originPath, customerContactId: $customerContactId, fileType: $fileType, createdBy: $createdBy, createdDate: $createdDate, isDeleted: $isDeleted)';
   }
 
   @override
@@ -8470,13 +8536,28 @@ class _$LeadFileImpl implements _LeadFile {
             (identical(other.customerContactId, customerContactId) ||
                 other.customerContactId == customerContactId) &&
             (identical(other.fileType, fileType) ||
-                other.fileType == fileType));
+                other.fileType == fileType) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, fileName, serverPath,
-      originPath, customerContactId, fileType);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      fileName,
+      serverPath,
+      originPath,
+      customerContactId,
+      fileType,
+      createdBy,
+      createdDate,
+      isDeleted);
 
   @JsonKey(ignore: true)
   @override
@@ -8499,7 +8580,10 @@ abstract class _LeadFile implements LeadFile {
       @JsonKey(name: 'ServerPath') final String? serverPath,
       @JsonKey(name: 'OriginPath') final String? originPath,
       @JsonKey(name: 'CustomerContactID') final int? customerContactId,
-      @JsonKey(name: 'FileType') final int? fileType}) = _$LeadFileImpl;
+      @JsonKey(name: 'FileType') final int? fileType,
+      @JsonKey(name: 'CreatedBy') final String? createdBy,
+      @JsonKey(name: 'CreatedDate') final String? createdDate,
+      @JsonKey(name: 'IsDeleted') final bool? isDeleted}) = _$LeadFileImpl;
 
   factory _LeadFile.fromJson(Map<String, dynamic> json) =
       _$LeadFileImpl.fromJson;
@@ -8522,6 +8606,21 @@ abstract class _LeadFile implements LeadFile {
   @override
   @JsonKey(name: 'FileType')
   int? get fileType;
+  @override
+
+  /// Người tạo file (mã nhân viên) — dùng để so khớp quyền xoá.
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+
+  /// Ngày tạo file.
+  @JsonKey(name: 'CreatedDate')
+  String? get createdDate;
+  @override
+
+  /// File đã bị xoá hay chưa.
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
   @override
   @JsonKey(ignore: true)
   _$$LeadFileImplCopyWith<_$LeadFileImpl> get copyWith =>

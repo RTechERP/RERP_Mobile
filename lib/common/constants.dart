@@ -725,6 +725,16 @@ class ApiEndPoint {
   /// API: GET /Lead/get-files?customerContactId=11294&fileType=1.
   static const String getLeadFiles = '/Lead/get-files';
 
+  /// Lưu file đính kèm của phiếu lead.
+  /// API: POST /Lead/customer-po?customerContactId=11342&fileType=1&note=
+  ///
+  /// Body multipart gồm `customerContactId`, `fileType`, `note` và `files`.
+  static const String leadCustomerPo = '/Lead/customer-po';
+
+  /// Xoá file đính kèm của phiếu lead.
+  /// API: GET /Lead/deleted-files?customerContactFileId=10.
+  static const String deleteLeadFile = '/Lead/deleted-files';
+
   /// Danh sách nhóm hàng (loại PO) dùng khi tạo phiếu lead.
   /// API: GET /Lead/po-types.
   static const String getLeadPoTypes = '/Lead/po-types';

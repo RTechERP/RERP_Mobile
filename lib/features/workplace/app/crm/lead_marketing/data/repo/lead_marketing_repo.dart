@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:file_picker/file_picker.dart';
 
 import '../../../../../../../../base/network/errors/error.dart';
 import '../datasource/models/lead_marketing_model.dart';
@@ -40,6 +41,24 @@ abstract class LeadMarketingRepo {
   Future<Either<BaseError, List<LeadFile>>> getLeadFiles({
     required int customerContactId,
     required int fileType,
+  });
+
+  /// Lưu file đính kèm của phiếu lead.
+  ///
+  /// [files] là danh sách file cần lưu; [fileType] là nhóm file (1 = file
+  /// thường, 2 = file PO).
+  Future<Either<BaseError, List<LeadFile>>> saveLeadFiles({
+    required int customerContactId,
+    required int fileType,
+    required List<PlatformFile> files,
+    String note = '',
+  });
+
+  /// Xoá file đính kèm của phiếu lead.
+  ///
+  /// [customerContactFileId] là ID của file cần xoá.
+  Future<Either<BaseError, void>> deleteLeadFile({
+    required int customerContactFileId,
   });
 
   /// Lấy danh sách nhóm hàng (loại PO).

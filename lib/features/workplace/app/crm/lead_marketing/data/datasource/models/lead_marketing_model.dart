@@ -639,6 +639,15 @@ class LeadFile with _$LeadFile {
     @JsonKey(name: 'OriginPath') String? originPath,
     @JsonKey(name: 'CustomerContactID') int? customerContactId,
     @JsonKey(name: 'FileType') int? fileType,
+
+    /// Người tạo file (mã nhân viên) — dùng để so khớp quyền xoá.
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+
+    /// Ngày tạo file.
+    @JsonKey(name: 'CreatedDate') String? createdDate,
+
+    /// File đã bị xoá hay chưa.
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
   }) = _LeadFile;
 
   factory LeadFile.fromJson(Map<String, dynamic> json) =>

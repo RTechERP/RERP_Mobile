@@ -8,7 +8,9 @@ import 'lead_marketing_model.dart';
 ///
 /// - Giai đoạn 1–4 và 9: nhân viên **marketing** được thao tác.
 /// - Giai đoạn 5–8: nhân viên **sale** được thao tác.
-/// - Giai đoạn 1–9: nhân viên đặc biệt (`employeeID = 332` hoặc
+/// - Giai đoạn 6 (đang xử lý): chỉ nhân viên **sale** được thao tác, marketing
+///   và nhân viên đặc biệt không được thao tác.
+/// - Giai đoạn 1–5, 7–9: nhân viên đặc biệt (`employeeID = 332` hoặc
 ///   `id` user = `1425`) được thao tác mọi giai đoạn.
 /// - Giai đoạn 10 (Chốt PO): không ai được thao tác.
 ///
@@ -18,6 +20,10 @@ class LeadPermission {
 
   /// Mã giai đoạn Chốt PO — không ai được quyền thao tác.
   static const int customerPoStageCode = 10;
+
+  /// Mã giai đoạn Đang xử lý — marketing và nhân viên đặc biệt không được
+  /// thao tác, chỉ nhân viên sale được xử lý.
+  static const int processingStageCode = 6;
 
   /// Mã giai đoạn Không phù hợp (đã bị loại bỏ).
   static const int disqualifiedStageCode = 9;
@@ -44,6 +50,11 @@ class LeadPermission {
   /// Thông báo khi phiếu đã chốt PO — không ai được thao tác.
   static const String customerPoMessage =
       'Không thể thao tác phiếu lead đã chốt PO';
+
+  /// Thông báo khi phiếu ở giai đoạn "Đang xử lý" — marketing và nhân viên
+  /// đặc biệt không được thao tác.
+  static const String processingMessage =
+      'Không thể thao tác phiếu lead đang ở giai đoạn đang xử lý';
 
   /// Thông báo khi phiếu không ở giai đoạn phù hợp để xác nhận / huỷ TT
   /// không phù hợp.
@@ -173,7 +184,13 @@ class LeadPermission {
     // Giai đoạn 10 (Chốt PO) — không ai được thao tác.
     if (stageCode >= customerPoStageCode) return false;
 
-    // Nhân viên đặc biệt được thao tác mọi giai đoạn 1–9.
+    // Giai đoạn 6 (Đang xử lý) — marketing và nhân viên đặc biệt không được
+    // thao tác, chỉ nhân viên sale được xử lý.
+    if (stageCode == processingStageCode) {
+      return isSaleUser(roleContext: roleContext);
+    }
+
+    // Nhân viên đặc biệt được thao tác mọi giai đoạn còn lại.
     if (isSpecialUser(roleContext: roleContext, user: user)) return true;
 
     // Giai đoạn 1–4 và 9 — nhân viên marketing được thao tác.
@@ -204,6 +221,9 @@ class LeadPermission {
 
     if (stageCode != null && stageCode >= customerPoStageCode) {
       return customerPoMessage;
+    }
+    if (stageCode == processingStageCode) {
+      return processingMessage;
     }
     return noPermissionMessage;
   }

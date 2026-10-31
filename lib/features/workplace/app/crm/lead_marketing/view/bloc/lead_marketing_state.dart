@@ -81,6 +81,15 @@ class LeadMarketingState extends BaseBlocState {
   /// ID của phiếu lead mà [filesPo] đang thuộc về.
   final int? filesPoLeadId;
 
+  /// Trạng thái đang lưu / xoá file đính kèm.
+  final BaseStateStatus fileActionStatus;
+
+  /// Thông báo kết quả lưu / xoá file đính kèm.
+  final String? fileActionMessage;
+
+  /// ID file đang được xoá (null khi không xoá file nào).
+  final int? deletingFileId;
+
   /// Danh sách nhóm hàng (loại PO) dùng khi tạo phiếu lead.
   final List<LeadPoType> poTypes;
 
@@ -211,6 +220,9 @@ class LeadMarketingState extends BaseBlocState {
     this.filesPoStatus = BaseStateStatus.init,
     this.filesPoMessage,
     this.filesPoLeadId,
+    this.fileActionStatus = BaseStateStatus.init,
+    this.fileActionMessage,
+    this.deletingFileId,
     this.poTypes = const [],
     this.customerIndustries = const [],
     this.customerSpecializations = const [],
@@ -338,6 +350,9 @@ class LeadMarketingState extends BaseBlocState {
         filesPoStatus,
         filesPoMessage,
         filesPoLeadId,
+        fileActionStatus,
+        fileActionMessage,
+        deletingFileId,
         poTypes,
         customerIndustries,
         customerSpecializations,

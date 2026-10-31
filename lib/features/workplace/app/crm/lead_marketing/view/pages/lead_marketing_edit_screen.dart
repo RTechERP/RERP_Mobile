@@ -69,6 +69,14 @@ class _LeadMarketingEditScreenState
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       bloc.add(LeadMarketingEvent.loadDetail(id: widget.leadId));
+      // Tải danh sách file đính kèm (fileType = 1) để hiển thị trong khối
+      // đính kèm — người dùng xem trước và xoá được ngay trên form.
+      bloc.add(
+        LeadMarketingEvent.loadFiles(customerContactId: widget.leadId),
+      );
+      // Bloc là singleton → xoá kết quả thao tác file của lần trước để không
+      // hiện lại thông báo cũ khi vào màn.
+      bloc.add(const LeadMarketingEvent.clearFileActionState());
     });
   }
 
@@ -94,6 +102,9 @@ class _LeadMarketingEditScreenState
               bloc.add(const LeadMarketingEvent.clearSubmitState());
               // Tải lại danh sách để phiếu vừa sửa hiển thị ngay.
               bloc.add(const LeadMarketingEvent.refresh());
+              // Đẩy file đính kèm đã chọn lên server — chỉ chạy sau khi
+              // phiếu đã lưu thành công.
+              _formWidgetKey.currentState?.uploadPendingFiles(widget.leadId);
               _hideKeyboard();
               context.pop();
             } else if (state.submitStatus == BaseStateStatus.failed) {

@@ -72,6 +72,11 @@ class _LeadMarketingAddScreenState
               bloc.add(const LeadMarketingEvent.clearSubmitState());
               // Tải lại danh sách để phiếu vừa tạo hiển thị ngay.
               bloc.add(const LeadMarketingEvent.refresh());
+              // Upload các file đính kèm đã chọn — lúc này mới có ID phiếu.
+              final leadId = result?.id;
+              if (leadId != null) {
+                _formWidgetKey.currentState?.uploadPendingFiles(leadId);
+              }
               // Tắt bàn phím trước khi pop, tránh bàn phím nhấp nháy lên
               // rồi tắt khi thoát màn.
               _hideKeyboard();

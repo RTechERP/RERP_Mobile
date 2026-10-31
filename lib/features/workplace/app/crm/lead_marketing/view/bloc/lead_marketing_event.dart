@@ -48,6 +48,33 @@ class LeadMarketingEvent with _$LeadMarketingEvent {
     required int customerContactId,
   }) = _LoadFilesPo;
 
+  /// Lưu file đính kèm mới lên phiếu lead.
+  ///
+  /// [files] là danh sách file người dùng chọn, [fileType] là nhóm file
+  /// (1 = file thường, 2 = file PO).
+  const factory LeadMarketingEvent.saveFiles({
+    required int customerContactId,
+    required int fileType,
+    required List<PlatformFile> files,
+    @Default('') String note,
+  }) = _SaveFiles;
+
+  /// Xoá file đính kèm của phiếu lead.
+  ///
+  /// [fileId] là ID của file cần xoá, [fileType] là nhóm file chứa file đó
+  /// (1 = file thường, 2 = file PO) để tải lại đúng danh sách.
+  const factory LeadMarketingEvent.deleteFile({
+    required int fileId,
+    @Default(1) int fileType,
+  }) = _DeleteFile;
+
+  /// Xoá trạng thái kết quả lưu / xoá file đính kèm.
+  ///
+  /// Được gọi sau khi UI đã hiển thị thông báo. Bloc là singleton nên nếu
+  /// không xoá, lần mở màn sau sẽ hiện lại thông báo cũ.
+  const factory LeadMarketingEvent.clearFileActionState() =
+      _ClearFileActionState;
+
   /// Tải toàn bộ danh mục cần cho form tạo phiếu lead: nhóm hàng, lĩnh vực,
   /// ngành nghề, business field, tỉnh/thành và khách hàng.
   const factory LeadMarketingEvent.loadFormOptions() = _LoadFormOptions;

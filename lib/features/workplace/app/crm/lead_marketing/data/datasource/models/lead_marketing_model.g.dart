@@ -661,6 +661,9 @@ _$LeadFileImpl _$$LeadFileImplFromJson(Map<String, dynamic> json) =>
       originPath: json['OriginPath'] as String?,
       customerContactId: (json['CustomerContactID'] as num?)?.toInt(),
       fileType: (json['FileType'] as num?)?.toInt(),
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
     );
 
 Map<String, dynamic> _$$LeadFileImplToJson(_$LeadFileImpl instance) =>
@@ -671,6 +674,9 @@ Map<String, dynamic> _$$LeadFileImplToJson(_$LeadFileImpl instance) =>
       'OriginPath': instance.originPath,
       'CustomerContactID': instance.customerContactId,
       'FileType': instance.fileType,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate,
+      'IsDeleted': instance.isDeleted,
     };
 
 _$LeadActionsImpl _$$LeadActionsImplFromJson(Map<String, dynamic> json) =>

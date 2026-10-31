@@ -30,6 +30,11 @@ mixin _$LeadMarketingEvent {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -66,6 +71,11 @@ mixin _$LeadMarketingEvent {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -101,6 +111,11 @@ mixin _$LeadMarketingEvent {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -135,6 +150,9 @@ mixin _$LeadMarketingEvent {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -167,6 +185,9 @@ mixin _$LeadMarketingEvent {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -198,6 +219,9 @@ mixin _$LeadMarketingEvent {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -288,6 +312,11 @@ class _$InitImpl implements _Init {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -327,6 +356,11 @@ class _$InitImpl implements _Init {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -365,6 +399,11 @@ class _$InitImpl implements _Init {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -405,6 +444,9 @@ class _$InitImpl implements _Init {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -440,6 +482,9 @@ class _$InitImpl implements _Init {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -474,6 +519,9 @@ class _$InitImpl implements _Init {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -591,6 +639,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -630,6 +683,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -668,6 +726,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -708,6 +771,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -743,6 +809,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -777,6 +846,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -892,6 +964,11 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -931,6 +1008,11 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -969,6 +1051,11 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -1009,6 +1096,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -1044,6 +1134,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -1078,6 +1171,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -1165,6 +1261,11 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -1204,6 +1305,11 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -1242,6 +1348,11 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -1282,6 +1393,9 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -1317,6 +1431,9 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -1351,6 +1468,9 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -1505,6 +1625,11 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -1545,6 +1670,11 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -1584,6 +1714,11 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -1625,6 +1760,9 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -1660,6 +1798,9 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -1694,6 +1835,9 @@ class _$ApplyFilterImpl implements _ApplyFilter {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -1789,6 +1933,11 @@ class _$ClearFilterImpl implements _ClearFilter {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -1828,6 +1977,11 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -1866,6 +2020,11 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -1906,6 +2065,9 @@ class _$ClearFilterImpl implements _ClearFilter {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -1941,6 +2103,9 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -1975,6 +2140,9 @@ class _$ClearFilterImpl implements _ClearFilter {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -2082,6 +2250,11 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -2121,6 +2294,11 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -2159,6 +2337,11 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -2199,6 +2382,9 @@ class _$LoadDetailImpl implements _LoadDetail {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -2234,6 +2420,9 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -2268,6 +2457,9 @@ class _$LoadDetailImpl implements _LoadDetail {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -2381,6 +2573,11 @@ class _$LoadFilesImpl implements _LoadFiles {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -2420,6 +2617,11 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -2458,6 +2660,11 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -2498,6 +2705,9 @@ class _$LoadFilesImpl implements _LoadFiles {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -2533,6 +2743,9 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -2567,6 +2780,9 @@ class _$LoadFilesImpl implements _LoadFiles {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -2681,6 +2897,11 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -2720,6 +2941,11 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -2758,6 +2984,11 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -2798,6 +3029,9 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -2833,6 +3067,9 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -2867,6 +3104,9 @@ class _$LoadFilesPoImpl implements _LoadFilesPo {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -2902,6 +3142,1004 @@ abstract class _LoadFilesPo implements LeadMarketingEvent {
   @JsonKey(ignore: true)
   _$$LoadFilesPoImplCopyWith<_$LoadFilesPoImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SaveFilesImplCopyWith<$Res> {
+  factory _$$SaveFilesImplCopyWith(
+          _$SaveFilesImpl value, $Res Function(_$SaveFilesImpl) then) =
+      __$$SaveFilesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int customerContactId,
+      int fileType,
+      List<PlatformFile> files,
+      String note});
+}
+
+/// @nodoc
+class __$$SaveFilesImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$SaveFilesImpl>
+    implements _$$SaveFilesImplCopyWith<$Res> {
+  __$$SaveFilesImplCopyWithImpl(
+      _$SaveFilesImpl _value, $Res Function(_$SaveFilesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? customerContactId = null,
+    Object? fileType = null,
+    Object? files = null,
+    Object? note = null,
+  }) {
+    return _then(_$SaveFilesImpl(
+      customerContactId: null == customerContactId
+          ? _value.customerContactId
+          : customerContactId // ignore: cast_nullable_to_non_nullable
+              as int,
+      fileType: null == fileType
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as int,
+      files: null == files
+          ? _value._files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<PlatformFile>,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SaveFilesImpl implements _SaveFiles {
+  const _$SaveFilesImpl(
+      {required this.customerContactId,
+      required this.fileType,
+      required final List<PlatformFile> files,
+      this.note = ''})
+      : _files = files;
+
+  @override
+  final int customerContactId;
+  @override
+  final int fileType;
+  final List<PlatformFile> _files;
+  @override
+  List<PlatformFile> get files {
+    if (_files is EqualUnmodifiableListView) return _files;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_files);
+  }
+
+  @override
+  @JsonKey()
+  final String note;
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.saveFiles(customerContactId: $customerContactId, fileType: $fileType, files: $files, note: $note)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaveFilesImpl &&
+            (identical(other.customerContactId, customerContactId) ||
+                other.customerContactId == customerContactId) &&
+            (identical(other.fileType, fileType) ||
+                other.fileType == fileType) &&
+            const DeepCollectionEquality().equals(other._files, _files) &&
+            (identical(other.note, note) || other.note == note));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, customerContactId, fileType,
+      const DeepCollectionEquality().hash(_files), note);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SaveFilesImplCopyWith<_$SaveFilesImpl> get copyWith =>
+      __$$SaveFilesImplCopyWithImpl<_$SaveFilesImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteLead,
+    required TResult Function() clearDeleteState,
+    required TResult Function() loadActivityTypes,
+    required TResult Function(Map<String, dynamic> payload) saveActivity,
+    required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
+  }) {
+    return saveFiles(customerContactId, fileType, files, note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteLead,
+    TResult? Function()? clearDeleteState,
+    TResult? Function()? loadActivityTypes,
+    TResult? Function(Map<String, dynamic> payload)? saveActivity,
+    TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
+  }) {
+    return saveFiles?.call(customerContactId, fileType, files, note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteLead,
+    TResult Function()? clearDeleteState,
+    TResult Function()? loadActivityTypes,
+    TResult Function(Map<String, dynamic> payload)? saveActivity,
+    TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (saveFiles != null) {
+      return saveFiles(customerContactId, fileType, files, note);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteLead value) deleteLead,
+    required TResult Function(_ClearDeleteState value) clearDeleteState,
+    required TResult Function(_LoadActivityTypes value) loadActivityTypes,
+    required TResult Function(_SaveActivity value) saveActivity,
+    required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
+  }) {
+    return saveFiles(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteLead value)? deleteLead,
+    TResult? Function(_ClearDeleteState value)? clearDeleteState,
+    TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult? Function(_SaveActivity value)? saveActivity,
+    TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
+  }) {
+    return saveFiles?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteLead value)? deleteLead,
+    TResult Function(_ClearDeleteState value)? clearDeleteState,
+    TResult Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult Function(_SaveActivity value)? saveActivity,
+    TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (saveFiles != null) {
+      return saveFiles(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SaveFiles implements LeadMarketingEvent {
+  const factory _SaveFiles(
+      {required final int customerContactId,
+      required final int fileType,
+      required final List<PlatformFile> files,
+      final String note}) = _$SaveFilesImpl;
+
+  int get customerContactId;
+  int get fileType;
+  List<PlatformFile> get files;
+  String get note;
+  @JsonKey(ignore: true)
+  _$$SaveFilesImplCopyWith<_$SaveFilesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteFileImplCopyWith<$Res> {
+  factory _$$DeleteFileImplCopyWith(
+          _$DeleteFileImpl value, $Res Function(_$DeleteFileImpl) then) =
+      __$$DeleteFileImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int fileId, int fileType});
+}
+
+/// @nodoc
+class __$$DeleteFileImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$DeleteFileImpl>
+    implements _$$DeleteFileImplCopyWith<$Res> {
+  __$$DeleteFileImplCopyWithImpl(
+      _$DeleteFileImpl _value, $Res Function(_$DeleteFileImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fileId = null,
+    Object? fileType = null,
+  }) {
+    return _then(_$DeleteFileImpl(
+      fileId: null == fileId
+          ? _value.fileId
+          : fileId // ignore: cast_nullable_to_non_nullable
+              as int,
+      fileType: null == fileType
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteFileImpl implements _DeleteFile {
+  const _$DeleteFileImpl({required this.fileId, this.fileType = 1});
+
+  @override
+  final int fileId;
+  @override
+  @JsonKey()
+  final int fileType;
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.deleteFile(fileId: $fileId, fileType: $fileType)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteFileImpl &&
+            (identical(other.fileId, fileId) || other.fileId == fileId) &&
+            (identical(other.fileType, fileType) ||
+                other.fileType == fileType));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, fileId, fileType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteFileImplCopyWith<_$DeleteFileImpl> get copyWith =>
+      __$$DeleteFileImplCopyWithImpl<_$DeleteFileImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteLead,
+    required TResult Function() clearDeleteState,
+    required TResult Function() loadActivityTypes,
+    required TResult Function(Map<String, dynamic> payload) saveActivity,
+    required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
+  }) {
+    return deleteFile(fileId, fileType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteLead,
+    TResult? Function()? clearDeleteState,
+    TResult? Function()? loadActivityTypes,
+    TResult? Function(Map<String, dynamic> payload)? saveActivity,
+    TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
+  }) {
+    return deleteFile?.call(fileId, fileType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteLead,
+    TResult Function()? clearDeleteState,
+    TResult Function()? loadActivityTypes,
+    TResult Function(Map<String, dynamic> payload)? saveActivity,
+    TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (deleteFile != null) {
+      return deleteFile(fileId, fileType);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteLead value) deleteLead,
+    required TResult Function(_ClearDeleteState value) clearDeleteState,
+    required TResult Function(_LoadActivityTypes value) loadActivityTypes,
+    required TResult Function(_SaveActivity value) saveActivity,
+    required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
+  }) {
+    return deleteFile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteLead value)? deleteLead,
+    TResult? Function(_ClearDeleteState value)? clearDeleteState,
+    TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult? Function(_SaveActivity value)? saveActivity,
+    TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
+  }) {
+    return deleteFile?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteLead value)? deleteLead,
+    TResult Function(_ClearDeleteState value)? clearDeleteState,
+    TResult Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult Function(_SaveActivity value)? saveActivity,
+    TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (deleteFile != null) {
+      return deleteFile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteFile implements LeadMarketingEvent {
+  const factory _DeleteFile({required final int fileId, final int fileType}) =
+      _$DeleteFileImpl;
+
+  int get fileId;
+  int get fileType;
+  @JsonKey(ignore: true)
+  _$$DeleteFileImplCopyWith<_$DeleteFileImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearFileActionStateImplCopyWith<$Res> {
+  factory _$$ClearFileActionStateImplCopyWith(_$ClearFileActionStateImpl value,
+          $Res Function(_$ClearFileActionStateImpl) then) =
+      __$$ClearFileActionStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearFileActionStateImplCopyWithImpl<$Res>
+    extends _$LeadMarketingEventCopyWithImpl<$Res, _$ClearFileActionStateImpl>
+    implements _$$ClearFileActionStateImplCopyWith<$Res> {
+  __$$ClearFileActionStateImplCopyWithImpl(_$ClearFileActionStateImpl _value,
+      $Res Function(_$ClearFileActionStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearFileActionStateImpl implements _ClearFileActionState {
+  const _$ClearFileActionStateImpl();
+
+  @override
+  String toString() {
+    return 'LeadMarketingEvent.clearFileActionState()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearFileActionStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function() refresh,
+    required TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)
+        applyFilter,
+    required TResult Function() clearFilter,
+    required TResult Function(int id) loadDetail,
+    required TResult Function(int customerContactId) loadFiles,
+    required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
+    required TResult Function() loadFormOptions,
+    required TResult Function(int id) loadCustomerDetail,
+    required TResult Function(Map<String, dynamic> payload) submitLead,
+    required TResult Function(Map<String, dynamic> payload)
+        confirmDuplicateSave,
+    required TResult Function() cancelDuplicateSave,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) deleteLead,
+    required TResult Function() clearDeleteState,
+    required TResult Function() loadActivityTypes,
+    required TResult Function(Map<String, dynamic> payload) saveActivity,
+    required TResult Function() clearActivityState,
+    required TResult Function(int id, String note) disqualifyLead,
+    required TResult Function(int id, String note) reopenLead,
+    required TResult Function() clearStageActionState,
+    required TResult Function() loadHandoverOptions,
+    required TResult Function(int leaderSaleId) loadAdminSaleId,
+    required TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)
+        handoverLead,
+    required TResult Function() clearHandoverState,
+  }) {
+    return clearFileActionState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function()? refresh,
+    TResult? Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult? Function()? clearFilter,
+    TResult? Function(int id)? loadDetail,
+    TResult? Function(int customerContactId)? loadFiles,
+    TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
+    TResult? Function()? loadFormOptions,
+    TResult? Function(int id)? loadCustomerDetail,
+    TResult? Function(Map<String, dynamic> payload)? submitLead,
+    TResult? Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult? Function()? cancelDuplicateSave,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? deleteLead,
+    TResult? Function()? clearDeleteState,
+    TResult? Function()? loadActivityTypes,
+    TResult? Function(Map<String, dynamic> payload)? saveActivity,
+    TResult? Function()? clearActivityState,
+    TResult? Function(int id, String note)? disqualifyLead,
+    TResult? Function(int id, String note)? reopenLead,
+    TResult? Function()? clearStageActionState,
+    TResult? Function()? loadHandoverOptions,
+    TResult? Function(int leaderSaleId)? loadAdminSaleId,
+    TResult? Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult? Function()? clearHandoverState,
+  }) {
+    return clearFileActionState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function()? refresh,
+    TResult Function(int leadSourceId, int marketingEmployeeId,
+            int saleEmployeeId, bool includeOpen, LeadStage? stage)?
+        applyFilter,
+    TResult Function()? clearFilter,
+    TResult Function(int id)? loadDetail,
+    TResult Function(int customerContactId)? loadFiles,
+    TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
+    TResult Function()? loadFormOptions,
+    TResult Function(int id)? loadCustomerDetail,
+    TResult Function(Map<String, dynamic> payload)? submitLead,
+    TResult Function(Map<String, dynamic> payload)? confirmDuplicateSave,
+    TResult Function()? cancelDuplicateSave,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? deleteLead,
+    TResult Function()? clearDeleteState,
+    TResult Function()? loadActivityTypes,
+    TResult Function(Map<String, dynamic> payload)? saveActivity,
+    TResult Function()? clearActivityState,
+    TResult Function(int id, String note)? disqualifyLead,
+    TResult Function(int id, String note)? reopenLead,
+    TResult Function()? clearStageActionState,
+    TResult Function()? loadHandoverOptions,
+    TResult Function(int leaderSaleId)? loadAdminSaleId,
+    TResult Function(
+            int id, int leaderEmployeeId, int adminSaleId, String note)?
+        handoverLead,
+    TResult Function()? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (clearFileActionState != null) {
+      return clearFileActionState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_ApplyFilter value) applyFilter,
+    required TResult Function(_ClearFilter value) clearFilter,
+    required TResult Function(_LoadDetail value) loadDetail,
+    required TResult Function(_LoadFiles value) loadFiles,
+    required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
+    required TResult Function(_LoadFormOptions value) loadFormOptions,
+    required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
+    required TResult Function(_SubmitLead value) submitLead,
+    required TResult Function(_ConfirmDuplicateSave value) confirmDuplicateSave,
+    required TResult Function(_CancelDuplicateSave value) cancelDuplicateSave,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_DeleteLead value) deleteLead,
+    required TResult Function(_ClearDeleteState value) clearDeleteState,
+    required TResult Function(_LoadActivityTypes value) loadActivityTypes,
+    required TResult Function(_SaveActivity value) saveActivity,
+    required TResult Function(_ClearActivityState value) clearActivityState,
+    required TResult Function(_DisqualifyLead value) disqualifyLead,
+    required TResult Function(_ReopenLead value) reopenLead,
+    required TResult Function(_ClearStageActionState value)
+        clearStageActionState,
+    required TResult Function(_LoadHandoverOptions value) loadHandoverOptions,
+    required TResult Function(_LoadAdminSaleId value) loadAdminSaleId,
+    required TResult Function(_HandoverLead value) handoverLead,
+    required TResult Function(_ClearHandoverState value) clearHandoverState,
+  }) {
+    return clearFileActionState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_ApplyFilter value)? applyFilter,
+    TResult? Function(_ClearFilter value)? clearFilter,
+    TResult? Function(_LoadDetail value)? loadDetail,
+    TResult? Function(_LoadFiles value)? loadFiles,
+    TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
+    TResult? Function(_LoadFormOptions value)? loadFormOptions,
+    TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult? Function(_SubmitLead value)? submitLead,
+    TResult? Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult? Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_DeleteLead value)? deleteLead,
+    TResult? Function(_ClearDeleteState value)? clearDeleteState,
+    TResult? Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult? Function(_SaveActivity value)? saveActivity,
+    TResult? Function(_ClearActivityState value)? clearActivityState,
+    TResult? Function(_DisqualifyLead value)? disqualifyLead,
+    TResult? Function(_ReopenLead value)? reopenLead,
+    TResult? Function(_ClearStageActionState value)? clearStageActionState,
+    TResult? Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult? Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult? Function(_HandoverLead value)? handoverLead,
+    TResult? Function(_ClearHandoverState value)? clearHandoverState,
+  }) {
+    return clearFileActionState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_ApplyFilter value)? applyFilter,
+    TResult Function(_ClearFilter value)? clearFilter,
+    TResult Function(_LoadDetail value)? loadDetail,
+    TResult Function(_LoadFiles value)? loadFiles,
+    TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
+    TResult Function(_LoadFormOptions value)? loadFormOptions,
+    TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
+    TResult Function(_SubmitLead value)? submitLead,
+    TResult Function(_ConfirmDuplicateSave value)? confirmDuplicateSave,
+    TResult Function(_CancelDuplicateSave value)? cancelDuplicateSave,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_DeleteLead value)? deleteLead,
+    TResult Function(_ClearDeleteState value)? clearDeleteState,
+    TResult Function(_LoadActivityTypes value)? loadActivityTypes,
+    TResult Function(_SaveActivity value)? saveActivity,
+    TResult Function(_ClearActivityState value)? clearActivityState,
+    TResult Function(_DisqualifyLead value)? disqualifyLead,
+    TResult Function(_ReopenLead value)? reopenLead,
+    TResult Function(_ClearStageActionState value)? clearStageActionState,
+    TResult Function(_LoadHandoverOptions value)? loadHandoverOptions,
+    TResult Function(_LoadAdminSaleId value)? loadAdminSaleId,
+    TResult Function(_HandoverLead value)? handoverLead,
+    TResult Function(_ClearHandoverState value)? clearHandoverState,
+    required TResult orElse(),
+  }) {
+    if (clearFileActionState != null) {
+      return clearFileActionState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearFileActionState implements LeadMarketingEvent {
+  const factory _ClearFileActionState() = _$ClearFileActionStateImpl;
 }
 
 /// @nodoc
@@ -2954,6 +4192,11 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -2993,6 +4236,11 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -3031,6 +4279,11 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -3071,6 +4324,9 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -3106,6 +4362,9 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -3140,6 +4399,9 @@ class _$LoadFormOptionsImpl implements _LoadFormOptions {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -3248,6 +4510,11 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -3287,6 +4554,11 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -3325,6 +4597,11 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -3365,6 +4642,9 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -3400,6 +4680,9 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -3434,6 +4717,9 @@ class _$LoadCustomerDetailImpl implements _LoadCustomerDetail {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -3554,6 +4840,11 @@ class _$SubmitLeadImpl implements _SubmitLead {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -3593,6 +4884,11 @@ class _$SubmitLeadImpl implements _SubmitLead {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -3631,6 +4927,11 @@ class _$SubmitLeadImpl implements _SubmitLead {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -3671,6 +4972,9 @@ class _$SubmitLeadImpl implements _SubmitLead {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -3706,6 +5010,9 @@ class _$SubmitLeadImpl implements _SubmitLead {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -3740,6 +5047,9 @@ class _$SubmitLeadImpl implements _SubmitLead {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -3863,6 +5173,11 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -3902,6 +5217,11 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -3940,6 +5260,11 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -3980,6 +5305,9 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -4015,6 +5343,9 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -4049,6 +5380,9 @@ class _$ConfirmDuplicateSaveImpl implements _ConfirmDuplicateSave {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -4138,6 +5472,11 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -4177,6 +5516,11 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -4215,6 +5559,11 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -4255,6 +5604,9 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -4290,6 +5642,9 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -4324,6 +5679,9 @@ class _$CancelDuplicateSaveImpl implements _CancelDuplicateSave {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -4405,6 +5763,11 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -4444,6 +5807,11 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -4482,6 +5850,11 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -4522,6 +5895,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -4557,6 +5933,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -4591,6 +5970,9 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -4698,6 +6080,11 @@ class _$DeleteLeadImpl implements _DeleteLead {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -4737,6 +6124,11 @@ class _$DeleteLeadImpl implements _DeleteLead {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -4775,6 +6167,11 @@ class _$DeleteLeadImpl implements _DeleteLead {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -4815,6 +6212,9 @@ class _$DeleteLeadImpl implements _DeleteLead {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -4850,6 +6250,9 @@ class _$DeleteLeadImpl implements _DeleteLead {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -4884,6 +6287,9 @@ class _$DeleteLeadImpl implements _DeleteLead {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -4970,6 +6376,11 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -5009,6 +6420,11 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -5047,6 +6463,11 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -5087,6 +6508,9 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -5122,6 +6546,9 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -5156,6 +6583,9 @@ class _$ClearDeleteStateImpl implements _ClearDeleteState {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -5237,6 +6667,11 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -5276,6 +6711,11 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -5314,6 +6754,11 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -5354,6 +6799,9 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -5389,6 +6837,9 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -5423,6 +6874,9 @@ class _$LoadActivityTypesImpl implements _LoadActivityTypes {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -5537,6 +6991,11 @@ class _$SaveActivityImpl implements _SaveActivity {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -5576,6 +7035,11 @@ class _$SaveActivityImpl implements _SaveActivity {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -5614,6 +7078,11 @@ class _$SaveActivityImpl implements _SaveActivity {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -5654,6 +7123,9 @@ class _$SaveActivityImpl implements _SaveActivity {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -5689,6 +7161,9 @@ class _$SaveActivityImpl implements _SaveActivity {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -5723,6 +7198,9 @@ class _$SaveActivityImpl implements _SaveActivity {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -5810,6 +7288,11 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -5849,6 +7332,11 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -5887,6 +7375,11 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -5927,6 +7420,9 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -5962,6 +7458,9 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -5996,6 +7495,9 @@ class _$ClearActivityStateImpl implements _ClearActivityState {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -6112,6 +7614,11 @@ class _$DisqualifyLeadImpl implements _DisqualifyLead {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -6151,6 +7658,11 @@ class _$DisqualifyLeadImpl implements _DisqualifyLead {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -6189,6 +7701,11 @@ class _$DisqualifyLeadImpl implements _DisqualifyLead {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -6229,6 +7746,9 @@ class _$DisqualifyLeadImpl implements _DisqualifyLead {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -6264,6 +7784,9 @@ class _$DisqualifyLeadImpl implements _DisqualifyLead {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -6298,6 +7821,9 @@ class _$DisqualifyLeadImpl implements _DisqualifyLead {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -6421,6 +7947,11 @@ class _$ReopenLeadImpl implements _ReopenLead {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -6460,6 +7991,11 @@ class _$ReopenLeadImpl implements _ReopenLead {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -6498,6 +8034,11 @@ class _$ReopenLeadImpl implements _ReopenLead {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -6538,6 +8079,9 @@ class _$ReopenLeadImpl implements _ReopenLead {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -6573,6 +8117,9 @@ class _$ReopenLeadImpl implements _ReopenLead {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -6607,6 +8154,9 @@ class _$ReopenLeadImpl implements _ReopenLead {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -6697,6 +8247,11 @@ class _$ClearStageActionStateImpl implements _ClearStageActionState {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -6736,6 +8291,11 @@ class _$ClearStageActionStateImpl implements _ClearStageActionState {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -6774,6 +8334,11 @@ class _$ClearStageActionStateImpl implements _ClearStageActionState {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -6814,6 +8379,9 @@ class _$ClearStageActionStateImpl implements _ClearStageActionState {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -6849,6 +8417,9 @@ class _$ClearStageActionStateImpl implements _ClearStageActionState {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -6883,6 +8454,9 @@ class _$ClearStageActionStateImpl implements _ClearStageActionState {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -6965,6 +8539,11 @@ class _$LoadHandoverOptionsImpl implements _LoadHandoverOptions {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -7004,6 +8583,11 @@ class _$LoadHandoverOptionsImpl implements _LoadHandoverOptions {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -7042,6 +8626,11 @@ class _$LoadHandoverOptionsImpl implements _LoadHandoverOptions {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -7082,6 +8671,9 @@ class _$LoadHandoverOptionsImpl implements _LoadHandoverOptions {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -7117,6 +8709,9 @@ class _$LoadHandoverOptionsImpl implements _LoadHandoverOptions {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -7151,6 +8746,9 @@ class _$LoadHandoverOptionsImpl implements _LoadHandoverOptions {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -7260,6 +8858,11 @@ class _$LoadAdminSaleIdImpl implements _LoadAdminSaleId {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -7299,6 +8902,11 @@ class _$LoadAdminSaleIdImpl implements _LoadAdminSaleId {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -7337,6 +8945,11 @@ class _$LoadAdminSaleIdImpl implements _LoadAdminSaleId {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -7377,6 +8990,9 @@ class _$LoadAdminSaleIdImpl implements _LoadAdminSaleId {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -7412,6 +9028,9 @@ class _$LoadAdminSaleIdImpl implements _LoadAdminSaleId {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -7446,6 +9065,9 @@ class _$LoadAdminSaleIdImpl implements _LoadAdminSaleId {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -7590,6 +9212,11 @@ class _$HandoverLeadImpl implements _HandoverLead {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -7629,6 +9256,11 @@ class _$HandoverLeadImpl implements _HandoverLead {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -7667,6 +9299,11 @@ class _$HandoverLeadImpl implements _HandoverLead {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -7707,6 +9344,9 @@ class _$HandoverLeadImpl implements _HandoverLead {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -7742,6 +9382,9 @@ class _$HandoverLeadImpl implements _HandoverLead {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -7776,6 +9419,9 @@ class _$HandoverLeadImpl implements _HandoverLead {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,
@@ -7869,6 +9515,11 @@ class _$ClearHandoverStateImpl implements _ClearHandoverState {
     required TResult Function(int id) loadDetail,
     required TResult Function(int customerContactId) loadFiles,
     required TResult Function(int customerContactId) loadFilesPo,
+    required TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)
+        saveFiles,
+    required TResult Function(int fileId, int fileType) deleteFile,
+    required TResult Function() clearFileActionState,
     required TResult Function() loadFormOptions,
     required TResult Function(int id) loadCustomerDetail,
     required TResult Function(Map<String, dynamic> payload) submitLead,
@@ -7908,6 +9559,11 @@ class _$ClearHandoverStateImpl implements _ClearHandoverState {
     TResult? Function(int id)? loadDetail,
     TResult? Function(int customerContactId)? loadFiles,
     TResult? Function(int customerContactId)? loadFilesPo,
+    TResult? Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult? Function(int fileId, int fileType)? deleteFile,
+    TResult? Function()? clearFileActionState,
     TResult? Function()? loadFormOptions,
     TResult? Function(int id)? loadCustomerDetail,
     TResult? Function(Map<String, dynamic> payload)? submitLead,
@@ -7946,6 +9602,11 @@ class _$ClearHandoverStateImpl implements _ClearHandoverState {
     TResult Function(int id)? loadDetail,
     TResult Function(int customerContactId)? loadFiles,
     TResult Function(int customerContactId)? loadFilesPo,
+    TResult Function(int customerContactId, int fileType,
+            List<PlatformFile> files, String note)?
+        saveFiles,
+    TResult Function(int fileId, int fileType)? deleteFile,
+    TResult Function()? clearFileActionState,
     TResult Function()? loadFormOptions,
     TResult Function(int id)? loadCustomerDetail,
     TResult Function(Map<String, dynamic> payload)? submitLead,
@@ -7986,6 +9647,9 @@ class _$ClearHandoverStateImpl implements _ClearHandoverState {
     required TResult Function(_LoadDetail value) loadDetail,
     required TResult Function(_LoadFiles value) loadFiles,
     required TResult Function(_LoadFilesPo value) loadFilesPo,
+    required TResult Function(_SaveFiles value) saveFiles,
+    required TResult Function(_DeleteFile value) deleteFile,
+    required TResult Function(_ClearFileActionState value) clearFileActionState,
     required TResult Function(_LoadFormOptions value) loadFormOptions,
     required TResult Function(_LoadCustomerDetail value) loadCustomerDetail,
     required TResult Function(_SubmitLead value) submitLead,
@@ -8021,6 +9685,9 @@ class _$ClearHandoverStateImpl implements _ClearHandoverState {
     TResult? Function(_LoadDetail value)? loadDetail,
     TResult? Function(_LoadFiles value)? loadFiles,
     TResult? Function(_LoadFilesPo value)? loadFilesPo,
+    TResult? Function(_SaveFiles value)? saveFiles,
+    TResult? Function(_DeleteFile value)? deleteFile,
+    TResult? Function(_ClearFileActionState value)? clearFileActionState,
     TResult? Function(_LoadFormOptions value)? loadFormOptions,
     TResult? Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult? Function(_SubmitLead value)? submitLead,
@@ -8055,6 +9722,9 @@ class _$ClearHandoverStateImpl implements _ClearHandoverState {
     TResult Function(_LoadDetail value)? loadDetail,
     TResult Function(_LoadFiles value)? loadFiles,
     TResult Function(_LoadFilesPo value)? loadFilesPo,
+    TResult Function(_SaveFiles value)? saveFiles,
+    TResult Function(_DeleteFile value)? deleteFile,
+    TResult Function(_ClearFileActionState value)? clearFileActionState,
     TResult Function(_LoadFormOptions value)? loadFormOptions,
     TResult Function(_LoadCustomerDetail value)? loadCustomerDetail,
     TResult Function(_SubmitLead value)? submitLead,

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -51,6 +52,16 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
             _onLoadFiles(emit, customerContactId: customerContactId),
         loadFilesPo: (customerContactId) =>
             _onLoadFilesPo(emit, customerContactId: customerContactId),
+        saveFiles: (customerContactId, fileType, files, note) => _onSaveFiles(
+          emit,
+          customerContactId: customerContactId,
+          fileType: fileType,
+          files: files,
+          note: note,
+        ),
+        deleteFile: (fileId, fileType) =>
+            _onDeleteFile(emit, fileId: fileId, fileType: fileType),
+        clearFileActionState: () async => _onClearFileActionState(emit),
         loadFormOptions: () => _onLoadFormOptions(emit),
         loadCustomerDetail: (id) => _onLoadCustomerDetail(emit, id: id),
         submitLead: (payload) => _onSubmitLead(emit, payload: payload),
@@ -303,6 +314,116 @@ class LeadMarketingBloc extends BaseBloc<LeadMarketingEvent, LeadMarketingState>
         ));
       },
     );
+  }
+
+  /// Lưu file đính kèm mới lên phiếu lead.
+  ///
+  /// Sau khi lưu thành công → tải lại danh sách file của phiếu để UI hiển
+  /// thị file vừa thêm.
+  Future<void> _onSaveFiles(
+    Emitter<LeadMarketingState> emit, {
+    required int customerContactId,
+    required int fileType,
+    required List<PlatformFile> files,
+    String note = '',
+  }) async {
+    emit(state.copyWith(
+      fileActionStatus: BaseStateStatus.loading,
+      fileActionMessage: null,
+    ));
+
+    final res = await _repo.saveLeadFiles(
+      customerContactId: customerContactId,
+      fileType: fileType,
+      files: files,
+      note: note,
+    );
+
+    await res.fold(
+      (l) async {
+        _log.logE('Save lead files failed: $l');
+        emit(state.copyWith(
+          fileActionStatus: BaseStateStatus.failed,
+          fileActionMessage: l.getErrorMessage,
+        ));
+      },
+      (r) async {
+        _log.logI('Save lead files success - count: ${r.length}');
+
+        // Tải lại danh sách file trước, emit kết quả sau → listener chỉ
+        // chạy 1 lần khi status đổi, tránh hiện thông báo trùng.
+        if (fileType == 1) {
+          await _onLoadFiles(emit, customerContactId: customerContactId);
+        } else {
+          await _onLoadFilesPo(emit, customerContactId: customerContactId);
+        }
+
+        emit(state.copyWith(
+          fileActionStatus: BaseStateStatus.success,
+          fileActionMessage: 'Lưu file đính kèm thành công!',
+        ));
+      },
+    );
+  }
+
+  /// Xoá file đính kèm của phiếu lead.
+  ///
+  /// Sau khi xoá thành công → tải lại danh sách file để UI cập nhật.
+  Future<void> _onDeleteFile(
+    Emitter<LeadMarketingState> emit, {
+    required int fileId,
+    int fileType = 1,
+  }) async {
+    emit(state.copyWith(
+      fileActionStatus: BaseStateStatus.loading,
+      fileActionMessage: null,
+      deletingFileId: fileId,
+    ));
+
+    final res = await _repo.deleteLeadFile(customerContactFileId: fileId);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Delete lead file failed: $l');
+        emit(state.copyWith(
+          fileActionStatus: BaseStateStatus.failed,
+          fileActionMessage: l.getErrorMessage,
+          deletingFileId: null,
+        ));
+      },
+      (r) async {
+        _log.logI('Delete lead file success - id: $fileId');
+
+        // Tải lại danh sách file trước, emit kết quả sau → listener chỉ
+        // chạy 1 lần khi status đổi, tránh hiện thông báo trùng.
+        final leadId = state.filesLeadId;
+        if (leadId != null) {
+          if (fileType == 1) {
+            await _onLoadFiles(emit, customerContactId: leadId);
+          } else {
+            await _onLoadFilesPo(emit, customerContactId: leadId);
+          }
+        }
+
+        emit(state.copyWith(
+          fileActionStatus: BaseStateStatus.success,
+          fileActionMessage: 'Xoá file thành công!',
+          deletingFileId: null,
+        ));
+      },
+    );
+  }
+
+  /// Xoá trạng thái kết quả lưu / xoá file đính kèm.
+  ///
+  /// Bloc là singleton nên giữ trạng thái `success`/`failed` sẽ khiến lần
+  /// mở màn sau hiện lại thông báo cũ.
+  void _onClearFileActionState(Emitter<LeadMarketingState> emit) {
+    emit(state.copyWith(
+      fileActionStatus: BaseStateStatus.init,
+      fileActionMessage: null,
+      deletingFileId: null,
+    ));
   }
 
   /// Tải toàn bộ danh mục dùng cho form tạo phiếu lead.

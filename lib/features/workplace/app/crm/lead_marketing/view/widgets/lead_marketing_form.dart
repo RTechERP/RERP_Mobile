@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 
@@ -15,6 +16,8 @@ import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../../data/datasource/models/lead_marketing_model.dart';
 import '../bloc/lead_marketing_bloc.dart';
+import 'lead_attachments_field.dart';
+import 'lead_file_tile.dart';
 import 'lead_marketing_source_label.dart';
 
 /// Form nhập thông tin phiếu lead — dùng chung cho màn tạo mới và màn
@@ -132,6 +135,12 @@ class LeadMarketingFormState extends State<LeadMarketingForm>
   /// Payload đang chờ lưu — dùng lại khi người dùng xác nhận lưu trùng.
   Map<String, dynamic>? _pendingPayload;
 
+  /// Danh sách file mới chọn, chưa upload lên server.
+  ///
+  /// Được gửi lên sau khi lưu phiếu lead thành công (màn Add) hoặc ngay
+  /// khi người dùng chọn (màn Edit — phiếu đã có ID).
+  List<PlatformFile> _pendingFiles = [];
+
   @override
   void initState() {
     super.initState();
@@ -168,7 +177,9 @@ class LeadMarketingFormState extends State<LeadMarketingForm>
           previous.marketingEmployees != current.marketingEmployees ||
           previous.currentUser != current.currentUser ||
           previous.detailStatus != current.detailStatus ||
-          previous.duplicates != current.duplicates,
+          previous.duplicates != current.duplicates ||
+          previous.files != current.files ||
+          previous.fileActionStatus != current.fileActionStatus,
       listener: (context, state) {
         // Chỉnh sửa: fill dữ liệu phiếu từ API chi tiết rồi tải chi tiết
         // khách hàng để lấy thêm lĩnh vực / ngành nghề / tỉnh / địa chỉ.
@@ -212,6 +223,26 @@ class LeadMarketingFormState extends State<LeadMarketingForm>
         // API check-duplicate phát hiện bản ghi trùng → hỏi người dùng.
         if (state.duplicates.isNotEmpty) {
           _handleDuplicateConfirm(context, state.duplicates);
+        }
+
+        // Kết quả lưu / xoá file đính kèm.
+        //
+        // Sau khi hiện thông báo → xoá trạng thái để lần mở màn sau không hiện
+        // lại thông báo cũ (bloc là singleton).
+        if (state.fileActionStatus == BaseStateStatus.success) {
+          showMessage(
+            context,
+            state.fileActionMessage ?? 'Thành công!',
+            type: SnackBarType.success,
+          );
+          widget.bloc.add(const LeadMarketingEvent.clearFileActionState());
+        } else if (state.fileActionStatus == BaseStateStatus.failed) {
+          showMessage(
+            context,
+            state.fileActionMessage ?? 'Thao tác file thất bại',
+            type: SnackBarType.error,
+          );
+          widget.bloc.add(const LeadMarketingEvent.clearFileActionState());
         }
       },
       builder: (context, state) {
@@ -549,25 +580,16 @@ class LeadMarketingFormState extends State<LeadMarketingForm>
             textInputAction: TextInputAction.newline,
           ),
           const SizedBox(height: 12),
-          FormFilePicker(
-            name: 'lead_files',
-            label: 'File đính kèm',
-            icon: Icons.attach_file,
-            allowMultiple: true,
-            allowedExtensions: const [
-              'pdf',
-              'doc',
-              'docx',
-              'xls',
-              'xlsx',
-              'png',
-              'jpg',
-              'jpeg',
-              'gif',
-              'zip',
-              'rar',
-            ],
-            hintText: 'Hỗ trợ PDF, Word, Excel, ảnh, Zip',
+          LeadAttachmentsField(
+            savedFiles: _savedFilesOf(state),
+            pendingFiles: _pendingFiles,
+            isLoading: _isFilesLoadingOf(state),
+            deletingFileId: state.deletingFileId,
+            onPickFiles: _onPickFiles,
+            onPreviewSaved: (file) => _previewSavedFile(file),
+            onDeleteSaved: (file) => _deleteSavedFile(file),
+            onPreviewPending: (file) => showPendingFilePreview(context, file),
+            onRemovePending: _removePendingFile,
           ),
           const SizedBox(height: 12),
           FormInputField(
@@ -897,6 +919,123 @@ class LeadMarketingFormState extends State<LeadMarketingForm>
       'lead_marketing_employee_id',
       employee.id?.toString() ?? '',
     );
+  }
+
+  // ===========================================================================
+  // File đính kèm
+  // ===========================================================================
+
+  /// Lấy danh sách file đã lưu đúng với phiếu đang xử lý.
+  ///
+  /// Bloc là singleton nên `state.files` có thể còn là của phiếu trước đó →
+  /// chỉ dùng khi `filesLeadId` khớp với phiếu đang sửa (màn Add luôn rỗng).
+  List<LeadFile> _savedFilesOf(LeadMarketingState state) {
+    final leadId = widget.editLeadId;
+    if (leadId == null) return const [];
+    if (state.filesLeadId != leadId) return const [];
+    return state.files;
+  }
+
+  /// Trạng thái đang tải danh sách file của phiếu đang sửa.
+  ///
+  /// Bloc là singleton → chỉ coi là loading khi đang tải đúng phiếu này.
+  bool _isFilesLoadingOf(LeadMarketingState state) {
+    final leadId = widget.editLeadId;
+    if (leadId == null) return false;
+    if (state.filesLeadId != null && state.filesLeadId != leadId) {
+      return false;
+    }
+    return state.filesStatus == BaseStateStatus.loading;
+  }
+
+  /// Người dùng chọn file mới.
+  ///
+  /// File chỉ được giữ lại trong form, chưa upload lên server. Việc đẩy file
+  /// lên `POST /Lead/customer-po` chỉ chạy sau khi lưu phiếu lead thành công
+  /// (xem [uploadPendingFiles]) — tránh đẩy ảnh lên server khi người dùng bấm
+  /// "Lưu" nhưng phiếu lưu lỗi.
+  void _onPickFiles(List<PlatformFile> files) {
+    setState(() {
+      _pendingFiles = [..._pendingFiles, ...files];
+    });
+  }
+
+  /// Lấy ghi chú đang nhập trên form — dùng làm `note` khi upload file.
+  String _currentNote() {
+    final value = widget.formKey.currentState?.value['lead_note'];
+    return (value ?? '').toString().trim();
+  }
+
+  /// Xem trước file đã lưu trên server.
+  Future<void> _previewSavedFile(LeadFile file) async {
+    await showLeadFilePreview(context, file);
+  }
+
+  /// Xoá file đã lưu trên server.
+  Future<void> _deleteSavedFile(LeadFile file) async {
+    final id = file.id;
+    if (id == null) return;
+
+    final confirmed = await _confirmDeleteFile(file);
+    if (!confirmed || !mounted) return;
+
+    widget.bloc.add(
+      LeadMarketingEvent.deleteFile(fileId: id, fileType: 1),
+    );
+  }
+
+  /// Hỏi xác nhận trước khi xoá file đính kèm.
+  Future<bool> _confirmDeleteFile(LeadFile file) async {
+    final name = (file.fileName ?? '').trim();
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Xoá file đính kèm'),
+        content: Text(
+          name.isEmpty
+              ? 'Bạn có chắc muốn xoá file này?'
+              : 'Bạn có chắc muốn xoá "$name"?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: const Text('Huỷ'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            style: FilledButton.styleFrom(backgroundColor: AppColors.alert),
+            child: const Text('Xoá'),
+          ),
+        ],
+      ),
+    );
+    return result ?? false;
+  }
+
+  /// Bỏ file mới chọn khỏi danh sách chờ upload.
+  void _removePendingFile(PlatformFile file) {
+    setState(() {
+      _pendingFiles = _pendingFiles.where((f) => f.name != file.name).toList();
+    });
+  }
+
+  /// Upload các file mới chọn lên phiếu lead.
+  ///
+  /// Gọi sau khi `POST /Lead/save-data` thành công (cả màn Add lẫn màn
+  /// Edit) — chỉ khi đó phiếu đã lưu thành công thì mới đẩy file đính kèm
+  /// lên `POST /Lead/customer-po`.
+  Future<void> uploadPendingFiles(int customerContactId) async {
+    if (_pendingFiles.isEmpty) return;
+
+    widget.bloc.add(
+      LeadMarketingEvent.saveFiles(
+        customerContactId: customerContactId,
+        fileType: 1,
+        files: _pendingFiles,
+        note: _currentNote(),
+      ),
+    );
+    _pendingFiles = [];
   }
 
   // ===========================================================================
