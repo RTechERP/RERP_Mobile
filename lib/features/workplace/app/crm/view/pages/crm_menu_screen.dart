@@ -99,6 +99,14 @@ class _CrmMenuScreenState extends State<CrmMenuScreen> {
   /// Danh sách chức năng CRM hiển thị trong menu, đã lọc theo quyền user.
   List<AppItemModel> get _menuItems => [
     AppItemModel(
+      id: 'crm:dashboard',
+      name: 'crm.dashboard'.tr(),
+      iconCodePoint: Icons.dashboard_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'crm',
+      route: '${RouteNames.crmMenu}/${RouteNames.crmDashboard}',
+    ),
+    AppItemModel(
       id: 'crm:summary_customer',
       name: 'crm.summary_customer'.tr(),
       iconCodePoint: Icons.people_alt_outlined.codePoint,

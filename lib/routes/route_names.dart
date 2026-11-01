@@ -381,4 +381,7 @@ class RouteNames {
 
   /// Màn thêm/sửa nguồn lead (route con của [crmLeadSource]).
   static const leadSourceAdd = '/crm/lead_source/add';
+
+  /// Màn dashboard CRM - báo cáo tổng quan (route con của [crmMenu]).
+  static const crmDashboard = 'dashboard';
 }

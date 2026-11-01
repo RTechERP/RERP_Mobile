@@ -225,6 +225,7 @@ import '../features/workplace/app/crm/lead_sale/view/pages/lead_sale_screen.dart
 import '../features/workplace/app/crm/lead_source/data/datasource/models/lead_source_model.dart';
 import '../features/workplace/app/crm/lead_source/view/pages/lead_source_add_screen.dart';
 import '../features/workplace/app/crm/lead_source/view/pages/lead_source_screen.dart';
+import '../features/workplace/app/crm/dashboard/view/pages/crm_dashboard_screen.dart';
 import '../features/workplace/app/crm/view/pages/crm_menu_screen.dart';
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
@@ -2202,6 +2203,10 @@ class AppRouter {
                 },
               ),
             ],
+          ),
+          GoRoute(
+            path: RouteNames.crmDashboard,
+            builder: (context, state) => const CrmDashboardScreen(),
           ),
         ],
       ),

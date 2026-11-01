@@ -32,6 +32,10 @@ import '../features/dashboard/view/newsfeed/data/datasource/service/newsfeed_ser
 import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repo.dart';
 import '../features/dashboard/view/newsfeed/data/repository/newsfeed_repository.dart';
 import '../features/dashboard/view/newsfeed/view/bloc/newsfeed_bloc.dart';
+import '../features/workplace/app/crm/dashboard/data/datasource/service/crm_dashboard_service.dart';
+import '../features/workplace/app/crm/dashboard/data/repo/crm_dashboard_repo.dart';
+import '../features/workplace/app/crm/dashboard/data/repo/crm_dashboard_repo_impl.dart';
+import '../features/workplace/app/crm/dashboard/view/bloc/crm_dashboard_bloc.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/data/datasource/service/approve_timesheet_service.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/data/repository/approve_timesheet_repo.dart';
 import '../features/workplace/app/personal_approve/app/approve_timesheet/data/repository/approve_timesheet_repo_impl.dart';
@@ -453,6 +457,9 @@ void configureDependencies() {
     () => LeadSourceService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<CrmDashboardService>(
+        () => CrmDashboardService(getIt<Dio>()),
+  );
   getIt.registerLazySingleton<TestTableService>(
     () => TestTableService(getIt<Dio>()),
   );
@@ -461,6 +468,7 @@ void configureDependencies() {
   getIt.registerLazySingleton<RioChatService>(
     () => RioChatService(getIt<Dio>()),
   );
+
 
   /// ===== REPOSITORY =====
   getIt.registerLazySingleton<AuthRepo>(
@@ -651,6 +659,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<LeadSourceRepo>(
     () => LeadSourceRepoImpl(getIt<LeadSourceService>()),
+  );
+
+  getIt.registerLazySingleton<CrmDashboardRepo>(
+        () => CrmDashboardRepoImpl(getIt<CrmDashboardService>()),
   );
 
   getIt.registerLazySingleton<TestTableRepo>(
@@ -1055,6 +1067,12 @@ getIt.registerLazySingleton<ApproveBookingGuestHouseBloc>(
     () => LeadSourceBloc(
       getIt<LeadSourceRepo>(),
       getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<CrmDashboardBloc>(
+    () => CrmDashboardBloc(
+      getIt<CrmDashboardRepo>(),
     ),
   );
 

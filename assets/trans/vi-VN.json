@@ -178,7 +178,8 @@
     "summary_customer": "T.h khách hàng",
     "lead_marketing": "Lead Marketing",
     "lead_sale": "Lead Sale",
-    "lead_source": "Nguồn Lead"
+    "lead_source": "Nguồn Lead",
+    "dashboard": "Báo cáo CRM"
   },
   "dio": {
     "cancel_request": "Request was cancelled",
