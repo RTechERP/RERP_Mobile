@@ -17,6 +17,7 @@ import '../../data/datasource/models/lead_sale_model.dart';
 import '../../data/datasource/models/lead_sale_permission.dart';
 import '../../view/bloc/lead_sale_bloc.dart';
 import '../../view/widgets/lead_sale_handover_sheet.dart';
+import '../../view/widgets/lead_sale_assign_dialog.dart';
 import '../../view/widgets/lead_sale_transfer_po_sheet.dart';
 import '../../view/widgets/lead_sale_card.dart';
 import '../../view/widgets/lead_sale_detail_sheet.dart';
@@ -180,6 +181,9 @@ class _LeadSaleScreenState
       case 'handover':
         await _confirmHandoverLead(context, item);
         break;
+      case 'assign':
+        await _confirmAssignLead(context, item);
+        break;
       case 'transfer_po':
         await _confirmTransferPo(context, item);
         break;
@@ -202,6 +206,7 @@ class _LeadSaleScreenState
   ///   ngược lại hiện "Không thành công".
   /// - Thao tác "Bàn giao Sale" chỉ hiện cho nhân viên đặc biệt khi phiếu ở
   ///   giai đoạn 1–2.
+  /// - Thao tác "Phân công" chỉ hiện khi phiếu ở giai đoạn 4 (Chờ phân công).
   List<LeadSaleMenuItem> _menuItemsFor(
     LeadSaleItem item, {
     required bool canOperate,
@@ -229,6 +234,10 @@ class _LeadSaleScreenState
       // Lead đã thất bại chỉ cho mở lại; lead chưa thất bại mới cho chuyển
       // PO, hoàn trả Marketing hoặc xác nhận không thành công.
       if (menu.id == LeadSaleMenuItem.reopenFailed.id) return isFailed;
+      // Phân công chỉ hiện khi phiếu ở giai đoạn Chờ phân công.
+      if (menu.id == LeadSaleMenuItem.assign.id) {
+        return stageCode == LeadSalePermission.pendingAssignStageCode;
+      }
       if (menu.id == LeadSaleMenuItem.transferPo.id ||
           menu.id == LeadSaleMenuItem.returnMarketing.id ||
           menu.id == LeadSaleMenuItem.close.id) {
@@ -369,6 +378,35 @@ class _LeadSaleScreenState
         id: id,
         leaderEmployeeId: selection.leaderEmployeeId,
         adminSaleId: selection.adminSaleId,
+        note: selection.note,
+      ),
+    );
+  }
+
+  /// Phân công lead — mở dialog chọn nhân viên sale + ghi chú, sau đó gọi
+  /// `POST /Lead/assign`.
+  Future<void> _confirmAssignLead(
+    BuildContext context,
+    LeadSaleItem item,
+  ) async {
+    final id = item.id;
+    if (id == null) return;
+
+    // Tải danh sách nhân viên sale được phân công trước khi mở dialog.
+    bloc.add(const LeadSaleEvent.loadAssignableSales());
+
+    final selection = await LeadSaleAssignDialog.show(
+      context,
+      bloc: bloc,
+      leadCode: item.leadCode,
+      companyName: item.companyName,
+    );
+    if (!context.mounted || selection == null) return;
+
+    bloc.add(
+      LeadSaleEvent.assignLead(
+        id: id,
+        saleEmployeeId: selection.saleEmployeeId,
         note: selection.note,
       ),
     );

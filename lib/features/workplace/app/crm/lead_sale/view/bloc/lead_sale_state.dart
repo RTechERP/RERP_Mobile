@@ -164,6 +164,12 @@ class LeadSaleState extends BaseBlocState {
   /// Danh sách ID lead đã loại bỏ / mở lại thành công.
   final List<int> stageActionIds;
 
+  /// Danh sách nhân viên sale được phép phân công.
+  final List<LeadSaleEmployee> assignableSales;
+
+  /// Trạng thái tải danh sách nhân viên sale được phép phân công.
+  final BaseStateStatus assignableSalesStatus;
+
   /// Danh sách Leader Sale nhận bàn giao.
   final List<LeadSaleEmployee> saleLeaders;
 
@@ -247,6 +253,8 @@ class LeadSaleState extends BaseBlocState {
     this.stageActionStatus = BaseStateStatus.init,
     this.stageActionMessage,
     this.stageActionIds = const [],
+    this.assignableSales = const [],
+    this.assignableSalesStatus = BaseStateStatus.init,
     this.saleLeaders = const [],
     this.saleAdmins = const [],
     this.handoverOptionsStatus = BaseStateStatus.init,
@@ -376,6 +384,8 @@ class LeadSaleState extends BaseBlocState {
     stageActionStatus,
     stageActionMessage,
     stageActionIds,
+    assignableSales,
+    assignableSalesStatus,
     saleLeaders,
     saleAdmins,
     handoverOptionsStatus,

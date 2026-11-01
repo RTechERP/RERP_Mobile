@@ -7,7 +7,11 @@ import '../datasource/models/lead_sale_model.dart';
 /// Repository trừu tượng cho màn Lead Marketing của CRM.
 abstract class LeadSaleRepo {
   /// Lấy danh sách nhân viên sale.
-  Future<Either<BaseError, List<LeadSaleEmployee>>> getSaleEmployees();
+  ///
+  /// [onlyAssignable] = true → chỉ lấy nhân viên sale được phép phân công.
+  Future<Either<BaseError, List<LeadSaleEmployee>>> getSaleEmployees({
+    bool onlyAssignable = false,
+  });
 
   /// Lấy danh sách nhân viên marketing.
   Future<Either<BaseError, List<LeadSaleEmployee>>> getMarketingEmployees();
@@ -115,6 +119,16 @@ abstract class LeadSaleRepo {
   /// Mở lại lead đã không thành công.
   Future<Either<BaseError, List<int>>> reopenLeads({
     required List<int> ids,
+    required String note,
+  });
+
+  /// Phân công lead cho nhân viên sale.
+  ///
+  /// [ids] là danh sách ID phiếu, [saleEmployeeId] là ID nhân viên sale được
+  /// phân công, [note] là ghi chú. Trả về thông báo từ API.
+  Future<Either<BaseError, String?>> assignLeads({
+    required List<int> ids,
+    required int saleEmployeeId,
     required String note,
   });
 

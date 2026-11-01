@@ -65,6 +65,16 @@ class LeadSaleMenuItem {
     color: Color(0xFF00897B),
   );
 
+  /// Thao tác phân công lead cho nhân viên sale.
+  static const LeadSaleMenuItem assign = LeadSaleMenuItem(
+    id: 'assign',
+    name: 'Phân công',
+    icon: Icons.person_add_alt_1_outlined,
+    color: Color(0xFF0288D1),
+    // Hiện theo giai đoạn Chờ phân công, quyền phân công do API quyết định.
+    requiresOperationPermission: false,
+  );
+
   /// Thao tác chuyển PO — đẩy file PO lên phiếu lead.
   static const LeadSaleMenuItem transferPo = LeadSaleMenuItem(
     id: 'transfer_po',
@@ -107,6 +117,7 @@ class LeadSaleMenuItem {
     activity,
     delete,
     handover,
+    assign,
     transferPo,
     returnMarketing,
     close,

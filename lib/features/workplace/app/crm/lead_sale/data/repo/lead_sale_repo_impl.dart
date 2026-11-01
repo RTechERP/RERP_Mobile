@@ -17,9 +17,13 @@ class LeadSaleRepoImpl implements LeadSaleRepo {
   LeadSaleRepoImpl(this._service);
 
   @override
-  Future<Either<BaseError, List<LeadSaleEmployee>>> getSaleEmployees() async {
+  Future<Either<BaseError, List<LeadSaleEmployee>>> getSaleEmployees({
+    bool onlyAssignable = false,
+  }) async {
     try {
-      final res = await _service.getSaleEmployees();
+      final res = await _service.getSaleEmployees(
+        onlyAssignable: onlyAssignable,
+      );
       if (res.status == 1 && res.data != null) {
         return right(res.data!);
       }
@@ -408,6 +412,27 @@ class LeadSaleRepoImpl implements LeadSaleRepo {
         BaseError.httpInternalServerError(
           res.message ?? 'Mở lại lead thất bại',
         ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, String?>> assignLeads({
+    required List<int> ids,
+    required int saleEmployeeId,
+    required String note,
+  }) async {
+    try {
+      final res = await _service.assignLeads(
+        ids: ids,
+        saleEmployeeId: saleEmployeeId,
+        note: note,
+      );
+      if (res.status == 1) return right(res.message);
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Phân công thất bại'),
       );
     } on DioException catch (e) {
       return left(e.baseError);

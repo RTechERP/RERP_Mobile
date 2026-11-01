@@ -766,6 +766,11 @@ class ApiEndPoint {
   /// API: POST /Lead/reopen — body `{ "Ids": [11337], "Note": "..." }`.
   static const String reopenLead = '/Lead/reopen';
 
+  /// Phân công lead cho nhân viên sale.
+  /// API: POST /Lead/assign — body `{ "Ids": [11340], "SaleEmployeeID": 752,
+  /// "Note": "..." }`.
+  static const String assignLead = '/Lead/assign';
+
   /// Hoàn trả lead về cho Marketing.
   /// API: POST /Lead/return — body `{ "LeadID": 11340, "Reason": "..." }`.
   static const String returnLead = '/Lead/return';

@@ -15,6 +15,7 @@ class LeadSaleService extends DioBaseApiService {
   /// Lấy danh sách nhân viên sale.
   ///
   /// API: GET /Lead/get-sale-employees?onlyAssignable=false.
+  /// `onlyAssignable=true` → chỉ lấy nhân viên sale được phép phân công.
   /// Response: `{ status, message, data: [ { ID, Code, FullName, DepartmentID } ] }`.
   Future<BaseData<List<LeadSaleEmployee>>> getSaleEmployees({
     bool onlyAssignable = false,
@@ -201,6 +202,23 @@ class LeadSaleService extends DioBaseApiService {
     return post<BaseData<List<int>>>(
       ApiEndPoint.reopenLead,
       body: {'Ids': ids, 'Note': note},
+      parser: (json) => _parseDeletedIds(json),
+    );
+  }
+
+  /// Phân công lead cho nhân viên sale.
+  ///
+  /// API: POST /Lead/assign.
+  /// Body: `{ "Ids": [11340], "SaleEmployeeID": 752, "Note": "..." }`.
+  /// Response: `{ message: "Đã phân công 1 lead cho ...", data: [11340] }`.
+  Future<BaseData<List<int>>> assignLeads({
+    required List<int> ids,
+    required int saleEmployeeId,
+    required String note,
+  }) async {
+    return post<BaseData<List<int>>>(
+      ApiEndPoint.assignLead,
+      body: {'Ids': ids, 'SaleEmployeeID': saleEmployeeId, 'Note': note},
       parser: (json) => _parseDeletedIds(json),
     );
   }

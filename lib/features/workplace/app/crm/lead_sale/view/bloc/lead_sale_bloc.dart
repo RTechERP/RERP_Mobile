@@ -81,6 +81,13 @@ class LeadSaleBloc extends BaseBloc<LeadSaleEvent, LeadSaleState> {
         saveActivity: (payload) => _onSaveActivity(emit, payload: payload),
         clearActivityState: () async => _onClearActivityState(emit),
         reopenLead: (id, note) => _onReopenLead(emit, id: id, note: note),
+        loadAssignableSales: () => _onLoadAssignableSales(emit),
+        assignLead: (id, saleEmployeeId, note) => _onAssignLead(
+          emit,
+          id: id,
+          saleEmployeeId: saleEmployeeId,
+          note: note,
+        ),
         returnLead: (id, reason) => _onReturnLead(emit, id: id, reason: reason),
         closeLead: (id, reason) => _onCloseLead(emit, id: id, reason: reason),
         transferPo: (id, files, note) =>
@@ -881,6 +888,51 @@ class LeadSaleBloc extends BaseBloc<LeadSaleEvent, LeadSaleState> {
           ),
         );
       },
+    );
+  }
+
+  /// Tải danh sách nhân viên sale được phép phân công
+  /// (`onlyAssignable=true`).
+  Future<void> _onLoadAssignableSales(Emitter<LeadSaleState> emit) async {
+    emit(state.copyWith(assignableSalesStatus: BaseStateStatus.loading));
+
+    final res = await _repo.getSaleEmployees(onlyAssignable: true);
+    res.fold(
+      (l) {
+        _log.logE('Get assignable sales failed: $l');
+        emit(state.copyWith(assignableSalesStatus: BaseStateStatus.failed));
+      },
+      (r) {
+        _log.logI('Get assignable sales success - count: ${r.length}');
+        emit(
+          state.copyWith(
+            assignableSales: r,
+            assignableSalesStatus: BaseStateStatus.success,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Phân công lead cho nhân viên sale.
+  Future<void> _onAssignLead(
+    Emitter<LeadSaleState> emit, {
+    required int id,
+    required int saleEmployeeId,
+    required String note,
+  }) async {
+    _emitStageActionLoading(emit);
+    final res = await _repo.assignLeads(
+      ids: [id],
+      saleEmployeeId: saleEmployeeId,
+      note: note,
+    );
+    _emitStageActionResult(
+      emit,
+      res,
+      id: id,
+      logName: 'Assign lead',
+      successMessage: 'Phân công lead thành công!',
     );
   }
 

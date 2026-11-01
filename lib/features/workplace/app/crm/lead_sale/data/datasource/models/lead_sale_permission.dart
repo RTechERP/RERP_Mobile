@@ -25,6 +25,9 @@ class LeadSalePermission {
   /// thao tác, chỉ nhân viên sale được xử lý.
   static const int processingStageCode = 6;
 
+  /// Mã giai đoạn Chờ phân công — chỉ giai đoạn này mới hiện nút Phân công.
+  static const int pendingAssignStageCode = 4;
+
   /// Mã giai đoạn Thất bại (lead không thành công).
   static const int failedStageCode = 8;
 

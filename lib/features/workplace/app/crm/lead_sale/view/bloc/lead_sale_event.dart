@@ -129,6 +129,18 @@ class LeadSaleEvent with _$LeadSaleEvent {
     required String note,
   }) = _ReopenLead;
 
+  /// Tải danh sách nhân viên sale được phép phân công.
+  const factory LeadSaleEvent.loadAssignableSales() = _LoadAssignableSales;
+
+  /// Phân công lead cho nhân viên sale.
+  ///
+  /// [saleEmployeeId] là ID nhân viên sale được phân công, [note] là ghi chú.
+  const factory LeadSaleEvent.assignLead({
+    required int id,
+    required int saleEmployeeId,
+    @Default('') String note,
+  }) = _AssignLead;
+
   /// Hoàn trả lead về cho Marketing.
   ///
   /// [id] là ID phiếu lead, [reason] là lý do hoàn trả.
