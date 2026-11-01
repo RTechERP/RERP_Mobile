@@ -279,7 +279,14 @@ class LeadSaleState extends BaseBlocState {
     // Lọc theo giai đoạn — null nghĩa là không lọc.
     if (stageFilter != null) {
       final stage = stageFilter!;
-      result = result.where((item) => stage.matches(item.stageName)).toList();
+      result = result
+          .where(
+            (item) => stage.matches(
+              stageName: item.stageName,
+              isOverdue: item.isOverdue,
+            ),
+          )
+          .toList();
     }
 
     if (keyword.isEmpty) return result;
@@ -299,13 +306,18 @@ class LeadSaleState extends BaseBlocState {
     final counts = <LeadSaleStage?, int>{null: base.length};
     for (final stage in LeadSaleStage.values) {
       counts[stage] = base
-          .where((item) => stage.matches(item.stageName))
+          .where(
+            (item) => stage.matches(
+              stageName: item.stageName,
+              isOverdue: item.isOverdue,
+            ),
+          )
           .length;
     }
     return counts;
   }
 
-  /// Kiểm tra một phiếu lead có khớp từ khoá tìm kiếm hay không.
+  /// Kiểm tra một phiếu lead có khớp từ khoá tìm kiếm hay không.phiếu
   bool _matchesKeyword(LeadSaleItem item, String keyword) {
     final kw = keyword.toLowerCase();
     final leadCode = (item.leadCode ?? '').toLowerCase();

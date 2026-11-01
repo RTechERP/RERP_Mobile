@@ -5,59 +5,72 @@ part 'lead_sale_model.g.dart';
 
 /// Các giai đoạn xử lý dùng để lọc nhanh trên danh sách phiếu lead.
 ///
-/// Đây là các giai đoạn dùng để **lọc** (theo tên `StageName` API trả về).
-/// Quyền thao tác không dùng enum này mà dùng mã giai đoạn số (`Stage`) —
-/// xem [LeadSalePermission].
+/// Đây là các giai đoạn dùng để **lọc** (theo tên `StageName` API trả về hoặc
+/// cờ `isOverdue`). Quyền thao tác không dùng enum này mà dùng mã giai đoạn số
+/// (`Stage`) — xem [LeadSalePermission].
 enum LeadSaleStage {
-  /// Lead vừa được tạo, chưa xử lý.
-  newLead('Mới'),
-
-  /// Lead đã bàn giao sang sale nhưng chưa có người nhận.
+  /// Lead đang chờ phân công cho nhân viên sale.
   waitingAssign('Chờ phân công'),
-
-  /// Lead đã được phân công cho nhân viên sale.
-  assigned('Đã phân công'),
-
-  /// Lead đã được phân công và đang được theo dõi.
-  nurturing('Đang chăm sóc'),
-
-  /// Lead bị trả về cho marketing.
-  returned('Hoàn trả'),
 
   /// Lead đã bàn giao cho sale.
   handedOver('Đã bàn giao'),
 
-  /// Lead bị loại khỏi danh sách theo dõi.
-  notMatched('Không phù hợp');
+  /// Lead đang được chăm sóc bởi sale.
+  nurturing('Đang chăm sóc'),
+
+  /// Lead quá hạn liên hệ (không phụ thuộc giai đoạn, phụ thuộc cờ `isOverdue`).
+  overdue('Quá hạn liên hệ'),
+
+  /// Lead đã chốt PO (đã chuyển thành khách hàng).
+  customerPo('Chốt PO'),
+
+  /// Lead không thành công.
+  failed('Không thành công');
 
   const LeadSaleStage(this.label);
 
   /// Tên giai đoạn hiển thị cho người dùng.
   final String label;
 
-  /// Kiểm tra tên giai đoạn của API có khớp với giai đoạn này hay không.
+  /// Kiểm tra phiếu lead có khớp với giai đoạn lọc này hay không.
   ///
-  /// So khớp theo dạng "chứa" để chấp nhận cả tên rút gọn lẫn tên đầy đủ
-  /// (vd API trả `Hoàn trả MKT` vẫn khớp với `Hoàn trả`).
-  bool matches(String? stageName) {
+  /// Giai đoạn "Quá hạn liên hệ" khớp khi `isOverdue = true`, không phụ thuộc
+  /// tên giai đoạn. Các giai đoạn khác khớp theo tên giai đoạn của API.
+  bool matches({String? stageName, bool? isOverdue}) {
+    // Lọc "Quá hạn liên hệ" kiểm tra cờ isOverdue.
+    if (this == LeadSaleStage.overdue) return isOverdue == true;
+
     final name = (stageName ?? '').trim().toLowerCase();
     if (name.isEmpty) return false;
-    return name.contains(label.toLowerCase());
+
+    // Khớp theo từ khoá giai đoạn.
+    switch (this) {
+      case LeadSaleStage.waitingAssign:
+        return name.contains('chờ phân công');
+      case LeadSaleStage.handedOver:
+        return name.contains('bàn giao');
+      case LeadSaleStage.nurturing:
+        return name.contains('chăm sóc');
+      case LeadSaleStage.customerPo:
+        return name.contains('chốt po') ||
+            name.contains('chuyển thành khách hàng');
+      case LeadSaleStage.failed:
+        return name.contains('thất bại') || name.contains('không thành công');
+      case LeadSaleStage.overdue:
+        return false; // Đã xử lý ở trên.
+    }
   }
 
   /// Tìm giai đoạn theo tên mà API trả về.
   ///
-  /// Ưu tiên khớp chính xác, sau đó mới khớp theo dạng "chứa" (vd `Hoàn trả MKT`
-  /// → [LeadSaleStage.returned]). Trả về `null` khi không giai đoạn nào khớp.
+  /// Trả về `null` khi không giai đoạn nào khớp.
   static LeadSaleStage? fromName(String? stageName) {
     final name = (stageName ?? '').trim();
     if (name.isEmpty) return null;
 
     for (final stage in values) {
-      if (stage.label.toLowerCase() == name.toLowerCase()) return stage;
-    }
-    for (final stage in values) {
-      if (stage.matches(name)) return stage;
+      if (stage == overdue) continue; // "Quá hạn" không match theo tên.
+      if (stage.matches(stageName: name)) return stage;
     }
     return null;
   }

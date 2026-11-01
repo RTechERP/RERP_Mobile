@@ -19,21 +19,19 @@ class LeadSaleStageStyle {
   /// Màu nhấn mạnh theo giai đoạn, `null` dùng cho chip `Tất cả`.
   static Color of(LeadSaleStage? stage) {
     switch (stage) {
-      case LeadSaleStage.newLead:
-        return AppColors.tealA400;
       case LeadSaleStage.waitingAssign:
         return AppColors.matchaA500;
-      case LeadSaleStage.assigned:
+      case LeadSaleStage.handedOver:
         return AppColors.blueMain;
       case LeadSaleStage.nurturing:
         return AppColors.purpleA400;
-      case LeadSaleStage.returned:
+      case LeadSaleStage.overdue:
         return AppColors.orangeA500;
-      case LeadSaleStage.handedOver:
+      case LeadSaleStage.customerPo:
         return AppColors.greenA500;
-      case LeadSaleStage.notMatched:
+      case LeadSaleStage.failed:
         return AppColors.redA500;
-      default:
+      case null:
         return all;
     }
   }
