@@ -222,6 +222,9 @@ import '../features/workplace/app/crm/lead_sale/view/pages/lead_sale_activity_ad
 import '../features/workplace/app/crm/lead_sale/view/pages/lead_sale_add_screen.dart';
 import '../features/workplace/app/crm/lead_sale/view/pages/lead_sale_edit_screen.dart';
 import '../features/workplace/app/crm/lead_sale/view/pages/lead_sale_screen.dart';
+import '../features/workplace/app/crm/lead_source/data/datasource/models/lead_source_model.dart';
+import '../features/workplace/app/crm/lead_source/view/pages/lead_source_add_screen.dart';
+import '../features/workplace/app/crm/lead_source/view/pages/lead_source_screen.dart';
 import '../features/workplace/app/crm/view/pages/crm_menu_screen.dart';
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
@@ -2178,6 +2181,24 @@ class AppRouter {
                     leadId: leadId,
                     leadCode: leadCode,
                   );
+                },
+              ),
+            ],
+          ),
+          GoRoute(
+            path: RouteNames.crmLeadSource,
+            builder: (context, state) => const LeadSourceScreen(),
+            routes: [
+              GoRoute(
+                // Path con phải là relative (không có `/` đầu).
+                path: 'add',
+                builder: (context, state) {
+                  final extra = state.extra;
+                  LeadSourceItem? source;
+                  if (extra is LeadSourceItem) {
+                    source = extra;
+                  }
+                  return LeadSourceAddScreen(source: source);
                 },
               ),
             ],

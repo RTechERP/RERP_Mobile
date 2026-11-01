@@ -205,6 +205,10 @@ import '../features/workplace/app/crm/lead_sale/data/datasource/service/lead_sal
 import '../features/workplace/app/crm/lead_sale/data/repo/lead_sale_repo.dart';
 import '../features/workplace/app/crm/lead_sale/data/repo/lead_sale_repo_impl.dart';
 import '../features/workplace/app/crm/lead_sale/view/bloc/lead_sale_bloc.dart';
+import '../features/workplace/app/crm/lead_source/data/datasource/service/lead_source_service.dart';
+import '../features/workplace/app/crm/lead_source/data/repo/lead_source_repo.dart';
+import '../features/workplace/app/crm/lead_source/data/repo/lead_source_repo_impl.dart';
+import '../features/workplace/app/crm/lead_source/view/bloc/lead_source_bloc.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/datasource/service/history_import_export_service.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/repository/history_import_export_repo.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/repository/history_import_export_repo_impl.dart';
@@ -445,6 +449,10 @@ void configureDependencies() {
     () => LeadSaleService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<LeadSourceService>(
+    () => LeadSourceService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<TestTableService>(
     () => TestTableService(getIt<Dio>()),
   );
@@ -639,6 +647,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<LeadSaleRepo>(
     () => LeadSaleRepoImpl(getIt<LeadSaleService>()),
+  );
+
+  getIt.registerLazySingleton<LeadSourceRepo>(
+    () => LeadSourceRepoImpl(getIt<LeadSourceService>()),
   );
 
   getIt.registerLazySingleton<TestTableRepo>(
@@ -1035,6 +1047,13 @@ getIt.registerLazySingleton<ApproveBookingGuestHouseBloc>(
     () => LeadSaleBloc(
       getIt<LeadSaleRepo>(),
       getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<LeadSourceBloc>(
+    () => LeadSourceBloc(
+      getIt<LeadSourceRepo>(),
       getIt<LogUtils>(),
     ),
   );

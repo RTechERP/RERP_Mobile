@@ -724,6 +724,16 @@ class ApiEndPoint {
   /// API: GET /LeadSource?sourceGroup=0.
   static const String getLeadSource = '/LeadSource';
 
+  /// Tạo/sửa nguồn lead.
+  /// API: POST /LeadSource.
+  /// Payload: { "ID": 0, "Code": "...", "Name": "...", "SourceGroup": 1|2, "STT": ..., "Note": "..." }.
+  static const String leadSource = '/LeadSource';
+
+  /// Xoá nguồn lead.
+  /// API: POST /LeadSource/delete.
+  /// Payload: [12, 13, ...].
+  static const String leadSourceDelete = '/LeadSource/delete';
+
   /// Quyền của người dùng hiện tại trong module Lead.
   /// API: GET /Lead/get-role-context.
   static const String getLeadRoleContext = '/Lead/get-role-context';

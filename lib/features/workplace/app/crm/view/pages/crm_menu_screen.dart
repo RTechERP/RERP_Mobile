@@ -110,5 +110,13 @@ class _CrmMenuScreenState extends State<CrmMenuScreen> {
         tab: 'crm',
         route: '${RouteNames.crmMenu}/${RouteNames.crmLeadSale}',
       ),
+    AppItemModel(
+      id: 'crm:lead_source',
+      name: 'crm.lead_source'.tr(),
+      iconCodePoint: Icons.source_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'crm',
+      route: '${RouteNames.crmMenu}/${RouteNames.crmLeadSource}',
+    ),
   ];
 }

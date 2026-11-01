@@ -375,4 +375,10 @@ class RouteNames {
   ///
   /// Dùng absolute path để `context.push` không bị lỗi match với route cha.
   static const crmLeadSaleActivityAdd = '/crm/lead_sale/activity/add';
+
+  /// Màn danh sách nguồn lead CRM (route con của [crmMenu]).
+  static const crmLeadSource = 'lead_source';
+
+  /// Màn thêm/sửa nguồn lead (route con của [crmLeadSource]).
+  static const leadSourceAdd = '/crm/lead_source/add';
 }

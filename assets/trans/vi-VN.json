@@ -177,7 +177,8 @@
     "menu": "Menu CRM",
     "summary_customer": "T.h khách hàng",
     "lead_marketing": "Lead Marketing",
-    "lead_sale": "Lead Sale"
+    "lead_sale": "Lead Sale",
+    "lead_source": "Nguồn Lead"
   },
   "dio": {
     "cancel_request": "Request was cancelled",
