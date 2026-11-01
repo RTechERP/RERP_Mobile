@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:file_picker/file_picker.dart';
@@ -483,6 +485,12 @@ class LeadSaleBloc extends BaseBloc<LeadSaleEvent, LeadSaleState> {
       (r) => emit(state.copyWith(marketingEmployees: r)),
     );
 
+    final sale = await _repo.getSaleEmployees();
+    sale.fold(
+      (l) => _log.logE('Get sale employees failed: $l'),
+      (r) => emit(state.copyWith(saleEmployees: r)),
+    );
+
     final industries = await _repo.getCustomerIndustries();
     industries.fold(
       (l) => _log.logE('Get customer industries failed: $l'),
@@ -641,6 +649,16 @@ class LeadSaleBloc extends BaseBloc<LeadSaleEvent, LeadSaleState> {
     }
 
     // Bước 3: lưu phiếu lead.
+    final pickedSource = state.sources
+        .where((s) => s.id == payload['LeadSourceID'])
+        .toList();
+    final sourceGroup = pickedSource.isEmpty
+        ? 'không có trong danh sách'
+        : pickedSource.first.sourceGroup;
+    _log.debugNormal(
+      'POST /Lead/save-data (SourceGroup của nguồn đã chọn: $sourceGroup)\n'
+      '${const JsonEncoder.withIndent('  ').convert(payload)}',
+    );
     final saveRes = await _repo.saveData(payload: payload);
 
     await saveRes.fold(

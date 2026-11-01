@@ -33,7 +33,7 @@ class LeadSaleService extends DioBaseApiService {
   /// API: GET /Lead/get-marketing-employees.
   Future<BaseData<List<LeadSaleEmployee>>> getMarketingEmployees() async {
     return get<BaseData<List<LeadSaleEmployee>>>(
-      ApiEndPoint.getLeadSaleEmployees,
+      ApiEndPoint.getLeadMarketingEmployees,
       parser: (json) => BaseData<List<LeadSaleEmployee>>.fromJson(json, (data) {
         return _parseList<LeadSaleEmployee>(data, LeadSaleEmployee.fromJson);
       }),
@@ -42,7 +42,7 @@ class LeadSaleService extends DioBaseApiService {
 
   /// Lấy danh sách nguồn lead.
   ///
-  /// API: GET /LeadSaleSource?sourceGroup=0.
+  /// API: GET /LeadSource?sourceGroup=0.
   Future<BaseData<List<LeadSaleSource>>> getLeadSources({
     int sourceGroup = 0,
   }) async {

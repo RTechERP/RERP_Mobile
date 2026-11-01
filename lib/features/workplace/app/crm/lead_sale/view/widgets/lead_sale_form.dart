@@ -28,7 +28,7 @@ import 'lead_sale_source_label.dart';
 /// 2. Người liên hệ — ai là người mình sẽ gọi.
 /// 3. Nhu cầu & phân loại — họ cần gì, đáng giá bao nhiêu, ai phụ trách.
 ///
-/// Widget tự xử lý: mặc định nguồn lead / NV marketing, fill thông tin từ
+/// Widget tự xử lý: mặc định nguồn lead / NV sale, fill thông tin từ
 /// chi tiết khách hàng, hỏi xác nhận khi API phát hiện trùng lặp, validate
 /// form và dựng payload gửi `POST /Lead/save-data`.
 class LeadSaleForm extends StatefulWidget {
@@ -105,16 +105,16 @@ class LeadSaleFormState extends State<LeadSaleForm>
   /// Đã mặc định "Nguồn lead" bằng item đầu tiên của danh sách chưa.
   bool _sourceDefaultApplied = false;
 
-  /// Đã mặc định "NV Marketing phụ trách" bằng currentUser chưa.
-  bool _marketingDefaultApplied = false;
+  /// Đã mặc định "NV Sale phụ trách" bằng currentUser chưa.
+  bool _saleDefaultApplied = false;
 
   /// Đã fill nguồn lead của phiếu đang sửa chưa.
   ///
   /// Khi đã fill thì không được mặc định đè bằng item đầu tiên.
   bool _leadSourceFilled = false;
 
-  /// Đã fill NV Marketing của phiếu đang sửa chưa.
-  bool _leadMarketingEmployeeFilled = false;
+  /// Đã fill NV Sale của phiếu đang sửa chưa.
+  bool _leadSaleEmployeeFilled = false;
 
   /// Đã fill tên khách hàng của phiếu đang sửa chưa.
   bool _leadCustomerLabelFilled = false;
@@ -126,7 +126,7 @@ class LeadSaleFormState extends State<LeadSaleForm>
   bool _leadDetailFilled = false;
 
   /// Chi tiết phiếu đang chỉnh sửa — giữ lại để fill lại nhãn khi danh mục
-  /// (nhóm hàng, nguồn lead, NV marketing) về sau.
+  /// (nhóm hàng, nguồn lead, NV sale) về sau.
   LeadSaleDetailLead? _leadDetail;
 
   /// ID khách hàng đã fill vào form — dùng để biết khi nào cần fill lại.
@@ -157,7 +157,7 @@ class LeadSaleFormState extends State<LeadSaleForm>
       }
       // Danh mục có thể đã tải sẵn từ màn danh sách → mặc định luôn.
       _applyDefaultSource(widget.bloc.state);
-      _applyDefaultMarketingEmployee(widget.bloc.state);
+      _applyDefaultSaleEmployee(widget.bloc.state);
     });
   }
 
@@ -173,7 +173,7 @@ class LeadSaleFormState extends State<LeadSaleForm>
           previous.poTypes != current.poTypes ||
           previous.customers != current.customers ||
           previous.sources != current.sources ||
-          previous.marketingEmployees != current.marketingEmployees ||
+          previous.saleEmployees != current.saleEmployees ||
           previous.currentUser != current.currentUser ||
           previous.detailStatus != current.detailStatus ||
           previous.duplicates != current.duplicates ||
@@ -199,7 +199,7 @@ class LeadSaleFormState extends State<LeadSaleForm>
           }
         }
 
-        // Danh mục (nhóm hàng, nguồn lead, NV marketing) có thể về sau
+        // Danh mục (nhóm hàng, nguồn lead, NV sale) có thể về sau
         // chi tiết phiếu → fill lại nhãn hiển thị khi danh mục thay đổi.
         if (widget.isEdit) {
           _fillLabelsFromLeadDetail(state);
@@ -214,8 +214,8 @@ class LeadSaleFormState extends State<LeadSaleForm>
         // Mặc định nguồn lead = item đầu tiên trong danh sách.
         _applyDefaultSource(state);
 
-        // Mặc định NV marketing phụ trách = currentUser.
-        _applyDefaultMarketingEmployee(state);
+        // Mặc định NV sale phụ trách = currentUser.
+        _applyDefaultSaleEmployee(state);
 
         // API check-duplicate phát hiện bản ghi trùng → hỏi người dùng.
         if (state.duplicates.isNotEmpty) {
@@ -553,14 +553,14 @@ class LeadSaleFormState extends State<LeadSaleForm>
             textInputAction: TextInputAction.newline,
           ),
           const SizedBox(height: 12),
-          const _HiddenField('lead_marketing_employee_id'),
+          const _HiddenField('lead_sale_employee_id'),
           GestureDetector(
-            onTap: _pickMarketingEmployee,
+            onTap: _pickSaleEmployee,
             child: AbsorbPointer(
               child: FormInputField(
-                nameForm: 'lead_marketing_employee_text',
-                nameTextField: 'lead_marketing_employee_text_field',
-                label: 'NV Marketing phụ trách',
+                nameForm: 'lead_sale_employee_text',
+                nameTextField: 'lead_sale_employee_text_field',
+                label: 'NV Sale phụ trách',
                 icon: Icons.support_agent_outlined,
                 readOnly: true,
               ),
@@ -680,10 +680,10 @@ class LeadSaleFormState extends State<LeadSaleForm>
     );
     _putText(patch, 'lead_note', (lead.note ?? '').trim());
 
-    // NV Marketing phụ trách.
-    final marketingEmployeeId = lead.marketingEmployeeId;
-    if (marketingEmployeeId != null) {
-      patch['lead_marketing_employee_id'] = marketingEmployeeId.toString();
+    // NV Sale phụ trách.
+    final saleEmployeeId = lead.saleEmployeeId;
+    if (saleEmployeeId != null) {
+      patch['lead_sale_employee_id'] = saleEmployeeId.toString();
     }
 
     // Chờ field đã mount rồi mới patch, tránh patchValue bị miss.
@@ -707,7 +707,7 @@ class LeadSaleFormState extends State<LeadSaleForm>
 
   /// Fill nhãn hiển thị của các mục đã chọn khi chỉnh sửa.
   ///
-  /// Danh mục (nhóm hàng, nguồn lead, NV marketing, khách hàng) có thể được
+  /// Danh mục (nhóm hàng, nguồn lead, NV sale, khách hàng) có thể được
   /// tải sau chi tiết phiếu → fill lại nhãn mỗi khi danh mục thay đổi.
   void _fillLabelsFromLeadDetail(LeadSaleState state) {
     final lead = _leadDetail;
@@ -761,17 +761,17 @@ class LeadSaleFormState extends State<LeadSaleForm>
       }
     }
 
-    // NV Marketing phụ trách.
-    final marketingEmployeeId = lead.marketingEmployeeId;
-    if (marketingEmployeeId != null) {
-      final employeeMatches = state.marketingEmployees
-          .where((e) => e.id == marketingEmployeeId)
+    // NV Sale phụ trách.
+    final saleEmployeeId = lead.saleEmployeeId;
+    if (saleEmployeeId != null) {
+      final employeeMatches = state.saleEmployees
+          .where((e) => e.id == saleEmployeeId)
           .toList();
       if (employeeMatches.isNotEmpty) {
-        _leadMarketingEmployeeFilled = true;
+        _leadSaleEmployeeFilled = true;
         _putText(
           patch,
-          'lead_marketing_employee_text',
+          'lead_sale_employee_text',
           _employeeLabel(employeeMatches.first),
         );
       }
@@ -872,7 +872,10 @@ class LeadSaleFormState extends State<LeadSaleForm>
     });
   }
 
-  /// Mặc định "Nguồn lead" bằng item đầu tiên của danh sách nguồn lead.
+  /// Mặc định "Nguồn lead" bằng nguồn "Sale tự tìm (Sales)" khi tạo phiếu.
+  ///
+  /// Tìm nguồn thuộc nhóm Sales (`SourceGroup = 2`) có tên chứa "tự tìm";
+  /// nếu danh sách không có nguồn này thì dùng item đầu tiên.
   ///
   /// Chỉ mặc định 1 lần — nếu người dùng tự chọn nguồn khác thì không bị
   /// ghi đè khi danh sách được tải lại. Khi chỉnh sửa, nguồn của phiếu đã
@@ -883,7 +886,11 @@ class LeadSaleFormState extends State<LeadSaleForm>
     if (_leadSourceFilled) return;
     if (state.sources.isEmpty) return;
 
-    final source = state.sources.first;
+    final source = state.sources.firstWhere(
+      (s) =>
+          s.sourceGroup == 2 && (s.name ?? '').toLowerCase().contains('tự tìm'),
+      orElse: () => state.sources.first,
+    );
     if (source.id == null) return;
 
     _sourceDefaultApplied = true;
@@ -891,16 +898,16 @@ class LeadSaleFormState extends State<LeadSaleForm>
     _setHiddenValue('lead_source_id', source.id.toString());
   }
 
-  /// Mặc định "NV Marketing phụ trách" bằng currentUser.
+  /// Mặc định "NV Sale phụ trách" bằng currentUser.
   ///
-  /// currentUser được đối chiếu với danh sách NV marketing để lấy đúng
+  /// currentUser được đối chiếu với danh sách NV sale để lấy đúng
   /// tên hiển thị và ID nhân viên tương ứng. Khớp theo mã nhân viên trước,
   /// sau đó mới theo ID.
-  void _applyDefaultMarketingEmployee(LeadSaleState state) {
-    if (_marketingDefaultApplied) return;
+  void _applyDefaultSaleEmployee(LeadSaleState state) {
+    if (_saleDefaultApplied) return;
     if (widget.isEdit) return;
-    if (_leadMarketingEmployeeFilled) return;
-    if (state.marketingEmployees.isEmpty) return;
+    if (_leadSaleEmployeeFilled) return;
+    if (state.saleEmployees.isEmpty) return;
 
     final user = state.currentUser;
     if (user == null) return;
@@ -908,19 +915,16 @@ class LeadSaleFormState extends State<LeadSaleForm>
     final code = user.code.trim();
     final employeeId = user.employeeId;
 
-    final matches = state.marketingEmployees.where((e) {
+    final matches = state.saleEmployees.where((e) {
       if (code.isNotEmpty && (e.code ?? '').trim() == code) return true;
       return e.id == employeeId;
     }).toList();
     if (matches.isEmpty) return;
 
     final employee = matches.first;
-    _marketingDefaultApplied = true;
-    _setSelectValue('lead_marketing_employee_text', _employeeLabel(employee));
-    _setHiddenValue(
-      'lead_marketing_employee_id',
-      employee.id?.toString() ?? '',
-    );
+    _saleDefaultApplied = true;
+    _setSelectValue('lead_sale_employee_text', _employeeLabel(employee));
+    _setHiddenValue('lead_sale_employee_id', employee.id?.toString() ?? '');
   }
 
   // ===========================================================================
@@ -1147,13 +1151,13 @@ class LeadSaleFormState extends State<LeadSaleForm>
     );
   }
 
-  /// Mở danh sách nhân viên marketing.
-  Future<void> _pickMarketingEmployee() async {
-    final items = widget.bloc.state.marketingEmployees;
+  /// Mở danh sách nhân viên sale.
+  Future<void> _pickSaleEmployee() async {
+    final items = widget.bloc.state.saleEmployees;
     if (items.isEmpty) {
       showMessage(
         context,
-        'Chưa có danh sách NV Marketing',
+        'Chưa có danh sách NV Sale',
         type: SnackBarType.info,
       );
       return;
@@ -1161,19 +1165,13 @@ class LeadSaleFormState extends State<LeadSaleForm>
 
     await openSelectBottomSheet<LeadSaleEmployee>(
       context: context,
-      title: 'Chọn NV Marketing',
+      title: 'Chọn NV Sale',
       items: items,
       displayText: _employeeLabel,
-      hintText: 'Tìm NV Marketing...',
+      hintText: 'Tìm NV Sale...',
       onSelected: (employee) {
-        _setSelectValue(
-          'lead_marketing_employee_text',
-          _employeeLabel(employee),
-        );
-        _setHiddenValue(
-          'lead_marketing_employee_id',
-          employee.id?.toString() ?? '',
-        );
+        _setSelectValue('lead_sale_employee_text', _employeeLabel(employee));
+        _setHiddenValue('lead_sale_employee_id', employee.id?.toString() ?? '');
       },
     );
   }
@@ -1427,11 +1425,13 @@ class LeadSaleFormState extends State<LeadSaleForm>
       'EstimatedValue': doubleValue('lead_estimated_value'),
       'Rating': intValue('lead_rating') ?? 0,
       'NextFollowUpDate': _formatIsoDate(dateValue('lead_follow_up_date')),
-      'MarketingEmployeeID': intValue('lead_marketing_employee_id') ?? 0,
-      // NV Sale không có trên form → giữ nguyên phiếu đang sửa.
-      'SaleEmployeeID': leadDetail?.saleEmployeeId,
+      // NV Marketing không có trên form → giữ nguyên phiếu đang sửa,
+      // tạo mới thì gửi `null`.
+      'MarketingEmployeeID': leadDetail?.marketingEmployeeId,
+      'SaleEmployeeID': intValue('lead_sale_employee_id') ?? 0,
       'Note': text('lead_note'),
-      'LeadType': leadDetail?.leadType ?? 1,
+      // Lead Sale: `LeadType = 2` khi tạo mới.
+      'LeadType': leadDetail?.leadType ?? 2,
       'Stage': widget.editStage ?? leadDetail?.stage ?? 0,
       'ContactAppointmentDate': _formatIsoDate(
         dateValue('lead_follow_up_date'),
