@@ -25,11 +25,11 @@ class LeadSalePermission {
   /// thao tác, chỉ nhân viên sale được xử lý.
   static const int processingStageCode = 6;
 
+  /// Mã giai đoạn Thất bại (lead không thành công).
+  static const int failedStageCode = 8;
+
   /// Mã giai đoạn Không phù hợp (đã bị loại bỏ).
   static const int disqualifiedStageCode = 9;
-
-  /// Mã giai đoạn Chờ phân công — không được xác nhận / huỷ TT không phù hợp.
-  static const int pendingAssignStageCode = 4;
 
   /// EmployeeID của nhân viên đặc biệt luôn có quyền thao tác.
   static const int specialEmployeeId = 332;
@@ -55,19 +55,6 @@ class LeadSalePermission {
   /// đặc biệt không được thao tác.
   static const String processingMessage =
       'Không thể thao tác phiếu lead đang ở giai đoạn đang xử lý';
-
-  /// Thông báo khi phiếu không ở giai đoạn phù hợp để xác nhận / huỷ TT
-  /// không phù hợp.
-  ///
-  /// Nhận mã phiếu và tên giai đoạn để hiển thị đầy đủ.
-  static String invalidStageMessage({
-    required String? leadCode,
-    required String? stageName,
-  }) {
-    final code = (leadCode ?? '').trim();
-    final stage = (stageName ?? '').trim();
-    return 'Lead không ở giai đoạn phù hợp: $code ($stage)';
-  }
 
   /// Tên giai đoạn → mã giai đoạn, dùng khi API chưa trả `Stage`.
   ///
@@ -145,25 +132,6 @@ class LeadSalePermission {
       stageCode: stageCode,
       roleContext: roleContext,
       user: user,
-    );
-  }
-
-  /// Kiểm tra người dùng hiện tại có được phép xác nhận / huỷ TT không phù hợp
-  /// với phiếu lead [item] hay không.
-  ///
-  /// Giai đoạn "Chờ phân công" (mã 4) không được phép dùng 2 thao tác này.
-  ///
-  /// Trả về `null` nếu được phép; ngược lại trả về thông báo cần hiển thị.
-  static String? blockedStageActionMessage({required LeadSaleItem item}) {
-    final stageCode = resolveStageCode(
-      stageCode: item.stage,
-      stageName: item.stageName,
-    );
-    if (stageCode != pendingAssignStageCode) return null;
-
-    return invalidStageMessage(
-      leadCode: item.leadCode,
-      stageName: item.stageName,
     );
   }
 

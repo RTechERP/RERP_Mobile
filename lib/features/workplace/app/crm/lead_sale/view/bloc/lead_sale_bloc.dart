@@ -2,11 +2,13 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:dartz/dartz.dart' show Either;
 import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../../../base/bloc/index.dart';
+import '../../../../../../../../base/network/errors/error.dart';
 import '../../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../../common/logger/index.dart';
 import '../../../../../../../../features/auth/data/datasource/models/user_model.dart';
@@ -78,9 +80,11 @@ class LeadSaleBloc extends BaseBloc<LeadSaleEvent, LeadSaleState> {
         loadActivityTypes: () => _onLoadActivityTypes(emit),
         saveActivity: (payload) => _onSaveActivity(emit, payload: payload),
         clearActivityState: () async => _onClearActivityState(emit),
-        disqualifyLead: (id, note) =>
-            _onDisqualifyLead(emit, id: id, note: note),
         reopenLead: (id, note) => _onReopenLead(emit, id: id, note: note),
+        returnLead: (id, reason) => _onReturnLead(emit, id: id, reason: reason),
+        closeLead: (id, reason) => _onCloseLead(emit, id: id, reason: reason),
+        transferPo: (id, files, note) =>
+            _onTransferPo(emit, id: id, files: files, note: note),
         clearStageActionState: () async => _onClearStageActionState(emit),
         loadHandoverOptions: () => _onLoadHandoverOptions(emit),
         loadAdminSaleId: (leaderSaleId) =>
@@ -841,46 +845,7 @@ class LeadSaleBloc extends BaseBloc<LeadSaleEvent, LeadSaleState> {
     );
   }
 
-  /// Xác nhận TT không phù hợp — loại bỏ lead.
-  Future<void> _onDisqualifyLead(
-    Emitter<LeadSaleState> emit, {
-    required int id,
-    required String note,
-  }) async {
-    emit(
-      state.copyWith(
-        stageActionStatus: BaseStateStatus.loading,
-        stageActionMessage: null,
-        stageActionIds: const [],
-      ),
-    );
-
-    final res = await _repo.disqualifyLeads(ids: [id], note: note);
-
-    await res.fold(
-      (l) async {
-        _log.logE('Disqualify lead failed: $l');
-        emit(
-          state.copyWith(
-            stageActionStatus: BaseStateStatus.failed,
-            stageActionMessage: l.getErrorMessage,
-          ),
-        );
-      },
-      (r) async {
-        _log.logI('Disqualify lead success - ids: $r');
-        emit(
-          state.copyWith(
-            stageActionStatus: BaseStateStatus.success,
-            stageActionMessage: 'Đã loại bỏ lead!',
-            stageActionIds: r,
-          ),
-        );
-      },
-    );
-  }
-
-  /// Huỷ xác nhận TT không phù hợp — mở lại lead.
+  /// Mở lại lead đã không thành công.
   Future<void> _onReopenLead(
     Emitter<LeadSaleState> emit, {
     required int id,
@@ -913,6 +878,111 @@ class LeadSaleBloc extends BaseBloc<LeadSaleEvent, LeadSaleState> {
             stageActionStatus: BaseStateStatus.success,
             stageActionMessage: 'Đã mở lại lead!',
             stageActionIds: r,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Hoàn trả lead về cho Marketing.
+  Future<void> _onReturnLead(
+    Emitter<LeadSaleState> emit, {
+    required int id,
+    required String reason,
+  }) async {
+    _emitStageActionLoading(emit);
+    final res = await _repo.returnLead(leadId: id, reason: reason);
+    _emitStageActionResult(
+      emit,
+      res,
+      id: id,
+      logName: 'Return lead',
+      successMessage: 'Đã hoàn trả lead cho Marketing!',
+    );
+  }
+
+  /// Xác nhận lead không thành công — chuyển lead sang Thất bại.
+  Future<void> _onCloseLead(
+    Emitter<LeadSaleState> emit, {
+    required int id,
+    required String reason,
+  }) async {
+    _emitStageActionLoading(emit);
+    final res = await _repo.closeLead(leadId: id, lostReason: reason);
+    _emitStageActionResult(
+      emit,
+      res,
+      id: id,
+      logName: 'Close lead',
+      successMessage: 'Đã chuyển lead sang Thất bại!',
+    );
+  }
+
+  /// Chuyển PO — đẩy file PO (`fileType = 2`) lên phiếu lead.
+  Future<void> _onTransferPo(
+    Emitter<LeadSaleState> emit, {
+    required int id,
+    required List<PlatformFile> files,
+    required String note,
+  }) async {
+    _emitStageActionLoading(emit);
+    final res = await _repo.saveLeadFiles(
+      customerContactId: id,
+      fileType: 2,
+      files: files,
+      note: note,
+    );
+    _emitStageActionResult(
+      emit,
+      res.map((_) => null),
+      id: id,
+      logName: 'Transfer PO',
+      successMessage: 'Chuyển PO thành công!',
+    );
+  }
+
+  /// Đánh dấu đang xử lý thao tác chuyển giai đoạn của lead.
+  void _emitStageActionLoading(Emitter<LeadSaleState> emit) {
+    emit(
+      state.copyWith(
+        stageActionStatus: BaseStateStatus.loading,
+        stageActionMessage: null,
+        stageActionIds: const [],
+      ),
+    );
+  }
+
+  /// Emit kết quả thao tác chuyển giai đoạn của lead.
+  ///
+  /// Thành công → ưu tiên thông báo API trả về, không có thì dùng
+  /// [successMessage].
+  void _emitStageActionResult(
+    Emitter<LeadSaleState> emit,
+    Either<BaseError, String?> res, {
+    required int id,
+    required String logName,
+    required String successMessage,
+  }) {
+    res.fold(
+      (l) {
+        _log.logE('$logName failed: $l');
+        emit(
+          state.copyWith(
+            stageActionStatus: BaseStateStatus.failed,
+            stageActionMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (message) {
+        _log.logI('$logName success - id: $id');
+        final apiMessage = (message ?? '').trim();
+        emit(
+          state.copyWith(
+            stageActionStatus: BaseStateStatus.success,
+            stageActionMessage: apiMessage.isEmpty
+                ? successMessage
+                : apiMessage,
+            stageActionIds: [id],
           ),
         );
       },

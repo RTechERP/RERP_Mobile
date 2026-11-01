@@ -189,24 +189,7 @@ class LeadSaleService extends DioBaseApiService {
     );
   }
 
-  /// Xác nhận TT không phù hợp — loại bỏ lead.
-  ///
-  /// API: POST /Lead/disqualify.
-  /// Body: `{ "Ids": [11337], "Note": "lý do" }`.
-  /// Response: `{ status, message, data: [11337] }` — `data` là danh sách ID
-  /// đã xử lý thành công.
-  Future<BaseData<List<int>>> disqualifyLeads({
-    required List<int> ids,
-    required String note,
-  }) async {
-    return post<BaseData<List<int>>>(
-      ApiEndPoint.disqualifyLead,
-      body: {'Ids': ids, 'Note': note},
-      parser: (json) => _parseDeletedIds(json),
-    );
-  }
-
-  /// Huỷ xác nhận TT không phù hợp — mở lại lead.
+  /// Mở lại lead đã không thành công.
   ///
   /// API: POST /Lead/reopen.
   /// Body: `{ "Ids": [11337], "Note": "lý do" }`.
@@ -220,6 +203,63 @@ class LeadSaleService extends DioBaseApiService {
       body: {'Ids': ids, 'Note': note},
       parser: (json) => _parseDeletedIds(json),
     );
+  }
+
+  /// Hoàn trả lead về cho Marketing.
+  ///
+  /// API: POST /Lead/return.
+  /// Body: `{ "LeadID": 11340, "Reason": "lý do" }`.
+  /// Response: `{ status, message, data }` — `data` là ID lead đã xử lý.
+  Future<BaseData<int>> returnLead({
+    required int leadId,
+    required String reason,
+  }) async {
+    return post<BaseData<int>>(
+      ApiEndPoint.returnLead,
+      body: {'LeadID': leadId, 'Reason': reason},
+      parser: (json) => _parseLeadId(json),
+    );
+  }
+
+  /// Xác nhận lead không thành công — chuyển lead sang Thất bại.
+  ///
+  /// API: POST /Lead/close.
+  /// Body: `{ "LeadID": 11317, "IsConverted": false, "LostReason": "lý do" }`.
+  /// Response: `{ message: "Đã chuyển lead sang Thất bại!", data: 11317 }`.
+  Future<BaseData<int>> closeLead({
+    required int leadId,
+    required String lostReason,
+  }) async {
+    return post<BaseData<int>>(
+      ApiEndPoint.closeLead,
+      body: {'LeadID': leadId, 'IsConverted': false, 'LostReason': lostReason},
+      parser: (json) => _parseLeadId(json),
+    );
+  }
+
+  /// Parse response trả về ID lead đã xử lý trong `data`.
+  ///
+  /// `data` có thể là số (`11317`) hoặc mảng (`[11317]`).
+  BaseData<int> _parseLeadId(dynamic json) {
+    final root = json is Map
+        ? Map<String, dynamic>.from(json)
+        : <String, dynamic>{};
+
+    final data = root['data'];
+    final message = root['message'] as String?;
+
+    int? leadId;
+    if (data is num) {
+      leadId = data.toInt();
+    } else if (data is List && data.isNotEmpty && data.first is num) {
+      leadId = (data.first as num).toInt();
+    }
+
+    return BaseData<int>(
+      // BE đôi khi không trả `status` → coi như thành công nếu có ID.
+      status: (root['status'] as num?)?.toInt() ?? (leadId == null ? 0 : 1),
+      data: leadId,
+    )..message = message;
   }
 
   /// Lấy danh sách Leader Sale nhận bàn giao.

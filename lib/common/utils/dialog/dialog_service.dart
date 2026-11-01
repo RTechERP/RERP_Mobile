@@ -949,7 +949,11 @@ class DialogService {
 
     await BaseDialog.twoOptionVerticalDialog(
       context: context,
-      image: const Icon(Icons.warning_amber_rounded, size: 56, color: Colors.orange),
+      image: const Icon(
+        Icons.warning_amber_rounded,
+        size: 56,
+        color: Colors.orange,
+      ),
       title: title,
       description: message,
       contentTopButton: 'Đồng ý',
@@ -1029,7 +1033,11 @@ class DialogService {
 
     await BaseDialog.twoOptionVerticalDialog(
       context: context,
-      image: const Icon(Icons.keyboard_return, size: 64, color: AppColors.primaryERP),
+      image: const Icon(
+        Icons.keyboard_return,
+        size: 64,
+        color: AppColors.primaryERP,
+      ),
       title: 'Xác nhận trả bàn',
       description: 'Bạn có chắc muốn trả bàn test này không?',
       contentTopButton: 'Trả bàn',
@@ -1056,7 +1064,7 @@ class DialogService {
 
     await BaseDialog.twoOptionHorizontalDialogWithCompany(
       context: context,
-      logo:Image.asset(AppImages.logo_login, width: 32, height: 32),
+      logo: Image.asset(AppImages.logo_login, width: 32, height: 32),
       companyName: "RTC",
       title: title,
       description: message,
@@ -1069,7 +1077,7 @@ class DialogService {
       rightButtonFunc: () {
         confirmed = false;
         onBack(context);
-      }
+      },
     );
 
     return confirmed;
@@ -1160,9 +1168,7 @@ class DialogService {
           child: Text(
             'Bạn có chắc muốn lưu phiếu lead bị trùng này?',
             textAlign: TextAlign.center,
-            style: AppStyles.body2.copyWith(
-              color: AppColors.neutralText,
-            ),
+            style: AppStyles.body2.copyWith(color: AppColors.neutralText),
           ),
         ),
       ],
@@ -1295,9 +1301,7 @@ class DialogService {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FormLeftBorderCard(
-          icon: isDisqualify
-              ? Icons.block_outlined
-              : Icons.lock_open_outlined,
+          icon: isDisqualify ? Icons.block_outlined : Icons.lock_open_outlined,
           iconColor: accentColor,
           borderColor: accentColor,
           backgroundColor: accentColor.withValues(alpha: 0.08),
@@ -1357,8 +1361,132 @@ class DialogService {
         final state = formKey.currentState;
         if (state?.saveAndValidate() ?? false) {
           // Mở lại không bắt buộc nhập → ghi chú có thể rỗng.
-          final value = state!.value['lead_stage_reason_field'] as String? ?? '';
+          final value =
+              state!.value['lead_stage_reason_field'] as String? ?? '';
           context.pop(value);
+        }
+      },
+      contentBottomButton: 'Huỷ bỏ',
+      colorTextBottomButton: accentColor,
+      bottomButtonFunc: () {
+        onBack(context);
+      },
+    );
+  }
+
+  /// Dialog nhập lý do / ghi chú cho thao tác chuyển giai đoạn của Lead Sale
+  /// (hoàn trả Marketing, không thành công, mở lại lead không thành công).
+  ///
+  /// Hiển thị thông tin phiếu lead (mã, công ty, Sale hiện tại) kèm ô nhập.
+  /// Trả về nội dung đã nhập khi bấm [confirmText], `null` nếu huỷ.
+  ///
+  /// - [accentColor], [icon]: màu và icon nhận diện thao tác.
+  /// - [inputLabel]: nhãn ô nhập (vd "Lý do", "Ghi chú").
+  /// - [isRequired] = true → bắt buộc nhập tối thiểu 3 ký tự.
+  static Future<String?> showLeadSaleReasonDialog({
+    required BuildContext context,
+    required String title,
+    required String confirmText,
+    required Color accentColor,
+    required IconData icon,
+    required String inputLabel,
+    bool isRequired = true,
+    String? leadCode,
+    String? companyName,
+    String? saleName,
+  }) async {
+    final formKey = GlobalKey<FormBuilderState>();
+
+    final code = (leadCode ?? '').trim();
+    final company = (companyName ?? '').trim();
+    final sale = (saleName ?? '').trim();
+    final companyLine = [
+      if (company.isNotEmpty) company,
+      if (sale.isNotEmpty) 'Sale hiện tại: $sale',
+    ].join(' - ');
+
+    final descriptionWidget = Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        FormLeftBorderCard(
+          icon: icon,
+          iconColor: accentColor,
+          borderColor: accentColor,
+          backgroundColor: accentColor.withValues(alpha: 0.08),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                code.isEmpty ? 'Lead' : 'Lead: $code',
+                style: AppStyles.body2.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.neutralText,
+                ),
+              ),
+              if (companyLine.isNotEmpty) ...[
+                const SizedBox(height: 4),
+                Text(
+                  companyLine,
+                  style: AppStyles.body2.copyWith(
+                    color: AppColors.textSecondaryColor,
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+        SizedBox(height: AppUICommons.mediumVerticalSpacing),
+        FormBuilder(
+          key: formKey,
+          child: FormInputField(
+            nameForm: 'lead_sale_reason_form',
+            nameTextField: 'lead_sale_reason_field',
+            label: inputLabel,
+            icon: Icons.edit_note,
+            isRequired: isRequired,
+            maxLines: 4,
+            autoExpand: true,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
+            maxLength: 500,
+            validator: isRequired
+                ? FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                      errorText: 'Vui lòng nhập ${inputLabel.toLowerCase()}',
+                    ),
+                    FormBuilderValidators.minLength(
+                      3,
+                      errorText: '$inputLabel phải có ít nhất 3 ký tự',
+                    ),
+                  ])
+                : null,
+          ),
+        ),
+      ],
+    );
+
+    return await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: Container(
+        width: 64,
+        height: 64,
+        decoration: BoxDecoration(
+          color: accentColor.withValues(alpha: 0.12),
+          shape: BoxShape.circle,
+        ),
+        child: Icon(icon, size: 34, color: accentColor),
+      ),
+      title: title,
+      descriptionWidget: descriptionWidget,
+      contentTopButton: confirmText,
+      colorTopButton: accentColor,
+      topButtonFunc: () {
+        final state = formKey.currentState;
+        if (state?.saveAndValidate() ?? false) {
+          final value = state!.value['lead_sale_reason_field'] as String? ?? '';
+          context.pop(value.trim());
         }
       },
       contentBottomButton: 'Huỷ bỏ',
@@ -1506,14 +1634,20 @@ class DialogService {
 
     await BaseDialog.twoOptionVerticalDialog(
       context: context,
-      image: const Icon(Icons.check_circle_outline, size: 64, color: AppColors.stateSuccessColor),
+      image: const Icon(
+        Icons.check_circle_outline,
+        size: 64,
+        color: AppColors.stateSuccessColor,
+      ),
       title: title,
       descriptionWidget: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             'Đánh giá hoàn thành',
-            style: AppStyles.body2.copyWith(color: AppColors.textSecondaryColor),
+            style: AppStyles.body2.copyWith(
+              color: AppColors.textSecondaryColor,
+            ),
           ),
           SizedBox(height: AppUICommons.smallVerticalSpacing),
           StatefulBuilder(
@@ -1548,7 +1682,9 @@ class DialogService {
               decoration: InputDecoration(
                 labelText: isCommentRequired ? 'Nhận xét *' : 'Nhận xét',
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(AppUICommons.mediumRadius),
+                  borderRadius: BorderRadius.circular(
+                    AppUICommons.mediumRadius,
+                  ),
                 ),
               ),
               maxLines: 3,

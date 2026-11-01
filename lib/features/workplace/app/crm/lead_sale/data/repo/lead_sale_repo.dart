@@ -112,19 +112,28 @@ abstract class LeadSaleRepo {
     required Map<String, dynamic> payload,
   });
 
-  /// Xác nhận TT không phù hợp — loại bỏ lead.
-  ///
-  /// [ids] là danh sách ID phiếu cần loại bỏ, [note] là lý do người dùng
-  /// nhập. Trả về danh sách ID đã xử lý thành công.
-  Future<Either<BaseError, List<int>>> disqualifyLeads({
+  /// Mở lại lead đã không thành công.
+  Future<Either<BaseError, List<int>>> reopenLeads({
     required List<int> ids,
     required String note,
   });
 
-  /// Huỷ xác nhận TT không phù hợp — mở lại lead.
-  Future<Either<BaseError, List<int>>> reopenLeads({
-    required List<int> ids,
-    required String note,
+  /// Hoàn trả lead về cho Marketing.
+  ///
+  /// [leadId] là ID phiếu cần hoàn trả, [reason] là lý do người dùng nhập.
+  /// Trả về thông báo từ API.
+  Future<Either<BaseError, String?>> returnLead({
+    required int leadId,
+    required String reason,
+  });
+
+  /// Xác nhận lead không thành công — chuyển lead sang Thất bại.
+  ///
+  /// [leadId] là ID phiếu, [lostReason] là lý do không thành công.
+  /// Trả về thông báo từ API.
+  Future<Either<BaseError, String?>> closeLead({
+    required int leadId,
+    required String lostReason,
   });
 
   /// Lấy danh sách loại nhóm dùng cho hoạt động của phiếu lead.

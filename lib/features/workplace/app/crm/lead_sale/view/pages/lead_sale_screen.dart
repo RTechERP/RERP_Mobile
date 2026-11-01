@@ -17,6 +17,7 @@ import '../../data/datasource/models/lead_sale_model.dart';
 import '../../data/datasource/models/lead_sale_permission.dart';
 import '../../view/bloc/lead_sale_bloc.dart';
 import '../../view/widgets/lead_sale_handover_sheet.dart';
+import '../../view/widgets/lead_sale_transfer_po_sheet.dart';
 import '../../view/widgets/lead_sale_card.dart';
 import '../../view/widgets/lead_sale_detail_sheet.dart';
 import '../../view/widgets/lead_sale_filter_sheet.dart';
@@ -136,8 +137,8 @@ class _LeadSaleScreenState
 
   /// Mở menu thao tác khi bấm vào card phiếu lead.
   ///
-  /// Menu gồm: xem chi tiết, chỉnh sửa, ghi hoạt động, TT không phù hợp,
-  /// xoá phiếu. Các mục cần quyền thao tác (sửa/xoá/TT không phù hợp) chỉ
+  /// Menu gồm: xem chi tiết, chỉnh sửa, ghi hoạt động, xoá phiếu, chuyển PO,
+  /// hoàn trả Marketing, không thành công / mở lại. Các mục cần quyền thao tác chỉ
   /// hiện khi người dùng có quyền theo giai đoạn của phiếu.
   ///
   /// Quyền sở hữu phiếu được kiểm tra khi bấm vào thao tác, để người dùng thường
@@ -173,17 +174,23 @@ class _LeadSaleScreenState
       case 'activity':
         _goToAddActivityScreen(item);
         break;
-      case 'disqualify':
-        await _confirmDisqualifyLead(context, item);
-        break;
-      case 'reopen':
-        await _confirmReopenLead(context, item);
-        break;
       case 'delete':
         await _confirmDeleteLead(context, item);
         break;
       case 'handover':
         await _confirmHandoverLead(context, item);
+        break;
+      case 'transfer_po':
+        await _confirmTransferPo(context, item);
+        break;
+      case 'return_marketing':
+        await _confirmReturnMarketing(context, item);
+        break;
+      case 'close':
+        await _confirmCloseLead(context, item);
+        break;
+      case 'reopen_failed':
+        await _confirmReopenFailedLead(context, item);
         break;
     }
   }
@@ -191,22 +198,20 @@ class _LeadSaleScreenState
   /// Danh sách thao tác hiển thị trong menu theo quyền của người dùng.
   ///
   /// - [canOperate] = false → chỉ hiện mục xem (chi tiết, ghi hoạt động).
-  /// - Phiếu đã ở giai đoạn "Không phù hợp" thì hiện "Huỷ TT không phù hợp",
-  ///   ngược lại hiện "TT không phù hợp".
+  /// - Phiếu đã ở giai đoạn "Thất bại" thì hiện "Mở lại Không thành công",
+  ///   ngược lại hiện "Không thành công".
   /// - Thao tác "Bàn giao Sale" chỉ hiện cho nhân viên đặc biệt khi phiếu ở
   ///   giai đoạn 1–2.
   List<LeadSaleMenuItem> _menuItemsFor(
     LeadSaleItem item, {
     required bool canOperate,
   }) {
-    final isDisqualified =
-        item.stage == LeadSalePermission.disqualifiedStageCode ||
-        LeadSaleStage.notMatched.matches(item.stageName);
-
     final stageCode = LeadSalePermission.resolveStageCode(
       stageCode: item.stage,
       stageName: item.stageName,
     );
+    final isFailed = stageCode == LeadSalePermission.failedStageCode;
+
     final canHandover = LeadSalePermission.canHandover(
       stageCode: stageCode,
       roleContext: bloc.state.roleContext,
@@ -218,11 +223,17 @@ class _LeadSaleScreenState
     return items.where((menu) {
       if (!canOperate && menu.requiresOperationPermission) return false;
 
-      if (menu.id == LeadSaleMenuItem.disqualify.id) return !isDisqualified;
-      if (menu.id == LeadSaleMenuItem.reopen.id) return isDisqualified;
-
       // Bàn giao Sale là thao tác riêng của nhân viên đặc biệt.
       if (menu.id == LeadSaleMenuItem.handover.id) return canHandover;
+
+      // Lead đã thất bại chỉ cho mở lại; lead chưa thất bại mới cho chuyển
+      // PO, hoàn trả Marketing hoặc xác nhận không thành công.
+      if (menu.id == LeadSaleMenuItem.reopenFailed.id) return isFailed;
+      if (menu.id == LeadSaleMenuItem.transferPo.id ||
+          menu.id == LeadSaleMenuItem.returnMarketing.id ||
+          menu.id == LeadSaleMenuItem.close.id) {
+        return !isFailed;
+      }
 
       return true;
     }).toList();
@@ -230,7 +241,8 @@ class _LeadSaleScreenState
 
   /// Kiểm tra quyền thao tác phiếu lead theo giai đoạn.
   ///
-  /// Áp dụng cho chỉnh sửa, ghi hoạt động, xác nhận / huỷ TT không phù hợp.
+  /// Áp dụng cho chỉnh sửa, chuyển PO, hoàn trả Marketing, không thành công
+  /// và mở lại không thành công.
   ///
   /// Trả về `true` nếu được phép; `false` kèm thông báo đã hiển thị.
   bool _checkOperationPermission(BuildContext context, LeadSaleItem item) {
@@ -261,22 +273,6 @@ class _LeadSaleScreenState
       item: item,
       roleContext: bloc.state.roleContext,
       user: bloc.state.currentUser,
-    );
-    if (blockedMessage == null) return true;
-
-    context.showMessage(blockedMessage, type: SnackBarType.error);
-    return false;
-  }
-
-  /// Kiểm tra giai đoạn của phiếu có phù hợp để xác nhận / huỷ TT không phù hợp
-  /// hay không.
-  ///
-  /// Giai đoạn "Chờ phân công" không được phép dùng 2 thao tác này.
-  ///
-  /// Trả về `true` nếu được phép; `false` kèm thông báo đã hiển thị.
-  bool _checkStageActionPermission(BuildContext context, LeadSaleItem item) {
-    final blockedMessage = LeadSalePermission.blockedStageActionMessage(
-      item: item,
     );
     if (blockedMessage == null) return true;
 
@@ -346,53 +342,6 @@ class _LeadSaleScreenState
     bloc.add(LeadSaleEvent.deleteLead(id: id));
   }
 
-  /// Xác nhận TT không phù hợp — loại bỏ phiếu lead.
-  ///
-  /// Mở dialog nhập lý do loại bỏ, sau đó gọi `POST /Lead/disqualify`.
-  /// Thông báo kết quả được hiển thị qua listener của bloc trong [renderUI].
-  Future<void> _confirmDisqualifyLead(
-    BuildContext context,
-    LeadSaleItem item,
-  ) async {
-    final id = item.id;
-    if (id == null) return;
-    if (!_checkOperationPermission(context, item)) return;
-    if (!_checkStageActionPermission(context, item)) return;
-
-    final note = await DialogService.showLeadStageReasonDialog(
-      context: context,
-      isDisqualify: true,
-      leadCode: item.leadCode,
-      companyName: item.companyName,
-    );
-    if (!context.mounted || note == null) return;
-
-    bloc.add(LeadSaleEvent.disqualifyLead(id: id, note: note));
-  }
-
-  /// Huỷ xác nhận TT không phù hợp — mở lại phiếu lead.
-  ///
-  /// Mở dialog nhập lý do mở lại, sau đó gọi `POST /Lead/reopen`.
-  Future<void> _confirmReopenLead(
-    BuildContext context,
-    LeadSaleItem item,
-  ) async {
-    final id = item.id;
-    if (id == null) return;
-    if (!_checkOperationPermission(context, item)) return;
-    if (!_checkStageActionPermission(context, item)) return;
-
-    final note = await DialogService.showLeadStageReasonDialog(
-      context: context,
-      isDisqualify: false,
-      leadCode: item.leadCode,
-      companyName: item.companyName,
-    );
-    if (!context.mounted || note == null) return;
-
-    bloc.add(LeadSaleEvent.reopenLead(id: id, note: note));
-  }
-
   /// Bàn giao phiếu lead cho Leader Sale.
   ///
   /// Mở dialog chọn Leader Sale nhận bàn giao, Admin Sale xử lý và ghi chú.
@@ -423,6 +372,104 @@ class _LeadSaleScreenState
         note: selection.note,
       ),
     );
+  }
+
+  /// Chuyển PO — mở sheet chọn file PO + ghi chú, sau đó gọi
+  /// `POST /Lead/customer-po` với `fileType = 2`.
+  Future<void> _confirmTransferPo(
+    BuildContext context,
+    LeadSaleItem item,
+  ) async {
+    final id = item.id;
+    if (id == null) return;
+    if (!_checkOperationPermission(context, item)) return;
+
+    final selection = await LeadSaleTransferPoSheet.show(context, item: item);
+    if (!context.mounted || selection == null) return;
+
+    bloc.add(
+      LeadSaleEvent.transferPo(
+        id: id,
+        files: selection.files,
+        note: selection.note,
+      ),
+    );
+  }
+
+  /// Hoàn trả lead về Marketing — nhập lý do rồi gọi `POST /Lead/return`.
+  Future<void> _confirmReturnMarketing(
+    BuildContext context,
+    LeadSaleItem item,
+  ) async {
+    final id = item.id;
+    if (id == null) return;
+    if (!_checkOperationPermission(context, item)) return;
+
+    final reason = await DialogService.showLeadSaleReasonDialog(
+      context: context,
+      title: 'Hoàn trả Marketing',
+      confirmText: 'Hoàn trả',
+      accentColor: LeadSaleMenuItem.returnMarketing.color,
+      icon: LeadSaleMenuItem.returnMarketing.icon,
+      inputLabel: 'Lý do hoàn trả',
+      leadCode: item.leadCode,
+      companyName: item.companyName,
+    );
+    if (!context.mounted || reason == null) return;
+
+    bloc.add(LeadSaleEvent.returnLead(id: id, reason: reason));
+  }
+
+  /// Xác nhận lead không thành công — nhập lý do rồi gọi `POST /Lead/close`.
+  Future<void> _confirmCloseLead(
+    BuildContext context,
+    LeadSaleItem item,
+  ) async {
+    final id = item.id;
+    if (id == null) return;
+    if (!_checkOperationPermission(context, item)) return;
+
+    final reason = await DialogService.showLeadSaleReasonDialog(
+      context: context,
+      title: 'Xác nhận không thành công',
+      confirmText: 'Xác nhận',
+      accentColor: AppColors.stateErrorColor,
+      icon: LeadSaleMenuItem.close.icon,
+      inputLabel: 'Lý do',
+      leadCode: item.leadCode,
+      companyName: item.companyName,
+      saleName: item.saleEmployeeName,
+    );
+    if (!context.mounted || reason == null) return;
+
+    bloc.add(LeadSaleEvent.closeLead(id: id, reason: reason));
+  }
+
+  /// Mở lại lead đã không thành công — nhập ghi chú rồi gọi
+  /// `POST /Lead/reopen`.
+  Future<void> _confirmReopenFailedLead(
+    BuildContext context,
+    LeadSaleItem item,
+  ) async {
+    final id = item.id;
+    if (id == null) return;
+    if (!_checkOperationPermission(context, item)) return;
+
+    final note = await DialogService.showLeadSaleReasonDialog(
+      context: context,
+      title: 'Mở lại Không thành công',
+      confirmText: 'Mở lại',
+      accentColor: AppColors.stateSuccessColor,
+      icon: LeadSaleMenuItem.reopenFailed.icon,
+      inputLabel: 'Ghi chú',
+      isRequired: false,
+      leadCode: item.leadCode,
+      companyName: item.companyName,
+      saleName: item.saleEmployeeName,
+    );
+    if (!context.mounted || note == null) return;
+
+    bloc.add(LeadSaleEvent.reopenLead(id: id, note: note));
   }
 
   @override

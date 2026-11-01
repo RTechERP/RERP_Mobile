@@ -27,6 +27,7 @@ class LeadSaleAttachmentsField extends StatelessWidget {
     this.onDeleteSaved,
     this.onPreviewPending,
     this.onRemovePending,
+    this.label = 'File đính kèm',
     this.allowedExtensions = const [
       'pdf',
       'doc',
@@ -69,6 +70,9 @@ class LeadSaleAttachmentsField extends StatelessWidget {
   /// Callback bỏ file mới chọn khỏi danh sách chờ upload.
   final ValueChanged<PlatformFile>? onRemovePending;
 
+  /// Tiêu đề nút chọn file.
+  final String label;
+
   /// Danh sách đuôi file được phép chọn.
   final List<String> allowedExtensions;
 
@@ -82,7 +86,7 @@ class LeadSaleAttachmentsField extends StatelessWidget {
         // Nút chọn file + mô tả định dạng.
         _PickerButton(
           icon: Icons.attach_file,
-          label: 'File đính kèm',
+          label: label,
           hint: 'Chụp ảnh, chọn ảnh hoặc tệp (PDF, Word, Excel...)',
           onTap: onPickFiles == null ? null : () => _pickFiles(context),
         ),

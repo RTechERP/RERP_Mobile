@@ -49,22 +49,6 @@ class LeadSaleMenuItem {
     requiresOperationPermission: false,
   );
 
-  /// Thao tác xác nhận TT không phù hợp — loại bỏ lead.
-  static const LeadSaleMenuItem disqualify = LeadSaleMenuItem(
-    id: 'disqualify',
-    name: 'TT không phù hợp',
-    icon: Icons.block_outlined,
-    color: Color(0xFFED3A3A),
-  );
-
-  /// Thao tác huỷ xác nhận TT không phù hợp — mở lại lead.
-  static const LeadSaleMenuItem reopen = LeadSaleMenuItem(
-    id: 'reopen',
-    name: 'Huỷ TT không phù hợp',
-    icon: Icons.lock_open_outlined,
-    color: Color(0xFF33B469),
-  );
-
   /// Thao tác xoá phiếu lead.
   static const LeadSaleMenuItem delete = LeadSaleMenuItem(
     id: 'delete',
@@ -81,6 +65,38 @@ class LeadSaleMenuItem {
     color: Color(0xFF00897B),
   );
 
+  /// Thao tác chuyển PO — đẩy file PO lên phiếu lead.
+  static const LeadSaleMenuItem transferPo = LeadSaleMenuItem(
+    id: 'transfer_po',
+    name: 'Chuyển PO',
+    icon: Icons.request_quote_outlined,
+    color: Color(0xFF3949AB),
+  );
+
+  /// Thao tác hoàn trả lead về cho Marketing.
+  static const LeadSaleMenuItem returnMarketing = LeadSaleMenuItem(
+    id: 'return_marketing',
+    name: 'Hoàn trả Marketing',
+    icon: Icons.undo_rounded,
+    color: Color(0xFFF4511E),
+  );
+
+  /// Thao tác xác nhận lead không thành công (chuyển sang Thất bại).
+  static const LeadSaleMenuItem close = LeadSaleMenuItem(
+    id: 'close',
+    name: 'Không thành công',
+    icon: Icons.cancel_outlined,
+    color: Color(0xFFD81B60),
+  );
+
+  /// Thao tác mở lại lead đã không thành công.
+  static const LeadSaleMenuItem reopenFailed = LeadSaleMenuItem(
+    id: 'reopen_failed',
+    name: 'Mở lại Không thành công',
+    icon: Icons.replay_rounded,
+    color: Color(0xFF43A047),
+  );
+
   /// Danh sách thao tác mặc định của phiếu lead.
   ///
   /// Mục "Bàn giao Sale" được lọc thêm theo vai trò và giai đoạn ở màn danh
@@ -89,10 +105,12 @@ class LeadSaleMenuItem {
     detail,
     edit,
     activity,
-    disqualify,
-    reopen,
     delete,
     handover,
+    transferPo,
+    returnMarketing,
+    close,
+    reopenFailed,
   ];
 }
 

@@ -123,17 +123,36 @@ class LeadSaleEvent with _$LeadSaleEvent {
   /// Xóa trạng thái kết quả ghi hoạt động.
   const factory LeadSaleEvent.clearActivityState() = _ClearActivityState;
 
-  /// Xác nhận TT không phù hợp — loại bỏ lead.
-  const factory LeadSaleEvent.disqualifyLead({
-    required int id,
-    required String note,
-  }) = _DisqualifyLead;
-
-  /// Huỷ xác nhận TT không phù hợp — mở lại lead.
+  /// Mở lại lead đã không thành công.
   const factory LeadSaleEvent.reopenLead({
     required int id,
     required String note,
   }) = _ReopenLead;
+
+  /// Hoàn trả lead về cho Marketing.
+  ///
+  /// [id] là ID phiếu lead, [reason] là lý do hoàn trả.
+  const factory LeadSaleEvent.returnLead({
+    required int id,
+    required String reason,
+  }) = _ReturnLead;
+
+  /// Xác nhận lead không thành công — chuyển lead sang Thất bại.
+  ///
+  /// [id] là ID phiếu lead, [reason] là lý do không thành công.
+  const factory LeadSaleEvent.closeLead({
+    required int id,
+    required String reason,
+  }) = _CloseLead;
+
+  /// Chuyển PO — đẩy file PO (`fileType = 2`) lên phiếu lead.
+  ///
+  /// [files] là danh sách file PO người dùng chọn, [note] là ghi chú.
+  const factory LeadSaleEvent.transferPo({
+    required int id,
+    required List<PlatformFile> files,
+    @Default('') String note,
+  }) = _TransferPo;
 
   /// Xóa trạng thái kết quả loại bỏ / mở lại lead.
   const factory LeadSaleEvent.clearStageActionState() = _ClearStageActionState;

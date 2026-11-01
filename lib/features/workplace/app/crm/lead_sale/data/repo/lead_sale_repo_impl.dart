@@ -395,27 +395,6 @@ class LeadSaleRepoImpl implements LeadSaleRepo {
   }
 
   @override
-  Future<Either<BaseError, List<int>>> disqualifyLeads({
-    required List<int> ids,
-    required String note,
-  }) async {
-    try {
-      final res = await _service.disqualifyLeads(ids: ids, note: note);
-      // Chỉ coi là thành công khi API trả `message` và `data` có dữ liệu.
-      if (res.status == 1 && res.data != null && res.data!.isNotEmpty) {
-        return right(res.data!);
-      }
-      return left(
-        BaseError.httpInternalServerError(
-          res.message ?? 'Xác nhận TT không phù hợp thất bại',
-        ),
-      );
-    } on DioException catch (e) {
-      return left(e.baseError);
-    }
-  }
-
-  @override
   Future<Either<BaseError, List<int>>> reopenLeads({
     required List<int> ids,
     required String note,
@@ -427,7 +406,46 @@ class LeadSaleRepoImpl implements LeadSaleRepo {
       }
       return left(
         BaseError.httpInternalServerError(
-          res.message ?? 'Huỷ xác nhận TT không phù hợp thất bại',
+          res.message ?? 'Mở lại lead thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, String?>> returnLead({
+    required int leadId,
+    required String reason,
+  }) async {
+    try {
+      final res = await _service.returnLead(leadId: leadId, reason: reason);
+      if (res.status == 1) return right(res.message);
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Hoàn trả Marketing thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, String?>> closeLead({
+    required int leadId,
+    required String lostReason,
+  }) async {
+    try {
+      final res = await _service.closeLead(
+        leadId: leadId,
+        lostReason: lostReason,
+      );
+      if (res.status == 1) return right(res.message);
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Xác nhận không thành công thất bại',
         ),
       );
     } on DioException catch (e) {

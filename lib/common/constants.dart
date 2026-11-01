@@ -177,6 +177,7 @@ class ApiEndPoint {
   /// Tìm kiếm yêu cầu thuê xe tải.
   /// API: POST /VehicleRentalRequest/search
   static const String searchVehicleRental = '/VehicleRentalRequest/search';
+
   /// API: POST /VehicleRentalRequest/save-data
   static const String saveVehicleRental = '/VehicleRentalRequest/save-data';
 
@@ -525,7 +526,8 @@ class ApiEndPoint {
   static const String getHistoryImportExport = '/HistoryImportExport';
 
   // Material Category
-  static const String getMaterialCategories = '/MaterialCategory/get-material-categories';
+  static const String getMaterialCategories =
+      '/MaterialCategory/get-material-categories';
 
   /// Lấy chi tiết phiếu card theo registrationId.
   /// API: GET /ESLRegistration/get-details?registrationId=X.
@@ -703,7 +705,8 @@ class ApiEndPoint {
 
   /// Danh sách nhân viên marketing.
   /// API: GET /Lead/get-marketing-employees.
-  static const String getLeadMarketingEmployees = '/Lead/get-marketing-employees';
+  static const String getLeadMarketingEmployees =
+      '/Lead/get-marketing-employees';
 
   /// Danh sách nguồn lead.
   /// API: GET /LeadSource?sourceGroup=0.
@@ -762,6 +765,15 @@ class ApiEndPoint {
   /// Huỷ xác nhận TT không phù hợp — mở lại lead.
   /// API: POST /Lead/reopen — body `{ "Ids": [11337], "Note": "..." }`.
   static const String reopenLead = '/Lead/reopen';
+
+  /// Hoàn trả lead về cho Marketing.
+  /// API: POST /Lead/return — body `{ "LeadID": 11340, "Reason": "..." }`.
+  static const String returnLead = '/Lead/return';
+
+  /// Xác nhận lead không thành công (chuyển sang Thất bại).
+  /// API: POST /Lead/close — body `{ "LeadID": 11317, "IsConverted": false,
+  /// "LostReason": "..." }`.
+  static const String closeLead = '/Lead/close';
 
   /// Danh sách Leader Sale nhận bàn giao.
   /// API: GET /Lead/get-sale-leaders.
