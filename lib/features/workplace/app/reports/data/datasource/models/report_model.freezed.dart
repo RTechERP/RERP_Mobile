@@ -17104,6 +17104,529 @@ abstract class _CustomerContactResponse implements CustomerContactResponse {
       get copyWith => throw _privateConstructorUsedError;
 }
 
+LatestSaleReportResponse _$LatestSaleReportResponseFromJson(
+    Map<String, dynamic> json) {
+  return _LatestSaleReportResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LatestSaleReportResponse {
+  @JsonKey(name: 'ProductOfCustomer')
+  String? get productOfCustomer => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LatestSaleReportResponseCopyWith<LatestSaleReportResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LatestSaleReportResponseCopyWith<$Res> {
+  factory $LatestSaleReportResponseCopyWith(LatestSaleReportResponse value,
+          $Res Function(LatestSaleReportResponse) then) =
+      _$LatestSaleReportResponseCopyWithImpl<$Res, LatestSaleReportResponse>;
+  @useResult
+  $Res call({@JsonKey(name: 'ProductOfCustomer') String? productOfCustomer});
+}
+
+/// @nodoc
+class _$LatestSaleReportResponseCopyWithImpl<$Res,
+        $Val extends LatestSaleReportResponse>
+    implements $LatestSaleReportResponseCopyWith<$Res> {
+  _$LatestSaleReportResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? productOfCustomer = freezed,
+  }) {
+    return _then(_value.copyWith(
+      productOfCustomer: freezed == productOfCustomer
+          ? _value.productOfCustomer
+          : productOfCustomer // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LatestSaleReportResponseImplCopyWith<$Res>
+    implements $LatestSaleReportResponseCopyWith<$Res> {
+  factory _$$LatestSaleReportResponseImplCopyWith(
+          _$LatestSaleReportResponseImpl value,
+          $Res Function(_$LatestSaleReportResponseImpl) then) =
+      __$$LatestSaleReportResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'ProductOfCustomer') String? productOfCustomer});
+}
+
+/// @nodoc
+class __$$LatestSaleReportResponseImplCopyWithImpl<$Res>
+    extends _$LatestSaleReportResponseCopyWithImpl<$Res,
+        _$LatestSaleReportResponseImpl>
+    implements _$$LatestSaleReportResponseImplCopyWith<$Res> {
+  __$$LatestSaleReportResponseImplCopyWithImpl(
+      _$LatestSaleReportResponseImpl _value,
+      $Res Function(_$LatestSaleReportResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? productOfCustomer = freezed,
+  }) {
+    return _then(_$LatestSaleReportResponseImpl(
+      productOfCustomer: freezed == productOfCustomer
+          ? _value.productOfCustomer
+          : productOfCustomer // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LatestSaleReportResponseImpl implements _LatestSaleReportResponse {
+  const _$LatestSaleReportResponseImpl(
+      {@JsonKey(name: 'ProductOfCustomer') this.productOfCustomer});
+
+  factory _$LatestSaleReportResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LatestSaleReportResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ProductOfCustomer')
+  final String? productOfCustomer;
+
+  @override
+  String toString() {
+    return 'LatestSaleReportResponse(productOfCustomer: $productOfCustomer)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LatestSaleReportResponseImpl &&
+            (identical(other.productOfCustomer, productOfCustomer) ||
+                other.productOfCustomer == productOfCustomer));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, productOfCustomer);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LatestSaleReportResponseImplCopyWith<_$LatestSaleReportResponseImpl>
+      get copyWith => __$$LatestSaleReportResponseImplCopyWithImpl<
+          _$LatestSaleReportResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LatestSaleReportResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LatestSaleReportResponse implements LatestSaleReportResponse {
+  const factory _LatestSaleReportResponse(
+      {@JsonKey(name: 'ProductOfCustomer')
+      final String? productOfCustomer}) = _$LatestSaleReportResponseImpl;
+
+  factory _LatestSaleReportResponse.fromJson(Map<String, dynamic> json) =
+      _$LatestSaleReportResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ProductOfCustomer')
+  String? get productOfCustomer;
+  @override
+  @JsonKey(ignore: true)
+  _$$LatestSaleReportResponseImplCopyWith<_$LatestSaleReportResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+LatestFollowProjectResponse _$LatestFollowProjectResponseFromJson(
+    Map<String, dynamic> json) {
+  return _LatestFollowProjectResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LatestFollowProjectResponse {
+  @JsonKey(name: 'FirmBaseID')
+  int? get firmBaseId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTypeBaseID')
+  int? get projectTypeBaseId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LatestFollowProjectResponseCopyWith<LatestFollowProjectResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LatestFollowProjectResponseCopyWith<$Res> {
+  factory $LatestFollowProjectResponseCopyWith(
+          LatestFollowProjectResponse value,
+          $Res Function(LatestFollowProjectResponse) then) =
+      _$LatestFollowProjectResponseCopyWithImpl<$Res,
+          LatestFollowProjectResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'FirmBaseID') int? firmBaseId,
+      @JsonKey(name: 'ProjectTypeBaseID') int? projectTypeBaseId});
+}
+
+/// @nodoc
+class _$LatestFollowProjectResponseCopyWithImpl<$Res,
+        $Val extends LatestFollowProjectResponse>
+    implements $LatestFollowProjectResponseCopyWith<$Res> {
+  _$LatestFollowProjectResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? firmBaseId = freezed,
+    Object? projectTypeBaseId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      firmBaseId: freezed == firmBaseId
+          ? _value.firmBaseId
+          : firmBaseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTypeBaseId: freezed == projectTypeBaseId
+          ? _value.projectTypeBaseId
+          : projectTypeBaseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LatestFollowProjectResponseImplCopyWith<$Res>
+    implements $LatestFollowProjectResponseCopyWith<$Res> {
+  factory _$$LatestFollowProjectResponseImplCopyWith(
+          _$LatestFollowProjectResponseImpl value,
+          $Res Function(_$LatestFollowProjectResponseImpl) then) =
+      __$$LatestFollowProjectResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'FirmBaseID') int? firmBaseId,
+      @JsonKey(name: 'ProjectTypeBaseID') int? projectTypeBaseId});
+}
+
+/// @nodoc
+class __$$LatestFollowProjectResponseImplCopyWithImpl<$Res>
+    extends _$LatestFollowProjectResponseCopyWithImpl<$Res,
+        _$LatestFollowProjectResponseImpl>
+    implements _$$LatestFollowProjectResponseImplCopyWith<$Res> {
+  __$$LatestFollowProjectResponseImplCopyWithImpl(
+      _$LatestFollowProjectResponseImpl _value,
+      $Res Function(_$LatestFollowProjectResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? firmBaseId = freezed,
+    Object? projectTypeBaseId = freezed,
+  }) {
+    return _then(_$LatestFollowProjectResponseImpl(
+      firmBaseId: freezed == firmBaseId
+          ? _value.firmBaseId
+          : firmBaseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTypeBaseId: freezed == projectTypeBaseId
+          ? _value.projectTypeBaseId
+          : projectTypeBaseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LatestFollowProjectResponseImpl
+    implements _LatestFollowProjectResponse {
+  const _$LatestFollowProjectResponseImpl(
+      {@JsonKey(name: 'FirmBaseID') this.firmBaseId,
+      @JsonKey(name: 'ProjectTypeBaseID') this.projectTypeBaseId});
+
+  factory _$LatestFollowProjectResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$LatestFollowProjectResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'FirmBaseID')
+  final int? firmBaseId;
+  @override
+  @JsonKey(name: 'ProjectTypeBaseID')
+  final int? projectTypeBaseId;
+
+  @override
+  String toString() {
+    return 'LatestFollowProjectResponse(firmBaseId: $firmBaseId, projectTypeBaseId: $projectTypeBaseId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LatestFollowProjectResponseImpl &&
+            (identical(other.firmBaseId, firmBaseId) ||
+                other.firmBaseId == firmBaseId) &&
+            (identical(other.projectTypeBaseId, projectTypeBaseId) ||
+                other.projectTypeBaseId == projectTypeBaseId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, firmBaseId, projectTypeBaseId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LatestFollowProjectResponseImplCopyWith<_$LatestFollowProjectResponseImpl>
+      get copyWith => __$$LatestFollowProjectResponseImplCopyWithImpl<
+          _$LatestFollowProjectResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LatestFollowProjectResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LatestFollowProjectResponse
+    implements LatestFollowProjectResponse {
+  const factory _LatestFollowProjectResponse(
+          {@JsonKey(name: 'FirmBaseID') final int? firmBaseId,
+          @JsonKey(name: 'ProjectTypeBaseID') final int? projectTypeBaseId}) =
+      _$LatestFollowProjectResponseImpl;
+
+  factory _LatestFollowProjectResponse.fromJson(Map<String, dynamic> json) =
+      _$LatestFollowProjectResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'FirmBaseID')
+  int? get firmBaseId;
+  @override
+  @JsonKey(name: 'ProjectTypeBaseID')
+  int? get projectTypeBaseId;
+  @override
+  @JsonKey(ignore: true)
+  _$$LatestFollowProjectResponseImplCopyWith<_$LatestFollowProjectResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+SaleEmployeeResponse _$SaleEmployeeResponseFromJson(Map<String, dynamic> json) {
+  return _SaleEmployeeResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SaleEmployeeResponse {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SaleEmployeeResponseCopyWith<SaleEmployeeResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SaleEmployeeResponseCopyWith<$Res> {
+  factory $SaleEmployeeResponseCopyWith(SaleEmployeeResponse value,
+          $Res Function(SaleEmployeeResponse) then) =
+      _$SaleEmployeeResponseCopyWithImpl<$Res, SaleEmployeeResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName});
+}
+
+/// @nodoc
+class _$SaleEmployeeResponseCopyWithImpl<$Res,
+        $Val extends SaleEmployeeResponse>
+    implements $SaleEmployeeResponseCopyWith<$Res> {
+  _$SaleEmployeeResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? fullName = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SaleEmployeeResponseImplCopyWith<$Res>
+    implements $SaleEmployeeResponseCopyWith<$Res> {
+  factory _$$SaleEmployeeResponseImplCopyWith(_$SaleEmployeeResponseImpl value,
+          $Res Function(_$SaleEmployeeResponseImpl) then) =
+      __$$SaleEmployeeResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName});
+}
+
+/// @nodoc
+class __$$SaleEmployeeResponseImplCopyWithImpl<$Res>
+    extends _$SaleEmployeeResponseCopyWithImpl<$Res, _$SaleEmployeeResponseImpl>
+    implements _$$SaleEmployeeResponseImplCopyWith<$Res> {
+  __$$SaleEmployeeResponseImplCopyWithImpl(_$SaleEmployeeResponseImpl _value,
+      $Res Function(_$SaleEmployeeResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? fullName = freezed,
+  }) {
+    return _then(_$SaleEmployeeResponseImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SaleEmployeeResponseImpl implements _SaleEmployeeResponse {
+  const _$SaleEmployeeResponseImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'FullName') this.fullName});
+
+  factory _$SaleEmployeeResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SaleEmployeeResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+
+  @override
+  String toString() {
+    return 'SaleEmployeeResponse(id: $id, code: $code, fullName: $fullName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaleEmployeeResponseImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, code, fullName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SaleEmployeeResponseImplCopyWith<_$SaleEmployeeResponseImpl>
+      get copyWith =>
+          __$$SaleEmployeeResponseImplCopyWithImpl<_$SaleEmployeeResponseImpl>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SaleEmployeeResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SaleEmployeeResponse implements SaleEmployeeResponse {
+  const factory _SaleEmployeeResponse(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'FullName') final String? fullName}) =
+      _$SaleEmployeeResponseImpl;
+
+  factory _SaleEmployeeResponse.fromJson(Map<String, dynamic> json) =
+      _$SaleEmployeeResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(ignore: true)
+  _$$SaleEmployeeResponseImplCopyWith<_$SaleEmployeeResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 SaleRequest _$SaleRequestFromJson(Map<String, dynamic> json) {
   return _SaleRequest.fromJson(json);
 }

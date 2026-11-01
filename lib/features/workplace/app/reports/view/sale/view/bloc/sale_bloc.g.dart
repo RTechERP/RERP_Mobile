@@ -33,6 +33,8 @@ abstract class _$SaleStateCWProxy {
 
   SaleState users(List<UserResponse> users);
 
+  SaleState employees(List<SaleEmployeeResponse> employees);
+
   SaleState adminWorks(List<SaleAdminWork> adminWorks);
 
   SaleState adminTypeReports(
@@ -118,6 +120,7 @@ abstract class _$SaleStateCWProxy {
     List<CustomerContactResponse>? customerContacts,
     List<CustomerPartResponse>? customerParts,
     List<UserResponse>? users,
+    List<SaleEmployeeResponse>? employees,
     List<SaleAdminWork>? adminWorks,
     List<SaleAdminTypeReportResponse>? adminTypeReports,
     List<SaleAdminCustomerResponse>? adminCustomers,
@@ -205,6 +208,10 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
 
   @override
   SaleState users(List<UserResponse> users) => this(users: users);
+
+  @override
+  SaleState employees(List<SaleEmployeeResponse> employees) =>
+      this(employees: employees);
 
   @override
   SaleState adminWorks(List<SaleAdminWork> adminWorks) =>
@@ -338,6 +345,7 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
     Object? customerContacts = const $CopyWithPlaceholder(),
     Object? customerParts = const $CopyWithPlaceholder(),
     Object? users = const $CopyWithPlaceholder(),
+    Object? employees = const $CopyWithPlaceholder(),
     Object? adminWorks = const $CopyWithPlaceholder(),
     Object? adminTypeReports = const $CopyWithPlaceholder(),
     Object? adminCustomers = const $CopyWithPlaceholder(),
@@ -429,6 +437,10 @@ class _$SaleStateCWProxyImpl implements _$SaleStateCWProxy {
           ? _value.users
           // ignore: cast_nullable_to_non_nullable
           : users as List<UserResponse>,
+      employees: employees == const $CopyWithPlaceholder() || employees == null
+          ? _value.employees
+          // ignore: cast_nullable_to_non_nullable
+          : employees as List<SaleEmployeeResponse>,
       adminWorks:
           adminWorks == const $CopyWithPlaceholder() || adminWorks == null
               ? _value.adminWorks

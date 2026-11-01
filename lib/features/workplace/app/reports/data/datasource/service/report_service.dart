@@ -604,6 +604,93 @@ class ReportService extends DioBaseApiService {
     );
   }
 
+  /// Lấy ID dự án gắn với khách hàng.
+  ///
+  /// API: GET /Lead/project-id-by-customer?customerId=X → `data: 22390`.
+  Future<BaseData<int>> getProjectIdByCustomer({
+    required int customerId,
+  }) async {
+    return get<BaseData<int>>(
+      ApiEndPoint.getProjectIdByCustomer,
+      query: {'customerId': customerId},
+      parser: (json) =>
+          BaseData<int>.fromJson(json, (data) => (data as num?)?.toInt() ?? 0),
+    );
+  }
+
+  /// Lấy chi tiết dự án.
+  ///
+  /// API: GET /project/get-project?id=X.
+  Future<BaseData<SaleProjectResponse>> getProjectDetail({
+    required int projectId,
+  }) async {
+    return get<BaseData<SaleProjectResponse>>(
+      ApiEndPoint.getProjectDetail,
+      query: {'id': projectId},
+      parser: (json) => BaseData<SaleProjectResponse>.fromJson(
+        json,
+        (data) => SaleProjectResponse.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  /// Lấy báo cáo sale gần nhất của [userId] trên dự án [projectId].
+  ///
+  /// API: GET /DailyReportSale/get-latest-daily-report-sale.
+  /// `data` có thể null khi chưa có báo cáo nào.
+  Future<BaseData<LatestSaleReportResponse?>> getLatestSaleReport({
+    required int userId,
+    required int projectId,
+  }) async {
+    return get<BaseData<LatestSaleReportResponse?>>(
+      ApiEndPoint.getLatestSaleReport,
+      query: {'userId': userId, 'projectId': projectId},
+      parser: (json) => BaseData<LatestSaleReportResponse?>.fromJson(
+        json,
+        (data) => data is Map<String, dynamic>
+            ? LatestSaleReportResponse.fromJson(data)
+            : null,
+      ),
+    );
+  }
+
+  /// Lấy hãng và loại dự án theo dõi gần nhất của dự án [projectId].
+  ///
+  /// API: GET /DailyReportSale/get-latest-follow-project-base.
+  /// `data` có thể null khi dự án chưa được theo dõi.
+  Future<BaseData<LatestFollowProjectResponse?>> getLatestFollowProject({
+    required int projectId,
+  }) async {
+    return get<BaseData<LatestFollowProjectResponse?>>(
+      ApiEndPoint.getLatestFollowProject,
+      query: {'projectId': projectId},
+      parser: (json) => BaseData<LatestFollowProjectResponse?>.fromJson(
+        json,
+        (data) => data is Map<String, dynamic>
+            ? LatestFollowProjectResponse.fromJson(data)
+            : null,
+      ),
+    );
+  }
+
+  /// Danh sách nhân viên đang làm việc.
+  ///
+  /// API: GET /Employee/employees?status=0.
+  Future<BaseData<List<SaleEmployeeResponse>>> getActiveEmployees() async {
+    return get<BaseData<List<SaleEmployeeResponse>>>(
+      ApiEndPoint.getActiveEmployees,
+      query: {'status': 0},
+      parser: (json) => BaseData<List<SaleEmployeeResponse>>.fromJson(
+        json,
+        (data) => (data as List)
+            .map(
+              (e) => SaleEmployeeResponse.fromJson(e as Map<String, dynamic>),
+            )
+            .toList(),
+      ),
+    );
+  }
+
   Future<BaseData<void>> saveReportSaleStaff({
     required List<Map<String, dynamic>> payload,
   }) async {

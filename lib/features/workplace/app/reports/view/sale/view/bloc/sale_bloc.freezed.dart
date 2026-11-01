@@ -35,6 +35,9 @@ mixin _$SaleEvent {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -119,6 +122,9 @@ mixin _$SaleEvent {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -199,6 +205,9 @@ mixin _$SaleEvent {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -281,6 +290,7 @@ mixin _$SaleEvent {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -315,6 +325,7 @@ mixin _$SaleEvent {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -348,6 +359,7 @@ mixin _$SaleEvent {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -437,6 +449,9 @@ class _$InitImpl implements _Init {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -524,6 +539,9 @@ class _$InitImpl implements _Init {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -607,6 +625,9 @@ class _$InitImpl implements _Init {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -695,6 +716,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -732,6 +754,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -768,6 +791,7 @@ class _$InitImpl implements _Init {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -848,6 +872,9 @@ class _$AddWorkImpl implements _AddWork {
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
+    required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
     required TResult Function(
             int index,
             int? projectId,
@@ -936,6 +963,9 @@ class _$AddWorkImpl implements _AddWork {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -1019,6 +1049,9 @@ class _$AddWorkImpl implements _AddWork {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -1107,6 +1140,7 @@ class _$AddWorkImpl implements _AddWork {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -1144,6 +1178,7 @@ class _$AddWorkImpl implements _AddWork {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -1180,6 +1215,7 @@ class _$AddWorkImpl implements _AddWork {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -1287,6 +1323,9 @@ class _$RemoveWorkImpl implements _RemoveWork {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -1374,6 +1413,9 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -1457,6 +1499,9 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -1545,6 +1590,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -1582,6 +1628,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -1618,6 +1665,7 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -1730,6 +1778,9 @@ class _$ExpandWorkImpl implements _ExpandWork {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -1817,6 +1868,9 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -1900,6 +1954,9 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -1988,6 +2045,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -2025,6 +2083,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -2061,6 +2120,7 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -2146,6 +2206,9 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
+    required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
     required TResult Function(
             int index,
             int? projectId,
@@ -2234,6 +2297,9 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -2317,6 +2383,9 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -2405,6 +2474,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -2442,6 +2512,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -2478,6 +2549,7 @@ class _$GetSaleProjectImpl implements _GetSaleProject {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -2558,6 +2630,9 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
+    required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
     required TResult Function(
             int index,
             int? projectId,
@@ -2646,6 +2721,9 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -2729,6 +2807,9 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -2817,6 +2898,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -2854,6 +2936,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -2890,6 +2973,7 @@ class _$GetFirmBaseImpl implements _GetFirmBase {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -2970,6 +3054,9 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
+    required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
     required TResult Function(
             int index,
             int? projectId,
@@ -3058,6 +3145,9 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -3141,6 +3231,9 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -3229,6 +3322,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -3266,6 +3360,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -3302,6 +3397,7 @@ class _$GetTypeProjectBaseImpl implements _GetTypeProjectBase {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -3382,6 +3478,9 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
+    required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
     required TResult Function(
             int index,
             int? projectId,
@@ -3470,6 +3569,9 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -3553,6 +3655,9 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -3641,6 +3746,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -3678,6 +3784,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -3714,6 +3821,7 @@ class _$GetStatusProjectImpl implements _GetStatusProject {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -3794,6 +3902,9 @@ class _$GetCustomerImpl implements _GetCustomer {
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
+    required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
     required TResult Function(
             int index,
             int? projectId,
@@ -3882,6 +3993,9 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -3965,6 +4079,9 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -4053,6 +4170,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -4090,6 +4208,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -4126,6 +4245,7 @@ class _$GetCustomerImpl implements _GetCustomer {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -4206,6 +4326,9 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
+    required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
     required TResult Function(
             int index,
             int? projectId,
@@ -4294,6 +4417,9 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -4377,6 +4503,9 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -4465,6 +4594,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -4502,6 +4632,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -4538,6 +4669,7 @@ class _$GetTypeTeamSaleImpl implements _GetTypeTeamSale {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -4618,6 +4750,9 @@ class _$GetAdminTypeReportImpl implements _GetAdminTypeReport {
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
+    required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
     required TResult Function(
             int index,
             int? projectId,
@@ -4706,6 +4841,9 @@ class _$GetAdminTypeReportImpl implements _GetAdminTypeReport {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -4789,6 +4927,9 @@ class _$GetAdminTypeReportImpl implements _GetAdminTypeReport {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -4877,6 +5018,7 @@ class _$GetAdminTypeReportImpl implements _GetAdminTypeReport {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -4914,6 +5056,7 @@ class _$GetAdminTypeReportImpl implements _GetAdminTypeReport {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -4950,6 +5093,7 @@ class _$GetAdminTypeReportImpl implements _GetAdminTypeReport {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -5030,6 +5174,9 @@ class _$GetAdminCustomerImpl implements _GetAdminCustomer {
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
+    required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
     required TResult Function(
             int index,
             int? projectId,
@@ -5118,6 +5265,9 @@ class _$GetAdminCustomerImpl implements _GetAdminCustomer {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -5201,6 +5351,9 @@ class _$GetAdminCustomerImpl implements _GetAdminCustomer {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -5289,6 +5442,7 @@ class _$GetAdminCustomerImpl implements _GetAdminCustomer {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -5326,6 +5480,7 @@ class _$GetAdminCustomerImpl implements _GetAdminCustomer {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -5362,6 +5517,7 @@ class _$GetAdminCustomerImpl implements _GetAdminCustomer {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -5442,6 +5598,9 @@ class _$GetAdminProjectImpl implements _GetAdminProject {
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
+    required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
     required TResult Function(
             int index,
             int? projectId,
@@ -5530,6 +5689,9 @@ class _$GetAdminProjectImpl implements _GetAdminProject {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -5613,6 +5775,9 @@ class _$GetAdminProjectImpl implements _GetAdminProject {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -5701,6 +5866,7 @@ class _$GetAdminProjectImpl implements _GetAdminProject {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -5738,6 +5904,7 @@ class _$GetAdminProjectImpl implements _GetAdminProject {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -5774,6 +5941,7 @@ class _$GetAdminProjectImpl implements _GetAdminProject {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -5883,6 +6051,9 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -5970,6 +6141,9 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -6053,6 +6227,9 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -6141,6 +6318,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -6178,6 +6356,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -6214,6 +6393,7 @@ class _$GetCustomerContactImpl implements _GetCustomerContact {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -6329,6 +6509,9 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -6416,6 +6599,9 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -6499,6 +6685,9 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -6587,6 +6776,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -6624,6 +6814,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -6660,6 +6851,7 @@ class _$GetCustomerPartImpl implements _GetCustomerPart {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -6746,6 +6938,9 @@ class _$GetAllUserImpl implements _GetAllUser {
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
+    required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
     required TResult Function(
             int index,
             int? projectId,
@@ -6834,6 +7029,9 @@ class _$GetAllUserImpl implements _GetAllUser {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -6917,6 +7115,9 @@ class _$GetAllUserImpl implements _GetAllUser {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -7005,6 +7206,7 @@ class _$GetAllUserImpl implements _GetAllUser {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -7042,6 +7244,7 @@ class _$GetAllUserImpl implements _GetAllUser {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -7078,6 +7281,7 @@ class _$GetAllUserImpl implements _GetAllUser {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -7102,6 +7306,488 @@ class _$GetAllUserImpl implements _GetAllUser {
 
 abstract class _GetAllUser implements SaleEvent {
   const factory _GetAllUser() = _$GetAllUserImpl;
+}
+
+/// @nodoc
+abstract class _$$PrefillFromLeadImplCopyWith<$Res> {
+  factory _$$PrefillFromLeadImplCopyWith(_$PrefillFromLeadImpl value,
+          $Res Function(_$PrefillFromLeadImpl) then) =
+      __$$PrefillFromLeadImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int customerId, String? contactName, String? needDescription});
+}
+
+/// @nodoc
+class __$$PrefillFromLeadImplCopyWithImpl<$Res>
+    extends _$SaleEventCopyWithImpl<$Res, _$PrefillFromLeadImpl>
+    implements _$$PrefillFromLeadImplCopyWith<$Res> {
+  __$$PrefillFromLeadImplCopyWithImpl(
+      _$PrefillFromLeadImpl _value, $Res Function(_$PrefillFromLeadImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? customerId = null,
+    Object? contactName = freezed,
+    Object? needDescription = freezed,
+  }) {
+    return _then(_$PrefillFromLeadImpl(
+      customerId: null == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      needDescription: freezed == needDescription
+          ? _value.needDescription
+          : needDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PrefillFromLeadImpl implements _PrefillFromLead {
+  const _$PrefillFromLeadImpl(
+      {required this.customerId, this.contactName, this.needDescription});
+
+  @override
+  final int customerId;
+  @override
+  final String? contactName;
+  @override
+  final String? needDescription;
+
+  @override
+  String toString() {
+    return 'SaleEvent.prefillFromLead(customerId: $customerId, contactName: $contactName, needDescription: $needDescription)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PrefillFromLeadImpl &&
+            (identical(other.customerId, customerId) ||
+                other.customerId == customerId) &&
+            (identical(other.contactName, contactName) ||
+                other.contactName == contactName) &&
+            (identical(other.needDescription, needDescription) ||
+                other.needDescription == needDescription));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, customerId, contactName, needDescription);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PrefillFromLeadImplCopyWith<_$PrefillFromLeadImpl> get copyWith =>
+      __$$PrefillFromLeadImplCopyWithImpl<_$PrefillFromLeadImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() addWork,
+    required TResult Function(int index) removeWork,
+    required TResult Function(int index) expandWork,
+    required TResult Function() getSaleProject,
+    required TResult Function() getFirmBase,
+    required TResult Function() getTypeProjectBase,
+    required TResult Function() getStatusProject,
+    required TResult Function() getCustomer,
+    required TResult Function() getTypeTeamSale,
+    required TResult Function() getAdminTypeReport,
+    required TResult Function() getAdminCustomer,
+    required TResult Function() getAdminProject,
+    required TResult Function(int customerId) getCustomerContact,
+    required TResult Function(int customerId) getCustomerPart,
+    required TResult Function() getAllUser,
+    required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)
+        updateWork,
+    required TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve,
+            String? reportTypeName)
+        updateAdminWork,
+    required TResult Function(DateTime? picked) updateDate,
+    required TResult Function(DateTime pickedDate) submitReport,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(int dailyID) deleteReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int dailyID, bool forEdit) selectReport,
+    required TResult Function(int dailyID) selectAdminReport,
+    required TResult Function(DateTime pickedDate, int dailyID)
+        submitEditReport,
+    required TResult Function(DateTime pickedDate) submitAdminReport,
+    required TResult Function(DateTime pickedDate, int dailyID)
+        submitEditAdminReport,
+    required TResult Function(int dailyID) deleteAdminReport,
+  }) {
+    return prefillFromLead(customerId, contactName, needDescription);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? addWork,
+    TResult? Function(int index)? removeWork,
+    TResult? Function(int index)? expandWork,
+    TResult? Function()? getSaleProject,
+    TResult? Function()? getFirmBase,
+    TResult? Function()? getTypeProjectBase,
+    TResult? Function()? getStatusProject,
+    TResult? Function()? getCustomer,
+    TResult? Function()? getTypeTeamSale,
+    TResult? Function()? getAdminTypeReport,
+    TResult? Function()? getAdminCustomer,
+    TResult? Function()? getAdminProject,
+    TResult? Function(int customerId)? getCustomerContact,
+    TResult? Function(int customerId)? getCustomerPart,
+    TResult? Function()? getAllUser,
+    TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult? Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve,
+            String? reportTypeName)?
+        updateAdminWork,
+    TResult? Function(DateTime? picked)? updateDate,
+    TResult? Function(DateTime pickedDate)? submitReport,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(int dailyID)? deleteReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int dailyID, bool forEdit)? selectReport,
+    TResult? Function(int dailyID)? selectAdminReport,
+    TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(DateTime pickedDate)? submitAdminReport,
+    TResult? Function(DateTime pickedDate, int dailyID)? submitEditAdminReport,
+    TResult? Function(int dailyID)? deleteAdminReport,
+  }) {
+    return prefillFromLead?.call(customerId, contactName, needDescription);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? addWork,
+    TResult Function(int index)? removeWork,
+    TResult Function(int index)? expandWork,
+    TResult Function()? getSaleProject,
+    TResult Function()? getFirmBase,
+    TResult Function()? getTypeProjectBase,
+    TResult Function()? getStatusProject,
+    TResult Function()? getCustomer,
+    TResult Function()? getTypeTeamSale,
+    TResult Function()? getAdminTypeReport,
+    TResult Function()? getAdminCustomer,
+    TResult Function()? getAdminProject,
+    TResult Function(int customerId)? getCustomerContact,
+    TResult Function(int customerId)? getCustomerPart,
+    TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult Function(
+            int index,
+            int? projectId,
+            String? projectName,
+            String? code,
+            int? firmId,
+            String? firmName,
+            int? typeProjectId,
+            String? typeProjectName,
+            int? customerId,
+            String? customerName,
+            String? customerCode,
+            int? typeTeamSaleId,
+            String? typeTeamSaleMainIndex,
+            int? statusProjectId,
+            String? statusProjectName,
+            int? indexStatusProject,
+            int? customerContactId,
+            String? customerContactName,
+            String? customerContactPhone,
+            String? customerContactTeam,
+            String? customerContactPart,
+            String? customerContactPosition,
+            int? customerPartId,
+            String? customerPartName,
+            String? customerPartCode,
+            int? indexCustomerPart,
+            bool? saleOpportunity,
+            bool? bigAccount,
+            String? content,
+            String? results,
+            String? planNextDay,
+            String? backlog,
+            String? customerProduct)?
+        updateWork,
+    TResult Function(
+            int index,
+            int? projectId,
+            int? employeeId,
+            int? employeeRequestId,
+            int? customerId,
+            int? reportTypeId,
+            DateTime? dateReport,
+            String? reportContent,
+            String? result,
+            String? planNextDay,
+            String? problem,
+            String? problemSolve,
+            String? reportTypeName)?
+        updateAdminWork,
+    TResult Function(DateTime? picked)? updateDate,
+    TResult Function(DateTime pickedDate)? submitReport,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(int dailyID)? deleteReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int dailyID, bool forEdit)? selectReport,
+    TResult Function(int dailyID)? selectAdminReport,
+    TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(DateTime pickedDate)? submitAdminReport,
+    TResult Function(DateTime pickedDate, int dailyID)? submitEditAdminReport,
+    TResult Function(int dailyID)? deleteAdminReport,
+    required TResult orElse(),
+  }) {
+    if (prefillFromLead != null) {
+      return prefillFromLead(customerId, contactName, needDescription);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_AddWork value) addWork,
+    required TResult Function(_RemoveWork value) removeWork,
+    required TResult Function(_ExpandWork value) expandWork,
+    required TResult Function(_GetSaleProject value) getSaleProject,
+    required TResult Function(_GetFirmBase value) getFirmBase,
+    required TResult Function(_GetTypeProjectBase value) getTypeProjectBase,
+    required TResult Function(_GetStatusProject value) getStatusProject,
+    required TResult Function(_GetCustomer value) getCustomer,
+    required TResult Function(_GetTypeTeamSale value) getTypeTeamSale,
+    required TResult Function(_GetAdminTypeReport value) getAdminTypeReport,
+    required TResult Function(_GetAdminCustomer value) getAdminCustomer,
+    required TResult Function(_GetAdminProject value) getAdminProject,
+    required TResult Function(_GetCustomerContact value) getCustomerContact,
+    required TResult Function(_GetCustomerPart value) getCustomerPart,
+    required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
+    required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateAdminWork value) updateAdminWork,
+    required TResult Function(_UpdateDate value) updateDate,
+    required TResult Function(_SubmitReport value) submitReport,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_SelectAdminReport value) selectAdminReport,
+    required TResult Function(_SubmitEditReport value) submitEditReport,
+    required TResult Function(_SubmitAdminReport value) submitAdminReport,
+    required TResult Function(_SubmitEditAdminReport value)
+        submitEditAdminReport,
+    required TResult Function(_DeleteAdminReport value) deleteAdminReport,
+  }) {
+    return prefillFromLead(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_AddWork value)? addWork,
+    TResult? Function(_RemoveWork value)? removeWork,
+    TResult? Function(_ExpandWork value)? expandWork,
+    TResult? Function(_GetSaleProject value)? getSaleProject,
+    TResult? Function(_GetFirmBase value)? getFirmBase,
+    TResult? Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult? Function(_GetStatusProject value)? getStatusProject,
+    TResult? Function(_GetCustomer value)? getCustomer,
+    TResult? Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult? Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult? Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult? Function(_GetAdminProject value)? getAdminProject,
+    TResult? Function(_GetCustomerContact value)? getCustomerContact,
+    TResult? Function(_GetCustomerPart value)? getCustomerPart,
+    TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
+    TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult? Function(_UpdateDate value)? updateDate,
+    TResult? Function(_SubmitReport value)? submitReport,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_SelectAdminReport value)? selectAdminReport,
+    TResult? Function(_SubmitEditReport value)? submitEditReport,
+    TResult? Function(_SubmitAdminReport value)? submitAdminReport,
+    TResult? Function(_SubmitEditAdminReport value)? submitEditAdminReport,
+    TResult? Function(_DeleteAdminReport value)? deleteAdminReport,
+  }) {
+    return prefillFromLead?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_AddWork value)? addWork,
+    TResult Function(_RemoveWork value)? removeWork,
+    TResult Function(_ExpandWork value)? expandWork,
+    TResult Function(_GetSaleProject value)? getSaleProject,
+    TResult Function(_GetFirmBase value)? getFirmBase,
+    TResult Function(_GetTypeProjectBase value)? getTypeProjectBase,
+    TResult Function(_GetStatusProject value)? getStatusProject,
+    TResult Function(_GetCustomer value)? getCustomer,
+    TResult Function(_GetTypeTeamSale value)? getTypeTeamSale,
+    TResult Function(_GetAdminTypeReport value)? getAdminTypeReport,
+    TResult Function(_GetAdminCustomer value)? getAdminCustomer,
+    TResult Function(_GetAdminProject value)? getAdminProject,
+    TResult Function(_GetCustomerContact value)? getCustomerContact,
+    TResult Function(_GetCustomerPart value)? getCustomerPart,
+    TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
+    TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateAdminWork value)? updateAdminWork,
+    TResult Function(_UpdateDate value)? updateDate,
+    TResult Function(_SubmitReport value)? submitReport,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_SelectAdminReport value)? selectAdminReport,
+    TResult Function(_SubmitEditReport value)? submitEditReport,
+    TResult Function(_SubmitAdminReport value)? submitAdminReport,
+    TResult Function(_SubmitEditAdminReport value)? submitEditAdminReport,
+    TResult Function(_DeleteAdminReport value)? deleteAdminReport,
+    required TResult orElse(),
+  }) {
+    if (prefillFromLead != null) {
+      return prefillFromLead(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PrefillFromLead implements SaleEvent {
+  const factory _PrefillFromLead(
+      {required final int customerId,
+      final String? contactName,
+      final String? needDescription}) = _$PrefillFromLeadImpl;
+
+  int get customerId;
+  String? get contactName;
+  String? get needDescription;
+  @JsonKey(ignore: true)
+  _$$PrefillFromLeadImplCopyWith<_$PrefillFromLeadImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -7570,6 +8256,9 @@ class _$UpdateWorkImpl implements _UpdateWork {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -7690,6 +8379,9 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -7806,6 +8498,9 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -7927,6 +8622,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -7964,6 +8660,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -8000,6 +8697,7 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -8324,6 +9022,9 @@ class _$UpdateAdminWorkImpl implements _UpdateAdminWork {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -8424,6 +9125,9 @@ class _$UpdateAdminWorkImpl implements _UpdateAdminWork {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -8520,6 +9224,9 @@ class _$UpdateAdminWorkImpl implements _UpdateAdminWork {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -8621,6 +9328,7 @@ class _$UpdateAdminWorkImpl implements _UpdateAdminWork {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -8658,6 +9366,7 @@ class _$UpdateAdminWorkImpl implements _UpdateAdminWork {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -8694,6 +9403,7 @@ class _$UpdateAdminWorkImpl implements _UpdateAdminWork {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -8831,6 +9541,9 @@ class _$UpdateDateImpl implements _UpdateDate {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -8918,6 +9631,9 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -9001,6 +9717,9 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -9089,6 +9808,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -9126,6 +9846,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -9162,6 +9883,7 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -9275,6 +9997,9 @@ class _$SubmitReportImpl implements _SubmitReport {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -9362,6 +10087,9 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -9445,6 +10173,9 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -9533,6 +10264,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -9570,6 +10302,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -9606,6 +10339,7 @@ class _$SubmitReportImpl implements _SubmitReport {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -9691,6 +10425,9 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     required TResult Function(int customerId) getCustomerContact,
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
+    required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
     required TResult Function(
             int index,
             int? projectId,
@@ -9779,6 +10516,9 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -9862,6 +10602,9 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -9950,6 +10693,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -9987,6 +10731,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -10023,6 +10768,7 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -10130,6 +10876,9 @@ class _$DeleteReportImpl implements _DeleteReport {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -10217,6 +10966,9 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -10300,6 +11052,9 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -10388,6 +11143,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -10425,6 +11181,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -10461,6 +11218,7 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -10584,6 +11342,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -10671,6 +11432,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -10754,6 +11518,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -10842,6 +11609,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -10879,6 +11647,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -10915,6 +11684,7 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -11039,6 +11809,9 @@ class _$SelectReportImpl implements _SelectReport {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -11126,6 +11899,9 @@ class _$SelectReportImpl implements _SelectReport {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -11209,6 +11985,9 @@ class _$SelectReportImpl implements _SelectReport {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -11297,6 +12076,7 @@ class _$SelectReportImpl implements _SelectReport {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -11334,6 +12114,7 @@ class _$SelectReportImpl implements _SelectReport {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -11370,6 +12151,7 @@ class _$SelectReportImpl implements _SelectReport {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -11485,6 +12267,9 @@ class _$SelectAdminReportImpl implements _SelectAdminReport {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -11572,6 +12357,9 @@ class _$SelectAdminReportImpl implements _SelectAdminReport {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -11655,6 +12443,9 @@ class _$SelectAdminReportImpl implements _SelectAdminReport {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -11743,6 +12534,7 @@ class _$SelectAdminReportImpl implements _SelectAdminReport {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -11780,6 +12572,7 @@ class _$SelectAdminReportImpl implements _SelectAdminReport {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -11816,6 +12609,7 @@ class _$SelectAdminReportImpl implements _SelectAdminReport {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -11939,6 +12733,9 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -12026,6 +12823,9 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -12109,6 +12909,9 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -12197,6 +13000,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -12234,6 +13038,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -12270,6 +13075,7 @@ class _$SubmitEditReportImpl implements _SubmitEditReport {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -12386,6 +13192,9 @@ class _$SubmitAdminReportImpl implements _SubmitAdminReport {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -12473,6 +13282,9 @@ class _$SubmitAdminReportImpl implements _SubmitAdminReport {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -12556,6 +13368,9 @@ class _$SubmitAdminReportImpl implements _SubmitAdminReport {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -12644,6 +13459,7 @@ class _$SubmitAdminReportImpl implements _SubmitAdminReport {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -12681,6 +13497,7 @@ class _$SubmitAdminReportImpl implements _SubmitAdminReport {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -12717,6 +13534,7 @@ class _$SubmitAdminReportImpl implements _SubmitAdminReport {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -12841,6 +13659,9 @@ class _$SubmitEditAdminReportImpl implements _SubmitEditAdminReport {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -12928,6 +13749,9 @@ class _$SubmitEditAdminReportImpl implements _SubmitEditAdminReport {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -13011,6 +13835,9 @@ class _$SubmitEditAdminReportImpl implements _SubmitEditAdminReport {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -13099,6 +13926,7 @@ class _$SubmitEditAdminReportImpl implements _SubmitEditAdminReport {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -13136,6 +13964,7 @@ class _$SubmitEditAdminReportImpl implements _SubmitEditAdminReport {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -13172,6 +14001,7 @@ class _$SubmitEditAdminReportImpl implements _SubmitEditAdminReport {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,
@@ -13288,6 +14118,9 @@ class _$DeleteAdminReportImpl implements _DeleteAdminReport {
     required TResult Function(int customerId) getCustomerPart,
     required TResult Function() getAllUser,
     required TResult Function(
+            int customerId, String? contactName, String? needDescription)
+        prefillFromLead,
+    required TResult Function(
             int index,
             int? projectId,
             String? projectName,
@@ -13375,6 +14208,9 @@ class _$DeleteAdminReportImpl implements _DeleteAdminReport {
     TResult? Function(int customerId)? getCustomerPart,
     TResult? Function()? getAllUser,
     TResult? Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
+    TResult? Function(
             int index,
             int? projectId,
             String? projectName,
@@ -13458,6 +14294,9 @@ class _$DeleteAdminReportImpl implements _DeleteAdminReport {
     TResult Function(int customerId)? getCustomerContact,
     TResult Function(int customerId)? getCustomerPart,
     TResult Function()? getAllUser,
+    TResult Function(
+            int customerId, String? contactName, String? needDescription)?
+        prefillFromLead,
     TResult Function(
             int index,
             int? projectId,
@@ -13546,6 +14385,7 @@ class _$DeleteAdminReportImpl implements _DeleteAdminReport {
     required TResult Function(_GetCustomerContact value) getCustomerContact,
     required TResult Function(_GetCustomerPart value) getCustomerPart,
     required TResult Function(_GetAllUser value) getAllUser,
+    required TResult Function(_PrefillFromLead value) prefillFromLead,
     required TResult Function(_UpdateWork value) updateWork,
     required TResult Function(_UpdateAdminWork value) updateAdminWork,
     required TResult Function(_UpdateDate value) updateDate,
@@ -13583,6 +14423,7 @@ class _$DeleteAdminReportImpl implements _DeleteAdminReport {
     TResult? Function(_GetCustomerContact value)? getCustomerContact,
     TResult? Function(_GetCustomerPart value)? getCustomerPart,
     TResult? Function(_GetAllUser value)? getAllUser,
+    TResult? Function(_PrefillFromLead value)? prefillFromLead,
     TResult? Function(_UpdateWork value)? updateWork,
     TResult? Function(_UpdateAdminWork value)? updateAdminWork,
     TResult? Function(_UpdateDate value)? updateDate,
@@ -13619,6 +14460,7 @@ class _$DeleteAdminReportImpl implements _DeleteAdminReport {
     TResult Function(_GetCustomerContact value)? getCustomerContact,
     TResult Function(_GetCustomerPart value)? getCustomerPart,
     TResult Function(_GetAllUser value)? getAllUser,
+    TResult Function(_PrefillFromLead value)? prefillFromLead,
     TResult Function(_UpdateWork value)? updateWork,
     TResult Function(_UpdateAdminWork value)? updateAdminWork,
     TResult Function(_UpdateDate value)? updateDate,

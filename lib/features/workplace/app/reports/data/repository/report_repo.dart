@@ -143,6 +143,29 @@ abstract class ReportRepo {
     required List<Map<String, dynamic>> payload,
   });
 
+  /// ID dự án gắn với khách hàng, trả về 0 khi không có.
+  Future<Either<BaseError, int>> getProjectIdByCustomer({
+    required int customerId,
+  });
+
+  /// Chi tiết dự án theo ID.
+  Future<Either<BaseError, SaleProjectResponse?>> getProjectDetail({
+    required int projectId,
+  });
+
+  /// Báo cáo sale gần nhất của nhân viên trên dự án, null khi chưa có.
+  Future<Either<BaseError, LatestSaleReportResponse?>> getLatestSaleReport({
+    required int userId,
+    required int projectId,
+  });
+
+  /// Hãng và loại dự án theo dõi gần nhất, null khi chưa có.
+  Future<Either<BaseError, LatestFollowProjectResponse?>>
+  getLatestFollowProject({required int projectId});
+
+  /// Danh sách nhân viên đang làm việc.
+  Future<Either<BaseError, List<SaleEmployeeResponse>>> getActiveEmployees();
+
   Future<Either<BaseError, SaleReportResponse>> getSaleDailyReport({
     required DateTime dateStart,
     required DateTime dateEnd,

@@ -319,14 +319,26 @@ class _LeadSaleScreenState
   }
 
   /// Mở màn ghi hoạt động cho phiếu lead.
-  void _goToAddActivityScreen(LeadSaleItem item) {
-    final id = item.id;
-    if (id == null) return;
+  Future<void> _goToAddActivityScreen(LeadSaleItem item) async {
+    final customerId = item.customerId ?? 0;
+    final contactName = item.contactName;
+    final needDescription = item.needDescription;
 
-    context.push(
-      RouteNames.crmLeadSaleActivityAdd,
-      extra: {'id': id, 'leadCode': item.leadCode},
+    final reload = await context.push(
+      RouteNames.reportSaleStaffAdd,
+      extra: {
+        'leadCustomerId': customerId,
+        'leadContactName': contactName,
+        'leadCode': item.leadCode,
+        'needDescription': needDescription,
+      },
     );
+    if (reload == true) {
+      if (mounted) {
+        showMessage(context, 'Đã ghi hoạt động thành công!');
+      }
+      bloc.add(const LeadSaleEvent.refresh());
+    }
   }
 
   /// Xác nhận rồi xoá phiếu lead.

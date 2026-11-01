@@ -72,12 +72,10 @@ abstract class _$LeadSaleStateCWProxy {
   LeadSaleState poTypes(List<LeadSalePoType> poTypes);
 
   LeadSaleState customerIndustries(
-    List<LeadSaleCustomerIndustry> customerIndustries,
-  );
+      List<LeadSaleCustomerIndustry> customerIndustries);
 
   LeadSaleState customerSpecializations(
-    List<LeadSaleCustomerSpecialization> customerSpecializations,
-  );
+      List<LeadSaleCustomerSpecialization> customerSpecializations);
 
   LeadSaleState businessFields(List<LeadSaleBusinessField> businessFields);
 
@@ -340,13 +338,13 @@ class _$LeadSaleStateCWProxyImpl implements _$LeadSaleStateCWProxy {
 
   @override
   LeadSaleState customerIndustries(
-    List<LeadSaleCustomerIndustry> customerIndustries,
-  ) => this(customerIndustries: customerIndustries);
+          List<LeadSaleCustomerIndustry> customerIndustries) =>
+      this(customerIndustries: customerIndustries);
 
   @override
   LeadSaleState customerSpecializations(
-    List<LeadSaleCustomerSpecialization> customerSpecializations,
-  ) => this(customerSpecializations: customerSpecializations);
+          List<LeadSaleCustomerSpecialization> customerSpecializations) =>
+      this(customerSpecializations: customerSpecializations);
 
   @override
   LeadSaleState businessFields(List<LeadSaleBusinessField> businessFields) =>
@@ -476,6 +474,7 @@ class _$LeadSaleStateCWProxyImpl implements _$LeadSaleStateCWProxy {
       this(currentUser: currentUser);
 
   @override
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `LeadSaleState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -589,26 +588,25 @@ class _$LeadSaleStateCWProxyImpl implements _$LeadSaleStateCWProxy {
           : leadType as int,
       leadSourceId:
           leadSourceId == const $CopyWithPlaceholder() || leadSourceId == null
-          ? _value.leadSourceId
-          // ignore: cast_nullable_to_non_nullable
-          : leadSourceId as int,
+              ? _value.leadSourceId
+              // ignore: cast_nullable_to_non_nullable
+              : leadSourceId as int,
       marketingEmployeeId:
           marketingEmployeeId == const $CopyWithPlaceholder() ||
-              marketingEmployeeId == null
-          ? _value.marketingEmployeeId
-          // ignore: cast_nullable_to_non_nullable
-          : marketingEmployeeId as int,
-      saleEmployeeId:
-          saleEmployeeId == const $CopyWithPlaceholder() ||
+                  marketingEmployeeId == null
+              ? _value.marketingEmployeeId
+              // ignore: cast_nullable_to_non_nullable
+              : marketingEmployeeId as int,
+      saleEmployeeId: saleEmployeeId == const $CopyWithPlaceholder() ||
               saleEmployeeId == null
           ? _value.saleEmployeeId
           // ignore: cast_nullable_to_non_nullable
           : saleEmployeeId as int,
       includeOpen:
           includeOpen == const $CopyWithPlaceholder() || includeOpen == null
-          ? _value.includeOpen
-          // ignore: cast_nullable_to_non_nullable
-          : includeOpen as bool,
+              ? _value.includeOpen
+              // ignore: cast_nullable_to_non_nullable
+              : includeOpen as bool,
       stageFilter: stageFilter == const $CopyWithPlaceholder()
           ? _value.stageFilter
           // ignore: cast_nullable_to_non_nullable
@@ -617,26 +615,25 @@ class _$LeadSaleStateCWProxyImpl implements _$LeadSaleStateCWProxy {
           ? _value.sources
           // ignore: cast_nullable_to_non_nullable
           : sources as List<LeadSaleSource>,
-      marketingEmployees:
-          marketingEmployees == const $CopyWithPlaceholder() ||
+      marketingEmployees: marketingEmployees == const $CopyWithPlaceholder() ||
               marketingEmployees == null
           ? _value.marketingEmployees
           // ignore: cast_nullable_to_non_nullable
           : marketingEmployees as List<LeadSaleEmployee>,
       saleEmployees:
           saleEmployees == const $CopyWithPlaceholder() || saleEmployees == null
-          ? _value.saleEmployees
-          // ignore: cast_nullable_to_non_nullable
-          : saleEmployees as List<LeadSaleEmployee>,
+              ? _value.saleEmployees
+              // ignore: cast_nullable_to_non_nullable
+              : saleEmployees as List<LeadSaleEmployee>,
       detail: detail == const $CopyWithPlaceholder()
           ? _value.detail
           // ignore: cast_nullable_to_non_nullable
           : detail as LeadSaleDetail?,
       detailStatus:
           detailStatus == const $CopyWithPlaceholder() || detailStatus == null
-          ? _value.detailStatus
-          // ignore: cast_nullable_to_non_nullable
-          : detailStatus as BaseStateStatus,
+              ? _value.detailStatus
+              // ignore: cast_nullable_to_non_nullable
+              : detailStatus as BaseStateStatus,
       detailMessage: detailMessage == const $CopyWithPlaceholder()
           ? _value.detailMessage
           // ignore: cast_nullable_to_non_nullable
@@ -647,9 +644,9 @@ class _$LeadSaleStateCWProxyImpl implements _$LeadSaleStateCWProxy {
           : files as List<LeadSaleFile>,
       filesStatus:
           filesStatus == const $CopyWithPlaceholder() || filesStatus == null
-          ? _value.filesStatus
-          // ignore: cast_nullable_to_non_nullable
-          : filesStatus as BaseStateStatus,
+              ? _value.filesStatus
+              // ignore: cast_nullable_to_non_nullable
+              : filesStatus as BaseStateStatus,
       filesMessage: filesMessage == const $CopyWithPlaceholder()
           ? _value.filesMessage
           // ignore: cast_nullable_to_non_nullable
@@ -664,9 +661,9 @@ class _$LeadSaleStateCWProxyImpl implements _$LeadSaleStateCWProxy {
           : filesPo as List<LeadSaleFile>,
       filesPoStatus:
           filesPoStatus == const $CopyWithPlaceholder() || filesPoStatus == null
-          ? _value.filesPoStatus
-          // ignore: cast_nullable_to_non_nullable
-          : filesPoStatus as BaseStateStatus,
+              ? _value.filesPoStatus
+              // ignore: cast_nullable_to_non_nullable
+              : filesPoStatus as BaseStateStatus,
       filesPoMessage: filesPoMessage == const $CopyWithPlaceholder()
           ? _value.filesPoMessage
           // ignore: cast_nullable_to_non_nullable
@@ -675,8 +672,7 @@ class _$LeadSaleStateCWProxyImpl implements _$LeadSaleStateCWProxy {
           ? _value.filesPoLeadId
           // ignore: cast_nullable_to_non_nullable
           : filesPoLeadId as int?,
-      fileActionStatus:
-          fileActionStatus == const $CopyWithPlaceholder() ||
+      fileActionStatus: fileActionStatus == const $CopyWithPlaceholder() ||
               fileActionStatus == null
           ? _value.fileActionStatus
           // ignore: cast_nullable_to_non_nullable
@@ -693,20 +689,18 @@ class _$LeadSaleStateCWProxyImpl implements _$LeadSaleStateCWProxy {
           ? _value.poTypes
           // ignore: cast_nullable_to_non_nullable
           : poTypes as List<LeadSalePoType>,
-      customerIndustries:
-          customerIndustries == const $CopyWithPlaceholder() ||
+      customerIndustries: customerIndustries == const $CopyWithPlaceholder() ||
               customerIndustries == null
           ? _value.customerIndustries
           // ignore: cast_nullable_to_non_nullable
           : customerIndustries as List<LeadSaleCustomerIndustry>,
       customerSpecializations:
           customerSpecializations == const $CopyWithPlaceholder() ||
-              customerSpecializations == null
-          ? _value.customerSpecializations
-          // ignore: cast_nullable_to_non_nullable
-          : customerSpecializations as List<LeadSaleCustomerSpecialization>,
-      businessFields:
-          businessFields == const $CopyWithPlaceholder() ||
+                  customerSpecializations == null
+              ? _value.customerSpecializations
+              // ignore: cast_nullable_to_non_nullable
+              : customerSpecializations as List<LeadSaleCustomerSpecialization>,
+      businessFields: businessFields == const $CopyWithPlaceholder() ||
               businessFields == null
           ? _value.businessFields
           // ignore: cast_nullable_to_non_nullable
@@ -725,20 +719,20 @@ class _$LeadSaleStateCWProxyImpl implements _$LeadSaleStateCWProxy {
           : customerDetail as LeadSaleCustomer?,
       customerDetailStatus:
           customerDetailStatus == const $CopyWithPlaceholder() ||
-              customerDetailStatus == null
-          ? _value.customerDetailStatus
-          // ignore: cast_nullable_to_non_nullable
-          : customerDetailStatus as BaseStateStatus,
+                  customerDetailStatus == null
+              ? _value.customerDetailStatus
+              // ignore: cast_nullable_to_non_nullable
+              : customerDetailStatus as BaseStateStatus,
       customerDetailMessage:
           customerDetailMessage == const $CopyWithPlaceholder()
-          ? _value.customerDetailMessage
-          // ignore: cast_nullable_to_non_nullable
-          : customerDetailMessage as String?,
+              ? _value.customerDetailMessage
+              // ignore: cast_nullable_to_non_nullable
+              : customerDetailMessage as String?,
       submitStatus:
           submitStatus == const $CopyWithPlaceholder() || submitStatus == null
-          ? _value.submitStatus
-          // ignore: cast_nullable_to_non_nullable
-          : submitStatus as BaseStateStatus,
+              ? _value.submitStatus
+              // ignore: cast_nullable_to_non_nullable
+              : submitStatus as BaseStateStatus,
       submitMessage: submitMessage == const $CopyWithPlaceholder()
           ? _value.submitMessage
           // ignore: cast_nullable_to_non_nullable
@@ -749,20 +743,19 @@ class _$LeadSaleStateCWProxyImpl implements _$LeadSaleStateCWProxy {
           : saveResult as LeadSaleSaveResult?,
       duplicates:
           duplicates == const $CopyWithPlaceholder() || duplicates == null
-          ? _value.duplicates
-          // ignore: cast_nullable_to_non_nullable
-          : duplicates as List<LeadSaleDuplicateInfo>,
+              ? _value.duplicates
+              // ignore: cast_nullable_to_non_nullable
+              : duplicates as List<LeadSaleDuplicateInfo>,
       deleteStatus:
           deleteStatus == const $CopyWithPlaceholder() || deleteStatus == null
-          ? _value.deleteStatus
-          // ignore: cast_nullable_to_non_nullable
-          : deleteStatus as BaseStateStatus,
+              ? _value.deleteStatus
+              // ignore: cast_nullable_to_non_nullable
+              : deleteStatus as BaseStateStatus,
       deleteMessage: deleteMessage == const $CopyWithPlaceholder()
           ? _value.deleteMessage
           // ignore: cast_nullable_to_non_nullable
           : deleteMessage as String?,
-      activityStatus:
-          activityStatus == const $CopyWithPlaceholder() ||
+      activityStatus: activityStatus == const $CopyWithPlaceholder() ||
               activityStatus == null
           ? _value.activityStatus
           // ignore: cast_nullable_to_non_nullable
@@ -777,21 +770,20 @@ class _$LeadSaleStateCWProxyImpl implements _$LeadSaleStateCWProxy {
           : activityResult as LeadSaleActivitySaveResult?,
       activityTypes:
           activityTypes == const $CopyWithPlaceholder() || activityTypes == null
-          ? _value.activityTypes
-          // ignore: cast_nullable_to_non_nullable
-          : activityTypes as List<LeadSaleActivityType>,
+              ? _value.activityTypes
+              // ignore: cast_nullable_to_non_nullable
+              : activityTypes as List<LeadSaleActivityType>,
       activityTypesStatus:
           activityTypesStatus == const $CopyWithPlaceholder() ||
-              activityTypesStatus == null
-          ? _value.activityTypesStatus
-          // ignore: cast_nullable_to_non_nullable
-          : activityTypesStatus as BaseStateStatus,
+                  activityTypesStatus == null
+              ? _value.activityTypesStatus
+              // ignore: cast_nullable_to_non_nullable
+              : activityTypesStatus as BaseStateStatus,
       activityTypesMessage: activityTypesMessage == const $CopyWithPlaceholder()
           ? _value.activityTypesMessage
           // ignore: cast_nullable_to_non_nullable
           : activityTypesMessage as String?,
-      stageActionStatus:
-          stageActionStatus == const $CopyWithPlaceholder() ||
+      stageActionStatus: stageActionStatus == const $CopyWithPlaceholder() ||
               stageActionStatus == null
           ? _value.stageActionStatus
           // ignore: cast_nullable_to_non_nullable
@@ -800,51 +792,48 @@ class _$LeadSaleStateCWProxyImpl implements _$LeadSaleStateCWProxy {
           ? _value.stageActionMessage
           // ignore: cast_nullable_to_non_nullable
           : stageActionMessage as String?,
-      stageActionIds:
-          stageActionIds == const $CopyWithPlaceholder() ||
+      stageActionIds: stageActionIds == const $CopyWithPlaceholder() ||
               stageActionIds == null
           ? _value.stageActionIds
           // ignore: cast_nullable_to_non_nullable
           : stageActionIds as List<int>,
-      assignableSales:
-          assignableSales == const $CopyWithPlaceholder() ||
+      assignableSales: assignableSales == const $CopyWithPlaceholder() ||
               assignableSales == null
           ? _value.assignableSales
           // ignore: cast_nullable_to_non_nullable
           : assignableSales as List<LeadSaleEmployee>,
       assignableSalesStatus:
           assignableSalesStatus == const $CopyWithPlaceholder() ||
-              assignableSalesStatus == null
-          ? _value.assignableSalesStatus
-          // ignore: cast_nullable_to_non_nullable
-          : assignableSalesStatus as BaseStateStatus,
+                  assignableSalesStatus == null
+              ? _value.assignableSalesStatus
+              // ignore: cast_nullable_to_non_nullable
+              : assignableSalesStatus as BaseStateStatus,
       saleLeaders:
           saleLeaders == const $CopyWithPlaceholder() || saleLeaders == null
-          ? _value.saleLeaders
-          // ignore: cast_nullable_to_non_nullable
-          : saleLeaders as List<LeadSaleEmployee>,
+              ? _value.saleLeaders
+              // ignore: cast_nullable_to_non_nullable
+              : saleLeaders as List<LeadSaleEmployee>,
       saleAdmins:
           saleAdmins == const $CopyWithPlaceholder() || saleAdmins == null
-          ? _value.saleAdmins
-          // ignore: cast_nullable_to_non_nullable
-          : saleAdmins as List<LeadSaleEmployee>,
+              ? _value.saleAdmins
+              // ignore: cast_nullable_to_non_nullable
+              : saleAdmins as List<LeadSaleEmployee>,
       handoverOptionsStatus:
           handoverOptionsStatus == const $CopyWithPlaceholder() ||
-              handoverOptionsStatus == null
-          ? _value.handoverOptionsStatus
-          // ignore: cast_nullable_to_non_nullable
-          : handoverOptionsStatus as BaseStateStatus,
+                  handoverOptionsStatus == null
+              ? _value.handoverOptionsStatus
+              // ignore: cast_nullable_to_non_nullable
+              : handoverOptionsStatus as BaseStateStatus,
       handoverOptionsMessage:
           handoverOptionsMessage == const $CopyWithPlaceholder()
-          ? _value.handoverOptionsMessage
-          // ignore: cast_nullable_to_non_nullable
-          : handoverOptionsMessage as String?,
+              ? _value.handoverOptionsMessage
+              // ignore: cast_nullable_to_non_nullable
+              : handoverOptionsMessage as String?,
       adminSaleId: adminSaleId == const $CopyWithPlaceholder()
           ? _value.adminSaleId
           // ignore: cast_nullable_to_non_nullable
           : adminSaleId as int?,
-      handoverStatus:
-          handoverStatus == const $CopyWithPlaceholder() ||
+      handoverStatus: handoverStatus == const $CopyWithPlaceholder() ||
               handoverStatus == null
           ? _value.handoverStatus
           // ignore: cast_nullable_to_non_nullable
@@ -855,9 +844,9 @@ class _$LeadSaleStateCWProxyImpl implements _$LeadSaleStateCWProxy {
           : handoverMessage as String?,
       handoverIds:
           handoverIds == const $CopyWithPlaceholder() || handoverIds == null
-          ? _value.handoverIds
-          // ignore: cast_nullable_to_non_nullable
-          : handoverIds as List<int>,
+              ? _value.handoverIds
+              // ignore: cast_nullable_to_non_nullable
+              : handoverIds as List<int>,
       currentUser: currentUser == const $CopyWithPlaceholder()
           ? _value.currentUser
           // ignore: cast_nullable_to_non_nullable

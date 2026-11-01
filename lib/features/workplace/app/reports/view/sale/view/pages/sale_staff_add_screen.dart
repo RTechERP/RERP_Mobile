@@ -15,8 +15,36 @@ import '../../../../../../../../common/widgets/buttons/custom_text_button.dart';
 import '../bloc/sale_bloc.dart';
 import '../widgets/sale_staff_add_item.dart';
 
+/// Màn tạo báo cáo sale.
+///
+/// Dùng chung cho 2 luồng:
+/// - Tạo báo cáo thường từ module Báo cáo ([leadCustomerId] = null).
+/// - "Ghi hoạt động" từ phiếu Lead Sale: truyền [leadCustomerId] (0 nếu phiếu
+///   chưa có khách hàng) để điền sẵn dự án, hãng, loại dự án, khách hàng,
+///   trạng thái dự án, ngày, người liên hệ và sản phẩm của KH.
 class SaleStaffAddScreen extends StatefulWidget {
-  const SaleStaffAddScreen({super.key});
+  const SaleStaffAddScreen({
+    super.key,
+    this.leadCustomerId,
+    this.leadContactName,
+    this.leadCode,
+    this.needDescription,
+  });
+
+  /// Khách hàng của phiếu lead; khác null nghĩa là mở từ Lead Sale.
+  final int? leadCustomerId;
+
+  /// Tên người liên hệ trên phiếu lead, dùng để chọn sẵn người liên hệ.
+  final String? leadContactName;
+
+  /// Mã phiếu lead, hiển thị trên tiêu đề.
+  final String? leadCode;
+
+  /// Mô tả nhu cầu từ phiếu lead, dùng để fill sẵn vào "Việc đã làm".
+  final String? needDescription;
+
+  /// Màn được mở từ "Ghi hoạt động" của Lead Sale.
+  bool get isFromLead => leadCustomerId != null;
 
   @override
   State<SaleStaffAddScreen> createState() => _SaleStaffAddScreenState();
@@ -26,10 +54,28 @@ class _SaleStaffAddScreenState
     extends BaseState<SaleStaffAddScreen, SaleEvent, SaleState, SaleBloc> {
   final _formKey = GlobalKey<FormBuilderState>();
 
+  /// Tiêu đề màn: "Ghi hoạt động - mã lead" khi mở từ Lead Sale.
+  String get _title {
+    if (!widget.isFromLead) return 'Tạo báo cáo';
+    final code = (widget.leadCode ?? '').trim();
+    return code.isEmpty ? 'Ghi hoạt động' : 'Ghi hoạt động - $code';
+  }
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      final leadCustomerId = widget.leadCustomerId;
+      if (leadCustomerId != null) {
+        bloc.add(
+          SaleEvent.prefillFromLead(
+            customerId: leadCustomerId,
+            contactName: widget.leadContactName,
+            needDescription: widget.needDescription,
+          ),
+        );
+        return;
+      }
       bloc.add(const SaleEvent.init());
       bloc.add(const SaleEvent.getSaleProject());
       bloc.add(const SaleEvent.getFirmBase());
@@ -53,7 +99,12 @@ class _SaleStaffAddScreenState
             }
           },
           child: BaseScaffold(
-            appBar: AppBarCommon(title: const Text('Tạo báo cáo')),
+            // Route nằm trong ShellRoute của Sale: khi mở từ Lead Sale, navigator
+            // của shell chỉ có 1 trang nên AppBar không tự hiện nút back.
+            appBar: AppBarCommon(
+              title: Text(_title),
+              onBackTap: () => context.pop(),
+            ),
             body: BlocBuilder<SaleBloc, SaleState>(
               builder: (context, state) {
                 return Column(
@@ -73,6 +124,16 @@ class _SaleStaffAddScreenState
                                     prev.expandedWorkIndex !=
                                         curr.expandedWorkIndex,
                                 builder: (context, state) {
+                                  // Đang điền sẵn dữ liệu từ phiếu lead.
+                                  if (widget.isFromLead &&
+                                      state.staffWorks.isEmpty) {
+                                    return const Padding(
+                                      padding: EdgeInsets.all(24),
+                                      child: Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    );
+                                  }
                                   if (state.staffWorks.isEmpty) {
                                     return CustomTextButton(
                                       width: double.infinity,

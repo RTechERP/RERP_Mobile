@@ -580,6 +580,68 @@ class ReportRepoImpl implements ReportRepo {
   }
 
   @override
+  Future<Either<BaseError, int>> getProjectIdByCustomer({
+    required int customerId,
+  }) async {
+    try {
+      final res = await _service.getProjectIdByCustomer(customerId: customerId);
+      return right(res.data ?? 0);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, SaleProjectResponse?>> getProjectDetail({
+    required int projectId,
+  }) async {
+    try {
+      final res = await _service.getProjectDetail(projectId: projectId);
+      return right(res.data);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, LatestSaleReportResponse?>> getLatestSaleReport({
+    required int userId,
+    required int projectId,
+  }) async {
+    try {
+      final res = await _service.getLatestSaleReport(
+        userId: userId,
+        projectId: projectId,
+      );
+      return right(res.data);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, LatestFollowProjectResponse?>>
+  getLatestFollowProject({required int projectId}) async {
+    try {
+      final res = await _service.getLatestFollowProject(projectId: projectId);
+      return right(res.data);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<SaleEmployeeResponse>>>
+  getActiveEmployees() async {
+    try {
+      final res = await _service.getActiveEmployees();
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
   Future<Either<BaseError, List<StatusProjectResponse>>>
   getStatusProject() async {
     try {

@@ -7,22 +7,22 @@ part of 'lead_sale_model.dart';
 // **************************************************************************
 
 _$LeadSaleEmployeeImpl _$$LeadSaleEmployeeImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleEmployeeImpl(
-  id: (json['ID'] as num?)?.toInt(),
-  code: json['Code'] as String?,
-  fullName: json['FullName'] as String?,
-  departmentId: (json['DepartmentID'] as num?)?.toInt(),
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleEmployeeImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      fullName: json['FullName'] as String?,
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+    );
 
 Map<String, dynamic> _$$LeadSaleEmployeeImplToJson(
-  _$LeadSaleEmployeeImpl instance,
-) => <String, dynamic>{
-  'ID': instance.id,
-  'Code': instance.code,
-  'FullName': instance.fullName,
-  'DepartmentID': instance.departmentId,
-};
+        _$LeadSaleEmployeeImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'FullName': instance.fullName,
+      'DepartmentID': instance.departmentId,
+    };
 
 _$LeadSaleSourceImpl _$$LeadSaleSourceImplFromJson(Map<String, dynamic> json) =>
     _$LeadSaleSourceImpl(
@@ -36,50 +36,50 @@ _$LeadSaleSourceImpl _$$LeadSaleSourceImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$LeadSaleSourceImplToJson(
-  _$LeadSaleSourceImpl instance,
-) => <String, dynamic>{
-  'ID': instance.id,
-  'Code': instance.code,
-  'Name': instance.name,
-  'SourceGroup': instance.sourceGroup,
-  'STT': instance.stt,
-  'Note': instance.note,
-  'IsDeleted': instance.isDeleted,
-};
+        _$LeadSaleSourceImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'Name': instance.name,
+      'SourceGroup': instance.sourceGroup,
+      'STT': instance.stt,
+      'Note': instance.note,
+      'IsDeleted': instance.isDeleted,
+    };
 
 _$LeadSaleRoleContextImpl _$$LeadSaleRoleContextImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleRoleContextImpl(
-  employeeId: (json['EmployeeID'] as num?)?.toInt(),
-  isAdmin: json['IsAdmin'] as bool?,
-  isMarketing: json['IsMarketing'] as bool?,
-  isSale: json['IsSale'] as bool?,
-  isSaleLeader: json['IsSaleLeader'] as bool?,
-  isSaleAdmin: json['IsSaleAdmin'] as bool?,
-  isBod: json['IsBod'] as bool?,
-  teamEmployeeIds: (json['TeamEmployeeIDs'] as List<dynamic>?)
-      ?.map((e) => (e as num).toInt())
-      .toList(),
-  canViewMarketing: json['CanViewMarketing'] as bool?,
-  canViewSale: json['CanViewSale'] as bool?,
-  canAssign: json['CanAssign'] as bool?,
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleRoleContextImpl(
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      isAdmin: json['IsAdmin'] as bool?,
+      isMarketing: json['IsMarketing'] as bool?,
+      isSale: json['IsSale'] as bool?,
+      isSaleLeader: json['IsSaleLeader'] as bool?,
+      isSaleAdmin: json['IsSaleAdmin'] as bool?,
+      isBod: json['IsBod'] as bool?,
+      teamEmployeeIds: (json['TeamEmployeeIDs'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      canViewMarketing: json['CanViewMarketing'] as bool?,
+      canViewSale: json['CanViewSale'] as bool?,
+      canAssign: json['CanAssign'] as bool?,
+    );
 
 Map<String, dynamic> _$$LeadSaleRoleContextImplToJson(
-  _$LeadSaleRoleContextImpl instance,
-) => <String, dynamic>{
-  'EmployeeID': instance.employeeId,
-  'IsAdmin': instance.isAdmin,
-  'IsMarketing': instance.isMarketing,
-  'IsSale': instance.isSale,
-  'IsSaleLeader': instance.isSaleLeader,
-  'IsSaleAdmin': instance.isSaleAdmin,
-  'IsBod': instance.isBod,
-  'TeamEmployeeIDs': instance.teamEmployeeIds,
-  'CanViewMarketing': instance.canViewMarketing,
-  'CanViewSale': instance.canViewSale,
-  'CanAssign': instance.canAssign,
-};
+        _$LeadSaleRoleContextImpl instance) =>
+    <String, dynamic>{
+      'EmployeeID': instance.employeeId,
+      'IsAdmin': instance.isAdmin,
+      'IsMarketing': instance.isMarketing,
+      'IsSale': instance.isSale,
+      'IsSaleLeader': instance.isSaleLeader,
+      'IsSaleAdmin': instance.isSaleAdmin,
+      'IsBod': instance.isBod,
+      'TeamEmployeeIDs': instance.teamEmployeeIds,
+      'CanViewMarketing': instance.canViewMarketing,
+      'CanViewSale': instance.canViewSale,
+      'CanAssign': instance.canAssign,
+    };
 
 _$LeadSalePoTypeImpl _$$LeadSalePoTypeImplFromJson(Map<String, dynamic> json) =>
     _$LeadSalePoTypeImpl(
@@ -90,256 +90,261 @@ _$LeadSalePoTypeImpl _$$LeadSalePoTypeImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$LeadSalePoTypeImplToJson(
-  _$LeadSalePoTypeImpl instance,
-) => <String, dynamic>{
-  'ID': instance.id,
-  'MainIndex': instance.mainIndex,
-  'MainGroup': instance.mainGroup,
-  'MainIndex1': instance.mainIndex1,
-};
+        _$LeadSalePoTypeImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'MainIndex': instance.mainIndex,
+      'MainGroup': instance.mainGroup,
+      'MainIndex1': instance.mainIndex1,
+    };
 
 _$LeadSaleCustomerIndustryImpl _$$LeadSaleCustomerIndustryImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleCustomerIndustryImpl(
-  id: (json['ID'] as num?)?.toInt(),
-  industriesNameVi: json['IndustriesNameVI'] as String?,
-  industriesNameEn: json['IndustriesNameEN'] as String?,
-  numberOrder: (json['NumberOrder'] as num?)?.toInt(),
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleCustomerIndustryImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      industriesNameVi: json['IndustriesNameVI'] as String?,
+      industriesNameEn: json['IndustriesNameEN'] as String?,
+      numberOrder: (json['NumberOrder'] as num?)?.toInt(),
+    );
 
 Map<String, dynamic> _$$LeadSaleCustomerIndustryImplToJson(
-  _$LeadSaleCustomerIndustryImpl instance,
-) => <String, dynamic>{
-  'ID': instance.id,
-  'IndustriesNameVI': instance.industriesNameVi,
-  'IndustriesNameEN': instance.industriesNameEn,
-  'NumberOrder': instance.numberOrder,
-};
+        _$LeadSaleCustomerIndustryImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'IndustriesNameVI': instance.industriesNameVi,
+      'IndustriesNameEN': instance.industriesNameEn,
+      'NumberOrder': instance.numberOrder,
+    };
 
 _$LeadSaleCustomerSpecializationImpl
-_$$LeadSaleCustomerSpecializationImplFromJson(Map<String, dynamic> json) =>
-    _$LeadSaleCustomerSpecializationImpl(
+    _$$LeadSaleCustomerSpecializationImplFromJson(Map<String, dynamic> json) =>
+        _$LeadSaleCustomerSpecializationImpl(
+          id: (json['ID'] as num?)?.toInt(),
+          stt: (json['STT'] as num?)?.toInt(),
+          code: json['Code'] as String?,
+          name: json['Name'] as String?,
+        );
+
+Map<String, dynamic> _$$LeadSaleCustomerSpecializationImplToJson(
+        _$LeadSaleCustomerSpecializationImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'STT': instance.stt,
+      'Code': instance.code,
+      'Name': instance.name,
+    };
+
+_$LeadSaleBusinessFieldImpl _$$LeadSaleBusinessFieldImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LeadSaleBusinessFieldImpl(
       id: (json['ID'] as num?)?.toInt(),
       stt: (json['STT'] as num?)?.toInt(),
       code: json['Code'] as String?,
       name: json['Name'] as String?,
     );
 
-Map<String, dynamic> _$$LeadSaleCustomerSpecializationImplToJson(
-  _$LeadSaleCustomerSpecializationImpl instance,
-) => <String, dynamic>{
-  'ID': instance.id,
-  'STT': instance.stt,
-  'Code': instance.code,
-  'Name': instance.name,
-};
-
-_$LeadSaleBusinessFieldImpl _$$LeadSaleBusinessFieldImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleBusinessFieldImpl(
-  id: (json['ID'] as num?)?.toInt(),
-  stt: (json['STT'] as num?)?.toInt(),
-  code: json['Code'] as String?,
-  name: json['Name'] as String?,
-);
-
 Map<String, dynamic> _$$LeadSaleBusinessFieldImplToJson(
-  _$LeadSaleBusinessFieldImpl instance,
-) => <String, dynamic>{
-  'ID': instance.id,
-  'STT': instance.stt,
-  'Code': instance.code,
-  'Name': instance.name,
-};
+        _$LeadSaleBusinessFieldImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'STT': instance.stt,
+      'Code': instance.code,
+      'Name': instance.name,
+    };
 
 _$LeadSaleProvinceImpl _$$LeadSaleProvinceImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleProvinceImpl(
-  id: (json['ID'] as num?)?.toInt(),
-  stt: (json['STT'] as num?)?.toInt(),
-  provinceCode: json['ProvinceCode'] as String?,
-  provinceName: json['ProvinceName'] as String?,
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleProvinceImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
+      provinceCode: json['ProvinceCode'] as String?,
+      provinceName: json['ProvinceName'] as String?,
+    );
 
 Map<String, dynamic> _$$LeadSaleProvinceImplToJson(
-  _$LeadSaleProvinceImpl instance,
-) => <String, dynamic>{
-  'ID': instance.id,
-  'STT': instance.stt,
-  'ProvinceCode': instance.provinceCode,
-  'ProvinceName': instance.provinceName,
-};
+        _$LeadSaleProvinceImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'STT': instance.stt,
+      'ProvinceCode': instance.provinceCode,
+      'ProvinceName': instance.provinceName,
+    };
 
 _$LeadSaleCustomerImpl _$$LeadSaleCustomerImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleCustomerImpl(
-  id: (json['ID'] as num?)?.toInt(),
-  customerName: json['CustomerName'] as String?,
-  customerCode: json['CustomerCode'] as String?,
-  customerShortName: json['CustomerShortName'] as String?,
-  address: json['Address'] as String?,
-  phone: json['Phone'] as String?,
-  email: json['Email'] as String?,
-  contactName: json['ContactName'] as String?,
-  contactPhone: json['ContactPhone'] as String?,
-  contactEmail: json['ContactEmail'] as String?,
-  province: json['Province'] as String?,
-  customerType: (json['CustomerType'] as num?)?.toInt(),
-  customerIndustriesId: (json['CustomerIndustriesID'] as num?)?.toInt(),
-  customerSpecializationId: (json['CustomerSpecializationID'] as num?)?.toInt(),
-  businessFieldId: (json['BusinessFieldID'] as num?)?.toInt(),
-  website: json['Website'] as String?,
-  taxCode: json['TaxCode'] as String?,
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleCustomerImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      customerName: json['CustomerName'] as String?,
+      customerCode: json['CustomerCode'] as String?,
+      customerShortName: json['CustomerShortName'] as String?,
+      address: json['Address'] as String?,
+      phone: json['Phone'] as String?,
+      email: json['Email'] as String?,
+      contactName: json['ContactName'] as String?,
+      contactPhone: json['ContactPhone'] as String?,
+      contactEmail: json['ContactEmail'] as String?,
+      province: json['Province'] as String?,
+      customerType: (json['CustomerType'] as num?)?.toInt(),
+      customerIndustriesId: (json['CustomerIndustriesID'] as num?)?.toInt(),
+      customerSpecializationId:
+          (json['CustomerSpecializationID'] as num?)?.toInt(),
+      businessFieldId: (json['BusinessFieldID'] as num?)?.toInt(),
+      website: json['Website'] as String?,
+      taxCode: json['TaxCode'] as String?,
+    );
 
 Map<String, dynamic> _$$LeadSaleCustomerImplToJson(
-  _$LeadSaleCustomerImpl instance,
-) => <String, dynamic>{
-  'ID': instance.id,
-  'CustomerName': instance.customerName,
-  'CustomerCode': instance.customerCode,
-  'CustomerShortName': instance.customerShortName,
-  'Address': instance.address,
-  'Phone': instance.phone,
-  'Email': instance.email,
-  'ContactName': instance.contactName,
-  'ContactPhone': instance.contactPhone,
-  'ContactEmail': instance.contactEmail,
-  'Province': instance.province,
-  'CustomerType': instance.customerType,
-  'CustomerIndustriesID': instance.customerIndustriesId,
-  'CustomerSpecializationID': instance.customerSpecializationId,
-  'BusinessFieldID': instance.businessFieldId,
-  'Website': instance.website,
-  'TaxCode': instance.taxCode,
-};
+        _$LeadSaleCustomerImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'CustomerName': instance.customerName,
+      'CustomerCode': instance.customerCode,
+      'CustomerShortName': instance.customerShortName,
+      'Address': instance.address,
+      'Phone': instance.phone,
+      'Email': instance.email,
+      'ContactName': instance.contactName,
+      'ContactPhone': instance.contactPhone,
+      'ContactEmail': instance.contactEmail,
+      'Province': instance.province,
+      'CustomerType': instance.customerType,
+      'CustomerIndustriesID': instance.customerIndustriesId,
+      'CustomerSpecializationID': instance.customerSpecializationId,
+      'BusinessFieldID': instance.businessFieldId,
+      'Website': instance.website,
+      'TaxCode': instance.taxCode,
+    };
 
 _$LeadSaleDuplicateInfoImpl _$$LeadSaleDuplicateInfoImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleDuplicateInfoImpl(
-  sourceTable: json['SourceTable'] as String?,
-  id: (json['ID'] as num?)?.toInt(),
-  code: json['Code'] as String?,
-  name: json['Name'] as String?,
-  contactName: json['ContactName'] as String?,
-  contactPhone: json['ContactPhone'] as String?,
-  contactEmail: json['ContactEmail'] as String?,
-  stage: (json['Stage'] as num?)?.toInt(),
-  matchField: json['MatchField'] as String?,
-  ownerName: json['OwnerName'] as String?,
-  ownerSide: json['OwnerSide'] as String?,
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleDuplicateInfoImpl(
+      sourceTable: json['SourceTable'] as String?,
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      name: json['Name'] as String?,
+      contactName: json['ContactName'] as String?,
+      contactPhone: json['ContactPhone'] as String?,
+      contactEmail: json['ContactEmail'] as String?,
+      stage: (json['Stage'] as num?)?.toInt(),
+      matchField: json['MatchField'] as String?,
+      ownerName: json['OwnerName'] as String?,
+      ownerSide: json['OwnerSide'] as String?,
+    );
 
 Map<String, dynamic> _$$LeadSaleDuplicateInfoImplToJson(
-  _$LeadSaleDuplicateInfoImpl instance,
-) => <String, dynamic>{
-  'SourceTable': instance.sourceTable,
-  'ID': instance.id,
-  'Code': instance.code,
-  'Name': instance.name,
-  'ContactName': instance.contactName,
-  'ContactPhone': instance.contactPhone,
-  'ContactEmail': instance.contactEmail,
-  'Stage': instance.stage,
-  'MatchField': instance.matchField,
-  'OwnerName': instance.ownerName,
-  'OwnerSide': instance.ownerSide,
-};
+        _$LeadSaleDuplicateInfoImpl instance) =>
+    <String, dynamic>{
+      'SourceTable': instance.sourceTable,
+      'ID': instance.id,
+      'Code': instance.code,
+      'Name': instance.name,
+      'ContactName': instance.contactName,
+      'ContactPhone': instance.contactPhone,
+      'ContactEmail': instance.contactEmail,
+      'Stage': instance.stage,
+      'MatchField': instance.matchField,
+      'OwnerName': instance.ownerName,
+      'OwnerSide': instance.ownerSide,
+    };
 
 _$LeadSaleDuplicateCheckResultImpl _$$LeadSaleDuplicateCheckResultImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleDuplicateCheckResultImpl(
-  message: json['message'] as String?,
-  duplicates: (json['data'] as List<dynamic>?)
-      ?.map((e) => LeadSaleDuplicateInfo.fromJson(e as Map<String, dynamic>))
-      .toList(),
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleDuplicateCheckResultImpl(
+      message: json['message'] as String?,
+      duplicates: (json['data'] as List<dynamic>?)
+          ?.map(
+              (e) => LeadSaleDuplicateInfo.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
 Map<String, dynamic> _$$LeadSaleDuplicateCheckResultImplToJson(
-  _$LeadSaleDuplicateCheckResultImpl instance,
-) => <String, dynamic>{
-  'message': instance.message,
-  'data': instance.duplicates,
-};
+        _$LeadSaleDuplicateCheckResultImpl instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'data': instance.duplicates,
+    };
 
 _$LeadSaleSaveResultImpl _$$LeadSaleSaveResultImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleSaveResultImpl(
-  message: json['message'] as String?,
-  id: (json['ID'] as num?)?.toInt(),
-  leadCode: json['LeadCode'] as String?,
-  customerId: (json['CustomerID'] as num?)?.toInt(),
-  poTypeId: (json['PoTypeID'] as num?)?.toInt(),
-  leadSourceId: (json['LeadSourceID'] as num?)?.toInt(),
-  contactName: json['ContactName'] as String?,
-  contactPhone: json['ContactPhone'] as String?,
-  contactEmail: json['ContactEmail'] as String?,
-  marketingEmployeeId: (json['MarketingEmployeeID'] as num?)?.toInt(),
-  stage: (json['Stage'] as num?)?.toInt(),
-  idConCus: (json['idConCus'] as num?)?.toInt(),
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleSaveResultImpl(
+      message: json['message'] as String?,
+      id: (json['ID'] as num?)?.toInt(),
+      leadCode: json['LeadCode'] as String?,
+      customerId: (json['CustomerID'] as num?)?.toInt(),
+      poTypeId: (json['PoTypeID'] as num?)?.toInt(),
+      leadSourceId: (json['LeadSourceID'] as num?)?.toInt(),
+      contactName: json['ContactName'] as String?,
+      contactPhone: json['ContactPhone'] as String?,
+      contactEmail: json['ContactEmail'] as String?,
+      marketingEmployeeId: (json['MarketingEmployeeID'] as num?)?.toInt(),
+      stage: (json['Stage'] as num?)?.toInt(),
+      idConCus: (json['idConCus'] as num?)?.toInt(),
+    );
 
 Map<String, dynamic> _$$LeadSaleSaveResultImplToJson(
-  _$LeadSaleSaveResultImpl instance,
-) => <String, dynamic>{
-  'message': instance.message,
-  'ID': instance.id,
-  'LeadCode': instance.leadCode,
-  'CustomerID': instance.customerId,
-  'PoTypeID': instance.poTypeId,
-  'LeadSourceID': instance.leadSourceId,
-  'ContactName': instance.contactName,
-  'ContactPhone': instance.contactPhone,
-  'ContactEmail': instance.contactEmail,
-  'MarketingEmployeeID': instance.marketingEmployeeId,
-  'Stage': instance.stage,
-  'idConCus': instance.idConCus,
-};
+        _$LeadSaleSaveResultImpl instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'ID': instance.id,
+      'LeadCode': instance.leadCode,
+      'CustomerID': instance.customerId,
+      'PoTypeID': instance.poTypeId,
+      'LeadSourceID': instance.leadSourceId,
+      'ContactName': instance.contactName,
+      'ContactPhone': instance.contactPhone,
+      'ContactEmail': instance.contactEmail,
+      'MarketingEmployeeID': instance.marketingEmployeeId,
+      'Stage': instance.stage,
+      'idConCus': instance.idConCus,
+    };
 
 _$LeadSaleHandoverResultImpl _$$LeadSaleHandoverResultImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleHandoverResultImpl(
-  message: json['message'] as String?,
-  ids: (json['data'] as List<dynamic>?)
-      ?.map((e) => (e as num).toInt())
-      .toList(),
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleHandoverResultImpl(
+      message: json['message'] as String?,
+      ids: (json['data'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+    );
 
 Map<String, dynamic> _$$LeadSaleHandoverResultImplToJson(
-  _$LeadSaleHandoverResultImpl instance,
-) => <String, dynamic>{'message': instance.message, 'data': instance.ids};
+        _$LeadSaleHandoverResultImpl instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'data': instance.ids,
+    };
 
 _$LeadSaleActivitySaveResultImpl _$$LeadSaleActivitySaveResultImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleActivitySaveResultImpl(
-  message: json['message'] as String?,
-  id: (json['ID'] as num?)?.toInt(),
-  leadId: (json['LeadID'] as num?)?.toInt(),
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleActivitySaveResultImpl(
+      message: json['message'] as String?,
+      id: (json['ID'] as num?)?.toInt(),
+      leadId: (json['LeadID'] as num?)?.toInt(),
+    );
 
 Map<String, dynamic> _$$LeadSaleActivitySaveResultImplToJson(
-  _$LeadSaleActivitySaveResultImpl instance,
-) => <String, dynamic>{
-  'message': instance.message,
-  'ID': instance.id,
-  'LeadID': instance.leadId,
-};
+        _$LeadSaleActivitySaveResultImpl instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'ID': instance.id,
+      'LeadID': instance.leadId,
+    };
 
 _$LeadSaleActivityTypeImpl _$$LeadSaleActivityTypeImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleActivityTypeImpl(
-  id: (json['ID'] as num?)?.toInt(),
-  mainIndex: json['MainIndex'] as String?,
-  mainGroup: (json['MainGroup'] as num?)?.toInt(),
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleActivityTypeImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      mainIndex: json['MainIndex'] as String?,
+      mainGroup: (json['MainGroup'] as num?)?.toInt(),
+    );
 
 Map<String, dynamic> _$$LeadSaleActivityTypeImplToJson(
-  _$LeadSaleActivityTypeImpl instance,
-) => <String, dynamic>{
-  'ID': instance.id,
-  'MainIndex': instance.mainIndex,
-  'MainGroup': instance.mainGroup,
-};
+        _$LeadSaleActivityTypeImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'MainIndex': instance.mainIndex,
+      'MainGroup': instance.mainGroup,
+    };
 
 _$LeadSaleItemImpl _$$LeadSaleItemImplFromJson(Map<String, dynamic> json) =>
     _$LeadSaleItemImpl(
@@ -484,147 +489,147 @@ _$LeadSaleDetailImpl _$$LeadSaleDetailImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$LeadSaleDetailImplToJson(
-  _$LeadSaleDetailImpl instance,
-) => <String, dynamic>{
-  'lead': instance.lead,
-  'activities': instance.activities,
-  'logs': instance.logs,
-  'actions': instance.actions,
-};
+        _$LeadSaleDetailImpl instance) =>
+    <String, dynamic>{
+      'lead': instance.lead,
+      'activities': instance.activities,
+      'logs': instance.logs,
+      'actions': instance.actions,
+    };
 
 _$LeadSaleDetailLeadImpl _$$LeadSaleDetailLeadImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleDetailLeadImpl(
-  id: (json['ID'] as num?)?.toInt(),
-  leadCode: json['LeadCode'] as String?,
-  leadType: (json['LeadType'] as num?)?.toInt(),
-  customerId: (json['CustomerID'] as num?)?.toInt(),
-  customerTeam: json['CustomerTeam'] as String?,
-  customerPart: json['CustomerPart'] as String?,
-  customerPosition: json['CustomerPosition'] as String?,
-  customerType: (json['CustomerType'] as num?)?.toInt(),
-  isDeleted: json['IsDeleted'] as bool?,
-  contactName: json['ContactName'] as String?,
-  contactPosition: json['ContactPosition'] as String?,
-  contactPhone: json['ContactPhone'] as String?,
-  contactEmail: json['ContactEmail'] as String?,
-  contactAppointmentDate: json['ContactAppointmentDate'] as String?,
-  createdDate: json['CreatedDate'] as String?,
-  collectedDate: json['CollectedDate'] as String?,
-  leadSourceId: (json['LeadSourceID'] as num?)?.toInt(),
-  campaignName: json['CampaignName'] as String?,
-  rating: (json['Rating'] as num?)?.toInt(),
-  estimatedValue: (json['EstimatedValue'] as num?)?.toDouble(),
-  productInterest: json['ProductInterest'] as String?,
-  needDescription: json['NeedDescription'] as String?,
-  note: json['Note'] as String?,
-  website: json['Website'] as String?,
-  saleEmployeeId: (json['SaleEmployeeID'] as num?)?.toInt(),
-  marketingEmployeeId: (json['MarketingEmployeeID'] as num?)?.toInt(),
-  stage: (json['Stage'] as num?)?.toInt(),
-  handoverLeaderId: (json['HandoverLeaderID'] as num?)?.toInt(),
-  adminSaleId: (json['AdminSaleID'] as num?)?.toInt(),
-  handoverDate: json['HandoverDate'] as String?,
-  handoverBy: (json['HandoverBy'] as num?)?.toInt(),
-  qualifiedDate: json['QualifiedDate'] as String?,
-  lostReason: json['LostReason'] as String?,
-  closedDate: json['ClosedDate'] as String?,
-  returnReason: json['ReturnReason'] as String?,
-  assignedDate: json['AssignedDate'] as String?,
-  assignedBy: (json['AssignedBy'] as num?)?.toInt(),
-  nextFollowUpDate: json['NextFollowUpDate'] as String?,
-  poReason: json['PoReason'] as String?,
-  poDate: json['PoDate'] as String?,
-  poTypeId: (json['PoTypeID'] as num?)?.toInt(),
-  createdBy: json['CreatedBy'] as String?,
-  updatedBy: json['UpdatedBy'] as String?,
-  updatedDate: json['UpdatedDate'] as String?,
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleDetailLeadImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      leadCode: json['LeadCode'] as String?,
+      leadType: (json['LeadType'] as num?)?.toInt(),
+      customerId: (json['CustomerID'] as num?)?.toInt(),
+      customerTeam: json['CustomerTeam'] as String?,
+      customerPart: json['CustomerPart'] as String?,
+      customerPosition: json['CustomerPosition'] as String?,
+      customerType: (json['CustomerType'] as num?)?.toInt(),
+      isDeleted: json['IsDeleted'] as bool?,
+      contactName: json['ContactName'] as String?,
+      contactPosition: json['ContactPosition'] as String?,
+      contactPhone: json['ContactPhone'] as String?,
+      contactEmail: json['ContactEmail'] as String?,
+      contactAppointmentDate: json['ContactAppointmentDate'] as String?,
+      createdDate: json['CreatedDate'] as String?,
+      collectedDate: json['CollectedDate'] as String?,
+      leadSourceId: (json['LeadSourceID'] as num?)?.toInt(),
+      campaignName: json['CampaignName'] as String?,
+      rating: (json['Rating'] as num?)?.toInt(),
+      estimatedValue: (json['EstimatedValue'] as num?)?.toDouble(),
+      productInterest: json['ProductInterest'] as String?,
+      needDescription: json['NeedDescription'] as String?,
+      note: json['Note'] as String?,
+      website: json['Website'] as String?,
+      saleEmployeeId: (json['SaleEmployeeID'] as num?)?.toInt(),
+      marketingEmployeeId: (json['MarketingEmployeeID'] as num?)?.toInt(),
+      stage: (json['Stage'] as num?)?.toInt(),
+      handoverLeaderId: (json['HandoverLeaderID'] as num?)?.toInt(),
+      adminSaleId: (json['AdminSaleID'] as num?)?.toInt(),
+      handoverDate: json['HandoverDate'] as String?,
+      handoverBy: (json['HandoverBy'] as num?)?.toInt(),
+      qualifiedDate: json['QualifiedDate'] as String?,
+      lostReason: json['LostReason'] as String?,
+      closedDate: json['ClosedDate'] as String?,
+      returnReason: json['ReturnReason'] as String?,
+      assignedDate: json['AssignedDate'] as String?,
+      assignedBy: (json['AssignedBy'] as num?)?.toInt(),
+      nextFollowUpDate: json['NextFollowUpDate'] as String?,
+      poReason: json['PoReason'] as String?,
+      poDate: json['PoDate'] as String?,
+      poTypeId: (json['PoTypeID'] as num?)?.toInt(),
+      createdBy: json['CreatedBy'] as String?,
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] as String?,
+    );
 
 Map<String, dynamic> _$$LeadSaleDetailLeadImplToJson(
-  _$LeadSaleDetailLeadImpl instance,
-) => <String, dynamic>{
-  'ID': instance.id,
-  'LeadCode': instance.leadCode,
-  'LeadType': instance.leadType,
-  'CustomerID': instance.customerId,
-  'CustomerTeam': instance.customerTeam,
-  'CustomerPart': instance.customerPart,
-  'CustomerPosition': instance.customerPosition,
-  'CustomerType': instance.customerType,
-  'IsDeleted': instance.isDeleted,
-  'ContactName': instance.contactName,
-  'ContactPosition': instance.contactPosition,
-  'ContactPhone': instance.contactPhone,
-  'ContactEmail': instance.contactEmail,
-  'ContactAppointmentDate': instance.contactAppointmentDate,
-  'CreatedDate': instance.createdDate,
-  'CollectedDate': instance.collectedDate,
-  'LeadSourceID': instance.leadSourceId,
-  'CampaignName': instance.campaignName,
-  'Rating': instance.rating,
-  'EstimatedValue': instance.estimatedValue,
-  'ProductInterest': instance.productInterest,
-  'NeedDescription': instance.needDescription,
-  'Note': instance.note,
-  'Website': instance.website,
-  'SaleEmployeeID': instance.saleEmployeeId,
-  'MarketingEmployeeID': instance.marketingEmployeeId,
-  'Stage': instance.stage,
-  'HandoverLeaderID': instance.handoverLeaderId,
-  'AdminSaleID': instance.adminSaleId,
-  'HandoverDate': instance.handoverDate,
-  'HandoverBy': instance.handoverBy,
-  'QualifiedDate': instance.qualifiedDate,
-  'LostReason': instance.lostReason,
-  'ClosedDate': instance.closedDate,
-  'ReturnReason': instance.returnReason,
-  'AssignedDate': instance.assignedDate,
-  'AssignedBy': instance.assignedBy,
-  'NextFollowUpDate': instance.nextFollowUpDate,
-  'PoReason': instance.poReason,
-  'PoDate': instance.poDate,
-  'PoTypeID': instance.poTypeId,
-  'CreatedBy': instance.createdBy,
-  'UpdatedBy': instance.updatedBy,
-  'UpdatedDate': instance.updatedDate,
-};
+        _$LeadSaleDetailLeadImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'LeadCode': instance.leadCode,
+      'LeadType': instance.leadType,
+      'CustomerID': instance.customerId,
+      'CustomerTeam': instance.customerTeam,
+      'CustomerPart': instance.customerPart,
+      'CustomerPosition': instance.customerPosition,
+      'CustomerType': instance.customerType,
+      'IsDeleted': instance.isDeleted,
+      'ContactName': instance.contactName,
+      'ContactPosition': instance.contactPosition,
+      'ContactPhone': instance.contactPhone,
+      'ContactEmail': instance.contactEmail,
+      'ContactAppointmentDate': instance.contactAppointmentDate,
+      'CreatedDate': instance.createdDate,
+      'CollectedDate': instance.collectedDate,
+      'LeadSourceID': instance.leadSourceId,
+      'CampaignName': instance.campaignName,
+      'Rating': instance.rating,
+      'EstimatedValue': instance.estimatedValue,
+      'ProductInterest': instance.productInterest,
+      'NeedDescription': instance.needDescription,
+      'Note': instance.note,
+      'Website': instance.website,
+      'SaleEmployeeID': instance.saleEmployeeId,
+      'MarketingEmployeeID': instance.marketingEmployeeId,
+      'Stage': instance.stage,
+      'HandoverLeaderID': instance.handoverLeaderId,
+      'AdminSaleID': instance.adminSaleId,
+      'HandoverDate': instance.handoverDate,
+      'HandoverBy': instance.handoverBy,
+      'QualifiedDate': instance.qualifiedDate,
+      'LostReason': instance.lostReason,
+      'ClosedDate': instance.closedDate,
+      'ReturnReason': instance.returnReason,
+      'AssignedDate': instance.assignedDate,
+      'AssignedBy': instance.assignedBy,
+      'NextFollowUpDate': instance.nextFollowUpDate,
+      'PoReason': instance.poReason,
+      'PoDate': instance.poDate,
+      'PoTypeID': instance.poTypeId,
+      'CreatedBy': instance.createdBy,
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate,
+    };
 
 _$LeadSaleActivityImpl _$$LeadSaleActivityImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleActivityImpl(
-  id: (json['ID'] as num?)?.toInt(),
-  leadId: (json['LeadID'] as num?)?.toInt(),
-  activityType: (json['ActivityType'] as num?)?.toInt(),
-  activityTypeName: json['ActivityTypeName'] as String?,
-  activityDate: json['ActivityDate'] as String?,
-  content: json['Content'] as String?,
-  result: json['Result'] as String?,
-  nextAction: json['NextAction'] as String?,
-  nextActionDate: json['NextActionDate'] as String?,
-  employeeId: (json['EmployeeID'] as num?)?.toInt(),
-  employeeName: json['EmployeeName'] as String?,
-  createdBy: json['CreatedBy'] as String?,
-  createdDate: json['CreatedDate'] as String?,
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleActivityImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      leadId: (json['LeadID'] as num?)?.toInt(),
+      activityType: (json['ActivityType'] as num?)?.toInt(),
+      activityTypeName: json['ActivityTypeName'] as String?,
+      activityDate: json['ActivityDate'] as String?,
+      content: json['Content'] as String?,
+      result: json['Result'] as String?,
+      nextAction: json['NextAction'] as String?,
+      nextActionDate: json['NextActionDate'] as String?,
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      employeeName: json['EmployeeName'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] as String?,
+    );
 
 Map<String, dynamic> _$$LeadSaleActivityImplToJson(
-  _$LeadSaleActivityImpl instance,
-) => <String, dynamic>{
-  'ID': instance.id,
-  'LeadID': instance.leadId,
-  'ActivityType': instance.activityType,
-  'ActivityTypeName': instance.activityTypeName,
-  'ActivityDate': instance.activityDate,
-  'Content': instance.content,
-  'Result': instance.result,
-  'NextAction': instance.nextAction,
-  'NextActionDate': instance.nextActionDate,
-  'EmployeeID': instance.employeeId,
-  'EmployeeName': instance.employeeName,
-  'CreatedBy': instance.createdBy,
-  'CreatedDate': instance.createdDate,
-};
+        _$LeadSaleActivityImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'LeadID': instance.leadId,
+      'ActivityType': instance.activityType,
+      'ActivityTypeName': instance.activityTypeName,
+      'ActivityDate': instance.activityDate,
+      'Content': instance.content,
+      'Result': instance.result,
+      'NextAction': instance.nextAction,
+      'NextActionDate': instance.nextActionDate,
+      'EmployeeID': instance.employeeId,
+      'EmployeeName': instance.employeeName,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate,
+    };
 
 _$LeadSaleLogImpl _$$LeadSaleLogImplFromJson(Map<String, dynamic> json) =>
     _$LeadSaleLogImpl(
@@ -687,37 +692,37 @@ Map<String, dynamic> _$$LeadSaleFileImplToJson(_$LeadSaleFileImpl instance) =>
     };
 
 _$LeadSaleActionsImpl _$$LeadSaleActionsImplFromJson(
-  Map<String, dynamic> json,
-) => _$LeadSaleActionsImpl(
-  canView: json['CanView'] as bool?,
-  canEdit: json['CanEdit'] as bool?,
-  canQualify: json['CanQualify'] as bool?,
-  canDisqualify: json['CanDisqualify'] as bool?,
-  canHandover: json['CanHandover'] as bool?,
-  canAssign: json['CanAssign'] as bool?,
-  canReturn: json['CanReturn'] as bool?,
-  canClose: json['CanClose'] as bool?,
-  canLinkCustomer: json['CanLinkCustomer'] as bool?,
-  canReopen: json['CanReopen'] as bool?,
-  canAddActivity: json['CanAddActivity'] as bool?,
-  canDelete: json['CanDelete'] as bool?,
-  canPo: json['CanPO'] as bool?,
-);
+        Map<String, dynamic> json) =>
+    _$LeadSaleActionsImpl(
+      canView: json['CanView'] as bool?,
+      canEdit: json['CanEdit'] as bool?,
+      canQualify: json['CanQualify'] as bool?,
+      canDisqualify: json['CanDisqualify'] as bool?,
+      canHandover: json['CanHandover'] as bool?,
+      canAssign: json['CanAssign'] as bool?,
+      canReturn: json['CanReturn'] as bool?,
+      canClose: json['CanClose'] as bool?,
+      canLinkCustomer: json['CanLinkCustomer'] as bool?,
+      canReopen: json['CanReopen'] as bool?,
+      canAddActivity: json['CanAddActivity'] as bool?,
+      canDelete: json['CanDelete'] as bool?,
+      canPo: json['CanPO'] as bool?,
+    );
 
 Map<String, dynamic> _$$LeadSaleActionsImplToJson(
-  _$LeadSaleActionsImpl instance,
-) => <String, dynamic>{
-  'CanView': instance.canView,
-  'CanEdit': instance.canEdit,
-  'CanQualify': instance.canQualify,
-  'CanDisqualify': instance.canDisqualify,
-  'CanHandover': instance.canHandover,
-  'CanAssign': instance.canAssign,
-  'CanReturn': instance.canReturn,
-  'CanClose': instance.canClose,
-  'CanLinkCustomer': instance.canLinkCustomer,
-  'CanReopen': instance.canReopen,
-  'CanAddActivity': instance.canAddActivity,
-  'CanDelete': instance.canDelete,
-  'CanPO': instance.canPo,
-};
+        _$LeadSaleActionsImpl instance) =>
+    <String, dynamic>{
+      'CanView': instance.canView,
+      'CanEdit': instance.canEdit,
+      'CanQualify': instance.canQualify,
+      'CanDisqualify': instance.canDisqualify,
+      'CanHandover': instance.canHandover,
+      'CanAssign': instance.canAssign,
+      'CanReturn': instance.canReturn,
+      'CanClose': instance.canClose,
+      'CanLinkCustomer': instance.canLinkCustomer,
+      'CanReopen': instance.canReopen,
+      'CanAddActivity': instance.canAddActivity,
+      'CanDelete': instance.canDelete,
+      'CanPO': instance.canPo,
+    };

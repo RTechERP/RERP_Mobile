@@ -24,6 +24,19 @@ class SaleEvent with _$SaleEvent {
       _GetCustomerPart;
 
   const factory SaleEvent.getAllUser() = _GetAllUser;
+
+  /// Khởi tạo form tạo báo cáo từ phiếu lead sale.
+  ///
+  /// Tải toàn bộ danh mục của form, rồi điền sẵn dự án, hãng, loại dự án,
+  /// khách hàng, trạng thái dự án, người liên hệ, sản phẩm của KH và việc đã làm
+  /// theo khách hàng [customerId] của phiếu lead. [contactName] là tên người liên
+  /// hệ trên phiếu lead, dùng để chọn sẵn người liên hệ cùng tên. [needDescription]
+  /// là mô tả nhu cầu từ phiếu lead, dùng để fill sẵn vào "Việc đã làm".
+  const factory SaleEvent.prefillFromLead({
+    required int customerId,
+    String? contactName,
+    String? needDescription,
+  }) = _PrefillFromLead;
   const factory SaleEvent.updateWork({
     required int index,
     int? projectId,

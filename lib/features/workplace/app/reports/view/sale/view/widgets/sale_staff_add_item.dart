@@ -224,8 +224,9 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
               nameTimePicker: 'date_start',
               label: 'Ngày thực hiện gần nhất',
               inputType: InputType.date,
-              initialValue: _initialReportDate(),
+              initialValue: widget.report.dateStart ?? _initialReportDate(),
               format: DateFormat('dd/MM/yyyy'),
+              isRequired: true,
             ),
 
             const SizedBox(height: 16),
@@ -236,7 +237,7 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
               nameTimePicker: 'date_end',
               label: 'Ngày dự kiến thực hiện',
               inputType: InputType.date,
-              initialValue: _initialReportDate(),
+              initialValue: widget.report.dateEnd ?? _initialReportDate(),
               format: DateFormat('dd/MM/yyyy'),
             ),
 
@@ -280,6 +281,8 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
                       ? work.projectCode!
                       : 'Chọn dự án',
                   icon: Icons.category_outlined,
+                  // Giá trị điền sẵn (vd tạo báo cáo từ phiếu lead).
+                  initialValue: work.projectName,
                   onFieldCreated: (field) => projectField = field,
                   readOnly: true,
                 ),
@@ -320,9 +323,11 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
                   nameForm: 'sale_staff_firm_${widget.report.id}',
                   nameTextField: 'firm_${widget.report.id}',
                   label: 'Hãng',
+                  initialValue: work.firmName,
                   onFieldCreated: (field) => firmField = field,
                   readOnly: true,
                   icon: Icons.category_outlined,
+                  isRequired: true,
                 ),
               ),
             ),
@@ -356,9 +361,11 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
                   nameForm: 'sale_staff_type_project_${widget.report.id}',
                   nameTextField: 'type_project_${widget.report.id}',
                   label: 'Loại dự án',
+                  initialValue: work.typeProjectName,
                   onFieldCreated: (field) => typeProjectField = field,
                   readOnly: true,
                   icon: Icons.category_outlined,
+                  isRequired: true,
                 ),
               ),
             ),
@@ -394,9 +401,11 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
                   nameForm: 'sale_staff_status_${widget.report.id}',
                   nameTextField: 'status_${widget.report.id}',
                   label: 'Trạng thái dự án',
+                  initialValue: work.statusProjectName,
                   onFieldCreated: (field) => statusProjectField = field,
                   readOnly: true,
                   icon: Icons.flag_outlined,
+                  isRequired: true,
                 ),
               ),
             ),
@@ -435,9 +444,11 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
                   label: (work.customerCode ?? '').isNotEmpty
                       ? work.customerCode!
                       : 'Khách hàng',
+                  initialValue: work.customerName,
                   onFieldCreated: (field) => customerField = field,
                   readOnly: true,
                   icon: Icons.business_outlined,
+                  isRequired: true,
                 ),
               ),
             ),
@@ -485,8 +496,10 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
                   nameTextField: 'contact_${widget.report.id}',
                   label: 'Người liên hệ',
                   readOnly: true,
+                  initialValue: work.customerContactName,
                   onFieldCreated: (field) => contactField = field,
                   icon: Icons.person_outline,
+                  isRequired: true,
                 ),
               ),
             ),
@@ -521,9 +534,11 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
                   nameForm: 'sale_staff_group_${widget.report.id}',
                   nameTextField: 'group_${widget.report.id}',
                   label: 'Loại nhóm',
+                  initialValue: work.typeTeamSaleMainIndex,
                   onFieldCreated: (field) => typeTeamSaleField = field,
                   readOnly: true,
                   icon: Icons.group_outlined,
+                  isRequired: true,
                 ),
               ),
             ),
@@ -566,7 +581,8 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
                   key: ValueKey('enduser_${widget.report.id}'),
                   nameForm: 'sale_staff_enduser_${widget.report.id}',
                   nameTextField: 'enduser_${widget.report.id}',
-                  label: 'Bộ phận khách hàng',
+                  label: 'End User',
+                  initialValue: work.customerPartCode,
                   onFieldCreated: (field) => endUserField = field,
                   readOnly: true,
                   icon: Icons.apartment_outlined,
@@ -631,11 +647,12 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
               nameForm: 'sale_staff_content_${widget.report.id}',
               nameTextField: 'content_${widget.report.id}',
 
-              label: 'Nội dung công việc',
+              label: 'Việc đã làm',
               keyboardType: TextInputType.multiline,
               textInputAction: TextInputAction.newline,
               autoExpand: true,
               controller: _contentController,
+              isRequired: true,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
                   SaleEvent.updateWork(
@@ -660,6 +677,7 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
               textInputAction: TextInputAction.newline,
               autoExpand: true,
               controller: _resultsController,
+              isRequired: true,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
                   SaleEvent.updateWork(
@@ -704,6 +722,7 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
               textInputAction: TextInputAction.newline,
               autoExpand: true,
               controller: _planNextDayController,
+              isRequired: true,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
                   SaleEvent.updateWork(
@@ -726,6 +745,7 @@ class _SaleStaffAddItemState extends State<SaleStaffAddItem> {
               textInputAction: TextInputAction.newline,
               autoExpand: true,
               controller: _customerProductController,
+              isRequired: true,
               onChanged: (v) {
                 context.read<SaleBloc>().add(
                   SaleEvent.updateWork(

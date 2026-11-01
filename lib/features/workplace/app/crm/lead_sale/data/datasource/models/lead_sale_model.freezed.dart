@@ -12,8 +12,7 @@ part of 'lead_sale_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 LeadSaleEmployee _$LeadSaleEmployeeFromJson(Map<String, dynamic> json) {
   return _LeadSaleEmployee.fromJson(json);
@@ -39,16 +38,14 @@ mixin _$LeadSaleEmployee {
 /// @nodoc
 abstract class $LeadSaleEmployeeCopyWith<$Res> {
   factory $LeadSaleEmployeeCopyWith(
-    LeadSaleEmployee value,
-    $Res Function(LeadSaleEmployee) then,
-  ) = _$LeadSaleEmployeeCopyWithImpl<$Res, LeadSaleEmployee>;
+          LeadSaleEmployee value, $Res Function(LeadSaleEmployee) then) =
+      _$LeadSaleEmployeeCopyWithImpl<$Res, LeadSaleEmployee>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'Code') String? code,
-    @JsonKey(name: 'FullName') String? fullName,
-    @JsonKey(name: 'DepartmentID') int? departmentId,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId});
 }
 
 /// @nodoc
@@ -69,55 +66,49 @@ class _$LeadSaleEmployeeCopyWithImpl<$Res, $Val extends LeadSaleEmployee>
     Object? fullName = freezed,
     Object? departmentId = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            code: freezed == code
-                ? _value.code
-                : code // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            fullName: freezed == fullName
-                ? _value.fullName
-                : fullName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            departmentId: freezed == departmentId
-                ? _value.departmentId
-                : departmentId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$LeadSaleEmployeeImplCopyWith<$Res>
     implements $LeadSaleEmployeeCopyWith<$Res> {
-  factory _$$LeadSaleEmployeeImplCopyWith(
-    _$LeadSaleEmployeeImpl value,
-    $Res Function(_$LeadSaleEmployeeImpl) then,
-  ) = __$$LeadSaleEmployeeImplCopyWithImpl<$Res>;
+  factory _$$LeadSaleEmployeeImplCopyWith(_$LeadSaleEmployeeImpl value,
+          $Res Function(_$LeadSaleEmployeeImpl) then) =
+      __$$LeadSaleEmployeeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'Code') String? code,
-    @JsonKey(name: 'FullName') String? fullName,
-    @JsonKey(name: 'DepartmentID') int? departmentId,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentID') int? departmentId});
 }
 
 /// @nodoc
 class __$$LeadSaleEmployeeImplCopyWithImpl<$Res>
     extends _$LeadSaleEmployeeCopyWithImpl<$Res, _$LeadSaleEmployeeImpl>
     implements _$$LeadSaleEmployeeImplCopyWith<$Res> {
-  __$$LeadSaleEmployeeImplCopyWithImpl(
-    _$LeadSaleEmployeeImpl _value,
-    $Res Function(_$LeadSaleEmployeeImpl) _then,
-  ) : super(_value, _then);
+  __$$LeadSaleEmployeeImplCopyWithImpl(_$LeadSaleEmployeeImpl _value,
+      $Res Function(_$LeadSaleEmployeeImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -127,38 +118,35 @@ class __$$LeadSaleEmployeeImplCopyWithImpl<$Res>
     Object? fullName = freezed,
     Object? departmentId = freezed,
   }) {
-    return _then(
-      _$LeadSaleEmployeeImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        code: freezed == code
-            ? _value.code
-            : code // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        fullName: freezed == fullName
-            ? _value.fullName
-            : fullName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        departmentId: freezed == departmentId
-            ? _value.departmentId
-            : departmentId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-      ),
-    );
+    return _then(_$LeadSaleEmployeeImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleEmployeeImpl implements _LeadSaleEmployee {
-  const _$LeadSaleEmployeeImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'Code') this.code,
-    @JsonKey(name: 'FullName') this.fullName,
-    @JsonKey(name: 'DepartmentID') this.departmentId,
-  });
+  const _$LeadSaleEmployeeImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'DepartmentID') this.departmentId});
 
   factory _$LeadSaleEmployeeImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleEmployeeImplFromJson(json);
@@ -204,23 +192,23 @@ class _$LeadSaleEmployeeImpl implements _LeadSaleEmployee {
   @pragma('vm:prefer-inline')
   _$$LeadSaleEmployeeImplCopyWith<_$LeadSaleEmployeeImpl> get copyWith =>
       __$$LeadSaleEmployeeImplCopyWithImpl<_$LeadSaleEmployeeImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleEmployeeImplToJson(this);
+    return _$$LeadSaleEmployeeImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleEmployee implements LeadSaleEmployee {
-  const factory _LeadSaleEmployee({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'Code') final String? code,
-    @JsonKey(name: 'FullName') final String? fullName,
-    @JsonKey(name: 'DepartmentID') final int? departmentId,
-  }) = _$LeadSaleEmployeeImpl;
+  const factory _LeadSaleEmployee(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'FullName') final String? fullName,
+          @JsonKey(name: 'DepartmentID') final int? departmentId}) =
+      _$LeadSaleEmployeeImpl;
 
   factory _LeadSaleEmployee.fromJson(Map<String, dynamic> json) =
       _$LeadSaleEmployeeImpl.fromJson;
@@ -273,19 +261,17 @@ mixin _$LeadSaleSource {
 /// @nodoc
 abstract class $LeadSaleSourceCopyWith<$Res> {
   factory $LeadSaleSourceCopyWith(
-    LeadSaleSource value,
-    $Res Function(LeadSaleSource) then,
-  ) = _$LeadSaleSourceCopyWithImpl<$Res, LeadSaleSource>;
+          LeadSaleSource value, $Res Function(LeadSaleSource) then) =
+      _$LeadSaleSourceCopyWithImpl<$Res, LeadSaleSource>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'Code') String? code,
-    @JsonKey(name: 'Name') String? name,
-    @JsonKey(name: 'SourceGroup') int? sourceGroup,
-    @JsonKey(name: 'STT') int? stt,
-    @JsonKey(name: 'Note') String? note,
-    @JsonKey(name: 'IsDeleted') bool? isDeleted,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'SourceGroup') int? sourceGroup,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
 }
 
 /// @nodoc
@@ -309,60 +295,55 @@ class _$LeadSaleSourceCopyWithImpl<$Res, $Val extends LeadSaleSource>
     Object? note = freezed,
     Object? isDeleted = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            code: freezed == code
-                ? _value.code
-                : code // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            name: freezed == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            sourceGroup: freezed == sourceGroup
-                ? _value.sourceGroup
-                : sourceGroup // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            stt: freezed == stt
-                ? _value.stt
-                : stt // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            note: freezed == note
-                ? _value.note
-                : note // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            isDeleted: freezed == isDeleted
-                ? _value.isDeleted
-                : isDeleted // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sourceGroup: freezed == sourceGroup
+          ? _value.sourceGroup
+          : sourceGroup // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$LeadSaleSourceImplCopyWith<$Res>
     implements $LeadSaleSourceCopyWith<$Res> {
-  factory _$$LeadSaleSourceImplCopyWith(
-    _$LeadSaleSourceImpl value,
-    $Res Function(_$LeadSaleSourceImpl) then,
-  ) = __$$LeadSaleSourceImplCopyWithImpl<$Res>;
+  factory _$$LeadSaleSourceImplCopyWith(_$LeadSaleSourceImpl value,
+          $Res Function(_$LeadSaleSourceImpl) then) =
+      __$$LeadSaleSourceImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'Code') String? code,
-    @JsonKey(name: 'Name') String? name,
-    @JsonKey(name: 'SourceGroup') int? sourceGroup,
-    @JsonKey(name: 'STT') int? stt,
-    @JsonKey(name: 'Note') String? note,
-    @JsonKey(name: 'IsDeleted') bool? isDeleted,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'SourceGroup') int? sourceGroup,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
 }
 
 /// @nodoc
@@ -370,9 +351,8 @@ class __$$LeadSaleSourceImplCopyWithImpl<$Res>
     extends _$LeadSaleSourceCopyWithImpl<$Res, _$LeadSaleSourceImpl>
     implements _$$LeadSaleSourceImplCopyWith<$Res> {
   __$$LeadSaleSourceImplCopyWithImpl(
-    _$LeadSaleSourceImpl _value,
-    $Res Function(_$LeadSaleSourceImpl) _then,
-  ) : super(_value, _then);
+      _$LeadSaleSourceImpl _value, $Res Function(_$LeadSaleSourceImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -385,53 +365,50 @@ class __$$LeadSaleSourceImplCopyWithImpl<$Res>
     Object? note = freezed,
     Object? isDeleted = freezed,
   }) {
-    return _then(
-      _$LeadSaleSourceImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        code: freezed == code
-            ? _value.code
-            : code // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        name: freezed == name
-            ? _value.name
-            : name // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        sourceGroup: freezed == sourceGroup
-            ? _value.sourceGroup
-            : sourceGroup // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        stt: freezed == stt
-            ? _value.stt
-            : stt // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        note: freezed == note
-            ? _value.note
-            : note // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        isDeleted: freezed == isDeleted
-            ? _value.isDeleted
-            : isDeleted // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-      ),
-    );
+    return _then(_$LeadSaleSourceImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sourceGroup: freezed == sourceGroup
+          ? _value.sourceGroup
+          : sourceGroup // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleSourceImpl implements _LeadSaleSource {
-  const _$LeadSaleSourceImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'Code') this.code,
-    @JsonKey(name: 'Name') this.name,
-    @JsonKey(name: 'SourceGroup') this.sourceGroup,
-    @JsonKey(name: 'STT') this.stt,
-    @JsonKey(name: 'Note') this.note,
-    @JsonKey(name: 'IsDeleted') this.isDeleted,
-  });
+  const _$LeadSaleSourceImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'Name') this.name,
+      @JsonKey(name: 'SourceGroup') this.sourceGroup,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
 
   factory _$LeadSaleSourceImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleSourceImplFromJson(json);
@@ -482,41 +459,33 @@ class _$LeadSaleSourceImpl implements _LeadSaleSource {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    code,
-    name,
-    sourceGroup,
-    stt,
-    note,
-    isDeleted,
-  );
+      runtimeType, id, code, name, sourceGroup, stt, note, isDeleted);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleSourceImplCopyWith<_$LeadSaleSourceImpl> get copyWith =>
       __$$LeadSaleSourceImplCopyWithImpl<_$LeadSaleSourceImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleSourceImplToJson(this);
+    return _$$LeadSaleSourceImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleSource implements LeadSaleSource {
-  const factory _LeadSaleSource({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'Code') final String? code,
-    @JsonKey(name: 'Name') final String? name,
-    @JsonKey(name: 'SourceGroup') final int? sourceGroup,
-    @JsonKey(name: 'STT') final int? stt,
-    @JsonKey(name: 'Note') final String? note,
-    @JsonKey(name: 'IsDeleted') final bool? isDeleted,
-  }) = _$LeadSaleSourceImpl;
+  const factory _LeadSaleSource(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'Name') final String? name,
+          @JsonKey(name: 'SourceGroup') final int? sourceGroup,
+          @JsonKey(name: 'STT') final int? stt,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
+      _$LeadSaleSourceImpl;
 
   factory _LeadSaleSource.fromJson(Map<String, dynamic> json) =
       _$LeadSaleSourceImpl.fromJson;
@@ -586,23 +555,21 @@ mixin _$LeadSaleRoleContext {
 /// @nodoc
 abstract class $LeadSaleRoleContextCopyWith<$Res> {
   factory $LeadSaleRoleContextCopyWith(
-    LeadSaleRoleContext value,
-    $Res Function(LeadSaleRoleContext) then,
-  ) = _$LeadSaleRoleContextCopyWithImpl<$Res, LeadSaleRoleContext>;
+          LeadSaleRoleContext value, $Res Function(LeadSaleRoleContext) then) =
+      _$LeadSaleRoleContextCopyWithImpl<$Res, LeadSaleRoleContext>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'EmployeeID') int? employeeId,
-    @JsonKey(name: 'IsAdmin') bool? isAdmin,
-    @JsonKey(name: 'IsMarketing') bool? isMarketing,
-    @JsonKey(name: 'IsSale') bool? isSale,
-    @JsonKey(name: 'IsSaleLeader') bool? isSaleLeader,
-    @JsonKey(name: 'IsSaleAdmin') bool? isSaleAdmin,
-    @JsonKey(name: 'IsBod') bool? isBod,
-    @JsonKey(name: 'TeamEmployeeIDs') List<int>? teamEmployeeIds,
-    @JsonKey(name: 'CanViewMarketing') bool? canViewMarketing,
-    @JsonKey(name: 'CanViewSale') bool? canViewSale,
-    @JsonKey(name: 'CanAssign') bool? canAssign,
-  });
+  $Res call(
+      {@JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'IsAdmin') bool? isAdmin,
+      @JsonKey(name: 'IsMarketing') bool? isMarketing,
+      @JsonKey(name: 'IsSale') bool? isSale,
+      @JsonKey(name: 'IsSaleLeader') bool? isSaleLeader,
+      @JsonKey(name: 'IsSaleAdmin') bool? isSaleAdmin,
+      @JsonKey(name: 'IsBod') bool? isBod,
+      @JsonKey(name: 'TeamEmployeeIDs') List<int>? teamEmployeeIds,
+      @JsonKey(name: 'CanViewMarketing') bool? canViewMarketing,
+      @JsonKey(name: 'CanViewSale') bool? canViewSale,
+      @JsonKey(name: 'CanAssign') bool? canAssign});
 }
 
 /// @nodoc
@@ -630,90 +597,84 @@ class _$LeadSaleRoleContextCopyWithImpl<$Res, $Val extends LeadSaleRoleContext>
     Object? canViewSale = freezed,
     Object? canAssign = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            employeeId: freezed == employeeId
-                ? _value.employeeId
-                : employeeId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            isAdmin: freezed == isAdmin
-                ? _value.isAdmin
-                : isAdmin // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            isMarketing: freezed == isMarketing
-                ? _value.isMarketing
-                : isMarketing // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            isSale: freezed == isSale
-                ? _value.isSale
-                : isSale // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            isSaleLeader: freezed == isSaleLeader
-                ? _value.isSaleLeader
-                : isSaleLeader // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            isSaleAdmin: freezed == isSaleAdmin
-                ? _value.isSaleAdmin
-                : isSaleAdmin // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            isBod: freezed == isBod
-                ? _value.isBod
-                : isBod // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            teamEmployeeIds: freezed == teamEmployeeIds
-                ? _value.teamEmployeeIds
-                : teamEmployeeIds // ignore: cast_nullable_to_non_nullable
-                      as List<int>?,
-            canViewMarketing: freezed == canViewMarketing
-                ? _value.canViewMarketing
-                : canViewMarketing // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canViewSale: freezed == canViewSale
-                ? _value.canViewSale
-                : canViewSale // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canAssign: freezed == canAssign
-                ? _value.canAssign
-                : canAssign // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isAdmin: freezed == isAdmin
+          ? _value.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isMarketing: freezed == isMarketing
+          ? _value.isMarketing
+          : isMarketing // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isSale: freezed == isSale
+          ? _value.isSale
+          : isSale // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isSaleLeader: freezed == isSaleLeader
+          ? _value.isSaleLeader
+          : isSaleLeader // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isSaleAdmin: freezed == isSaleAdmin
+          ? _value.isSaleAdmin
+          : isSaleAdmin // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isBod: freezed == isBod
+          ? _value.isBod
+          : isBod // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      teamEmployeeIds: freezed == teamEmployeeIds
+          ? _value.teamEmployeeIds
+          : teamEmployeeIds // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+      canViewMarketing: freezed == canViewMarketing
+          ? _value.canViewMarketing
+          : canViewMarketing // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canViewSale: freezed == canViewSale
+          ? _value.canViewSale
+          : canViewSale // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canAssign: freezed == canAssign
+          ? _value.canAssign
+          : canAssign // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$LeadSaleRoleContextImplCopyWith<$Res>
     implements $LeadSaleRoleContextCopyWith<$Res> {
-  factory _$$LeadSaleRoleContextImplCopyWith(
-    _$LeadSaleRoleContextImpl value,
-    $Res Function(_$LeadSaleRoleContextImpl) then,
-  ) = __$$LeadSaleRoleContextImplCopyWithImpl<$Res>;
+  factory _$$LeadSaleRoleContextImplCopyWith(_$LeadSaleRoleContextImpl value,
+          $Res Function(_$LeadSaleRoleContextImpl) then) =
+      __$$LeadSaleRoleContextImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'EmployeeID') int? employeeId,
-    @JsonKey(name: 'IsAdmin') bool? isAdmin,
-    @JsonKey(name: 'IsMarketing') bool? isMarketing,
-    @JsonKey(name: 'IsSale') bool? isSale,
-    @JsonKey(name: 'IsSaleLeader') bool? isSaleLeader,
-    @JsonKey(name: 'IsSaleAdmin') bool? isSaleAdmin,
-    @JsonKey(name: 'IsBod') bool? isBod,
-    @JsonKey(name: 'TeamEmployeeIDs') List<int>? teamEmployeeIds,
-    @JsonKey(name: 'CanViewMarketing') bool? canViewMarketing,
-    @JsonKey(name: 'CanViewSale') bool? canViewSale,
-    @JsonKey(name: 'CanAssign') bool? canAssign,
-  });
+  $Res call(
+      {@JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'IsAdmin') bool? isAdmin,
+      @JsonKey(name: 'IsMarketing') bool? isMarketing,
+      @JsonKey(name: 'IsSale') bool? isSale,
+      @JsonKey(name: 'IsSaleLeader') bool? isSaleLeader,
+      @JsonKey(name: 'IsSaleAdmin') bool? isSaleAdmin,
+      @JsonKey(name: 'IsBod') bool? isBod,
+      @JsonKey(name: 'TeamEmployeeIDs') List<int>? teamEmployeeIds,
+      @JsonKey(name: 'CanViewMarketing') bool? canViewMarketing,
+      @JsonKey(name: 'CanViewSale') bool? canViewSale,
+      @JsonKey(name: 'CanAssign') bool? canAssign});
 }
 
 /// @nodoc
 class __$$LeadSaleRoleContextImplCopyWithImpl<$Res>
     extends _$LeadSaleRoleContextCopyWithImpl<$Res, _$LeadSaleRoleContextImpl>
     implements _$$LeadSaleRoleContextImplCopyWith<$Res> {
-  __$$LeadSaleRoleContextImplCopyWithImpl(
-    _$LeadSaleRoleContextImpl _value,
-    $Res Function(_$LeadSaleRoleContextImpl) _then,
-  ) : super(_value, _then);
+  __$$LeadSaleRoleContextImplCopyWithImpl(_$LeadSaleRoleContextImpl _value,
+      $Res Function(_$LeadSaleRoleContextImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -730,73 +691,71 @@ class __$$LeadSaleRoleContextImplCopyWithImpl<$Res>
     Object? canViewSale = freezed,
     Object? canAssign = freezed,
   }) {
-    return _then(
-      _$LeadSaleRoleContextImpl(
-        employeeId: freezed == employeeId
-            ? _value.employeeId
-            : employeeId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        isAdmin: freezed == isAdmin
-            ? _value.isAdmin
-            : isAdmin // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        isMarketing: freezed == isMarketing
-            ? _value.isMarketing
-            : isMarketing // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        isSale: freezed == isSale
-            ? _value.isSale
-            : isSale // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        isSaleLeader: freezed == isSaleLeader
-            ? _value.isSaleLeader
-            : isSaleLeader // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        isSaleAdmin: freezed == isSaleAdmin
-            ? _value.isSaleAdmin
-            : isSaleAdmin // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        isBod: freezed == isBod
-            ? _value.isBod
-            : isBod // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        teamEmployeeIds: freezed == teamEmployeeIds
-            ? _value._teamEmployeeIds
-            : teamEmployeeIds // ignore: cast_nullable_to_non_nullable
-                  as List<int>?,
-        canViewMarketing: freezed == canViewMarketing
-            ? _value.canViewMarketing
-            : canViewMarketing // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canViewSale: freezed == canViewSale
-            ? _value.canViewSale
-            : canViewSale // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canAssign: freezed == canAssign
-            ? _value.canAssign
-            : canAssign // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-      ),
-    );
+    return _then(_$LeadSaleRoleContextImpl(
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isAdmin: freezed == isAdmin
+          ? _value.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isMarketing: freezed == isMarketing
+          ? _value.isMarketing
+          : isMarketing // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isSale: freezed == isSale
+          ? _value.isSale
+          : isSale // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isSaleLeader: freezed == isSaleLeader
+          ? _value.isSaleLeader
+          : isSaleLeader // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isSaleAdmin: freezed == isSaleAdmin
+          ? _value.isSaleAdmin
+          : isSaleAdmin // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isBod: freezed == isBod
+          ? _value.isBod
+          : isBod // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      teamEmployeeIds: freezed == teamEmployeeIds
+          ? _value._teamEmployeeIds
+          : teamEmployeeIds // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+      canViewMarketing: freezed == canViewMarketing
+          ? _value.canViewMarketing
+          : canViewMarketing // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canViewSale: freezed == canViewSale
+          ? _value.canViewSale
+          : canViewSale // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canAssign: freezed == canAssign
+          ? _value.canAssign
+          : canAssign // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleRoleContextImpl implements _LeadSaleRoleContext {
-  const _$LeadSaleRoleContextImpl({
-    @JsonKey(name: 'EmployeeID') this.employeeId,
-    @JsonKey(name: 'IsAdmin') this.isAdmin,
-    @JsonKey(name: 'IsMarketing') this.isMarketing,
-    @JsonKey(name: 'IsSale') this.isSale,
-    @JsonKey(name: 'IsSaleLeader') this.isSaleLeader,
-    @JsonKey(name: 'IsSaleAdmin') this.isSaleAdmin,
-    @JsonKey(name: 'IsBod') this.isBod,
-    @JsonKey(name: 'TeamEmployeeIDs') final List<int>? teamEmployeeIds,
-    @JsonKey(name: 'CanViewMarketing') this.canViewMarketing,
-    @JsonKey(name: 'CanViewSale') this.canViewSale,
-    @JsonKey(name: 'CanAssign') this.canAssign,
-  }) : _teamEmployeeIds = teamEmployeeIds;
+  const _$LeadSaleRoleContextImpl(
+      {@JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'IsAdmin') this.isAdmin,
+      @JsonKey(name: 'IsMarketing') this.isMarketing,
+      @JsonKey(name: 'IsSale') this.isSale,
+      @JsonKey(name: 'IsSaleLeader') this.isSaleLeader,
+      @JsonKey(name: 'IsSaleAdmin') this.isSaleAdmin,
+      @JsonKey(name: 'IsBod') this.isBod,
+      @JsonKey(name: 'TeamEmployeeIDs') final List<int>? teamEmployeeIds,
+      @JsonKey(name: 'CanViewMarketing') this.canViewMarketing,
+      @JsonKey(name: 'CanViewSale') this.canViewSale,
+      @JsonKey(name: 'CanAssign') this.canAssign})
+      : _teamEmployeeIds = teamEmployeeIds;
 
   factory _$LeadSaleRoleContextImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleRoleContextImplFromJson(json);
@@ -864,10 +823,8 @@ class _$LeadSaleRoleContextImpl implements _LeadSaleRoleContext {
             (identical(other.isSaleAdmin, isSaleAdmin) ||
                 other.isSaleAdmin == isSaleAdmin) &&
             (identical(other.isBod, isBod) || other.isBod == isBod) &&
-            const DeepCollectionEquality().equals(
-              other._teamEmployeeIds,
-              _teamEmployeeIds,
-            ) &&
+            const DeepCollectionEquality()
+                .equals(other._teamEmployeeIds, _teamEmployeeIds) &&
             (identical(other.canViewMarketing, canViewMarketing) ||
                 other.canViewMarketing == canViewMarketing) &&
             (identical(other.canViewSale, canViewSale) ||
@@ -879,49 +836,48 @@ class _$LeadSaleRoleContextImpl implements _LeadSaleRoleContext {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    employeeId,
-    isAdmin,
-    isMarketing,
-    isSale,
-    isSaleLeader,
-    isSaleAdmin,
-    isBod,
-    const DeepCollectionEquality().hash(_teamEmployeeIds),
-    canViewMarketing,
-    canViewSale,
-    canAssign,
-  );
+      runtimeType,
+      employeeId,
+      isAdmin,
+      isMarketing,
+      isSale,
+      isSaleLeader,
+      isSaleAdmin,
+      isBod,
+      const DeepCollectionEquality().hash(_teamEmployeeIds),
+      canViewMarketing,
+      canViewSale,
+      canAssign);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleRoleContextImplCopyWith<_$LeadSaleRoleContextImpl> get copyWith =>
       __$$LeadSaleRoleContextImplCopyWithImpl<_$LeadSaleRoleContextImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleRoleContextImplToJson(this);
+    return _$$LeadSaleRoleContextImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleRoleContext implements LeadSaleRoleContext {
-  const factory _LeadSaleRoleContext({
-    @JsonKey(name: 'EmployeeID') final int? employeeId,
-    @JsonKey(name: 'IsAdmin') final bool? isAdmin,
-    @JsonKey(name: 'IsMarketing') final bool? isMarketing,
-    @JsonKey(name: 'IsSale') final bool? isSale,
-    @JsonKey(name: 'IsSaleLeader') final bool? isSaleLeader,
-    @JsonKey(name: 'IsSaleAdmin') final bool? isSaleAdmin,
-    @JsonKey(name: 'IsBod') final bool? isBod,
-    @JsonKey(name: 'TeamEmployeeIDs') final List<int>? teamEmployeeIds,
-    @JsonKey(name: 'CanViewMarketing') final bool? canViewMarketing,
-    @JsonKey(name: 'CanViewSale') final bool? canViewSale,
-    @JsonKey(name: 'CanAssign') final bool? canAssign,
-  }) = _$LeadSaleRoleContextImpl;
+  const factory _LeadSaleRoleContext(
+          {@JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'IsAdmin') final bool? isAdmin,
+          @JsonKey(name: 'IsMarketing') final bool? isMarketing,
+          @JsonKey(name: 'IsSale') final bool? isSale,
+          @JsonKey(name: 'IsSaleLeader') final bool? isSaleLeader,
+          @JsonKey(name: 'IsSaleAdmin') final bool? isSaleAdmin,
+          @JsonKey(name: 'IsBod') final bool? isBod,
+          @JsonKey(name: 'TeamEmployeeIDs') final List<int>? teamEmployeeIds,
+          @JsonKey(name: 'CanViewMarketing') final bool? canViewMarketing,
+          @JsonKey(name: 'CanViewSale') final bool? canViewSale,
+          @JsonKey(name: 'CanAssign') final bool? canAssign}) =
+      _$LeadSaleRoleContextImpl;
 
   factory _LeadSaleRoleContext.fromJson(Map<String, dynamic> json) =
       _$LeadSaleRoleContextImpl.fromJson;
@@ -989,16 +945,14 @@ mixin _$LeadSalePoType {
 /// @nodoc
 abstract class $LeadSalePoTypeCopyWith<$Res> {
   factory $LeadSalePoTypeCopyWith(
-    LeadSalePoType value,
-    $Res Function(LeadSalePoType) then,
-  ) = _$LeadSalePoTypeCopyWithImpl<$Res, LeadSalePoType>;
+          LeadSalePoType value, $Res Function(LeadSalePoType) then) =
+      _$LeadSalePoTypeCopyWithImpl<$Res, LeadSalePoType>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'MainIndex') String? mainIndex,
-    @JsonKey(name: 'MainGroup') int? mainGroup,
-    @JsonKey(name: 'MainIndex1') String? mainIndex1,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'MainIndex') String? mainIndex,
+      @JsonKey(name: 'MainGroup') int? mainGroup,
+      @JsonKey(name: 'MainIndex1') String? mainIndex1});
 }
 
 /// @nodoc
@@ -1019,45 +973,40 @@ class _$LeadSalePoTypeCopyWithImpl<$Res, $Val extends LeadSalePoType>
     Object? mainGroup = freezed,
     Object? mainIndex1 = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            mainIndex: freezed == mainIndex
-                ? _value.mainIndex
-                : mainIndex // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            mainGroup: freezed == mainGroup
-                ? _value.mainGroup
-                : mainGroup // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            mainIndex1: freezed == mainIndex1
-                ? _value.mainIndex1
-                : mainIndex1 // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      mainIndex: freezed == mainIndex
+          ? _value.mainIndex
+          : mainIndex // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mainGroup: freezed == mainGroup
+          ? _value.mainGroup
+          : mainGroup // ignore: cast_nullable_to_non_nullable
+              as int?,
+      mainIndex1: freezed == mainIndex1
+          ? _value.mainIndex1
+          : mainIndex1 // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$LeadSalePoTypeImplCopyWith<$Res>
     implements $LeadSalePoTypeCopyWith<$Res> {
-  factory _$$LeadSalePoTypeImplCopyWith(
-    _$LeadSalePoTypeImpl value,
-    $Res Function(_$LeadSalePoTypeImpl) then,
-  ) = __$$LeadSalePoTypeImplCopyWithImpl<$Res>;
+  factory _$$LeadSalePoTypeImplCopyWith(_$LeadSalePoTypeImpl value,
+          $Res Function(_$LeadSalePoTypeImpl) then) =
+      __$$LeadSalePoTypeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'MainIndex') String? mainIndex,
-    @JsonKey(name: 'MainGroup') int? mainGroup,
-    @JsonKey(name: 'MainIndex1') String? mainIndex1,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'MainIndex') String? mainIndex,
+      @JsonKey(name: 'MainGroup') int? mainGroup,
+      @JsonKey(name: 'MainIndex1') String? mainIndex1});
 }
 
 /// @nodoc
@@ -1065,9 +1014,8 @@ class __$$LeadSalePoTypeImplCopyWithImpl<$Res>
     extends _$LeadSalePoTypeCopyWithImpl<$Res, _$LeadSalePoTypeImpl>
     implements _$$LeadSalePoTypeImplCopyWith<$Res> {
   __$$LeadSalePoTypeImplCopyWithImpl(
-    _$LeadSalePoTypeImpl _value,
-    $Res Function(_$LeadSalePoTypeImpl) _then,
-  ) : super(_value, _then);
+      _$LeadSalePoTypeImpl _value, $Res Function(_$LeadSalePoTypeImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -1077,38 +1025,35 @@ class __$$LeadSalePoTypeImplCopyWithImpl<$Res>
     Object? mainGroup = freezed,
     Object? mainIndex1 = freezed,
   }) {
-    return _then(
-      _$LeadSalePoTypeImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        mainIndex: freezed == mainIndex
-            ? _value.mainIndex
-            : mainIndex // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        mainGroup: freezed == mainGroup
-            ? _value.mainGroup
-            : mainGroup // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        mainIndex1: freezed == mainIndex1
-            ? _value.mainIndex1
-            : mainIndex1 // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$LeadSalePoTypeImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      mainIndex: freezed == mainIndex
+          ? _value.mainIndex
+          : mainIndex // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mainGroup: freezed == mainGroup
+          ? _value.mainGroup
+          : mainGroup // ignore: cast_nullable_to_non_nullable
+              as int?,
+      mainIndex1: freezed == mainIndex1
+          ? _value.mainIndex1
+          : mainIndex1 // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSalePoTypeImpl implements _LeadSalePoType {
-  const _$LeadSalePoTypeImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'MainIndex') this.mainIndex,
-    @JsonKey(name: 'MainGroup') this.mainGroup,
-    @JsonKey(name: 'MainIndex1') this.mainIndex1,
-  });
+  const _$LeadSalePoTypeImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'MainIndex') this.mainIndex,
+      @JsonKey(name: 'MainGroup') this.mainGroup,
+      @JsonKey(name: 'MainIndex1') this.mainIndex1});
 
   factory _$LeadSalePoTypeImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSalePoTypeImplFromJson(json);
@@ -1155,23 +1100,23 @@ class _$LeadSalePoTypeImpl implements _LeadSalePoType {
   @pragma('vm:prefer-inline')
   _$$LeadSalePoTypeImplCopyWith<_$LeadSalePoTypeImpl> get copyWith =>
       __$$LeadSalePoTypeImplCopyWithImpl<_$LeadSalePoTypeImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSalePoTypeImplToJson(this);
+    return _$$LeadSalePoTypeImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSalePoType implements LeadSalePoType {
-  const factory _LeadSalePoType({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'MainIndex') final String? mainIndex,
-    @JsonKey(name: 'MainGroup') final int? mainGroup,
-    @JsonKey(name: 'MainIndex1') final String? mainIndex1,
-  }) = _$LeadSalePoTypeImpl;
+  const factory _LeadSalePoType(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'MainIndex') final String? mainIndex,
+          @JsonKey(name: 'MainGroup') final int? mainGroup,
+          @JsonKey(name: 'MainIndex1') final String? mainIndex1}) =
+      _$LeadSalePoTypeImpl;
 
   factory _LeadSalePoType.fromJson(Map<String, dynamic> json) =
       _$LeadSalePoTypeImpl.fromJson;
@@ -1195,8 +1140,7 @@ abstract class _LeadSalePoType implements LeadSalePoType {
 }
 
 LeadSaleCustomerIndustry _$LeadSaleCustomerIndustryFromJson(
-  Map<String, dynamic> json,
-) {
+    Map<String, dynamic> json) {
   return _LeadSaleCustomerIndustry.fromJson(json);
 }
 
@@ -1219,24 +1163,20 @@ mixin _$LeadSaleCustomerIndustry {
 
 /// @nodoc
 abstract class $LeadSaleCustomerIndustryCopyWith<$Res> {
-  factory $LeadSaleCustomerIndustryCopyWith(
-    LeadSaleCustomerIndustry value,
-    $Res Function(LeadSaleCustomerIndustry) then,
-  ) = _$LeadSaleCustomerIndustryCopyWithImpl<$Res, LeadSaleCustomerIndustry>;
+  factory $LeadSaleCustomerIndustryCopyWith(LeadSaleCustomerIndustry value,
+          $Res Function(LeadSaleCustomerIndustry) then) =
+      _$LeadSaleCustomerIndustryCopyWithImpl<$Res, LeadSaleCustomerIndustry>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'IndustriesNameVI') String? industriesNameVi,
-    @JsonKey(name: 'IndustriesNameEN') String? industriesNameEn,
-    @JsonKey(name: 'NumberOrder') int? numberOrder,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'IndustriesNameVI') String? industriesNameVi,
+      @JsonKey(name: 'IndustriesNameEN') String? industriesNameEn,
+      @JsonKey(name: 'NumberOrder') int? numberOrder});
 }
 
 /// @nodoc
-class _$LeadSaleCustomerIndustryCopyWithImpl<
-  $Res,
-  $Val extends LeadSaleCustomerIndustry
->
+class _$LeadSaleCustomerIndustryCopyWithImpl<$Res,
+        $Val extends LeadSaleCustomerIndustry>
     implements $LeadSaleCustomerIndustryCopyWith<$Res> {
   _$LeadSaleCustomerIndustryCopyWithImpl(this._value, this._then);
 
@@ -1253,27 +1193,24 @@ class _$LeadSaleCustomerIndustryCopyWithImpl<
     Object? industriesNameEn = freezed,
     Object? numberOrder = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            industriesNameVi: freezed == industriesNameVi
-                ? _value.industriesNameVi
-                : industriesNameVi // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            industriesNameEn: freezed == industriesNameEn
-                ? _value.industriesNameEn
-                : industriesNameEn // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            numberOrder: freezed == numberOrder
-                ? _value.numberOrder
-                : numberOrder // ignore: cast_nullable_to_non_nullable
-                      as int?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      industriesNameVi: freezed == industriesNameVi
+          ? _value.industriesNameVi
+          : industriesNameVi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      industriesNameEn: freezed == industriesNameEn
+          ? _value.industriesNameEn
+          : industriesNameEn // ignore: cast_nullable_to_non_nullable
+              as String?,
+      numberOrder: freezed == numberOrder
+          ? _value.numberOrder
+          : numberOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
   }
 }
 
@@ -1281,31 +1218,27 @@ class _$LeadSaleCustomerIndustryCopyWithImpl<
 abstract class _$$LeadSaleCustomerIndustryImplCopyWith<$Res>
     implements $LeadSaleCustomerIndustryCopyWith<$Res> {
   factory _$$LeadSaleCustomerIndustryImplCopyWith(
-    _$LeadSaleCustomerIndustryImpl value,
-    $Res Function(_$LeadSaleCustomerIndustryImpl) then,
-  ) = __$$LeadSaleCustomerIndustryImplCopyWithImpl<$Res>;
+          _$LeadSaleCustomerIndustryImpl value,
+          $Res Function(_$LeadSaleCustomerIndustryImpl) then) =
+      __$$LeadSaleCustomerIndustryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'IndustriesNameVI') String? industriesNameVi,
-    @JsonKey(name: 'IndustriesNameEN') String? industriesNameEn,
-    @JsonKey(name: 'NumberOrder') int? numberOrder,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'IndustriesNameVI') String? industriesNameVi,
+      @JsonKey(name: 'IndustriesNameEN') String? industriesNameEn,
+      @JsonKey(name: 'NumberOrder') int? numberOrder});
 }
 
 /// @nodoc
 class __$$LeadSaleCustomerIndustryImplCopyWithImpl<$Res>
-    extends
-        _$LeadSaleCustomerIndustryCopyWithImpl<
-          $Res,
-          _$LeadSaleCustomerIndustryImpl
-        >
+    extends _$LeadSaleCustomerIndustryCopyWithImpl<$Res,
+        _$LeadSaleCustomerIndustryImpl>
     implements _$$LeadSaleCustomerIndustryImplCopyWith<$Res> {
   __$$LeadSaleCustomerIndustryImplCopyWithImpl(
-    _$LeadSaleCustomerIndustryImpl _value,
-    $Res Function(_$LeadSaleCustomerIndustryImpl) _then,
-  ) : super(_value, _then);
+      _$LeadSaleCustomerIndustryImpl _value,
+      $Res Function(_$LeadSaleCustomerIndustryImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -1315,38 +1248,35 @@ class __$$LeadSaleCustomerIndustryImplCopyWithImpl<$Res>
     Object? industriesNameEn = freezed,
     Object? numberOrder = freezed,
   }) {
-    return _then(
-      _$LeadSaleCustomerIndustryImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        industriesNameVi: freezed == industriesNameVi
-            ? _value.industriesNameVi
-            : industriesNameVi // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        industriesNameEn: freezed == industriesNameEn
-            ? _value.industriesNameEn
-            : industriesNameEn // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        numberOrder: freezed == numberOrder
-            ? _value.numberOrder
-            : numberOrder // ignore: cast_nullable_to_non_nullable
-                  as int?,
-      ),
-    );
+    return _then(_$LeadSaleCustomerIndustryImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      industriesNameVi: freezed == industriesNameVi
+          ? _value.industriesNameVi
+          : industriesNameVi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      industriesNameEn: freezed == industriesNameEn
+          ? _value.industriesNameEn
+          : industriesNameEn // ignore: cast_nullable_to_non_nullable
+              as String?,
+      numberOrder: freezed == numberOrder
+          ? _value.numberOrder
+          : numberOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleCustomerIndustryImpl implements _LeadSaleCustomerIndustry {
-  const _$LeadSaleCustomerIndustryImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'IndustriesNameVI') this.industriesNameVi,
-    @JsonKey(name: 'IndustriesNameEN') this.industriesNameEn,
-    @JsonKey(name: 'NumberOrder') this.numberOrder,
-  });
+  const _$LeadSaleCustomerIndustryImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'IndustriesNameVI') this.industriesNameVi,
+      @JsonKey(name: 'IndustriesNameEN') this.industriesNameEn,
+      @JsonKey(name: 'NumberOrder') this.numberOrder});
 
   factory _$LeadSaleCustomerIndustryImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleCustomerIndustryImplFromJson(json);
@@ -1386,35 +1316,30 @@ class _$LeadSaleCustomerIndustryImpl implements _LeadSaleCustomerIndustry {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    industriesNameVi,
-    industriesNameEn,
-    numberOrder,
-  );
+      runtimeType, id, industriesNameVi, industriesNameEn, numberOrder);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleCustomerIndustryImplCopyWith<_$LeadSaleCustomerIndustryImpl>
-  get copyWith =>
-      __$$LeadSaleCustomerIndustryImplCopyWithImpl<
-        _$LeadSaleCustomerIndustryImpl
-      >(this, _$identity);
+      get copyWith => __$$LeadSaleCustomerIndustryImplCopyWithImpl<
+          _$LeadSaleCustomerIndustryImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleCustomerIndustryImplToJson(this);
+    return _$$LeadSaleCustomerIndustryImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleCustomerIndustry implements LeadSaleCustomerIndustry {
-  const factory _LeadSaleCustomerIndustry({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'IndustriesNameVI') final String? industriesNameVi,
-    @JsonKey(name: 'IndustriesNameEN') final String? industriesNameEn,
-    @JsonKey(name: 'NumberOrder') final int? numberOrder,
-  }) = _$LeadSaleCustomerIndustryImpl;
+  const factory _LeadSaleCustomerIndustry(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'IndustriesNameVI') final String? industriesNameVi,
+          @JsonKey(name: 'IndustriesNameEN') final String? industriesNameEn,
+          @JsonKey(name: 'NumberOrder') final int? numberOrder}) =
+      _$LeadSaleCustomerIndustryImpl;
 
   factory _LeadSaleCustomerIndustry.fromJson(Map<String, dynamic> json) =
       _$LeadSaleCustomerIndustryImpl.fromJson;
@@ -1434,12 +1359,11 @@ abstract class _LeadSaleCustomerIndustry implements LeadSaleCustomerIndustry {
   @override
   @JsonKey(ignore: true)
   _$$LeadSaleCustomerIndustryImplCopyWith<_$LeadSaleCustomerIndustryImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 LeadSaleCustomerSpecialization _$LeadSaleCustomerSpecializationFromJson(
-  Map<String, dynamic> json,
-) {
+    Map<String, dynamic> json) {
   return _LeadSaleCustomerSpecialization.fromJson(json);
 }
 
@@ -1457,33 +1381,27 @@ mixin _$LeadSaleCustomerSpecialization {
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LeadSaleCustomerSpecializationCopyWith<LeadSaleCustomerSpecialization>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LeadSaleCustomerSpecializationCopyWith<$Res> {
   factory $LeadSaleCustomerSpecializationCopyWith(
-    LeadSaleCustomerSpecialization value,
-    $Res Function(LeadSaleCustomerSpecialization) then,
-  ) =
-      _$LeadSaleCustomerSpecializationCopyWithImpl<
-        $Res,
-        LeadSaleCustomerSpecialization
-      >;
+          LeadSaleCustomerSpecialization value,
+          $Res Function(LeadSaleCustomerSpecialization) then) =
+      _$LeadSaleCustomerSpecializationCopyWithImpl<$Res,
+          LeadSaleCustomerSpecialization>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'STT') int? stt,
-    @JsonKey(name: 'Code') String? code,
-    @JsonKey(name: 'Name') String? name,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name});
 }
 
 /// @nodoc
-class _$LeadSaleCustomerSpecializationCopyWithImpl<
-  $Res,
-  $Val extends LeadSaleCustomerSpecialization
->
+class _$LeadSaleCustomerSpecializationCopyWithImpl<$Res,
+        $Val extends LeadSaleCustomerSpecialization>
     implements $LeadSaleCustomerSpecializationCopyWith<$Res> {
   _$LeadSaleCustomerSpecializationCopyWithImpl(this._value, this._then);
 
@@ -1500,27 +1418,24 @@ class _$LeadSaleCustomerSpecializationCopyWithImpl<
     Object? code = freezed,
     Object? name = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            stt: freezed == stt
-                ? _value.stt
-                : stt // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            code: freezed == code
-                ? _value.code
-                : code // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            name: freezed == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -1528,31 +1443,27 @@ class _$LeadSaleCustomerSpecializationCopyWithImpl<
 abstract class _$$LeadSaleCustomerSpecializationImplCopyWith<$Res>
     implements $LeadSaleCustomerSpecializationCopyWith<$Res> {
   factory _$$LeadSaleCustomerSpecializationImplCopyWith(
-    _$LeadSaleCustomerSpecializationImpl value,
-    $Res Function(_$LeadSaleCustomerSpecializationImpl) then,
-  ) = __$$LeadSaleCustomerSpecializationImplCopyWithImpl<$Res>;
+          _$LeadSaleCustomerSpecializationImpl value,
+          $Res Function(_$LeadSaleCustomerSpecializationImpl) then) =
+      __$$LeadSaleCustomerSpecializationImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'STT') int? stt,
-    @JsonKey(name: 'Code') String? code,
-    @JsonKey(name: 'Name') String? name,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name});
 }
 
 /// @nodoc
 class __$$LeadSaleCustomerSpecializationImplCopyWithImpl<$Res>
-    extends
-        _$LeadSaleCustomerSpecializationCopyWithImpl<
-          $Res,
-          _$LeadSaleCustomerSpecializationImpl
-        >
+    extends _$LeadSaleCustomerSpecializationCopyWithImpl<$Res,
+        _$LeadSaleCustomerSpecializationImpl>
     implements _$$LeadSaleCustomerSpecializationImplCopyWith<$Res> {
   __$$LeadSaleCustomerSpecializationImplCopyWithImpl(
-    _$LeadSaleCustomerSpecializationImpl _value,
-    $Res Function(_$LeadSaleCustomerSpecializationImpl) _then,
-  ) : super(_value, _then);
+      _$LeadSaleCustomerSpecializationImpl _value,
+      $Res Function(_$LeadSaleCustomerSpecializationImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -1562,26 +1473,24 @@ class __$$LeadSaleCustomerSpecializationImplCopyWithImpl<$Res>
     Object? code = freezed,
     Object? name = freezed,
   }) {
-    return _then(
-      _$LeadSaleCustomerSpecializationImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        stt: freezed == stt
-            ? _value.stt
-            : stt // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        code: freezed == code
-            ? _value.code
-            : code // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        name: freezed == name
-            ? _value.name
-            : name // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$LeadSaleCustomerSpecializationImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
@@ -1589,16 +1498,15 @@ class __$$LeadSaleCustomerSpecializationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LeadSaleCustomerSpecializationImpl
     implements _LeadSaleCustomerSpecialization {
-  const _$LeadSaleCustomerSpecializationImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'STT') this.stt,
-    @JsonKey(name: 'Code') this.code,
-    @JsonKey(name: 'Name') this.name,
-  });
+  const _$LeadSaleCustomerSpecializationImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'Name') this.name});
 
   factory _$LeadSaleCustomerSpecializationImpl.fromJson(
-    Map<String, dynamic> json,
-  ) => _$$LeadSaleCustomerSpecializationImplFromJson(json);
+          Map<String, dynamic> json) =>
+      _$$LeadSaleCustomerSpecializationImplFromJson(json);
 
   @override
   @JsonKey(name: 'ID')
@@ -1637,27 +1545,26 @@ class _$LeadSaleCustomerSpecializationImpl
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleCustomerSpecializationImplCopyWith<
-    _$LeadSaleCustomerSpecializationImpl
-  >
-  get copyWith =>
-      __$$LeadSaleCustomerSpecializationImplCopyWithImpl<
-        _$LeadSaleCustomerSpecializationImpl
-      >(this, _$identity);
+          _$LeadSaleCustomerSpecializationImpl>
+      get copyWith => __$$LeadSaleCustomerSpecializationImplCopyWithImpl<
+          _$LeadSaleCustomerSpecializationImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleCustomerSpecializationImplToJson(this);
+    return _$$LeadSaleCustomerSpecializationImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleCustomerSpecialization
     implements LeadSaleCustomerSpecialization {
-  const factory _LeadSaleCustomerSpecialization({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'STT') final int? stt,
-    @JsonKey(name: 'Code') final String? code,
-    @JsonKey(name: 'Name') final String? name,
-  }) = _$LeadSaleCustomerSpecializationImpl;
+  const factory _LeadSaleCustomerSpecialization(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'STT') final int? stt,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'Name') final String? name}) =
+      _$LeadSaleCustomerSpecializationImpl;
 
   factory _LeadSaleCustomerSpecialization.fromJson(Map<String, dynamic> json) =
       _$LeadSaleCustomerSpecializationImpl.fromJson;
@@ -1677,14 +1584,12 @@ abstract class _LeadSaleCustomerSpecialization
   @override
   @JsonKey(ignore: true)
   _$$LeadSaleCustomerSpecializationImplCopyWith<
-    _$LeadSaleCustomerSpecializationImpl
-  >
-  get copyWith => throw _privateConstructorUsedError;
+          _$LeadSaleCustomerSpecializationImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 LeadSaleBusinessField _$LeadSaleBusinessFieldFromJson(
-  Map<String, dynamic> json,
-) {
+    Map<String, dynamic> json) {
   return _LeadSaleBusinessField.fromJson(json);
 }
 
@@ -1707,24 +1612,20 @@ mixin _$LeadSaleBusinessField {
 
 /// @nodoc
 abstract class $LeadSaleBusinessFieldCopyWith<$Res> {
-  factory $LeadSaleBusinessFieldCopyWith(
-    LeadSaleBusinessField value,
-    $Res Function(LeadSaleBusinessField) then,
-  ) = _$LeadSaleBusinessFieldCopyWithImpl<$Res, LeadSaleBusinessField>;
+  factory $LeadSaleBusinessFieldCopyWith(LeadSaleBusinessField value,
+          $Res Function(LeadSaleBusinessField) then) =
+      _$LeadSaleBusinessFieldCopyWithImpl<$Res, LeadSaleBusinessField>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'STT') int? stt,
-    @JsonKey(name: 'Code') String? code,
-    @JsonKey(name: 'Name') String? name,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name});
 }
 
 /// @nodoc
-class _$LeadSaleBusinessFieldCopyWithImpl<
-  $Res,
-  $Val extends LeadSaleBusinessField
->
+class _$LeadSaleBusinessFieldCopyWithImpl<$Res,
+        $Val extends LeadSaleBusinessField>
     implements $LeadSaleBusinessFieldCopyWith<$Res> {
   _$LeadSaleBusinessFieldCopyWithImpl(this._value, this._then);
 
@@ -1741,27 +1642,24 @@ class _$LeadSaleBusinessFieldCopyWithImpl<
     Object? code = freezed,
     Object? name = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            stt: freezed == stt
-                ? _value.stt
-                : stt // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            code: freezed == code
-                ? _value.code
-                : code // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            name: freezed == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -1769,28 +1667,26 @@ class _$LeadSaleBusinessFieldCopyWithImpl<
 abstract class _$$LeadSaleBusinessFieldImplCopyWith<$Res>
     implements $LeadSaleBusinessFieldCopyWith<$Res> {
   factory _$$LeadSaleBusinessFieldImplCopyWith(
-    _$LeadSaleBusinessFieldImpl value,
-    $Res Function(_$LeadSaleBusinessFieldImpl) then,
-  ) = __$$LeadSaleBusinessFieldImplCopyWithImpl<$Res>;
+          _$LeadSaleBusinessFieldImpl value,
+          $Res Function(_$LeadSaleBusinessFieldImpl) then) =
+      __$$LeadSaleBusinessFieldImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'STT') int? stt,
-    @JsonKey(name: 'Code') String? code,
-    @JsonKey(name: 'Name') String? name,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name});
 }
 
 /// @nodoc
 class __$$LeadSaleBusinessFieldImplCopyWithImpl<$Res>
-    extends
-        _$LeadSaleBusinessFieldCopyWithImpl<$Res, _$LeadSaleBusinessFieldImpl>
+    extends _$LeadSaleBusinessFieldCopyWithImpl<$Res,
+        _$LeadSaleBusinessFieldImpl>
     implements _$$LeadSaleBusinessFieldImplCopyWith<$Res> {
-  __$$LeadSaleBusinessFieldImplCopyWithImpl(
-    _$LeadSaleBusinessFieldImpl _value,
-    $Res Function(_$LeadSaleBusinessFieldImpl) _then,
-  ) : super(_value, _then);
+  __$$LeadSaleBusinessFieldImplCopyWithImpl(_$LeadSaleBusinessFieldImpl _value,
+      $Res Function(_$LeadSaleBusinessFieldImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -1800,38 +1696,35 @@ class __$$LeadSaleBusinessFieldImplCopyWithImpl<$Res>
     Object? code = freezed,
     Object? name = freezed,
   }) {
-    return _then(
-      _$LeadSaleBusinessFieldImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        stt: freezed == stt
-            ? _value.stt
-            : stt // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        code: freezed == code
-            ? _value.code
-            : code // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        name: freezed == name
-            ? _value.name
-            : name // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$LeadSaleBusinessFieldImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleBusinessFieldImpl implements _LeadSaleBusinessField {
-  const _$LeadSaleBusinessFieldImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'STT') this.stt,
-    @JsonKey(name: 'Code') this.code,
-    @JsonKey(name: 'Name') this.name,
-  });
+  const _$LeadSaleBusinessFieldImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'Name') this.name});
 
   factory _$LeadSaleBusinessFieldImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleBusinessFieldImplFromJson(json);
@@ -1873,25 +1766,23 @@ class _$LeadSaleBusinessFieldImpl implements _LeadSaleBusinessField {
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleBusinessFieldImplCopyWith<_$LeadSaleBusinessFieldImpl>
-  get copyWith =>
-      __$$LeadSaleBusinessFieldImplCopyWithImpl<_$LeadSaleBusinessFieldImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith => __$$LeadSaleBusinessFieldImplCopyWithImpl<
+          _$LeadSaleBusinessFieldImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleBusinessFieldImplToJson(this);
+    return _$$LeadSaleBusinessFieldImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleBusinessField implements LeadSaleBusinessField {
-  const factory _LeadSaleBusinessField({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'STT') final int? stt,
-    @JsonKey(name: 'Code') final String? code,
-    @JsonKey(name: 'Name') final String? name,
-  }) = _$LeadSaleBusinessFieldImpl;
+  const factory _LeadSaleBusinessField(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'STT') final int? stt,
+      @JsonKey(name: 'Code') final String? code,
+      @JsonKey(name: 'Name') final String? name}) = _$LeadSaleBusinessFieldImpl;
 
   factory _LeadSaleBusinessField.fromJson(Map<String, dynamic> json) =
       _$LeadSaleBusinessFieldImpl.fromJson;
@@ -1911,7 +1802,7 @@ abstract class _LeadSaleBusinessField implements LeadSaleBusinessField {
   @override
   @JsonKey(ignore: true)
   _$$LeadSaleBusinessFieldImplCopyWith<_$LeadSaleBusinessFieldImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 LeadSaleProvince _$LeadSaleProvinceFromJson(Map<String, dynamic> json) {
@@ -1938,16 +1829,14 @@ mixin _$LeadSaleProvince {
 /// @nodoc
 abstract class $LeadSaleProvinceCopyWith<$Res> {
   factory $LeadSaleProvinceCopyWith(
-    LeadSaleProvince value,
-    $Res Function(LeadSaleProvince) then,
-  ) = _$LeadSaleProvinceCopyWithImpl<$Res, LeadSaleProvince>;
+          LeadSaleProvince value, $Res Function(LeadSaleProvince) then) =
+      _$LeadSaleProvinceCopyWithImpl<$Res, LeadSaleProvince>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'STT') int? stt,
-    @JsonKey(name: 'ProvinceCode') String? provinceCode,
-    @JsonKey(name: 'ProvinceName') String? provinceName,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'ProvinceCode') String? provinceCode,
+      @JsonKey(name: 'ProvinceName') String? provinceName});
 }
 
 /// @nodoc
@@ -1968,55 +1857,49 @@ class _$LeadSaleProvinceCopyWithImpl<$Res, $Val extends LeadSaleProvince>
     Object? provinceCode = freezed,
     Object? provinceName = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            stt: freezed == stt
-                ? _value.stt
-                : stt // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            provinceCode: freezed == provinceCode
-                ? _value.provinceCode
-                : provinceCode // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            provinceName: freezed == provinceName
-                ? _value.provinceName
-                : provinceName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceCode: freezed == provinceCode
+          ? _value.provinceCode
+          : provinceCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      provinceName: freezed == provinceName
+          ? _value.provinceName
+          : provinceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$LeadSaleProvinceImplCopyWith<$Res>
     implements $LeadSaleProvinceCopyWith<$Res> {
-  factory _$$LeadSaleProvinceImplCopyWith(
-    _$LeadSaleProvinceImpl value,
-    $Res Function(_$LeadSaleProvinceImpl) then,
-  ) = __$$LeadSaleProvinceImplCopyWithImpl<$Res>;
+  factory _$$LeadSaleProvinceImplCopyWith(_$LeadSaleProvinceImpl value,
+          $Res Function(_$LeadSaleProvinceImpl) then) =
+      __$$LeadSaleProvinceImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'STT') int? stt,
-    @JsonKey(name: 'ProvinceCode') String? provinceCode,
-    @JsonKey(name: 'ProvinceName') String? provinceName,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'ProvinceCode') String? provinceCode,
+      @JsonKey(name: 'ProvinceName') String? provinceName});
 }
 
 /// @nodoc
 class __$$LeadSaleProvinceImplCopyWithImpl<$Res>
     extends _$LeadSaleProvinceCopyWithImpl<$Res, _$LeadSaleProvinceImpl>
     implements _$$LeadSaleProvinceImplCopyWith<$Res> {
-  __$$LeadSaleProvinceImplCopyWithImpl(
-    _$LeadSaleProvinceImpl _value,
-    $Res Function(_$LeadSaleProvinceImpl) _then,
-  ) : super(_value, _then);
+  __$$LeadSaleProvinceImplCopyWithImpl(_$LeadSaleProvinceImpl _value,
+      $Res Function(_$LeadSaleProvinceImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -2026,38 +1909,35 @@ class __$$LeadSaleProvinceImplCopyWithImpl<$Res>
     Object? provinceCode = freezed,
     Object? provinceName = freezed,
   }) {
-    return _then(
-      _$LeadSaleProvinceImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        stt: freezed == stt
-            ? _value.stt
-            : stt // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        provinceCode: freezed == provinceCode
-            ? _value.provinceCode
-            : provinceCode // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        provinceName: freezed == provinceName
-            ? _value.provinceName
-            : provinceName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$LeadSaleProvinceImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      provinceCode: freezed == provinceCode
+          ? _value.provinceCode
+          : provinceCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      provinceName: freezed == provinceName
+          ? _value.provinceName
+          : provinceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleProvinceImpl implements _LeadSaleProvince {
-  const _$LeadSaleProvinceImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'STT') this.stt,
-    @JsonKey(name: 'ProvinceCode') this.provinceCode,
-    @JsonKey(name: 'ProvinceName') this.provinceName,
-  });
+  const _$LeadSaleProvinceImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'ProvinceCode') this.provinceCode,
+      @JsonKey(name: 'ProvinceName') this.provinceName});
 
   factory _$LeadSaleProvinceImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleProvinceImplFromJson(json);
@@ -2103,23 +1983,23 @@ class _$LeadSaleProvinceImpl implements _LeadSaleProvince {
   @pragma('vm:prefer-inline')
   _$$LeadSaleProvinceImplCopyWith<_$LeadSaleProvinceImpl> get copyWith =>
       __$$LeadSaleProvinceImplCopyWithImpl<_$LeadSaleProvinceImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleProvinceImplToJson(this);
+    return _$$LeadSaleProvinceImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleProvince implements LeadSaleProvince {
-  const factory _LeadSaleProvince({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'STT') final int? stt,
-    @JsonKey(name: 'ProvinceCode') final String? provinceCode,
-    @JsonKey(name: 'ProvinceName') final String? provinceName,
-  }) = _$LeadSaleProvinceImpl;
+  const factory _LeadSaleProvince(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'STT') final int? stt,
+          @JsonKey(name: 'ProvinceCode') final String? provinceCode,
+          @JsonKey(name: 'ProvinceName') final String? provinceName}) =
+      _$LeadSaleProvinceImpl;
 
   factory _LeadSaleProvince.fromJson(Map<String, dynamic> json) =
       _$LeadSaleProvinceImpl.fromJson;
@@ -2192,29 +2072,27 @@ mixin _$LeadSaleCustomer {
 /// @nodoc
 abstract class $LeadSaleCustomerCopyWith<$Res> {
   factory $LeadSaleCustomerCopyWith(
-    LeadSaleCustomer value,
-    $Res Function(LeadSaleCustomer) then,
-  ) = _$LeadSaleCustomerCopyWithImpl<$Res, LeadSaleCustomer>;
+          LeadSaleCustomer value, $Res Function(LeadSaleCustomer) then) =
+      _$LeadSaleCustomerCopyWithImpl<$Res, LeadSaleCustomer>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'CustomerName') String? customerName,
-    @JsonKey(name: 'CustomerCode') String? customerCode,
-    @JsonKey(name: 'CustomerShortName') String? customerShortName,
-    @JsonKey(name: 'Address') String? address,
-    @JsonKey(name: 'Phone') String? phone,
-    @JsonKey(name: 'Email') String? email,
-    @JsonKey(name: 'ContactName') String? contactName,
-    @JsonKey(name: 'ContactPhone') String? contactPhone,
-    @JsonKey(name: 'ContactEmail') String? contactEmail,
-    @JsonKey(name: 'Province') String? province,
-    @JsonKey(name: 'CustomerType') int? customerType,
-    @JsonKey(name: 'CustomerIndustriesID') int? customerIndustriesId,
-    @JsonKey(name: 'CustomerSpecializationID') int? customerSpecializationId,
-    @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
-    @JsonKey(name: 'Website') String? website,
-    @JsonKey(name: 'TaxCode') String? taxCode,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'CustomerName') String? customerName,
+      @JsonKey(name: 'CustomerCode') String? customerCode,
+      @JsonKey(name: 'CustomerShortName') String? customerShortName,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'Phone') String? phone,
+      @JsonKey(name: 'Email') String? email,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'Province') String? province,
+      @JsonKey(name: 'CustomerType') int? customerType,
+      @JsonKey(name: 'CustomerIndustriesID') int? customerIndustriesId,
+      @JsonKey(name: 'CustomerSpecializationID') int? customerSpecializationId,
+      @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
+      @JsonKey(name: 'Website') String? website,
+      @JsonKey(name: 'TaxCode') String? taxCode});
 }
 
 /// @nodoc
@@ -2248,120 +2126,114 @@ class _$LeadSaleCustomerCopyWithImpl<$Res, $Val extends LeadSaleCustomer>
     Object? website = freezed,
     Object? taxCode = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            customerName: freezed == customerName
-                ? _value.customerName
-                : customerName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            customerCode: freezed == customerCode
-                ? _value.customerCode
-                : customerCode // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            customerShortName: freezed == customerShortName
-                ? _value.customerShortName
-                : customerShortName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            address: freezed == address
-                ? _value.address
-                : address // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            phone: freezed == phone
-                ? _value.phone
-                : phone // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            email: freezed == email
-                ? _value.email
-                : email // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactName: freezed == contactName
-                ? _value.contactName
-                : contactName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactPhone: freezed == contactPhone
-                ? _value.contactPhone
-                : contactPhone // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactEmail: freezed == contactEmail
-                ? _value.contactEmail
-                : contactEmail // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            province: freezed == province
-                ? _value.province
-                : province // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            customerType: freezed == customerType
-                ? _value.customerType
-                : customerType // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            customerIndustriesId: freezed == customerIndustriesId
-                ? _value.customerIndustriesId
-                : customerIndustriesId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            customerSpecializationId: freezed == customerSpecializationId
-                ? _value.customerSpecializationId
-                : customerSpecializationId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            businessFieldId: freezed == businessFieldId
-                ? _value.businessFieldId
-                : businessFieldId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            website: freezed == website
-                ? _value.website
-                : website // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            taxCode: freezed == taxCode
-                ? _value.taxCode
-                : taxCode // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerName: freezed == customerName
+          ? _value.customerName
+          : customerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerCode: freezed == customerCode
+          ? _value.customerCode
+          : customerCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerShortName: freezed == customerShortName
+          ? _value.customerShortName
+          : customerShortName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      province: freezed == province
+          ? _value.province
+          : province // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerType: freezed == customerType
+          ? _value.customerType
+          : customerType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerIndustriesId: freezed == customerIndustriesId
+          ? _value.customerIndustriesId
+          : customerIndustriesId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerSpecializationId: freezed == customerSpecializationId
+          ? _value.customerSpecializationId
+          : customerSpecializationId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      businessFieldId: freezed == businessFieldId
+          ? _value.businessFieldId
+          : businessFieldId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxCode: freezed == taxCode
+          ? _value.taxCode
+          : taxCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$LeadSaleCustomerImplCopyWith<$Res>
     implements $LeadSaleCustomerCopyWith<$Res> {
-  factory _$$LeadSaleCustomerImplCopyWith(
-    _$LeadSaleCustomerImpl value,
-    $Res Function(_$LeadSaleCustomerImpl) then,
-  ) = __$$LeadSaleCustomerImplCopyWithImpl<$Res>;
+  factory _$$LeadSaleCustomerImplCopyWith(_$LeadSaleCustomerImpl value,
+          $Res Function(_$LeadSaleCustomerImpl) then) =
+      __$$LeadSaleCustomerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'CustomerName') String? customerName,
-    @JsonKey(name: 'CustomerCode') String? customerCode,
-    @JsonKey(name: 'CustomerShortName') String? customerShortName,
-    @JsonKey(name: 'Address') String? address,
-    @JsonKey(name: 'Phone') String? phone,
-    @JsonKey(name: 'Email') String? email,
-    @JsonKey(name: 'ContactName') String? contactName,
-    @JsonKey(name: 'ContactPhone') String? contactPhone,
-    @JsonKey(name: 'ContactEmail') String? contactEmail,
-    @JsonKey(name: 'Province') String? province,
-    @JsonKey(name: 'CustomerType') int? customerType,
-    @JsonKey(name: 'CustomerIndustriesID') int? customerIndustriesId,
-    @JsonKey(name: 'CustomerSpecializationID') int? customerSpecializationId,
-    @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
-    @JsonKey(name: 'Website') String? website,
-    @JsonKey(name: 'TaxCode') String? taxCode,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'CustomerName') String? customerName,
+      @JsonKey(name: 'CustomerCode') String? customerCode,
+      @JsonKey(name: 'CustomerShortName') String? customerShortName,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'Phone') String? phone,
+      @JsonKey(name: 'Email') String? email,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'Province') String? province,
+      @JsonKey(name: 'CustomerType') int? customerType,
+      @JsonKey(name: 'CustomerIndustriesID') int? customerIndustriesId,
+      @JsonKey(name: 'CustomerSpecializationID') int? customerSpecializationId,
+      @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
+      @JsonKey(name: 'Website') String? website,
+      @JsonKey(name: 'TaxCode') String? taxCode});
 }
 
 /// @nodoc
 class __$$LeadSaleCustomerImplCopyWithImpl<$Res>
     extends _$LeadSaleCustomerCopyWithImpl<$Res, _$LeadSaleCustomerImpl>
     implements _$$LeadSaleCustomerImplCopyWith<$Res> {
-  __$$LeadSaleCustomerImplCopyWithImpl(
-    _$LeadSaleCustomerImpl _value,
-    $Res Function(_$LeadSaleCustomerImpl) _then,
-  ) : super(_value, _then);
+  __$$LeadSaleCustomerImplCopyWithImpl(_$LeadSaleCustomerImpl _value,
+      $Res Function(_$LeadSaleCustomerImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -2384,103 +2256,100 @@ class __$$LeadSaleCustomerImplCopyWithImpl<$Res>
     Object? website = freezed,
     Object? taxCode = freezed,
   }) {
-    return _then(
-      _$LeadSaleCustomerImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        customerName: freezed == customerName
-            ? _value.customerName
-            : customerName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        customerCode: freezed == customerCode
-            ? _value.customerCode
-            : customerCode // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        customerShortName: freezed == customerShortName
-            ? _value.customerShortName
-            : customerShortName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        address: freezed == address
-            ? _value.address
-            : address // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        phone: freezed == phone
-            ? _value.phone
-            : phone // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        email: freezed == email
-            ? _value.email
-            : email // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactName: freezed == contactName
-            ? _value.contactName
-            : contactName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactPhone: freezed == contactPhone
-            ? _value.contactPhone
-            : contactPhone // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactEmail: freezed == contactEmail
-            ? _value.contactEmail
-            : contactEmail // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        province: freezed == province
-            ? _value.province
-            : province // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        customerType: freezed == customerType
-            ? _value.customerType
-            : customerType // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        customerIndustriesId: freezed == customerIndustriesId
-            ? _value.customerIndustriesId
-            : customerIndustriesId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        customerSpecializationId: freezed == customerSpecializationId
-            ? _value.customerSpecializationId
-            : customerSpecializationId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        businessFieldId: freezed == businessFieldId
-            ? _value.businessFieldId
-            : businessFieldId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        website: freezed == website
-            ? _value.website
-            : website // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        taxCode: freezed == taxCode
-            ? _value.taxCode
-            : taxCode // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$LeadSaleCustomerImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerName: freezed == customerName
+          ? _value.customerName
+          : customerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerCode: freezed == customerCode
+          ? _value.customerCode
+          : customerCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerShortName: freezed == customerShortName
+          ? _value.customerShortName
+          : customerShortName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      province: freezed == province
+          ? _value.province
+          : province // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerType: freezed == customerType
+          ? _value.customerType
+          : customerType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerIndustriesId: freezed == customerIndustriesId
+          ? _value.customerIndustriesId
+          : customerIndustriesId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerSpecializationId: freezed == customerSpecializationId
+          ? _value.customerSpecializationId
+          : customerSpecializationId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      businessFieldId: freezed == businessFieldId
+          ? _value.businessFieldId
+          : businessFieldId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxCode: freezed == taxCode
+          ? _value.taxCode
+          : taxCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleCustomerImpl implements _LeadSaleCustomer {
-  const _$LeadSaleCustomerImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'CustomerName') this.customerName,
-    @JsonKey(name: 'CustomerCode') this.customerCode,
-    @JsonKey(name: 'CustomerShortName') this.customerShortName,
-    @JsonKey(name: 'Address') this.address,
-    @JsonKey(name: 'Phone') this.phone,
-    @JsonKey(name: 'Email') this.email,
-    @JsonKey(name: 'ContactName') this.contactName,
-    @JsonKey(name: 'ContactPhone') this.contactPhone,
-    @JsonKey(name: 'ContactEmail') this.contactEmail,
-    @JsonKey(name: 'Province') this.province,
-    @JsonKey(name: 'CustomerType') this.customerType,
-    @JsonKey(name: 'CustomerIndustriesID') this.customerIndustriesId,
-    @JsonKey(name: 'CustomerSpecializationID') this.customerSpecializationId,
-    @JsonKey(name: 'BusinessFieldID') this.businessFieldId,
-    @JsonKey(name: 'Website') this.website,
-    @JsonKey(name: 'TaxCode') this.taxCode,
-  });
+  const _$LeadSaleCustomerImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'CustomerName') this.customerName,
+      @JsonKey(name: 'CustomerCode') this.customerCode,
+      @JsonKey(name: 'CustomerShortName') this.customerShortName,
+      @JsonKey(name: 'Address') this.address,
+      @JsonKey(name: 'Phone') this.phone,
+      @JsonKey(name: 'Email') this.email,
+      @JsonKey(name: 'ContactName') this.contactName,
+      @JsonKey(name: 'ContactPhone') this.contactPhone,
+      @JsonKey(name: 'ContactEmail') this.contactEmail,
+      @JsonKey(name: 'Province') this.province,
+      @JsonKey(name: 'CustomerType') this.customerType,
+      @JsonKey(name: 'CustomerIndustriesID') this.customerIndustriesId,
+      @JsonKey(name: 'CustomerSpecializationID') this.customerSpecializationId,
+      @JsonKey(name: 'BusinessFieldID') this.businessFieldId,
+      @JsonKey(name: 'Website') this.website,
+      @JsonKey(name: 'TaxCode') this.taxCode});
 
   factory _$LeadSaleCustomerImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleCustomerImplFromJson(json);
@@ -2570,9 +2439,7 @@ class _$LeadSaleCustomerImpl implements _LeadSaleCustomer {
             (identical(other.customerIndustriesId, customerIndustriesId) ||
                 other.customerIndustriesId == customerIndustriesId) &&
             (identical(
-                  other.customerSpecializationId,
-                  customerSpecializationId,
-                ) ||
+                    other.customerSpecializationId, customerSpecializationId) ||
                 other.customerSpecializationId == customerSpecializationId) &&
             (identical(other.businessFieldId, businessFieldId) ||
                 other.businessFieldId == businessFieldId) &&
@@ -2583,62 +2450,61 @@ class _$LeadSaleCustomerImpl implements _LeadSaleCustomer {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    customerName,
-    customerCode,
-    customerShortName,
-    address,
-    phone,
-    email,
-    contactName,
-    contactPhone,
-    contactEmail,
-    province,
-    customerType,
-    customerIndustriesId,
-    customerSpecializationId,
-    businessFieldId,
-    website,
-    taxCode,
-  );
+      runtimeType,
+      id,
+      customerName,
+      customerCode,
+      customerShortName,
+      address,
+      phone,
+      email,
+      contactName,
+      contactPhone,
+      contactEmail,
+      province,
+      customerType,
+      customerIndustriesId,
+      customerSpecializationId,
+      businessFieldId,
+      website,
+      taxCode);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleCustomerImplCopyWith<_$LeadSaleCustomerImpl> get copyWith =>
       __$$LeadSaleCustomerImplCopyWithImpl<_$LeadSaleCustomerImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleCustomerImplToJson(this);
+    return _$$LeadSaleCustomerImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleCustomer implements LeadSaleCustomer {
-  const factory _LeadSaleCustomer({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'CustomerName') final String? customerName,
-    @JsonKey(name: 'CustomerCode') final String? customerCode,
-    @JsonKey(name: 'CustomerShortName') final String? customerShortName,
-    @JsonKey(name: 'Address') final String? address,
-    @JsonKey(name: 'Phone') final String? phone,
-    @JsonKey(name: 'Email') final String? email,
-    @JsonKey(name: 'ContactName') final String? contactName,
-    @JsonKey(name: 'ContactPhone') final String? contactPhone,
-    @JsonKey(name: 'ContactEmail') final String? contactEmail,
-    @JsonKey(name: 'Province') final String? province,
-    @JsonKey(name: 'CustomerType') final int? customerType,
-    @JsonKey(name: 'CustomerIndustriesID') final int? customerIndustriesId,
-    @JsonKey(name: 'CustomerSpecializationID')
-    final int? customerSpecializationId,
-    @JsonKey(name: 'BusinessFieldID') final int? businessFieldId,
-    @JsonKey(name: 'Website') final String? website,
-    @JsonKey(name: 'TaxCode') final String? taxCode,
-  }) = _$LeadSaleCustomerImpl;
+  const factory _LeadSaleCustomer(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'CustomerName') final String? customerName,
+      @JsonKey(name: 'CustomerCode') final String? customerCode,
+      @JsonKey(name: 'CustomerShortName') final String? customerShortName,
+      @JsonKey(name: 'Address') final String? address,
+      @JsonKey(name: 'Phone') final String? phone,
+      @JsonKey(name: 'Email') final String? email,
+      @JsonKey(name: 'ContactName') final String? contactName,
+      @JsonKey(name: 'ContactPhone') final String? contactPhone,
+      @JsonKey(name: 'ContactEmail') final String? contactEmail,
+      @JsonKey(name: 'Province') final String? province,
+      @JsonKey(name: 'CustomerType') final int? customerType,
+      @JsonKey(name: 'CustomerIndustriesID') final int? customerIndustriesId,
+      @JsonKey(name: 'CustomerSpecializationID')
+      final int? customerSpecializationId,
+      @JsonKey(name: 'BusinessFieldID') final int? businessFieldId,
+      @JsonKey(name: 'Website') final String? website,
+      @JsonKey(name: 'TaxCode')
+      final String? taxCode}) = _$LeadSaleCustomerImpl;
 
   factory _LeadSaleCustomer.fromJson(Map<String, dynamic> json) =
       _$LeadSaleCustomerImpl.fromJson;
@@ -2701,8 +2567,7 @@ abstract class _LeadSaleCustomer implements LeadSaleCustomer {
 }
 
 LeadSaleDuplicateInfo _$LeadSaleDuplicateInfoFromJson(
-  Map<String, dynamic> json,
-) {
+    Map<String, dynamic> json) {
   return _LeadSaleDuplicateInfo.fromJson(json);
 }
 
@@ -2760,31 +2625,27 @@ mixin _$LeadSaleDuplicateInfo {
 
 /// @nodoc
 abstract class $LeadSaleDuplicateInfoCopyWith<$Res> {
-  factory $LeadSaleDuplicateInfoCopyWith(
-    LeadSaleDuplicateInfo value,
-    $Res Function(LeadSaleDuplicateInfo) then,
-  ) = _$LeadSaleDuplicateInfoCopyWithImpl<$Res, LeadSaleDuplicateInfo>;
+  factory $LeadSaleDuplicateInfoCopyWith(LeadSaleDuplicateInfo value,
+          $Res Function(LeadSaleDuplicateInfo) then) =
+      _$LeadSaleDuplicateInfoCopyWithImpl<$Res, LeadSaleDuplicateInfo>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'SourceTable') String? sourceTable,
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'Code') String? code,
-    @JsonKey(name: 'Name') String? name,
-    @JsonKey(name: 'ContactName') String? contactName,
-    @JsonKey(name: 'ContactPhone') String? contactPhone,
-    @JsonKey(name: 'ContactEmail') String? contactEmail,
-    @JsonKey(name: 'Stage') int? stage,
-    @JsonKey(name: 'MatchField') String? matchField,
-    @JsonKey(name: 'OwnerName') String? ownerName,
-    @JsonKey(name: 'OwnerSide') String? ownerSide,
-  });
+  $Res call(
+      {@JsonKey(name: 'SourceTable') String? sourceTable,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'Stage') int? stage,
+      @JsonKey(name: 'MatchField') String? matchField,
+      @JsonKey(name: 'OwnerName') String? ownerName,
+      @JsonKey(name: 'OwnerSide') String? ownerSide});
 }
 
 /// @nodoc
-class _$LeadSaleDuplicateInfoCopyWithImpl<
-  $Res,
-  $Val extends LeadSaleDuplicateInfo
->
+class _$LeadSaleDuplicateInfoCopyWithImpl<$Res,
+        $Val extends LeadSaleDuplicateInfo>
     implements $LeadSaleDuplicateInfoCopyWith<$Res> {
   _$LeadSaleDuplicateInfoCopyWithImpl(this._value, this._then);
 
@@ -2808,55 +2669,52 @@ class _$LeadSaleDuplicateInfoCopyWithImpl<
     Object? ownerName = freezed,
     Object? ownerSide = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            sourceTable: freezed == sourceTable
-                ? _value.sourceTable
-                : sourceTable // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            code: freezed == code
-                ? _value.code
-                : code // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            name: freezed == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactName: freezed == contactName
-                ? _value.contactName
-                : contactName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactPhone: freezed == contactPhone
-                ? _value.contactPhone
-                : contactPhone // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactEmail: freezed == contactEmail
-                ? _value.contactEmail
-                : contactEmail // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            stage: freezed == stage
-                ? _value.stage
-                : stage // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            matchField: freezed == matchField
-                ? _value.matchField
-                : matchField // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            ownerName: freezed == ownerName
-                ? _value.ownerName
-                : ownerName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            ownerSide: freezed == ownerSide
-                ? _value.ownerSide
-                : ownerSide // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      sourceTable: freezed == sourceTable
+          ? _value.sourceTable
+          : sourceTable // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stage: freezed == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      matchField: freezed == matchField
+          ? _value.matchField
+          : matchField // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerName: freezed == ownerName
+          ? _value.ownerName
+          : ownerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerSide: freezed == ownerSide
+          ? _value.ownerSide
+          : ownerSide // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -2864,35 +2722,33 @@ class _$LeadSaleDuplicateInfoCopyWithImpl<
 abstract class _$$LeadSaleDuplicateInfoImplCopyWith<$Res>
     implements $LeadSaleDuplicateInfoCopyWith<$Res> {
   factory _$$LeadSaleDuplicateInfoImplCopyWith(
-    _$LeadSaleDuplicateInfoImpl value,
-    $Res Function(_$LeadSaleDuplicateInfoImpl) then,
-  ) = __$$LeadSaleDuplicateInfoImplCopyWithImpl<$Res>;
+          _$LeadSaleDuplicateInfoImpl value,
+          $Res Function(_$LeadSaleDuplicateInfoImpl) then) =
+      __$$LeadSaleDuplicateInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'SourceTable') String? sourceTable,
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'Code') String? code,
-    @JsonKey(name: 'Name') String? name,
-    @JsonKey(name: 'ContactName') String? contactName,
-    @JsonKey(name: 'ContactPhone') String? contactPhone,
-    @JsonKey(name: 'ContactEmail') String? contactEmail,
-    @JsonKey(name: 'Stage') int? stage,
-    @JsonKey(name: 'MatchField') String? matchField,
-    @JsonKey(name: 'OwnerName') String? ownerName,
-    @JsonKey(name: 'OwnerSide') String? ownerSide,
-  });
+  $Res call(
+      {@JsonKey(name: 'SourceTable') String? sourceTable,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'Stage') int? stage,
+      @JsonKey(name: 'MatchField') String? matchField,
+      @JsonKey(name: 'OwnerName') String? ownerName,
+      @JsonKey(name: 'OwnerSide') String? ownerSide});
 }
 
 /// @nodoc
 class __$$LeadSaleDuplicateInfoImplCopyWithImpl<$Res>
-    extends
-        _$LeadSaleDuplicateInfoCopyWithImpl<$Res, _$LeadSaleDuplicateInfoImpl>
+    extends _$LeadSaleDuplicateInfoCopyWithImpl<$Res,
+        _$LeadSaleDuplicateInfoImpl>
     implements _$$LeadSaleDuplicateInfoImplCopyWith<$Res> {
-  __$$LeadSaleDuplicateInfoImplCopyWithImpl(
-    _$LeadSaleDuplicateInfoImpl _value,
-    $Res Function(_$LeadSaleDuplicateInfoImpl) _then,
-  ) : super(_value, _then);
+  __$$LeadSaleDuplicateInfoImplCopyWithImpl(_$LeadSaleDuplicateInfoImpl _value,
+      $Res Function(_$LeadSaleDuplicateInfoImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -2909,73 +2765,70 @@ class __$$LeadSaleDuplicateInfoImplCopyWithImpl<$Res>
     Object? ownerName = freezed,
     Object? ownerSide = freezed,
   }) {
-    return _then(
-      _$LeadSaleDuplicateInfoImpl(
-        sourceTable: freezed == sourceTable
-            ? _value.sourceTable
-            : sourceTable // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        code: freezed == code
-            ? _value.code
-            : code // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        name: freezed == name
-            ? _value.name
-            : name // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactName: freezed == contactName
-            ? _value.contactName
-            : contactName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactPhone: freezed == contactPhone
-            ? _value.contactPhone
-            : contactPhone // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactEmail: freezed == contactEmail
-            ? _value.contactEmail
-            : contactEmail // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        stage: freezed == stage
-            ? _value.stage
-            : stage // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        matchField: freezed == matchField
-            ? _value.matchField
-            : matchField // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        ownerName: freezed == ownerName
-            ? _value.ownerName
-            : ownerName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        ownerSide: freezed == ownerSide
-            ? _value.ownerSide
-            : ownerSide // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$LeadSaleDuplicateInfoImpl(
+      sourceTable: freezed == sourceTable
+          ? _value.sourceTable
+          : sourceTable // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stage: freezed == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      matchField: freezed == matchField
+          ? _value.matchField
+          : matchField // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerName: freezed == ownerName
+          ? _value.ownerName
+          : ownerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ownerSide: freezed == ownerSide
+          ? _value.ownerSide
+          : ownerSide // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleDuplicateInfoImpl implements _LeadSaleDuplicateInfo {
-  const _$LeadSaleDuplicateInfoImpl({
-    @JsonKey(name: 'SourceTable') this.sourceTable,
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'Code') this.code,
-    @JsonKey(name: 'Name') this.name,
-    @JsonKey(name: 'ContactName') this.contactName,
-    @JsonKey(name: 'ContactPhone') this.contactPhone,
-    @JsonKey(name: 'ContactEmail') this.contactEmail,
-    @JsonKey(name: 'Stage') this.stage,
-    @JsonKey(name: 'MatchField') this.matchField,
-    @JsonKey(name: 'OwnerName') this.ownerName,
-    @JsonKey(name: 'OwnerSide') this.ownerSide,
-  });
+  const _$LeadSaleDuplicateInfoImpl(
+      {@JsonKey(name: 'SourceTable') this.sourceTable,
+      @JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'Name') this.name,
+      @JsonKey(name: 'ContactName') this.contactName,
+      @JsonKey(name: 'ContactPhone') this.contactPhone,
+      @JsonKey(name: 'ContactEmail') this.contactEmail,
+      @JsonKey(name: 'Stage') this.stage,
+      @JsonKey(name: 'MatchField') this.matchField,
+      @JsonKey(name: 'OwnerName') this.ownerName,
+      @JsonKey(name: 'OwnerSide') this.ownerSide});
 
   factory _$LeadSaleDuplicateInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleDuplicateInfoImplFromJson(json);
@@ -3068,107 +2921,115 @@ class _$LeadSaleDuplicateInfoImpl implements _LeadSaleDuplicateInfo {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    sourceTable,
-    id,
-    code,
-    name,
-    contactName,
-    contactPhone,
-    contactEmail,
-    stage,
-    matchField,
-    ownerName,
-    ownerSide,
-  );
+      runtimeType,
+      sourceTable,
+      id,
+      code,
+      name,
+      contactName,
+      contactPhone,
+      contactEmail,
+      stage,
+      matchField,
+      ownerName,
+      ownerSide);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleDuplicateInfoImplCopyWith<_$LeadSaleDuplicateInfoImpl>
-  get copyWith =>
-      __$$LeadSaleDuplicateInfoImplCopyWithImpl<_$LeadSaleDuplicateInfoImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith => __$$LeadSaleDuplicateInfoImplCopyWithImpl<
+          _$LeadSaleDuplicateInfoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleDuplicateInfoImplToJson(this);
+    return _$$LeadSaleDuplicateInfoImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleDuplicateInfo implements LeadSaleDuplicateInfo {
-  const factory _LeadSaleDuplicateInfo({
-    @JsonKey(name: 'SourceTable') final String? sourceTable,
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'Code') final String? code,
-    @JsonKey(name: 'Name') final String? name,
-    @JsonKey(name: 'ContactName') final String? contactName,
-    @JsonKey(name: 'ContactPhone') final String? contactPhone,
-    @JsonKey(name: 'ContactEmail') final String? contactEmail,
-    @JsonKey(name: 'Stage') final int? stage,
-    @JsonKey(name: 'MatchField') final String? matchField,
-    @JsonKey(name: 'OwnerName') final String? ownerName,
-    @JsonKey(name: 'OwnerSide') final String? ownerSide,
-  }) = _$LeadSaleDuplicateInfoImpl;
+  const factory _LeadSaleDuplicateInfo(
+          {@JsonKey(name: 'SourceTable') final String? sourceTable,
+          @JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'Name') final String? name,
+          @JsonKey(name: 'ContactName') final String? contactName,
+          @JsonKey(name: 'ContactPhone') final String? contactPhone,
+          @JsonKey(name: 'ContactEmail') final String? contactEmail,
+          @JsonKey(name: 'Stage') final int? stage,
+          @JsonKey(name: 'MatchField') final String? matchField,
+          @JsonKey(name: 'OwnerName') final String? ownerName,
+          @JsonKey(name: 'OwnerSide') final String? ownerSide}) =
+      _$LeadSaleDuplicateInfoImpl;
 
   factory _LeadSaleDuplicateInfo.fromJson(Map<String, dynamic> json) =
       _$LeadSaleDuplicateInfoImpl.fromJson;
 
   @override
+
   /// Bảng nguồn chứa bản ghi trùng (vd "Lead").
   @JsonKey(name: 'SourceTable')
   String? get sourceTable;
   @override
+
   /// ID bản ghi trùng.
   @JsonKey(name: 'ID')
   int? get id;
   @override
+
   /// Mã bản ghi trùng (vd "LD-2610-0028").
   @JsonKey(name: 'Code')
   String? get code;
   @override
+
   /// Tên bản ghi trùng.
   @JsonKey(name: 'Name')
   String? get name;
   @override
+
   /// Họ tên người liên hệ của bản ghi trùng.
   @JsonKey(name: 'ContactName')
   String? get contactName;
   @override
+
   /// SĐT người liên hệ của bản ghi trùng.
   @JsonKey(name: 'ContactPhone')
   String? get contactPhone;
   @override
+
   /// Email người liên hệ của bản ghi trùng.
   @JsonKey(name: 'ContactEmail')
   String? get contactEmail;
   @override
+
   /// Giai đoạn hiện tại của bản ghi trùng.
   @JsonKey(name: 'Stage')
   int? get stage;
   @override
+
   /// Trường bị trùng (vd "Email", "Phone", "TaxCode", "CompanyName").
   @JsonKey(name: 'MatchField')
   String? get matchField;
   @override
+
   /// Người phụ trách bản ghi trùng.
   @JsonKey(name: 'OwnerName')
   String? get ownerName;
   @override
+
   /// Bộ phận của người phụ trách (vd "Marketing", "Sales").
   @JsonKey(name: 'OwnerSide')
   String? get ownerSide;
   @override
   @JsonKey(ignore: true)
   _$$LeadSaleDuplicateInfoImplCopyWith<_$LeadSaleDuplicateInfoImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 LeadSaleDuplicateCheckResult _$LeadSaleDuplicateCheckResultFromJson(
-  Map<String, dynamic> json,
-) {
+    Map<String, dynamic> json) {
   return _LeadSaleDuplicateCheckResult.fromJson(json);
 }
 
@@ -3186,31 +3047,25 @@ mixin _$LeadSaleDuplicateCheckResult {
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LeadSaleDuplicateCheckResultCopyWith<LeadSaleDuplicateCheckResult>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LeadSaleDuplicateCheckResultCopyWith<$Res> {
   factory $LeadSaleDuplicateCheckResultCopyWith(
-    LeadSaleDuplicateCheckResult value,
-    $Res Function(LeadSaleDuplicateCheckResult) then,
-  ) =
-      _$LeadSaleDuplicateCheckResultCopyWithImpl<
-        $Res,
-        LeadSaleDuplicateCheckResult
-      >;
+          LeadSaleDuplicateCheckResult value,
+          $Res Function(LeadSaleDuplicateCheckResult) then) =
+      _$LeadSaleDuplicateCheckResultCopyWithImpl<$Res,
+          LeadSaleDuplicateCheckResult>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'message') String? message,
-    @JsonKey(name: 'data') List<LeadSaleDuplicateInfo>? duplicates,
-  });
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<LeadSaleDuplicateInfo>? duplicates});
 }
 
 /// @nodoc
-class _$LeadSaleDuplicateCheckResultCopyWithImpl<
-  $Res,
-  $Val extends LeadSaleDuplicateCheckResult
->
+class _$LeadSaleDuplicateCheckResultCopyWithImpl<$Res,
+        $Val extends LeadSaleDuplicateCheckResult>
     implements $LeadSaleDuplicateCheckResultCopyWith<$Res> {
   _$LeadSaleDuplicateCheckResultCopyWithImpl(this._value, this._then);
 
@@ -3221,20 +3076,20 @@ class _$LeadSaleDuplicateCheckResultCopyWithImpl<
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? message = freezed, Object? duplicates = freezed}) {
-    return _then(
-      _value.copyWith(
-            message: freezed == message
-                ? _value.message
-                : message // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            duplicates: freezed == duplicates
-                ? _value.duplicates
-                : duplicates // ignore: cast_nullable_to_non_nullable
-                      as List<LeadSaleDuplicateInfo>?,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? message = freezed,
+    Object? duplicates = freezed,
+  }) {
+    return _then(_value.copyWith(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      duplicates: freezed == duplicates
+          ? _value.duplicates
+          : duplicates // ignore: cast_nullable_to_non_nullable
+              as List<LeadSaleDuplicateInfo>?,
+    ) as $Val);
   }
 }
 
@@ -3242,45 +3097,42 @@ class _$LeadSaleDuplicateCheckResultCopyWithImpl<
 abstract class _$$LeadSaleDuplicateCheckResultImplCopyWith<$Res>
     implements $LeadSaleDuplicateCheckResultCopyWith<$Res> {
   factory _$$LeadSaleDuplicateCheckResultImplCopyWith(
-    _$LeadSaleDuplicateCheckResultImpl value,
-    $Res Function(_$LeadSaleDuplicateCheckResultImpl) then,
-  ) = __$$LeadSaleDuplicateCheckResultImplCopyWithImpl<$Res>;
+          _$LeadSaleDuplicateCheckResultImpl value,
+          $Res Function(_$LeadSaleDuplicateCheckResultImpl) then) =
+      __$$LeadSaleDuplicateCheckResultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'message') String? message,
-    @JsonKey(name: 'data') List<LeadSaleDuplicateInfo>? duplicates,
-  });
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<LeadSaleDuplicateInfo>? duplicates});
 }
 
 /// @nodoc
 class __$$LeadSaleDuplicateCheckResultImplCopyWithImpl<$Res>
-    extends
-        _$LeadSaleDuplicateCheckResultCopyWithImpl<
-          $Res,
-          _$LeadSaleDuplicateCheckResultImpl
-        >
+    extends _$LeadSaleDuplicateCheckResultCopyWithImpl<$Res,
+        _$LeadSaleDuplicateCheckResultImpl>
     implements _$$LeadSaleDuplicateCheckResultImplCopyWith<$Res> {
   __$$LeadSaleDuplicateCheckResultImplCopyWithImpl(
-    _$LeadSaleDuplicateCheckResultImpl _value,
-    $Res Function(_$LeadSaleDuplicateCheckResultImpl) _then,
-  ) : super(_value, _then);
+      _$LeadSaleDuplicateCheckResultImpl _value,
+      $Res Function(_$LeadSaleDuplicateCheckResultImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? message = freezed, Object? duplicates = freezed}) {
-    return _then(
-      _$LeadSaleDuplicateCheckResultImpl(
-        message: freezed == message
-            ? _value.message
-            : message // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        duplicates: freezed == duplicates
-            ? _value._duplicates
-            : duplicates // ignore: cast_nullable_to_non_nullable
-                  as List<LeadSaleDuplicateInfo>?,
-      ),
-    );
+  $Res call({
+    Object? message = freezed,
+    Object? duplicates = freezed,
+  }) {
+    return _then(_$LeadSaleDuplicateCheckResultImpl(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      duplicates: freezed == duplicates
+          ? _value._duplicates
+          : duplicates // ignore: cast_nullable_to_non_nullable
+              as List<LeadSaleDuplicateInfo>?,
+    ));
   }
 }
 
@@ -3288,14 +3140,14 @@ class __$$LeadSaleDuplicateCheckResultImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LeadSaleDuplicateCheckResultImpl
     implements _LeadSaleDuplicateCheckResult {
-  const _$LeadSaleDuplicateCheckResultImpl({
-    @JsonKey(name: 'message') this.message,
-    @JsonKey(name: 'data') final List<LeadSaleDuplicateInfo>? duplicates,
-  }) : _duplicates = duplicates;
+  const _$LeadSaleDuplicateCheckResultImpl(
+      {@JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'data') final List<LeadSaleDuplicateInfo>? duplicates})
+      : _duplicates = duplicates;
 
   factory _$LeadSaleDuplicateCheckResultImpl.fromJson(
-    Map<String, dynamic> json,
-  ) => _$$LeadSaleDuplicateCheckResultImplFromJson(json);
+          Map<String, dynamic> json) =>
+      _$$LeadSaleDuplicateCheckResultImplFromJson(json);
 
   /// Thông báo từ API.
   @override
@@ -3327,61 +3179,57 @@ class _$LeadSaleDuplicateCheckResultImpl
         (other.runtimeType == runtimeType &&
             other is _$LeadSaleDuplicateCheckResultImpl &&
             (identical(other.message, message) || other.message == message) &&
-            const DeepCollectionEquality().equals(
-              other._duplicates,
-              _duplicates,
-            ));
+            const DeepCollectionEquality()
+                .equals(other._duplicates, _duplicates));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    message,
-    const DeepCollectionEquality().hash(_duplicates),
-  );
+      runtimeType, message, const DeepCollectionEquality().hash(_duplicates));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleDuplicateCheckResultImplCopyWith<
-    _$LeadSaleDuplicateCheckResultImpl
-  >
-  get copyWith =>
-      __$$LeadSaleDuplicateCheckResultImplCopyWithImpl<
-        _$LeadSaleDuplicateCheckResultImpl
-      >(this, _$identity);
+          _$LeadSaleDuplicateCheckResultImpl>
+      get copyWith => __$$LeadSaleDuplicateCheckResultImplCopyWithImpl<
+          _$LeadSaleDuplicateCheckResultImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleDuplicateCheckResultImplToJson(this);
+    return _$$LeadSaleDuplicateCheckResultImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleDuplicateCheckResult
     implements LeadSaleDuplicateCheckResult {
-  const factory _LeadSaleDuplicateCheckResult({
-    @JsonKey(name: 'message') final String? message,
-    @JsonKey(name: 'data') final List<LeadSaleDuplicateInfo>? duplicates,
-  }) = _$LeadSaleDuplicateCheckResultImpl;
+  const factory _LeadSaleDuplicateCheckResult(
+          {@JsonKey(name: 'message') final String? message,
+          @JsonKey(name: 'data')
+          final List<LeadSaleDuplicateInfo>? duplicates}) =
+      _$LeadSaleDuplicateCheckResultImpl;
 
   factory _LeadSaleDuplicateCheckResult.fromJson(Map<String, dynamic> json) =
       _$LeadSaleDuplicateCheckResultImpl.fromJson;
 
   @override
+
   /// Thông báo từ API.
   @JsonKey(name: 'message')
   String? get message;
   @override
+
   /// Danh sách bản ghi bị trùng.
   @JsonKey(name: 'data')
   List<LeadSaleDuplicateInfo>? get duplicates;
   @override
   @JsonKey(ignore: true)
   _$$LeadSaleDuplicateCheckResultImplCopyWith<
-    _$LeadSaleDuplicateCheckResultImpl
-  >
-  get copyWith => throw _privateConstructorUsedError;
+          _$LeadSaleDuplicateCheckResultImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 LeadSaleSaveResult _$LeadSaleSaveResultFromJson(Map<String, dynamic> json) {
@@ -3447,24 +3295,22 @@ mixin _$LeadSaleSaveResult {
 /// @nodoc
 abstract class $LeadSaleSaveResultCopyWith<$Res> {
   factory $LeadSaleSaveResultCopyWith(
-    LeadSaleSaveResult value,
-    $Res Function(LeadSaleSaveResult) then,
-  ) = _$LeadSaleSaveResultCopyWithImpl<$Res, LeadSaleSaveResult>;
+          LeadSaleSaveResult value, $Res Function(LeadSaleSaveResult) then) =
+      _$LeadSaleSaveResultCopyWithImpl<$Res, LeadSaleSaveResult>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'message') String? message,
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'LeadCode') String? leadCode,
-    @JsonKey(name: 'CustomerID') int? customerId,
-    @JsonKey(name: 'PoTypeID') int? poTypeId,
-    @JsonKey(name: 'LeadSourceID') int? leadSourceId,
-    @JsonKey(name: 'ContactName') String? contactName,
-    @JsonKey(name: 'ContactPhone') String? contactPhone,
-    @JsonKey(name: 'ContactEmail') String? contactEmail,
-    @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
-    @JsonKey(name: 'Stage') int? stage,
-    @JsonKey(name: 'idConCus') int? idConCus,
-  });
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadCode') String? leadCode,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'PoTypeID') int? poTypeId,
+      @JsonKey(name: 'LeadSourceID') int? leadSourceId,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
+      @JsonKey(name: 'Stage') int? stage,
+      @JsonKey(name: 'idConCus') int? idConCus});
 }
 
 /// @nodoc
@@ -3493,95 +3339,89 @@ class _$LeadSaleSaveResultCopyWithImpl<$Res, $Val extends LeadSaleSaveResult>
     Object? stage = freezed,
     Object? idConCus = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            message: freezed == message
-                ? _value.message
-                : message // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            leadCode: freezed == leadCode
-                ? _value.leadCode
-                : leadCode // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            customerId: freezed == customerId
-                ? _value.customerId
-                : customerId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            poTypeId: freezed == poTypeId
-                ? _value.poTypeId
-                : poTypeId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            leadSourceId: freezed == leadSourceId
-                ? _value.leadSourceId
-                : leadSourceId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            contactName: freezed == contactName
-                ? _value.contactName
-                : contactName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactPhone: freezed == contactPhone
-                ? _value.contactPhone
-                : contactPhone // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactEmail: freezed == contactEmail
-                ? _value.contactEmail
-                : contactEmail // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            marketingEmployeeId: freezed == marketingEmployeeId
-                ? _value.marketingEmployeeId
-                : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            stage: freezed == stage
-                ? _value.stage
-                : stage // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            idConCus: freezed == idConCus
-                ? _value.idConCus
-                : idConCus // ignore: cast_nullable_to_non_nullable
-                      as int?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadCode: freezed == leadCode
+          ? _value.leadCode
+          : leadCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      poTypeId: freezed == poTypeId
+          ? _value.poTypeId
+          : poTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadSourceId: freezed == leadSourceId
+          ? _value.leadSourceId
+          : leadSourceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      marketingEmployeeId: freezed == marketingEmployeeId
+          ? _value.marketingEmployeeId
+          : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stage: freezed == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      idConCus: freezed == idConCus
+          ? _value.idConCus
+          : idConCus // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$LeadSaleSaveResultImplCopyWith<$Res>
     implements $LeadSaleSaveResultCopyWith<$Res> {
-  factory _$$LeadSaleSaveResultImplCopyWith(
-    _$LeadSaleSaveResultImpl value,
-    $Res Function(_$LeadSaleSaveResultImpl) then,
-  ) = __$$LeadSaleSaveResultImplCopyWithImpl<$Res>;
+  factory _$$LeadSaleSaveResultImplCopyWith(_$LeadSaleSaveResultImpl value,
+          $Res Function(_$LeadSaleSaveResultImpl) then) =
+      __$$LeadSaleSaveResultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'message') String? message,
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'LeadCode') String? leadCode,
-    @JsonKey(name: 'CustomerID') int? customerId,
-    @JsonKey(name: 'PoTypeID') int? poTypeId,
-    @JsonKey(name: 'LeadSourceID') int? leadSourceId,
-    @JsonKey(name: 'ContactName') String? contactName,
-    @JsonKey(name: 'ContactPhone') String? contactPhone,
-    @JsonKey(name: 'ContactEmail') String? contactEmail,
-    @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
-    @JsonKey(name: 'Stage') int? stage,
-    @JsonKey(name: 'idConCus') int? idConCus,
-  });
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadCode') String? leadCode,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'PoTypeID') int? poTypeId,
+      @JsonKey(name: 'LeadSourceID') int? leadSourceId,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
+      @JsonKey(name: 'Stage') int? stage,
+      @JsonKey(name: 'idConCus') int? idConCus});
 }
 
 /// @nodoc
 class __$$LeadSaleSaveResultImplCopyWithImpl<$Res>
     extends _$LeadSaleSaveResultCopyWithImpl<$Res, _$LeadSaleSaveResultImpl>
     implements _$$LeadSaleSaveResultImplCopyWith<$Res> {
-  __$$LeadSaleSaveResultImplCopyWithImpl(
-    _$LeadSaleSaveResultImpl _value,
-    $Res Function(_$LeadSaleSaveResultImpl) _then,
-  ) : super(_value, _then);
+  __$$LeadSaleSaveResultImplCopyWithImpl(_$LeadSaleSaveResultImpl _value,
+      $Res Function(_$LeadSaleSaveResultImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -3599,78 +3439,75 @@ class __$$LeadSaleSaveResultImplCopyWithImpl<$Res>
     Object? stage = freezed,
     Object? idConCus = freezed,
   }) {
-    return _then(
-      _$LeadSaleSaveResultImpl(
-        message: freezed == message
-            ? _value.message
-            : message // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        leadCode: freezed == leadCode
-            ? _value.leadCode
-            : leadCode // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        customerId: freezed == customerId
-            ? _value.customerId
-            : customerId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        poTypeId: freezed == poTypeId
-            ? _value.poTypeId
-            : poTypeId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        leadSourceId: freezed == leadSourceId
-            ? _value.leadSourceId
-            : leadSourceId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        contactName: freezed == contactName
-            ? _value.contactName
-            : contactName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactPhone: freezed == contactPhone
-            ? _value.contactPhone
-            : contactPhone // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactEmail: freezed == contactEmail
-            ? _value.contactEmail
-            : contactEmail // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        marketingEmployeeId: freezed == marketingEmployeeId
-            ? _value.marketingEmployeeId
-            : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        stage: freezed == stage
-            ? _value.stage
-            : stage // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        idConCus: freezed == idConCus
-            ? _value.idConCus
-            : idConCus // ignore: cast_nullable_to_non_nullable
-                  as int?,
-      ),
-    );
+    return _then(_$LeadSaleSaveResultImpl(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadCode: freezed == leadCode
+          ? _value.leadCode
+          : leadCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      poTypeId: freezed == poTypeId
+          ? _value.poTypeId
+          : poTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadSourceId: freezed == leadSourceId
+          ? _value.leadSourceId
+          : leadSourceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      marketingEmployeeId: freezed == marketingEmployeeId
+          ? _value.marketingEmployeeId
+          : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stage: freezed == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      idConCus: freezed == idConCus
+          ? _value.idConCus
+          : idConCus // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleSaveResultImpl implements _LeadSaleSaveResult {
-  const _$LeadSaleSaveResultImpl({
-    @JsonKey(name: 'message') this.message,
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'LeadCode') this.leadCode,
-    @JsonKey(name: 'CustomerID') this.customerId,
-    @JsonKey(name: 'PoTypeID') this.poTypeId,
-    @JsonKey(name: 'LeadSourceID') this.leadSourceId,
-    @JsonKey(name: 'ContactName') this.contactName,
-    @JsonKey(name: 'ContactPhone') this.contactPhone,
-    @JsonKey(name: 'ContactEmail') this.contactEmail,
-    @JsonKey(name: 'MarketingEmployeeID') this.marketingEmployeeId,
-    @JsonKey(name: 'Stage') this.stage,
-    @JsonKey(name: 'idConCus') this.idConCus,
-  });
+  const _$LeadSaleSaveResultImpl(
+      {@JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'LeadCode') this.leadCode,
+      @JsonKey(name: 'CustomerID') this.customerId,
+      @JsonKey(name: 'PoTypeID') this.poTypeId,
+      @JsonKey(name: 'LeadSourceID') this.leadSourceId,
+      @JsonKey(name: 'ContactName') this.contactName,
+      @JsonKey(name: 'ContactPhone') this.contactPhone,
+      @JsonKey(name: 'ContactEmail') this.contactEmail,
+      @JsonKey(name: 'MarketingEmployeeID') this.marketingEmployeeId,
+      @JsonKey(name: 'Stage') this.stage,
+      @JsonKey(name: 'idConCus') this.idConCus});
 
   factory _$LeadSaleSaveResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleSaveResultImplFromJson(json);
@@ -3771,100 +3608,111 @@ class _$LeadSaleSaveResultImpl implements _LeadSaleSaveResult {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    message,
-    id,
-    leadCode,
-    customerId,
-    poTypeId,
-    leadSourceId,
-    contactName,
-    contactPhone,
-    contactEmail,
-    marketingEmployeeId,
-    stage,
-    idConCus,
-  );
+      runtimeType,
+      message,
+      id,
+      leadCode,
+      customerId,
+      poTypeId,
+      leadSourceId,
+      contactName,
+      contactPhone,
+      contactEmail,
+      marketingEmployeeId,
+      stage,
+      idConCus);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleSaveResultImplCopyWith<_$LeadSaleSaveResultImpl> get copyWith =>
       __$$LeadSaleSaveResultImplCopyWithImpl<_$LeadSaleSaveResultImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleSaveResultImplToJson(this);
+    return _$$LeadSaleSaveResultImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleSaveResult implements LeadSaleSaveResult {
-  const factory _LeadSaleSaveResult({
-    @JsonKey(name: 'message') final String? message,
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'LeadCode') final String? leadCode,
-    @JsonKey(name: 'CustomerID') final int? customerId,
-    @JsonKey(name: 'PoTypeID') final int? poTypeId,
-    @JsonKey(name: 'LeadSourceID') final int? leadSourceId,
-    @JsonKey(name: 'ContactName') final String? contactName,
-    @JsonKey(name: 'ContactPhone') final String? contactPhone,
-    @JsonKey(name: 'ContactEmail') final String? contactEmail,
-    @JsonKey(name: 'MarketingEmployeeID') final int? marketingEmployeeId,
-    @JsonKey(name: 'Stage') final int? stage,
-    @JsonKey(name: 'idConCus') final int? idConCus,
-  }) = _$LeadSaleSaveResultImpl;
+  const factory _LeadSaleSaveResult(
+          {@JsonKey(name: 'message') final String? message,
+          @JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'LeadCode') final String? leadCode,
+          @JsonKey(name: 'CustomerID') final int? customerId,
+          @JsonKey(name: 'PoTypeID') final int? poTypeId,
+          @JsonKey(name: 'LeadSourceID') final int? leadSourceId,
+          @JsonKey(name: 'ContactName') final String? contactName,
+          @JsonKey(name: 'ContactPhone') final String? contactPhone,
+          @JsonKey(name: 'ContactEmail') final String? contactEmail,
+          @JsonKey(name: 'MarketingEmployeeID') final int? marketingEmployeeId,
+          @JsonKey(name: 'Stage') final int? stage,
+          @JsonKey(name: 'idConCus') final int? idConCus}) =
+      _$LeadSaleSaveResultImpl;
 
   factory _LeadSaleSaveResult.fromJson(Map<String, dynamic> json) =
       _$LeadSaleSaveResultImpl.fromJson;
 
   @override
+
   /// Thông báo từ API (vd "Thêm lead thành công!").
   @JsonKey(name: 'message')
   String? get message;
   @override
+
   /// ID phiếu lead vừa tạo.
   @JsonKey(name: 'ID')
   int? get id;
   @override
+
   /// Mã phiếu lead (vd "LD-2610-0025").
   @JsonKey(name: 'LeadCode')
   String? get leadCode;
   @override
+
   /// ID khách hàng gắn với phiếu.
   @JsonKey(name: 'CustomerID')
   int? get customerId;
   @override
+
   /// ID nhóm hàng (loại PO).
   @JsonKey(name: 'PoTypeID')
   int? get poTypeId;
   @override
+
   /// ID nguồn lead.
   @JsonKey(name: 'LeadSourceID')
   int? get leadSourceId;
   @override
+
   /// Họ tên người liên hệ.
   @JsonKey(name: 'ContactName')
   String? get contactName;
   @override
+
   /// SĐT người liên hệ.
   @JsonKey(name: 'ContactPhone')
   String? get contactPhone;
   @override
+
   /// Email người liên hệ.
   @JsonKey(name: 'ContactEmail')
   String? get contactEmail;
   @override
+
   /// ID nhân viên marketing phụ trách.
   @JsonKey(name: 'MarketingEmployeeID')
   int? get marketingEmployeeId;
   @override
+
   /// Giai đoạn xử lý sau khi tạo.
   @JsonKey(name: 'Stage')
   int? get stage;
   @override
+
   /// ID liên kết khách hàng trả về từ BE.
   @JsonKey(name: 'idConCus')
   int? get idConCus;
@@ -3875,8 +3723,7 @@ abstract class _LeadSaleSaveResult implements LeadSaleSaveResult {
 }
 
 LeadSaleHandoverResult _$LeadSaleHandoverResultFromJson(
-  Map<String, dynamic> json,
-) {
+    Map<String, dynamic> json) {
   return _LeadSaleHandoverResult.fromJson(json);
 }
 
@@ -3898,22 +3745,18 @@ mixin _$LeadSaleHandoverResult {
 
 /// @nodoc
 abstract class $LeadSaleHandoverResultCopyWith<$Res> {
-  factory $LeadSaleHandoverResultCopyWith(
-    LeadSaleHandoverResult value,
-    $Res Function(LeadSaleHandoverResult) then,
-  ) = _$LeadSaleHandoverResultCopyWithImpl<$Res, LeadSaleHandoverResult>;
+  factory $LeadSaleHandoverResultCopyWith(LeadSaleHandoverResult value,
+          $Res Function(LeadSaleHandoverResult) then) =
+      _$LeadSaleHandoverResultCopyWithImpl<$Res, LeadSaleHandoverResult>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'message') String? message,
-    @JsonKey(name: 'data') List<int>? ids,
-  });
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<int>? ids});
 }
 
 /// @nodoc
-class _$LeadSaleHandoverResultCopyWithImpl<
-  $Res,
-  $Val extends LeadSaleHandoverResult
->
+class _$LeadSaleHandoverResultCopyWithImpl<$Res,
+        $Val extends LeadSaleHandoverResult>
     implements $LeadSaleHandoverResultCopyWith<$Res> {
   _$LeadSaleHandoverResultCopyWithImpl(this._value, this._then);
 
@@ -3924,20 +3767,20 @@ class _$LeadSaleHandoverResultCopyWithImpl<
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? message = freezed, Object? ids = freezed}) {
-    return _then(
-      _value.copyWith(
-            message: freezed == message
-                ? _value.message
-                : message // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            ids: freezed == ids
-                ? _value.ids
-                : ids // ignore: cast_nullable_to_non_nullable
-                      as List<int>?,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? message = freezed,
+    Object? ids = freezed,
+  }) {
+    return _then(_value.copyWith(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ids: freezed == ids
+          ? _value.ids
+          : ids // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+    ) as $Val);
   }
 }
 
@@ -3945,52 +3788,52 @@ class _$LeadSaleHandoverResultCopyWithImpl<
 abstract class _$$LeadSaleHandoverResultImplCopyWith<$Res>
     implements $LeadSaleHandoverResultCopyWith<$Res> {
   factory _$$LeadSaleHandoverResultImplCopyWith(
-    _$LeadSaleHandoverResultImpl value,
-    $Res Function(_$LeadSaleHandoverResultImpl) then,
-  ) = __$$LeadSaleHandoverResultImplCopyWithImpl<$Res>;
+          _$LeadSaleHandoverResultImpl value,
+          $Res Function(_$LeadSaleHandoverResultImpl) then) =
+      __$$LeadSaleHandoverResultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'message') String? message,
-    @JsonKey(name: 'data') List<int>? ids,
-  });
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'data') List<int>? ids});
 }
 
 /// @nodoc
 class __$$LeadSaleHandoverResultImplCopyWithImpl<$Res>
-    extends
-        _$LeadSaleHandoverResultCopyWithImpl<$Res, _$LeadSaleHandoverResultImpl>
+    extends _$LeadSaleHandoverResultCopyWithImpl<$Res,
+        _$LeadSaleHandoverResultImpl>
     implements _$$LeadSaleHandoverResultImplCopyWith<$Res> {
   __$$LeadSaleHandoverResultImplCopyWithImpl(
-    _$LeadSaleHandoverResultImpl _value,
-    $Res Function(_$LeadSaleHandoverResultImpl) _then,
-  ) : super(_value, _then);
+      _$LeadSaleHandoverResultImpl _value,
+      $Res Function(_$LeadSaleHandoverResultImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? message = freezed, Object? ids = freezed}) {
-    return _then(
-      _$LeadSaleHandoverResultImpl(
-        message: freezed == message
-            ? _value.message
-            : message // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        ids: freezed == ids
-            ? _value._ids
-            : ids // ignore: cast_nullable_to_non_nullable
-                  as List<int>?,
-      ),
-    );
+  $Res call({
+    Object? message = freezed,
+    Object? ids = freezed,
+  }) {
+    return _then(_$LeadSaleHandoverResultImpl(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ids: freezed == ids
+          ? _value._ids
+          : ids // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleHandoverResultImpl implements _LeadSaleHandoverResult {
-  const _$LeadSaleHandoverResultImpl({
-    @JsonKey(name: 'message') this.message,
-    @JsonKey(name: 'data') final List<int>? ids,
-  }) : _ids = ids;
+  const _$LeadSaleHandoverResultImpl(
+      {@JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'data') final List<int>? ids})
+      : _ids = ids;
 
   factory _$LeadSaleHandoverResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleHandoverResultImplFromJson(json);
@@ -4031,53 +3874,50 @@ class _$LeadSaleHandoverResultImpl implements _LeadSaleHandoverResult {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    message,
-    const DeepCollectionEquality().hash(_ids),
-  );
+      runtimeType, message, const DeepCollectionEquality().hash(_ids));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleHandoverResultImplCopyWith<_$LeadSaleHandoverResultImpl>
-  get copyWith =>
-      __$$LeadSaleHandoverResultImplCopyWithImpl<_$LeadSaleHandoverResultImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith => __$$LeadSaleHandoverResultImplCopyWithImpl<
+          _$LeadSaleHandoverResultImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleHandoverResultImplToJson(this);
+    return _$$LeadSaleHandoverResultImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleHandoverResult implements LeadSaleHandoverResult {
-  const factory _LeadSaleHandoverResult({
-    @JsonKey(name: 'message') final String? message,
-    @JsonKey(name: 'data') final List<int>? ids,
-  }) = _$LeadSaleHandoverResultImpl;
+  const factory _LeadSaleHandoverResult(
+          {@JsonKey(name: 'message') final String? message,
+          @JsonKey(name: 'data') final List<int>? ids}) =
+      _$LeadSaleHandoverResultImpl;
 
   factory _LeadSaleHandoverResult.fromJson(Map<String, dynamic> json) =
       _$LeadSaleHandoverResultImpl.fromJson;
 
   @override
+
   /// Thông báo từ API (vd "Đã bàn giao 1 lead cho Leader Lê Thị Hải!").
   @JsonKey(name: 'message')
   String? get message;
   @override
+
   /// Danh sách ID phiếu lead đã bàn giao thành công.
   @JsonKey(name: 'data')
   List<int>? get ids;
   @override
   @JsonKey(ignore: true)
   _$$LeadSaleHandoverResultImplCopyWith<_$LeadSaleHandoverResultImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 LeadSaleActivitySaveResult _$LeadSaleActivitySaveResultFromJson(
-  Map<String, dynamic> json,
-) {
+    Map<String, dynamic> json) {
   return _LeadSaleActivitySaveResult.fromJson(json);
 }
 
@@ -4098,32 +3938,25 @@ mixin _$LeadSaleActivitySaveResult {
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LeadSaleActivitySaveResultCopyWith<LeadSaleActivitySaveResult>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LeadSaleActivitySaveResultCopyWith<$Res> {
-  factory $LeadSaleActivitySaveResultCopyWith(
-    LeadSaleActivitySaveResult value,
-    $Res Function(LeadSaleActivitySaveResult) then,
-  ) =
-      _$LeadSaleActivitySaveResultCopyWithImpl<
-        $Res,
-        LeadSaleActivitySaveResult
-      >;
+  factory $LeadSaleActivitySaveResultCopyWith(LeadSaleActivitySaveResult value,
+          $Res Function(LeadSaleActivitySaveResult) then) =
+      _$LeadSaleActivitySaveResultCopyWithImpl<$Res,
+          LeadSaleActivitySaveResult>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'message') String? message,
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'LeadID') int? leadId,
-  });
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadID') int? leadId});
 }
 
 /// @nodoc
-class _$LeadSaleActivitySaveResultCopyWithImpl<
-  $Res,
-  $Val extends LeadSaleActivitySaveResult
->
+class _$LeadSaleActivitySaveResultCopyWithImpl<$Res,
+        $Val extends LeadSaleActivitySaveResult>
     implements $LeadSaleActivitySaveResultCopyWith<$Res> {
   _$LeadSaleActivitySaveResultCopyWithImpl(this._value, this._then);
 
@@ -4139,23 +3972,20 @@ class _$LeadSaleActivitySaveResultCopyWithImpl<
     Object? id = freezed,
     Object? leadId = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            message: freezed == message
-                ? _value.message
-                : message // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            leadId: freezed == leadId
-                ? _value.leadId
-                : leadId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadId: freezed == leadId
+          ? _value.leadId
+          : leadId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
   }
 }
 
@@ -4163,30 +3993,26 @@ class _$LeadSaleActivitySaveResultCopyWithImpl<
 abstract class _$$LeadSaleActivitySaveResultImplCopyWith<$Res>
     implements $LeadSaleActivitySaveResultCopyWith<$Res> {
   factory _$$LeadSaleActivitySaveResultImplCopyWith(
-    _$LeadSaleActivitySaveResultImpl value,
-    $Res Function(_$LeadSaleActivitySaveResultImpl) then,
-  ) = __$$LeadSaleActivitySaveResultImplCopyWithImpl<$Res>;
+          _$LeadSaleActivitySaveResultImpl value,
+          $Res Function(_$LeadSaleActivitySaveResultImpl) then) =
+      __$$LeadSaleActivitySaveResultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'message') String? message,
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'LeadID') int? leadId,
-  });
+  $Res call(
+      {@JsonKey(name: 'message') String? message,
+      @JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadID') int? leadId});
 }
 
 /// @nodoc
 class __$$LeadSaleActivitySaveResultImplCopyWithImpl<$Res>
-    extends
-        _$LeadSaleActivitySaveResultCopyWithImpl<
-          $Res,
-          _$LeadSaleActivitySaveResultImpl
-        >
+    extends _$LeadSaleActivitySaveResultCopyWithImpl<$Res,
+        _$LeadSaleActivitySaveResultImpl>
     implements _$$LeadSaleActivitySaveResultImplCopyWith<$Res> {
   __$$LeadSaleActivitySaveResultImplCopyWithImpl(
-    _$LeadSaleActivitySaveResultImpl _value,
-    $Res Function(_$LeadSaleActivitySaveResultImpl) _then,
-  ) : super(_value, _then);
+      _$LeadSaleActivitySaveResultImpl _value,
+      $Res Function(_$LeadSaleActivitySaveResultImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -4195,37 +4021,34 @@ class __$$LeadSaleActivitySaveResultImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? leadId = freezed,
   }) {
-    return _then(
-      _$LeadSaleActivitySaveResultImpl(
-        message: freezed == message
-            ? _value.message
-            : message // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        leadId: freezed == leadId
-            ? _value.leadId
-            : leadId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-      ),
-    );
+    return _then(_$LeadSaleActivitySaveResultImpl(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadId: freezed == leadId
+          ? _value.leadId
+          : leadId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleActivitySaveResultImpl implements _LeadSaleActivitySaveResult {
-  const _$LeadSaleActivitySaveResultImpl({
-    @JsonKey(name: 'message') this.message,
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'LeadID') this.leadId,
-  });
+  const _$LeadSaleActivitySaveResultImpl(
+      {@JsonKey(name: 'message') this.message,
+      @JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'LeadID') this.leadId});
 
   factory _$LeadSaleActivitySaveResultImpl.fromJson(
-    Map<String, dynamic> json,
-  ) => _$$LeadSaleActivitySaveResultImplFromJson(json);
+          Map<String, dynamic> json) =>
+      _$$LeadSaleActivitySaveResultImplFromJson(json);
 
   /// Thông báo từ API.
   @override
@@ -4265,44 +4088,47 @@ class _$LeadSaleActivitySaveResultImpl implements _LeadSaleActivitySaveResult {
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleActivitySaveResultImplCopyWith<_$LeadSaleActivitySaveResultImpl>
-  get copyWith =>
-      __$$LeadSaleActivitySaveResultImplCopyWithImpl<
-        _$LeadSaleActivitySaveResultImpl
-      >(this, _$identity);
+      get copyWith => __$$LeadSaleActivitySaveResultImplCopyWithImpl<
+          _$LeadSaleActivitySaveResultImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleActivitySaveResultImplToJson(this);
+    return _$$LeadSaleActivitySaveResultImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleActivitySaveResult
     implements LeadSaleActivitySaveResult {
-  const factory _LeadSaleActivitySaveResult({
-    @JsonKey(name: 'message') final String? message,
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'LeadID') final int? leadId,
-  }) = _$LeadSaleActivitySaveResultImpl;
+  const factory _LeadSaleActivitySaveResult(
+          {@JsonKey(name: 'message') final String? message,
+          @JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'LeadID') final int? leadId}) =
+      _$LeadSaleActivitySaveResultImpl;
 
   factory _LeadSaleActivitySaveResult.fromJson(Map<String, dynamic> json) =
       _$LeadSaleActivitySaveResultImpl.fromJson;
 
   @override
+
   /// Thông báo từ API.
   @JsonKey(name: 'message')
   String? get message;
   @override
+
   /// ID hoạt động vừa tạo.
   @JsonKey(name: 'ID')
   int? get id;
   @override
+
   /// ID phiếu lead chứa hoạt động.
   @JsonKey(name: 'LeadID')
   int? get leadId;
   @override
   @JsonKey(ignore: true)
   _$$LeadSaleActivitySaveResultImplCopyWith<_$LeadSaleActivitySaveResultImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 LeadSaleActivityType _$LeadSaleActivityTypeFromJson(Map<String, dynamic> json) {
@@ -4328,23 +4154,19 @@ mixin _$LeadSaleActivityType {
 
 /// @nodoc
 abstract class $LeadSaleActivityTypeCopyWith<$Res> {
-  factory $LeadSaleActivityTypeCopyWith(
-    LeadSaleActivityType value,
-    $Res Function(LeadSaleActivityType) then,
-  ) = _$LeadSaleActivityTypeCopyWithImpl<$Res, LeadSaleActivityType>;
+  factory $LeadSaleActivityTypeCopyWith(LeadSaleActivityType value,
+          $Res Function(LeadSaleActivityType) then) =
+      _$LeadSaleActivityTypeCopyWithImpl<$Res, LeadSaleActivityType>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'MainIndex') String? mainIndex,
-    @JsonKey(name: 'MainGroup') int? mainGroup,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'MainIndex') String? mainIndex,
+      @JsonKey(name: 'MainGroup') int? mainGroup});
 }
 
 /// @nodoc
-class _$LeadSaleActivityTypeCopyWithImpl<
-  $Res,
-  $Val extends LeadSaleActivityType
->
+class _$LeadSaleActivityTypeCopyWithImpl<$Res,
+        $Val extends LeadSaleActivityType>
     implements $LeadSaleActivityTypeCopyWith<$Res> {
   _$LeadSaleActivityTypeCopyWithImpl(this._value, this._then);
 
@@ -4360,50 +4182,44 @@ class _$LeadSaleActivityTypeCopyWithImpl<
     Object? mainIndex = freezed,
     Object? mainGroup = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            mainIndex: freezed == mainIndex
-                ? _value.mainIndex
-                : mainIndex // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            mainGroup: freezed == mainGroup
-                ? _value.mainGroup
-                : mainGroup // ignore: cast_nullable_to_non_nullable
-                      as int?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      mainIndex: freezed == mainIndex
+          ? _value.mainIndex
+          : mainIndex // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mainGroup: freezed == mainGroup
+          ? _value.mainGroup
+          : mainGroup // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$LeadSaleActivityTypeImplCopyWith<$Res>
     implements $LeadSaleActivityTypeCopyWith<$Res> {
-  factory _$$LeadSaleActivityTypeImplCopyWith(
-    _$LeadSaleActivityTypeImpl value,
-    $Res Function(_$LeadSaleActivityTypeImpl) then,
-  ) = __$$LeadSaleActivityTypeImplCopyWithImpl<$Res>;
+  factory _$$LeadSaleActivityTypeImplCopyWith(_$LeadSaleActivityTypeImpl value,
+          $Res Function(_$LeadSaleActivityTypeImpl) then) =
+      __$$LeadSaleActivityTypeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'MainIndex') String? mainIndex,
-    @JsonKey(name: 'MainGroup') int? mainGroup,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'MainIndex') String? mainIndex,
+      @JsonKey(name: 'MainGroup') int? mainGroup});
 }
 
 /// @nodoc
 class __$$LeadSaleActivityTypeImplCopyWithImpl<$Res>
     extends _$LeadSaleActivityTypeCopyWithImpl<$Res, _$LeadSaleActivityTypeImpl>
     implements _$$LeadSaleActivityTypeImplCopyWith<$Res> {
-  __$$LeadSaleActivityTypeImplCopyWithImpl(
-    _$LeadSaleActivityTypeImpl _value,
-    $Res Function(_$LeadSaleActivityTypeImpl) _then,
-  ) : super(_value, _then);
+  __$$LeadSaleActivityTypeImplCopyWithImpl(_$LeadSaleActivityTypeImpl _value,
+      $Res Function(_$LeadSaleActivityTypeImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -4412,33 +4228,30 @@ class __$$LeadSaleActivityTypeImplCopyWithImpl<$Res>
     Object? mainIndex = freezed,
     Object? mainGroup = freezed,
   }) {
-    return _then(
-      _$LeadSaleActivityTypeImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        mainIndex: freezed == mainIndex
-            ? _value.mainIndex
-            : mainIndex // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        mainGroup: freezed == mainGroup
-            ? _value.mainGroup
-            : mainGroup // ignore: cast_nullable_to_non_nullable
-                  as int?,
-      ),
-    );
+    return _then(_$LeadSaleActivityTypeImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      mainIndex: freezed == mainIndex
+          ? _value.mainIndex
+          : mainIndex // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mainGroup: freezed == mainGroup
+          ? _value.mainGroup
+          : mainGroup // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleActivityTypeImpl implements _LeadSaleActivityType {
-  const _$LeadSaleActivityTypeImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'MainIndex') this.mainIndex,
-    @JsonKey(name: 'MainGroup') this.mainGroup,
-  });
+  const _$LeadSaleActivityTypeImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'MainIndex') this.mainIndex,
+      @JsonKey(name: 'MainGroup') this.mainGroup});
 
   factory _$LeadSaleActivityTypeImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleActivityTypeImplFromJson(json);
@@ -4480,24 +4293,24 @@ class _$LeadSaleActivityTypeImpl implements _LeadSaleActivityType {
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleActivityTypeImplCopyWith<_$LeadSaleActivityTypeImpl>
-  get copyWith =>
-      __$$LeadSaleActivityTypeImplCopyWithImpl<_$LeadSaleActivityTypeImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith =>
+          __$$LeadSaleActivityTypeImplCopyWithImpl<_$LeadSaleActivityTypeImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleActivityTypeImplToJson(this);
+    return _$$LeadSaleActivityTypeImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleActivityType implements LeadSaleActivityType {
-  const factory _LeadSaleActivityType({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'MainIndex') final String? mainIndex,
-    @JsonKey(name: 'MainGroup') final int? mainGroup,
-  }) = _$LeadSaleActivityTypeImpl;
+  const factory _LeadSaleActivityType(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'MainIndex') final String? mainIndex,
+          @JsonKey(name: 'MainGroup') final int? mainGroup}) =
+      _$LeadSaleActivityTypeImpl;
 
   factory _LeadSaleActivityType.fromJson(Map<String, dynamic> json) =
       _$LeadSaleActivityTypeImpl.fromJson;
@@ -4506,6 +4319,7 @@ abstract class _LeadSaleActivityType implements LeadSaleActivityType {
   @JsonKey(name: 'ID')
   int? get id;
   @override
+
   /// Tên loại nhóm hiển thị cho người dùng.
   @JsonKey(name: 'MainIndex')
   String? get mainIndex;
@@ -4515,7 +4329,7 @@ abstract class _LeadSaleActivityType implements LeadSaleActivityType {
   @override
   @JsonKey(ignore: true)
   _$$LeadSaleActivityTypeImplCopyWith<_$LeadSaleActivityTypeImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 LeadSaleItem _$LeadSaleItemFromJson(Map<String, dynamic> json) {
@@ -4652,71 +4466,69 @@ mixin _$LeadSaleItem {
 /// @nodoc
 abstract class $LeadSaleItemCopyWith<$Res> {
   factory $LeadSaleItemCopyWith(
-    LeadSaleItem value,
-    $Res Function(LeadSaleItem) then,
-  ) = _$LeadSaleItemCopyWithImpl<$Res, LeadSaleItem>;
+          LeadSaleItem value, $Res Function(LeadSaleItem) then) =
+      _$LeadSaleItemCopyWithImpl<$Res, LeadSaleItem>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'LeadCode') String? leadCode,
-    @JsonKey(name: 'LeadType') int? leadType,
-    @JsonKey(name: 'LeadTypeName') String? leadTypeName,
-    @JsonKey(name: 'LeadSourceID') int? leadSourceId,
-    @JsonKey(name: 'LeadSourceName') String? leadSourceName,
-    @JsonKey(name: 'CampaignName') String? campaignName,
-    @JsonKey(name: 'CollectedDate') String? collectedDate,
-    @JsonKey(name: 'CompanyName') String? companyName,
-    @JsonKey(name: 'TaxCode') String? taxCode,
-    @JsonKey(name: 'CustomerIndustriesID') int? customerIndustriesId,
-    @JsonKey(name: 'IndustryName') String? industryName,
-    @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
-    @JsonKey(name: 'BusinessFieldName') String? businessFieldName,
-    @JsonKey(name: 'Website') String? website,
-    @JsonKey(name: 'Province') String? province,
-    @JsonKey(name: 'Address') String? address,
-    @JsonKey(name: 'ContactName') String? contactName,
-    @JsonKey(name: 'ContactPosition') String? contactPosition,
-    @JsonKey(name: 'ContactPhone') String? contactPhone,
-    @JsonKey(name: 'ContactEmail') String? contactEmail,
-    @JsonKey(name: 'NeedDescription') String? needDescription,
-    @JsonKey(name: 'ProductInterest') String? productInterest,
-    @JsonKey(name: 'EstimatedValue') double? estimatedValue,
-    @JsonKey(name: 'Rating') int? rating,
-    @JsonKey(name: 'RatingName') String? ratingName,
-    @JsonKey(name: 'Stage') int? stage,
-    @JsonKey(name: 'StageName') String? stageName,
-    @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
-    @JsonKey(name: 'MarketingEmployeeName') String? marketingEmployeeName,
-    @JsonKey(name: 'QualifiedDate') String? qualifiedDate,
-    @JsonKey(name: 'HandoverDate') String? handoverDate,
-    @JsonKey(name: 'HandoverBy') int? handoverBy,
-    @JsonKey(name: 'HandoverLeaderID') int? handoverLeaderId,
-    @JsonKey(name: 'HandoverLeaderName') String? handoverLeaderName,
-    @JsonKey(name: 'SaleEmployeeID') int? saleEmployeeId,
-    @JsonKey(name: 'SaleEmployeeName') String? saleEmployeeName,
-    @JsonKey(name: 'AssignedDate') String? assignedDate,
-    @JsonKey(name: 'AssignedBy') int? assignedBy,
-    @JsonKey(name: 'AssignedByName') String? assignedByName,
-    @JsonKey(name: 'NextFollowUpDate') String? nextFollowUpDate,
-    @JsonKey(name: 'IsOverdue') bool? isOverdue,
-    @JsonKey(name: 'ClosedDate') String? closedDate,
-    @JsonKey(name: 'CustomerID') int? customerId,
-    @JsonKey(name: 'CustomerName') String? customerName,
-    @JsonKey(name: 'CustomerCode') String? customerCode,
-    @JsonKey(name: 'LostReason') String? lostReason,
-    @JsonKey(name: 'ReturnReason') String? returnReason,
-    @JsonKey(name: 'Note') String? note,
-    @JsonKey(name: 'ActivityCount') int? activityCount,
-    @JsonKey(name: 'LastActivityDate') String? lastActivityDate,
-    @JsonKey(name: 'CreatedBy') String? createdBy,
-    @JsonKey(name: 'CreatedDate') String? createdDate,
-    @JsonKey(name: 'UpdatedBy') String? updatedBy,
-    @JsonKey(name: 'UpdatedDate') String? updatedDate,
-    @JsonKey(name: 'PoTypeName') String? poTypeName,
-    @JsonKey(name: 'CustomerType') String? customerType,
-    @JsonKey(name: 'AdminSaleName') String? adminSaleName,
-    @JsonKey(name: 'TotalMoneyPO') double? totalMoneyPo,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadCode') String? leadCode,
+      @JsonKey(name: 'LeadType') int? leadType,
+      @JsonKey(name: 'LeadTypeName') String? leadTypeName,
+      @JsonKey(name: 'LeadSourceID') int? leadSourceId,
+      @JsonKey(name: 'LeadSourceName') String? leadSourceName,
+      @JsonKey(name: 'CampaignName') String? campaignName,
+      @JsonKey(name: 'CollectedDate') String? collectedDate,
+      @JsonKey(name: 'CompanyName') String? companyName,
+      @JsonKey(name: 'TaxCode') String? taxCode,
+      @JsonKey(name: 'CustomerIndustriesID') int? customerIndustriesId,
+      @JsonKey(name: 'IndustryName') String? industryName,
+      @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
+      @JsonKey(name: 'BusinessFieldName') String? businessFieldName,
+      @JsonKey(name: 'Website') String? website,
+      @JsonKey(name: 'Province') String? province,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPosition') String? contactPosition,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'NeedDescription') String? needDescription,
+      @JsonKey(name: 'ProductInterest') String? productInterest,
+      @JsonKey(name: 'EstimatedValue') double? estimatedValue,
+      @JsonKey(name: 'Rating') int? rating,
+      @JsonKey(name: 'RatingName') String? ratingName,
+      @JsonKey(name: 'Stage') int? stage,
+      @JsonKey(name: 'StageName') String? stageName,
+      @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
+      @JsonKey(name: 'MarketingEmployeeName') String? marketingEmployeeName,
+      @JsonKey(name: 'QualifiedDate') String? qualifiedDate,
+      @JsonKey(name: 'HandoverDate') String? handoverDate,
+      @JsonKey(name: 'HandoverBy') int? handoverBy,
+      @JsonKey(name: 'HandoverLeaderID') int? handoverLeaderId,
+      @JsonKey(name: 'HandoverLeaderName') String? handoverLeaderName,
+      @JsonKey(name: 'SaleEmployeeID') int? saleEmployeeId,
+      @JsonKey(name: 'SaleEmployeeName') String? saleEmployeeName,
+      @JsonKey(name: 'AssignedDate') String? assignedDate,
+      @JsonKey(name: 'AssignedBy') int? assignedBy,
+      @JsonKey(name: 'AssignedByName') String? assignedByName,
+      @JsonKey(name: 'NextFollowUpDate') String? nextFollowUpDate,
+      @JsonKey(name: 'IsOverdue') bool? isOverdue,
+      @JsonKey(name: 'ClosedDate') String? closedDate,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'CustomerName') String? customerName,
+      @JsonKey(name: 'CustomerCode') String? customerCode,
+      @JsonKey(name: 'LostReason') String? lostReason,
+      @JsonKey(name: 'ReturnReason') String? returnReason,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'ActivityCount') int? activityCount,
+      @JsonKey(name: 'LastActivityDate') String? lastActivityDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') String? updatedDate,
+      @JsonKey(name: 'PoTypeName') String? poTypeName,
+      @JsonKey(name: 'CustomerType') String? customerType,
+      @JsonKey(name: 'AdminSaleName') String? adminSaleName,
+      @JsonKey(name: 'TotalMoneyPO') double? totalMoneyPo});
 }
 
 /// @nodoc
@@ -4792,247 +4604,244 @@ class _$LeadSaleItemCopyWithImpl<$Res, $Val extends LeadSaleItem>
     Object? adminSaleName = freezed,
     Object? totalMoneyPo = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            leadCode: freezed == leadCode
-                ? _value.leadCode
-                : leadCode // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            leadType: freezed == leadType
-                ? _value.leadType
-                : leadType // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            leadTypeName: freezed == leadTypeName
-                ? _value.leadTypeName
-                : leadTypeName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            leadSourceId: freezed == leadSourceId
-                ? _value.leadSourceId
-                : leadSourceId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            leadSourceName: freezed == leadSourceName
-                ? _value.leadSourceName
-                : leadSourceName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            campaignName: freezed == campaignName
-                ? _value.campaignName
-                : campaignName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            collectedDate: freezed == collectedDate
-                ? _value.collectedDate
-                : collectedDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            companyName: freezed == companyName
-                ? _value.companyName
-                : companyName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            taxCode: freezed == taxCode
-                ? _value.taxCode
-                : taxCode // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            customerIndustriesId: freezed == customerIndustriesId
-                ? _value.customerIndustriesId
-                : customerIndustriesId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            industryName: freezed == industryName
-                ? _value.industryName
-                : industryName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            businessFieldId: freezed == businessFieldId
-                ? _value.businessFieldId
-                : businessFieldId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            businessFieldName: freezed == businessFieldName
-                ? _value.businessFieldName
-                : businessFieldName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            website: freezed == website
-                ? _value.website
-                : website // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            province: freezed == province
-                ? _value.province
-                : province // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            address: freezed == address
-                ? _value.address
-                : address // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactName: freezed == contactName
-                ? _value.contactName
-                : contactName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactPosition: freezed == contactPosition
-                ? _value.contactPosition
-                : contactPosition // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactPhone: freezed == contactPhone
-                ? _value.contactPhone
-                : contactPhone // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactEmail: freezed == contactEmail
-                ? _value.contactEmail
-                : contactEmail // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            needDescription: freezed == needDescription
-                ? _value.needDescription
-                : needDescription // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            productInterest: freezed == productInterest
-                ? _value.productInterest
-                : productInterest // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            estimatedValue: freezed == estimatedValue
-                ? _value.estimatedValue
-                : estimatedValue // ignore: cast_nullable_to_non_nullable
-                      as double?,
-            rating: freezed == rating
-                ? _value.rating
-                : rating // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            ratingName: freezed == ratingName
-                ? _value.ratingName
-                : ratingName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            stage: freezed == stage
-                ? _value.stage
-                : stage // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            stageName: freezed == stageName
-                ? _value.stageName
-                : stageName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            marketingEmployeeId: freezed == marketingEmployeeId
-                ? _value.marketingEmployeeId
-                : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            marketingEmployeeName: freezed == marketingEmployeeName
-                ? _value.marketingEmployeeName
-                : marketingEmployeeName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            qualifiedDate: freezed == qualifiedDate
-                ? _value.qualifiedDate
-                : qualifiedDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            handoverDate: freezed == handoverDate
-                ? _value.handoverDate
-                : handoverDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            handoverBy: freezed == handoverBy
-                ? _value.handoverBy
-                : handoverBy // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            handoverLeaderId: freezed == handoverLeaderId
-                ? _value.handoverLeaderId
-                : handoverLeaderId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            handoverLeaderName: freezed == handoverLeaderName
-                ? _value.handoverLeaderName
-                : handoverLeaderName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            saleEmployeeId: freezed == saleEmployeeId
-                ? _value.saleEmployeeId
-                : saleEmployeeId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            saleEmployeeName: freezed == saleEmployeeName
-                ? _value.saleEmployeeName
-                : saleEmployeeName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            assignedDate: freezed == assignedDate
-                ? _value.assignedDate
-                : assignedDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            assignedBy: freezed == assignedBy
-                ? _value.assignedBy
-                : assignedBy // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            assignedByName: freezed == assignedByName
-                ? _value.assignedByName
-                : assignedByName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            nextFollowUpDate: freezed == nextFollowUpDate
-                ? _value.nextFollowUpDate
-                : nextFollowUpDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            isOverdue: freezed == isOverdue
-                ? _value.isOverdue
-                : isOverdue // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            closedDate: freezed == closedDate
-                ? _value.closedDate
-                : closedDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            customerId: freezed == customerId
-                ? _value.customerId
-                : customerId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            customerName: freezed == customerName
-                ? _value.customerName
-                : customerName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            customerCode: freezed == customerCode
-                ? _value.customerCode
-                : customerCode // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            lostReason: freezed == lostReason
-                ? _value.lostReason
-                : lostReason // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            returnReason: freezed == returnReason
-                ? _value.returnReason
-                : returnReason // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            note: freezed == note
-                ? _value.note
-                : note // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            activityCount: freezed == activityCount
-                ? _value.activityCount
-                : activityCount // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            lastActivityDate: freezed == lastActivityDate
-                ? _value.lastActivityDate
-                : lastActivityDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            createdBy: freezed == createdBy
-                ? _value.createdBy
-                : createdBy // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            createdDate: freezed == createdDate
-                ? _value.createdDate
-                : createdDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            updatedBy: freezed == updatedBy
-                ? _value.updatedBy
-                : updatedBy // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            updatedDate: freezed == updatedDate
-                ? _value.updatedDate
-                : updatedDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            poTypeName: freezed == poTypeName
-                ? _value.poTypeName
-                : poTypeName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            customerType: freezed == customerType
-                ? _value.customerType
-                : customerType // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            adminSaleName: freezed == adminSaleName
-                ? _value.adminSaleName
-                : adminSaleName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            totalMoneyPo: freezed == totalMoneyPo
-                ? _value.totalMoneyPo
-                : totalMoneyPo // ignore: cast_nullable_to_non_nullable
-                      as double?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadCode: freezed == leadCode
+          ? _value.leadCode
+          : leadCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      leadType: freezed == leadType
+          ? _value.leadType
+          : leadType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadTypeName: freezed == leadTypeName
+          ? _value.leadTypeName
+          : leadTypeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      leadSourceId: freezed == leadSourceId
+          ? _value.leadSourceId
+          : leadSourceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadSourceName: freezed == leadSourceName
+          ? _value.leadSourceName
+          : leadSourceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      campaignName: freezed == campaignName
+          ? _value.campaignName
+          : campaignName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      collectedDate: freezed == collectedDate
+          ? _value.collectedDate
+          : collectedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      companyName: freezed == companyName
+          ? _value.companyName
+          : companyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxCode: freezed == taxCode
+          ? _value.taxCode
+          : taxCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerIndustriesId: freezed == customerIndustriesId
+          ? _value.customerIndustriesId
+          : customerIndustriesId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      industryName: freezed == industryName
+          ? _value.industryName
+          : industryName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      businessFieldId: freezed == businessFieldId
+          ? _value.businessFieldId
+          : businessFieldId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      businessFieldName: freezed == businessFieldName
+          ? _value.businessFieldName
+          : businessFieldName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      province: freezed == province
+          ? _value.province
+          : province // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPosition: freezed == contactPosition
+          ? _value.contactPosition
+          : contactPosition // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      needDescription: freezed == needDescription
+          ? _value.needDescription
+          : needDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productInterest: freezed == productInterest
+          ? _value.productInterest
+          : productInterest // ignore: cast_nullable_to_non_nullable
+              as String?,
+      estimatedValue: freezed == estimatedValue
+          ? _value.estimatedValue
+          : estimatedValue // ignore: cast_nullable_to_non_nullable
+              as double?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as int?,
+      ratingName: freezed == ratingName
+          ? _value.ratingName
+          : ratingName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stage: freezed == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stageName: freezed == stageName
+          ? _value.stageName
+          : stageName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      marketingEmployeeId: freezed == marketingEmployeeId
+          ? _value.marketingEmployeeId
+          : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      marketingEmployeeName: freezed == marketingEmployeeName
+          ? _value.marketingEmployeeName
+          : marketingEmployeeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      qualifiedDate: freezed == qualifiedDate
+          ? _value.qualifiedDate
+          : qualifiedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      handoverDate: freezed == handoverDate
+          ? _value.handoverDate
+          : handoverDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      handoverBy: freezed == handoverBy
+          ? _value.handoverBy
+          : handoverBy // ignore: cast_nullable_to_non_nullable
+              as int?,
+      handoverLeaderId: freezed == handoverLeaderId
+          ? _value.handoverLeaderId
+          : handoverLeaderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      handoverLeaderName: freezed == handoverLeaderName
+          ? _value.handoverLeaderName
+          : handoverLeaderName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      saleEmployeeId: freezed == saleEmployeeId
+          ? _value.saleEmployeeId
+          : saleEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      saleEmployeeName: freezed == saleEmployeeName
+          ? _value.saleEmployeeName
+          : saleEmployeeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      assignedDate: freezed == assignedDate
+          ? _value.assignedDate
+          : assignedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      assignedBy: freezed == assignedBy
+          ? _value.assignedBy
+          : assignedBy // ignore: cast_nullable_to_non_nullable
+              as int?,
+      assignedByName: freezed == assignedByName
+          ? _value.assignedByName
+          : assignedByName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextFollowUpDate: freezed == nextFollowUpDate
+          ? _value.nextFollowUpDate
+          : nextFollowUpDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isOverdue: freezed == isOverdue
+          ? _value.isOverdue
+          : isOverdue // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      closedDate: freezed == closedDate
+          ? _value.closedDate
+          : closedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerName: freezed == customerName
+          ? _value.customerName
+          : customerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerCode: freezed == customerCode
+          ? _value.customerCode
+          : customerCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lostReason: freezed == lostReason
+          ? _value.lostReason
+          : lostReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      returnReason: freezed == returnReason
+          ? _value.returnReason
+          : returnReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityCount: freezed == activityCount
+          ? _value.activityCount
+          : activityCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      lastActivityDate: freezed == lastActivityDate
+          ? _value.lastActivityDate
+          : lastActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      poTypeName: freezed == poTypeName
+          ? _value.poTypeName
+          : poTypeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerType: freezed == customerType
+          ? _value.customerType
+          : customerType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      adminSaleName: freezed == adminSaleName
+          ? _value.adminSaleName
+          : adminSaleName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalMoneyPo: freezed == totalMoneyPo
+          ? _value.totalMoneyPo
+          : totalMoneyPo // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ) as $Val);
   }
 }
 
@@ -5040,72 +4849,70 @@ class _$LeadSaleItemCopyWithImpl<$Res, $Val extends LeadSaleItem>
 abstract class _$$LeadSaleItemImplCopyWith<$Res>
     implements $LeadSaleItemCopyWith<$Res> {
   factory _$$LeadSaleItemImplCopyWith(
-    _$LeadSaleItemImpl value,
-    $Res Function(_$LeadSaleItemImpl) then,
-  ) = __$$LeadSaleItemImplCopyWithImpl<$Res>;
+          _$LeadSaleItemImpl value, $Res Function(_$LeadSaleItemImpl) then) =
+      __$$LeadSaleItemImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'LeadCode') String? leadCode,
-    @JsonKey(name: 'LeadType') int? leadType,
-    @JsonKey(name: 'LeadTypeName') String? leadTypeName,
-    @JsonKey(name: 'LeadSourceID') int? leadSourceId,
-    @JsonKey(name: 'LeadSourceName') String? leadSourceName,
-    @JsonKey(name: 'CampaignName') String? campaignName,
-    @JsonKey(name: 'CollectedDate') String? collectedDate,
-    @JsonKey(name: 'CompanyName') String? companyName,
-    @JsonKey(name: 'TaxCode') String? taxCode,
-    @JsonKey(name: 'CustomerIndustriesID') int? customerIndustriesId,
-    @JsonKey(name: 'IndustryName') String? industryName,
-    @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
-    @JsonKey(name: 'BusinessFieldName') String? businessFieldName,
-    @JsonKey(name: 'Website') String? website,
-    @JsonKey(name: 'Province') String? province,
-    @JsonKey(name: 'Address') String? address,
-    @JsonKey(name: 'ContactName') String? contactName,
-    @JsonKey(name: 'ContactPosition') String? contactPosition,
-    @JsonKey(name: 'ContactPhone') String? contactPhone,
-    @JsonKey(name: 'ContactEmail') String? contactEmail,
-    @JsonKey(name: 'NeedDescription') String? needDescription,
-    @JsonKey(name: 'ProductInterest') String? productInterest,
-    @JsonKey(name: 'EstimatedValue') double? estimatedValue,
-    @JsonKey(name: 'Rating') int? rating,
-    @JsonKey(name: 'RatingName') String? ratingName,
-    @JsonKey(name: 'Stage') int? stage,
-    @JsonKey(name: 'StageName') String? stageName,
-    @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
-    @JsonKey(name: 'MarketingEmployeeName') String? marketingEmployeeName,
-    @JsonKey(name: 'QualifiedDate') String? qualifiedDate,
-    @JsonKey(name: 'HandoverDate') String? handoverDate,
-    @JsonKey(name: 'HandoverBy') int? handoverBy,
-    @JsonKey(name: 'HandoverLeaderID') int? handoverLeaderId,
-    @JsonKey(name: 'HandoverLeaderName') String? handoverLeaderName,
-    @JsonKey(name: 'SaleEmployeeID') int? saleEmployeeId,
-    @JsonKey(name: 'SaleEmployeeName') String? saleEmployeeName,
-    @JsonKey(name: 'AssignedDate') String? assignedDate,
-    @JsonKey(name: 'AssignedBy') int? assignedBy,
-    @JsonKey(name: 'AssignedByName') String? assignedByName,
-    @JsonKey(name: 'NextFollowUpDate') String? nextFollowUpDate,
-    @JsonKey(name: 'IsOverdue') bool? isOverdue,
-    @JsonKey(name: 'ClosedDate') String? closedDate,
-    @JsonKey(name: 'CustomerID') int? customerId,
-    @JsonKey(name: 'CustomerName') String? customerName,
-    @JsonKey(name: 'CustomerCode') String? customerCode,
-    @JsonKey(name: 'LostReason') String? lostReason,
-    @JsonKey(name: 'ReturnReason') String? returnReason,
-    @JsonKey(name: 'Note') String? note,
-    @JsonKey(name: 'ActivityCount') int? activityCount,
-    @JsonKey(name: 'LastActivityDate') String? lastActivityDate,
-    @JsonKey(name: 'CreatedBy') String? createdBy,
-    @JsonKey(name: 'CreatedDate') String? createdDate,
-    @JsonKey(name: 'UpdatedBy') String? updatedBy,
-    @JsonKey(name: 'UpdatedDate') String? updatedDate,
-    @JsonKey(name: 'PoTypeName') String? poTypeName,
-    @JsonKey(name: 'CustomerType') String? customerType,
-    @JsonKey(name: 'AdminSaleName') String? adminSaleName,
-    @JsonKey(name: 'TotalMoneyPO') double? totalMoneyPo,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadCode') String? leadCode,
+      @JsonKey(name: 'LeadType') int? leadType,
+      @JsonKey(name: 'LeadTypeName') String? leadTypeName,
+      @JsonKey(name: 'LeadSourceID') int? leadSourceId,
+      @JsonKey(name: 'LeadSourceName') String? leadSourceName,
+      @JsonKey(name: 'CampaignName') String? campaignName,
+      @JsonKey(name: 'CollectedDate') String? collectedDate,
+      @JsonKey(name: 'CompanyName') String? companyName,
+      @JsonKey(name: 'TaxCode') String? taxCode,
+      @JsonKey(name: 'CustomerIndustriesID') int? customerIndustriesId,
+      @JsonKey(name: 'IndustryName') String? industryName,
+      @JsonKey(name: 'BusinessFieldID') int? businessFieldId,
+      @JsonKey(name: 'BusinessFieldName') String? businessFieldName,
+      @JsonKey(name: 'Website') String? website,
+      @JsonKey(name: 'Province') String? province,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPosition') String? contactPosition,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'NeedDescription') String? needDescription,
+      @JsonKey(name: 'ProductInterest') String? productInterest,
+      @JsonKey(name: 'EstimatedValue') double? estimatedValue,
+      @JsonKey(name: 'Rating') int? rating,
+      @JsonKey(name: 'RatingName') String? ratingName,
+      @JsonKey(name: 'Stage') int? stage,
+      @JsonKey(name: 'StageName') String? stageName,
+      @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
+      @JsonKey(name: 'MarketingEmployeeName') String? marketingEmployeeName,
+      @JsonKey(name: 'QualifiedDate') String? qualifiedDate,
+      @JsonKey(name: 'HandoverDate') String? handoverDate,
+      @JsonKey(name: 'HandoverBy') int? handoverBy,
+      @JsonKey(name: 'HandoverLeaderID') int? handoverLeaderId,
+      @JsonKey(name: 'HandoverLeaderName') String? handoverLeaderName,
+      @JsonKey(name: 'SaleEmployeeID') int? saleEmployeeId,
+      @JsonKey(name: 'SaleEmployeeName') String? saleEmployeeName,
+      @JsonKey(name: 'AssignedDate') String? assignedDate,
+      @JsonKey(name: 'AssignedBy') int? assignedBy,
+      @JsonKey(name: 'AssignedByName') String? assignedByName,
+      @JsonKey(name: 'NextFollowUpDate') String? nextFollowUpDate,
+      @JsonKey(name: 'IsOverdue') bool? isOverdue,
+      @JsonKey(name: 'ClosedDate') String? closedDate,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'CustomerName') String? customerName,
+      @JsonKey(name: 'CustomerCode') String? customerCode,
+      @JsonKey(name: 'LostReason') String? lostReason,
+      @JsonKey(name: 'ReturnReason') String? returnReason,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'ActivityCount') int? activityCount,
+      @JsonKey(name: 'LastActivityDate') String? lastActivityDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') String? updatedDate,
+      @JsonKey(name: 'PoTypeName') String? poTypeName,
+      @JsonKey(name: 'CustomerType') String? customerType,
+      @JsonKey(name: 'AdminSaleName') String? adminSaleName,
+      @JsonKey(name: 'TotalMoneyPO') double? totalMoneyPo});
 }
 
 /// @nodoc
@@ -5113,9 +4920,8 @@ class __$$LeadSaleItemImplCopyWithImpl<$Res>
     extends _$LeadSaleItemCopyWithImpl<$Res, _$LeadSaleItemImpl>
     implements _$$LeadSaleItemImplCopyWith<$Res> {
   __$$LeadSaleItemImplCopyWithImpl(
-    _$LeadSaleItemImpl _value,
-    $Res Function(_$LeadSaleItemImpl) _then,
-  ) : super(_value, _then);
+      _$LeadSaleItemImpl _value, $Res Function(_$LeadSaleItemImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -5180,313 +4986,310 @@ class __$$LeadSaleItemImplCopyWithImpl<$Res>
     Object? adminSaleName = freezed,
     Object? totalMoneyPo = freezed,
   }) {
-    return _then(
-      _$LeadSaleItemImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        leadCode: freezed == leadCode
-            ? _value.leadCode
-            : leadCode // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        leadType: freezed == leadType
-            ? _value.leadType
-            : leadType // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        leadTypeName: freezed == leadTypeName
-            ? _value.leadTypeName
-            : leadTypeName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        leadSourceId: freezed == leadSourceId
-            ? _value.leadSourceId
-            : leadSourceId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        leadSourceName: freezed == leadSourceName
-            ? _value.leadSourceName
-            : leadSourceName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        campaignName: freezed == campaignName
-            ? _value.campaignName
-            : campaignName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        collectedDate: freezed == collectedDate
-            ? _value.collectedDate
-            : collectedDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        companyName: freezed == companyName
-            ? _value.companyName
-            : companyName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        taxCode: freezed == taxCode
-            ? _value.taxCode
-            : taxCode // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        customerIndustriesId: freezed == customerIndustriesId
-            ? _value.customerIndustriesId
-            : customerIndustriesId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        industryName: freezed == industryName
-            ? _value.industryName
-            : industryName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        businessFieldId: freezed == businessFieldId
-            ? _value.businessFieldId
-            : businessFieldId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        businessFieldName: freezed == businessFieldName
-            ? _value.businessFieldName
-            : businessFieldName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        website: freezed == website
-            ? _value.website
-            : website // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        province: freezed == province
-            ? _value.province
-            : province // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        address: freezed == address
-            ? _value.address
-            : address // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactName: freezed == contactName
-            ? _value.contactName
-            : contactName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactPosition: freezed == contactPosition
-            ? _value.contactPosition
-            : contactPosition // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactPhone: freezed == contactPhone
-            ? _value.contactPhone
-            : contactPhone // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactEmail: freezed == contactEmail
-            ? _value.contactEmail
-            : contactEmail // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        needDescription: freezed == needDescription
-            ? _value.needDescription
-            : needDescription // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        productInterest: freezed == productInterest
-            ? _value.productInterest
-            : productInterest // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        estimatedValue: freezed == estimatedValue
-            ? _value.estimatedValue
-            : estimatedValue // ignore: cast_nullable_to_non_nullable
-                  as double?,
-        rating: freezed == rating
-            ? _value.rating
-            : rating // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        ratingName: freezed == ratingName
-            ? _value.ratingName
-            : ratingName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        stage: freezed == stage
-            ? _value.stage
-            : stage // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        stageName: freezed == stageName
-            ? _value.stageName
-            : stageName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        marketingEmployeeId: freezed == marketingEmployeeId
-            ? _value.marketingEmployeeId
-            : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        marketingEmployeeName: freezed == marketingEmployeeName
-            ? _value.marketingEmployeeName
-            : marketingEmployeeName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        qualifiedDate: freezed == qualifiedDate
-            ? _value.qualifiedDate
-            : qualifiedDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        handoverDate: freezed == handoverDate
-            ? _value.handoverDate
-            : handoverDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        handoverBy: freezed == handoverBy
-            ? _value.handoverBy
-            : handoverBy // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        handoverLeaderId: freezed == handoverLeaderId
-            ? _value.handoverLeaderId
-            : handoverLeaderId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        handoverLeaderName: freezed == handoverLeaderName
-            ? _value.handoverLeaderName
-            : handoverLeaderName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        saleEmployeeId: freezed == saleEmployeeId
-            ? _value.saleEmployeeId
-            : saleEmployeeId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        saleEmployeeName: freezed == saleEmployeeName
-            ? _value.saleEmployeeName
-            : saleEmployeeName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        assignedDate: freezed == assignedDate
-            ? _value.assignedDate
-            : assignedDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        assignedBy: freezed == assignedBy
-            ? _value.assignedBy
-            : assignedBy // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        assignedByName: freezed == assignedByName
-            ? _value.assignedByName
-            : assignedByName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        nextFollowUpDate: freezed == nextFollowUpDate
-            ? _value.nextFollowUpDate
-            : nextFollowUpDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        isOverdue: freezed == isOverdue
-            ? _value.isOverdue
-            : isOverdue // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        closedDate: freezed == closedDate
-            ? _value.closedDate
-            : closedDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        customerId: freezed == customerId
-            ? _value.customerId
-            : customerId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        customerName: freezed == customerName
-            ? _value.customerName
-            : customerName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        customerCode: freezed == customerCode
-            ? _value.customerCode
-            : customerCode // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        lostReason: freezed == lostReason
-            ? _value.lostReason
-            : lostReason // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        returnReason: freezed == returnReason
-            ? _value.returnReason
-            : returnReason // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        note: freezed == note
-            ? _value.note
-            : note // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        activityCount: freezed == activityCount
-            ? _value.activityCount
-            : activityCount // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        lastActivityDate: freezed == lastActivityDate
-            ? _value.lastActivityDate
-            : lastActivityDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        createdBy: freezed == createdBy
-            ? _value.createdBy
-            : createdBy // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        createdDate: freezed == createdDate
-            ? _value.createdDate
-            : createdDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        updatedBy: freezed == updatedBy
-            ? _value.updatedBy
-            : updatedBy // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        updatedDate: freezed == updatedDate
-            ? _value.updatedDate
-            : updatedDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        poTypeName: freezed == poTypeName
-            ? _value.poTypeName
-            : poTypeName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        customerType: freezed == customerType
-            ? _value.customerType
-            : customerType // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        adminSaleName: freezed == adminSaleName
-            ? _value.adminSaleName
-            : adminSaleName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        totalMoneyPo: freezed == totalMoneyPo
-            ? _value.totalMoneyPo
-            : totalMoneyPo // ignore: cast_nullable_to_non_nullable
-                  as double?,
-      ),
-    );
+    return _then(_$LeadSaleItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadCode: freezed == leadCode
+          ? _value.leadCode
+          : leadCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      leadType: freezed == leadType
+          ? _value.leadType
+          : leadType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadTypeName: freezed == leadTypeName
+          ? _value.leadTypeName
+          : leadTypeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      leadSourceId: freezed == leadSourceId
+          ? _value.leadSourceId
+          : leadSourceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadSourceName: freezed == leadSourceName
+          ? _value.leadSourceName
+          : leadSourceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      campaignName: freezed == campaignName
+          ? _value.campaignName
+          : campaignName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      collectedDate: freezed == collectedDate
+          ? _value.collectedDate
+          : collectedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      companyName: freezed == companyName
+          ? _value.companyName
+          : companyName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxCode: freezed == taxCode
+          ? _value.taxCode
+          : taxCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerIndustriesId: freezed == customerIndustriesId
+          ? _value.customerIndustriesId
+          : customerIndustriesId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      industryName: freezed == industryName
+          ? _value.industryName
+          : industryName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      businessFieldId: freezed == businessFieldId
+          ? _value.businessFieldId
+          : businessFieldId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      businessFieldName: freezed == businessFieldName
+          ? _value.businessFieldName
+          : businessFieldName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      province: freezed == province
+          ? _value.province
+          : province // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPosition: freezed == contactPosition
+          ? _value.contactPosition
+          : contactPosition // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      needDescription: freezed == needDescription
+          ? _value.needDescription
+          : needDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productInterest: freezed == productInterest
+          ? _value.productInterest
+          : productInterest // ignore: cast_nullable_to_non_nullable
+              as String?,
+      estimatedValue: freezed == estimatedValue
+          ? _value.estimatedValue
+          : estimatedValue // ignore: cast_nullable_to_non_nullable
+              as double?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as int?,
+      ratingName: freezed == ratingName
+          ? _value.ratingName
+          : ratingName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stage: freezed == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stageName: freezed == stageName
+          ? _value.stageName
+          : stageName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      marketingEmployeeId: freezed == marketingEmployeeId
+          ? _value.marketingEmployeeId
+          : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      marketingEmployeeName: freezed == marketingEmployeeName
+          ? _value.marketingEmployeeName
+          : marketingEmployeeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      qualifiedDate: freezed == qualifiedDate
+          ? _value.qualifiedDate
+          : qualifiedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      handoverDate: freezed == handoverDate
+          ? _value.handoverDate
+          : handoverDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      handoverBy: freezed == handoverBy
+          ? _value.handoverBy
+          : handoverBy // ignore: cast_nullable_to_non_nullable
+              as int?,
+      handoverLeaderId: freezed == handoverLeaderId
+          ? _value.handoverLeaderId
+          : handoverLeaderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      handoverLeaderName: freezed == handoverLeaderName
+          ? _value.handoverLeaderName
+          : handoverLeaderName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      saleEmployeeId: freezed == saleEmployeeId
+          ? _value.saleEmployeeId
+          : saleEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      saleEmployeeName: freezed == saleEmployeeName
+          ? _value.saleEmployeeName
+          : saleEmployeeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      assignedDate: freezed == assignedDate
+          ? _value.assignedDate
+          : assignedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      assignedBy: freezed == assignedBy
+          ? _value.assignedBy
+          : assignedBy // ignore: cast_nullable_to_non_nullable
+              as int?,
+      assignedByName: freezed == assignedByName
+          ? _value.assignedByName
+          : assignedByName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextFollowUpDate: freezed == nextFollowUpDate
+          ? _value.nextFollowUpDate
+          : nextFollowUpDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isOverdue: freezed == isOverdue
+          ? _value.isOverdue
+          : isOverdue // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      closedDate: freezed == closedDate
+          ? _value.closedDate
+          : closedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerName: freezed == customerName
+          ? _value.customerName
+          : customerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerCode: freezed == customerCode
+          ? _value.customerCode
+          : customerCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lostReason: freezed == lostReason
+          ? _value.lostReason
+          : lostReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      returnReason: freezed == returnReason
+          ? _value.returnReason
+          : returnReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityCount: freezed == activityCount
+          ? _value.activityCount
+          : activityCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      lastActivityDate: freezed == lastActivityDate
+          ? _value.lastActivityDate
+          : lastActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      poTypeName: freezed == poTypeName
+          ? _value.poTypeName
+          : poTypeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerType: freezed == customerType
+          ? _value.customerType
+          : customerType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      adminSaleName: freezed == adminSaleName
+          ? _value.adminSaleName
+          : adminSaleName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalMoneyPo: freezed == totalMoneyPo
+          ? _value.totalMoneyPo
+          : totalMoneyPo // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleItemImpl implements _LeadSaleItem {
-  const _$LeadSaleItemImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'LeadCode') this.leadCode,
-    @JsonKey(name: 'LeadType') this.leadType,
-    @JsonKey(name: 'LeadTypeName') this.leadTypeName,
-    @JsonKey(name: 'LeadSourceID') this.leadSourceId,
-    @JsonKey(name: 'LeadSourceName') this.leadSourceName,
-    @JsonKey(name: 'CampaignName') this.campaignName,
-    @JsonKey(name: 'CollectedDate') this.collectedDate,
-    @JsonKey(name: 'CompanyName') this.companyName,
-    @JsonKey(name: 'TaxCode') this.taxCode,
-    @JsonKey(name: 'CustomerIndustriesID') this.customerIndustriesId,
-    @JsonKey(name: 'IndustryName') this.industryName,
-    @JsonKey(name: 'BusinessFieldID') this.businessFieldId,
-    @JsonKey(name: 'BusinessFieldName') this.businessFieldName,
-    @JsonKey(name: 'Website') this.website,
-    @JsonKey(name: 'Province') this.province,
-    @JsonKey(name: 'Address') this.address,
-    @JsonKey(name: 'ContactName') this.contactName,
-    @JsonKey(name: 'ContactPosition') this.contactPosition,
-    @JsonKey(name: 'ContactPhone') this.contactPhone,
-    @JsonKey(name: 'ContactEmail') this.contactEmail,
-    @JsonKey(name: 'NeedDescription') this.needDescription,
-    @JsonKey(name: 'ProductInterest') this.productInterest,
-    @JsonKey(name: 'EstimatedValue') this.estimatedValue,
-    @JsonKey(name: 'Rating') this.rating,
-    @JsonKey(name: 'RatingName') this.ratingName,
-    @JsonKey(name: 'Stage') this.stage,
-    @JsonKey(name: 'StageName') this.stageName,
-    @JsonKey(name: 'MarketingEmployeeID') this.marketingEmployeeId,
-    @JsonKey(name: 'MarketingEmployeeName') this.marketingEmployeeName,
-    @JsonKey(name: 'QualifiedDate') this.qualifiedDate,
-    @JsonKey(name: 'HandoverDate') this.handoverDate,
-    @JsonKey(name: 'HandoverBy') this.handoverBy,
-    @JsonKey(name: 'HandoverLeaderID') this.handoverLeaderId,
-    @JsonKey(name: 'HandoverLeaderName') this.handoverLeaderName,
-    @JsonKey(name: 'SaleEmployeeID') this.saleEmployeeId,
-    @JsonKey(name: 'SaleEmployeeName') this.saleEmployeeName,
-    @JsonKey(name: 'AssignedDate') this.assignedDate,
-    @JsonKey(name: 'AssignedBy') this.assignedBy,
-    @JsonKey(name: 'AssignedByName') this.assignedByName,
-    @JsonKey(name: 'NextFollowUpDate') this.nextFollowUpDate,
-    @JsonKey(name: 'IsOverdue') this.isOverdue,
-    @JsonKey(name: 'ClosedDate') this.closedDate,
-    @JsonKey(name: 'CustomerID') this.customerId,
-    @JsonKey(name: 'CustomerName') this.customerName,
-    @JsonKey(name: 'CustomerCode') this.customerCode,
-    @JsonKey(name: 'LostReason') this.lostReason,
-    @JsonKey(name: 'ReturnReason') this.returnReason,
-    @JsonKey(name: 'Note') this.note,
-    @JsonKey(name: 'ActivityCount') this.activityCount,
-    @JsonKey(name: 'LastActivityDate') this.lastActivityDate,
-    @JsonKey(name: 'CreatedBy') this.createdBy,
-    @JsonKey(name: 'CreatedDate') this.createdDate,
-    @JsonKey(name: 'UpdatedBy') this.updatedBy,
-    @JsonKey(name: 'UpdatedDate') this.updatedDate,
-    @JsonKey(name: 'PoTypeName') this.poTypeName,
-    @JsonKey(name: 'CustomerType') this.customerType,
-    @JsonKey(name: 'AdminSaleName') this.adminSaleName,
-    @JsonKey(name: 'TotalMoneyPO') this.totalMoneyPo,
-  });
+  const _$LeadSaleItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'LeadCode') this.leadCode,
+      @JsonKey(name: 'LeadType') this.leadType,
+      @JsonKey(name: 'LeadTypeName') this.leadTypeName,
+      @JsonKey(name: 'LeadSourceID') this.leadSourceId,
+      @JsonKey(name: 'LeadSourceName') this.leadSourceName,
+      @JsonKey(name: 'CampaignName') this.campaignName,
+      @JsonKey(name: 'CollectedDate') this.collectedDate,
+      @JsonKey(name: 'CompanyName') this.companyName,
+      @JsonKey(name: 'TaxCode') this.taxCode,
+      @JsonKey(name: 'CustomerIndustriesID') this.customerIndustriesId,
+      @JsonKey(name: 'IndustryName') this.industryName,
+      @JsonKey(name: 'BusinessFieldID') this.businessFieldId,
+      @JsonKey(name: 'BusinessFieldName') this.businessFieldName,
+      @JsonKey(name: 'Website') this.website,
+      @JsonKey(name: 'Province') this.province,
+      @JsonKey(name: 'Address') this.address,
+      @JsonKey(name: 'ContactName') this.contactName,
+      @JsonKey(name: 'ContactPosition') this.contactPosition,
+      @JsonKey(name: 'ContactPhone') this.contactPhone,
+      @JsonKey(name: 'ContactEmail') this.contactEmail,
+      @JsonKey(name: 'NeedDescription') this.needDescription,
+      @JsonKey(name: 'ProductInterest') this.productInterest,
+      @JsonKey(name: 'EstimatedValue') this.estimatedValue,
+      @JsonKey(name: 'Rating') this.rating,
+      @JsonKey(name: 'RatingName') this.ratingName,
+      @JsonKey(name: 'Stage') this.stage,
+      @JsonKey(name: 'StageName') this.stageName,
+      @JsonKey(name: 'MarketingEmployeeID') this.marketingEmployeeId,
+      @JsonKey(name: 'MarketingEmployeeName') this.marketingEmployeeName,
+      @JsonKey(name: 'QualifiedDate') this.qualifiedDate,
+      @JsonKey(name: 'HandoverDate') this.handoverDate,
+      @JsonKey(name: 'HandoverBy') this.handoverBy,
+      @JsonKey(name: 'HandoverLeaderID') this.handoverLeaderId,
+      @JsonKey(name: 'HandoverLeaderName') this.handoverLeaderName,
+      @JsonKey(name: 'SaleEmployeeID') this.saleEmployeeId,
+      @JsonKey(name: 'SaleEmployeeName') this.saleEmployeeName,
+      @JsonKey(name: 'AssignedDate') this.assignedDate,
+      @JsonKey(name: 'AssignedBy') this.assignedBy,
+      @JsonKey(name: 'AssignedByName') this.assignedByName,
+      @JsonKey(name: 'NextFollowUpDate') this.nextFollowUpDate,
+      @JsonKey(name: 'IsOverdue') this.isOverdue,
+      @JsonKey(name: 'ClosedDate') this.closedDate,
+      @JsonKey(name: 'CustomerID') this.customerId,
+      @JsonKey(name: 'CustomerName') this.customerName,
+      @JsonKey(name: 'CustomerCode') this.customerCode,
+      @JsonKey(name: 'LostReason') this.lostReason,
+      @JsonKey(name: 'ReturnReason') this.returnReason,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'ActivityCount') this.activityCount,
+      @JsonKey(name: 'LastActivityDate') this.lastActivityDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'PoTypeName') this.poTypeName,
+      @JsonKey(name: 'CustomerType') this.customerType,
+      @JsonKey(name: 'AdminSaleName') this.adminSaleName,
+      @JsonKey(name: 'TotalMoneyPO') this.totalMoneyPo});
 
   factory _$LeadSaleItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleItemImplFromJson(json);
@@ -5772,90 +5575,81 @@ class _$LeadSaleItemImpl implements _LeadSaleItem {
             (identical(other.note, note) || other.note == note) &&
             (identical(other.activityCount, activityCount) ||
                 other.activityCount == activityCount) &&
-            (identical(other.lastActivityDate, lastActivityDate) ||
-                other.lastActivityDate == lastActivityDate) &&
-            (identical(other.createdBy, createdBy) ||
-                other.createdBy == createdBy) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.updatedBy, updatedBy) ||
-                other.updatedBy == updatedBy) &&
-            (identical(other.updatedDate, updatedDate) ||
-                other.updatedDate == updatedDate) &&
-            (identical(other.poTypeName, poTypeName) ||
-                other.poTypeName == poTypeName) &&
-            (identical(other.customerType, customerType) ||
-                other.customerType == customerType) &&
-            (identical(other.adminSaleName, adminSaleName) ||
-                other.adminSaleName == adminSaleName) &&
-            (identical(other.totalMoneyPo, totalMoneyPo) ||
-                other.totalMoneyPo == totalMoneyPo));
+            (identical(other.lastActivityDate, lastActivityDate) || other.lastActivityDate == lastActivityDate) &&
+            (identical(other.createdBy, createdBy) || other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) || other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) || other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) || other.updatedDate == updatedDate) &&
+            (identical(other.poTypeName, poTypeName) || other.poTypeName == poTypeName) &&
+            (identical(other.customerType, customerType) || other.customerType == customerType) &&
+            (identical(other.adminSaleName, adminSaleName) || other.adminSaleName == adminSaleName) &&
+            (identical(other.totalMoneyPo, totalMoneyPo) || other.totalMoneyPo == totalMoneyPo));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
-    runtimeType,
-    id,
-    leadCode,
-    leadType,
-    leadTypeName,
-    leadSourceId,
-    leadSourceName,
-    campaignName,
-    collectedDate,
-    companyName,
-    taxCode,
-    customerIndustriesId,
-    industryName,
-    businessFieldId,
-    businessFieldName,
-    website,
-    province,
-    address,
-    contactName,
-    contactPosition,
-    contactPhone,
-    contactEmail,
-    needDescription,
-    productInterest,
-    estimatedValue,
-    rating,
-    ratingName,
-    stage,
-    stageName,
-    marketingEmployeeId,
-    marketingEmployeeName,
-    qualifiedDate,
-    handoverDate,
-    handoverBy,
-    handoverLeaderId,
-    handoverLeaderName,
-    saleEmployeeId,
-    saleEmployeeName,
-    assignedDate,
-    assignedBy,
-    assignedByName,
-    nextFollowUpDate,
-    isOverdue,
-    closedDate,
-    customerId,
-    customerName,
-    customerCode,
-    lostReason,
-    returnReason,
-    note,
-    activityCount,
-    lastActivityDate,
-    createdBy,
-    createdDate,
-    updatedBy,
-    updatedDate,
-    poTypeName,
-    customerType,
-    adminSaleName,
-    totalMoneyPo,
-  ]);
+        runtimeType,
+        id,
+        leadCode,
+        leadType,
+        leadTypeName,
+        leadSourceId,
+        leadSourceName,
+        campaignName,
+        collectedDate,
+        companyName,
+        taxCode,
+        customerIndustriesId,
+        industryName,
+        businessFieldId,
+        businessFieldName,
+        website,
+        province,
+        address,
+        contactName,
+        contactPosition,
+        contactPhone,
+        contactEmail,
+        needDescription,
+        productInterest,
+        estimatedValue,
+        rating,
+        ratingName,
+        stage,
+        stageName,
+        marketingEmployeeId,
+        marketingEmployeeName,
+        qualifiedDate,
+        handoverDate,
+        handoverBy,
+        handoverLeaderId,
+        handoverLeaderName,
+        saleEmployeeId,
+        saleEmployeeName,
+        assignedDate,
+        assignedBy,
+        assignedByName,
+        nextFollowUpDate,
+        isOverdue,
+        closedDate,
+        customerId,
+        customerName,
+        customerCode,
+        lostReason,
+        returnReason,
+        note,
+        activityCount,
+        lastActivityDate,
+        createdBy,
+        createdDate,
+        updatedBy,
+        updatedDate,
+        poTypeName,
+        customerType,
+        adminSaleName,
+        totalMoneyPo
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -5865,72 +5659,75 @@ class _$LeadSaleItemImpl implements _LeadSaleItem {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleItemImplToJson(this);
+    return _$$LeadSaleItemImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleItem implements LeadSaleItem {
-  const factory _LeadSaleItem({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'LeadCode') final String? leadCode,
-    @JsonKey(name: 'LeadType') final int? leadType,
-    @JsonKey(name: 'LeadTypeName') final String? leadTypeName,
-    @JsonKey(name: 'LeadSourceID') final int? leadSourceId,
-    @JsonKey(name: 'LeadSourceName') final String? leadSourceName,
-    @JsonKey(name: 'CampaignName') final String? campaignName,
-    @JsonKey(name: 'CollectedDate') final String? collectedDate,
-    @JsonKey(name: 'CompanyName') final String? companyName,
-    @JsonKey(name: 'TaxCode') final String? taxCode,
-    @JsonKey(name: 'CustomerIndustriesID') final int? customerIndustriesId,
-    @JsonKey(name: 'IndustryName') final String? industryName,
-    @JsonKey(name: 'BusinessFieldID') final int? businessFieldId,
-    @JsonKey(name: 'BusinessFieldName') final String? businessFieldName,
-    @JsonKey(name: 'Website') final String? website,
-    @JsonKey(name: 'Province') final String? province,
-    @JsonKey(name: 'Address') final String? address,
-    @JsonKey(name: 'ContactName') final String? contactName,
-    @JsonKey(name: 'ContactPosition') final String? contactPosition,
-    @JsonKey(name: 'ContactPhone') final String? contactPhone,
-    @JsonKey(name: 'ContactEmail') final String? contactEmail,
-    @JsonKey(name: 'NeedDescription') final String? needDescription,
-    @JsonKey(name: 'ProductInterest') final String? productInterest,
-    @JsonKey(name: 'EstimatedValue') final double? estimatedValue,
-    @JsonKey(name: 'Rating') final int? rating,
-    @JsonKey(name: 'RatingName') final String? ratingName,
-    @JsonKey(name: 'Stage') final int? stage,
-    @JsonKey(name: 'StageName') final String? stageName,
-    @JsonKey(name: 'MarketingEmployeeID') final int? marketingEmployeeId,
-    @JsonKey(name: 'MarketingEmployeeName') final String? marketingEmployeeName,
-    @JsonKey(name: 'QualifiedDate') final String? qualifiedDate,
-    @JsonKey(name: 'HandoverDate') final String? handoverDate,
-    @JsonKey(name: 'HandoverBy') final int? handoverBy,
-    @JsonKey(name: 'HandoverLeaderID') final int? handoverLeaderId,
-    @JsonKey(name: 'HandoverLeaderName') final String? handoverLeaderName,
-    @JsonKey(name: 'SaleEmployeeID') final int? saleEmployeeId,
-    @JsonKey(name: 'SaleEmployeeName') final String? saleEmployeeName,
-    @JsonKey(name: 'AssignedDate') final String? assignedDate,
-    @JsonKey(name: 'AssignedBy') final int? assignedBy,
-    @JsonKey(name: 'AssignedByName') final String? assignedByName,
-    @JsonKey(name: 'NextFollowUpDate') final String? nextFollowUpDate,
-    @JsonKey(name: 'IsOverdue') final bool? isOverdue,
-    @JsonKey(name: 'ClosedDate') final String? closedDate,
-    @JsonKey(name: 'CustomerID') final int? customerId,
-    @JsonKey(name: 'CustomerName') final String? customerName,
-    @JsonKey(name: 'CustomerCode') final String? customerCode,
-    @JsonKey(name: 'LostReason') final String? lostReason,
-    @JsonKey(name: 'ReturnReason') final String? returnReason,
-    @JsonKey(name: 'Note') final String? note,
-    @JsonKey(name: 'ActivityCount') final int? activityCount,
-    @JsonKey(name: 'LastActivityDate') final String? lastActivityDate,
-    @JsonKey(name: 'CreatedBy') final String? createdBy,
-    @JsonKey(name: 'CreatedDate') final String? createdDate,
-    @JsonKey(name: 'UpdatedBy') final String? updatedBy,
-    @JsonKey(name: 'UpdatedDate') final String? updatedDate,
-    @JsonKey(name: 'PoTypeName') final String? poTypeName,
-    @JsonKey(name: 'CustomerType') final String? customerType,
-    @JsonKey(name: 'AdminSaleName') final String? adminSaleName,
-    @JsonKey(name: 'TotalMoneyPO') final double? totalMoneyPo,
-  }) = _$LeadSaleItemImpl;
+  const factory _LeadSaleItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'LeadCode') final String? leadCode,
+      @JsonKey(name: 'LeadType') final int? leadType,
+      @JsonKey(name: 'LeadTypeName') final String? leadTypeName,
+      @JsonKey(name: 'LeadSourceID') final int? leadSourceId,
+      @JsonKey(name: 'LeadSourceName') final String? leadSourceName,
+      @JsonKey(name: 'CampaignName') final String? campaignName,
+      @JsonKey(name: 'CollectedDate') final String? collectedDate,
+      @JsonKey(name: 'CompanyName') final String? companyName,
+      @JsonKey(name: 'TaxCode') final String? taxCode,
+      @JsonKey(name: 'CustomerIndustriesID') final int? customerIndustriesId,
+      @JsonKey(name: 'IndustryName') final String? industryName,
+      @JsonKey(name: 'BusinessFieldID') final int? businessFieldId,
+      @JsonKey(name: 'BusinessFieldName') final String? businessFieldName,
+      @JsonKey(name: 'Website') final String? website,
+      @JsonKey(name: 'Province') final String? province,
+      @JsonKey(name: 'Address') final String? address,
+      @JsonKey(name: 'ContactName') final String? contactName,
+      @JsonKey(name: 'ContactPosition') final String? contactPosition,
+      @JsonKey(name: 'ContactPhone') final String? contactPhone,
+      @JsonKey(name: 'ContactEmail') final String? contactEmail,
+      @JsonKey(name: 'NeedDescription') final String? needDescription,
+      @JsonKey(name: 'ProductInterest') final String? productInterest,
+      @JsonKey(name: 'EstimatedValue') final double? estimatedValue,
+      @JsonKey(name: 'Rating') final int? rating,
+      @JsonKey(name: 'RatingName') final String? ratingName,
+      @JsonKey(name: 'Stage') final int? stage,
+      @JsonKey(name: 'StageName') final String? stageName,
+      @JsonKey(name: 'MarketingEmployeeID') final int? marketingEmployeeId,
+      @JsonKey(name: 'MarketingEmployeeName')
+      final String? marketingEmployeeName,
+      @JsonKey(name: 'QualifiedDate') final String? qualifiedDate,
+      @JsonKey(name: 'HandoverDate') final String? handoverDate,
+      @JsonKey(name: 'HandoverBy') final int? handoverBy,
+      @JsonKey(name: 'HandoverLeaderID') final int? handoverLeaderId,
+      @JsonKey(name: 'HandoverLeaderName') final String? handoverLeaderName,
+      @JsonKey(name: 'SaleEmployeeID') final int? saleEmployeeId,
+      @JsonKey(name: 'SaleEmployeeName') final String? saleEmployeeName,
+      @JsonKey(name: 'AssignedDate') final String? assignedDate,
+      @JsonKey(name: 'AssignedBy') final int? assignedBy,
+      @JsonKey(name: 'AssignedByName') final String? assignedByName,
+      @JsonKey(name: 'NextFollowUpDate') final String? nextFollowUpDate,
+      @JsonKey(name: 'IsOverdue') final bool? isOverdue,
+      @JsonKey(name: 'ClosedDate') final String? closedDate,
+      @JsonKey(name: 'CustomerID') final int? customerId,
+      @JsonKey(name: 'CustomerName') final String? customerName,
+      @JsonKey(name: 'CustomerCode') final String? customerCode,
+      @JsonKey(name: 'LostReason') final String? lostReason,
+      @JsonKey(name: 'ReturnReason') final String? returnReason,
+      @JsonKey(name: 'Note') final String? note,
+      @JsonKey(name: 'ActivityCount') final int? activityCount,
+      @JsonKey(name: 'LastActivityDate') final String? lastActivityDate,
+      @JsonKey(name: 'CreatedBy') final String? createdBy,
+      @JsonKey(name: 'CreatedDate') final String? createdDate,
+      @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') final String? updatedDate,
+      @JsonKey(name: 'PoTypeName') final String? poTypeName,
+      @JsonKey(name: 'CustomerType') final String? customerType,
+      @JsonKey(name: 'AdminSaleName') final String? adminSaleName,
+      @JsonKey(name: 'TotalMoneyPO')
+      final double? totalMoneyPo}) = _$LeadSaleItemImpl;
 
   factory _LeadSaleItem.fromJson(Map<String, dynamic> json) =
       _$LeadSaleItemImpl.fromJson;
@@ -6149,16 +5946,14 @@ mixin _$LeadSaleDetail {
 /// @nodoc
 abstract class $LeadSaleDetailCopyWith<$Res> {
   factory $LeadSaleDetailCopyWith(
-    LeadSaleDetail value,
-    $Res Function(LeadSaleDetail) then,
-  ) = _$LeadSaleDetailCopyWithImpl<$Res, LeadSaleDetail>;
+          LeadSaleDetail value, $Res Function(LeadSaleDetail) then) =
+      _$LeadSaleDetailCopyWithImpl<$Res, LeadSaleDetail>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'lead') LeadSaleDetailLead? lead,
-    @JsonKey(name: 'activities') List<LeadSaleActivity>? activities,
-    @JsonKey(name: 'logs') List<LeadSaleLog>? logs,
-    @JsonKey(name: 'actions') LeadSaleActions? actions,
-  });
+  $Res call(
+      {@JsonKey(name: 'lead') LeadSaleDetailLead? lead,
+      @JsonKey(name: 'activities') List<LeadSaleActivity>? activities,
+      @JsonKey(name: 'logs') List<LeadSaleLog>? logs,
+      @JsonKey(name: 'actions') LeadSaleActions? actions});
 
   $LeadSaleDetailLeadCopyWith<$Res>? get lead;
   $LeadSaleActionsCopyWith<$Res>? get actions;
@@ -6182,27 +5977,24 @@ class _$LeadSaleDetailCopyWithImpl<$Res, $Val extends LeadSaleDetail>
     Object? logs = freezed,
     Object? actions = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            lead: freezed == lead
-                ? _value.lead
-                : lead // ignore: cast_nullable_to_non_nullable
-                      as LeadSaleDetailLead?,
-            activities: freezed == activities
-                ? _value.activities
-                : activities // ignore: cast_nullable_to_non_nullable
-                      as List<LeadSaleActivity>?,
-            logs: freezed == logs
-                ? _value.logs
-                : logs // ignore: cast_nullable_to_non_nullable
-                      as List<LeadSaleLog>?,
-            actions: freezed == actions
-                ? _value.actions
-                : actions // ignore: cast_nullable_to_non_nullable
-                      as LeadSaleActions?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      lead: freezed == lead
+          ? _value.lead
+          : lead // ignore: cast_nullable_to_non_nullable
+              as LeadSaleDetailLead?,
+      activities: freezed == activities
+          ? _value.activities
+          : activities // ignore: cast_nullable_to_non_nullable
+              as List<LeadSaleActivity>?,
+      logs: freezed == logs
+          ? _value.logs
+          : logs // ignore: cast_nullable_to_non_nullable
+              as List<LeadSaleLog>?,
+      actions: freezed == actions
+          ? _value.actions
+          : actions // ignore: cast_nullable_to_non_nullable
+              as LeadSaleActions?,
+    ) as $Val);
   }
 
   @override
@@ -6233,18 +6025,16 @@ class _$LeadSaleDetailCopyWithImpl<$Res, $Val extends LeadSaleDetail>
 /// @nodoc
 abstract class _$$LeadSaleDetailImplCopyWith<$Res>
     implements $LeadSaleDetailCopyWith<$Res> {
-  factory _$$LeadSaleDetailImplCopyWith(
-    _$LeadSaleDetailImpl value,
-    $Res Function(_$LeadSaleDetailImpl) then,
-  ) = __$$LeadSaleDetailImplCopyWithImpl<$Res>;
+  factory _$$LeadSaleDetailImplCopyWith(_$LeadSaleDetailImpl value,
+          $Res Function(_$LeadSaleDetailImpl) then) =
+      __$$LeadSaleDetailImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'lead') LeadSaleDetailLead? lead,
-    @JsonKey(name: 'activities') List<LeadSaleActivity>? activities,
-    @JsonKey(name: 'logs') List<LeadSaleLog>? logs,
-    @JsonKey(name: 'actions') LeadSaleActions? actions,
-  });
+  $Res call(
+      {@JsonKey(name: 'lead') LeadSaleDetailLead? lead,
+      @JsonKey(name: 'activities') List<LeadSaleActivity>? activities,
+      @JsonKey(name: 'logs') List<LeadSaleLog>? logs,
+      @JsonKey(name: 'actions') LeadSaleActions? actions});
 
   @override
   $LeadSaleDetailLeadCopyWith<$Res>? get lead;
@@ -6257,9 +6047,8 @@ class __$$LeadSaleDetailImplCopyWithImpl<$Res>
     extends _$LeadSaleDetailCopyWithImpl<$Res, _$LeadSaleDetailImpl>
     implements _$$LeadSaleDetailImplCopyWith<$Res> {
   __$$LeadSaleDetailImplCopyWithImpl(
-    _$LeadSaleDetailImpl _value,
-    $Res Function(_$LeadSaleDetailImpl) _then,
-  ) : super(_value, _then);
+      _$LeadSaleDetailImpl _value, $Res Function(_$LeadSaleDetailImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -6269,39 +6058,37 @@ class __$$LeadSaleDetailImplCopyWithImpl<$Res>
     Object? logs = freezed,
     Object? actions = freezed,
   }) {
-    return _then(
-      _$LeadSaleDetailImpl(
-        lead: freezed == lead
-            ? _value.lead
-            : lead // ignore: cast_nullable_to_non_nullable
-                  as LeadSaleDetailLead?,
-        activities: freezed == activities
-            ? _value._activities
-            : activities // ignore: cast_nullable_to_non_nullable
-                  as List<LeadSaleActivity>?,
-        logs: freezed == logs
-            ? _value._logs
-            : logs // ignore: cast_nullable_to_non_nullable
-                  as List<LeadSaleLog>?,
-        actions: freezed == actions
-            ? _value.actions
-            : actions // ignore: cast_nullable_to_non_nullable
-                  as LeadSaleActions?,
-      ),
-    );
+    return _then(_$LeadSaleDetailImpl(
+      lead: freezed == lead
+          ? _value.lead
+          : lead // ignore: cast_nullable_to_non_nullable
+              as LeadSaleDetailLead?,
+      activities: freezed == activities
+          ? _value._activities
+          : activities // ignore: cast_nullable_to_non_nullable
+              as List<LeadSaleActivity>?,
+      logs: freezed == logs
+          ? _value._logs
+          : logs // ignore: cast_nullable_to_non_nullable
+              as List<LeadSaleLog>?,
+      actions: freezed == actions
+          ? _value.actions
+          : actions // ignore: cast_nullable_to_non_nullable
+              as LeadSaleActions?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleDetailImpl implements _LeadSaleDetail {
-  const _$LeadSaleDetailImpl({
-    @JsonKey(name: 'lead') this.lead,
-    @JsonKey(name: 'activities') final List<LeadSaleActivity>? activities,
-    @JsonKey(name: 'logs') final List<LeadSaleLog>? logs,
-    @JsonKey(name: 'actions') this.actions,
-  }) : _activities = activities,
-       _logs = logs;
+  const _$LeadSaleDetailImpl(
+      {@JsonKey(name: 'lead') this.lead,
+      @JsonKey(name: 'activities') final List<LeadSaleActivity>? activities,
+      @JsonKey(name: 'logs') final List<LeadSaleLog>? logs,
+      @JsonKey(name: 'actions') this.actions})
+      : _activities = activities,
+        _logs = logs;
 
   factory _$LeadSaleDetailImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleDetailImplFromJson(json);
@@ -6355,10 +6142,8 @@ class _$LeadSaleDetailImpl implements _LeadSaleDetail {
         (other.runtimeType == runtimeType &&
             other is _$LeadSaleDetailImpl &&
             (identical(other.lead, lead) || other.lead == lead) &&
-            const DeepCollectionEquality().equals(
-              other._activities,
-              _activities,
-            ) &&
+            const DeepCollectionEquality()
+                .equals(other._activities, _activities) &&
             const DeepCollectionEquality().equals(other._logs, _logs) &&
             (identical(other.actions, actions) || other.actions == actions));
   }
@@ -6366,52 +6151,55 @@ class _$LeadSaleDetailImpl implements _LeadSaleDetail {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    lead,
-    const DeepCollectionEquality().hash(_activities),
-    const DeepCollectionEquality().hash(_logs),
-    actions,
-  );
+      runtimeType,
+      lead,
+      const DeepCollectionEquality().hash(_activities),
+      const DeepCollectionEquality().hash(_logs),
+      actions);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleDetailImplCopyWith<_$LeadSaleDetailImpl> get copyWith =>
       __$$LeadSaleDetailImplCopyWithImpl<_$LeadSaleDetailImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleDetailImplToJson(this);
+    return _$$LeadSaleDetailImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleDetail implements LeadSaleDetail {
-  const factory _LeadSaleDetail({
-    @JsonKey(name: 'lead') final LeadSaleDetailLead? lead,
-    @JsonKey(name: 'activities') final List<LeadSaleActivity>? activities,
-    @JsonKey(name: 'logs') final List<LeadSaleLog>? logs,
-    @JsonKey(name: 'actions') final LeadSaleActions? actions,
-  }) = _$LeadSaleDetailImpl;
+  const factory _LeadSaleDetail(
+          {@JsonKey(name: 'lead') final LeadSaleDetailLead? lead,
+          @JsonKey(name: 'activities') final List<LeadSaleActivity>? activities,
+          @JsonKey(name: 'logs') final List<LeadSaleLog>? logs,
+          @JsonKey(name: 'actions') final LeadSaleActions? actions}) =
+      _$LeadSaleDetailImpl;
 
   factory _LeadSaleDetail.fromJson(Map<String, dynamic> json) =
       _$LeadSaleDetailImpl.fromJson;
 
   @override
+
   /// Thông tin phiếu lead.
   @JsonKey(name: 'lead')
   LeadSaleDetailLead? get lead;
   @override
+
   /// Danh sách hoạt động đã ghi nhận trên phiếu.
   @JsonKey(name: 'activities')
   List<LeadSaleActivity>? get activities;
   @override
+
   /// Lịch sử chuyển giai đoạn / phân công của phiếu.
   @JsonKey(name: 'logs')
   List<LeadSaleLog>? get logs;
   @override
+
   /// Các hành động người dùng hiện tại được phép thực hiện.
   @JsonKey(name: 'actions')
   LeadSaleActions? get actions;
@@ -6525,56 +6313,54 @@ mixin _$LeadSaleDetailLead {
 /// @nodoc
 abstract class $LeadSaleDetailLeadCopyWith<$Res> {
   factory $LeadSaleDetailLeadCopyWith(
-    LeadSaleDetailLead value,
-    $Res Function(LeadSaleDetailLead) then,
-  ) = _$LeadSaleDetailLeadCopyWithImpl<$Res, LeadSaleDetailLead>;
+          LeadSaleDetailLead value, $Res Function(LeadSaleDetailLead) then) =
+      _$LeadSaleDetailLeadCopyWithImpl<$Res, LeadSaleDetailLead>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'LeadCode') String? leadCode,
-    @JsonKey(name: 'LeadType') int? leadType,
-    @JsonKey(name: 'CustomerID') int? customerId,
-    @JsonKey(name: 'CustomerTeam') String? customerTeam,
-    @JsonKey(name: 'CustomerPart') String? customerPart,
-    @JsonKey(name: 'CustomerPosition') String? customerPosition,
-    @JsonKey(name: 'CustomerType') int? customerType,
-    @JsonKey(name: 'IsDeleted') bool? isDeleted,
-    @JsonKey(name: 'ContactName') String? contactName,
-    @JsonKey(name: 'ContactPosition') String? contactPosition,
-    @JsonKey(name: 'ContactPhone') String? contactPhone,
-    @JsonKey(name: 'ContactEmail') String? contactEmail,
-    @JsonKey(name: 'ContactAppointmentDate') String? contactAppointmentDate,
-    @JsonKey(name: 'CreatedDate') String? createdDate,
-    @JsonKey(name: 'CollectedDate') String? collectedDate,
-    @JsonKey(name: 'LeadSourceID') int? leadSourceId,
-    @JsonKey(name: 'CampaignName') String? campaignName,
-    @JsonKey(name: 'Rating') int? rating,
-    @JsonKey(name: 'EstimatedValue') double? estimatedValue,
-    @JsonKey(name: 'ProductInterest') String? productInterest,
-    @JsonKey(name: 'NeedDescription') String? needDescription,
-    @JsonKey(name: 'Note') String? note,
-    @JsonKey(name: 'Website') String? website,
-    @JsonKey(name: 'SaleEmployeeID') int? saleEmployeeId,
-    @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
-    @JsonKey(name: 'Stage') int? stage,
-    @JsonKey(name: 'HandoverLeaderID') int? handoverLeaderId,
-    @JsonKey(name: 'AdminSaleID') int? adminSaleId,
-    @JsonKey(name: 'HandoverDate') String? handoverDate,
-    @JsonKey(name: 'HandoverBy') int? handoverBy,
-    @JsonKey(name: 'QualifiedDate') String? qualifiedDate,
-    @JsonKey(name: 'LostReason') String? lostReason,
-    @JsonKey(name: 'ClosedDate') String? closedDate,
-    @JsonKey(name: 'ReturnReason') String? returnReason,
-    @JsonKey(name: 'AssignedDate') String? assignedDate,
-    @JsonKey(name: 'AssignedBy') int? assignedBy,
-    @JsonKey(name: 'NextFollowUpDate') String? nextFollowUpDate,
-    @JsonKey(name: 'PoReason') String? poReason,
-    @JsonKey(name: 'PoDate') String? poDate,
-    @JsonKey(name: 'PoTypeID') int? poTypeId,
-    @JsonKey(name: 'CreatedBy') String? createdBy,
-    @JsonKey(name: 'UpdatedBy') String? updatedBy,
-    @JsonKey(name: 'UpdatedDate') String? updatedDate,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadCode') String? leadCode,
+      @JsonKey(name: 'LeadType') int? leadType,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'CustomerTeam') String? customerTeam,
+      @JsonKey(name: 'CustomerPart') String? customerPart,
+      @JsonKey(name: 'CustomerPosition') String? customerPosition,
+      @JsonKey(name: 'CustomerType') int? customerType,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPosition') String? contactPosition,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'ContactAppointmentDate') String? contactAppointmentDate,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'CollectedDate') String? collectedDate,
+      @JsonKey(name: 'LeadSourceID') int? leadSourceId,
+      @JsonKey(name: 'CampaignName') String? campaignName,
+      @JsonKey(name: 'Rating') int? rating,
+      @JsonKey(name: 'EstimatedValue') double? estimatedValue,
+      @JsonKey(name: 'ProductInterest') String? productInterest,
+      @JsonKey(name: 'NeedDescription') String? needDescription,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'Website') String? website,
+      @JsonKey(name: 'SaleEmployeeID') int? saleEmployeeId,
+      @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
+      @JsonKey(name: 'Stage') int? stage,
+      @JsonKey(name: 'HandoverLeaderID') int? handoverLeaderId,
+      @JsonKey(name: 'AdminSaleID') int? adminSaleId,
+      @JsonKey(name: 'HandoverDate') String? handoverDate,
+      @JsonKey(name: 'HandoverBy') int? handoverBy,
+      @JsonKey(name: 'QualifiedDate') String? qualifiedDate,
+      @JsonKey(name: 'LostReason') String? lostReason,
+      @JsonKey(name: 'ClosedDate') String? closedDate,
+      @JsonKey(name: 'ReturnReason') String? returnReason,
+      @JsonKey(name: 'AssignedDate') String? assignedDate,
+      @JsonKey(name: 'AssignedBy') int? assignedBy,
+      @JsonKey(name: 'NextFollowUpDate') String? nextFollowUpDate,
+      @JsonKey(name: 'PoReason') String? poReason,
+      @JsonKey(name: 'PoDate') String? poDate,
+      @JsonKey(name: 'PoTypeID') int? poTypeId,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') String? updatedDate});
 }
 
 /// @nodoc
@@ -6635,255 +6421,249 @@ class _$LeadSaleDetailLeadCopyWithImpl<$Res, $Val extends LeadSaleDetailLead>
     Object? updatedBy = freezed,
     Object? updatedDate = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            leadCode: freezed == leadCode
-                ? _value.leadCode
-                : leadCode // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            leadType: freezed == leadType
-                ? _value.leadType
-                : leadType // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            customerId: freezed == customerId
-                ? _value.customerId
-                : customerId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            customerTeam: freezed == customerTeam
-                ? _value.customerTeam
-                : customerTeam // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            customerPart: freezed == customerPart
-                ? _value.customerPart
-                : customerPart // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            customerPosition: freezed == customerPosition
-                ? _value.customerPosition
-                : customerPosition // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            customerType: freezed == customerType
-                ? _value.customerType
-                : customerType // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            isDeleted: freezed == isDeleted
-                ? _value.isDeleted
-                : isDeleted // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            contactName: freezed == contactName
-                ? _value.contactName
-                : contactName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactPosition: freezed == contactPosition
-                ? _value.contactPosition
-                : contactPosition // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactPhone: freezed == contactPhone
-                ? _value.contactPhone
-                : contactPhone // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactEmail: freezed == contactEmail
-                ? _value.contactEmail
-                : contactEmail // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contactAppointmentDate: freezed == contactAppointmentDate
-                ? _value.contactAppointmentDate
-                : contactAppointmentDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            createdDate: freezed == createdDate
-                ? _value.createdDate
-                : createdDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            collectedDate: freezed == collectedDate
-                ? _value.collectedDate
-                : collectedDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            leadSourceId: freezed == leadSourceId
-                ? _value.leadSourceId
-                : leadSourceId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            campaignName: freezed == campaignName
-                ? _value.campaignName
-                : campaignName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            rating: freezed == rating
-                ? _value.rating
-                : rating // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            estimatedValue: freezed == estimatedValue
-                ? _value.estimatedValue
-                : estimatedValue // ignore: cast_nullable_to_non_nullable
-                      as double?,
-            productInterest: freezed == productInterest
-                ? _value.productInterest
-                : productInterest // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            needDescription: freezed == needDescription
-                ? _value.needDescription
-                : needDescription // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            note: freezed == note
-                ? _value.note
-                : note // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            website: freezed == website
-                ? _value.website
-                : website // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            saleEmployeeId: freezed == saleEmployeeId
-                ? _value.saleEmployeeId
-                : saleEmployeeId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            marketingEmployeeId: freezed == marketingEmployeeId
-                ? _value.marketingEmployeeId
-                : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            stage: freezed == stage
-                ? _value.stage
-                : stage // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            handoverLeaderId: freezed == handoverLeaderId
-                ? _value.handoverLeaderId
-                : handoverLeaderId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            adminSaleId: freezed == adminSaleId
-                ? _value.adminSaleId
-                : adminSaleId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            handoverDate: freezed == handoverDate
-                ? _value.handoverDate
-                : handoverDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            handoverBy: freezed == handoverBy
-                ? _value.handoverBy
-                : handoverBy // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            qualifiedDate: freezed == qualifiedDate
-                ? _value.qualifiedDate
-                : qualifiedDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            lostReason: freezed == lostReason
-                ? _value.lostReason
-                : lostReason // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            closedDate: freezed == closedDate
-                ? _value.closedDate
-                : closedDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            returnReason: freezed == returnReason
-                ? _value.returnReason
-                : returnReason // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            assignedDate: freezed == assignedDate
-                ? _value.assignedDate
-                : assignedDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            assignedBy: freezed == assignedBy
-                ? _value.assignedBy
-                : assignedBy // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            nextFollowUpDate: freezed == nextFollowUpDate
-                ? _value.nextFollowUpDate
-                : nextFollowUpDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            poReason: freezed == poReason
-                ? _value.poReason
-                : poReason // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            poDate: freezed == poDate
-                ? _value.poDate
-                : poDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            poTypeId: freezed == poTypeId
-                ? _value.poTypeId
-                : poTypeId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            createdBy: freezed == createdBy
-                ? _value.createdBy
-                : createdBy // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            updatedBy: freezed == updatedBy
-                ? _value.updatedBy
-                : updatedBy // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            updatedDate: freezed == updatedDate
-                ? _value.updatedDate
-                : updatedDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadCode: freezed == leadCode
+          ? _value.leadCode
+          : leadCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      leadType: freezed == leadType
+          ? _value.leadType
+          : leadType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerTeam: freezed == customerTeam
+          ? _value.customerTeam
+          : customerTeam // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerPart: freezed == customerPart
+          ? _value.customerPart
+          : customerPart // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerPosition: freezed == customerPosition
+          ? _value.customerPosition
+          : customerPosition // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerType: freezed == customerType
+          ? _value.customerType
+          : customerType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPosition: freezed == contactPosition
+          ? _value.contactPosition
+          : contactPosition // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactAppointmentDate: freezed == contactAppointmentDate
+          ? _value.contactAppointmentDate
+          : contactAppointmentDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      collectedDate: freezed == collectedDate
+          ? _value.collectedDate
+          : collectedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      leadSourceId: freezed == leadSourceId
+          ? _value.leadSourceId
+          : leadSourceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      campaignName: freezed == campaignName
+          ? _value.campaignName
+          : campaignName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as int?,
+      estimatedValue: freezed == estimatedValue
+          ? _value.estimatedValue
+          : estimatedValue // ignore: cast_nullable_to_non_nullable
+              as double?,
+      productInterest: freezed == productInterest
+          ? _value.productInterest
+          : productInterest // ignore: cast_nullable_to_non_nullable
+              as String?,
+      needDescription: freezed == needDescription
+          ? _value.needDescription
+          : needDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      saleEmployeeId: freezed == saleEmployeeId
+          ? _value.saleEmployeeId
+          : saleEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      marketingEmployeeId: freezed == marketingEmployeeId
+          ? _value.marketingEmployeeId
+          : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stage: freezed == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      handoverLeaderId: freezed == handoverLeaderId
+          ? _value.handoverLeaderId
+          : handoverLeaderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      adminSaleId: freezed == adminSaleId
+          ? _value.adminSaleId
+          : adminSaleId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      handoverDate: freezed == handoverDate
+          ? _value.handoverDate
+          : handoverDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      handoverBy: freezed == handoverBy
+          ? _value.handoverBy
+          : handoverBy // ignore: cast_nullable_to_non_nullable
+              as int?,
+      qualifiedDate: freezed == qualifiedDate
+          ? _value.qualifiedDate
+          : qualifiedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lostReason: freezed == lostReason
+          ? _value.lostReason
+          : lostReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      closedDate: freezed == closedDate
+          ? _value.closedDate
+          : closedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      returnReason: freezed == returnReason
+          ? _value.returnReason
+          : returnReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      assignedDate: freezed == assignedDate
+          ? _value.assignedDate
+          : assignedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      assignedBy: freezed == assignedBy
+          ? _value.assignedBy
+          : assignedBy // ignore: cast_nullable_to_non_nullable
+              as int?,
+      nextFollowUpDate: freezed == nextFollowUpDate
+          ? _value.nextFollowUpDate
+          : nextFollowUpDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      poReason: freezed == poReason
+          ? _value.poReason
+          : poReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      poDate: freezed == poDate
+          ? _value.poDate
+          : poDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      poTypeId: freezed == poTypeId
+          ? _value.poTypeId
+          : poTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$LeadSaleDetailLeadImplCopyWith<$Res>
     implements $LeadSaleDetailLeadCopyWith<$Res> {
-  factory _$$LeadSaleDetailLeadImplCopyWith(
-    _$LeadSaleDetailLeadImpl value,
-    $Res Function(_$LeadSaleDetailLeadImpl) then,
-  ) = __$$LeadSaleDetailLeadImplCopyWithImpl<$Res>;
+  factory _$$LeadSaleDetailLeadImplCopyWith(_$LeadSaleDetailLeadImpl value,
+          $Res Function(_$LeadSaleDetailLeadImpl) then) =
+      __$$LeadSaleDetailLeadImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'LeadCode') String? leadCode,
-    @JsonKey(name: 'LeadType') int? leadType,
-    @JsonKey(name: 'CustomerID') int? customerId,
-    @JsonKey(name: 'CustomerTeam') String? customerTeam,
-    @JsonKey(name: 'CustomerPart') String? customerPart,
-    @JsonKey(name: 'CustomerPosition') String? customerPosition,
-    @JsonKey(name: 'CustomerType') int? customerType,
-    @JsonKey(name: 'IsDeleted') bool? isDeleted,
-    @JsonKey(name: 'ContactName') String? contactName,
-    @JsonKey(name: 'ContactPosition') String? contactPosition,
-    @JsonKey(name: 'ContactPhone') String? contactPhone,
-    @JsonKey(name: 'ContactEmail') String? contactEmail,
-    @JsonKey(name: 'ContactAppointmentDate') String? contactAppointmentDate,
-    @JsonKey(name: 'CreatedDate') String? createdDate,
-    @JsonKey(name: 'CollectedDate') String? collectedDate,
-    @JsonKey(name: 'LeadSourceID') int? leadSourceId,
-    @JsonKey(name: 'CampaignName') String? campaignName,
-    @JsonKey(name: 'Rating') int? rating,
-    @JsonKey(name: 'EstimatedValue') double? estimatedValue,
-    @JsonKey(name: 'ProductInterest') String? productInterest,
-    @JsonKey(name: 'NeedDescription') String? needDescription,
-    @JsonKey(name: 'Note') String? note,
-    @JsonKey(name: 'Website') String? website,
-    @JsonKey(name: 'SaleEmployeeID') int? saleEmployeeId,
-    @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
-    @JsonKey(name: 'Stage') int? stage,
-    @JsonKey(name: 'HandoverLeaderID') int? handoverLeaderId,
-    @JsonKey(name: 'AdminSaleID') int? adminSaleId,
-    @JsonKey(name: 'HandoverDate') String? handoverDate,
-    @JsonKey(name: 'HandoverBy') int? handoverBy,
-    @JsonKey(name: 'QualifiedDate') String? qualifiedDate,
-    @JsonKey(name: 'LostReason') String? lostReason,
-    @JsonKey(name: 'ClosedDate') String? closedDate,
-    @JsonKey(name: 'ReturnReason') String? returnReason,
-    @JsonKey(name: 'AssignedDate') String? assignedDate,
-    @JsonKey(name: 'AssignedBy') int? assignedBy,
-    @JsonKey(name: 'NextFollowUpDate') String? nextFollowUpDate,
-    @JsonKey(name: 'PoReason') String? poReason,
-    @JsonKey(name: 'PoDate') String? poDate,
-    @JsonKey(name: 'PoTypeID') int? poTypeId,
-    @JsonKey(name: 'CreatedBy') String? createdBy,
-    @JsonKey(name: 'UpdatedBy') String? updatedBy,
-    @JsonKey(name: 'UpdatedDate') String? updatedDate,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadCode') String? leadCode,
+      @JsonKey(name: 'LeadType') int? leadType,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'CustomerTeam') String? customerTeam,
+      @JsonKey(name: 'CustomerPart') String? customerPart,
+      @JsonKey(name: 'CustomerPosition') String? customerPosition,
+      @JsonKey(name: 'CustomerType') int? customerType,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPosition') String? contactPosition,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'ContactAppointmentDate') String? contactAppointmentDate,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'CollectedDate') String? collectedDate,
+      @JsonKey(name: 'LeadSourceID') int? leadSourceId,
+      @JsonKey(name: 'CampaignName') String? campaignName,
+      @JsonKey(name: 'Rating') int? rating,
+      @JsonKey(name: 'EstimatedValue') double? estimatedValue,
+      @JsonKey(name: 'ProductInterest') String? productInterest,
+      @JsonKey(name: 'NeedDescription') String? needDescription,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'Website') String? website,
+      @JsonKey(name: 'SaleEmployeeID') int? saleEmployeeId,
+      @JsonKey(name: 'MarketingEmployeeID') int? marketingEmployeeId,
+      @JsonKey(name: 'Stage') int? stage,
+      @JsonKey(name: 'HandoverLeaderID') int? handoverLeaderId,
+      @JsonKey(name: 'AdminSaleID') int? adminSaleId,
+      @JsonKey(name: 'HandoverDate') String? handoverDate,
+      @JsonKey(name: 'HandoverBy') int? handoverBy,
+      @JsonKey(name: 'QualifiedDate') String? qualifiedDate,
+      @JsonKey(name: 'LostReason') String? lostReason,
+      @JsonKey(name: 'ClosedDate') String? closedDate,
+      @JsonKey(name: 'ReturnReason') String? returnReason,
+      @JsonKey(name: 'AssignedDate') String? assignedDate,
+      @JsonKey(name: 'AssignedBy') int? assignedBy,
+      @JsonKey(name: 'NextFollowUpDate') String? nextFollowUpDate,
+      @JsonKey(name: 'PoReason') String? poReason,
+      @JsonKey(name: 'PoDate') String? poDate,
+      @JsonKey(name: 'PoTypeID') int? poTypeId,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') String? updatedDate});
 }
 
 /// @nodoc
 class __$$LeadSaleDetailLeadImplCopyWithImpl<$Res>
     extends _$LeadSaleDetailLeadCopyWithImpl<$Res, _$LeadSaleDetailLeadImpl>
     implements _$$LeadSaleDetailLeadImplCopyWith<$Res> {
-  __$$LeadSaleDetailLeadImplCopyWithImpl(
-    _$LeadSaleDetailLeadImpl _value,
-    $Res Function(_$LeadSaleDetailLeadImpl) _then,
-  ) : super(_value, _then);
+  __$$LeadSaleDetailLeadImplCopyWithImpl(_$LeadSaleDetailLeadImpl _value,
+      $Res Function(_$LeadSaleDetailLeadImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -6933,238 +6713,235 @@ class __$$LeadSaleDetailLeadImplCopyWithImpl<$Res>
     Object? updatedBy = freezed,
     Object? updatedDate = freezed,
   }) {
-    return _then(
-      _$LeadSaleDetailLeadImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        leadCode: freezed == leadCode
-            ? _value.leadCode
-            : leadCode // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        leadType: freezed == leadType
-            ? _value.leadType
-            : leadType // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        customerId: freezed == customerId
-            ? _value.customerId
-            : customerId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        customerTeam: freezed == customerTeam
-            ? _value.customerTeam
-            : customerTeam // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        customerPart: freezed == customerPart
-            ? _value.customerPart
-            : customerPart // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        customerPosition: freezed == customerPosition
-            ? _value.customerPosition
-            : customerPosition // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        customerType: freezed == customerType
-            ? _value.customerType
-            : customerType // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        isDeleted: freezed == isDeleted
-            ? _value.isDeleted
-            : isDeleted // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        contactName: freezed == contactName
-            ? _value.contactName
-            : contactName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactPosition: freezed == contactPosition
-            ? _value.contactPosition
-            : contactPosition // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactPhone: freezed == contactPhone
-            ? _value.contactPhone
-            : contactPhone // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactEmail: freezed == contactEmail
-            ? _value.contactEmail
-            : contactEmail // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contactAppointmentDate: freezed == contactAppointmentDate
-            ? _value.contactAppointmentDate
-            : contactAppointmentDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        createdDate: freezed == createdDate
-            ? _value.createdDate
-            : createdDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        collectedDate: freezed == collectedDate
-            ? _value.collectedDate
-            : collectedDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        leadSourceId: freezed == leadSourceId
-            ? _value.leadSourceId
-            : leadSourceId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        campaignName: freezed == campaignName
-            ? _value.campaignName
-            : campaignName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        rating: freezed == rating
-            ? _value.rating
-            : rating // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        estimatedValue: freezed == estimatedValue
-            ? _value.estimatedValue
-            : estimatedValue // ignore: cast_nullable_to_non_nullable
-                  as double?,
-        productInterest: freezed == productInterest
-            ? _value.productInterest
-            : productInterest // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        needDescription: freezed == needDescription
-            ? _value.needDescription
-            : needDescription // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        note: freezed == note
-            ? _value.note
-            : note // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        website: freezed == website
-            ? _value.website
-            : website // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        saleEmployeeId: freezed == saleEmployeeId
-            ? _value.saleEmployeeId
-            : saleEmployeeId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        marketingEmployeeId: freezed == marketingEmployeeId
-            ? _value.marketingEmployeeId
-            : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        stage: freezed == stage
-            ? _value.stage
-            : stage // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        handoverLeaderId: freezed == handoverLeaderId
-            ? _value.handoverLeaderId
-            : handoverLeaderId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        adminSaleId: freezed == adminSaleId
-            ? _value.adminSaleId
-            : adminSaleId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        handoverDate: freezed == handoverDate
-            ? _value.handoverDate
-            : handoverDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        handoverBy: freezed == handoverBy
-            ? _value.handoverBy
-            : handoverBy // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        qualifiedDate: freezed == qualifiedDate
-            ? _value.qualifiedDate
-            : qualifiedDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        lostReason: freezed == lostReason
-            ? _value.lostReason
-            : lostReason // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        closedDate: freezed == closedDate
-            ? _value.closedDate
-            : closedDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        returnReason: freezed == returnReason
-            ? _value.returnReason
-            : returnReason // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        assignedDate: freezed == assignedDate
-            ? _value.assignedDate
-            : assignedDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        assignedBy: freezed == assignedBy
-            ? _value.assignedBy
-            : assignedBy // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        nextFollowUpDate: freezed == nextFollowUpDate
-            ? _value.nextFollowUpDate
-            : nextFollowUpDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        poReason: freezed == poReason
-            ? _value.poReason
-            : poReason // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        poDate: freezed == poDate
-            ? _value.poDate
-            : poDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        poTypeId: freezed == poTypeId
-            ? _value.poTypeId
-            : poTypeId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        createdBy: freezed == createdBy
-            ? _value.createdBy
-            : createdBy // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        updatedBy: freezed == updatedBy
-            ? _value.updatedBy
-            : updatedBy // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        updatedDate: freezed == updatedDate
-            ? _value.updatedDate
-            : updatedDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$LeadSaleDetailLeadImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadCode: freezed == leadCode
+          ? _value.leadCode
+          : leadCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      leadType: freezed == leadType
+          ? _value.leadType
+          : leadType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerTeam: freezed == customerTeam
+          ? _value.customerTeam
+          : customerTeam // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerPart: freezed == customerPart
+          ? _value.customerPart
+          : customerPart // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerPosition: freezed == customerPosition
+          ? _value.customerPosition
+          : customerPosition // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerType: freezed == customerType
+          ? _value.customerType
+          : customerType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPosition: freezed == contactPosition
+          ? _value.contactPosition
+          : contactPosition // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactAppointmentDate: freezed == contactAppointmentDate
+          ? _value.contactAppointmentDate
+          : contactAppointmentDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      collectedDate: freezed == collectedDate
+          ? _value.collectedDate
+          : collectedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      leadSourceId: freezed == leadSourceId
+          ? _value.leadSourceId
+          : leadSourceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      campaignName: freezed == campaignName
+          ? _value.campaignName
+          : campaignName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as int?,
+      estimatedValue: freezed == estimatedValue
+          ? _value.estimatedValue
+          : estimatedValue // ignore: cast_nullable_to_non_nullable
+              as double?,
+      productInterest: freezed == productInterest
+          ? _value.productInterest
+          : productInterest // ignore: cast_nullable_to_non_nullable
+              as String?,
+      needDescription: freezed == needDescription
+          ? _value.needDescription
+          : needDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      saleEmployeeId: freezed == saleEmployeeId
+          ? _value.saleEmployeeId
+          : saleEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      marketingEmployeeId: freezed == marketingEmployeeId
+          ? _value.marketingEmployeeId
+          : marketingEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stage: freezed == stage
+          ? _value.stage
+          : stage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      handoverLeaderId: freezed == handoverLeaderId
+          ? _value.handoverLeaderId
+          : handoverLeaderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      adminSaleId: freezed == adminSaleId
+          ? _value.adminSaleId
+          : adminSaleId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      handoverDate: freezed == handoverDate
+          ? _value.handoverDate
+          : handoverDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      handoverBy: freezed == handoverBy
+          ? _value.handoverBy
+          : handoverBy // ignore: cast_nullable_to_non_nullable
+              as int?,
+      qualifiedDate: freezed == qualifiedDate
+          ? _value.qualifiedDate
+          : qualifiedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lostReason: freezed == lostReason
+          ? _value.lostReason
+          : lostReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      closedDate: freezed == closedDate
+          ? _value.closedDate
+          : closedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      returnReason: freezed == returnReason
+          ? _value.returnReason
+          : returnReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      assignedDate: freezed == assignedDate
+          ? _value.assignedDate
+          : assignedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      assignedBy: freezed == assignedBy
+          ? _value.assignedBy
+          : assignedBy // ignore: cast_nullable_to_non_nullable
+              as int?,
+      nextFollowUpDate: freezed == nextFollowUpDate
+          ? _value.nextFollowUpDate
+          : nextFollowUpDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      poReason: freezed == poReason
+          ? _value.poReason
+          : poReason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      poDate: freezed == poDate
+          ? _value.poDate
+          : poDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      poTypeId: freezed == poTypeId
+          ? _value.poTypeId
+          : poTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleDetailLeadImpl implements _LeadSaleDetailLead {
-  const _$LeadSaleDetailLeadImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'LeadCode') this.leadCode,
-    @JsonKey(name: 'LeadType') this.leadType,
-    @JsonKey(name: 'CustomerID') this.customerId,
-    @JsonKey(name: 'CustomerTeam') this.customerTeam,
-    @JsonKey(name: 'CustomerPart') this.customerPart,
-    @JsonKey(name: 'CustomerPosition') this.customerPosition,
-    @JsonKey(name: 'CustomerType') this.customerType,
-    @JsonKey(name: 'IsDeleted') this.isDeleted,
-    @JsonKey(name: 'ContactName') this.contactName,
-    @JsonKey(name: 'ContactPosition') this.contactPosition,
-    @JsonKey(name: 'ContactPhone') this.contactPhone,
-    @JsonKey(name: 'ContactEmail') this.contactEmail,
-    @JsonKey(name: 'ContactAppointmentDate') this.contactAppointmentDate,
-    @JsonKey(name: 'CreatedDate') this.createdDate,
-    @JsonKey(name: 'CollectedDate') this.collectedDate,
-    @JsonKey(name: 'LeadSourceID') this.leadSourceId,
-    @JsonKey(name: 'CampaignName') this.campaignName,
-    @JsonKey(name: 'Rating') this.rating,
-    @JsonKey(name: 'EstimatedValue') this.estimatedValue,
-    @JsonKey(name: 'ProductInterest') this.productInterest,
-    @JsonKey(name: 'NeedDescription') this.needDescription,
-    @JsonKey(name: 'Note') this.note,
-    @JsonKey(name: 'Website') this.website,
-    @JsonKey(name: 'SaleEmployeeID') this.saleEmployeeId,
-    @JsonKey(name: 'MarketingEmployeeID') this.marketingEmployeeId,
-    @JsonKey(name: 'Stage') this.stage,
-    @JsonKey(name: 'HandoverLeaderID') this.handoverLeaderId,
-    @JsonKey(name: 'AdminSaleID') this.adminSaleId,
-    @JsonKey(name: 'HandoverDate') this.handoverDate,
-    @JsonKey(name: 'HandoverBy') this.handoverBy,
-    @JsonKey(name: 'QualifiedDate') this.qualifiedDate,
-    @JsonKey(name: 'LostReason') this.lostReason,
-    @JsonKey(name: 'ClosedDate') this.closedDate,
-    @JsonKey(name: 'ReturnReason') this.returnReason,
-    @JsonKey(name: 'AssignedDate') this.assignedDate,
-    @JsonKey(name: 'AssignedBy') this.assignedBy,
-    @JsonKey(name: 'NextFollowUpDate') this.nextFollowUpDate,
-    @JsonKey(name: 'PoReason') this.poReason,
-    @JsonKey(name: 'PoDate') this.poDate,
-    @JsonKey(name: 'PoTypeID') this.poTypeId,
-    @JsonKey(name: 'CreatedBy') this.createdBy,
-    @JsonKey(name: 'UpdatedBy') this.updatedBy,
-    @JsonKey(name: 'UpdatedDate') this.updatedDate,
-  });
+  const _$LeadSaleDetailLeadImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'LeadCode') this.leadCode,
+      @JsonKey(name: 'LeadType') this.leadType,
+      @JsonKey(name: 'CustomerID') this.customerId,
+      @JsonKey(name: 'CustomerTeam') this.customerTeam,
+      @JsonKey(name: 'CustomerPart') this.customerPart,
+      @JsonKey(name: 'CustomerPosition') this.customerPosition,
+      @JsonKey(name: 'CustomerType') this.customerType,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'ContactName') this.contactName,
+      @JsonKey(name: 'ContactPosition') this.contactPosition,
+      @JsonKey(name: 'ContactPhone') this.contactPhone,
+      @JsonKey(name: 'ContactEmail') this.contactEmail,
+      @JsonKey(name: 'ContactAppointmentDate') this.contactAppointmentDate,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'CollectedDate') this.collectedDate,
+      @JsonKey(name: 'LeadSourceID') this.leadSourceId,
+      @JsonKey(name: 'CampaignName') this.campaignName,
+      @JsonKey(name: 'Rating') this.rating,
+      @JsonKey(name: 'EstimatedValue') this.estimatedValue,
+      @JsonKey(name: 'ProductInterest') this.productInterest,
+      @JsonKey(name: 'NeedDescription') this.needDescription,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'Website') this.website,
+      @JsonKey(name: 'SaleEmployeeID') this.saleEmployeeId,
+      @JsonKey(name: 'MarketingEmployeeID') this.marketingEmployeeId,
+      @JsonKey(name: 'Stage') this.stage,
+      @JsonKey(name: 'HandoverLeaderID') this.handoverLeaderId,
+      @JsonKey(name: 'AdminSaleID') this.adminSaleId,
+      @JsonKey(name: 'HandoverDate') this.handoverDate,
+      @JsonKey(name: 'HandoverBy') this.handoverBy,
+      @JsonKey(name: 'QualifiedDate') this.qualifiedDate,
+      @JsonKey(name: 'LostReason') this.lostReason,
+      @JsonKey(name: 'ClosedDate') this.closedDate,
+      @JsonKey(name: 'ReturnReason') this.returnReason,
+      @JsonKey(name: 'AssignedDate') this.assignedDate,
+      @JsonKey(name: 'AssignedBy') this.assignedBy,
+      @JsonKey(name: 'NextFollowUpDate') this.nextFollowUpDate,
+      @JsonKey(name: 'PoReason') this.poReason,
+      @JsonKey(name: 'PoDate') this.poDate,
+      @JsonKey(name: 'PoTypeID') this.poTypeId,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate});
 
   factory _$LeadSaleDetailLeadImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleDetailLeadImplFromJson(json);
@@ -7399,116 +7176,116 @@ class _$LeadSaleDetailLeadImpl implements _LeadSaleDetailLead {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
-    runtimeType,
-    id,
-    leadCode,
-    leadType,
-    customerId,
-    customerTeam,
-    customerPart,
-    customerPosition,
-    customerType,
-    isDeleted,
-    contactName,
-    contactPosition,
-    contactPhone,
-    contactEmail,
-    contactAppointmentDate,
-    createdDate,
-    collectedDate,
-    leadSourceId,
-    campaignName,
-    rating,
-    estimatedValue,
-    productInterest,
-    needDescription,
-    note,
-    website,
-    saleEmployeeId,
-    marketingEmployeeId,
-    stage,
-    handoverLeaderId,
-    adminSaleId,
-    handoverDate,
-    handoverBy,
-    qualifiedDate,
-    lostReason,
-    closedDate,
-    returnReason,
-    assignedDate,
-    assignedBy,
-    nextFollowUpDate,
-    poReason,
-    poDate,
-    poTypeId,
-    createdBy,
-    updatedBy,
-    updatedDate,
-  ]);
+        runtimeType,
+        id,
+        leadCode,
+        leadType,
+        customerId,
+        customerTeam,
+        customerPart,
+        customerPosition,
+        customerType,
+        isDeleted,
+        contactName,
+        contactPosition,
+        contactPhone,
+        contactEmail,
+        contactAppointmentDate,
+        createdDate,
+        collectedDate,
+        leadSourceId,
+        campaignName,
+        rating,
+        estimatedValue,
+        productInterest,
+        needDescription,
+        note,
+        website,
+        saleEmployeeId,
+        marketingEmployeeId,
+        stage,
+        handoverLeaderId,
+        adminSaleId,
+        handoverDate,
+        handoverBy,
+        qualifiedDate,
+        lostReason,
+        closedDate,
+        returnReason,
+        assignedDate,
+        assignedBy,
+        nextFollowUpDate,
+        poReason,
+        poDate,
+        poTypeId,
+        createdBy,
+        updatedBy,
+        updatedDate
+      ]);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleDetailLeadImplCopyWith<_$LeadSaleDetailLeadImpl> get copyWith =>
       __$$LeadSaleDetailLeadImplCopyWithImpl<_$LeadSaleDetailLeadImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleDetailLeadImplToJson(this);
+    return _$$LeadSaleDetailLeadImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleDetailLead implements LeadSaleDetailLead {
-  const factory _LeadSaleDetailLead({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'LeadCode') final String? leadCode,
-    @JsonKey(name: 'LeadType') final int? leadType,
-    @JsonKey(name: 'CustomerID') final int? customerId,
-    @JsonKey(name: 'CustomerTeam') final String? customerTeam,
-    @JsonKey(name: 'CustomerPart') final String? customerPart,
-    @JsonKey(name: 'CustomerPosition') final String? customerPosition,
-    @JsonKey(name: 'CustomerType') final int? customerType,
-    @JsonKey(name: 'IsDeleted') final bool? isDeleted,
-    @JsonKey(name: 'ContactName') final String? contactName,
-    @JsonKey(name: 'ContactPosition') final String? contactPosition,
-    @JsonKey(name: 'ContactPhone') final String? contactPhone,
-    @JsonKey(name: 'ContactEmail') final String? contactEmail,
-    @JsonKey(name: 'ContactAppointmentDate')
-    final String? contactAppointmentDate,
-    @JsonKey(name: 'CreatedDate') final String? createdDate,
-    @JsonKey(name: 'CollectedDate') final String? collectedDate,
-    @JsonKey(name: 'LeadSourceID') final int? leadSourceId,
-    @JsonKey(name: 'CampaignName') final String? campaignName,
-    @JsonKey(name: 'Rating') final int? rating,
-    @JsonKey(name: 'EstimatedValue') final double? estimatedValue,
-    @JsonKey(name: 'ProductInterest') final String? productInterest,
-    @JsonKey(name: 'NeedDescription') final String? needDescription,
-    @JsonKey(name: 'Note') final String? note,
-    @JsonKey(name: 'Website') final String? website,
-    @JsonKey(name: 'SaleEmployeeID') final int? saleEmployeeId,
-    @JsonKey(name: 'MarketingEmployeeID') final int? marketingEmployeeId,
-    @JsonKey(name: 'Stage') final int? stage,
-    @JsonKey(name: 'HandoverLeaderID') final int? handoverLeaderId,
-    @JsonKey(name: 'AdminSaleID') final int? adminSaleId,
-    @JsonKey(name: 'HandoverDate') final String? handoverDate,
-    @JsonKey(name: 'HandoverBy') final int? handoverBy,
-    @JsonKey(name: 'QualifiedDate') final String? qualifiedDate,
-    @JsonKey(name: 'LostReason') final String? lostReason,
-    @JsonKey(name: 'ClosedDate') final String? closedDate,
-    @JsonKey(name: 'ReturnReason') final String? returnReason,
-    @JsonKey(name: 'AssignedDate') final String? assignedDate,
-    @JsonKey(name: 'AssignedBy') final int? assignedBy,
-    @JsonKey(name: 'NextFollowUpDate') final String? nextFollowUpDate,
-    @JsonKey(name: 'PoReason') final String? poReason,
-    @JsonKey(name: 'PoDate') final String? poDate,
-    @JsonKey(name: 'PoTypeID') final int? poTypeId,
-    @JsonKey(name: 'CreatedBy') final String? createdBy,
-    @JsonKey(name: 'UpdatedBy') final String? updatedBy,
-    @JsonKey(name: 'UpdatedDate') final String? updatedDate,
-  }) = _$LeadSaleDetailLeadImpl;
+  const factory _LeadSaleDetailLead(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'LeadCode') final String? leadCode,
+          @JsonKey(name: 'LeadType') final int? leadType,
+          @JsonKey(name: 'CustomerID') final int? customerId,
+          @JsonKey(name: 'CustomerTeam') final String? customerTeam,
+          @JsonKey(name: 'CustomerPart') final String? customerPart,
+          @JsonKey(name: 'CustomerPosition') final String? customerPosition,
+          @JsonKey(name: 'CustomerType') final int? customerType,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+          @JsonKey(name: 'ContactName') final String? contactName,
+          @JsonKey(name: 'ContactPosition') final String? contactPosition,
+          @JsonKey(name: 'ContactPhone') final String? contactPhone,
+          @JsonKey(name: 'ContactEmail') final String? contactEmail,
+          @JsonKey(name: 'ContactAppointmentDate')
+          final String? contactAppointmentDate,
+          @JsonKey(name: 'CreatedDate') final String? createdDate,
+          @JsonKey(name: 'CollectedDate') final String? collectedDate,
+          @JsonKey(name: 'LeadSourceID') final int? leadSourceId,
+          @JsonKey(name: 'CampaignName') final String? campaignName,
+          @JsonKey(name: 'Rating') final int? rating,
+          @JsonKey(name: 'EstimatedValue') final double? estimatedValue,
+          @JsonKey(name: 'ProductInterest') final String? productInterest,
+          @JsonKey(name: 'NeedDescription') final String? needDescription,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'Website') final String? website,
+          @JsonKey(name: 'SaleEmployeeID') final int? saleEmployeeId,
+          @JsonKey(name: 'MarketingEmployeeID') final int? marketingEmployeeId,
+          @JsonKey(name: 'Stage') final int? stage,
+          @JsonKey(name: 'HandoverLeaderID') final int? handoverLeaderId,
+          @JsonKey(name: 'AdminSaleID') final int? adminSaleId,
+          @JsonKey(name: 'HandoverDate') final String? handoverDate,
+          @JsonKey(name: 'HandoverBy') final int? handoverBy,
+          @JsonKey(name: 'QualifiedDate') final String? qualifiedDate,
+          @JsonKey(name: 'LostReason') final String? lostReason,
+          @JsonKey(name: 'ClosedDate') final String? closedDate,
+          @JsonKey(name: 'ReturnReason') final String? returnReason,
+          @JsonKey(name: 'AssignedDate') final String? assignedDate,
+          @JsonKey(name: 'AssignedBy') final int? assignedBy,
+          @JsonKey(name: 'NextFollowUpDate') final String? nextFollowUpDate,
+          @JsonKey(name: 'PoReason') final String? poReason,
+          @JsonKey(name: 'PoDate') final String? poDate,
+          @JsonKey(name: 'PoTypeID') final int? poTypeId,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final String? updatedDate}) =
+      _$LeadSaleDetailLeadImpl;
 
   factory _LeadSaleDetailLead.fromJson(Map<String, dynamic> json) =
       _$LeadSaleDetailLeadImpl.fromJson;
@@ -7693,25 +7470,23 @@ mixin _$LeadSaleActivity {
 /// @nodoc
 abstract class $LeadSaleActivityCopyWith<$Res> {
   factory $LeadSaleActivityCopyWith(
-    LeadSaleActivity value,
-    $Res Function(LeadSaleActivity) then,
-  ) = _$LeadSaleActivityCopyWithImpl<$Res, LeadSaleActivity>;
+          LeadSaleActivity value, $Res Function(LeadSaleActivity) then) =
+      _$LeadSaleActivityCopyWithImpl<$Res, LeadSaleActivity>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'LeadID') int? leadId,
-    @JsonKey(name: 'ActivityType') int? activityType,
-    @JsonKey(name: 'ActivityTypeName') String? activityTypeName,
-    @JsonKey(name: 'ActivityDate') String? activityDate,
-    @JsonKey(name: 'Content') String? content,
-    @JsonKey(name: 'Result') String? result,
-    @JsonKey(name: 'NextAction') String? nextAction,
-    @JsonKey(name: 'NextActionDate') String? nextActionDate,
-    @JsonKey(name: 'EmployeeID') int? employeeId,
-    @JsonKey(name: 'EmployeeName') String? employeeName,
-    @JsonKey(name: 'CreatedBy') String? createdBy,
-    @JsonKey(name: 'CreatedDate') String? createdDate,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadID') int? leadId,
+      @JsonKey(name: 'ActivityType') int? activityType,
+      @JsonKey(name: 'ActivityTypeName') String? activityTypeName,
+      @JsonKey(name: 'ActivityDate') String? activityDate,
+      @JsonKey(name: 'Content') String? content,
+      @JsonKey(name: 'Result') String? result,
+      @JsonKey(name: 'NextAction') String? nextAction,
+      @JsonKey(name: 'NextActionDate') String? nextActionDate,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'EmployeeName') String? employeeName,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') String? createdDate});
 }
 
 /// @nodoc
@@ -7741,100 +7516,94 @@ class _$LeadSaleActivityCopyWithImpl<$Res, $Val extends LeadSaleActivity>
     Object? createdBy = freezed,
     Object? createdDate = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            leadId: freezed == leadId
-                ? _value.leadId
-                : leadId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            activityType: freezed == activityType
-                ? _value.activityType
-                : activityType // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            activityTypeName: freezed == activityTypeName
-                ? _value.activityTypeName
-                : activityTypeName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            activityDate: freezed == activityDate
-                ? _value.activityDate
-                : activityDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            content: freezed == content
-                ? _value.content
-                : content // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            result: freezed == result
-                ? _value.result
-                : result // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            nextAction: freezed == nextAction
-                ? _value.nextAction
-                : nextAction // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            nextActionDate: freezed == nextActionDate
-                ? _value.nextActionDate
-                : nextActionDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            employeeId: freezed == employeeId
-                ? _value.employeeId
-                : employeeId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            employeeName: freezed == employeeName
-                ? _value.employeeName
-                : employeeName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            createdBy: freezed == createdBy
-                ? _value.createdBy
-                : createdBy // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            createdDate: freezed == createdDate
-                ? _value.createdDate
-                : createdDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadId: freezed == leadId
+          ? _value.leadId
+          : leadId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _value.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityTypeName: freezed == activityTypeName
+          ? _value.activityTypeName
+          : activityTypeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDate: freezed == activityDate
+          ? _value.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      content: freezed == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextAction: freezed == nextAction
+          ? _value.nextAction
+          : nextAction // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActionDate: freezed == nextActionDate
+          ? _value.nextActionDate
+          : nextActionDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeName: freezed == employeeName
+          ? _value.employeeName
+          : employeeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$LeadSaleActivityImplCopyWith<$Res>
     implements $LeadSaleActivityCopyWith<$Res> {
-  factory _$$LeadSaleActivityImplCopyWith(
-    _$LeadSaleActivityImpl value,
-    $Res Function(_$LeadSaleActivityImpl) then,
-  ) = __$$LeadSaleActivityImplCopyWithImpl<$Res>;
+  factory _$$LeadSaleActivityImplCopyWith(_$LeadSaleActivityImpl value,
+          $Res Function(_$LeadSaleActivityImpl) then) =
+      __$$LeadSaleActivityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'LeadID') int? leadId,
-    @JsonKey(name: 'ActivityType') int? activityType,
-    @JsonKey(name: 'ActivityTypeName') String? activityTypeName,
-    @JsonKey(name: 'ActivityDate') String? activityDate,
-    @JsonKey(name: 'Content') String? content,
-    @JsonKey(name: 'Result') String? result,
-    @JsonKey(name: 'NextAction') String? nextAction,
-    @JsonKey(name: 'NextActionDate') String? nextActionDate,
-    @JsonKey(name: 'EmployeeID') int? employeeId,
-    @JsonKey(name: 'EmployeeName') String? employeeName,
-    @JsonKey(name: 'CreatedBy') String? createdBy,
-    @JsonKey(name: 'CreatedDate') String? createdDate,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadID') int? leadId,
+      @JsonKey(name: 'ActivityType') int? activityType,
+      @JsonKey(name: 'ActivityTypeName') String? activityTypeName,
+      @JsonKey(name: 'ActivityDate') String? activityDate,
+      @JsonKey(name: 'Content') String? content,
+      @JsonKey(name: 'Result') String? result,
+      @JsonKey(name: 'NextAction') String? nextAction,
+      @JsonKey(name: 'NextActionDate') String? nextActionDate,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'EmployeeName') String? employeeName,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') String? createdDate});
 }
 
 /// @nodoc
 class __$$LeadSaleActivityImplCopyWithImpl<$Res>
     extends _$LeadSaleActivityCopyWithImpl<$Res, _$LeadSaleActivityImpl>
     implements _$$LeadSaleActivityImplCopyWith<$Res> {
-  __$$LeadSaleActivityImplCopyWithImpl(
-    _$LeadSaleActivityImpl _value,
-    $Res Function(_$LeadSaleActivityImpl) _then,
-  ) : super(_value, _then);
+  __$$LeadSaleActivityImplCopyWithImpl(_$LeadSaleActivityImpl _value,
+      $Res Function(_$LeadSaleActivityImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -7853,83 +7622,80 @@ class __$$LeadSaleActivityImplCopyWithImpl<$Res>
     Object? createdBy = freezed,
     Object? createdDate = freezed,
   }) {
-    return _then(
-      _$LeadSaleActivityImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        leadId: freezed == leadId
-            ? _value.leadId
-            : leadId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        activityType: freezed == activityType
-            ? _value.activityType
-            : activityType // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        activityTypeName: freezed == activityTypeName
-            ? _value.activityTypeName
-            : activityTypeName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        activityDate: freezed == activityDate
-            ? _value.activityDate
-            : activityDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        content: freezed == content
-            ? _value.content
-            : content // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        result: freezed == result
-            ? _value.result
-            : result // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        nextAction: freezed == nextAction
-            ? _value.nextAction
-            : nextAction // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        nextActionDate: freezed == nextActionDate
-            ? _value.nextActionDate
-            : nextActionDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        employeeId: freezed == employeeId
-            ? _value.employeeId
-            : employeeId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        employeeName: freezed == employeeName
-            ? _value.employeeName
-            : employeeName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        createdBy: freezed == createdBy
-            ? _value.createdBy
-            : createdBy // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        createdDate: freezed == createdDate
-            ? _value.createdDate
-            : createdDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$LeadSaleActivityImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadId: freezed == leadId
+          ? _value.leadId
+          : leadId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _value.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityTypeName: freezed == activityTypeName
+          ? _value.activityTypeName
+          : activityTypeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDate: freezed == activityDate
+          ? _value.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      content: freezed == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextAction: freezed == nextAction
+          ? _value.nextAction
+          : nextAction // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActionDate: freezed == nextActionDate
+          ? _value.nextActionDate
+          : nextActionDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeName: freezed == employeeName
+          ? _value.employeeName
+          : employeeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleActivityImpl implements _LeadSaleActivity {
-  const _$LeadSaleActivityImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'LeadID') this.leadId,
-    @JsonKey(name: 'ActivityType') this.activityType,
-    @JsonKey(name: 'ActivityTypeName') this.activityTypeName,
-    @JsonKey(name: 'ActivityDate') this.activityDate,
-    @JsonKey(name: 'Content') this.content,
-    @JsonKey(name: 'Result') this.result,
-    @JsonKey(name: 'NextAction') this.nextAction,
-    @JsonKey(name: 'NextActionDate') this.nextActionDate,
-    @JsonKey(name: 'EmployeeID') this.employeeId,
-    @JsonKey(name: 'EmployeeName') this.employeeName,
-    @JsonKey(name: 'CreatedBy') this.createdBy,
-    @JsonKey(name: 'CreatedDate') this.createdDate,
-  });
+  const _$LeadSaleActivityImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'LeadID') this.leadId,
+      @JsonKey(name: 'ActivityType') this.activityType,
+      @JsonKey(name: 'ActivityTypeName') this.activityTypeName,
+      @JsonKey(name: 'ActivityDate') this.activityDate,
+      @JsonKey(name: 'Content') this.content,
+      @JsonKey(name: 'Result') this.result,
+      @JsonKey(name: 'NextAction') this.nextAction,
+      @JsonKey(name: 'NextActionDate') this.nextActionDate,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'EmployeeName') this.employeeName,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate});
 
   factory _$LeadSaleActivityImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleActivityImplFromJson(json);
@@ -8011,53 +7777,52 @@ class _$LeadSaleActivityImpl implements _LeadSaleActivity {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    leadId,
-    activityType,
-    activityTypeName,
-    activityDate,
-    content,
-    result,
-    nextAction,
-    nextActionDate,
-    employeeId,
-    employeeName,
-    createdBy,
-    createdDate,
-  );
+      runtimeType,
+      id,
+      leadId,
+      activityType,
+      activityTypeName,
+      activityDate,
+      content,
+      result,
+      nextAction,
+      nextActionDate,
+      employeeId,
+      employeeName,
+      createdBy,
+      createdDate);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleActivityImplCopyWith<_$LeadSaleActivityImpl> get copyWith =>
       __$$LeadSaleActivityImplCopyWithImpl<_$LeadSaleActivityImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleActivityImplToJson(this);
+    return _$$LeadSaleActivityImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleActivity implements LeadSaleActivity {
-  const factory _LeadSaleActivity({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'LeadID') final int? leadId,
-    @JsonKey(name: 'ActivityType') final int? activityType,
-    @JsonKey(name: 'ActivityTypeName') final String? activityTypeName,
-    @JsonKey(name: 'ActivityDate') final String? activityDate,
-    @JsonKey(name: 'Content') final String? content,
-    @JsonKey(name: 'Result') final String? result,
-    @JsonKey(name: 'NextAction') final String? nextAction,
-    @JsonKey(name: 'NextActionDate') final String? nextActionDate,
-    @JsonKey(name: 'EmployeeID') final int? employeeId,
-    @JsonKey(name: 'EmployeeName') final String? employeeName,
-    @JsonKey(name: 'CreatedBy') final String? createdBy,
-    @JsonKey(name: 'CreatedDate') final String? createdDate,
-  }) = _$LeadSaleActivityImpl;
+  const factory _LeadSaleActivity(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'LeadID') final int? leadId,
+          @JsonKey(name: 'ActivityType') final int? activityType,
+          @JsonKey(name: 'ActivityTypeName') final String? activityTypeName,
+          @JsonKey(name: 'ActivityDate') final String? activityDate,
+          @JsonKey(name: 'Content') final String? content,
+          @JsonKey(name: 'Result') final String? result,
+          @JsonKey(name: 'NextAction') final String? nextAction,
+          @JsonKey(name: 'NextActionDate') final String? nextActionDate,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'EmployeeName') final String? employeeName,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final String? createdDate}) =
+      _$LeadSaleActivityImpl;
 
   factory _LeadSaleActivity.fromJson(Map<String, dynamic> json) =
       _$LeadSaleActivityImpl.fromJson;
@@ -8149,25 +7914,23 @@ mixin _$LeadSaleLog {
 /// @nodoc
 abstract class $LeadSaleLogCopyWith<$Res> {
   factory $LeadSaleLogCopyWith(
-    LeadSaleLog value,
-    $Res Function(LeadSaleLog) then,
-  ) = _$LeadSaleLogCopyWithImpl<$Res, LeadSaleLog>;
+          LeadSaleLog value, $Res Function(LeadSaleLog) then) =
+      _$LeadSaleLogCopyWithImpl<$Res, LeadSaleLog>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'LeadID') int? leadId,
-    @JsonKey(name: 'TypeLog') int? typeLog,
-    @JsonKey(name: 'TypeLogName') String? typeLogName,
-    @JsonKey(name: 'FromStage') int? fromStage,
-    @JsonKey(name: 'ToStage') int? toStage,
-    @JsonKey(name: 'FromEmployeeID') int? fromEmployeeId,
-    @JsonKey(name: 'FromEmployeeName') String? fromEmployeeName,
-    @JsonKey(name: 'ToEmployeeID') int? toEmployeeId,
-    @JsonKey(name: 'ToEmployeeName') String? toEmployeeName,
-    @JsonKey(name: 'ContentLog') String? contentLog,
-    @JsonKey(name: 'CreatedBy') String? createdBy,
-    @JsonKey(name: 'CreatedDate') String? createdDate,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadID') int? leadId,
+      @JsonKey(name: 'TypeLog') int? typeLog,
+      @JsonKey(name: 'TypeLogName') String? typeLogName,
+      @JsonKey(name: 'FromStage') int? fromStage,
+      @JsonKey(name: 'ToStage') int? toStage,
+      @JsonKey(name: 'FromEmployeeID') int? fromEmployeeId,
+      @JsonKey(name: 'FromEmployeeName') String? fromEmployeeName,
+      @JsonKey(name: 'ToEmployeeID') int? toEmployeeId,
+      @JsonKey(name: 'ToEmployeeName') String? toEmployeeName,
+      @JsonKey(name: 'ContentLog') String? contentLog,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') String? createdDate});
 }
 
 /// @nodoc
@@ -8197,63 +7960,60 @@ class _$LeadSaleLogCopyWithImpl<$Res, $Val extends LeadSaleLog>
     Object? createdBy = freezed,
     Object? createdDate = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            leadId: freezed == leadId
-                ? _value.leadId
-                : leadId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            typeLog: freezed == typeLog
-                ? _value.typeLog
-                : typeLog // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            typeLogName: freezed == typeLogName
-                ? _value.typeLogName
-                : typeLogName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            fromStage: freezed == fromStage
-                ? _value.fromStage
-                : fromStage // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            toStage: freezed == toStage
-                ? _value.toStage
-                : toStage // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            fromEmployeeId: freezed == fromEmployeeId
-                ? _value.fromEmployeeId
-                : fromEmployeeId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            fromEmployeeName: freezed == fromEmployeeName
-                ? _value.fromEmployeeName
-                : fromEmployeeName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            toEmployeeId: freezed == toEmployeeId
-                ? _value.toEmployeeId
-                : toEmployeeId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            toEmployeeName: freezed == toEmployeeName
-                ? _value.toEmployeeName
-                : toEmployeeName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            contentLog: freezed == contentLog
-                ? _value.contentLog
-                : contentLog // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            createdBy: freezed == createdBy
-                ? _value.createdBy
-                : createdBy // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            createdDate: freezed == createdDate
-                ? _value.createdDate
-                : createdDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadId: freezed == leadId
+          ? _value.leadId
+          : leadId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      typeLog: freezed == typeLog
+          ? _value.typeLog
+          : typeLog // ignore: cast_nullable_to_non_nullable
+              as int?,
+      typeLogName: freezed == typeLogName
+          ? _value.typeLogName
+          : typeLogName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fromStage: freezed == fromStage
+          ? _value.fromStage
+          : fromStage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      toStage: freezed == toStage
+          ? _value.toStage
+          : toStage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fromEmployeeId: freezed == fromEmployeeId
+          ? _value.fromEmployeeId
+          : fromEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fromEmployeeName: freezed == fromEmployeeName
+          ? _value.fromEmployeeName
+          : fromEmployeeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      toEmployeeId: freezed == toEmployeeId
+          ? _value.toEmployeeId
+          : toEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      toEmployeeName: freezed == toEmployeeName
+          ? _value.toEmployeeName
+          : toEmployeeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contentLog: freezed == contentLog
+          ? _value.contentLog
+          : contentLog // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -8261,26 +8021,24 @@ class _$LeadSaleLogCopyWithImpl<$Res, $Val extends LeadSaleLog>
 abstract class _$$LeadSaleLogImplCopyWith<$Res>
     implements $LeadSaleLogCopyWith<$Res> {
   factory _$$LeadSaleLogImplCopyWith(
-    _$LeadSaleLogImpl value,
-    $Res Function(_$LeadSaleLogImpl) then,
-  ) = __$$LeadSaleLogImplCopyWithImpl<$Res>;
+          _$LeadSaleLogImpl value, $Res Function(_$LeadSaleLogImpl) then) =
+      __$$LeadSaleLogImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'LeadID') int? leadId,
-    @JsonKey(name: 'TypeLog') int? typeLog,
-    @JsonKey(name: 'TypeLogName') String? typeLogName,
-    @JsonKey(name: 'FromStage') int? fromStage,
-    @JsonKey(name: 'ToStage') int? toStage,
-    @JsonKey(name: 'FromEmployeeID') int? fromEmployeeId,
-    @JsonKey(name: 'FromEmployeeName') String? fromEmployeeName,
-    @JsonKey(name: 'ToEmployeeID') int? toEmployeeId,
-    @JsonKey(name: 'ToEmployeeName') String? toEmployeeName,
-    @JsonKey(name: 'ContentLog') String? contentLog,
-    @JsonKey(name: 'CreatedBy') String? createdBy,
-    @JsonKey(name: 'CreatedDate') String? createdDate,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LeadID') int? leadId,
+      @JsonKey(name: 'TypeLog') int? typeLog,
+      @JsonKey(name: 'TypeLogName') String? typeLogName,
+      @JsonKey(name: 'FromStage') int? fromStage,
+      @JsonKey(name: 'ToStage') int? toStage,
+      @JsonKey(name: 'FromEmployeeID') int? fromEmployeeId,
+      @JsonKey(name: 'FromEmployeeName') String? fromEmployeeName,
+      @JsonKey(name: 'ToEmployeeID') int? toEmployeeId,
+      @JsonKey(name: 'ToEmployeeName') String? toEmployeeName,
+      @JsonKey(name: 'ContentLog') String? contentLog,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') String? createdDate});
 }
 
 /// @nodoc
@@ -8288,9 +8046,8 @@ class __$$LeadSaleLogImplCopyWithImpl<$Res>
     extends _$LeadSaleLogCopyWithImpl<$Res, _$LeadSaleLogImpl>
     implements _$$LeadSaleLogImplCopyWith<$Res> {
   __$$LeadSaleLogImplCopyWithImpl(
-    _$LeadSaleLogImpl _value,
-    $Res Function(_$LeadSaleLogImpl) _then,
-  ) : super(_value, _then);
+      _$LeadSaleLogImpl _value, $Res Function(_$LeadSaleLogImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -8309,83 +8066,80 @@ class __$$LeadSaleLogImplCopyWithImpl<$Res>
     Object? createdBy = freezed,
     Object? createdDate = freezed,
   }) {
-    return _then(
-      _$LeadSaleLogImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        leadId: freezed == leadId
-            ? _value.leadId
-            : leadId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        typeLog: freezed == typeLog
-            ? _value.typeLog
-            : typeLog // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        typeLogName: freezed == typeLogName
-            ? _value.typeLogName
-            : typeLogName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        fromStage: freezed == fromStage
-            ? _value.fromStage
-            : fromStage // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        toStage: freezed == toStage
-            ? _value.toStage
-            : toStage // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        fromEmployeeId: freezed == fromEmployeeId
-            ? _value.fromEmployeeId
-            : fromEmployeeId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        fromEmployeeName: freezed == fromEmployeeName
-            ? _value.fromEmployeeName
-            : fromEmployeeName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        toEmployeeId: freezed == toEmployeeId
-            ? _value.toEmployeeId
-            : toEmployeeId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        toEmployeeName: freezed == toEmployeeName
-            ? _value.toEmployeeName
-            : toEmployeeName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        contentLog: freezed == contentLog
-            ? _value.contentLog
-            : contentLog // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        createdBy: freezed == createdBy
-            ? _value.createdBy
-            : createdBy // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        createdDate: freezed == createdDate
-            ? _value.createdDate
-            : createdDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$LeadSaleLogImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      leadId: freezed == leadId
+          ? _value.leadId
+          : leadId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      typeLog: freezed == typeLog
+          ? _value.typeLog
+          : typeLog // ignore: cast_nullable_to_non_nullable
+              as int?,
+      typeLogName: freezed == typeLogName
+          ? _value.typeLogName
+          : typeLogName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fromStage: freezed == fromStage
+          ? _value.fromStage
+          : fromStage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      toStage: freezed == toStage
+          ? _value.toStage
+          : toStage // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fromEmployeeId: freezed == fromEmployeeId
+          ? _value.fromEmployeeId
+          : fromEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fromEmployeeName: freezed == fromEmployeeName
+          ? _value.fromEmployeeName
+          : fromEmployeeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      toEmployeeId: freezed == toEmployeeId
+          ? _value.toEmployeeId
+          : toEmployeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      toEmployeeName: freezed == toEmployeeName
+          ? _value.toEmployeeName
+          : toEmployeeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contentLog: freezed == contentLog
+          ? _value.contentLog
+          : contentLog // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleLogImpl implements _LeadSaleLog {
-  const _$LeadSaleLogImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'LeadID') this.leadId,
-    @JsonKey(name: 'TypeLog') this.typeLog,
-    @JsonKey(name: 'TypeLogName') this.typeLogName,
-    @JsonKey(name: 'FromStage') this.fromStage,
-    @JsonKey(name: 'ToStage') this.toStage,
-    @JsonKey(name: 'FromEmployeeID') this.fromEmployeeId,
-    @JsonKey(name: 'FromEmployeeName') this.fromEmployeeName,
-    @JsonKey(name: 'ToEmployeeID') this.toEmployeeId,
-    @JsonKey(name: 'ToEmployeeName') this.toEmployeeName,
-    @JsonKey(name: 'ContentLog') this.contentLog,
-    @JsonKey(name: 'CreatedBy') this.createdBy,
-    @JsonKey(name: 'CreatedDate') this.createdDate,
-  });
+  const _$LeadSaleLogImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'LeadID') this.leadId,
+      @JsonKey(name: 'TypeLog') this.typeLog,
+      @JsonKey(name: 'TypeLogName') this.typeLogName,
+      @JsonKey(name: 'FromStage') this.fromStage,
+      @JsonKey(name: 'ToStage') this.toStage,
+      @JsonKey(name: 'FromEmployeeID') this.fromEmployeeId,
+      @JsonKey(name: 'FromEmployeeName') this.fromEmployeeName,
+      @JsonKey(name: 'ToEmployeeID') this.toEmployeeId,
+      @JsonKey(name: 'ToEmployeeName') this.toEmployeeName,
+      @JsonKey(name: 'ContentLog') this.contentLog,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate});
 
   factory _$LeadSaleLogImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleLogImplFromJson(json);
@@ -8467,21 +8221,20 @@ class _$LeadSaleLogImpl implements _LeadSaleLog {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    leadId,
-    typeLog,
-    typeLogName,
-    fromStage,
-    toStage,
-    fromEmployeeId,
-    fromEmployeeName,
-    toEmployeeId,
-    toEmployeeName,
-    contentLog,
-    createdBy,
-    createdDate,
-  );
+      runtimeType,
+      id,
+      leadId,
+      typeLog,
+      typeLogName,
+      fromStage,
+      toStage,
+      fromEmployeeId,
+      fromEmployeeName,
+      toEmployeeId,
+      toEmployeeName,
+      contentLog,
+      createdBy,
+      createdDate);
 
   @JsonKey(ignore: true)
   @override
@@ -8491,26 +8244,28 @@ class _$LeadSaleLogImpl implements _LeadSaleLog {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleLogImplToJson(this);
+    return _$$LeadSaleLogImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleLog implements LeadSaleLog {
-  const factory _LeadSaleLog({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'LeadID') final int? leadId,
-    @JsonKey(name: 'TypeLog') final int? typeLog,
-    @JsonKey(name: 'TypeLogName') final String? typeLogName,
-    @JsonKey(name: 'FromStage') final int? fromStage,
-    @JsonKey(name: 'ToStage') final int? toStage,
-    @JsonKey(name: 'FromEmployeeID') final int? fromEmployeeId,
-    @JsonKey(name: 'FromEmployeeName') final String? fromEmployeeName,
-    @JsonKey(name: 'ToEmployeeID') final int? toEmployeeId,
-    @JsonKey(name: 'ToEmployeeName') final String? toEmployeeName,
-    @JsonKey(name: 'ContentLog') final String? contentLog,
-    @JsonKey(name: 'CreatedBy') final String? createdBy,
-    @JsonKey(name: 'CreatedDate') final String? createdDate,
-  }) = _$LeadSaleLogImpl;
+  const factory _LeadSaleLog(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'LeadID') final int? leadId,
+          @JsonKey(name: 'TypeLog') final int? typeLog,
+          @JsonKey(name: 'TypeLogName') final String? typeLogName,
+          @JsonKey(name: 'FromStage') final int? fromStage,
+          @JsonKey(name: 'ToStage') final int? toStage,
+          @JsonKey(name: 'FromEmployeeID') final int? fromEmployeeId,
+          @JsonKey(name: 'FromEmployeeName') final String? fromEmployeeName,
+          @JsonKey(name: 'ToEmployeeID') final int? toEmployeeId,
+          @JsonKey(name: 'ToEmployeeName') final String? toEmployeeName,
+          @JsonKey(name: 'ContentLog') final String? contentLog,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final String? createdDate}) =
+      _$LeadSaleLogImpl;
 
   factory _LeadSaleLog.fromJson(Map<String, dynamic> json) =
       _$LeadSaleLogImpl.fromJson;
@@ -8600,21 +8355,19 @@ mixin _$LeadSaleFile {
 /// @nodoc
 abstract class $LeadSaleFileCopyWith<$Res> {
   factory $LeadSaleFileCopyWith(
-    LeadSaleFile value,
-    $Res Function(LeadSaleFile) then,
-  ) = _$LeadSaleFileCopyWithImpl<$Res, LeadSaleFile>;
+          LeadSaleFile value, $Res Function(LeadSaleFile) then) =
+      _$LeadSaleFileCopyWithImpl<$Res, LeadSaleFile>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'FileName') String? fileName,
-    @JsonKey(name: 'ServerPath') String? serverPath,
-    @JsonKey(name: 'OriginPath') String? originPath,
-    @JsonKey(name: 'CustomerContactID') int? customerContactId,
-    @JsonKey(name: 'FileType') int? fileType,
-    @JsonKey(name: 'CreatedBy') String? createdBy,
-    @JsonKey(name: 'CreatedDate') String? createdDate,
-    @JsonKey(name: 'IsDeleted') bool? isDeleted,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'ServerPath') String? serverPath,
+      @JsonKey(name: 'OriginPath') String? originPath,
+      @JsonKey(name: 'CustomerContactID') int? customerContactId,
+      @JsonKey(name: 'FileType') int? fileType,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
 }
 
 /// @nodoc
@@ -8640,47 +8393,44 @@ class _$LeadSaleFileCopyWithImpl<$Res, $Val extends LeadSaleFile>
     Object? createdDate = freezed,
     Object? isDeleted = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            fileName: freezed == fileName
-                ? _value.fileName
-                : fileName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            serverPath: freezed == serverPath
-                ? _value.serverPath
-                : serverPath // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            originPath: freezed == originPath
-                ? _value.originPath
-                : originPath // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            customerContactId: freezed == customerContactId
-                ? _value.customerContactId
-                : customerContactId // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            fileType: freezed == fileType
-                ? _value.fileType
-                : fileType // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            createdBy: freezed == createdBy
-                ? _value.createdBy
-                : createdBy // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            createdDate: freezed == createdDate
-                ? _value.createdDate
-                : createdDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            isDeleted: freezed == isDeleted
-                ? _value.isDeleted
-                : isDeleted // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serverPath: freezed == serverPath
+          ? _value.serverPath
+          : serverPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      originPath: freezed == originPath
+          ? _value.originPath
+          : originPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerContactId: freezed == customerContactId
+          ? _value.customerContactId
+          : customerContactId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileType: freezed == fileType
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
   }
 }
 
@@ -8688,22 +8438,20 @@ class _$LeadSaleFileCopyWithImpl<$Res, $Val extends LeadSaleFile>
 abstract class _$$LeadSaleFileImplCopyWith<$Res>
     implements $LeadSaleFileCopyWith<$Res> {
   factory _$$LeadSaleFileImplCopyWith(
-    _$LeadSaleFileImpl value,
-    $Res Function(_$LeadSaleFileImpl) then,
-  ) = __$$LeadSaleFileImplCopyWithImpl<$Res>;
+          _$LeadSaleFileImpl value, $Res Function(_$LeadSaleFileImpl) then) =
+      __$$LeadSaleFileImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'ID') int? id,
-    @JsonKey(name: 'FileName') String? fileName,
-    @JsonKey(name: 'ServerPath') String? serverPath,
-    @JsonKey(name: 'OriginPath') String? originPath,
-    @JsonKey(name: 'CustomerContactID') int? customerContactId,
-    @JsonKey(name: 'FileType') int? fileType,
-    @JsonKey(name: 'CreatedBy') String? createdBy,
-    @JsonKey(name: 'CreatedDate') String? createdDate,
-    @JsonKey(name: 'IsDeleted') bool? isDeleted,
-  });
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'ServerPath') String? serverPath,
+      @JsonKey(name: 'OriginPath') String? originPath,
+      @JsonKey(name: 'CustomerContactID') int? customerContactId,
+      @JsonKey(name: 'FileType') int? fileType,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
 }
 
 /// @nodoc
@@ -8711,9 +8459,8 @@ class __$$LeadSaleFileImplCopyWithImpl<$Res>
     extends _$LeadSaleFileCopyWithImpl<$Res, _$LeadSaleFileImpl>
     implements _$$LeadSaleFileImplCopyWith<$Res> {
   __$$LeadSaleFileImplCopyWithImpl(
-    _$LeadSaleFileImpl _value,
-    $Res Function(_$LeadSaleFileImpl) _then,
-  ) : super(_value, _then);
+      _$LeadSaleFileImpl _value, $Res Function(_$LeadSaleFileImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -8728,63 +8475,60 @@ class __$$LeadSaleFileImplCopyWithImpl<$Res>
     Object? createdDate = freezed,
     Object? isDeleted = freezed,
   }) {
-    return _then(
-      _$LeadSaleFileImpl(
-        id: freezed == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        fileName: freezed == fileName
-            ? _value.fileName
-            : fileName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        serverPath: freezed == serverPath
-            ? _value.serverPath
-            : serverPath // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        originPath: freezed == originPath
-            ? _value.originPath
-            : originPath // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        customerContactId: freezed == customerContactId
-            ? _value.customerContactId
-            : customerContactId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        fileType: freezed == fileType
-            ? _value.fileType
-            : fileType // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        createdBy: freezed == createdBy
-            ? _value.createdBy
-            : createdBy // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        createdDate: freezed == createdDate
-            ? _value.createdDate
-            : createdDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        isDeleted: freezed == isDeleted
-            ? _value.isDeleted
-            : isDeleted // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-      ),
-    );
+    return _then(_$LeadSaleFileImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serverPath: freezed == serverPath
+          ? _value.serverPath
+          : serverPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      originPath: freezed == originPath
+          ? _value.originPath
+          : originPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customerContactId: freezed == customerContactId
+          ? _value.customerContactId
+          : customerContactId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileType: freezed == fileType
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleFileImpl implements _LeadSaleFile {
-  const _$LeadSaleFileImpl({
-    @JsonKey(name: 'ID') this.id,
-    @JsonKey(name: 'FileName') this.fileName,
-    @JsonKey(name: 'ServerPath') this.serverPath,
-    @JsonKey(name: 'OriginPath') this.originPath,
-    @JsonKey(name: 'CustomerContactID') this.customerContactId,
-    @JsonKey(name: 'FileType') this.fileType,
-    @JsonKey(name: 'CreatedBy') this.createdBy,
-    @JsonKey(name: 'CreatedDate') this.createdDate,
-    @JsonKey(name: 'IsDeleted') this.isDeleted,
-  });
+  const _$LeadSaleFileImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'FileName') this.fileName,
+      @JsonKey(name: 'ServerPath') this.serverPath,
+      @JsonKey(name: 'OriginPath') this.originPath,
+      @JsonKey(name: 'CustomerContactID') this.customerContactId,
+      @JsonKey(name: 'FileType') this.fileType,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
 
   factory _$LeadSaleFileImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleFileImplFromJson(json);
@@ -8855,17 +8599,16 @@ class _$LeadSaleFileImpl implements _LeadSaleFile {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    fileName,
-    serverPath,
-    originPath,
-    customerContactId,
-    fileType,
-    createdBy,
-    createdDate,
-    isDeleted,
-  );
+      runtimeType,
+      id,
+      fileName,
+      serverPath,
+      originPath,
+      customerContactId,
+      fileType,
+      createdBy,
+      createdDate,
+      isDeleted);
 
   @JsonKey(ignore: true)
   @override
@@ -8875,22 +8618,23 @@ class _$LeadSaleFileImpl implements _LeadSaleFile {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleFileImplToJson(this);
+    return _$$LeadSaleFileImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleFile implements LeadSaleFile {
-  const factory _LeadSaleFile({
-    @JsonKey(name: 'ID') final int? id,
-    @JsonKey(name: 'FileName') final String? fileName,
-    @JsonKey(name: 'ServerPath') final String? serverPath,
-    @JsonKey(name: 'OriginPath') final String? originPath,
-    @JsonKey(name: 'CustomerContactID') final int? customerContactId,
-    @JsonKey(name: 'FileType') final int? fileType,
-    @JsonKey(name: 'CreatedBy') final String? createdBy,
-    @JsonKey(name: 'CreatedDate') final String? createdDate,
-    @JsonKey(name: 'IsDeleted') final bool? isDeleted,
-  }) = _$LeadSaleFileImpl;
+  const factory _LeadSaleFile(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'FileName') final String? fileName,
+      @JsonKey(name: 'ServerPath') final String? serverPath,
+      @JsonKey(name: 'OriginPath') final String? originPath,
+      @JsonKey(name: 'CustomerContactID') final int? customerContactId,
+      @JsonKey(name: 'FileType') final int? fileType,
+      @JsonKey(name: 'CreatedBy') final String? createdBy,
+      @JsonKey(name: 'CreatedDate') final String? createdDate,
+      @JsonKey(name: 'IsDeleted') final bool? isDeleted}) = _$LeadSaleFileImpl;
 
   factory _LeadSaleFile.fromJson(Map<String, dynamic> json) =
       _$LeadSaleFileImpl.fromJson;
@@ -8914,14 +8658,17 @@ abstract class _LeadSaleFile implements LeadSaleFile {
   @JsonKey(name: 'FileType')
   int? get fileType;
   @override
+
   /// Người tạo file (mã nhân viên) — dùng để so khớp quyền xoá.
   @JsonKey(name: 'CreatedBy')
   String? get createdBy;
   @override
+
   /// Ngày tạo file.
   @JsonKey(name: 'CreatedDate')
   String? get createdDate;
   @override
+
   /// File đã bị xoá hay chưa.
   @JsonKey(name: 'IsDeleted')
   bool? get isDeleted;
@@ -8973,25 +8720,23 @@ mixin _$LeadSaleActions {
 /// @nodoc
 abstract class $LeadSaleActionsCopyWith<$Res> {
   factory $LeadSaleActionsCopyWith(
-    LeadSaleActions value,
-    $Res Function(LeadSaleActions) then,
-  ) = _$LeadSaleActionsCopyWithImpl<$Res, LeadSaleActions>;
+          LeadSaleActions value, $Res Function(LeadSaleActions) then) =
+      _$LeadSaleActionsCopyWithImpl<$Res, LeadSaleActions>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'CanView') bool? canView,
-    @JsonKey(name: 'CanEdit') bool? canEdit,
-    @JsonKey(name: 'CanQualify') bool? canQualify,
-    @JsonKey(name: 'CanDisqualify') bool? canDisqualify,
-    @JsonKey(name: 'CanHandover') bool? canHandover,
-    @JsonKey(name: 'CanAssign') bool? canAssign,
-    @JsonKey(name: 'CanReturn') bool? canReturn,
-    @JsonKey(name: 'CanClose') bool? canClose,
-    @JsonKey(name: 'CanLinkCustomer') bool? canLinkCustomer,
-    @JsonKey(name: 'CanReopen') bool? canReopen,
-    @JsonKey(name: 'CanAddActivity') bool? canAddActivity,
-    @JsonKey(name: 'CanDelete') bool? canDelete,
-    @JsonKey(name: 'CanPO') bool? canPo,
-  });
+  $Res call(
+      {@JsonKey(name: 'CanView') bool? canView,
+      @JsonKey(name: 'CanEdit') bool? canEdit,
+      @JsonKey(name: 'CanQualify') bool? canQualify,
+      @JsonKey(name: 'CanDisqualify') bool? canDisqualify,
+      @JsonKey(name: 'CanHandover') bool? canHandover,
+      @JsonKey(name: 'CanAssign') bool? canAssign,
+      @JsonKey(name: 'CanReturn') bool? canReturn,
+      @JsonKey(name: 'CanClose') bool? canClose,
+      @JsonKey(name: 'CanLinkCustomer') bool? canLinkCustomer,
+      @JsonKey(name: 'CanReopen') bool? canReopen,
+      @JsonKey(name: 'CanAddActivity') bool? canAddActivity,
+      @JsonKey(name: 'CanDelete') bool? canDelete,
+      @JsonKey(name: 'CanPO') bool? canPo});
 }
 
 /// @nodoc
@@ -9021,90 +8766,85 @@ class _$LeadSaleActionsCopyWithImpl<$Res, $Val extends LeadSaleActions>
     Object? canDelete = freezed,
     Object? canPo = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            canView: freezed == canView
-                ? _value.canView
-                : canView // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canEdit: freezed == canEdit
-                ? _value.canEdit
-                : canEdit // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canQualify: freezed == canQualify
-                ? _value.canQualify
-                : canQualify // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canDisqualify: freezed == canDisqualify
-                ? _value.canDisqualify
-                : canDisqualify // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canHandover: freezed == canHandover
-                ? _value.canHandover
-                : canHandover // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canAssign: freezed == canAssign
-                ? _value.canAssign
-                : canAssign // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canReturn: freezed == canReturn
-                ? _value.canReturn
-                : canReturn // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canClose: freezed == canClose
-                ? _value.canClose
-                : canClose // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canLinkCustomer: freezed == canLinkCustomer
-                ? _value.canLinkCustomer
-                : canLinkCustomer // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canReopen: freezed == canReopen
-                ? _value.canReopen
-                : canReopen // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canAddActivity: freezed == canAddActivity
-                ? _value.canAddActivity
-                : canAddActivity // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canDelete: freezed == canDelete
-                ? _value.canDelete
-                : canDelete // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-            canPo: freezed == canPo
-                ? _value.canPo
-                : canPo // ignore: cast_nullable_to_non_nullable
-                      as bool?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      canView: freezed == canView
+          ? _value.canView
+          : canView // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canEdit: freezed == canEdit
+          ? _value.canEdit
+          : canEdit // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canQualify: freezed == canQualify
+          ? _value.canQualify
+          : canQualify // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canDisqualify: freezed == canDisqualify
+          ? _value.canDisqualify
+          : canDisqualify // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canHandover: freezed == canHandover
+          ? _value.canHandover
+          : canHandover // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canAssign: freezed == canAssign
+          ? _value.canAssign
+          : canAssign // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canReturn: freezed == canReturn
+          ? _value.canReturn
+          : canReturn // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canClose: freezed == canClose
+          ? _value.canClose
+          : canClose // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canLinkCustomer: freezed == canLinkCustomer
+          ? _value.canLinkCustomer
+          : canLinkCustomer // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canReopen: freezed == canReopen
+          ? _value.canReopen
+          : canReopen // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canAddActivity: freezed == canAddActivity
+          ? _value.canAddActivity
+          : canAddActivity // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canDelete: freezed == canDelete
+          ? _value.canDelete
+          : canDelete // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canPo: freezed == canPo
+          ? _value.canPo
+          : canPo // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$LeadSaleActionsImplCopyWith<$Res>
     implements $LeadSaleActionsCopyWith<$Res> {
-  factory _$$LeadSaleActionsImplCopyWith(
-    _$LeadSaleActionsImpl value,
-    $Res Function(_$LeadSaleActionsImpl) then,
-  ) = __$$LeadSaleActionsImplCopyWithImpl<$Res>;
+  factory _$$LeadSaleActionsImplCopyWith(_$LeadSaleActionsImpl value,
+          $Res Function(_$LeadSaleActionsImpl) then) =
+      __$$LeadSaleActionsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'CanView') bool? canView,
-    @JsonKey(name: 'CanEdit') bool? canEdit,
-    @JsonKey(name: 'CanQualify') bool? canQualify,
-    @JsonKey(name: 'CanDisqualify') bool? canDisqualify,
-    @JsonKey(name: 'CanHandover') bool? canHandover,
-    @JsonKey(name: 'CanAssign') bool? canAssign,
-    @JsonKey(name: 'CanReturn') bool? canReturn,
-    @JsonKey(name: 'CanClose') bool? canClose,
-    @JsonKey(name: 'CanLinkCustomer') bool? canLinkCustomer,
-    @JsonKey(name: 'CanReopen') bool? canReopen,
-    @JsonKey(name: 'CanAddActivity') bool? canAddActivity,
-    @JsonKey(name: 'CanDelete') bool? canDelete,
-    @JsonKey(name: 'CanPO') bool? canPo,
-  });
+  $Res call(
+      {@JsonKey(name: 'CanView') bool? canView,
+      @JsonKey(name: 'CanEdit') bool? canEdit,
+      @JsonKey(name: 'CanQualify') bool? canQualify,
+      @JsonKey(name: 'CanDisqualify') bool? canDisqualify,
+      @JsonKey(name: 'CanHandover') bool? canHandover,
+      @JsonKey(name: 'CanAssign') bool? canAssign,
+      @JsonKey(name: 'CanReturn') bool? canReturn,
+      @JsonKey(name: 'CanClose') bool? canClose,
+      @JsonKey(name: 'CanLinkCustomer') bool? canLinkCustomer,
+      @JsonKey(name: 'CanReopen') bool? canReopen,
+      @JsonKey(name: 'CanAddActivity') bool? canAddActivity,
+      @JsonKey(name: 'CanDelete') bool? canDelete,
+      @JsonKey(name: 'CanPO') bool? canPo});
 }
 
 /// @nodoc
@@ -9112,9 +8852,8 @@ class __$$LeadSaleActionsImplCopyWithImpl<$Res>
     extends _$LeadSaleActionsCopyWithImpl<$Res, _$LeadSaleActionsImpl>
     implements _$$LeadSaleActionsImplCopyWith<$Res> {
   __$$LeadSaleActionsImplCopyWithImpl(
-    _$LeadSaleActionsImpl _value,
-    $Res Function(_$LeadSaleActionsImpl) _then,
-  ) : super(_value, _then);
+      _$LeadSaleActionsImpl _value, $Res Function(_$LeadSaleActionsImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -9133,83 +8872,80 @@ class __$$LeadSaleActionsImplCopyWithImpl<$Res>
     Object? canDelete = freezed,
     Object? canPo = freezed,
   }) {
-    return _then(
-      _$LeadSaleActionsImpl(
-        canView: freezed == canView
-            ? _value.canView
-            : canView // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canEdit: freezed == canEdit
-            ? _value.canEdit
-            : canEdit // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canQualify: freezed == canQualify
-            ? _value.canQualify
-            : canQualify // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canDisqualify: freezed == canDisqualify
-            ? _value.canDisqualify
-            : canDisqualify // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canHandover: freezed == canHandover
-            ? _value.canHandover
-            : canHandover // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canAssign: freezed == canAssign
-            ? _value.canAssign
-            : canAssign // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canReturn: freezed == canReturn
-            ? _value.canReturn
-            : canReturn // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canClose: freezed == canClose
-            ? _value.canClose
-            : canClose // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canLinkCustomer: freezed == canLinkCustomer
-            ? _value.canLinkCustomer
-            : canLinkCustomer // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canReopen: freezed == canReopen
-            ? _value.canReopen
-            : canReopen // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canAddActivity: freezed == canAddActivity
-            ? _value.canAddActivity
-            : canAddActivity // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canDelete: freezed == canDelete
-            ? _value.canDelete
-            : canDelete // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        canPo: freezed == canPo
-            ? _value.canPo
-            : canPo // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-      ),
-    );
+    return _then(_$LeadSaleActionsImpl(
+      canView: freezed == canView
+          ? _value.canView
+          : canView // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canEdit: freezed == canEdit
+          ? _value.canEdit
+          : canEdit // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canQualify: freezed == canQualify
+          ? _value.canQualify
+          : canQualify // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canDisqualify: freezed == canDisqualify
+          ? _value.canDisqualify
+          : canDisqualify // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canHandover: freezed == canHandover
+          ? _value.canHandover
+          : canHandover // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canAssign: freezed == canAssign
+          ? _value.canAssign
+          : canAssign // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canReturn: freezed == canReturn
+          ? _value.canReturn
+          : canReturn // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canClose: freezed == canClose
+          ? _value.canClose
+          : canClose // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canLinkCustomer: freezed == canLinkCustomer
+          ? _value.canLinkCustomer
+          : canLinkCustomer // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canReopen: freezed == canReopen
+          ? _value.canReopen
+          : canReopen // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canAddActivity: freezed == canAddActivity
+          ? _value.canAddActivity
+          : canAddActivity // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canDelete: freezed == canDelete
+          ? _value.canDelete
+          : canDelete // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canPo: freezed == canPo
+          ? _value.canPo
+          : canPo // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LeadSaleActionsImpl implements _LeadSaleActions {
-  const _$LeadSaleActionsImpl({
-    @JsonKey(name: 'CanView') this.canView,
-    @JsonKey(name: 'CanEdit') this.canEdit,
-    @JsonKey(name: 'CanQualify') this.canQualify,
-    @JsonKey(name: 'CanDisqualify') this.canDisqualify,
-    @JsonKey(name: 'CanHandover') this.canHandover,
-    @JsonKey(name: 'CanAssign') this.canAssign,
-    @JsonKey(name: 'CanReturn') this.canReturn,
-    @JsonKey(name: 'CanClose') this.canClose,
-    @JsonKey(name: 'CanLinkCustomer') this.canLinkCustomer,
-    @JsonKey(name: 'CanReopen') this.canReopen,
-    @JsonKey(name: 'CanAddActivity') this.canAddActivity,
-    @JsonKey(name: 'CanDelete') this.canDelete,
-    @JsonKey(name: 'CanPO') this.canPo,
-  });
+  const _$LeadSaleActionsImpl(
+      {@JsonKey(name: 'CanView') this.canView,
+      @JsonKey(name: 'CanEdit') this.canEdit,
+      @JsonKey(name: 'CanQualify') this.canQualify,
+      @JsonKey(name: 'CanDisqualify') this.canDisqualify,
+      @JsonKey(name: 'CanHandover') this.canHandover,
+      @JsonKey(name: 'CanAssign') this.canAssign,
+      @JsonKey(name: 'CanReturn') this.canReturn,
+      @JsonKey(name: 'CanClose') this.canClose,
+      @JsonKey(name: 'CanLinkCustomer') this.canLinkCustomer,
+      @JsonKey(name: 'CanReopen') this.canReopen,
+      @JsonKey(name: 'CanAddActivity') this.canAddActivity,
+      @JsonKey(name: 'CanDelete') this.canDelete,
+      @JsonKey(name: 'CanPO') this.canPo});
 
   factory _$LeadSaleActionsImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeadSaleActionsImplFromJson(json);
@@ -9292,53 +9028,51 @@ class _$LeadSaleActionsImpl implements _LeadSaleActions {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    canView,
-    canEdit,
-    canQualify,
-    canDisqualify,
-    canHandover,
-    canAssign,
-    canReturn,
-    canClose,
-    canLinkCustomer,
-    canReopen,
-    canAddActivity,
-    canDelete,
-    canPo,
-  );
+      runtimeType,
+      canView,
+      canEdit,
+      canQualify,
+      canDisqualify,
+      canHandover,
+      canAssign,
+      canReturn,
+      canClose,
+      canLinkCustomer,
+      canReopen,
+      canAddActivity,
+      canDelete,
+      canPo);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LeadSaleActionsImplCopyWith<_$LeadSaleActionsImpl> get copyWith =>
       __$$LeadSaleActionsImplCopyWithImpl<_$LeadSaleActionsImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LeadSaleActionsImplToJson(this);
+    return _$$LeadSaleActionsImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _LeadSaleActions implements LeadSaleActions {
-  const factory _LeadSaleActions({
-    @JsonKey(name: 'CanView') final bool? canView,
-    @JsonKey(name: 'CanEdit') final bool? canEdit,
-    @JsonKey(name: 'CanQualify') final bool? canQualify,
-    @JsonKey(name: 'CanDisqualify') final bool? canDisqualify,
-    @JsonKey(name: 'CanHandover') final bool? canHandover,
-    @JsonKey(name: 'CanAssign') final bool? canAssign,
-    @JsonKey(name: 'CanReturn') final bool? canReturn,
-    @JsonKey(name: 'CanClose') final bool? canClose,
-    @JsonKey(name: 'CanLinkCustomer') final bool? canLinkCustomer,
-    @JsonKey(name: 'CanReopen') final bool? canReopen,
-    @JsonKey(name: 'CanAddActivity') final bool? canAddActivity,
-    @JsonKey(name: 'CanDelete') final bool? canDelete,
-    @JsonKey(name: 'CanPO') final bool? canPo,
-  }) = _$LeadSaleActionsImpl;
+  const factory _LeadSaleActions(
+      {@JsonKey(name: 'CanView') final bool? canView,
+      @JsonKey(name: 'CanEdit') final bool? canEdit,
+      @JsonKey(name: 'CanQualify') final bool? canQualify,
+      @JsonKey(name: 'CanDisqualify') final bool? canDisqualify,
+      @JsonKey(name: 'CanHandover') final bool? canHandover,
+      @JsonKey(name: 'CanAssign') final bool? canAssign,
+      @JsonKey(name: 'CanReturn') final bool? canReturn,
+      @JsonKey(name: 'CanClose') final bool? canClose,
+      @JsonKey(name: 'CanLinkCustomer') final bool? canLinkCustomer,
+      @JsonKey(name: 'CanReopen') final bool? canReopen,
+      @JsonKey(name: 'CanAddActivity') final bool? canAddActivity,
+      @JsonKey(name: 'CanDelete') final bool? canDelete,
+      @JsonKey(name: 'CanPO') final bool? canPo}) = _$LeadSaleActionsImpl;
 
   factory _LeadSaleActions.fromJson(Map<String, dynamic> json) =
       _$LeadSaleActionsImpl.fromJson;

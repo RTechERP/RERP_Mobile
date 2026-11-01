@@ -168,6 +168,8 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
         submitEditAdminReport: (pickedDate, dailyID) =>
             _onSubmitEditAdminReport(pickedDate, dailyID, emit),
         deleteAdminReport: (dailyID) => _onDeleteAdminReport(dailyID, emit),
+        prefillFromLead: (customerId, contactName, needDescription) =>
+            _onPrefillFromLead(customerId, contactName, needDescription, emit),
       );
     });
   }
@@ -900,13 +902,15 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
       );
       final safeEnd = safeStart;
 
+      final employeeId = state.employeeID ?? userId;
+
       final payload = state.staffWorks.map<Map<String, dynamic>>((w) {
         return {
           'ID': dailyID,
 
           'projectId': w.projectId ?? 0,
           'customerId': w.customerId ?? 0,
-          'warehouseId': 1,
+          'warehouseId': 0,
           'projectStatusBaseId': w.projectStatusBaseId ?? 0,
           'userId': userId,
 
@@ -931,7 +935,7 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
           'productOfCustomer': w.customerProduct ?? '',
 
           'projectStatusOld': w.projectStatusOld ?? 0,
-          'employeeId': userId,
+          'employeeId': employeeId,
 
           'dateStatusLog': DateTime.now().toIso8601String(),
         };
@@ -971,6 +975,164 @@ class SaleBloc extends BaseBloc<SaleEvent, SaleState> {
       (r) {
         emit(state.copyWith(users: r));
       },
+    );
+  }
+
+  /// Tải danh sách nhân viên đang làm việc.
+  Future<void> _onGetEmployees(Emitter<SaleState> emit) async {
+    final res = await _reportRepo.getActiveEmployees();
+
+    res.fold(
+      (l) => _log.logE('Get employees failed: $l'),
+      (r) => emit(state.copyWith(employees: r)),
+    );
+  }
+
+  /// Khởi tạo form tạo báo cáo từ phiếu lead sale.
+  ///
+  /// 1. Tải toàn bộ danh mục của form (dự án, hãng, loại dự án, khách hàng,
+  ///    loại nhóm, trạng thái dự án, nhân viên, người liên hệ, bộ phận KH).
+  /// 2. Lấy dự án của khách hàng (`/Lead/project-id-by-customer`).
+  /// 3. Lấy chi tiết dự án, báo cáo gần nhất và hãng/loại dự án gần nhất.
+  /// 4. Tạo sẵn 1 báo cáo đã điền các giá trị tìm được, gồm cả việc đã làm
+  ///    (lấy từ [needDescription] của phiếu lead).
+  ///
+  /// Giá trị nào không tìm thấy trong danh mục thì để trống cho người dùng chọn.
+  Future<void> _onPrefillFromLead(
+    int customerId,
+    String? contactName,
+    String? needDescription,
+    Emitter<SaleState> emit,
+  ) async {
+    emit(state.copyWith(status: BaseStateStatus.loading));
+
+    final user = (await _authRepo.getCurrentUser()).getOrElse(() => null);
+    if (user == null) {
+      emit(state.copyWith(status: BaseStateStatus.failed));
+      return;
+    }
+
+    final hasCustomer = customerId > 0;
+
+    await Future.wait([
+      _onGetSaleProject(emit),
+      _onGetFirmBase(emit),
+      _onGetTypeProjectBase(emit),
+      _onGetCustomer(emit),
+      _onGetTypeTeamSale(emit),
+      _onGetStatusProject(emit),
+      _onGetEmployees(emit),
+      if (hasCustomer) _onGetCustomerContact(customerId, emit),
+      if (hasCustomer) _onGetCustomerPart(customerId, emit),
+    ]);
+
+    final projectId = hasCustomer
+        ? (await _reportRepo.getProjectIdByCustomer(
+            customerId: customerId,
+          )).getOrElse(() => 0)
+        : 0;
+
+    SaleProjectResponse? project;
+    LatestSaleReportResponse? latestReport;
+    LatestFollowProjectResponse? latestFollow;
+    if (projectId > 0) {
+      // Gọi song song 3 API phụ thuộc dự án.
+      final projectFuture = _reportRepo.getProjectDetail(projectId: projectId);
+      final reportFuture = _reportRepo.getLatestSaleReport(
+        userId: user.id,
+        projectId: projectId,
+      );
+      final followFuture = _reportRepo.getLatestFollowProject(
+        projectId: projectId,
+      );
+      project = (await projectFuture).getOrElse(() => null);
+      latestReport = (await reportFuture).getOrElse(() => null);
+      latestFollow = (await followFuture).getOrElse(() => null);
+    }
+
+    final customer = state.customers
+        .where((c) => c.id == customerId)
+        .firstOrNull;
+    final firm = state.firmBases
+        .where((f) => f.id == latestFollow?.firmBaseId)
+        .firstOrNull;
+    final projectType = state.typeProjectBases
+        .where((t) => t.id == latestFollow?.projectTypeBaseId)
+        .firstOrNull;
+    final projectStatus = state.statusProjects
+        .where((s) => s.id == project?.projectStatus)
+        .firstOrNull;
+
+    // Người liên hệ: ưu tiên ContactID của dự án, sau đó khớp theo tên trên
+    // phiếu lead.
+    final leadContact = (contactName ?? '').trim().toLowerCase();
+    final contact = state.customerContacts
+        .where(
+          (c) =>
+              c.id == project?.contactId ||
+              (leadContact.isNotEmpty &&
+                  c.contactName.trim().toLowerCase() == leadContact),
+        )
+        .firstOrNull;
+
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+
+    final work = SaleStaffWork(
+      id: now.microsecondsSinceEpoch,
+      code: '',
+      fullName: user.fullName,
+      userId: user.id,
+      positionName: user.positionName,
+      totalHours: 0,
+      content: needDescription ?? '',
+      results: '',
+      planNextDay: '',
+      mission: '',
+      projectItemCode: '',
+      projectId: project?.id,
+      projectCode: project?.projectCode,
+      projectName: project?.projectName,
+      projectText: project == null
+          ? null
+          : '${project.projectCode} - ${project.projectName}',
+      firmId: firm?.id,
+      firmName: firm?.firmName,
+      typeProjectId: projectType?.id,
+      typeProjectName: projectType?.projectTypeName,
+      customerId: hasCustomer ? customerId : null,
+      customerName: customer?.customerName,
+      customerCode: customer?.customerCode,
+      statusProjectId: projectStatus?.id,
+      statusProjectName: projectStatus?.statusName,
+      indexStatusProject: projectStatus?.stt,
+      projectStatusBaseId: project?.projectStatus,
+      projectStatusOld: project?.projectStatus,
+      customerContactId: contact?.id,
+      customerContactName: contact?.contactName,
+      customerContactPhone: contact?.contactPhone,
+      customerContactTeam: contact?.customerTeam,
+      customerContactPart: contact?.customerPart,
+      customerContactPosition: contact?.customerPosition,
+      customerProduct: latestReport?.productOfCustomer,
+      dateStart: now,
+      dateEnd: now,
+    );
+
+    emit(
+      state.copyWith(
+        status: BaseStateStatus.success,
+        userId: user.id,
+        fullName: user.fullName,
+        departmentId: user.departmentId,
+        teamId: user.teamOfUser,
+        employeeID: user.employeeId,
+        positionName: user.positionName,
+        departmentName: user.departmentName,
+        positionId: user.positionId,
+        staffWorks: [work],
+        expandedWorkIndex: 0,
+      ),
     );
   }
 

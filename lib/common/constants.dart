@@ -101,6 +101,18 @@ class ApiEndPoint {
   static const String getTypeProject = '/DailyReportSale/get-projecttypebase';
 
   static const String getStatusProject = '/DailyReportSale/get-projectstatus';
+
+  static const String getLatestSaleReport =
+      '/DailyReportSale/get-latest-daily-report-sale';
+
+  static const String getLatestFollowProject =
+      '/DailyReportSale/get-latest-follow-project-base';
+
+  static const String getProjectIdByCustomer = '/Lead/project-id-by-customer';
+
+  static const String getProjectDetail = '/project/get-project';
+
+  static const String getActiveEmployees = '/Employee/employees';
   static const String getCustomerContact =
       '/DailyReportSale/get-customercontact';
 

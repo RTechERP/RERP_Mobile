@@ -959,6 +959,50 @@ class CustomerContactResponse with _$CustomerContactResponse {
   factory CustomerContactResponse.fromJson(Map<String, dynamic> json) =>
       _$CustomerContactResponseFromJson(json);
 }
+
+/// Báo cáo sale gần nhất của một nhân viên trên một dự án.
+///
+/// API: GET /DailyReportSale/get-latest-daily-report-sale?userId=X&projectId=Y.
+/// Dùng để điền sẵn "Sản phẩm của KH" khi tạo báo cáo từ phiếu lead.
+@freezed
+class LatestSaleReportResponse with _$LatestSaleReportResponse {
+  const factory LatestSaleReportResponse({
+    @JsonKey(name: 'ProductOfCustomer') String? productOfCustomer,
+  }) = _LatestSaleReportResponse;
+
+  factory LatestSaleReportResponse.fromJson(Map<String, dynamic> json) =>
+      _$LatestSaleReportResponseFromJson(json);
+}
+
+/// Hãng và loại dự án được theo dõi gần nhất của một dự án.
+///
+/// API: GET /DailyReportSale/get-latest-follow-project-base?projectId=Y.
+/// Dùng để điền sẵn "Hãng" và "Loại dự án" khi tạo báo cáo từ phiếu lead.
+@freezed
+class LatestFollowProjectResponse with _$LatestFollowProjectResponse {
+  const factory LatestFollowProjectResponse({
+    @JsonKey(name: 'FirmBaseID') int? firmBaseId,
+    @JsonKey(name: 'ProjectTypeBaseID') int? projectTypeBaseId,
+  }) = _LatestFollowProjectResponse;
+
+  factory LatestFollowProjectResponse.fromJson(Map<String, dynamic> json) =>
+      _$LatestFollowProjectResponseFromJson(json);
+}
+
+/// Nhân viên đang làm việc.
+///
+/// API: GET /Employee/employees?status=0.
+@freezed
+class SaleEmployeeResponse with _$SaleEmployeeResponse {
+  const factory SaleEmployeeResponse({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'FullName') String? fullName,
+  }) = _SaleEmployeeResponse;
+
+  factory SaleEmployeeResponse.fromJson(Map<String, dynamic> json) =>
+      _$SaleEmployeeResponseFromJson(json);
+}
 @freezed
 class SaleRequest with _$SaleRequest {
   const factory SaleRequest({

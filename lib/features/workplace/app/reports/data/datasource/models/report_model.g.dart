@@ -1438,6 +1438,48 @@ Map<String, dynamic> _$$CustomerContactResponseImplToJson(
       'IsDeleted': instance.isDeleted,
     };
 
+_$LatestSaleReportResponseImpl _$$LatestSaleReportResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LatestSaleReportResponseImpl(
+      productOfCustomer: json['ProductOfCustomer'] as String?,
+    );
+
+Map<String, dynamic> _$$LatestSaleReportResponseImplToJson(
+        _$LatestSaleReportResponseImpl instance) =>
+    <String, dynamic>{
+      'ProductOfCustomer': instance.productOfCustomer,
+    };
+
+_$LatestFollowProjectResponseImpl _$$LatestFollowProjectResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LatestFollowProjectResponseImpl(
+      firmBaseId: (json['FirmBaseID'] as num?)?.toInt(),
+      projectTypeBaseId: (json['ProjectTypeBaseID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$LatestFollowProjectResponseImplToJson(
+        _$LatestFollowProjectResponseImpl instance) =>
+    <String, dynamic>{
+      'FirmBaseID': instance.firmBaseId,
+      'ProjectTypeBaseID': instance.projectTypeBaseId,
+    };
+
+_$SaleEmployeeResponseImpl _$$SaleEmployeeResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SaleEmployeeResponseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      fullName: json['FullName'] as String?,
+    );
+
+Map<String, dynamic> _$$SaleEmployeeResponseImplToJson(
+        _$SaleEmployeeResponseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'FullName': instance.fullName,
+    };
+
 _$SaleRequestImpl _$$SaleRequestImplFromJson(Map<String, dynamic> json) =>
     _$SaleRequestImpl(
       id: (json['ID'] as num).toInt(),

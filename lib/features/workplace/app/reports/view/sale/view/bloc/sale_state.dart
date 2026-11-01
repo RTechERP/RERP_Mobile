@@ -49,6 +49,9 @@ class SaleState extends BaseBlocState {
 
   final List<UserResponse> users;
 
+  /// Nhân viên đang làm việc (GET /Employee/employees?status=0).
+  final List<SaleEmployeeResponse> employees;
+
   final SaleProjectResponse? selectedProject;
   final DateTime? dateStart;
   final DateTime? dateEnd;
@@ -74,6 +77,7 @@ class SaleState extends BaseBlocState {
     this.customerContacts = const [],
     this.customerParts = const [],
     this.users = const [],
+    this.employees = const [],
     this.adminWorks = const [],
     this.adminTypeReports = const [],
     this.adminCustomers = const [],
@@ -192,6 +196,7 @@ class SaleState extends BaseBlocState {
     saveSuccess,
     isSaving,
     users,
+    employees,
     adminWorks,
     adminTypeReports,
     adminCustomers,

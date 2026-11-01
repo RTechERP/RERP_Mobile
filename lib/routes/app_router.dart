@@ -788,7 +788,25 @@ class AppRouter {
           ),
           GoRoute(
             path: RouteNames.reportSaleStaffAdd,
-            builder: (context, state) => const SaleStaffAddScreen(),
+            builder: (context, state) {
+              final extra = state.extra;
+              int? leadCustomerId;
+              String? leadContactName;
+              String? leadCode;
+              String? needDescription;
+              if (extra is Map) {
+                leadCustomerId = extra['leadCustomerId'] as int?;
+                leadContactName = extra['leadContactName'] as String?;
+                leadCode = extra['leadCode'] as String?;
+                needDescription = extra['needDescription'] as String?;
+              }
+              return SaleStaffAddScreen(
+                leadCustomerId: leadCustomerId,
+                leadContactName: leadContactName,
+                leadCode: leadCode,
+                needDescription: needDescription,
+              );
+            },
           ),
           GoRoute(
             path: RouteNames.reportSaleAdminAdd,
