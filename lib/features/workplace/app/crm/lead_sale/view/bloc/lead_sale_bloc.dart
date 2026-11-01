@@ -1,0 +1,1106 @@
+import 'package:bloc/bloc.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
+
+import '../../../../../../../../base/bloc/index.dart';
+import '../../../../../../../../base/network/errors/extension.dart';
+import '../../../../../../../../common/logger/index.dart';
+import '../../../../../../../../features/auth/data/datasource/models/user_model.dart';
+import '../../../../../../../../features/auth/data/repository/auth_repo.dart';
+import '../../data/datasource/models/lead_sale_model.dart';
+import '../../data/repo/lead_sale_repo.dart';
+
+part 'lead_sale_event.dart';
+part 'lead_sale_state.dart';
+part 'lead_sale_bloc.g.dart';
+part 'lead_sale_bloc.freezed.dart';
+
+/// Bloc xử lý logic nghiệp vụ cho màn Lead Marketing của CRM.
+@injectable
+class LeadSaleBloc extends BaseBloc<LeadSaleEvent, LeadSaleState> {
+  final LeadSaleRepo _repo;
+  final AuthRepo _authRepo;
+  final LogUtils _log;
+
+  LeadSaleBloc(this._repo, this._authRepo, this._log)
+    : super(LeadSaleState.init()) {
+    on<LeadSaleEvent>((event, emit) async {
+      await event.when(
+        init: () => _onInit(emit),
+        changeDateRange: (dateStart, dateEnd) =>
+            _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
+        changeKeyword: (keyword) => _onChangeKeyword(emit, keyword: keyword),
+        refresh: () => _onInit(emit),
+        applyFilter:
+            (
+              leadSourceId,
+              marketingEmployeeId,
+              saleEmployeeId,
+              includeOpen,
+              stage,
+            ) => _onApplyFilter(
+              emit,
+              leadSourceId: leadSourceId,
+              marketingEmployeeId: marketingEmployeeId,
+              saleEmployeeId: saleEmployeeId,
+              includeOpen: includeOpen,
+              stage: stage,
+            ),
+        clearFilter: () => _onClearFilter(emit),
+        loadDetail: (id) => _onLoadDetail(emit, id: id),
+        loadFiles: (customerContactId) =>
+            _onLoadFiles(emit, customerContactId: customerContactId),
+        loadFilesPo: (customerContactId) =>
+            _onLoadFilesPo(emit, customerContactId: customerContactId),
+        saveFiles: (customerContactId, fileType, files, note) => _onSaveFiles(
+          emit,
+          customerContactId: customerContactId,
+          fileType: fileType,
+          files: files,
+          note: note,
+        ),
+        deleteFile: (fileId, fileType) =>
+            _onDeleteFile(emit, fileId: fileId, fileType: fileType),
+        clearFileActionState: () async => _onClearFileActionState(emit),
+        loadFormOptions: () => _onLoadFormOptions(emit),
+        loadCustomerDetail: (id) => _onLoadCustomerDetail(emit, id: id),
+        submitLead: (payload) => _onSubmitLead(emit, payload: payload),
+        confirmDuplicateSave: (payload) =>
+            _onSubmitLead(emit, payload: payload, skipDuplicateCheck: true),
+        cancelDuplicateSave: () async => _onCancelDuplicateSave(emit),
+        clearSubmitState: () async => _onClearSubmitState(emit),
+        deleteLead: (id) => _onDeleteLead(emit, id: id),
+        clearDeleteState: () async => _onClearDeleteState(emit),
+        loadActivityTypes: () => _onLoadActivityTypes(emit),
+        saveActivity: (payload) => _onSaveActivity(emit, payload: payload),
+        clearActivityState: () async => _onClearActivityState(emit),
+        disqualifyLead: (id, note) =>
+            _onDisqualifyLead(emit, id: id, note: note),
+        reopenLead: (id, note) => _onReopenLead(emit, id: id, note: note),
+        clearStageActionState: () async => _onClearStageActionState(emit),
+        loadHandoverOptions: () => _onLoadHandoverOptions(emit),
+        loadAdminSaleId: (leaderSaleId) =>
+            _onLoadAdminSaleId(emit, leaderSaleId: leaderSaleId),
+        handoverLead: (id, leaderEmployeeId, adminSaleId, note) =>
+            _onHandoverLead(
+              emit,
+              id: id,
+              leaderEmployeeId: leaderEmployeeId,
+              adminSaleId: adminSaleId,
+              note: note,
+            ),
+        clearHandoverState: () async => _onClearHandoverState(emit),
+      );
+    });
+  }
+
+  /// Tải quyền, danh sách bộ lọc và danh sách phiếu lead.
+  Future<void> _onInit(Emitter<LeadSaleState> emit) async {
+    emit(state.copyWith(status: BaseStateStatus.loading));
+
+    // Giữ khoảng thời gian đang chọn khi refresh, nếu chưa chọn thì
+    // mặc định là 3 tháng gần nhất (từ đầu tháng cách đây 3 tháng đến hôm nay).
+    final now = DateTime.now();
+    final start = state.dateStart ?? DateTime(now.year, now.month - 3, 1);
+    final end = state.dateEnd ?? now;
+
+    await _loadRoleContext(emit);
+
+    await _loadCurrentUser(emit);
+
+    await _loadFilterOptions(emit);
+
+    await _loadLeads(emit, dateStart: start, dateEnd: end);
+  }
+
+  /// Tải các danh sách dùng cho bộ lọc: nguồn lead, NV marketing, NV sale.
+  ///
+  /// Lỗi tải danh sách lọc không chặn việc hiển thị danh sách phiếu lead.
+  Future<void> _loadFilterOptions(Emitter<LeadSaleState> emit) async {
+    final sources = await _repo.getLeadSources();
+    sources.fold(
+      (l) => _log.logE('Get lead sources failed: $l'),
+      (r) => emit(state.copyWith(sources: r)),
+    );
+
+    final marketing = await _repo.getMarketingEmployees();
+    marketing.fold(
+      (l) => _log.logE('Get marketing employees failed: $l'),
+      (r) => emit(state.copyWith(marketingEmployees: r)),
+    );
+
+    final sale = await _repo.getSaleEmployees();
+    sale.fold(
+      (l) => _log.logE('Get sale employees failed: $l'),
+      (r) => emit(state.copyWith(saleEmployees: r)),
+    );
+  }
+
+  /// Áp dụng bộ lọc — lưu lựa chọn rồi tải lại danh sách phiếu lead.
+  Future<void> _onApplyFilter(
+    Emitter<LeadSaleState> emit, {
+    required int leadSourceId,
+    required int marketingEmployeeId,
+    required int saleEmployeeId,
+    required bool includeOpen,
+    required LeadSaleStage? stage,
+  }) async {
+    emit(
+      state.copyWith(
+        leadSourceId: leadSourceId,
+        marketingEmployeeId: marketingEmployeeId,
+        saleEmployeeId: saleEmployeeId,
+        includeOpen: includeOpen,
+        stageFilter: stage,
+      ),
+    );
+
+    final now = DateTime.now();
+    await _loadLeads(
+      emit,
+      dateStart: state.dateStart ?? DateTime(now.year, now.month - 3, 1),
+      dateEnd: state.dateEnd ?? now,
+    );
+  }
+
+  /// Xóa bộ lọc — đưa tất cả tiêu chí về mặc định rồi tải lại danh sách.
+  Future<void> _onClearFilter(Emitter<LeadSaleState> emit) async {
+    emit(
+      state.copyWith(
+        leadSourceId: 0,
+        marketingEmployeeId: 0,
+        saleEmployeeId: 0,
+        includeOpen: true,
+        stageFilter: null,
+      ),
+    );
+
+    final now = DateTime.now();
+    await _loadLeads(
+      emit,
+      dateStart: state.dateStart ?? DateTime(now.year, now.month - 3, 1),
+      dateEnd: state.dateEnd ?? now,
+    );
+  }
+
+  /// Tải quyền của người dùng hiện tại trong module Lead.
+  Future<void> _loadRoleContext(Emitter<LeadSaleState> emit) async {
+    final res = await _repo.getRoleContext();
+    res.fold(
+      (l) => _log.logE('Get lead role context failed: $l'),
+      (r) => emit(state.copyWith(roleContext: r)),
+    );
+  }
+
+  /// Thay đổi khoảng thời gian — tải lại danh sách phiếu lead.
+  Future<void> _onChangeDateRange(
+    Emitter<LeadSaleState> emit, {
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) async {
+    await _loadLeads(
+      emit,
+      dateStart: DateTime(dateStart.year, dateStart.month, dateStart.day),
+      dateEnd: DateTime(dateEnd.year, dateEnd.month, dateEnd.day),
+    );
+  }
+
+  /// Thay đổi từ khoá tìm kiếm — lọc trên dữ liệu đã tải, không gọi lại API.
+  Future<void> _onChangeKeyword(
+    Emitter<LeadSaleState> emit, {
+    required String keyword,
+  }) async {
+    emit(state.copyWith(keyword: keyword));
+  }
+
+  /// Tải chi tiết phiếu lead kèm hoạt động, lịch sử và quyền thao tác.
+  Future<void> _onLoadDetail(
+    Emitter<LeadSaleState> emit, {
+    required int id,
+  }) async {
+    emit(
+      state.copyWith(
+        detailStatus: BaseStateStatus.loading,
+        detailMessage: null,
+      ),
+    );
+
+    final res = await _repo.getLeadDetail(id: id);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get lead detail failed: $l');
+        emit(
+          state.copyWith(
+            detailStatus: BaseStateStatus.failed,
+            detailMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Get lead detail success - id: $id');
+        emit(
+          state.copyWith(
+            detailStatus: BaseStateStatus.success,
+            detail: r,
+            detailMessage: null,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Tải danh sách file đính kèm của phiếu lead.
+  Future<void> _onLoadFiles(
+    Emitter<LeadSaleState> emit, {
+    required int customerContactId,
+  }) async {
+    emit(
+      state.copyWith(filesStatus: BaseStateStatus.loading, filesMessage: null),
+    );
+
+    final res = await _repo.getLeadFiles(
+      customerContactId: customerContactId,
+      fileType: 1,
+    );
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get lead files failed: $l');
+        emit(
+          state.copyWith(
+            filesStatus: BaseStateStatus.failed,
+            filesMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Get lead files success - count: ${r.length}');
+        emit(
+          state.copyWith(
+            filesStatus: BaseStateStatus.success,
+            files: r,
+            filesMessage: null,
+            filesLeadId: customerContactId,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Tải danh sách file PO đính kèm của phiếu lead.
+  ///
+  /// Dùng `fileType = 2` để lấy nhóm file PO, tách khỏi nhóm file thường.
+  Future<void> _onLoadFilesPo(
+    Emitter<LeadSaleState> emit, {
+    required int customerContactId,
+  }) async {
+    emit(
+      state.copyWith(
+        filesPoStatus: BaseStateStatus.loading,
+        filesPoMessage: null,
+      ),
+    );
+
+    final res = await _repo.getLeadFiles(
+      customerContactId: customerContactId,
+      fileType: 2,
+    );
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get lead PO files failed: $l');
+        emit(
+          state.copyWith(
+            filesPoStatus: BaseStateStatus.failed,
+            filesPoMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Get lead PO files success - count: ${r.length}');
+        emit(
+          state.copyWith(
+            filesPoStatus: BaseStateStatus.success,
+            filesPo: r,
+            filesPoMessage: null,
+            filesPoLeadId: customerContactId,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Lưu file đính kèm mới lên phiếu lead.
+  ///
+  /// Sau khi lưu thành công → tải lại danh sách file của phiếu để UI hiển
+  /// thị file vừa thêm.
+  Future<void> _onSaveFiles(
+    Emitter<LeadSaleState> emit, {
+    required int customerContactId,
+    required int fileType,
+    required List<PlatformFile> files,
+    String note = '',
+  }) async {
+    emit(
+      state.copyWith(
+        fileActionStatus: BaseStateStatus.loading,
+        fileActionMessage: null,
+      ),
+    );
+
+    final res = await _repo.saveLeadFiles(
+      customerContactId: customerContactId,
+      fileType: fileType,
+      files: files,
+      note: note,
+    );
+
+    await res.fold(
+      (l) async {
+        _log.logE('Save lead files failed: $l');
+        emit(
+          state.copyWith(
+            fileActionStatus: BaseStateStatus.failed,
+            fileActionMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Save lead files success - count: ${r.length}');
+
+        // Tải lại danh sách file trước, emit kết quả sau → listener chỉ
+        // chạy 1 lần khi status đổi, tránh hiện thông báo trùng.
+        if (fileType == 1) {
+          await _onLoadFiles(emit, customerContactId: customerContactId);
+        } else {
+          await _onLoadFilesPo(emit, customerContactId: customerContactId);
+        }
+
+        emit(
+          state.copyWith(
+            fileActionStatus: BaseStateStatus.success,
+            fileActionMessage: 'Lưu file đính kèm thành công!',
+          ),
+        );
+      },
+    );
+  }
+
+  /// Xoá file đính kèm của phiếu lead.
+  ///
+  /// Sau khi xoá thành công → tải lại danh sách file để UI cập nhật.
+  Future<void> _onDeleteFile(
+    Emitter<LeadSaleState> emit, {
+    required int fileId,
+    int fileType = 1,
+  }) async {
+    emit(
+      state.copyWith(
+        fileActionStatus: BaseStateStatus.loading,
+        fileActionMessage: null,
+        deletingFileId: fileId,
+      ),
+    );
+
+    final res = await _repo.deleteLeadFile(customerContactFileId: fileId);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Delete lead file failed: $l');
+        emit(
+          state.copyWith(
+            fileActionStatus: BaseStateStatus.failed,
+            fileActionMessage: l.getErrorMessage,
+            deletingFileId: null,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Delete lead file success - id: $fileId');
+
+        // Tải lại danh sách file trước, emit kết quả sau → listener chỉ
+        // chạy 1 lần khi status đổi, tránh hiện thông báo trùng.
+        final leadId = state.filesLeadId;
+        if (leadId != null) {
+          if (fileType == 1) {
+            await _onLoadFiles(emit, customerContactId: leadId);
+          } else {
+            await _onLoadFilesPo(emit, customerContactId: leadId);
+          }
+        }
+
+        emit(
+          state.copyWith(
+            fileActionStatus: BaseStateStatus.success,
+            fileActionMessage: 'Xoá file thành công!',
+            deletingFileId: null,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Xoá trạng thái kết quả lưu / xoá file đính kèm.
+  ///
+  /// Bloc là singleton nên giữ trạng thái `success`/`failed` sẽ khiến lần
+  /// mở màn sau hiện lại thông báo cũ.
+  void _onClearFileActionState(Emitter<LeadSaleState> emit) {
+    emit(
+      state.copyWith(
+        fileActionStatus: BaseStateStatus.init,
+        fileActionMessage: null,
+        deletingFileId: null,
+      ),
+    );
+  }
+
+  /// Tải toàn bộ danh mục dùng cho form tạo phiếu lead.
+  ///
+  /// Gồm: nhóm hàng (loại PO), lĩnh vực, ngành nghề, business field,
+  /// tỉnh/thành, khách hàng, nguồn lead và NV marketing. Lỗi tải một
+  /// danh mục không chặn các danh mục còn lại.
+  Future<void> _onLoadFormOptions(Emitter<LeadSaleState> emit) async {
+    await _loadCurrentUser(emit);
+
+    final poTypes = await _repo.getLeadPoTypes();
+    poTypes.fold(
+      (l) => _log.logE('Get lead PO types failed: $l'),
+      (r) => emit(state.copyWith(poTypes: r)),
+    );
+
+    final sources = await _repo.getLeadSources();
+    sources.fold(
+      (l) => _log.logE('Get lead sources failed: $l'),
+      (r) => emit(state.copyWith(sources: r)),
+    );
+
+    final marketing = await _repo.getMarketingEmployees();
+    marketing.fold(
+      (l) => _log.logE('Get marketing employees failed: $l'),
+      (r) => emit(state.copyWith(marketingEmployees: r)),
+    );
+
+    final industries = await _repo.getCustomerIndustries();
+    industries.fold(
+      (l) => _log.logE('Get customer industries failed: $l'),
+      (r) => emit(state.copyWith(customerIndustries: r)),
+    );
+
+    final specializations = await _repo.getCustomerSpecializations();
+    specializations.fold(
+      (l) => _log.logE('Get customer specializations failed: $l'),
+      (r) => emit(state.copyWith(customerSpecializations: r)),
+    );
+
+    final businessFields = await _repo.getBusinessFields();
+    businessFields.fold(
+      (l) => _log.logE('Get business fields failed: $l'),
+      (r) => emit(state.copyWith(businessFields: r)),
+    );
+
+    final provinces = await _repo.getCustomerProvinces();
+    provinces.fold(
+      (l) => _log.logE('Get customer provinces failed: $l'),
+      (r) => emit(state.copyWith(provinces: r)),
+    );
+
+    final customers = await _repo.getCustomers();
+    customers.fold(
+      (l) => _log.logE('Get customers failed: $l'),
+      (r) => emit(state.copyWith(customers: r)),
+    );
+  }
+
+  /// Tải chi tiết khách hàng để fill sẵn thông tin doanh nghiệp lên form.
+  ///
+  /// Chi tiết khách hàng chứa sẵn `CustomerIndustriesID`,
+  /// `CustomerSpecializationID`, `Province` và `Address` nên người dùng
+  /// không phải tự chọn lại 4 trường này.
+  Future<void> _onLoadCustomerDetail(
+    Emitter<LeadSaleState> emit, {
+    required int id,
+  }) async {
+    emit(
+      state.copyWith(
+        customerDetailStatus: BaseStateStatus.loading,
+        customerDetailMessage: null,
+      ),
+    );
+
+    final res = await _repo.getCustomerDetail(id: id);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get customer detail failed: $l');
+        emit(
+          state.copyWith(
+            customerDetailStatus: BaseStateStatus.failed,
+            customerDetailMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Get customer detail success - id: $id');
+        emit(
+          state.copyWith(
+            customerDetailStatus: BaseStateStatus.success,
+            customerDetail: r,
+            customerDetailMessage: null,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Tải thông tin người dùng hiện tại.
+  ///
+  /// Dùng để mặc định "NV Marketing phụ trách" trong form tạo phiếu lead.
+  Future<void> _loadCurrentUser(Emitter<LeadSaleState> emit) async {
+    final res = await _authRepo.getCurrentUser();
+    await res.fold((l) async => _log.logE('Get current user failed: $l'), (
+      r,
+    ) async {
+      if (r != null) {
+        emit(state.copyWith(currentUser: r));
+      }
+    });
+  }
+
+  /// Kiểm tra trùng lặp rồi lưu phiếu lead.
+  ///
+  /// Luồng:
+  /// 1. `POST /Lead/check-duplicate` với SĐT / email / mã số thuế / tên
+  ///    công ty lấy từ [payload] (bỏ qua nếu [skipDuplicateCheck] = true).
+  /// 2. Nếu API trả `status = 1` và `data` có bản ghi trùng → dừng lại,
+  ///    đưa danh sách trùng ra state để UI hỏi người dùng.
+  /// 3. Không trùng (hoặc người dùng đã xác nhận lưu trùng) → gọi tiếp
+  ///    `POST /Lead/save-data`.
+  /// 4. Lưu thành công → `submitStatus = success`, kèm `message` + `data`
+  ///    (ID, LeadCode) để UI xác nhận.
+  Future<void> _onSubmitLead(
+    Emitter<LeadSaleState> emit, {
+    required Map<String, dynamic> payload,
+    bool skipDuplicateCheck = false,
+  }) async {
+    emit(
+      state.copyWith(
+        submitStatus: BaseStateStatus.loading,
+        submitMessage: null,
+        saveResult: null,
+        duplicates: const [],
+      ),
+    );
+
+    if (!skipDuplicateCheck) {
+      // Bước 1: kiểm tra trùng lặp. Khi chỉnh sửa, loại trừ chính phiếu
+      // đang sửa để không tự trùng với bản ghi cũ.
+      final leadId = (payload['ID'] as int?) ?? 0;
+      final dupRes = await _repo.checkDuplicate(
+        phone: (payload['ContactPhone'] ?? '').toString(),
+        email: (payload['ContactEmail'] ?? '').toString(),
+        taxCode: (payload['TaxCode'] ?? '').toString(),
+        companyName: (payload['CompanyName'] ?? '').toString(),
+        excludeLeadId: leadId,
+      );
+
+      // `checkDuplicate` chỉ trả `Right` khi API trả `status = 1` (API đã
+      // kiểm tra xong); status khác 1 → repo quy về `Left` kèm message.
+      final dupError = await dupRes.fold(
+        (l) async => l.getErrorMessage,
+        (r) async => null,
+      );
+      if (dupError != null) {
+        _log.logE('Check lead duplicate failed: $dupError');
+        emit(
+          state.copyWith(
+            submitStatus: BaseStateStatus.failed,
+            submitMessage: dupError,
+          ),
+        );
+        return;
+      }
+
+      // Bước 2: có bản ghi trùng → hỏi người dùng trước khi lưu.
+      final duplicates = await dupRes.fold(
+        (l) async => const <LeadSaleDuplicateInfo>[],
+        (r) async => r.duplicates ?? const <LeadSaleDuplicateInfo>[],
+      );
+      if (duplicates.isNotEmpty) {
+        _log.logW('Lead duplicate found - count: ${duplicates.length}');
+        emit(
+          state.copyWith(
+            submitStatus: BaseStateStatus.idle,
+            duplicates: duplicates,
+          ),
+        );
+        return;
+      }
+    }
+
+    // Bước 3: lưu phiếu lead.
+    final saveRes = await _repo.saveData(payload: payload);
+
+    await saveRes.fold(
+      (l) async {
+        _log.logE('Save lead failed: $l');
+        emit(
+          state.copyWith(
+            submitStatus: BaseStateStatus.failed,
+            submitMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Save lead success - id: ${r.id}, code: ${r.leadCode}');
+        emit(
+          state.copyWith(
+            submitStatus: BaseStateStatus.success,
+            submitMessage: r.message ?? 'Thêm lead thành công!',
+            saveResult: r,
+            duplicates: const [],
+          ),
+        );
+      },
+    );
+  }
+
+  /// Người dùng huỷ lưu phiếu lead bị trùng — quay lại màn form.
+  void _onCancelDuplicateSave(Emitter<LeadSaleState> emit) {
+    emit(
+      state.copyWith(
+        submitStatus: BaseStateStatus.init,
+        submitMessage: null,
+        saveResult: null,
+        duplicates: const [],
+      ),
+    );
+  }
+
+  /// Xóa trạng thái kết quả lưu phiếu lead.
+  ///
+  /// Được gọi sau khi UI đã xử lý kết quả (hiển thị thông báo) để lần mở
+  /// màn sau không bị lặp lại thông báo cũ.
+  void _onClearSubmitState(Emitter<LeadSaleState> emit) {
+    emit(
+      state.copyWith(
+        submitStatus: BaseStateStatus.init,
+        submitMessage: null,
+        saveResult: null,
+        duplicates: const [],
+      ),
+    );
+  }
+
+  /// Xoá phiếu lead.
+  ///
+  /// Gọi `POST /Lead/delete` với mảng ID. Chỉ coi là thành công khi API
+  /// trả `message` và `data` có chứa ID đã xoá.
+  Future<void> _onDeleteLead(
+    Emitter<LeadSaleState> emit, {
+    required int id,
+  }) async {
+    emit(
+      state.copyWith(
+        deleteStatus: BaseStateStatus.loading,
+        deleteMessage: null,
+      ),
+    );
+
+    final res = await _repo.deleteLeads(ids: [id]);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Delete lead failed: $l');
+        emit(
+          state.copyWith(
+            deleteStatus: BaseStateStatus.failed,
+            deleteMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Delete lead success - ids: $r');
+        emit(
+          state.copyWith(
+            deleteStatus: BaseStateStatus.success,
+            deleteMessage: 'Xóa lead thành công!',
+          ),
+        );
+      },
+    );
+  }
+
+  /// Xóa trạng thái kết quả xoá phiếu lead.
+  void _onClearDeleteState(Emitter<LeadSaleState> emit) {
+    emit(
+      state.copyWith(deleteStatus: BaseStateStatus.init, deleteMessage: null),
+    );
+  }
+
+  /// Tải danh sách loại nhóm dùng cho form ghi hoạt động.
+  Future<void> _onLoadActivityTypes(Emitter<LeadSaleState> emit) async {
+    emit(
+      state.copyWith(
+        activityTypesStatus: BaseStateStatus.loading,
+        activityTypesMessage: null,
+      ),
+    );
+
+    final res = await _repo.getActivityTypes();
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get lead activity types failed: $l');
+        emit(
+          state.copyWith(
+            activityTypesStatus: BaseStateStatus.failed,
+            activityTypesMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Get lead activity types success - count: ${r.length}');
+        emit(
+          state.copyWith(
+            activityTypesStatus: BaseStateStatus.success,
+            activityTypes: r,
+            activityTypesMessage: null,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Ghi hoạt động lên phiếu lead.
+  Future<void> _onSaveActivity(
+    Emitter<LeadSaleState> emit, {
+    required Map<String, dynamic> payload,
+  }) async {
+    emit(
+      state.copyWith(
+        activityStatus: BaseStateStatus.loading,
+        activityMessage: null,
+        activityResult: null,
+      ),
+    );
+
+    final res = await _repo.saveActivity(payload: payload);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Save lead activity failed: $l');
+        emit(
+          state.copyWith(
+            activityStatus: BaseStateStatus.failed,
+            activityMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Save lead activity success - id: ${r.id}');
+        emit(
+          state.copyWith(
+            activityStatus: BaseStateStatus.success,
+            activityMessage: r.message ?? 'Ghi hoạt động thành công!',
+            activityResult: r,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Xóa trạng thái kết quả ghi hoạt động.
+  void _onClearActivityState(Emitter<LeadSaleState> emit) {
+    emit(
+      state.copyWith(
+        activityStatus: BaseStateStatus.init,
+        activityMessage: null,
+        activityResult: null,
+      ),
+    );
+  }
+
+  /// Xác nhận TT không phù hợp — loại bỏ lead.
+  Future<void> _onDisqualifyLead(
+    Emitter<LeadSaleState> emit, {
+    required int id,
+    required String note,
+  }) async {
+    emit(
+      state.copyWith(
+        stageActionStatus: BaseStateStatus.loading,
+        stageActionMessage: null,
+        stageActionIds: const [],
+      ),
+    );
+
+    final res = await _repo.disqualifyLeads(ids: [id], note: note);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Disqualify lead failed: $l');
+        emit(
+          state.copyWith(
+            stageActionStatus: BaseStateStatus.failed,
+            stageActionMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Disqualify lead success - ids: $r');
+        emit(
+          state.copyWith(
+            stageActionStatus: BaseStateStatus.success,
+            stageActionMessage: 'Đã loại bỏ lead!',
+            stageActionIds: r,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Huỷ xác nhận TT không phù hợp — mở lại lead.
+  Future<void> _onReopenLead(
+    Emitter<LeadSaleState> emit, {
+    required int id,
+    required String note,
+  }) async {
+    emit(
+      state.copyWith(
+        stageActionStatus: BaseStateStatus.loading,
+        stageActionMessage: null,
+        stageActionIds: const [],
+      ),
+    );
+
+    final res = await _repo.reopenLeads(ids: [id], note: note);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Reopen lead failed: $l');
+        emit(
+          state.copyWith(
+            stageActionStatus: BaseStateStatus.failed,
+            stageActionMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Reopen lead success - ids: $r');
+        emit(
+          state.copyWith(
+            stageActionStatus: BaseStateStatus.success,
+            stageActionMessage: 'Đã mở lại lead!',
+            stageActionIds: r,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Xóa trạng thái kết quả loại bỏ / mở lại lead.
+  void _onClearStageActionState(Emitter<LeadSaleState> emit) {
+    emit(
+      state.copyWith(
+        stageActionStatus: BaseStateStatus.init,
+        stageActionMessage: null,
+        stageActionIds: const [],
+      ),
+    );
+  }
+
+  /// Tải danh sách Leader Sale và Admin Sale dùng cho thao tác bàn giao.
+  ///
+  /// Lỗi tải một danh sách không chặn danh sách còn lại.
+  Future<void> _onLoadHandoverOptions(Emitter<LeadSaleState> emit) async {
+    emit(
+      state.copyWith(
+        handoverOptionsStatus: BaseStateStatus.loading,
+        handoverOptionsMessage: null,
+      ),
+    );
+
+    final leaders = await _repo.getSaleLeaders();
+    await leaders.fold(
+      (l) async {
+        _log.logE('Get sale leaders failed: $l');
+        emit(
+          state.copyWith(
+            handoverOptionsStatus: BaseStateStatus.failed,
+            handoverOptionsMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Get sale leaders success - count: ${r.length}');
+        emit(
+          state.copyWith(
+            saleLeaders: r,
+            handoverOptionsStatus: BaseStateStatus.success,
+          ),
+        );
+      },
+    );
+
+    final admins = await _repo.getSaleAdmins();
+    await admins.fold(
+      (l) async {
+        _log.logE('Get sale admins failed: $l');
+        emit(
+          state.copyWith(
+            handoverOptionsStatus: BaseStateStatus.failed,
+            handoverOptionsMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Get sale admins success - count: ${r.length}');
+        emit(
+          state.copyWith(
+            saleAdmins: r,
+            handoverOptionsStatus: BaseStateStatus.success,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Lấy Admin Sale tương ứng với Leader Sale đã chọn.
+  ///
+  /// API trả về ID Admin Sale → lưu vào state để dựng payload bàn giao.
+  Future<void> _onLoadAdminSaleId(
+    Emitter<LeadSaleState> emit, {
+    required int leaderSaleId,
+  }) async {
+    emit(state.copyWith(adminSaleId: null));
+
+    final res = await _repo.getAdminSaleId(leaderSaleId: leaderSaleId);
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get admin sale id failed: $l');
+        emit(
+          state.copyWith(
+            handoverOptionsStatus: BaseStateStatus.failed,
+            handoverOptionsMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Get admin sale id success - id: $r');
+        emit(
+          state.copyWith(
+            adminSaleId: r,
+            handoverOptionsStatus: BaseStateStatus.success,
+            handoverOptionsMessage: null,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Bàn giao phiếu lead cho Leader Sale.
+  ///
+  /// Chỉ coi là thành công khi API trả `message` và `data` có chứa ID đã bàn
+  /// giao.
+  Future<void> _onHandoverLead(
+    Emitter<LeadSaleState> emit, {
+    required int id,
+    required int leaderEmployeeId,
+    required int adminSaleId,
+    required String note,
+  }) async {
+    emit(
+      state.copyWith(
+        handoverStatus: BaseStateStatus.loading,
+        handoverMessage: null,
+        handoverIds: const [],
+      ),
+    );
+
+    final res = await _repo.handoverLeads(
+      ids: [id],
+      leaderEmployeeId: leaderEmployeeId,
+      adminSaleId: adminSaleId,
+      note: note,
+    );
+
+    await res.fold(
+      (l) async {
+        _log.logE('Handover lead failed: $l');
+        emit(
+          state.copyWith(
+            handoverStatus: BaseStateStatus.failed,
+            handoverMessage: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Handover lead success - ids: ${r.ids}');
+        emit(
+          state.copyWith(
+            handoverStatus: BaseStateStatus.success,
+            handoverMessage: r.message ?? 'Bàn giao lead thành công!',
+            handoverIds: r.ids ?? const [],
+          ),
+        );
+      },
+    );
+  }
+
+  /// Xóa trạng thái kết quả bàn giao lead.
+  void _onClearHandoverState(Emitter<LeadSaleState> emit) {
+    emit(
+      state.copyWith(
+        handoverStatus: BaseStateStatus.init,
+        handoverMessage: null,
+        handoverIds: const [],
+      ),
+    );
+  }
+
+  /// Gọi API lấy danh sách phiếu lead theo khoảng thời gian đang lọc.
+  Future<void> _loadLeads(
+    Emitter<LeadSaleState> emit, {
+    required DateTime dateStart,
+    required DateTime dateEnd,
+  }) async {
+    emit(
+      state.copyWith(
+        status: BaseStateStatus.loading,
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+      ),
+    );
+
+    final res = await _repo.getLeadData(
+      viewMode: state.viewMode,
+      dateStart: dateStart,
+      dateEnd: dateEnd,
+      leadType: state.leadType,
+      leadSourceId: state.leadSourceId,
+      marketingEmployeeId: state.marketingEmployeeId,
+      saleEmployeeId: state.saleEmployeeId,
+      includeOpen: state.includeOpen,
+    );
+
+    await res.fold(
+      (l) async {
+        _log.logE('Get lead data failed: $l');
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.failed,
+            message: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('Get lead data success - total: ${r.length}');
+        emit(state.copyWith(status: BaseStateStatus.success, leads: r));
+      },
+    );
+  }
+}

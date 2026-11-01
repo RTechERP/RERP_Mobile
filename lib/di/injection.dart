@@ -201,6 +201,10 @@ import '../features/workplace/app/crm/lead_marketing/data/datasource/service/lea
 import '../features/workplace/app/crm/lead_marketing/data/repo/lead_marketing_repo.dart';
 import '../features/workplace/app/crm/lead_marketing/data/repo/lead_marketing_repo_impl.dart';
 import '../features/workplace/app/crm/lead_marketing/view/bloc/lead_marketing_bloc.dart';
+import '../features/workplace/app/crm/lead_sale/data/datasource/service/lead_sale_service.dart';
+import '../features/workplace/app/crm/lead_sale/data/repo/lead_sale_repo.dart';
+import '../features/workplace/app/crm/lead_sale/data/repo/lead_sale_repo_impl.dart';
+import '../features/workplace/app/crm/lead_sale/view/bloc/lead_sale_bloc.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/datasource/service/history_import_export_service.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/repository/history_import_export_repo.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/repository/history_import_export_repo_impl.dart';
@@ -437,6 +441,10 @@ void configureDependencies() {
     () => LeadMarketingService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<LeadSaleService>(
+    () => LeadSaleService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<TestTableService>(
     () => TestTableService(getIt<Dio>()),
   );
@@ -627,6 +635,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<LeadMarketingRepo>(
     () => LeadMarketingRepoImpl(getIt<LeadMarketingService>()),
+  );
+
+  getIt.registerLazySingleton<LeadSaleRepo>(
+    () => LeadSaleRepoImpl(getIt<LeadSaleService>()),
   );
 
   getIt.registerLazySingleton<TestTableRepo>(
@@ -1014,6 +1026,14 @@ getIt.registerLazySingleton<ApproveBookingGuestHouseBloc>(
   getIt.registerLazySingleton<LeadMarketingBloc>(
     () => LeadMarketingBloc(
       getIt<LeadMarketingRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<LeadSaleBloc>(
+    () => LeadSaleBloc(
+      getIt<LeadSaleRepo>(),
       getIt<AuthRepo>(),
       getIt<LogUtils>(),
     ),

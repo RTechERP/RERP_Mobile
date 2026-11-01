@@ -357,4 +357,22 @@ class RouteNames {
   ///
   /// Dùng absolute path để `context.push` không bị lỗi match với route cha.
   static const crmLeadActivityAdd = '/crm/lead_marketing/activity/add';
+
+  /// Màn danh sách phiếu lead sale CRM (route con của [crmMenu]).
+  static const crmLeadSale = 'lead_sale';
+
+  /// Màn tạo phiếu lead sale mới (route con của [crmLeadSale]).
+  ///
+  /// Dùng absolute path để `context.push` không bị lỗi match với route cha.
+  static const crmLeadSaleAdd = '/crm/lead_sale/add';
+
+  /// Màn chỉnh sửa phiếu lead sale (route con của [crmLeadSale]).
+  ///
+  /// Dùng absolute path để `context.push` không bị lỗi match với route cha.
+  static const crmLeadSaleEdit = '/crm/lead_sale/edit';
+
+  /// Màn ghi hoạt động cho phiếu lead sale (route con của [crmLeadSale]).
+  ///
+  /// Dùng absolute path để `context.push` không bị lỗi match với route cha.
+  static const crmLeadSaleActivityAdd = '/crm/lead_sale/activity/add';
 }

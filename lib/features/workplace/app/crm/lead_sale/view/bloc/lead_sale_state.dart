@@ -1,0 +1,389 @@
+part of 'lead_sale_bloc.dart';
+
+/// State cho màn Lead Marketing của CRM.
+@CopyWith()
+class LeadSaleState extends BaseBlocState {
+  /// Danh sách phiếu lead gốc từ API.
+  final List<LeadSaleItem> leads;
+
+  /// Quyền của người dùng hiện tại trong module Lead.
+  final LeadSaleRoleContext? roleContext;
+
+  /// Ngày bắt đầu đang lọc.
+  final DateTime? dateStart;
+
+  /// Ngày kết thúc đang lọc.
+  final DateTime? dateEnd;
+
+  /// Từ khoá tìm kiếm hiện tại.
+  final String keyword;
+
+  /// Chế độ xem gửi lên API (`2` = danh sách phiếu lead Sale).
+  final int viewMode;
+
+  /// Loại lead đang lọc (`0` = tất cả).
+  final int leadType;
+
+  /// ID nguồn lead đang lọc (`0` = tất cả).
+  final int leadSourceId;
+
+  /// ID nhân viên marketing đang lọc (`0` = tất cả).
+  final int marketingEmployeeId;
+
+  /// ID nhân viên sale đang lọc (`0` = tất cả).
+  final int saleEmployeeId;
+
+  /// Có bao gồm lead đang mở hay không.
+  final bool includeOpen;
+
+  /// Giai đoạn đang lọc (null = tất cả).
+  final LeadSaleStage? stageFilter;
+
+  /// Danh sách nguồn lead dùng cho bộ lọc.
+  final List<LeadSaleSource> sources;
+
+  /// Danh sách nhân viên marketing dùng cho bộ lọc.
+  final List<LeadSaleEmployee> marketingEmployees;
+
+  /// Danh sách nhân viên sale dùng cho bộ lọc.
+  final List<LeadSaleEmployee> saleEmployees;
+
+  /// Chi tiết phiếu lead đang xem (null khi chưa tải hoặc tải lỗi).
+  final LeadSaleDetail? detail;
+
+  /// Trạng thái tải chi tiết phiếu lead.
+  final BaseStateStatus detailStatus;
+
+  /// Thông báo lỗi khi tải chi tiết phiếu lead thất bại.
+  final String? detailMessage;
+
+  /// Danh sách file đính kèm của phiếu lead đang xem.
+  final List<LeadSaleFile> files;
+
+  /// Trạng thái tải danh sách file đính kèm.
+  final BaseStateStatus filesStatus;
+
+  /// Thông báo lỗi khi tải danh sách file đính kèm thất bại.
+  final String? filesMessage;
+
+  /// ID của phiếu lead mà [files] đang thuộc về.
+  final int? filesLeadId;
+
+  /// Danh sách file PO đính kèm của phiếu lead đang xem.
+  final List<LeadSaleFile> filesPo;
+
+  /// Trạng thái tải danh sách file PO.
+  final BaseStateStatus filesPoStatus;
+
+  /// Thông báo lỗi khi tải danh sách file PO thất bại.
+  final String? filesPoMessage;
+
+  /// ID của phiếu lead mà [filesPo] đang thuộc về.
+  final int? filesPoLeadId;
+
+  /// Trạng thái đang lưu / xoá file đính kèm.
+  final BaseStateStatus fileActionStatus;
+
+  /// Thông báo kết quả lưu / xoá file đính kèm.
+  final String? fileActionMessage;
+
+  /// ID file đang được xoá (null khi không xoá file nào).
+  final int? deletingFileId;
+
+  /// Danh sách nhóm hàng (loại PO) dùng khi tạo phiếu lead.
+  final List<LeadSalePoType> poTypes;
+
+  /// Danh sách lĩnh vực của khách hàng.
+  final List<LeadSaleCustomerIndustry> customerIndustries;
+
+  /// Danh sách ngành nghề của khách hàng.
+  final List<LeadSaleCustomerSpecialization> customerSpecializations;
+
+  /// Danh sách lĩnh vực kinh doanh.
+  final List<LeadSaleBusinessField> businessFields;
+
+  /// Danh sách tỉnh/thành.
+  final List<LeadSaleProvince> provinces;
+
+  /// Danh sách khách hàng.
+  final List<LeadSaleCustomer> customers;
+
+  /// Chi tiết khách hàng đang chọn trong form tạo phiếu lead.
+  final LeadSaleCustomer? customerDetail;
+
+  /// Trạng thái tải chi tiết khách hàng.
+  final BaseStateStatus customerDetailStatus;
+
+  /// Thông báo lỗi khi tải chi tiết khách hàng thất bại.
+  final String? customerDetailMessage;
+
+  /// Trạng thái đang kiểm tra trùng lặp + lưu phiếu lead.
+  final BaseStateStatus submitStatus;
+
+  /// Thông báo kết quả lưu phiếu lead (thành công / thất bại).
+  final String? submitMessage;
+
+  /// Kết quả lưu phiếu lead sau khi thành công (null nếu chưa lưu).
+  final LeadSaleSaveResult? saveResult;
+
+  /// Danh sách bản ghi lead bị trùng phát hiện bởi API check-duplicate.
+  ///
+  /// Không rỗng → UI hiện dialog xác nhận có lưu trùng hay không.
+  final List<LeadSaleDuplicateInfo> duplicates;
+
+  /// Trạng thái đang xoá phiếu lead.
+  final BaseStateStatus deleteStatus;
+
+  /// Thông báo kết quả xoá phiếu lead (thành công / thất bại).
+  final String? deleteMessage;
+
+  /// Trạng thái đang ghi hoạt động.
+  final BaseStateStatus activityStatus;
+
+  /// Thông báo kết quả ghi hoạt động (thành công / thất bại).
+  final String? activityMessage;
+
+  /// Kết quả ghi hoạt động sau khi thành công (null nếu chưa ghi).
+  final LeadSaleActivitySaveResult? activityResult;
+
+  /// Danh sách loại nhóm dùng cho form ghi hoạt động.
+  final List<LeadSaleActivityType> activityTypes;
+
+  /// Trạng thái tải danh sách loại nhóm.
+  final BaseStateStatus activityTypesStatus;
+
+  /// Thông báo lỗi khi tải danh sách loại nhóm thất bại.
+  final String? activityTypesMessage;
+
+  /// Trạng thái đang loại bỏ / mở lại lead.
+  final BaseStateStatus stageActionStatus;
+
+  /// Thông báo kết quả loại bỏ / mở lại lead (thành công / thất bại).
+  final String? stageActionMessage;
+
+  /// Danh sách ID lead đã loại bỏ / mở lại thành công.
+  final List<int> stageActionIds;
+
+  /// Danh sách Leader Sale nhận bàn giao.
+  final List<LeadSaleEmployee> saleLeaders;
+
+  /// Danh sách Admin Sale.
+  final List<LeadSaleEmployee> saleAdmins;
+
+  /// Trạng thái tải danh sách Leader Sale / Admin Sale.
+  final BaseStateStatus handoverOptionsStatus;
+
+  /// Thông báo lỗi khi tải danh sách Leader Sale / Admin Sale thất bại.
+  final String? handoverOptionsMessage;
+
+  /// ID Admin Sale tương ứng với Leader Sale vừa chọn (null khi chưa chọn).
+  final int? adminSaleId;
+
+  /// Trạng thái đang bàn giao lead.
+  final BaseStateStatus handoverStatus;
+
+  /// Thông báo kết quả bàn giao lead (thành công / thất bại).
+  final String? handoverMessage;
+
+  /// Danh sách ID lead đã bàn giao thành công.
+  final List<int> handoverIds;
+
+  /// Thông tin người dùng hiện tại — dùng để mặc định NV marketing phụ trách.
+  final User? currentUser;
+
+  const LeadSaleState({
+    required super.status,
+    super.message,
+    this.leads = const [],
+    this.roleContext,
+    this.dateStart,
+    this.dateEnd,
+    this.keyword = '',
+    this.viewMode = 2,
+    this.leadType = 0,
+    this.leadSourceId = 0,
+    this.marketingEmployeeId = 0,
+    this.saleEmployeeId = 0,
+    this.includeOpen = true,
+    this.stageFilter,
+    this.sources = const [],
+    this.marketingEmployees = const [],
+    this.saleEmployees = const [],
+    this.detail,
+    this.detailStatus = BaseStateStatus.init,
+    this.detailMessage,
+    this.files = const [],
+    this.filesStatus = BaseStateStatus.init,
+    this.filesMessage,
+    this.filesLeadId,
+    this.filesPo = const [],
+    this.filesPoStatus = BaseStateStatus.init,
+    this.filesPoMessage,
+    this.filesPoLeadId,
+    this.fileActionStatus = BaseStateStatus.init,
+    this.fileActionMessage,
+    this.deletingFileId,
+    this.poTypes = const [],
+    this.customerIndustries = const [],
+    this.customerSpecializations = const [],
+    this.businessFields = const [],
+    this.provinces = const [],
+    this.customers = const [],
+    this.customerDetail,
+    this.customerDetailStatus = BaseStateStatus.init,
+    this.customerDetailMessage,
+    this.submitStatus = BaseStateStatus.init,
+    this.submitMessage,
+    this.saveResult,
+    this.duplicates = const [],
+    this.deleteStatus = BaseStateStatus.init,
+    this.deleteMessage,
+    this.activityStatus = BaseStateStatus.init,
+    this.activityMessage,
+    this.activityResult,
+    this.activityTypes = const [],
+    this.activityTypesStatus = BaseStateStatus.init,
+    this.activityTypesMessage,
+    this.stageActionStatus = BaseStateStatus.init,
+    this.stageActionMessage,
+    this.stageActionIds = const [],
+    this.saleLeaders = const [],
+    this.saleAdmins = const [],
+    this.handoverOptionsStatus = BaseStateStatus.init,
+    this.handoverOptionsMessage,
+    this.adminSaleId,
+    this.handoverStatus = BaseStateStatus.init,
+    this.handoverMessage,
+    this.handoverIds = const [],
+    this.currentUser,
+  });
+
+  factory LeadSaleState.init() =>
+      const LeadSaleState(status: BaseStateStatus.init);
+
+  /// Danh sách phiếu lead sau khi áp dụng từ khoá tìm kiếm và lọc giai đoạn.
+  ///
+  /// Tìm theo mã lead, tên công ty, nguồn lead, nhân viên marketing/sale
+  /// và thông tin liên hệ.
+  List<LeadSaleItem> get displayLeads {
+    var result = leads;
+
+    // Lọc theo giai đoạn — null nghĩa là không lọc.
+    if (stageFilter != null) {
+      final stage = stageFilter!;
+      result = result.where((item) => stage.matches(item.stageName)).toList();
+    }
+
+    if (keyword.isEmpty) return result;
+
+    return result.where((item) => _matchesKeyword(item, keyword)).toList();
+  }
+
+  /// Số phiếu lead theo từng giai đoạn, dùng cho badge trong bộ lọc.
+  ///
+  /// Đếm trên tập đã lọc từ khoá (không lọc giai đoạn) để người dùng thấy
+  /// được số lượng thực tế của từng giai đoạn.
+  Map<LeadSaleStage?, int> get stageCounts {
+    final base = keyword.isEmpty
+        ? leads
+        : leads.where((item) => _matchesKeyword(item, keyword)).toList();
+
+    final counts = <LeadSaleStage?, int>{null: base.length};
+    for (final stage in LeadSaleStage.values) {
+      counts[stage] = base
+          .where((item) => stage.matches(item.stageName))
+          .length;
+    }
+    return counts;
+  }
+
+  /// Kiểm tra một phiếu lead có khớp từ khoá tìm kiếm hay không.
+  bool _matchesKeyword(LeadSaleItem item, String keyword) {
+    final kw = keyword.toLowerCase();
+    final leadCode = (item.leadCode ?? '').toLowerCase();
+    final companyName = (item.companyName ?? '').toLowerCase();
+    final customerName = (item.customerName ?? '').toLowerCase();
+    final sourceName = (item.leadSourceName ?? '').toLowerCase();
+    final marketingName = (item.marketingEmployeeName ?? '').toLowerCase();
+    final saleName = (item.saleEmployeeName ?? '').toLowerCase();
+    final contactName = (item.contactName ?? '').toLowerCase();
+    final contactPhone = (item.contactPhone ?? '').toLowerCase();
+
+    return leadCode.contains(kw) ||
+        companyName.contains(kw) ||
+        customerName.contains(kw) ||
+        sourceName.contains(kw) ||
+        marketingName.contains(kw) ||
+        saleName.contains(kw) ||
+        contactName.contains(kw) ||
+        contactPhone.contains(kw);
+  }
+
+  @override
+  List get props => [
+    status,
+    message,
+    leads,
+    roleContext,
+    dateStart,
+    dateEnd,
+    keyword,
+    viewMode,
+    leadType,
+    leadSourceId,
+    marketingEmployeeId,
+    saleEmployeeId,
+    includeOpen,
+    stageFilter,
+    sources,
+    marketingEmployees,
+    saleEmployees,
+    detail,
+    detailStatus,
+    detailMessage,
+    files,
+    filesStatus,
+    filesMessage,
+    filesLeadId,
+    filesPo,
+    filesPoStatus,
+    filesPoMessage,
+    filesPoLeadId,
+    fileActionStatus,
+    fileActionMessage,
+    deletingFileId,
+    poTypes,
+    customerIndustries,
+    customerSpecializations,
+    businessFields,
+    provinces,
+    customers,
+    customerDetail,
+    customerDetailStatus,
+    customerDetailMessage,
+    submitStatus,
+    submitMessage,
+    saveResult,
+    duplicates,
+    deleteStatus,
+    deleteMessage,
+    activityStatus,
+    activityMessage,
+    activityResult,
+    activityTypes,
+    activityTypesStatus,
+    activityTypesMessage,
+    stageActionStatus,
+    stageActionMessage,
+    stageActionIds,
+    saleLeaders,
+    saleAdmins,
+    handoverOptionsStatus,
+    handoverOptionsMessage,
+    adminSaleId,
+    handoverStatus,
+    handoverMessage,
+    handoverIds,
+    currentUser,
+  ];
+}

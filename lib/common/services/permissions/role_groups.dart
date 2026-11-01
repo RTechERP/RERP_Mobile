@@ -63,4 +63,10 @@ class PermissionGroups {
   static const senior = ['N85'];
   static const headOfDepartment = ['N32'];
   static const boardOfDirector = ['N1'];
+
+  /// Quyền được thấy menu CRM "Lead Marketing".
+  static const crmLeadMarketing = ['N124', 'N131'];
+
+  /// Quyền được thấy menu CRM "Lead Sale".
+  static const crmLeadSale = ['N125', 'N126', 'N127'];
 }

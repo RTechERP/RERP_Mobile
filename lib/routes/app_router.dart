@@ -217,6 +217,11 @@ import '../features/workplace/app/crm/lead_marketing/view/pages/lead_activity_ad
 import '../features/workplace/app/crm/lead_marketing/view/pages/lead_marketing_add_screen.dart';
 import '../features/workplace/app/crm/lead_marketing/view/pages/lead_marketing_edit_screen.dart';
 import '../features/workplace/app/crm/lead_marketing/view/pages/lead_marketing_screen.dart';
+import '../features/workplace/app/crm/lead_sale/data/datasource/models/lead_sale_model.dart';
+import '../features/workplace/app/crm/lead_sale/view/pages/lead_sale_activity_add_screen.dart';
+import '../features/workplace/app/crm/lead_sale/view/pages/lead_sale_add_screen.dart';
+import '../features/workplace/app/crm/lead_sale/view/pages/lead_sale_edit_screen.dart';
+import '../features/workplace/app/crm/lead_sale/view/pages/lead_sale_screen.dart';
 import '../features/workplace/app/crm/view/pages/crm_menu_screen.dart';
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
@@ -996,10 +1001,7 @@ class AppRouter {
               // `isOwnBooking = true` (phiếu của chính user, cho sửa).
               if (extra is int) {
                 return BookingGuestHouseSettlementScreen(
-                  extra: SettlementExtra(
-                    bookingId: extra,
-                    isOwnBooking: true,
-                  ),
+                  extra: SettlementExtra(bookingId: extra, isOwnBooking: true),
                 );
               }
               return const SizedBox.shrink();
@@ -1050,9 +1052,7 @@ class AppRouter {
               if (extra is RentalVehicleUpdateScreen) {
                 return extra;
               }
-              return const RentalVehicleUpdateScreen(
-                item: RentalVehicleItem(),
-              );
+              return const RentalVehicleUpdateScreen(item: RentalVehicleItem());
             },
           ),
         ],
@@ -1465,7 +1465,10 @@ class AppRouter {
       //---(Test Table)---//
       ShellRoute(
         builder: (context, state, child) {
-          return BlocProvider.value(value: getIt<TestTableBloc>(), child: child);
+          return BlocProvider.value(
+            value: getIt<TestTableBloc>(),
+            child: child,
+          );
         },
         routes: [
           GoRoute(
@@ -1493,7 +1496,9 @@ class AppRouter {
               final cardItem = state.extra as TestCardItem?;
               if (registrationId == null || registrationId == 0) {
                 return Scaffold(
-                  appBar: AppBar(title: const Text('Chỉnh sửa đăng ký bàn test')),
+                  appBar: AppBar(
+                    title: const Text('Chỉnh sửa đăng ký bàn test'),
+                  ),
                   body: const Center(
                     child: Text('Không tìm thấy mã phiếu đăng ký.'),
                   ),
@@ -1751,7 +1756,8 @@ class AppRouter {
               ),
               GoRoute(
                 path: RouteNames.personalApproveSeniorTimesheet,
-                builder: (context, state) => const ApproveTimesheetSeniorScreen(),
+                builder: (context, state) =>
+                    const ApproveTimesheetSeniorScreen(),
               ),
               GoRoute(
                 path: RouteNames.personalApproveSeniorTimesheetDetail,
@@ -2025,8 +2031,9 @@ class AppRouter {
       GoRoute(
         path: RouteNames.celebration,
         builder: (context, state) => BlocProvider(
-          create: (_) => CelebrationBloc(getIt<CelebrationRepo>())
-            ..add(const CelebrationEvent.checkBirthdaySeniority()),
+          create: (_) =>
+              CelebrationBloc(getIt<CelebrationRepo>())
+                ..add(const CelebrationEvent.checkBirthdaySeniority()),
           child: const CelebrationPopupScreen(),
         ),
       ),
@@ -2067,7 +2074,8 @@ class AppRouter {
                     leadId = (extra['id'] as int?) ?? 0;
                     stage = extra['stage'] as int?;
                     customerLabel = extra['customerLabel'] as String?;
-                    customerSnapshot = extra['customerSnapshot'] as LeadCustomer?;
+                    customerSnapshot =
+                        extra['customerSnapshot'] as LeadCustomer?;
                   } else if (extra is int) {
                     leadId = extra;
                   }
@@ -2093,6 +2101,62 @@ class AppRouter {
                     leadId = extra;
                   }
                   return LeadActivityAddScreen(
+                    leadId: leadId,
+                    leadCode: leadCode,
+                  );
+                },
+              ),
+            ],
+          ),
+          GoRoute(
+            path: RouteNames.crmLeadSale,
+            builder: (context, state) => const LeadSaleScreen(),
+            routes: [
+              GoRoute(
+                // Path con phải là relative (không có `/` đầu).
+                path: 'add',
+                builder: (context, state) => const LeadSaleAddScreen(),
+              ),
+              GoRoute(
+                // Path con phải là relative (không có `/` đầu).
+                path: 'edit',
+                builder: (context, state) {
+                  final extra = state.extra;
+                  int leadId = 0;
+                  int? stage;
+                  String? customerLabel;
+                  LeadSaleCustomer? customerSnapshot;
+                  if (extra is Map) {
+                    leadId = (extra['id'] as int?) ?? 0;
+                    stage = extra['stage'] as int?;
+                    customerLabel = extra['customerLabel'] as String?;
+                    customerSnapshot =
+                        extra['customerSnapshot'] as LeadSaleCustomer?;
+                  } else if (extra is int) {
+                    leadId = extra;
+                  }
+                  return LeadSaleEditScreen(
+                    leadId: leadId,
+                    stage: stage,
+                    customerLabel: customerLabel,
+                    customerSnapshot: customerSnapshot,
+                  );
+                },
+              ),
+              GoRoute(
+                // Path con phải là relative (không có `/` đầu).
+                path: 'activity/add',
+                builder: (context, state) {
+                  final extra = state.extra;
+                  int leadId = 0;
+                  String? leadCode;
+                  if (extra is Map) {
+                    leadId = (extra['id'] as int?) ?? 0;
+                    leadCode = extra['leadCode'] as String?;
+                  } else if (extra is int) {
+                    leadId = extra;
+                  }
+                  return LeadSaleActivityAddScreen(
                     leadId: leadId,
                     leadCode: leadCode,
                   );

@@ -176,7 +176,8 @@
   "crm": {
     "menu": "Menu CRM",
     "summary_customer": "T.h khách hàng",
-    "lead_marketing": "Lead Marketing"
+    "lead_marketing": "Lead Marketing",
+    "lead_sale": "Lead Sale"
   },
   "dio": {
     "cancel_request": "Request was cancelled",
