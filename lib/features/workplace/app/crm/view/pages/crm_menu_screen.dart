@@ -29,6 +29,10 @@ class CrmMenuScreen extends StatefulWidget {
 class _CrmMenuScreenState extends State<CrmMenuScreen> {
   /// Tập mã quyền của user hiện tại (vd: `N124`, `N125`).
   Set<String> _permissionCodes = {};
+  
+  /// User hiện tại
+  int? _currentUserId;
+  int? _currentEmployeeId;
 
   @override
   void initState() {
@@ -45,11 +49,21 @@ class _CrmMenuScreenState extends State<CrmMenuScreen> {
           .split(',')
           .map((code) => code.trim())
           .toSet();
+      _currentUserId = user.id;
+      _currentEmployeeId = user.employeeId;
     });
   }
 
   /// User có ít nhất một mã quyền trong [codes] hay không.
   bool _hasAny(List<String> codes) => codes.any(_permissionCodes.contains);
+  
+  /// Check quyền xem Nguồn Lead (N124, N131, N127 hoặc EmployeeID=332 hoặc UserID=1425).
+  bool get _canViewLeadSource {
+    if (_hasAny(PermissionGroups.crmLeadSource)) return true;
+    if (_currentEmployeeId == 332) return true;
+    if (_currentUserId == 1425) return true;
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,13 +124,14 @@ class _CrmMenuScreenState extends State<CrmMenuScreen> {
         tab: 'crm',
         route: '${RouteNames.crmMenu}/${RouteNames.crmLeadSale}',
       ),
-    AppItemModel(
-      id: 'crm:lead_source',
-      name: 'crm.lead_source'.tr(),
-      iconCodePoint: Icons.source_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'crm',
-      route: '${RouteNames.crmMenu}/${RouteNames.crmLeadSource}',
-    ),
+    if (_canViewLeadSource)
+      AppItemModel(
+        id: 'crm:lead_source',
+        name: 'crm.lead_source'.tr(),
+        iconCodePoint: Icons.source_outlined.codePoint,
+        iconFontFamily: 'MaterialIcons',
+        tab: 'crm',
+        route: '${RouteNames.crmMenu}/${RouteNames.crmLeadSource}',
+      ),
   ];
 }

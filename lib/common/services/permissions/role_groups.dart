@@ -69,4 +69,7 @@ class PermissionGroups {
 
   /// Quyền được thấy menu CRM "Lead Sale".
   static const crmLeadSale = ['N125', 'N126', 'N127'];
+
+  /// Quyền được thấy menu CRM "Nguồn Lead".
+  static const crmLeadSource = ['N124', 'N131', 'N127'];
 }
