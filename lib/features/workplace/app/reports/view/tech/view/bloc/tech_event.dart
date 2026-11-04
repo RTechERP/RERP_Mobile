@@ -65,6 +65,37 @@ class TechEvent with _$TechEvent {
     String? value,
   }) = _UpdateLocation;
 
+  /// ===== OVERTIME (LÀM THÊM) =====
+  /// Bật/tắt khai báo làm thêm cho một hạng mục công việc.
+  const factory TechEvent.toggleOvertime({
+    required int index,
+    required bool enabled,
+  }) = _ToggleOvertime;
+
+  /// Thêm một ca làm thêm mới (chưa lưu) vào hạng mục công việc.
+  const factory TechEvent.addOvertimeSession({required int index}) =
+      _AddOvertimeSession;
+
+  /// Xoá một ca làm thêm. Nếu ca làm thêm đã tồn tại trên DB (ID > 0) thì
+  /// được đánh dấu xoá mềm và gửi lên BE kèm `IsDeleted = true`.
+  const factory TechEvent.removeOvertimeSession({
+    required int index,
+    required int sessionIndex,
+  }) = _RemoveOvertimeSession;
+
+  /// Cập nhật thông tin một ca làm thêm (giờ, địa điểm, loại, lý do...).
+  const factory TechEvent.updateOvertimeSession({
+    required int index,
+    required int sessionIndex,
+    DateTime? timeStart,
+    DateTime? endTime,
+    int? location,
+    int? typeId,
+    int? approvedId,
+    bool? overnight,
+    String? reason,
+  }) = _UpdateOvertimeSession;
+
   /// ===== GLOBAL =====
   const factory TechEvent.updatePlanNextDay(String value) = _UpdatePlanNextDay;
 

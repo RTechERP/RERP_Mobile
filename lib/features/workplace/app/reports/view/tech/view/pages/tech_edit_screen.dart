@@ -14,8 +14,10 @@ import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
+import '../../data/tech_location.dart';
 import '../../data/tech_model.dart';
 import '../bloc/tech_bloc.dart';
+import '../widgets/tech_admin_hours_chip.dart';
 import '../widgets/tech_edit_work_item.dart';
 
 class TechEditScreen extends StatefulWidget {
@@ -64,12 +66,13 @@ class _TechEditScreenState
     return MultiBlocListener(
       listeners: [
         BlocListener<TechBloc, TechState>(
-          // Chỉ can thiệp khi locationType đổi qua 'other' lần đầu,
+          // Chỉ can thiệp khi locationType đổi qua 'Địa điểm công tác' lần đầu,
           // tránh gán ngược vào controller khi user đang gõ (gây loop event).
           listenWhen: (p, c) =>
-              p.locationType != c.locationType && c.locationType == 'other',
+              p.locationType != c.locationType &&
+              c.locationType == TechLocation.site,
           listener: (context, state) {
-            final newValue = state.location ?? '';
+            final newValue = state.siteLocation;
             if (_locationController.text != newValue) {
               _locationController.value = TextEditingValue(
                 text: newValue,
@@ -97,6 +100,17 @@ class _TechEditScreenState
             appBar: AppBarCommon(
               title: const Text('Chỉnh sửa báo cáo'),
               onBackTap: () => context.pop(),
+              actions: [
+                BlocBuilder<TechBloc, TechState>(
+                  buildWhen: (prev, curr) => prev.projects != curr.projects,
+                  builder: (context, state) => Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: TechAdminHoursChip(
+                      totalHours: TechAdminHoursChip.totalOf(state.projects),
+                    ),
+                  ),
+                ),
+              ],
             ),
             body: BlocBuilder<TechBloc, TechState>(
               builder: (context, state) {
@@ -124,6 +138,8 @@ class _TechEditScreenState
                                 format: DateFormat('dd/MM/yyyy'),
                                 initialValue: state.dateReport,
                                 isRequired: true,
+                                onChanged: (v) =>
+                                    bloc.add(TechEvent.updateDate(v)),
                                 validator: (v) {
                                   if (v == null) return 'Vui lòng chọn ngày';
                                   return null;
@@ -343,18 +359,19 @@ class _TechEditScreenState
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  FormBuilderRadioGroup<String>(
+                                  FormChoiceGroup<String>(
                                     name: 'location_type',
+                                    label: 'Địa điểm làm việc',
+                                    icon: Icons.location_on_outlined,
                                     initialValue: state.locationType,
-                                    options: const [
-                                      FormBuilderFieldOption(
-                                        value: 'rtc',
-                                        child: Text('VP RTC'),
-                                      ),
-                                      FormBuilderFieldOption(
-                                        value: 'other',
-                                        child: Text('Địa điểm khác'),
-                                      ),
+                                    columns: 2,
+                                    options: [
+                                      for (final option in TechLocation.options)
+                                        FormChoiceOption(
+                                          value: option,
+                                          label: option,
+                                          selectedColor: AppColors.primaryERP,
+                                        ),
                                     ],
                                     onChanged: (v) {
                                       if (v == null) return;
@@ -363,37 +380,31 @@ class _TechEditScreenState
                                       );
                                     },
                                   ),
-                                  const SizedBox(height: 8),
-                                  if (state.locationType == 'rtc')
-                                    const FormReadonlyField(
-                                      name: 'tech_edit_rtc_location',
-                                      label: '',
-                                      icon: Icons.location_on_outlined,
-                                      initialValue: 'VP RTC',
-                                    )
-                                  else
+                                  if (state.locationType == TechLocation.site) ...[
+                                    const SizedBox(height: 12),
                                     FormInputField(
                                       icon: Icons.location_on_outlined,
                                       nameForm: 'tech_edit_location',
                                       nameTextField: 'tech_edit_other_location',
-                                      label: 'Địa điểm làm việc',
+                                      label: 'Địa điểm công tác',
                                       controller: _locationController,
                                       isRequired: true,
                                       validator: (v) {
                                         if (v == null || v.trim().isEmpty) {
-                                          return 'Vui lòng nhập địa điểm';
+                                          return 'Vui lòng nhập địa điểm công tác';
                                         }
                                         return null;
                                       },
                                       onChanged: (v) {
                                         bloc.add(
                                           TechEvent.updateLocation(
-                                            type: 'other',
+                                            type: TechLocation.site,
                                             value: v,
                                           ),
                                         );
                                       },
                                     ),
+                                  ],
                                 ],
                               ),
                             ),
@@ -577,9 +588,10 @@ class _TechEditScreenState
                             date: values['tech_edit_date'] as DateTime?,
                             projectId: state.selectedProject?.projectId ?? 0,
                             works: state.selectedProject?.works ?? [],
-                            locationType: state.locationType,
                             location: state.location,
                             nextPlan: values['next_plan'] as String?,
+                            requireLocationDetail:
+                                state.locationType == TechLocation.site,
                             getProjectItemId: (w) => w.projectItemId,
                             getTotalHours: (w) => w.totalHours,
                             getOtHours: (w) => w.totalHourOT,

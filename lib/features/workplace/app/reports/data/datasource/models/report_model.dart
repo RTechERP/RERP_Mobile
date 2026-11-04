@@ -236,6 +236,50 @@ class ProjectItemResponse with _$ProjectItemResponse {
 }
 
 /// ==========================
+/// 🔹 Overtime Record Model
+///
+/// Bản ghi ca làm thêm (`EmployeeOvertime`) kèm liên kết tới hạng mục công việc
+/// (`ProjectItemID`) — BE ánh xạ qua bảng trung gian `EmployeeOvertimeProjectItem`.
+/// ==========================
+@freezed
+class OvertimeRecord with _$OvertimeRecord {
+  const factory OvertimeRecord({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'ApprovedID') int? approvedId,
+    @JsonKey(name: 'DateRegister') DateTime? dateRegister,
+    @JsonKey(name: 'TimeStart') DateTime? timeStart,
+    @JsonKey(name: 'EndTime') DateTime? endTime,
+    @JsonKey(name: 'TimeReality') double? timeReality,
+    @JsonKey(name: 'Location') int? location,
+    @JsonKey(name: 'TypeID') int? typeId,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'ProjectItemID') int? projectItemId,
+    @JsonKey(name: 'Overnight') bool? overnight,
+    @JsonKey(name: 'CostOvernight') double? costOvernight,
+    @JsonKey(name: 'Reason') String? reason,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _OvertimeRecord;
+
+  factory OvertimeRecord.fromJson(Map<String, dynamic> json) =>
+      _$OvertimeRecordFromJson(json);
+}
+
+/// ==========================
+/// 🔹 Default Approver Model (người duyệt mặc định cho nhân viên)
+/// ==========================
+@freezed
+class ApproveInfo with _$ApproveInfo {
+  const factory ApproveInfo({
+    @JsonKey(name: 'ApproveID') int? approveId,
+    @JsonKey(name: 'ApproveName') String? approveName,
+  }) = _ApproveInfo;
+
+  factory ApproveInfo.fromJson(Map<String, dynamic> json) =>
+      _$ApproveInfoFromJson(json);
+}
+
+/// ==========================
 /// 🔹 Save Report Tech Request Model
 /// ==========================
 

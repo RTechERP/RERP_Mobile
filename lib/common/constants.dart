@@ -60,6 +60,16 @@ class ApiEndPoint {
 
   static const String saveReportTech = '/DailyReportTech/save-report-tech';
 
+  /// Lưu ca làm thêm kèm liên kết hạng mục công việc (ProjectItemID).
+  static const String saveOvertimeTech = '/DailyReportTech/save-overtime-tech';
+
+  /// Lấy ca làm thêm đã đăng ký trong ngày (kèm ProjectItemID).
+  static const String getOvertimeByDate = '/DailyReportTech/get-overtime-by-date';
+
+  /// Kiểm tra hạng mục công việc có đủ thông tin để báo cáo hay chưa.
+  static const String checkInformationReport =
+      '/projecttask/check-information-report';
+
   static const String sendMailReport = '/DailyReportTech/send-email-report';
 
   static const String getById = '/DailyReportTech/get-by-id';

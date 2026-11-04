@@ -1,6 +1,309 @@
 import 'package:equatable/equatable.dart';
 import '../../../data/datasource/models/report_model.dart';
 
+/// Một ca làm thêm (OT) gắn với một hạng mục công việc cụ thể.
+///
+/// Lưu ý: bảng `EmployeeOvertime` không có cột `ProjectItemID` — liên kết tới
+/// hạng mục được BE ánh xạ qua bảng trung gian `EmployeeOvertimeProjectItem`
+/// khi gọi `POST /api/DailyReportTech/save-overtime-tech`.
+class OvertimeSession extends Equatable {
+  /// Số ca làm thêm tối đa được khai báo cho 1 hạng mục trong 1 ngày.
+  ///
+  /// Ca 1: 18:00 - 20:00, Ca 2: 20:00 - 22:00, Ca 3: 22:00 - 23:59.
+  /// Từ Ca 4 trở đi phải khai báo làm đêm.
+  static const int maxShifts = 3;
+
+  /// Thông báo khi đã đạt giới hạn số ca làm thêm.
+  static const String maxShiftsMessage =
+      'Thời gian làm thêm được khai báo đã tối đa! Vui lòng khai báo làm đêm';
+
+  /// ID bản ghi trên BE. `0` = ca làm thêm mới (chưa lưu).
+  final int id;
+
+  final int employeeId;
+
+  /// Người duyệt (trưởng phòng / đội trưởng) của nhân viên.
+  final int approvedId;
+
+  /// Ngày đăng ký làm thêm — luôn trùng với ngày báo cáo.
+  final DateTime? dateRegister;
+
+  final DateTime? timeStart;
+  final DateTime? endTime;
+
+  /// Số giờ thực tế = EndTime - TimeStart (làm tròn 2 chữ số).
+  final double timeReality;
+
+  /// Địa điểm làm thêm — dùng chung bảng `Location` với module làm thêm:
+  /// 1 = Văn phòng RTC, 4 = Nhà máy RTC, 2 = Địa điểm công tác, 3 = Tại nhà.
+  final int location;
+
+  /// Loại làm thêm — trỏ tới `ID` của `/EmployeeTypeOverTime`.
+  final int typeId;
+
+  final int projectId;
+
+  /// Hạng mục công việc mà ca làm thêm này gắn vào.
+  final int projectItemId;
+
+  /// Có hưởng phụ cấp ăn tối (đêm) hay không.
+  final bool overnight;
+
+  /// Phụ cấp đêm: 30000 VND khi [overnight] = true, ngược lại 0.
+  final double costOvernight;
+
+  final String reason;
+
+  /// Đánh dấu xoá mềm — gửi lên BE cùng payload để dọn cả 2 bảng.
+  final bool isDeleted;
+
+  const OvertimeSession({
+    required this.id,
+    required this.employeeId,
+    required this.approvedId,
+    this.dateRegister,
+    this.timeStart,
+    this.endTime,
+    this.timeReality = 0,
+    this.location = 1,
+    this.typeId = 1,
+    this.projectId = 0,
+    this.projectItemId = 0,
+    this.overnight = false,
+    this.costOvernight = 0,
+    this.reason = '',
+    this.isDeleted = false,
+  });
+
+  /// Tạo ca làm thêm mới (chưa lưu) gắn với hạng mục công việc.
+  ///
+  /// [timeStart] / [endTime] là khung giờ của ca (đã neo vào ngày báo cáo).
+  /// Nếu truyền cả hai thì [timeReality] được tính tự động.
+  ///
+  /// [location] và [typeId] mặc định là `0` (chưa chọn) để bắt buộc người
+  /// dùng chọn trong sheet — tránh gửi lên BE giá trị mặc định không mong muốn.
+  ///
+  /// [overnight] là trạng thái phụ cấp ăn tối (mặc định `false`).
+  factory OvertimeSession.newSession({
+    required int employeeId,
+    required int approvedId,
+    required DateTime dateRegister,
+    required int projectId,
+    required int projectItemId,
+    DateTime? timeStart,
+    DateTime? endTime,
+    int location = 0,
+    bool overnight = false,
+  }) {
+    return OvertimeSession(
+      id: 0,
+      employeeId: employeeId,
+      approvedId: approvedId,
+      dateRegister: dateRegister,
+      timeStart: timeStart,
+      endTime: endTime,
+      timeReality: computeHours(timeStart, endTime) ?? 0,
+      location: location,
+      typeId: 0,
+      projectId: projectId,
+      projectItemId: projectItemId,
+      overnight: overnight,
+      costOvernight: overnight ? 30000 : 0,
+    );
+  }
+
+  /// Ánh xạ từ response `GET /api/DailyReportTech/get-overtime-by-date`.
+  factory OvertimeSession.fromApi(OvertimeRecord record) {
+    return OvertimeSession(
+      id: record.id,
+      employeeId: record.employeeId ?? 0,
+      approvedId: record.approvedId ?? 0,
+      dateRegister: record.dateRegister,
+      timeStart: record.timeStart,
+      endTime: record.endTime,
+      timeReality: record.timeReality ?? 0,
+      location: record.location ?? 1,
+      typeId: record.typeId ?? 1,
+      projectId: record.projectId ?? 0,
+      projectItemId: record.projectItemId ?? 0,
+      overnight: record.overnight ?? false,
+      costOvernight: record.costOvernight ?? 0,
+      reason: record.reason ?? '',
+      isDeleted: record.isDeleted ?? false,
+    );
+  }
+
+  /// Tính lại số giờ thực tế từ [timeStart] / [endTime].
+  ///
+  /// Công thức: `Round((EndTime - TimeStart) / 3600000, 2)` — làm tròn 2 chữ số.
+  /// Trả về `null` nếu thiếu mốc thời gian hoặc khoảng thời gian không hợp lệ.
+  static double? computeHours(DateTime? start, DateTime? end) {
+    if (start == null || end == null) return null;
+    final minutes = end.difference(start).inMinutes;
+    if (minutes <= 0) return null;
+    final hours = minutes / 60;
+    return (hours * 100).round() / 100;
+  }
+
+  /// Ca làm thêm `18:00 - 20:00` — mặc định được tích phụ cấp ăn tối.
+  ///
+  /// Dùng để tự động bật [overnight] khi ca trùng khung giờ này.
+  static bool isDinnerShift(DateTime? start, DateTime? end) {
+    if (start == null || end == null) return false;
+    return start.hour == 18 &&
+        start.minute == 0 &&
+        end.hour == 20 &&
+        end.minute == 0;
+  }
+
+  /// Kiểm tra tính hợp lệ của 1 ca làm thêm.
+  ///
+  /// [reportDate] là ngày báo cáo — ca làm thêm phải nằm trong ngày này.
+  /// [reason] là lý do làm thêm dùng để validate (mặc định lấy từ session).
+  /// Trả về thông báo lỗi, hoặc `null` nếu hợp lệ.
+  static String? validate(
+    OvertimeSession session, {
+    required DateTime reportDate,
+    String? reason,
+  }) {
+    if (session.timeStart == null || session.endTime == null) {
+      return 'Vui lòng chọn thời gian bắt đầu và kết thúc của ca làm thêm';
+    }
+
+    if (!session.endTime!.isAfter(session.timeStart!)) {
+      return 'Thời gian kết thúc phải lớn hơn thời gian bắt đầu';
+    }
+
+    // Ca làm thêm phải nằm trong ngày báo cáo (00:00 - 23:59).
+    final dayStart = DateTime(
+      reportDate.year,
+      reportDate.month,
+      reportDate.day,
+    );
+    final dayEnd = dayStart.add(const Duration(days: 1));
+
+    if (session.timeStart!.isBefore(dayStart) ||
+        !session.timeStart!.isBefore(dayEnd) ||
+        !session.endTime!.isBefore(dayEnd)) {
+      return 'Thời gian làm thêm phải nằm trong ngày báo cáo';
+    }
+
+    if (session.approvedId <= 0) {
+      return 'Không tìm thấy người duyệt cho ca làm thêm';
+    }
+
+    if (session.location <= 0) {
+      return 'Vui lòng chọn địa điểm làm thêm';
+    }
+
+    if (session.typeId <= 0) {
+      return 'Vui lòng chọn loại làm thêm';
+    }
+
+    final finalReason = reason ?? session.reason;
+    if (finalReason.trim().isEmpty) {
+      return 'Vui lòng nhập lý do làm thêm';
+    }
+
+    return null;
+  }
+
+  OvertimeSession copyWith({
+    int? id,
+    int? employeeId,
+    int? approvedId,
+    DateTime? dateRegister,
+    DateTime? timeStart,
+    DateTime? endTime,
+    double? timeReality,
+    int? location,
+    int? typeId,
+    int? projectId,
+    int? projectItemId,
+    bool? overnight,
+    double? costOvernight,
+    String? reason,
+    bool? isDeleted,
+  }) {
+    return OvertimeSession(
+      id: id ?? this.id,
+      employeeId: employeeId ?? this.employeeId,
+      approvedId: approvedId ?? this.approvedId,
+      dateRegister: dateRegister ?? this.dateRegister,
+      timeStart: timeStart ?? this.timeStart,
+      endTime: endTime ?? this.endTime,
+      timeReality: timeReality ?? this.timeReality,
+      location: location ?? this.location,
+      typeId: typeId ?? this.typeId,
+      projectId: projectId ?? this.projectId,
+      projectItemId: projectItemId ?? this.projectItemId,
+      overnight: overnight ?? this.overnight,
+      costOvernight: costOvernight ?? this.costOvernight,
+      reason: reason ?? this.reason,
+      isDeleted: isDeleted ?? this.isDeleted,
+    );
+  }
+
+  /// Payload gửi lên `POST /api/DailyReportTech/save-overtime-tech`.
+  Map<String, dynamic> toPayload() {
+    return {
+      'ID': id,
+      'EmployeeID': employeeId,
+      'ApprovedID': approvedId,
+      'DateRegister': _formatIso(dateRegister),
+      'TimeStart': _formatIso(timeStart),
+      'EndTime': _formatIso(endTime),
+      'TimeReality': timeReality,
+      'Location': location,
+      'TypeID': typeId,
+      'ProjectID': projectId,
+      'ProjectItemID': projectItemId,
+      'Overnight': overnight,
+      'CostOvernight': overnight ? 30000 : 0,
+      'Reason': reason,
+      'IsDeleted': isDeleted,
+    };
+  }
+
+  /// Payload rút gọn cho bản ghi đã xoá mềm (chỉ cần ID + EmployeeID + IsDeleted).
+  Map<String, dynamic> toDeletePayload() {
+    return {
+      'ID': id,
+      'EmployeeID': employeeId,
+      'IsDeleted': true,
+    };
+  }
+
+  static String? _formatIso(DateTime? dt) {
+    if (dt == null) return null;
+    final y = dt.year.toString().padLeft(4, '0');
+    final m = dt.month.toString().padLeft(2, '0');
+    final d = dt.day.toString().padLeft(2, '0');
+    final hh = dt.hour.toString().padLeft(2, '0');
+    final mm = dt.minute.toString().padLeft(2, '0');
+    return '$y-$m-${d}T$hh:$mm:00';
+  }
+
+  @override
+  List<Object?> get props => [
+    id,
+    employeeId,
+    approvedId,
+    dateRegister,
+    timeStart,
+    endTime,
+    timeReality,
+    location,
+    typeId,
+    projectId,
+    projectItemId,
+    overnight,
+    costOvernight,
+    reason,
+    isDeleted,
+  ];
+}
+
 class TechWork extends Equatable {
   final int id;
 
@@ -46,6 +349,12 @@ class TechWork extends Equatable {
   final int? totalDayPlan;
   final String? location;
 
+  /// Danh sách ca làm thêm đã gắn với hạng mục công việc này.
+  final List<OvertimeSession> overtimes;
+
+  /// Người dùng có bật chế độ khai báo làm thêm cho hạng mục này hay không.
+  final bool hasOvertime;
+
 
   const TechWork({
     required this.id,
@@ -79,6 +388,8 @@ class TechWork extends Equatable {
     this.problemSolve,
     this.projectItemId,
     this.location,
+    this.overtimes = const [],
+    this.hasOvertime = false,
   });
 
   factory TechWork.empty({
@@ -244,6 +555,8 @@ class TechWork extends Equatable {
     String? dateReport,
     DateTime? holidayDate,
     String? location,
+    List<OvertimeSession>? overtimes,
+    bool? hasOvertime,
   }) {
     return TechWork(
       id: id,
@@ -285,6 +598,8 @@ class TechWork extends Equatable {
       projectItemId: projectItemId ?? this.projectItemId,
       location: location ?? this.location,
 
+      overtimes: overtimes ?? this.overtimes,
+      hasOvertime: hasOvertime ?? this.hasOvertime,
     );
   }
 
@@ -321,6 +636,8 @@ class TechWork extends Equatable {
     holidayDate,
     projectItemId,
     location,
+    overtimes,
+    hasOvertime,
   ];
 }
 

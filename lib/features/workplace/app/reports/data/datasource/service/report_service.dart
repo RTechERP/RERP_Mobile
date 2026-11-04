@@ -98,19 +98,78 @@ class ReportService extends DioBaseApiService {
   }
 
   /// Lưu báo cáo công việc "Phòng Kỹ thuật"
+  ///
+  /// Gửi cả danh sách báo cáo trong một request (root là mảng) theo
+  /// `POST /api/DailyReportTech/save-report-tech`.
   Future<BaseData<List<int>>> saveReportTech({
-    required Map<String, dynamic> payload,
+    required List<Map<String, dynamic>> payload,
   }) async {
-    final body = [payload]; // ✅ root là mảng
     return post<BaseData<List<int>>>(
       ApiEndPoint.saveReportTech,
-      body: body, // nếu wrapper không encode thì đổi thành jsonEncode(body)
+      body: payload,
       parser: (json) => BaseData<List<int>>.fromJson(
         json,
         (data) => (data as List)
             .map((e) => (e as num).toInt())
             .toList(),
       ),
+    );
+  }
+
+  /// Lấy danh sách ca làm thêm đã đăng ký trong ngày (kèm ProjectItemID liên kết).
+  Future<BaseData<List<OvertimeRecord>>> getOvertimeByDate({
+    required DateTime dateRegister,
+    int? employeeId,
+  }) async {
+    String fmt(DateTime d) {
+      final y = d.year.toString().padLeft(4, '0');
+      final m = d.month.toString().padLeft(2, '0');
+      final day = d.day.toString().padLeft(2, '0');
+      return '$y-$m-$day';
+    }
+
+    return get<BaseData<List<OvertimeRecord>>>(
+      ApiEndPoint.getOvertimeByDate,
+      query: {
+        'dateRegister': fmt(dateRegister),
+        if (employeeId != null) 'employeeId': employeeId,
+      },
+      parser: (json) => BaseData<List<OvertimeRecord>>.fromJson(
+        json,
+        (data) => (data as List)
+            .map((e) => OvertimeRecord.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
+  /// Lưu ca làm thêm kèm liên kết hạng mục công việc.
+  ///
+  /// Bắt buộc gửi header `TimeZoneOffset` (phút lệch so với UTC, VD: 420 cho GMT+7)
+  /// để tránh lệch thời gian.
+  Future<BaseData<void>> saveOvertimeTech({
+    required Map<String, dynamic> payload,
+  }) async {
+    final offsetMinutes = DateTime.now().timeZoneOffset.inMinutes;
+
+    return post<BaseData<void>>(
+      ApiEndPoint.saveOvertimeTech,
+      body: payload,
+      options: Options(
+        headers: {'TimeZoneOffset': offsetMinutes},
+      ),
+      parser: (json) => BaseData<void>.fromJson(json, (_) => null),
+    );
+  }
+
+  /// Kiểm tra hạng mục công việc đã đủ thông tin để báo cáo hay chưa.
+  Future<BaseData<bool>> checkInformationReport({
+    required int projectTaskId,
+  }) async {
+    return get<BaseData<bool>>(
+      ApiEndPoint.checkInformationReport,
+      query: {'projectTaskID': projectTaskId},
+      parser: (json) => BaseData<bool>.fromJson(json, (data) => data == true),
     );
   }
 

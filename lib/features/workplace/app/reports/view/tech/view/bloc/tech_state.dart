@@ -27,7 +27,16 @@ class TechState extends BaseBlocState {
   final DateTime? dateEnd;
   final String? keyword;
 
+  /// Lựa chọn "Nơi làm việc" hiện tại (một trong [TechLocation.options]).
   final String locationType;
+
+  /// Địa chỉ cụ thể do người dùng nhập khi chọn "Địa điểm công tác".
+  final String siteLocation;
+
+  /// Giá trị nơi làm việc gửi lên BE.
+  ///
+  /// Với lựa chọn cố định → đúng text hiển thị (VD: "Văn phòng").
+  /// Với "Địa điểm công tác" → địa chỉ đã nhập.
   final String? location;
 
   final String? backlog;
@@ -75,6 +84,31 @@ class TechState extends BaseBlocState {
   final int? departmentId;
 
   final int? employeeID;
+
+  /// Ca làm thêm đã đăng ký trong ngày đang báo cáo (cache từ API 4.4).
+  final List<OvertimeSession> dailyOvertimes;
+
+  /// Ca làm thêm đã bị xoá mềm trên form — cần gửi `IsDeleted = true` khi lưu.
+  final List<OvertimeSession> deletedOvertimes;
+
+  /// Người duyệt mặc định của nhân viên (trưởng phòng / đội trưởng).
+  final int? defaultApproveId;
+
+  /// Danh sách người duyệt (trưởng phòng / đội trưởng) để chọn trong sheet.
+  final List<ApproverItem> approvers;
+
+  /// Danh sách loại làm thêm (từ `/EmployeeTypeOverTime`).
+  final List<OvertimeType> overtimeTypes;
+  /// `true` khi phòng ban của nhân viên bắt buộc chọn Dự án + Hạng mục.
+  final bool isProjectItemRequired;
+
+  /// Ngày báo cáo đang chỉnh sửa trong form (dùng làm mốc cho ca làm thêm).
+  final DateTime? currentReportDate;
+
+  /// Danh sách hạng mục công việc chưa đủ thông tin để báo cáo
+  /// (thiếu ngày kế hoạch / actual) — không được phép báo cáo trên các hạng mục này.
+  final Set<int> ineligibleProjectItemIds;
+
   const TechState({
     required super.status,
     super.message,
@@ -92,6 +126,7 @@ class TechState extends BaseBlocState {
     this.dateEnd,
     this.keyword,
     required this.locationType,
+    this.siteLocation = '',
     this.location,
     this.backlog,
     this.problem,
@@ -124,7 +159,15 @@ class TechState extends BaseBlocState {
     this.teamId,
     this.departmentId,
     this.employeeID,
-    this.copyError
+    this.copyError,
+    this.dailyOvertimes = const [],
+    this.deletedOvertimes = const [],
+    this.defaultApproveId,
+    this.approvers = const [],
+    this.overtimeTypes = const [],
+    this.isProjectItemRequired = false,
+    this.currentReportDate,
+    this.ineligibleProjectItemIds = const {},
   });
 
   factory TechState.init() => const TechState(
@@ -139,8 +182,9 @@ class TechState extends BaseBlocState {
     selectedProject: null,
     expandedProjectIndex: 0,
     expandedWorkIndex: null,
-    locationType: 'rtc',
-    location: 'VP RTC',
+    locationType: TechLocation.office,
+    siteLocation: '',
+    location: TechLocation.office,
     isSubmitting: false,
     submitSuccess: false,
     projectError: null,
@@ -166,6 +210,14 @@ class TechState extends BaseBlocState {
     departmentId: null,
     employeeID: null,
     copyError: null,
+    dailyOvertimes: [],
+    deletedOvertimes: [],
+    defaultApproveId: null,
+    approvers: [],
+    overtimeTypes: [],
+    isProjectItemRequired: false,
+    currentReportDate: null,
+    ineligibleProjectItemIds: {},
   );
 
   @override
@@ -181,6 +233,7 @@ class TechState extends BaseBlocState {
     dateEnd,
     keyword,
     locationType,
+    siteLocation,
     location,
     backlog,
     problem,
@@ -219,5 +272,13 @@ class TechState extends BaseBlocState {
     departmentId,
     employeeID,
     copyError,
+    dailyOvertimes,
+    deletedOvertimes,
+    defaultApproveId,
+    approvers,
+    overtimeTypes,
+    isProjectItemRequired,
+    currentReportDate,
+    ineligibleProjectItemIds,
   ];
 }

@@ -15,11 +15,12 @@ import '../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/buttons/custom_text_button.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
-import '../../../../../../../../routes/route_names.dart';
 import '../../../../data/datasource/models/report_model.dart';
+import '../../data/tech_location.dart';
 import '../../data/tech_model.dart';
 import '../bloc/tech_bloc.dart';
 import '../widgets/tech_add_work_item.dart';
+import '../widgets/tech_admin_hours_chip.dart';
 
 class TechAddScreen extends StatefulWidget {
   final List<CopyNullResponse>? copyItems;
@@ -79,13 +80,14 @@ class _TechAddScreenState
           appBar: AppBarCommon(
             title: const Text('Tạo báo cáo'),
             actions: [
-              IconButton(
-                icon: const Icon(Icons.add_circle_outline, ),
-                onPressed: () {
-                  context.push(RouteNames.regworkOvertimeAdd);
-                },
-                color: AppColors.primaryERP,
-
+              BlocBuilder<TechBloc, TechState>(
+                buildWhen: (prev, curr) => prev.projects != curr.projects,
+                builder: (context, state) => Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: TechAdminHoursChip(
+                    totalHours: TechAdminHoursChip.totalOf(state.projects),
+                  ),
+                ),
               ),
             ],
           ),
@@ -114,6 +116,8 @@ class _TechAddScreenState
                                 initialValue: _initialReportDate(),
                                 format: DateFormat('dd/MM/yyyy'),
                                 isRequired: true,
+                                onChanged: (v) =>
+                                    bloc.add(TechEvent.updateDate(v)),
                                 validator: (v) {
                                   if (v == null)
                                     return 'Vui lòng chọn ngày báo cáo';
@@ -431,22 +435,22 @@ class _TechAddScreenState
 
                             /// ===== LOCATION =====
                             FormCard(
-                              title: 'Nơi làm việc',
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  FormBuilderRadioGroup<String>(
+                                  FormChoiceGroup<String>(
                                     name: 'location_type',
+                                    label: 'Địa điểm làm việc',
+                                    icon: Icons.location_on_outlined,
                                     initialValue: state.locationType,
-                                    options: const [
-                                      FormBuilderFieldOption(
-                                        value: 'rtc',
-                                        child: Text('VP RTC'),
-                                      ),
-                                      FormBuilderFieldOption(
-                                        value: 'other',
-                                        child: Text('Địa điểm khác'),
-                                      ),
+                                    columns: 2,
+                                    options: [
+                                      for (final option in TechLocation.options)
+                                        FormChoiceOption(
+                                          value: option,
+                                          label: option,
+                                          selectedColor: AppColors.primaryERP,
+                                        ),
                                     ],
                                     onChanged: (v) {
                                       if (v == null) return;
@@ -455,30 +459,31 @@ class _TechAddScreenState
                                       );
                                     },
                                   ),
-                                  const SizedBox(height: 8),
-                                  if (state.locationType == 'rtc')
-                                    const FormReadonlyField(
-                                      name: 'tech_add_rtc_location',
-                                      label: '',
-                                      icon: Icons.location_on_outlined,
-                                      initialValue: 'VP RTC',
-                                    )
-                                  else
+                                  if (state.locationType == TechLocation.site) ...[
+                                    const SizedBox(height: 12),
                                     FormInputField(
                                       icon: Icons.location_on_outlined,
                                       nameForm: 'tech_add_location',
                                       nameTextField: 'tech_add_other_location',
-                                      label: 'Địa điểm làm việc',
-                                      initialValue: state.location ?? '',
+                                      label: 'Địa điểm công tác',
+                                      initialValue: state.siteLocation,
+                                      isRequired: true,
+                                      validator: (v) {
+                                        if (v == null || v.trim().isEmpty) {
+                                          return 'Vui lòng nhập địa điểm công tác';
+                                        }
+                                        return null;
+                                      },
                                       onChanged: (v) {
                                         bloc.add(
                                           TechEvent.updateLocation(
-                                            type: 'other',
+                                            type: TechLocation.site,
                                             value: v,
                                           ),
                                         );
                                       },
                                     ),
+                                  ],
                                 ],
                               ),
                             ),
@@ -640,9 +645,10 @@ class _TechAddScreenState
                           date: values['tech_add_date'] as DateTime?,
                           projectId: state.selectedProject?.projectId ?? 0,
                           works: state.selectedProject?.works ?? [],
-                          locationType: state.locationType,
                           location: state.location,
                           nextPlan: values['next_plan'] as String?,
+                          requireLocationDetail:
+                              state.locationType == TechLocation.site,
                           getProjectItemId: (w) => w.projectItemId,
                           getTotalHours: (w) => w.totalHours,
                           getOtHours: (w) => w.totalHourOT,

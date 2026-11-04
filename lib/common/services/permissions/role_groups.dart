@@ -10,6 +10,12 @@ class DepartmentGroups {
 
   /// ===== DEPARTMENT OVERTIME =====
   static const overtimeDepartmentID = [2, 24, 25, 26, 27, 32];
+
+  /// Phòng ban bắt buộc phải chọn Dự án + Hạng mục công việc khi báo cáo kỹ thuật.
+  /// (BE cũng chặn khi `ProjectID <= 0` hoặc `ProjectItemID <= 0`.)
+  static const techReportRequireProjectItem = [
+    2, 9, 10, 23, 24, 25, 26, 27,
+  ];
 }
 
 class EmployeeIdGroups {

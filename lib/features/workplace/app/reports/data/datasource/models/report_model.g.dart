@@ -366,6 +366,63 @@ Map<String, dynamic> _$$ProjectItemResponseImplToJson(
       'EmployeeID': instance.employeeId,
     };
 
+_$OvertimeRecordImpl _$$OvertimeRecordImplFromJson(Map<String, dynamic> json) =>
+    _$OvertimeRecordImpl(
+      id: (json['ID'] as num).toInt(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      approvedId: (json['ApprovedID'] as num?)?.toInt(),
+      dateRegister: json['DateRegister'] == null
+          ? null
+          : DateTime.parse(json['DateRegister'] as String),
+      timeStart: json['TimeStart'] == null
+          ? null
+          : DateTime.parse(json['TimeStart'] as String),
+      endTime: json['EndTime'] == null
+          ? null
+          : DateTime.parse(json['EndTime'] as String),
+      timeReality: (json['TimeReality'] as num?)?.toDouble(),
+      location: (json['Location'] as num?)?.toInt(),
+      typeId: (json['TypeID'] as num?)?.toInt(),
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      projectItemId: (json['ProjectItemID'] as num?)?.toInt(),
+      overnight: json['Overnight'] as bool?,
+      costOvernight: (json['CostOvernight'] as num?)?.toDouble(),
+      reason: json['Reason'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$OvertimeRecordImplToJson(
+        _$OvertimeRecordImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'EmployeeID': instance.employeeId,
+      'ApprovedID': instance.approvedId,
+      'DateRegister': instance.dateRegister?.toIso8601String(),
+      'TimeStart': instance.timeStart?.toIso8601String(),
+      'EndTime': instance.endTime?.toIso8601String(),
+      'TimeReality': instance.timeReality,
+      'Location': instance.location,
+      'TypeID': instance.typeId,
+      'ProjectID': instance.projectId,
+      'ProjectItemID': instance.projectItemId,
+      'Overnight': instance.overnight,
+      'CostOvernight': instance.costOvernight,
+      'Reason': instance.reason,
+      'IsDeleted': instance.isDeleted,
+    };
+
+_$ApproveInfoImpl _$$ApproveInfoImplFromJson(Map<String, dynamic> json) =>
+    _$ApproveInfoImpl(
+      approveId: (json['ApproveID'] as num?)?.toInt(),
+      approveName: json['ApproveName'] as String?,
+    );
+
+Map<String, dynamic> _$$ApproveInfoImplToJson(_$ApproveInfoImpl instance) =>
+    <String, dynamic>{
+      'ApproveID': instance.approveId,
+      'ApproveName': instance.approveName,
+    };
+
 _$SaveReportTechRequestImpl _$$SaveReportTechRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$SaveReportTechRequestImpl(

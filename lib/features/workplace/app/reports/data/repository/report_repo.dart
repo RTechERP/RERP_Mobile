@@ -33,7 +33,23 @@ abstract class ReportRepo {
   /// Trả về danh sách ID báo cáo vừa tạo/cập nhật. Nếu response trả về
   /// `status == 1` nhưng `data` rỗng thì coi như lưu thất bại.
   Future<Either<BaseError, List<int>>> saveReportTech({
+    required List<Map<String, dynamic>> payload,
+  });
+
+  /// Lấy ca làm thêm đã đăng ký trong ngày (kèm `ProjectItemID` liên kết).
+  Future<Either<BaseError, List<OvertimeRecord>>> getOvertimeByDate({
+    required DateTime dateRegister,
+    int? employeeId,
+  });
+
+  /// Lưu ca làm thêm kèm liên kết hạng mục công việc.
+  Future<Either<BaseError, void>> saveOvertimeTech({
     required Map<String, dynamic> payload,
+  });
+
+  /// Kiểm tra hạng mục công việc đã đủ thông tin để báo cáo hay chưa.
+  Future<Either<BaseError, bool>> checkInformationReport({
+    required int projectTaskId,
   });
 
   /// Gửi mail báo cáo phòng kỹ thuật

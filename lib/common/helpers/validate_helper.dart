@@ -57,6 +57,13 @@ class ValidateHelper {
     return null;
   }
 
+  /// Validate báo cáo công việc kỹ thuật.
+  ///
+  /// Quy tắc (theo spec Daily Report + Overtime):
+  /// - `TotalHours` là **giờ hành chính**: mỗi hạng mục trong khoảng `[0, 8.0]`.
+  /// - Tổng giờ hành chính trong ngày (mọi hạng mục) không được vượt quá `8.0` giờ.
+  /// - `TotalHourOT` là giờ làm thêm, tính riêng (không trừ vào giờ hành chính).
+  /// - `PercentComplete` trong khoảng `[0, 100]`.
   static String? validateReport<T>({
     required DateTime? date,
     required int projectId,
@@ -69,16 +76,17 @@ class ValidateHelper {
     required String Function(T) getContent,
     required String Function(T) getResult,
 
-    String? locationType,
     String? location,
     String? nextPlan,
+    /// Bắt buộc nhập địa điểm cụ thể (VD: chọn "Địa điểm công tác" thì
+    /// phải nhập địa chỉ thay vì dùng giá trị cố định).
+    bool requireLocationDetail = false,
   }) {
     if (date == null) return 'Vui lòng chọn Ngày báo cáo';
     if (projectId == 0) return 'Vui lòng chọn dự án';
     if (works.isEmpty) return 'Vui lòng thêm ít nhất 1 công việc';
 
     double totalDayHours = 0;
-    double totalDayOT = 0;
     final usedIds = <int>{};
 
     for (int i = 0; i < works.length; i++) {
@@ -95,21 +103,15 @@ class ValidateHelper {
       final total = getTotalHours(work);
       final ot = getOtHours(work) ?? 0;
 
-      if (total <= 0) return '${prefix}Tổng số giờ phải lớn hơn 0';
-      if (total > 24) return '${prefix}Tổng số giờ không được lớn hơn 24';
+      // Giờ hành chính: 0 <= TotalHours <= 8.0
+      if (total < 0 || total > 8) {
+        return '${prefix}Tổng số giờ phải từ 0 đến 8 giờ';
+      }
       if (ot < 0) return '${prefix}Số giờ OT không được nhỏ hơn 0';
-      if (ot > total)
-        return '${prefix}Số giờ OT không được lớn hơn Tổng số giờ';
-      if (total > 8 && ot <= 0) {
-        return '${prefix}Tổng số giờ lớn hơn 8, vui lòng nhập OT';
-      }
-      if (total - ot > 8) {
-        return '${prefix}Số giờ hành chính không được lớn hơn 8h';
-      }
 
       final percent = getPercent(work);
-      if (percent <= 0 || percent > 100) {
-        return '$prefix% Hoàn thành phải từ 1 đến 100';
+      if (percent < 0 || percent > 100) {
+        return '$prefix% Hoàn thành phải từ 0 đến 100';
       }
 
       if (getContent(work).trim().isEmpty) {
@@ -121,14 +123,13 @@ class ValidateHelper {
       }
 
       totalDayHours += total;
-      totalDayOT += ot;
     }
 
-    if (totalDayHours - totalDayOT > 8) {
+    if (totalDayHours > 8) {
       return 'Tổng giờ hành chính trong ngày không được lớn hơn 8h';
     }
 
-    if (locationType == 'other' && (location?.trim().isEmpty ?? true)) {
+    if (requireLocationDetail && (location?.trim().isEmpty ?? true)) {
       return 'Vui lòng nhập Nơi làm việc';
     }
 

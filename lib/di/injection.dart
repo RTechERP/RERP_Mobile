@@ -610,7 +610,12 @@ void configureDependencies() {
     () => AuthBloc(getIt<AuthRepo>(), getIt<LogUtils>()),
   );
   getIt.registerFactory<TechBloc>(
-    () => TechBloc(getIt<ReportRepo>(), getIt<AuthRepo>(), getIt<LogUtils>()),
+    () => TechBloc(
+      getIt<ReportRepo>(),
+      getIt<AuthRepo>(),
+      getIt<LogUtils>(),
+      getIt<OvertimeRepo>(),
+    ),
   );
   getIt.registerFactory<WorkspaceBloc>(
     () => WorkspaceBloc(
