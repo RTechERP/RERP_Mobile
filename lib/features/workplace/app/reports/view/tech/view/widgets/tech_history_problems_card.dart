@@ -17,6 +17,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../../../common/app_theme/index.dart';
 import '../../../../data/datasource/models/report_model.dart';
+import '../../data/tech_problem_status.dart';
 import '../bloc/tech_bloc.dart';
 
 /// Card phát sinh của hạng mục công việc đang thao tác.
@@ -315,20 +316,7 @@ class _ProblemItem extends StatelessWidget {
   }
 
   /// Nhãn trạng thái xử lý phát sinh.
-  static String _statusLabel(int? status) {
-    switch (status) {
-      case 0:
-        return 'Chưa xử lý';
-      case 1:
-        return 'Đang xử lý';
-      case 2:
-        return 'Đã xử lý';
-      case 3:
-        return 'Tạm hoãn';
-      default:
-        return 'Chưa xử lý';
-    }
-  }
+  static String _statusLabel(int? status) => TechProblemStatus.label(status);
 
   /// Màu theo trạng thái xử lý phát sinh.
   static Color _statusColor(int? status) {
@@ -336,8 +324,10 @@ class _ProblemItem extends StatelessWidget {
       case 1:
         return AppColors.warning;
       case 2:
-        return AppColors.stateSuccessColor;
+        return AppColors.primaryERP;
       case 3:
+        return AppColors.stateSuccessColor;
+      case 4:
         return AppColors.gray;
       case 0:
       default:

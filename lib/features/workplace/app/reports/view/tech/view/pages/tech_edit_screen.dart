@@ -14,6 +14,7 @@ import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
+import '../../../../../../../../routes/route_names.dart';
 import '../../data/tech_location.dart';
 import '../../data/tech_model.dart';
 import '../bloc/tech_bloc.dart';
@@ -66,6 +67,37 @@ class _TechEditScreenState
   Widget renderUI(BuildContext context) {
     return MultiBlocListener(
       listeners: [
+        /// Hạng mục chưa đủ thông tin → chuyển sang màn chỉnh sửa hạng mục
+        /// đúng ID để người dùng bổ sung ngày kế hoạch / actual.
+        BlocListener<TechBloc, TechState>(
+          listenWhen: (p, c) =>
+              c.pendingProjectItemEditId != null &&
+              p.pendingProjectItemEditId != c.pendingProjectItemEditId,
+          listener: (context, state) async {
+            final projectItemId = state.pendingProjectItemEditId;
+            if (projectItemId == null) return;
+
+            // Reset tín hiệu trước khi điều hướng để không lặp lại.
+            bloc.add(const TechEvent.clearPendingProjectItemEdit());
+
+            showMessage(
+              context,
+              'Hạng mục chưa đủ thông tin, vui lòng cập nhật hạng mục '
+              'trước khi báo cáo',
+              type: SnackBarType.info,
+            );
+
+            await context.push(
+              RouteNames.weekplanDetail,
+              extra: {'taskId': projectItemId},
+            );
+
+            if (!context.mounted) return;
+
+            // Quay lại form → kiểm tra lại hạng mục để cập nhật cờ chặn.
+            bloc.add(TechEvent.recheckProjectItem(projectItemId: projectItemId));
+          },
+        ),
         BlocListener<TechBloc, TechState>(
           // Chỉ can thiệp khi locationType đổi qua 'Địa điểm công tác' lần đầu,
           // tránh gán ngược vào controller khi user đang gõ (gây loop event).

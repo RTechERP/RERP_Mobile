@@ -176,14 +176,77 @@ class ReportService extends DioBaseApiService {
   }
 
   /// Kiểm tra hạng mục công việc đã đủ thông tin để báo cáo hay chưa.
+  ///
+  /// BE có thể trả `data` dưới nhiều dạng: `true`/`false`, `"true"`/`"false"`,
+  /// `1`/`0`, hoặc object bọc (`{"result": true}`). Vì không có mẫu response
+  /// chính thức, parser ở đây chấp nhận mọi dạng và quy về `null` (= không
+  /// xác định) khi gặp giá trị lạ — cơ chế fail-open ở tầng bloc sẽ cho phép
+  /// báo cáo thay vì chặn oan.
   Future<BaseData<bool>> checkInformationReport({
     required int projectTaskId,
   }) async {
     return get<BaseData<bool>>(
       ApiEndPoint.checkInformationReport,
       query: {'projectTaskID': projectTaskId},
-      parser: (json) => BaseData<bool>.fromJson(json, (data) => data == true),
+      parser: _parseCheckInformationResponse,
     );
+  }
+
+  /// Đọc cờ "đủ thông tin" từ response của `check-information-report`.
+  BaseData<bool> _parseCheckInformationResponse(dynamic json) {
+    if (json is bool) {
+      return BaseData<bool>(data: json, status: 1);
+    }
+
+    if (json is Map<String, dynamic>) {
+      final dynamic raw =
+          json['data'] ??
+          json['result'] ??
+          json['results'] ??
+          json['Data'] ??
+          json['Result'];
+
+      final parsed = _toNullableBool(raw);
+
+      // `data` vắng mặt nhưng `status` = 1 → coi như đủ thông tin.
+      if (parsed == null) {
+        final status = json['status'];
+        if (status is num && status == 1) {
+          return BaseData<bool>(data: true, status: 1);
+        }
+        return BaseData<bool>(
+          data: null,
+          status: status is num ? status.toInt() : null,
+        );
+      }
+
+      return BaseData<bool>(
+        data: parsed,
+        status: json['status'] is num ? (json['status'] as num).toInt() : 1,
+      );
+    }
+
+    // Body rỗng / không phải JSON → không xác định.
+    return BaseData<bool>(data: null, status: null);
+  }
+
+  /// Quy đổi giá trị thô của BE thành bool, trả về `null` nếu không nhận diện được.
+  static bool? _toNullableBool(dynamic raw) {
+    if (raw is bool) return raw;
+    if (raw is num) return raw != 0;
+
+    if (raw is String) {
+      final value = raw.trim().toLowerCase();
+      if (value == 'true') return true;
+      if (value == 'false') return false;
+    }
+
+    if (raw is Map<String, dynamic>) {
+      final nested = raw['result'] ?? raw['data'] ?? raw['IsEligible'];
+      if (nested != raw) return _toNullableBool(nested);
+    }
+
+    return null;
   }
 
   /// Gửi mail báo cáo phòng kỹ thuật

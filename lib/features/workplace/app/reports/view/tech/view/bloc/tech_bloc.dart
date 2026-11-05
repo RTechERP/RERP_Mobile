@@ -19,6 +19,7 @@ import '../../../../../reg_work/view/pages/overtime/data/datasource/models/overt
 import '../../../../../reg_work/view/pages/overtime/data/repository/overtime_repo.dart';
 import '../../data/tech_location.dart';
 import '../../data/tech_model.dart';
+import '../../data/tech_problem_status.dart';
 
 part 'tech_event.dart';
 part 'tech_state.dart';
@@ -165,6 +166,9 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         loadHistoryProblems: (projectItemId) =>
             _onLoadHistoryProblems(projectItemId, emit),
         clearAutoOpenOvertime: () => _onClearAutoOpenOvertime(emit),
+        clearPendingProjectItemEdit: () => _onClearPendingProjectItemEdit(emit),
+        recheckProjectItem: (projectItemId) =>
+            _onRecheckProjectItem(projectItemId, emit),
       );
     }, transformer: (events, mapper) => events.asyncExpand(mapper));
   }
@@ -221,6 +225,32 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
   Future<void> _onClearAutoOpenOvertime(Emitter<TechState> emit) async {
     if (state.autoOpenOvertimeIndex == null) return;
     emit(state.copyWith(autoOpenOvertimeIndex: null));
+  }
+
+  /// Reset tín hiệu chuyển sang màn chỉnh sửa hạng mục công việc.
+  Future<void> _onClearPendingProjectItemEdit(Emitter<TechState> emit) async {
+    if (state.pendingProjectItemEditId == null) return;
+    emit(state.copyWith(pendingProjectItemEditId: null));
+  }
+
+  /// Kiểm tra lại một hạng mục công việc sau khi người dùng quay về từ màn
+  /// chỉnh sửa hạng mục — cập nhật lại cờ "chưa đủ thông tin".
+  Future<void> _onRecheckProjectItem(
+    int projectItemId,
+    Emitter<TechState> emit,
+  ) async {
+    if (projectItemId <= 0) return;
+
+    final isIneligible = await _checkWorkItemEligibility(projectItemId);
+
+    final ineligible = {...state.ineligibleProjectItemIds};
+    if (isIneligible) {
+      ineligible.add(projectItemId);
+    } else {
+      ineligible.remove(projectItemId);
+    }
+
+    emit(state.copyWith(ineligibleProjectItemIds: ineligible));
   }
 
   Future<void> _onUpdatePlanNextDay(
@@ -881,6 +911,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
     // Đổi hạng mục công việc → gắn lại các ca làm thêm tương ứng với hạng mục mới.
     int? autoOpenIndex;
+    var ineligibleProjectItemId = 0;
+
     if (projectItemId != null && projectItemId != old.projectItemId) {
       final matched = state.dailyOvertimes
           .where(
@@ -906,10 +938,23 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       // và mở sheet để người dùng xem lại thông tin ca đã lấy từ API.
       if (matched.isNotEmpty) autoOpenIndex = index;
 
-      // Hạng mục thiếu thông tin kế hoạch/actual → không được phép báo cáo.
+      // Hạng mục thiếu thông tin kế hoạch/actual → yêu cầu UI chuyển sang màn
+      // chỉnh sửa hạng mục (Xem [_checkWorkItemEligibility]).
       if (effectiveProjectItemId != null && effectiveProjectItemId > 0) {
-        await _checkWorkItemEligibility(effectiveProjectItemId, emit);
+        final isIneligible = await _checkWorkItemEligibility(
+          effectiveProjectItemId,
+        );
+        if (isIneligible) ineligibleProjectItemId = effectiveProjectItemId;
       }
+    }
+
+    // Cập nhật danh sách hạng mục không đủ thông tin theo kết quả vừa kiểm tra.
+    final ineligible = {...state.ineligibleProjectItemIds};
+    if (ineligibleProjectItemId > 0) {
+      ineligible.add(ineligibleProjectItemId);
+    } else if (projectItemId != null && projectItemId != old.projectItemId) {
+      // Hạng mục mới đủ thông tin (hoặc không xác định) → bỏ cờ cũ.
+      ineligible.remove(projectItemId);
     }
 
     emit(
@@ -922,6 +967,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         }).toList(),
         selectedProject: selected.copyWith(works: newWorks),
         autoOpenOvertimeIndex: autoOpenIndex,
+        ineligibleProjectItemIds: ineligible,
+        pendingProjectItemEditId: ineligibleProjectItemId > 0
+            ? ineligibleProjectItemId
+            : null,
       ),
     );
   }
@@ -938,26 +987,55 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
   ///
   /// BE trả về `false` khi hạng mục còn thiếu ngày kế hoạch / actual → người
   /// dùng phải cập nhật hạng mục trước khi được phép báo cáo.
-  Future<void> _checkWorkItemEligibility(
-    int projectItemId,
-    Emitter<TechState> emit,
-  ) async {
-    if (projectItemId <= 0) return;
+  ///
+  /// Trả về `true` nếu hạng mục **không** đủ thông tin, `false` nếu đủ hoặc
+  /// không xác định được (fail-open).
+  Future<bool> _checkWorkItemEligibility(int projectItemId) async {
+    if (projectItemId <= 0) return false;
 
     final res = await _reportRepo.checkInformationReport(
       projectTaskId: projectItemId,
     );
 
-    final isEligible = res.getOrElse(() => true);
+    final bool? isEligible = res.fold((l) {
+      _log.logE(
+        'Check information report failed for projectItem $projectItemId: '
+        '${l.getErrorMessage}',
+      );
+      return null;
+    }, (data) => data);
 
-    final ineligible = {...state.ineligibleProjectItemIds};
-    if (isEligible) {
-      ineligible.remove(projectItemId);
-    } else {
-      ineligible.add(projectItemId);
+    _log.logI(
+      'check-information-report projectItem=$projectItemId '
+      'eligible=$isEligible',
+    );
+
+    // Không xác định → fail-open, không chặn.
+    if (isEligible == null) return false;
+    return !isEligible;
+  }
+
+  /// Tìm `projectItemId` đầu tiên trong [projects] nằm trong danh sách
+  /// [ineligibleProjectItemIds] (hạng mục thiếu ngày kế hoạch / actual).
+  ///
+  /// Trả về `null` nếu mọi hạng mục đều hợp lệ.
+  int? _findIneligibleProjectItem(
+    List<TechProject> projects,
+    Set<int> ineligibleProjectItemIds,
+  ) {
+    if (ineligibleProjectItemIds.isEmpty) return null;
+
+    for (final project in projects) {
+      for (final work in project.works) {
+        final projectItemId = work.projectItemId ?? 0;
+        if (projectItemId > 0 &&
+            ineligibleProjectItemIds.contains(projectItemId)) {
+          return projectItemId;
+        }
+      }
     }
 
-    emit(state.copyWith(ineligibleProjectItemIds: ineligible));
+    return null;
   }
 
   /// Đổi ngày báo cáo → cập nhật ngày của các hạng mục + tải lại ca làm thêm.
@@ -1240,7 +1318,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     if (work.overtimes.isNotEmpty) {
       sessions = work.overtimes;
     } else if (canCreateNew) {
-      sessions = [_buildNewOvertimeSession(selected, work)];
+      sessions = [_buildNewOvertimeSession(selected, work, shiftIndex: 0)];
     } else {
       sessions = [];
     }
@@ -1268,12 +1346,13 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
   /// Tạo một phiếu làm thêm mới (chưa lưu) gắn với hạng mục công việc.
   ///
-  /// [previous] là ca làm thêm liền trước (nếu có) — dùng để tính khung giờ
-  /// mặc định của ca mới: ca đầu tiên là 18:00 - 20:00, các ca sau tịnh
-  /// tiến 2 tiếng so với giờ kết thúc của ca trước và không vượt quá 23:59.
+  /// [shiftIndex] là thứ tự ca (0 = Ca 1) — quyết định khung giờ mặc định.
+  /// [previous] là ca làm thêm liền trước (nếu có) — dùng làm mốc giờ bắt đầu
+  /// của Ca 3. Khung giờ luôn nằm trong ngày báo cáo (18:00 - 23:59).
   OvertimeSession _buildNewOvertimeSession(
     TechProject project,
     TechWork work, {
+    int shiftIndex = 0,
     OvertimeSession? previous,
   }) {
     final reportDate = _currentReportDate ?? DateTime.now();
@@ -1283,34 +1362,11 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       reportDate.day,
     );
 
-    DateTime timeStart;
-    DateTime endTime;
-
-    if (previous == null) {
-      // Ca 1: mặc định 18:00 - 20:00 trong ngày báo cáo.
-      timeStart = dayStart.add(const Duration(hours: 18));
-      endTime = timeStart.add(const Duration(hours: 2));
-    } else {
-      // Ca n+1: bắt đầu tại giờ kết thúc ca trước, kéo dài 2 tiếng,
-      // không vượt quá 23:59 của ngày báo cáo.
-      final prevStart =
-          previous.timeStart ?? dayStart.add(const Duration(hours: 18));
-      final prevEnd =
-          previous.endTime ?? prevStart.add(const Duration(hours: 2));
-
-      timeStart = prevEnd.isAfter(prevStart)
-          ? prevEnd
-          : prevStart.add(const Duration(hours: 2));
-      endTime = timeStart.add(const Duration(hours: 2));
-
-      final dayEnd = dayStart.add(const Duration(hours: 23, minutes: 59));
-      if (endTime.isAfter(dayEnd)) {
-        endTime = dayEnd;
-        if (!timeStart.isBefore(endTime)) {
-          timeStart = dayEnd.subtract(const Duration(hours: 1));
-        }
-      }
-    }
+    final (timeStart, endTime) = _defaultShiftTimes(
+      dayStart: dayStart,
+      shiftIndex: shiftIndex,
+      previous: previous,
+    );
 
     return OvertimeSession.newSession(
       employeeId: state.employeeID ?? 0,
@@ -1322,9 +1378,69 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       endTime: endTime,
       // Địa điểm mặc định theo nơi làm việc đang chọn ở màn báo cáo.
       location: TechLocation.overtimeLocationOf(state.locationType),
-      // Ca mặc định 18:00 - 20:00 tự động có phụ cấp ăn tối.
-      overnight: OvertimeSession.isDinnerShift(timeStart, endTime),
+      // Ca 1 (bắt đầu 18:00) mặc định có phụ cấp ăn tối.
+      overnight: shiftIndex == 0,
     );
+  }
+
+  /// Khung giờ mặc định cho ca làm thêm mới.
+  ///
+  /// - Ca 1: `18:00` → thời điểm hiện tại (`DateTime.now`).
+  /// - Ca 2: thời điểm hiện tại → hiện tại + 2 giờ.
+  /// - Ca 3: giờ kết thúc Ca 2 → `23:59`.
+  ///
+  /// Mốc "hiện tại" được quy về ngày báo cáo và giới hạn trong `18:00 - 23:59`
+  /// để ca luôn hợp lệ khi báo cáo cho ngày khác hôm nay.
+  (DateTime, DateTime) _defaultShiftTimes({
+    required DateTime dayStart,
+    required int shiftIndex,
+    OvertimeSession? previous,
+  }) {
+    final dayEnd = dayStart.add(const Duration(hours: 23, minutes: 59));
+    final shift1Start = dayStart.add(const Duration(hours: 18));
+
+    final now = DateTime.now();
+    var anchor = DateTime(
+      dayStart.year,
+      dayStart.month,
+      dayStart.day,
+      now.hour,
+      now.minute,
+    );
+    if (anchor.isBefore(shift1Start)) anchor = shift1Start;
+    if (anchor.isAfter(dayEnd)) anchor = dayEnd;
+
+    DateTime start;
+    DateTime end;
+
+    if (shiftIndex <= 0) {
+      // Ca 1: 18:00 → hiện tại; nếu chưa qua 18:00 thì mặc định 1 giờ.
+      start = shift1Start;
+      end = anchor.isAfter(shift1Start)
+          ? anchor
+          : shift1Start.add(const Duration(hours: 1));
+      if (end.isAfter(dayEnd)) end = dayEnd;
+    } else if (shiftIndex == 1) {
+      // Ca 2: hiện tại → hiện tại + 2 giờ.
+      start = anchor;
+      end = anchor.add(const Duration(hours: 2));
+      if (end.isAfter(dayEnd)) end = dayEnd;
+    } else {
+      // Ca 3: lấy giờ kết thúc Ca 2 làm giờ bắt đầu, kết thúc 23:59.
+      start = previous?.endTime ?? anchor.add(const Duration(hours: 2));
+      if (!start.isBefore(dayEnd)) {
+        start = dayEnd.subtract(const Duration(hours: 1));
+      }
+      end = dayEnd;
+    }
+
+    // Đảm bảo ca luôn có khoảng thời gian dương trong ngày báo cáo.
+    if (!end.isAfter(start)) {
+      end = dayEnd;
+      start = dayEnd.subtract(const Duration(hours: 1));
+    }
+
+    return (start, end);
   }
 
   Future<void> _onAddOvertimeSession(int index, Emitter<TechState> emit) async {
@@ -1343,6 +1459,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       _buildNewOvertimeSession(
         selected,
         work,
+        shiftIndex: work.overtimes.length,
         previous: work.overtimes.isNotEmpty ? work.overtimes.last : null,
       ),
     ];
@@ -1485,6 +1602,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
   String? _validateBeforeSubmit({
     required DateTime reportDate,
     required List<TechProject> projects,
+    required Set<int> ineligibleProjectItemIds,
   }) {
     // 1) Phòng ban kỹ thuật bắt buộc chọn Dự án + Hạng mục.
     final isRequired = state.isProjectItemRequired;
@@ -1506,7 +1624,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
         // Hạng mục chưa đủ thông tin (thiếu ngày kế hoạch / actual).
         if ((work.projectItemId ?? 0) > 0 &&
-            state.ineligibleProjectItemIds.contains(work.projectItemId)) {
+            ineligibleProjectItemIds.contains(work.projectItemId)) {
           return '${prefix}Hạng mục chưa đủ thông tin, '
               'vui lòng cập nhật hạng mục trước khi báo cáo';
         }
@@ -1593,6 +1711,47 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     return payloads;
   }
 
+  /// Dựng nội dung trường `Problem` khi lưu báo cáo.
+  ///
+  /// - Hạng mục có phát sinh → ghép theo format của bản PC:
+  ///   `- Phát sinh {stt}: {nội dung} [{trạng thái}]` (mỗi phát sinh một dòng),
+  ///   đặt trước nội dung người dùng nhập.
+  /// - Hạng mục không có phát sinh → giữ nội dung người dùng nhập ở ô
+  ///   "Vấn đề phát sinh" như hiện tại.
+  ///
+  /// Các dòng phát sinh đã có trong [userProblem] được bỏ qua để không ghép
+  /// trùng khi sửa lại một báo cáo đã lưu.
+  String _buildProblemText(int? projectItemId, String userProblem) {
+    final problems = projectItemId == null
+        ? null
+        : state.historyProblems[projectItemId];
+
+    if (problems == null || problems.isEmpty) return userProblem;
+
+    final lines = <String>[];
+    for (var i = 0; i < problems.length; i++) {
+      final problem = problems[i];
+      final content = (problem.contentError ?? '').trim();
+      if (content.isEmpty) continue;
+
+      final line =
+          '- Phát sinh ${i + 1}: $content '
+          '[${TechProblemStatus.label(problem.statusProblem)}]';
+
+      if (userProblem.contains(line)) continue;
+
+      lines.add(line);
+    }
+
+    if (lines.isEmpty) return userProblem;
+
+    final combined = lines.join('\n');
+    final userText = userProblem.trim();
+    if (userText.isEmpty) return combined;
+
+    return '$combined\n$userText';
+  }
+
   Future<void> _onSubmitReport(
     DateTime pickedDate,
     Emitter<TechState> emit,
@@ -1601,7 +1760,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     _isSubmittingReport = true;
 
     try {
-      emit(state.copyWith(isSubmitting: true, submitSuccess: false));
+      // Reset message cũ để listener nhận được message mới kể cả khi trùng nội dung.
+      emit(
+        state.copyWith(isSubmitting: true, submitSuccess: false, message: null),
+      );
 
       final userRes = await _authRepo.getCurrentUser();
       final user = userRes.getOrElse(() => null);
@@ -1633,7 +1795,29 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       final validationError = _validateBeforeSubmit(
         reportDate: safeDate,
         projects: submitProjects,
+        ineligibleProjectItemIds: state.ineligibleProjectItemIds,
       );
+
+      // Hạng mục chưa đủ thông tin → chuyển thẳng sang màn chỉnh sửa hạng mục
+      // thay vì chỉ báo lỗi, để người dùng bổ sung ngay.
+      final blockedProjectItemId = _findIneligibleProjectItem(
+        submitProjects,
+        state.ineligibleProjectItemIds,
+      );
+      if (blockedProjectItemId != null) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            submitSuccess: false,
+            pendingProjectItemEditId: blockedProjectItemId,
+            message:
+                'Hạng mục chưa đủ thông tin, vui lòng cập nhật hạng mục '
+                'trước khi báo cáo',
+          ),
+        );
+        return;
+      }
+
       if (validationError != null) {
         emit(
           state.copyWith(
@@ -1662,7 +1846,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
             'ProjectItemID': work.projectItemId,
             'Content': work.content,
             'Results': work.results,
-            'Problem': state.problem ?? '',
+            'Problem': _buildProblemText(
+              work.projectItemId,
+              state.problem ?? '',
+            ),
             'ProblemSolve': state.problemSolve ?? '',
             'PlanNextDay': state.planNextDay,
             'Note': state.note ?? '',
@@ -1670,7 +1857,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
             'TotalHours': work.totalHours,
             'TotalHourOT': _sumOvertimeHours(work.overtimes),
             'PercentComplete': work.percentComplete.toInt(),
-            'Location': state.location ?? 'report.project'.tr(),
+            'Location': TechLocation.toApiValue(state.location),
             'Type': 0,
             'ReportLate': 0,
             'StatusResult': 0,
@@ -1684,83 +1871,96 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
       final saveRes = await _reportRepo.saveReportTech(payload: reportPayloads);
 
-      var saveFailed = false;
-      await saveRes.fold(
-        (l) async {
-          emit(
-            state.copyWith(
-              isSubmitting: false,
-              submitSuccess: false,
-              status: BaseStateStatus.failed,
-              message: l.getErrorMessage,
-            ),
-          );
-          saveFailed = true;
-        },
-        (ids) async {
-          // BE trả về status==1 nhưng data rỗng → coi như lỗi
-          if (ids.isEmpty || ids.every((id) => id <= 0)) {
-            emit(
-              state.copyWith(
-                isSubmitting: false,
-                submitSuccess: false,
-                status: BaseStateStatus.failed,
-                message: 'Lưu dữ liệu thất bại. Vui lòng báo cáo lại',
-              ),
-            );
-            saveFailed = true;
-          }
-        },
-      );
+      // ===== STEP 1: Lưu báo cáo công việc =====
+      // Lấy đúng message do BE trả về để hiển thị cho người dùng.
+      final reportError = saveRes.fold<String?>((l) => l.getErrorMessage, (
+        ids,
+      ) {
+        // BE trả về status==1 nhưng data rỗng → coi như lỗi.
+        if (ids.isEmpty || ids.every((id) => id <= 0)) {
+          return 'Lưu dữ liệu thất bại. Vui lòng báo cáo lại';
+        }
+        return null;
+      });
 
-      if (saveFailed) return;
+      // Lưu báo cáo lỗi → dừng ngay, KHÔNG chạy save-overtime.
+      if (reportError != null) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            submitSuccess: false,
+            status: BaseStateStatus.failed,
+            message: reportError,
+          ),
+        );
+        return;
+      }
 
       // ===== STEP 2: Đồng bộ ca làm thêm kèm liên kết hạng mục =====
-      final overtimePayloads = _buildOvertimePayloads(submitProjects);
-      if (overtimePayloads.isNotEmpty) {
-        final otRes = await _reportRepo.saveOvertimeTech(
-          payload: {
-            'EmployeeOvertimes': overtimePayloads,
-            'employeeOvertimeFile': {
-              'ID': 0,
-              'EmployeeOvertimeID': 0,
-              'FileName': null,
-              'OriginPath': null,
-              'ServerPath': null,
-            },
-          },
+      // Chỉ chạy khi báo cáo đã lưu thành công; lỗi thì báo đúng message của BE.
+      final overtimeError = await _syncOvertimeTech(submitProjects);
+      if (overtimeError != null) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            submitSuccess: false,
+            status: BaseStateStatus.failed,
+            message: overtimeError,
+          ),
         );
-
-        var otFailed = false;
-        await otRes.fold((l) async {
-          emit(
-            state.copyWith(
-              isSubmitting: false,
-              submitSuccess: false,
-              status: BaseStateStatus.failed,
-              message: l.getErrorMessage,
-            ),
-          );
-          otFailed = true;
-        }, (_) async {});
-
-        if (otFailed) return;
+        return;
       }
 
       emit(
         state.copyWith(
           isSubmitting: false,
           submitSuccess: true,
+          // Xoá lỗi cũ để listener không hiển thị lại snackbar lỗi khi thành công.
+          message: null,
           pendingMailDate: safeDate,
           pendingShareText: DialogService.buildMailPreviewText(state, safeDate),
         ),
       );
     } catch (e) {
-      emit(state.copyWith(isSubmitting: false, submitSuccess: false));
-      // _log.logE('❌ Submit error: $e\n$st');
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          submitSuccess: false,
+          status: BaseStateStatus.failed,
+          message: 'Báo cáo thất bại. Vui lòng thử lại',
+        ),
+      );
+      _log.logE('Submit report tech failed: $e');
     } finally {
       _isSubmittingReport = false;
     }
+  }
+
+  /// Đồng bộ danh sách ca làm thêm sau khi báo cáo đã lưu thành công.
+  ///
+  /// [projects] là các dự án vừa gửi báo cáo; ca làm thêm lấy từ toàn bộ
+  /// hạng mục của chúng kèm các ca đã xoá (`deletedOvertimes`).
+  ///
+  /// Trả về `null` nếu thành công hoặc không có ca nào cần lưu, ngược lại trả
+  /// về message lỗi do BE trả về để hiển thị nguyên văn cho người dùng.
+  Future<String?> _syncOvertimeTech(List<TechProject> projects) async {
+    final overtimePayloads = _buildOvertimePayloads(projects);
+    if (overtimePayloads.isEmpty) return null;
+
+    final res = await _reportRepo.saveOvertimeTech(
+      payload: {
+        'EmployeeOvertimes': overtimePayloads,
+        'employeeOvertimeFile': {
+          'ID': 0,
+          'EmployeeOvertimeID': 0,
+          'FileName': null,
+          'OriginPath': null,
+          'ServerPath': null,
+        },
+      },
+    );
+
+    return res.fold((l) => l.getErrorMessage, (_) => null);
   }
 
   Future<void> _onSendMailReport(
@@ -1984,6 +2184,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           isSaving: true,
           saveSuccess: false,
           submitSuccess: false,
+          // Reset message cũ để listener nhận message mới kể cả khi trùng nội dung.
+          message: null,
         ),
       );
 
@@ -2011,7 +2213,29 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       final validationError = _validateBeforeSubmit(
         reportDate: safeDate,
         projects: [selectedProject],
+        ineligibleProjectItemIds: state.ineligibleProjectItemIds,
       );
+
+      // Hạng mục chưa đủ thông tin → chuyển thẳng sang màn chỉnh sửa hạng mục
+      // thay vì chỉ báo lỗi, để người dùng bổ sung ngay.
+      final blockedProjectItemId = _findIneligibleProjectItem([
+        selectedProject,
+      ], state.ineligibleProjectItemIds);
+      if (blockedProjectItemId != null) {
+        emit(
+          state.copyWith(
+            isSaving: false,
+            saveSuccess: false,
+            submitSuccess: false,
+            pendingProjectItemEditId: blockedProjectItemId,
+            message:
+                'Hạng mục chưa đủ thông tin, vui lòng cập nhật hạng mục '
+                'trước khi báo cáo',
+          ),
+        );
+        return;
+      }
+
       if (validationError != null) {
         emit(
           state.copyWith(
@@ -2034,7 +2258,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         'ProjectItemID': work.projectItemId,
         'Content': work.content,
         'Results': work.results,
-        'Problem': work.problem ?? '',
+        'Problem': _buildProblemText(work.projectItemId, work.problem ?? ''),
         'ProblemSolve': work.problemSolve ?? '',
         'PlanNextDay': state.planNextDay,
         'Note': work.note ?? '',
@@ -2042,7 +2266,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         'TotalHours': work.totalHours,
         'TotalHourOT': _sumOvertimeHours(work.overtimes),
         'PercentComplete': work.percentComplete.toInt(),
-        'Location': state.location ?? 'report.project'.tr(),
+        'Location': TechLocation.toApiValue(state.location),
         'Type': 0,
         'ReportLate': 0,
         'StatusResult': 0,
@@ -2054,71 +2278,42 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
 
       final res = await _reportRepo.saveReportTech(payload: [payload]);
 
-      var saveFailed = false;
-      await res.fold(
-        (l) async {
-          emit(
-            state.copyWith(
-              isSaving: false,
-              saveSuccess: false,
-              submitSuccess: false,
-              status: BaseStateStatus.failed,
-              message: l.getErrorMessage,
-            ),
-          );
-          saveFailed = true;
-        },
-        (ids) async {
-          if (ids.isEmpty || ids.every((id) => id <= 0)) {
-            emit(
-              state.copyWith(
-                isSaving: false,
-                saveSuccess: false,
-                submitSuccess: false,
-                status: BaseStateStatus.failed,
-                message: 'Lưu dữ liệu thất bại. Vui lòng báo cáo lại',
-              ),
-            );
-            saveFailed = true;
-          }
-        },
-      );
+      // ===== BƯỚC 1: Lưu báo cáo công việc =====
+      final reportError = res.fold<String?>((l) => l.getErrorMessage, (ids) {
+        if (ids.isEmpty || ids.every((id) => id <= 0)) {
+          return 'Lưu dữ liệu thất bại. Vui lòng báo cáo lại';
+        }
+        return null;
+      });
 
-      if (saveFailed) {
+      // Lưu báo cáo lỗi → dừng, KHÔNG chạy save-overtime.
+      if (reportError != null) {
+        emit(
+          state.copyWith(
+            isSaving: false,
+            saveSuccess: false,
+            submitSuccess: false,
+            status: BaseStateStatus.failed,
+            message: reportError,
+          ),
+        );
         return;
       }
 
-      // ===== Đồng bộ ca làm thêm kèm liên kết hạng mục =====
-      final overtimePayloads = _buildOvertimePayloads([selectedProject]);
-      if (overtimePayloads.isNotEmpty) {
-        final otRes = await _reportRepo.saveOvertimeTech(
-          payload: {
-            'EmployeeOvertimes': overtimePayloads,
-            'employeeOvertimeFile': {
-              'ID': 0,
-              'EmployeeOvertimeID': 0,
-              'FileName': null,
-              'OriginPath': null,
-              'ServerPath': null,
-            },
-          },
+      // ===== BƯỚC 2: Đồng bộ ca làm thêm =====
+      // Chỉ chạy khi báo cáo đã lưu thành công; lỗi thì hiển thị message của BE.
+      final overtimeError = await _syncOvertimeTech([selectedProject]);
+      if (overtimeError != null) {
+        emit(
+          state.copyWith(
+            isSaving: false,
+            saveSuccess: false,
+            submitSuccess: false,
+            status: BaseStateStatus.failed,
+            message: overtimeError,
+          ),
         );
-
-        var otFailed = false;
-        await otRes.fold((l) async {
-          emit(
-            state.copyWith(
-              isSaving: false,
-              saveSuccess: false,
-              submitSuccess: false,
-              status: BaseStateStatus.failed,
-              message: l.getErrorMessage,
-            ),
-          );
-          otFailed = true;
-        }, (_) async {});
-
-        if (otFailed) return;
+        return;
       }
 
       // Giống _onSubmitReport: set submitSuccess + pending data
@@ -2127,18 +2322,23 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           isSaving: false,
           saveSuccess: true,
           submitSuccess: true,
+          // Xoá lỗi cũ để listener không hiển thị lại snackbar lỗi khi thành công.
+          message: null,
           pendingMailDate: safeDate,
           pendingShareText: DialogService.buildMailPreviewText(state, safeDate),
         ),
       );
-    } catch (_) {
+    } catch (e) {
       emit(
         state.copyWith(
           isSaving: false,
           saveSuccess: false,
           submitSuccess: false,
+          status: BaseStateStatus.failed,
+          message: 'Lưu báo cáo thất bại. Vui lòng thử lại',
         ),
       );
+      _log.logE('Submit edit report tech failed: $e');
     } finally {
       _isSavingReport = false;
     }

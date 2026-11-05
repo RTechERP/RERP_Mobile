@@ -52,7 +52,10 @@ abstract class ReportRepo {
   getProjectHistoryProblemByProjectItem({required int projectItemId});
 
   /// Kiểm tra hạng mục công việc đã đủ thông tin để báo cáo hay chưa.
-  Future<Either<BaseError, bool>> checkInformationReport({
+  ///
+  /// Trả về `null` khi BE không trả kết quả rõ ràng (lỗi mạng, response lạ) —
+  /// khi đó không được chặn người dùng báo cáo.
+  Future<Either<BaseError, bool?>> checkInformationReport({
     required int projectTaskId,
   });
 

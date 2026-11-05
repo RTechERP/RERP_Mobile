@@ -5,6 +5,11 @@ class TechLocation {
   /// Văn phòng.
   static const String office = 'Văn phòng RTC';
 
+  /// Mã địa điểm văn phòng mà BE lưu trong `DailyReportTech.Location`.
+  ///
+  /// BE lưu `VP RTC` (khác với label hiển thị [office]) — xem [resolve].
+  static const String officeCode = 'VP RTC';
+
   /// Nhà máy RTC.
   static const String rtcFactory = 'Nhà máy RTC';
 
@@ -51,6 +56,18 @@ class TechLocation {
     }
   }
 
+  /// Giá trị `Location` gửi lên BE (`POST /DailyReportTech/save-report-tech`).
+  ///
+  /// BE lưu văn phòng bằng mã [officeCode] (`VP RTC`), khác với label hiển thị
+  /// [office] (`Văn phòng RTC`). Các lựa chọn khác và địa chỉ tự nhập được
+  /// gửi nguyên văn.
+  static String toApiValue(String? location) {
+    final value = (location ?? '').trim();
+    if (value.isEmpty) return officeCode;
+    if (value.toLowerCase() == office.toLowerCase()) return officeCode;
+    return value;
+  }
+
   /// Chuẩn hoá giá trị nơi làm việc lấy từ BE về 1 trong các lựa chọn.
   ///
   /// Dữ liệu cũ lưu `VP RTC` → quy về [office]; các địa chỉ tự nhập
@@ -62,7 +79,7 @@ class TechLocation {
     for (final option in options) {
       if (option.toLowerCase() == normalized) return option;
     }
-    if (normalized == 'vp rtc') return office;
+    if (normalized == officeCode.toLowerCase()) return office;
 
     return site;
   }

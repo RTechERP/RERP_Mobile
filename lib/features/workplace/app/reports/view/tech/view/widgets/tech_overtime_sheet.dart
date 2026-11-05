@@ -609,7 +609,7 @@ class _OvertimeShiftFormState extends State<_OvertimeShiftForm> {
     _syncLabel(_typeController, _typeLabelOf(widget.session.typeId));
     _syncLabel(_locationController, _locationLabelOf(widget.session.location));
 
-    // Đồng bộ tick "Phụ cấp ăn tối" khi bloc tự động bật (ca 18:00 - 20:00).
+    // Đồng bộ tick "Phụ cấp ăn tối" khi bloc tự động bật (Ca 1 — bắt đầu 18:00).
     _syncOvernight(oldWidget.session.overnight, widget.session.overnight);
   }
 

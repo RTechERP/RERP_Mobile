@@ -259,6 +259,21 @@ class OvertimeRecord with _$OvertimeRecord {
     @JsonKey(name: 'CostOvernight') double? costOvernight,
     @JsonKey(name: 'Reason') String? reason,
     @JsonKey(name: 'IsDeleted') bool? isDeleted,
+
+    /// Cờ phát sinh của ca làm thêm.
+    @JsonKey(name: 'IsProblem') bool? isProblem,
+
+    /// Cờ duyệt của người duyệt (trưởng phòng / đội trưởng).
+    @JsonKey(name: 'IsApproved') bool? isApproved,
+
+    /// Cờ duyệt của HR.
+    @JsonKey(name: 'IsApprovedHR') bool? isApprovedHR,
+
+    /// Cờ duyệt của ban giám đốc (có thể `null` với bản ghi cũ).
+    @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBGD,
+
+    /// ID người duyệt HR.
+    @JsonKey(name: 'ApprovedHR') int? approvedHR,
   }) = _OvertimeRecord;
 
   factory OvertimeRecord.fromJson(Map<String, dynamic> json) =>

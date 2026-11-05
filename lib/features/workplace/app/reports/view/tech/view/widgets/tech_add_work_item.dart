@@ -60,8 +60,10 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
   }
 
   /// Validate giờ hành chính: `0 <= TotalHours <= 8.0`, tối đa 2 chữ số thập phân.
+  ///
+  /// Số `0` (hoặc bỏ trống) là giá trị hợp lệ — payload vẫn gửi `TotalHours: 0`.
   static String? _validateAdminHour(String? raw) {
-    if (raw == null || raw.trim().isEmpty) return 'Nhập số giờ';
+    if (raw == null || raw.trim().isEmpty) return null;
 
     final value = _parseHour(raw);
     if (value < 0) return 'Số giờ không được nhỏ hơn 0';

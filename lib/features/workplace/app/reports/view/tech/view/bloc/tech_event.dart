@@ -105,6 +105,15 @@ class TechEvent with _$TechEvent {
   /// Xoá tín hiệu "tự mở sheet làm thêm" sau khi UI đã mở sheet.
   const factory TechEvent.clearAutoOpenOvertime() = _ClearAutoOpenOvertime;
 
+  /// Xoá tín hiệu "chuyển sang màn chỉnh sửa hạng mục" sau khi UI đã điều hướng.
+  const factory TechEvent.clearPendingProjectItemEdit() =
+      _ClearPendingProjectItemEdit;
+
+  /// Kiểm tra lại một hạng mục sau khi người dùng quay về từ màn chỉnh sửa
+  /// hạng mục — cập nhật lại cờ "chưa đủ thông tin".
+  const factory TechEvent.recheckProjectItem({required int projectItemId}) =
+      _RecheckProjectItem;
+
   /// ===== GLOBAL =====
   const factory TechEvent.updatePlanNextDay(String value) = _UpdatePlanNextDay;
 

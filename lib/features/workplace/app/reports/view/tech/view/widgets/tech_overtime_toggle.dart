@@ -9,7 +9,7 @@ import 'tech_overtime_sheet.dart';
 
 /// Tick "Có làm thêm" cho một hạng mục công việc trong báo cáo kỹ thuật.
 ///
-/// Bật tick → mở bottom sheet khai báo ca làm thêm (Ca 1 mặc định 18:00 - 20:00).
+/// Bật tick → mở bottom sheet khai báo ca làm thêm (Ca 1 mặc định 18:00 - hiện tại).
 /// Bỏ tick khi đang có ca làm thêm → hỏi xác nhận trước khi xoá toàn bộ.
 /// Giá trị luôn lấy từ bloc nên đồng bộ với các ca làm thêm đã tải về.
 ///

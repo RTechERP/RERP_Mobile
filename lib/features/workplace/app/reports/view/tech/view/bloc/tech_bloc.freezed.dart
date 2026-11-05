@@ -12,8 +12,7 @@ part of 'tech_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$TechEvent {
@@ -21,13 +20,11 @@ mixin _$TechEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -35,87 +32,73 @@ mixin _$TechEvent {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -123,84 +106,70 @@ mixin _$TechEvent {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -208,74 +177,62 @@ mixin _$TechEvent {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
@@ -294,12 +251,15 @@ mixin _$TechEvent {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -312,7 +272,8 @@ mixin _$TechEvent {
     required TResult Function(_DeleteReport value) deleteReport,
     required TResult Function(_CopyReport value) copyReport,
     required TResult Function(_ResetCopy value) resetCopyReport,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
@@ -334,6 +295,9 @@ mixin _$TechEvent {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -346,7 +310,8 @@ mixin _$TechEvent {
     TResult? Function(_DeleteReport value)? deleteReport,
     TResult? Function(_CopyReport value)? copyReport,
     TResult? Function(_ResetCopy value)? resetCopyReport,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
@@ -368,6 +333,9 @@ mixin _$TechEvent {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -381,7 +349,8 @@ mixin _$TechEvent {
     TResult Function(_CopyReport value)? copyReport,
     TResult Function(_ResetCopy value)? resetCopyReport,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -404,9 +373,8 @@ class _$TechEventCopyWithImpl<$Res, $Val extends TechEvent>
 /// @nodoc
 abstract class _$$InitImplCopyWith<$Res> {
   factory _$$InitImplCopyWith(
-    _$InitImpl value,
-    $Res Function(_$InitImpl) then,
-  ) = __$$InitImplCopyWithImpl<$Res>;
+          _$InitImpl value, $Res Function(_$InitImpl) then) =
+      __$$InitImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -414,7 +382,7 @@ class __$$InitImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$InitImpl>
     implements _$$InitImplCopyWith<$Res> {
   __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
-    : super(_value, _then);
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -441,13 +409,11 @@ class _$InitImpl implements _Init {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -455,74 +421,61 @@ class _$InitImpl implements _Init {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return init();
@@ -533,13 +486,11 @@ class _$InitImpl implements _Init {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -547,71 +498,58 @@ class _$InitImpl implements _Init {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return init?.call();
@@ -622,13 +560,11 @@ class _$InitImpl implements _Init {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -636,71 +572,58 @@ class _$InitImpl implements _Init {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -729,12 +652,15 @@ class _$InitImpl implements _Init {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -773,6 +699,9 @@ class _$InitImpl implements _Init {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -811,6 +740,9 @@ class _$InitImpl implements _Init {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -839,14 +771,11 @@ abstract class _Init implements TechEvent {
 /// @nodoc
 abstract class _$$InitAddImplCopyWith<$Res> {
   factory _$$InitAddImplCopyWith(
-    _$InitAddImpl value,
-    $Res Function(_$InitAddImpl) then,
-  ) = __$$InitAddImplCopyWithImpl<$Res>;
+          _$InitAddImpl value, $Res Function(_$InitAddImpl) then) =
+      __$$InitAddImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({
-    List<CopyNullResponse> copyItems,
-    List<ProjectResponse> rtcProject,
-  });
+  $Res call(
+      {List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject});
 }
 
 /// @nodoc
@@ -854,36 +783,36 @@ class __$$InitAddImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$InitAddImpl>
     implements _$$InitAddImplCopyWith<$Res> {
   __$$InitAddImplCopyWithImpl(
-    _$InitAddImpl _value,
-    $Res Function(_$InitAddImpl) _then,
-  ) : super(_value, _then);
+      _$InitAddImpl _value, $Res Function(_$InitAddImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? copyItems = null, Object? rtcProject = null}) {
-    return _then(
-      _$InitAddImpl(
-        copyItems: null == copyItems
-            ? _value._copyItems
-            : copyItems // ignore: cast_nullable_to_non_nullable
-                  as List<CopyNullResponse>,
-        rtcProject: null == rtcProject
-            ? _value._rtcProject
-            : rtcProject // ignore: cast_nullable_to_non_nullable
-                  as List<ProjectResponse>,
-      ),
-    );
+  $Res call({
+    Object? copyItems = null,
+    Object? rtcProject = null,
+  }) {
+    return _then(_$InitAddImpl(
+      copyItems: null == copyItems
+          ? _value._copyItems
+          : copyItems // ignore: cast_nullable_to_non_nullable
+              as List<CopyNullResponse>,
+      rtcProject: null == rtcProject
+          ? _value._rtcProject
+          : rtcProject // ignore: cast_nullable_to_non_nullable
+              as List<ProjectResponse>,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$InitAddImpl implements _InitAdd {
-  const _$InitAddImpl({
-    required final List<CopyNullResponse> copyItems,
-    required final List<ProjectResponse> rtcProject,
-  }) : _copyItems = copyItems,
-       _rtcProject = rtcProject;
+  const _$InitAddImpl(
+      {required final List<CopyNullResponse> copyItems,
+      required final List<ProjectResponse> rtcProject})
+      : _copyItems = copyItems,
+        _rtcProject = rtcProject;
 
   final List<CopyNullResponse> _copyItems;
   @override
@@ -911,22 +840,17 @@ class _$InitAddImpl implements _InitAdd {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitAddImpl &&
-            const DeepCollectionEquality().equals(
-              other._copyItems,
-              _copyItems,
-            ) &&
-            const DeepCollectionEquality().equals(
-              other._rtcProject,
-              _rtcProject,
-            ));
+            const DeepCollectionEquality()
+                .equals(other._copyItems, _copyItems) &&
+            const DeepCollectionEquality()
+                .equals(other._rtcProject, _rtcProject));
   }
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(_copyItems),
-    const DeepCollectionEquality().hash(_rtcProject),
-  );
+      runtimeType,
+      const DeepCollectionEquality().hash(_copyItems),
+      const DeepCollectionEquality().hash(_rtcProject));
 
   @JsonKey(ignore: true)
   @override
@@ -939,13 +863,11 @@ class _$InitAddImpl implements _InitAdd {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -953,74 +875,61 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return initAdd(copyItems, rtcProject);
@@ -1031,13 +940,11 @@ class _$InitAddImpl implements _InitAdd {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -1045,71 +952,58 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return initAdd?.call(copyItems, rtcProject);
@@ -1120,13 +1014,11 @@ class _$InitAddImpl implements _InitAdd {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -1134,71 +1026,58 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -1227,12 +1106,15 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -1271,6 +1153,9 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -1309,6 +1194,9 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -1331,10 +1219,9 @@ class _$InitAddImpl implements _InitAdd {
 }
 
 abstract class _InitAdd implements TechEvent {
-  const factory _InitAdd({
-    required final List<CopyNullResponse> copyItems,
-    required final List<ProjectResponse> rtcProject,
-  }) = _$InitAddImpl;
+  const factory _InitAdd(
+      {required final List<CopyNullResponse> copyItems,
+      required final List<ProjectResponse> rtcProject}) = _$InitAddImpl;
 
   List<CopyNullResponse> get copyItems;
   List<ProjectResponse> get rtcProject;
@@ -1345,10 +1232,9 @@ abstract class _InitAdd implements TechEvent {
 
 /// @nodoc
 abstract class _$$AddEmptyProjectImplCopyWith<$Res> {
-  factory _$$AddEmptyProjectImplCopyWith(
-    _$AddEmptyProjectImpl value,
-    $Res Function(_$AddEmptyProjectImpl) then,
-  ) = __$$AddEmptyProjectImplCopyWithImpl<$Res>;
+  factory _$$AddEmptyProjectImplCopyWith(_$AddEmptyProjectImpl value,
+          $Res Function(_$AddEmptyProjectImpl) then) =
+      __$$AddEmptyProjectImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -1356,9 +1242,8 @@ class __$$AddEmptyProjectImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$AddEmptyProjectImpl>
     implements _$$AddEmptyProjectImplCopyWith<$Res> {
   __$$AddEmptyProjectImplCopyWithImpl(
-    _$AddEmptyProjectImpl _value,
-    $Res Function(_$AddEmptyProjectImpl) _then,
-  ) : super(_value, _then);
+      _$AddEmptyProjectImpl _value, $Res Function(_$AddEmptyProjectImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1385,13 +1270,11 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -1399,74 +1282,61 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return addEmptyProject();
@@ -1477,13 +1347,11 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -1491,71 +1359,58 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return addEmptyProject?.call();
@@ -1566,13 +1421,11 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -1580,71 +1433,58 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -1673,12 +1513,15 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -1717,6 +1560,9 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -1755,6 +1601,9 @@ class _$AddEmptyProjectImpl implements _AddEmptyProject {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -1782,10 +1631,9 @@ abstract class _AddEmptyProject implements TechEvent {
 
 /// @nodoc
 abstract class _$$BindProjectFromApiImplCopyWith<$Res> {
-  factory _$$BindProjectFromApiImplCopyWith(
-    _$BindProjectFromApiImpl value,
-    $Res Function(_$BindProjectFromApiImpl) then,
-  ) = __$$BindProjectFromApiImplCopyWithImpl<$Res>;
+  factory _$$BindProjectFromApiImplCopyWith(_$BindProjectFromApiImpl value,
+          $Res Function(_$BindProjectFromApiImpl) then) =
+      __$$BindProjectFromApiImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String tempId, ProjectResponse apiProject});
 
@@ -1796,26 +1644,26 @@ abstract class _$$BindProjectFromApiImplCopyWith<$Res> {
 class __$$BindProjectFromApiImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$BindProjectFromApiImpl>
     implements _$$BindProjectFromApiImplCopyWith<$Res> {
-  __$$BindProjectFromApiImplCopyWithImpl(
-    _$BindProjectFromApiImpl _value,
-    $Res Function(_$BindProjectFromApiImpl) _then,
-  ) : super(_value, _then);
+  __$$BindProjectFromApiImplCopyWithImpl(_$BindProjectFromApiImpl _value,
+      $Res Function(_$BindProjectFromApiImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? tempId = null, Object? apiProject = null}) {
-    return _then(
-      _$BindProjectFromApiImpl(
-        tempId: null == tempId
-            ? _value.tempId
-            : tempId // ignore: cast_nullable_to_non_nullable
-                  as String,
-        apiProject: null == apiProject
-            ? _value.apiProject
-            : apiProject // ignore: cast_nullable_to_non_nullable
-                  as ProjectResponse,
-      ),
-    );
+  $Res call({
+    Object? tempId = null,
+    Object? apiProject = null,
+  }) {
+    return _then(_$BindProjectFromApiImpl(
+      tempId: null == tempId
+          ? _value.tempId
+          : tempId // ignore: cast_nullable_to_non_nullable
+              as String,
+      apiProject: null == apiProject
+          ? _value.apiProject
+          : apiProject // ignore: cast_nullable_to_non_nullable
+              as ProjectResponse,
+    ));
   }
 
   @override
@@ -1830,10 +1678,8 @@ class __$$BindProjectFromApiImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BindProjectFromApiImpl implements _BindProjectFromApi {
-  const _$BindProjectFromApiImpl({
-    required this.tempId,
-    required this.apiProject,
-  });
+  const _$BindProjectFromApiImpl(
+      {required this.tempId, required this.apiProject});
 
   @override
   final String tempId;
@@ -1863,22 +1709,18 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
   @pragma('vm:prefer-inline')
   _$$BindProjectFromApiImplCopyWith<_$BindProjectFromApiImpl> get copyWith =>
       __$$BindProjectFromApiImplCopyWithImpl<_$BindProjectFromApiImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -1886,74 +1728,61 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return bindProjectFromApi(tempId, apiProject);
@@ -1964,13 +1793,11 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -1978,71 +1805,58 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return bindProjectFromApi?.call(tempId, apiProject);
@@ -2053,13 +1867,11 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -2067,71 +1879,58 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -2160,12 +1959,15 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -2204,6 +2006,9 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -2242,6 +2047,9 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -2264,10 +2072,9 @@ class _$BindProjectFromApiImpl implements _BindProjectFromApi {
 }
 
 abstract class _BindProjectFromApi implements TechEvent {
-  const factory _BindProjectFromApi({
-    required final String tempId,
-    required final ProjectResponse apiProject,
-  }) = _$BindProjectFromApiImpl;
+  const factory _BindProjectFromApi(
+      {required final String tempId,
+      required final ProjectResponse apiProject}) = _$BindProjectFromApiImpl;
 
   String get tempId;
   ProjectResponse get apiProject;
@@ -2279,9 +2086,8 @@ abstract class _BindProjectFromApi implements TechEvent {
 /// @nodoc
 abstract class _$$RemoveProjectImplCopyWith<$Res> {
   factory _$$RemoveProjectImplCopyWith(
-    _$RemoveProjectImpl value,
-    $Res Function(_$RemoveProjectImpl) then,
-  ) = __$$RemoveProjectImplCopyWithImpl<$Res>;
+          _$RemoveProjectImpl value, $Res Function(_$RemoveProjectImpl) then) =
+      __$$RemoveProjectImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String tempId});
 }
@@ -2291,21 +2097,20 @@ class __$$RemoveProjectImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$RemoveProjectImpl>
     implements _$$RemoveProjectImplCopyWith<$Res> {
   __$$RemoveProjectImplCopyWithImpl(
-    _$RemoveProjectImpl _value,
-    $Res Function(_$RemoveProjectImpl) _then,
-  ) : super(_value, _then);
+      _$RemoveProjectImpl _value, $Res Function(_$RemoveProjectImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? tempId = null}) {
-    return _then(
-      _$RemoveProjectImpl(
-        tempId: null == tempId
-            ? _value.tempId
-            : tempId // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
+  $Res call({
+    Object? tempId = null,
+  }) {
+    return _then(_$RemoveProjectImpl(
+      tempId: null == tempId
+          ? _value.tempId
+          : tempId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -2344,13 +2149,11 @@ class _$RemoveProjectImpl implements _RemoveProject {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -2358,74 +2161,61 @@ class _$RemoveProjectImpl implements _RemoveProject {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return removeProject(tempId);
@@ -2436,13 +2226,11 @@ class _$RemoveProjectImpl implements _RemoveProject {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -2450,71 +2238,58 @@ class _$RemoveProjectImpl implements _RemoveProject {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return removeProject?.call(tempId);
@@ -2525,13 +2300,11 @@ class _$RemoveProjectImpl implements _RemoveProject {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -2539,71 +2312,58 @@ class _$RemoveProjectImpl implements _RemoveProject {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -2632,12 +2392,15 @@ class _$RemoveProjectImpl implements _RemoveProject {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -2676,6 +2439,9 @@ class _$RemoveProjectImpl implements _RemoveProject {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -2714,6 +2480,9 @@ class _$RemoveProjectImpl implements _RemoveProject {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -2748,9 +2517,8 @@ abstract class _RemoveProject implements TechEvent {
 /// @nodoc
 abstract class _$$SelectProjectImplCopyWith<$Res> {
   factory _$$SelectProjectImplCopyWith(
-    _$SelectProjectImpl value,
-    $Res Function(_$SelectProjectImpl) then,
-  ) = __$$SelectProjectImplCopyWithImpl<$Res>;
+          _$SelectProjectImpl value, $Res Function(_$SelectProjectImpl) then) =
+      __$$SelectProjectImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String tempId});
 }
@@ -2760,21 +2528,20 @@ class __$$SelectProjectImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$SelectProjectImpl>
     implements _$$SelectProjectImplCopyWith<$Res> {
   __$$SelectProjectImplCopyWithImpl(
-    _$SelectProjectImpl _value,
-    $Res Function(_$SelectProjectImpl) _then,
-  ) : super(_value, _then);
+      _$SelectProjectImpl _value, $Res Function(_$SelectProjectImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? tempId = null}) {
-    return _then(
-      _$SelectProjectImpl(
-        tempId: null == tempId
-            ? _value.tempId
-            : tempId // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
+  $Res call({
+    Object? tempId = null,
+  }) {
+    return _then(_$SelectProjectImpl(
+      tempId: null == tempId
+          ? _value.tempId
+          : tempId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -2813,13 +2580,11 @@ class _$SelectProjectImpl implements _SelectProject {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -2827,74 +2592,61 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return selectProject(tempId);
@@ -2905,13 +2657,11 @@ class _$SelectProjectImpl implements _SelectProject {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -2919,71 +2669,58 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return selectProject?.call(tempId);
@@ -2994,13 +2731,11 @@ class _$SelectProjectImpl implements _SelectProject {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -3008,71 +2743,58 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -3101,12 +2823,15 @@ class _$SelectProjectImpl implements _SelectProject {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -3145,6 +2870,9 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -3183,6 +2911,9 @@ class _$SelectProjectImpl implements _SelectProject {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -3216,10 +2947,9 @@ abstract class _SelectProject implements TechEvent {
 
 /// @nodoc
 abstract class _$$UpdateProjectNameImplCopyWith<$Res> {
-  factory _$$UpdateProjectNameImplCopyWith(
-    _$UpdateProjectNameImpl value,
-    $Res Function(_$UpdateProjectNameImpl) then,
-  ) = __$$UpdateProjectNameImplCopyWithImpl<$Res>;
+  factory _$$UpdateProjectNameImplCopyWith(_$UpdateProjectNameImpl value,
+          $Res Function(_$UpdateProjectNameImpl) then) =
+      __$$UpdateProjectNameImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String tempId, String newName});
 }
@@ -3228,26 +2958,26 @@ abstract class _$$UpdateProjectNameImplCopyWith<$Res> {
 class __$$UpdateProjectNameImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$UpdateProjectNameImpl>
     implements _$$UpdateProjectNameImplCopyWith<$Res> {
-  __$$UpdateProjectNameImplCopyWithImpl(
-    _$UpdateProjectNameImpl _value,
-    $Res Function(_$UpdateProjectNameImpl) _then,
-  ) : super(_value, _then);
+  __$$UpdateProjectNameImplCopyWithImpl(_$UpdateProjectNameImpl _value,
+      $Res Function(_$UpdateProjectNameImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? tempId = null, Object? newName = null}) {
-    return _then(
-      _$UpdateProjectNameImpl(
-        tempId: null == tempId
-            ? _value.tempId
-            : tempId // ignore: cast_nullable_to_non_nullable
-                  as String,
-        newName: null == newName
-            ? _value.newName
-            : newName // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
+  $Res call({
+    Object? tempId = null,
+    Object? newName = null,
+  }) {
+    return _then(_$UpdateProjectNameImpl(
+      tempId: null == tempId
+          ? _value.tempId
+          : tempId // ignore: cast_nullable_to_non_nullable
+              as String,
+      newName: null == newName
+          ? _value.newName
+          : newName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -3283,22 +3013,18 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
   @pragma('vm:prefer-inline')
   _$$UpdateProjectNameImplCopyWith<_$UpdateProjectNameImpl> get copyWith =>
       __$$UpdateProjectNameImplCopyWithImpl<_$UpdateProjectNameImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -3306,74 +3032,61 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return updateProjectName(tempId, newName);
@@ -3384,13 +3097,11 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -3398,71 +3109,58 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return updateProjectName?.call(tempId, newName);
@@ -3473,13 +3171,11 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -3487,71 +3183,58 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -3580,12 +3263,15 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -3624,6 +3310,9 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -3662,6 +3351,9 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -3684,10 +3376,9 @@ class _$UpdateProjectNameImpl implements _UpdateProjectName {
 }
 
 abstract class _UpdateProjectName implements TechEvent {
-  const factory _UpdateProjectName({
-    required final String tempId,
-    required final String newName,
-  }) = _$UpdateProjectNameImpl;
+  const factory _UpdateProjectName(
+      {required final String tempId,
+      required final String newName}) = _$UpdateProjectNameImpl;
 
   String get tempId;
   String get newName;
@@ -3699,9 +3390,8 @@ abstract class _UpdateProjectName implements TechEvent {
 /// @nodoc
 abstract class _$$AddWorkImplCopyWith<$Res> {
   factory _$$AddWorkImplCopyWith(
-    _$AddWorkImpl value,
-    $Res Function(_$AddWorkImpl) then,
-  ) = __$$AddWorkImplCopyWithImpl<$Res>;
+          _$AddWorkImpl value, $Res Function(_$AddWorkImpl) then) =
+      __$$AddWorkImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -3709,9 +3399,8 @@ class __$$AddWorkImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$AddWorkImpl>
     implements _$$AddWorkImplCopyWith<$Res> {
   __$$AddWorkImplCopyWithImpl(
-    _$AddWorkImpl _value,
-    $Res Function(_$AddWorkImpl) _then,
-  ) : super(_value, _then);
+      _$AddWorkImpl _value, $Res Function(_$AddWorkImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -3738,13 +3427,11 @@ class _$AddWorkImpl implements _AddWork {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -3752,74 +3439,61 @@ class _$AddWorkImpl implements _AddWork {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return addWork();
@@ -3830,13 +3504,11 @@ class _$AddWorkImpl implements _AddWork {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -3844,71 +3516,58 @@ class _$AddWorkImpl implements _AddWork {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return addWork?.call();
@@ -3919,13 +3578,11 @@ class _$AddWorkImpl implements _AddWork {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -3933,71 +3590,58 @@ class _$AddWorkImpl implements _AddWork {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -4026,12 +3670,15 @@ class _$AddWorkImpl implements _AddWork {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -4070,6 +3717,9 @@ class _$AddWorkImpl implements _AddWork {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -4108,6 +3758,9 @@ class _$AddWorkImpl implements _AddWork {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -4136,9 +3789,8 @@ abstract class _AddWork implements TechEvent {
 /// @nodoc
 abstract class _$$RemoveWorkImplCopyWith<$Res> {
   factory _$$RemoveWorkImplCopyWith(
-    _$RemoveWorkImpl value,
-    $Res Function(_$RemoveWorkImpl) then,
-  ) = __$$RemoveWorkImplCopyWithImpl<$Res>;
+          _$RemoveWorkImpl value, $Res Function(_$RemoveWorkImpl) then) =
+      __$$RemoveWorkImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int index});
 }
@@ -4148,21 +3800,20 @@ class __$$RemoveWorkImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$RemoveWorkImpl>
     implements _$$RemoveWorkImplCopyWith<$Res> {
   __$$RemoveWorkImplCopyWithImpl(
-    _$RemoveWorkImpl _value,
-    $Res Function(_$RemoveWorkImpl) _then,
-  ) : super(_value, _then);
+      _$RemoveWorkImpl _value, $Res Function(_$RemoveWorkImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? index = null}) {
-    return _then(
-      _$RemoveWorkImpl(
-        index: null == index
-            ? _value.index
-            : index // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$RemoveWorkImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
@@ -4201,13 +3852,11 @@ class _$RemoveWorkImpl implements _RemoveWork {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -4215,74 +3864,61 @@ class _$RemoveWorkImpl implements _RemoveWork {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return removeWork(index);
@@ -4293,13 +3929,11 @@ class _$RemoveWorkImpl implements _RemoveWork {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -4307,71 +3941,58 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return removeWork?.call(index);
@@ -4382,13 +4003,11 @@ class _$RemoveWorkImpl implements _RemoveWork {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -4396,71 +4015,58 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -4489,12 +4095,15 @@ class _$RemoveWorkImpl implements _RemoveWork {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -4533,6 +4142,9 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -4571,6 +4183,9 @@ class _$RemoveWorkImpl implements _RemoveWork {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -4604,9 +4219,8 @@ abstract class _RemoveWork implements TechEvent {
 /// @nodoc
 abstract class _$$ExpandWorkImplCopyWith<$Res> {
   factory _$$ExpandWorkImplCopyWith(
-    _$ExpandWorkImpl value,
-    $Res Function(_$ExpandWorkImpl) then,
-  ) = __$$ExpandWorkImplCopyWithImpl<$Res>;
+          _$ExpandWorkImpl value, $Res Function(_$ExpandWorkImpl) then) =
+      __$$ExpandWorkImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int index});
 }
@@ -4616,21 +4230,20 @@ class __$$ExpandWorkImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$ExpandWorkImpl>
     implements _$$ExpandWorkImplCopyWith<$Res> {
   __$$ExpandWorkImplCopyWithImpl(
-    _$ExpandWorkImpl _value,
-    $Res Function(_$ExpandWorkImpl) _then,
-  ) : super(_value, _then);
+      _$ExpandWorkImpl _value, $Res Function(_$ExpandWorkImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? index = null}) {
-    return _then(
-      _$ExpandWorkImpl(
-        index: null == index
-            ? _value.index
-            : index // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$ExpandWorkImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
@@ -4669,13 +4282,11 @@ class _$ExpandWorkImpl implements _ExpandWork {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -4683,74 +4294,61 @@ class _$ExpandWorkImpl implements _ExpandWork {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return expandWork(index);
@@ -4761,13 +4359,11 @@ class _$ExpandWorkImpl implements _ExpandWork {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -4775,71 +4371,58 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return expandWork?.call(index);
@@ -4850,13 +4433,11 @@ class _$ExpandWorkImpl implements _ExpandWork {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -4864,71 +4445,58 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -4957,12 +4525,15 @@ class _$ExpandWorkImpl implements _ExpandWork {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -5001,6 +4572,9 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -5039,6 +4613,9 @@ class _$ExpandWorkImpl implements _ExpandWork {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -5072,26 +4649,24 @@ abstract class _ExpandWork implements TechEvent {
 /// @nodoc
 abstract class _$$UpdateWorkImplCopyWith<$Res> {
   factory _$$UpdateWorkImplCopyWith(
-    _$UpdateWorkImpl value,
-    $Res Function(_$UpdateWorkImpl) then,
-  ) = __$$UpdateWorkImplCopyWithImpl<$Res>;
+          _$UpdateWorkImpl value, $Res Function(_$UpdateWorkImpl) then) =
+      __$$UpdateWorkImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({
-    int index,
-    double? totalHours,
-    double? totalHourOT,
-    double? percentComplete,
-    String? content,
-    String? results,
-    String? mission,
-    int? projectItemId,
-    String? code,
-    String? backlog,
-    String? problem,
-    String? problemSolve,
-    String? note,
-    String? location,
-  });
+  $Res call(
+      {int index,
+      double? totalHours,
+      double? totalHourOT,
+      double? percentComplete,
+      String? content,
+      String? results,
+      String? mission,
+      int? projectItemId,
+      String? code,
+      String? backlog,
+      String? problem,
+      String? problemSolve,
+      String? note,
+      String? location});
 }
 
 /// @nodoc
@@ -5099,9 +4674,8 @@ class __$$UpdateWorkImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$UpdateWorkImpl>
     implements _$$UpdateWorkImplCopyWith<$Res> {
   __$$UpdateWorkImplCopyWithImpl(
-    _$UpdateWorkImpl _value,
-    $Res Function(_$UpdateWorkImpl) _then,
-  ) : super(_value, _then);
+      _$UpdateWorkImpl _value, $Res Function(_$UpdateWorkImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -5121,88 +4695,85 @@ class __$$UpdateWorkImplCopyWithImpl<$Res>
     Object? note = freezed,
     Object? location = freezed,
   }) {
-    return _then(
-      _$UpdateWorkImpl(
-        index: null == index
-            ? _value.index
-            : index // ignore: cast_nullable_to_non_nullable
-                  as int,
-        totalHours: freezed == totalHours
-            ? _value.totalHours
-            : totalHours // ignore: cast_nullable_to_non_nullable
-                  as double?,
-        totalHourOT: freezed == totalHourOT
-            ? _value.totalHourOT
-            : totalHourOT // ignore: cast_nullable_to_non_nullable
-                  as double?,
-        percentComplete: freezed == percentComplete
-            ? _value.percentComplete
-            : percentComplete // ignore: cast_nullable_to_non_nullable
-                  as double?,
-        content: freezed == content
-            ? _value.content
-            : content // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        results: freezed == results
-            ? _value.results
-            : results // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        mission: freezed == mission
-            ? _value.mission
-            : mission // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        projectItemId: freezed == projectItemId
-            ? _value.projectItemId
-            : projectItemId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        code: freezed == code
-            ? _value.code
-            : code // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        backlog: freezed == backlog
-            ? _value.backlog
-            : backlog // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        problem: freezed == problem
-            ? _value.problem
-            : problem // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        problemSolve: freezed == problemSolve
-            ? _value.problemSolve
-            : problemSolve // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        note: freezed == note
-            ? _value.note
-            : note // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        location: freezed == location
-            ? _value.location
-            : location // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$UpdateWorkImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalHours: freezed == totalHours
+          ? _value.totalHours
+          : totalHours // ignore: cast_nullable_to_non_nullable
+              as double?,
+      totalHourOT: freezed == totalHourOT
+          ? _value.totalHourOT
+          : totalHourOT // ignore: cast_nullable_to_non_nullable
+              as double?,
+      percentComplete: freezed == percentComplete
+          ? _value.percentComplete
+          : percentComplete // ignore: cast_nullable_to_non_nullable
+              as double?,
+      content: freezed == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String?,
+      results: freezed == results
+          ? _value.results
+          : results // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mission: freezed == mission
+          ? _value.mission
+          : mission // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectItemId: freezed == projectItemId
+          ? _value.projectItemId
+          : projectItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      backlog: freezed == backlog
+          ? _value.backlog
+          : backlog // ignore: cast_nullable_to_non_nullable
+              as String?,
+      problem: freezed == problem
+          ? _value.problem
+          : problem // ignore: cast_nullable_to_non_nullable
+              as String?,
+      problemSolve: freezed == problemSolve
+          ? _value.problemSolve
+          : problemSolve // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$UpdateWorkImpl implements _UpdateWork {
-  const _$UpdateWorkImpl({
-    required this.index,
-    this.totalHours,
-    this.totalHourOT,
-    this.percentComplete,
-    this.content,
-    this.results,
-    this.mission,
-    this.projectItemId,
-    this.code,
-    this.backlog,
-    this.problem,
-    this.problemSolve,
-    this.note,
-    this.location,
-  });
+  const _$UpdateWorkImpl(
+      {required this.index,
+      this.totalHours,
+      this.totalHourOT,
+      this.percentComplete,
+      this.content,
+      this.results,
+      this.mission,
+      this.projectItemId,
+      this.code,
+      this.backlog,
+      this.problem,
+      this.problemSolve,
+      this.note,
+      this.location});
 
   @override
   final int index;
@@ -5267,22 +4838,21 @@ class _$UpdateWorkImpl implements _UpdateWork {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    index,
-    totalHours,
-    totalHourOT,
-    percentComplete,
-    content,
-    results,
-    mission,
-    projectItemId,
-    code,
-    backlog,
-    problem,
-    problemSolve,
-    note,
-    location,
-  );
+      runtimeType,
+      index,
+      totalHours,
+      totalHourOT,
+      percentComplete,
+      content,
+      results,
+      mission,
+      projectItemId,
+      code,
+      backlog,
+      problem,
+      problemSolve,
+      note,
+      location);
 
   @JsonKey(ignore: true)
   @override
@@ -5295,13 +4865,11 @@ class _$UpdateWorkImpl implements _UpdateWork {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -5309,287 +4877,64 @@ class _$UpdateWorkImpl implements _UpdateWork {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return updateWork(
-      index,
-      totalHours,
-      totalHourOT,
-      percentComplete,
-      content,
-      results,
-      mission,
-      projectItemId,
-      code,
-      backlog,
-      problem,
-      problemSolve,
-      note,
-      location,
-    );
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
-    TResult? Function()? addEmptyProject,
-    TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
-    TResult? Function(String tempId)? removeProject,
-    TResult? Function(String tempId)? selectProject,
-    TResult? Function(String tempId, String newName)? updateProjectName,
-    TResult? Function()? addWork,
-    TResult? Function(int index)? removeWork,
-    TResult? Function(int index)? expandWork,
-    TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
-    TResult? Function(DateTime? picked)? updateDate,
-    TResult? Function(String type, String? value)? updateLocation,
-    TResult? Function(int index, bool enabled)? toggleOvertime,
-    TResult? Function(int index)? addOvertimeSession,
-    TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
-    TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
-    TResult? Function(int projectItemId)? loadHistoryProblems,
-    TResult? Function()? clearAutoOpenOvertime,
-    TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
-    TResult? Function(DateTime pickedDate)? submitReport,
-    TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
-    TResult? Function()? resetSubmitFlags,
-    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult? Function(int dailyID)? selectReport,
-    TResult? Function(int dailyID)? loadDetailData,
-    TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
-    TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
-    TResult? Function()? resetCopyReport,
-  }) {
-    return updateWork?.call(
-      index,
-      totalHours,
-      totalHourOT,
-      percentComplete,
-      content,
-      results,
-      mission,
-      projectItemId,
-      code,
-      backlog,
-      problem,
-      problemSolve,
-      note,
-      location,
-    );
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
-    TResult Function()? addEmptyProject,
-    TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
-    TResult Function(String tempId)? removeProject,
-    TResult Function(String tempId)? selectProject,
-    TResult Function(String tempId, String newName)? updateProjectName,
-    TResult Function()? addWork,
-    TResult Function(int index)? removeWork,
-    TResult Function(int index)? expandWork,
-    TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
-    TResult Function(DateTime? picked)? updateDate,
-    TResult Function(String type, String? value)? updateLocation,
-    TResult Function(int index, bool enabled)? toggleOvertime,
-    TResult Function(int index)? addOvertimeSession,
-    TResult Function(int index, int sessionIndex)? removeOvertimeSession,
-    TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
-    TResult Function(int projectItemId)? loadHistoryProblems,
-    TResult Function()? clearAutoOpenOvertime,
-    TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
-    TResult Function(DateTime pickedDate)? submitReport,
-    TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
-    TResult Function()? resetSubmitFlags,
-    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
-    TResult Function(int dailyID)? selectReport,
-    TResult Function(int dailyID)? loadDetailData,
-    TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
-    TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
-    TResult Function()? resetCopyReport,
-    required TResult orElse(),
-  }) {
-    if (updateWork != null) {
-      return updateWork(
         index,
         totalHours,
         totalHourOT,
@@ -5603,8 +4948,185 @@ class _$UpdateWorkImpl implements _UpdateWork {
         problem,
         problemSolve,
         note,
-        location,
-      );
+        location);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
+    TResult? Function()? addEmptyProject,
+    TResult? Function(String tempId, ProjectResponse apiProject)?
+        bindProjectFromApi,
+    TResult? Function(String tempId)? removeProject,
+    TResult? Function(String tempId)? selectProject,
+    TResult? Function(String tempId, String newName)? updateProjectName,
+    TResult? Function()? addWork,
+    TResult? Function(int index)? removeWork,
+    TResult? Function(int index)? expandWork,
+    TResult? Function(
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
+    TResult? Function(DateTime? picked)? updateDate,
+    TResult? Function(String type, String? value)? updateLocation,
+    TResult? Function(int index, bool enabled)? toggleOvertime,
+    TResult? Function(int index)? addOvertimeSession,
+    TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
+    TResult? Function(
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
+    TResult? Function(int projectItemId)? loadHistoryProblems,
+    TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
+    TResult? Function(String value)? updatePlanNextDay,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
+    TResult? Function(DateTime pickedDate)? submitReport,
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int dailyID)? selectReport,
+    TResult? Function(int dailyID)? loadDetailData,
+    TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(int dailyID)? deleteReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
+    TResult? Function()? resetCopyReport,
+  }) {
+    return updateWork?.call(
+        index,
+        totalHours,
+        totalHourOT,
+        percentComplete,
+        content,
+        results,
+        mission,
+        projectItemId,
+        code,
+        backlog,
+        problem,
+        problemSolve,
+        note,
+        location);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
+    TResult Function()? addEmptyProject,
+    TResult Function(String tempId, ProjectResponse apiProject)?
+        bindProjectFromApi,
+    TResult Function(String tempId)? removeProject,
+    TResult Function(String tempId)? selectProject,
+    TResult Function(String tempId, String newName)? updateProjectName,
+    TResult Function()? addWork,
+    TResult Function(int index)? removeWork,
+    TResult Function(int index)? expandWork,
+    TResult Function(
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
+    TResult Function(DateTime? picked)? updateDate,
+    TResult Function(String type, String? value)? updateLocation,
+    TResult Function(int index, bool enabled)? toggleOvertime,
+    TResult Function(int index)? addOvertimeSession,
+    TResult Function(int index, int sessionIndex)? removeOvertimeSession,
+    TResult Function(
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
+    TResult Function(int projectItemId)? loadHistoryProblems,
+    TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
+    TResult Function(String value)? updatePlanNextDay,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
+    TResult Function(DateTime pickedDate)? submitReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int dailyID)? selectReport,
+    TResult Function(int dailyID)? loadDetailData,
+    TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(int dailyID)? deleteReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
+    TResult Function()? resetCopyReport,
+    required TResult orElse(),
+  }) {
+    if (updateWork != null) {
+      return updateWork(
+          index,
+          totalHours,
+          totalHourOT,
+          percentComplete,
+          content,
+          results,
+          mission,
+          projectItemId,
+          code,
+          backlog,
+          problem,
+          problemSolve,
+          note,
+          location);
     }
     return orElse();
   }
@@ -5628,12 +5150,15 @@ class _$UpdateWorkImpl implements _UpdateWork {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -5672,6 +5197,9 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -5710,6 +5238,9 @@ class _$UpdateWorkImpl implements _UpdateWork {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -5732,22 +5263,21 @@ class _$UpdateWorkImpl implements _UpdateWork {
 }
 
 abstract class _UpdateWork implements TechEvent {
-  const factory _UpdateWork({
-    required final int index,
-    final double? totalHours,
-    final double? totalHourOT,
-    final double? percentComplete,
-    final String? content,
-    final String? results,
-    final String? mission,
-    final int? projectItemId,
-    final String? code,
-    final String? backlog,
-    final String? problem,
-    final String? problemSolve,
-    final String? note,
-    final String? location,
-  }) = _$UpdateWorkImpl;
+  const factory _UpdateWork(
+      {required final int index,
+      final double? totalHours,
+      final double? totalHourOT,
+      final double? percentComplete,
+      final String? content,
+      final String? results,
+      final String? mission,
+      final int? projectItemId,
+      final String? code,
+      final String? backlog,
+      final String? problem,
+      final String? problemSolve,
+      final String? note,
+      final String? location}) = _$UpdateWorkImpl;
 
   int get index;
   double? get totalHours;
@@ -5771,9 +5301,8 @@ abstract class _UpdateWork implements TechEvent {
 /// @nodoc
 abstract class _$$UpdateDateImplCopyWith<$Res> {
   factory _$$UpdateDateImplCopyWith(
-    _$UpdateDateImpl value,
-    $Res Function(_$UpdateDateImpl) then,
-  ) = __$$UpdateDateImplCopyWithImpl<$Res>;
+          _$UpdateDateImpl value, $Res Function(_$UpdateDateImpl) then) =
+      __$$UpdateDateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DateTime? picked});
 }
@@ -5783,21 +5312,20 @@ class __$$UpdateDateImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$UpdateDateImpl>
     implements _$$UpdateDateImplCopyWith<$Res> {
   __$$UpdateDateImplCopyWithImpl(
-    _$UpdateDateImpl _value,
-    $Res Function(_$UpdateDateImpl) _then,
-  ) : super(_value, _then);
+      _$UpdateDateImpl _value, $Res Function(_$UpdateDateImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? picked = freezed}) {
-    return _then(
-      _$UpdateDateImpl(
-        freezed == picked
-            ? _value.picked
-            : picked // ignore: cast_nullable_to_non_nullable
-                  as DateTime?,
-      ),
-    );
+  $Res call({
+    Object? picked = freezed,
+  }) {
+    return _then(_$UpdateDateImpl(
+      freezed == picked
+          ? _value.picked
+          : picked // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
   }
 }
 
@@ -5836,13 +5364,11 @@ class _$UpdateDateImpl implements _UpdateDate {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -5850,74 +5376,61 @@ class _$UpdateDateImpl implements _UpdateDate {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return updateDate(picked);
@@ -5928,13 +5441,11 @@ class _$UpdateDateImpl implements _UpdateDate {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -5942,71 +5453,58 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return updateDate?.call(picked);
@@ -6017,13 +5515,11 @@ class _$UpdateDateImpl implements _UpdateDate {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -6031,71 +5527,58 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -6124,12 +5607,15 @@ class _$UpdateDateImpl implements _UpdateDate {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -6168,6 +5654,9 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -6206,6 +5695,9 @@ class _$UpdateDateImpl implements _UpdateDate {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -6238,10 +5730,9 @@ abstract class _UpdateDate implements TechEvent {
 
 /// @nodoc
 abstract class _$$UpdateLocationImplCopyWith<$Res> {
-  factory _$$UpdateLocationImplCopyWith(
-    _$UpdateLocationImpl value,
-    $Res Function(_$UpdateLocationImpl) then,
-  ) = __$$UpdateLocationImplCopyWithImpl<$Res>;
+  factory _$$UpdateLocationImplCopyWith(_$UpdateLocationImpl value,
+          $Res Function(_$UpdateLocationImpl) then) =
+      __$$UpdateLocationImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String type, String? value});
 }
@@ -6251,25 +5742,25 @@ class __$$UpdateLocationImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$UpdateLocationImpl>
     implements _$$UpdateLocationImplCopyWith<$Res> {
   __$$UpdateLocationImplCopyWithImpl(
-    _$UpdateLocationImpl _value,
-    $Res Function(_$UpdateLocationImpl) _then,
-  ) : super(_value, _then);
+      _$UpdateLocationImpl _value, $Res Function(_$UpdateLocationImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? type = null, Object? value = freezed}) {
-    return _then(
-      _$UpdateLocationImpl(
-        type: null == type
-            ? _value.type
-            : type // ignore: cast_nullable_to_non_nullable
-                  as String,
-        value: freezed == value
-            ? _value.value
-            : value // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+  $Res call({
+    Object? type = null,
+    Object? value = freezed,
+  }) {
+    return _then(_$UpdateLocationImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: freezed == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
@@ -6305,22 +5796,18 @@ class _$UpdateLocationImpl implements _UpdateLocation {
   @pragma('vm:prefer-inline')
   _$$UpdateLocationImplCopyWith<_$UpdateLocationImpl> get copyWith =>
       __$$UpdateLocationImplCopyWithImpl<_$UpdateLocationImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -6328,74 +5815,61 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return updateLocation(type, value);
@@ -6406,13 +5880,11 @@ class _$UpdateLocationImpl implements _UpdateLocation {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -6420,71 +5892,58 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return updateLocation?.call(type, value);
@@ -6495,13 +5954,11 @@ class _$UpdateLocationImpl implements _UpdateLocation {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -6509,71 +5966,58 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -6602,12 +6046,15 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -6646,6 +6093,9 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -6684,6 +6134,9 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -6706,10 +6159,8 @@ class _$UpdateLocationImpl implements _UpdateLocation {
 }
 
 abstract class _UpdateLocation implements TechEvent {
-  const factory _UpdateLocation({
-    required final String type,
-    final String? value,
-  }) = _$UpdateLocationImpl;
+  const factory _UpdateLocation(
+      {required final String type, final String? value}) = _$UpdateLocationImpl;
 
   String get type;
   String? get value;
@@ -6720,10 +6171,9 @@ abstract class _UpdateLocation implements TechEvent {
 
 /// @nodoc
 abstract class _$$ToggleOvertimeImplCopyWith<$Res> {
-  factory _$$ToggleOvertimeImplCopyWith(
-    _$ToggleOvertimeImpl value,
-    $Res Function(_$ToggleOvertimeImpl) then,
-  ) = __$$ToggleOvertimeImplCopyWithImpl<$Res>;
+  factory _$$ToggleOvertimeImplCopyWith(_$ToggleOvertimeImpl value,
+          $Res Function(_$ToggleOvertimeImpl) then) =
+      __$$ToggleOvertimeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int index, bool enabled});
 }
@@ -6733,25 +6183,25 @@ class __$$ToggleOvertimeImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$ToggleOvertimeImpl>
     implements _$$ToggleOvertimeImplCopyWith<$Res> {
   __$$ToggleOvertimeImplCopyWithImpl(
-    _$ToggleOvertimeImpl _value,
-    $Res Function(_$ToggleOvertimeImpl) _then,
-  ) : super(_value, _then);
+      _$ToggleOvertimeImpl _value, $Res Function(_$ToggleOvertimeImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? index = null, Object? enabled = null}) {
-    return _then(
-      _$ToggleOvertimeImpl(
-        index: null == index
-            ? _value.index
-            : index // ignore: cast_nullable_to_non_nullable
-                  as int,
-        enabled: null == enabled
-            ? _value.enabled
-            : enabled // ignore: cast_nullable_to_non_nullable
-                  as bool,
-      ),
-    );
+  $Res call({
+    Object? index = null,
+    Object? enabled = null,
+  }) {
+    return _then(_$ToggleOvertimeImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+      enabled: null == enabled
+          ? _value.enabled
+          : enabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
   }
 }
 
@@ -6787,22 +6237,18 @@ class _$ToggleOvertimeImpl implements _ToggleOvertime {
   @pragma('vm:prefer-inline')
   _$$ToggleOvertimeImplCopyWith<_$ToggleOvertimeImpl> get copyWith =>
       __$$ToggleOvertimeImplCopyWithImpl<_$ToggleOvertimeImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -6810,74 +6256,61 @@ class _$ToggleOvertimeImpl implements _ToggleOvertime {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return toggleOvertime(index, enabled);
@@ -6888,13 +6321,11 @@ class _$ToggleOvertimeImpl implements _ToggleOvertime {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -6902,71 +6333,58 @@ class _$ToggleOvertimeImpl implements _ToggleOvertime {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return toggleOvertime?.call(index, enabled);
@@ -6977,13 +6395,11 @@ class _$ToggleOvertimeImpl implements _ToggleOvertime {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -6991,71 +6407,58 @@ class _$ToggleOvertimeImpl implements _ToggleOvertime {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -7084,12 +6487,15 @@ class _$ToggleOvertimeImpl implements _ToggleOvertime {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -7128,6 +6534,9 @@ class _$ToggleOvertimeImpl implements _ToggleOvertime {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -7166,6 +6575,9 @@ class _$ToggleOvertimeImpl implements _ToggleOvertime {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -7188,10 +6600,9 @@ class _$ToggleOvertimeImpl implements _ToggleOvertime {
 }
 
 abstract class _ToggleOvertime implements TechEvent {
-  const factory _ToggleOvertime({
-    required final int index,
-    required final bool enabled,
-  }) = _$ToggleOvertimeImpl;
+  const factory _ToggleOvertime(
+      {required final int index,
+      required final bool enabled}) = _$ToggleOvertimeImpl;
 
   int get index;
   bool get enabled;
@@ -7202,10 +6613,9 @@ abstract class _ToggleOvertime implements TechEvent {
 
 /// @nodoc
 abstract class _$$AddOvertimeSessionImplCopyWith<$Res> {
-  factory _$$AddOvertimeSessionImplCopyWith(
-    _$AddOvertimeSessionImpl value,
-    $Res Function(_$AddOvertimeSessionImpl) then,
-  ) = __$$AddOvertimeSessionImplCopyWithImpl<$Res>;
+  factory _$$AddOvertimeSessionImplCopyWith(_$AddOvertimeSessionImpl value,
+          $Res Function(_$AddOvertimeSessionImpl) then) =
+      __$$AddOvertimeSessionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int index});
 }
@@ -7214,22 +6624,21 @@ abstract class _$$AddOvertimeSessionImplCopyWith<$Res> {
 class __$$AddOvertimeSessionImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$AddOvertimeSessionImpl>
     implements _$$AddOvertimeSessionImplCopyWith<$Res> {
-  __$$AddOvertimeSessionImplCopyWithImpl(
-    _$AddOvertimeSessionImpl _value,
-    $Res Function(_$AddOvertimeSessionImpl) _then,
-  ) : super(_value, _then);
+  __$$AddOvertimeSessionImplCopyWithImpl(_$AddOvertimeSessionImpl _value,
+      $Res Function(_$AddOvertimeSessionImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? index = null}) {
-    return _then(
-      _$AddOvertimeSessionImpl(
-        index: null == index
-            ? _value.index
-            : index // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$AddOvertimeSessionImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
@@ -7262,22 +6671,18 @@ class _$AddOvertimeSessionImpl implements _AddOvertimeSession {
   @pragma('vm:prefer-inline')
   _$$AddOvertimeSessionImplCopyWith<_$AddOvertimeSessionImpl> get copyWith =>
       __$$AddOvertimeSessionImplCopyWithImpl<_$AddOvertimeSessionImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -7285,74 +6690,61 @@ class _$AddOvertimeSessionImpl implements _AddOvertimeSession {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return addOvertimeSession(index);
@@ -7363,13 +6755,11 @@ class _$AddOvertimeSessionImpl implements _AddOvertimeSession {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -7377,71 +6767,58 @@ class _$AddOvertimeSessionImpl implements _AddOvertimeSession {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return addOvertimeSession?.call(index);
@@ -7452,13 +6829,11 @@ class _$AddOvertimeSessionImpl implements _AddOvertimeSession {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -7466,71 +6841,58 @@ class _$AddOvertimeSessionImpl implements _AddOvertimeSession {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -7559,12 +6921,15 @@ class _$AddOvertimeSessionImpl implements _AddOvertimeSession {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -7603,6 +6968,9 @@ class _$AddOvertimeSessionImpl implements _AddOvertimeSession {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -7641,6 +7009,9 @@ class _$AddOvertimeSessionImpl implements _AddOvertimeSession {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -7675,9 +7046,9 @@ abstract class _AddOvertimeSession implements TechEvent {
 /// @nodoc
 abstract class _$$RemoveOvertimeSessionImplCopyWith<$Res> {
   factory _$$RemoveOvertimeSessionImplCopyWith(
-    _$RemoveOvertimeSessionImpl value,
-    $Res Function(_$RemoveOvertimeSessionImpl) then,
-  ) = __$$RemoveOvertimeSessionImplCopyWithImpl<$Res>;
+          _$RemoveOvertimeSessionImpl value,
+          $Res Function(_$RemoveOvertimeSessionImpl) then) =
+      __$$RemoveOvertimeSessionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int index, int sessionIndex});
 }
@@ -7686,36 +7057,34 @@ abstract class _$$RemoveOvertimeSessionImplCopyWith<$Res> {
 class __$$RemoveOvertimeSessionImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$RemoveOvertimeSessionImpl>
     implements _$$RemoveOvertimeSessionImplCopyWith<$Res> {
-  __$$RemoveOvertimeSessionImplCopyWithImpl(
-    _$RemoveOvertimeSessionImpl _value,
-    $Res Function(_$RemoveOvertimeSessionImpl) _then,
-  ) : super(_value, _then);
+  __$$RemoveOvertimeSessionImplCopyWithImpl(_$RemoveOvertimeSessionImpl _value,
+      $Res Function(_$RemoveOvertimeSessionImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? index = null, Object? sessionIndex = null}) {
-    return _then(
-      _$RemoveOvertimeSessionImpl(
-        index: null == index
-            ? _value.index
-            : index // ignore: cast_nullable_to_non_nullable
-                  as int,
-        sessionIndex: null == sessionIndex
-            ? _value.sessionIndex
-            : sessionIndex // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+  $Res call({
+    Object? index = null,
+    Object? sessionIndex = null,
+  }) {
+    return _then(_$RemoveOvertimeSessionImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+      sessionIndex: null == sessionIndex
+          ? _value.sessionIndex
+          : sessionIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$RemoveOvertimeSessionImpl implements _RemoveOvertimeSession {
-  const _$RemoveOvertimeSessionImpl({
-    required this.index,
-    required this.sessionIndex,
-  });
+  const _$RemoveOvertimeSessionImpl(
+      {required this.index, required this.sessionIndex});
 
   @override
   final int index;
@@ -7744,24 +7113,19 @@ class _$RemoveOvertimeSessionImpl implements _RemoveOvertimeSession {
   @override
   @pragma('vm:prefer-inline')
   _$$RemoveOvertimeSessionImplCopyWith<_$RemoveOvertimeSessionImpl>
-  get copyWith =>
-      __$$RemoveOvertimeSessionImplCopyWithImpl<_$RemoveOvertimeSessionImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith => __$$RemoveOvertimeSessionImplCopyWithImpl<
+          _$RemoveOvertimeSessionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -7769,74 +7133,61 @@ class _$RemoveOvertimeSessionImpl implements _RemoveOvertimeSession {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return removeOvertimeSession(index, sessionIndex);
@@ -7847,13 +7198,11 @@ class _$RemoveOvertimeSessionImpl implements _RemoveOvertimeSession {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -7861,71 +7210,58 @@ class _$RemoveOvertimeSessionImpl implements _RemoveOvertimeSession {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return removeOvertimeSession?.call(index, sessionIndex);
@@ -7936,13 +7272,11 @@ class _$RemoveOvertimeSessionImpl implements _RemoveOvertimeSession {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -7950,71 +7284,58 @@ class _$RemoveOvertimeSessionImpl implements _RemoveOvertimeSession {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -8043,12 +7364,15 @@ class _$RemoveOvertimeSessionImpl implements _RemoveOvertimeSession {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -8087,6 +7411,9 @@ class _$RemoveOvertimeSessionImpl implements _RemoveOvertimeSession {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -8125,6 +7452,9 @@ class _$RemoveOvertimeSessionImpl implements _RemoveOvertimeSession {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -8147,46 +7477,43 @@ class _$RemoveOvertimeSessionImpl implements _RemoveOvertimeSession {
 }
 
 abstract class _RemoveOvertimeSession implements TechEvent {
-  const factory _RemoveOvertimeSession({
-    required final int index,
-    required final int sessionIndex,
-  }) = _$RemoveOvertimeSessionImpl;
+  const factory _RemoveOvertimeSession(
+      {required final int index,
+      required final int sessionIndex}) = _$RemoveOvertimeSessionImpl;
 
   int get index;
   int get sessionIndex;
   @JsonKey(ignore: true)
   _$$RemoveOvertimeSessionImplCopyWith<_$RemoveOvertimeSessionImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$UpdateOvertimeSessionImplCopyWith<$Res> {
   factory _$$UpdateOvertimeSessionImplCopyWith(
-    _$UpdateOvertimeSessionImpl value,
-    $Res Function(_$UpdateOvertimeSessionImpl) then,
-  ) = __$$UpdateOvertimeSessionImplCopyWithImpl<$Res>;
+          _$UpdateOvertimeSessionImpl value,
+          $Res Function(_$UpdateOvertimeSessionImpl) then) =
+      __$$UpdateOvertimeSessionImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({
-    int index,
-    int sessionIndex,
-    DateTime? timeStart,
-    DateTime? endTime,
-    int? location,
-    int? typeId,
-    int? approvedId,
-    bool? overnight,
-    String? reason,
-  });
+  $Res call(
+      {int index,
+      int sessionIndex,
+      DateTime? timeStart,
+      DateTime? endTime,
+      int? location,
+      int? typeId,
+      int? approvedId,
+      bool? overnight,
+      String? reason});
 }
 
 /// @nodoc
 class __$$UpdateOvertimeSessionImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$UpdateOvertimeSessionImpl>
     implements _$$UpdateOvertimeSessionImplCopyWith<$Res> {
-  __$$UpdateOvertimeSessionImplCopyWithImpl(
-    _$UpdateOvertimeSessionImpl _value,
-    $Res Function(_$UpdateOvertimeSessionImpl) _then,
-  ) : super(_value, _then);
+  __$$UpdateOvertimeSessionImplCopyWithImpl(_$UpdateOvertimeSessionImpl _value,
+      $Res Function(_$UpdateOvertimeSessionImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -8201,63 +7528,60 @@ class __$$UpdateOvertimeSessionImplCopyWithImpl<$Res>
     Object? overnight = freezed,
     Object? reason = freezed,
   }) {
-    return _then(
-      _$UpdateOvertimeSessionImpl(
-        index: null == index
-            ? _value.index
-            : index // ignore: cast_nullable_to_non_nullable
-                  as int,
-        sessionIndex: null == sessionIndex
-            ? _value.sessionIndex
-            : sessionIndex // ignore: cast_nullable_to_non_nullable
-                  as int,
-        timeStart: freezed == timeStart
-            ? _value.timeStart
-            : timeStart // ignore: cast_nullable_to_non_nullable
-                  as DateTime?,
-        endTime: freezed == endTime
-            ? _value.endTime
-            : endTime // ignore: cast_nullable_to_non_nullable
-                  as DateTime?,
-        location: freezed == location
-            ? _value.location
-            : location // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        typeId: freezed == typeId
-            ? _value.typeId
-            : typeId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        approvedId: freezed == approvedId
-            ? _value.approvedId
-            : approvedId // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        overnight: freezed == overnight
-            ? _value.overnight
-            : overnight // ignore: cast_nullable_to_non_nullable
-                  as bool?,
-        reason: freezed == reason
-            ? _value.reason
-            : reason // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$UpdateOvertimeSessionImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+      sessionIndex: null == sessionIndex
+          ? _value.sessionIndex
+          : sessionIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      timeStart: freezed == timeStart
+          ? _value.timeStart
+          : timeStart // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endTime: freezed == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as int?,
+      typeId: freezed == typeId
+          ? _value.typeId
+          : typeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedId: freezed == approvedId
+          ? _value.approvedId
+          : approvedId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      overnight: freezed == overnight
+          ? _value.overnight
+          : overnight // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$UpdateOvertimeSessionImpl implements _UpdateOvertimeSession {
-  const _$UpdateOvertimeSessionImpl({
-    required this.index,
-    required this.sessionIndex,
-    this.timeStart,
-    this.endTime,
-    this.location,
-    this.typeId,
-    this.approvedId,
-    this.overnight,
-    this.reason,
-  });
+  const _$UpdateOvertimeSessionImpl(
+      {required this.index,
+      required this.sessionIndex,
+      this.timeStart,
+      this.endTime,
+      this.location,
+      this.typeId,
+      this.approvedId,
+      this.overnight,
+      this.reason});
 
   @override
   final int index;
@@ -8305,41 +7629,26 @@ class _$UpdateOvertimeSessionImpl implements _UpdateOvertimeSession {
   }
 
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    index,
-    sessionIndex,
-    timeStart,
-    endTime,
-    location,
-    typeId,
-    approvedId,
-    overnight,
-    reason,
-  );
+  int get hashCode => Object.hash(runtimeType, index, sessionIndex, timeStart,
+      endTime, location, typeId, approvedId, overnight, reason);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdateOvertimeSessionImplCopyWith<_$UpdateOvertimeSessionImpl>
-  get copyWith =>
-      __$$UpdateOvertimeSessionImplCopyWithImpl<_$UpdateOvertimeSessionImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith => __$$UpdateOvertimeSessionImplCopyWithImpl<
+          _$UpdateOvertimeSessionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -8347,87 +7656,65 @@ class _$UpdateOvertimeSessionImpl implements _UpdateOvertimeSession {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
-    return updateOvertimeSession(
-      index,
-      sessionIndex,
-      timeStart,
-      endTime,
-      location,
-      typeId,
-      approvedId,
-      overnight,
-      reason,
-    );
+    return updateOvertimeSession(index, sessionIndex, timeStart, endTime,
+        location, typeId, approvedId, overnight, reason);
   }
 
   @override
@@ -8435,13 +7722,11 @@ class _$UpdateOvertimeSessionImpl implements _UpdateOvertimeSession {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -8449,84 +7734,62 @@ class _$UpdateOvertimeSessionImpl implements _UpdateOvertimeSession {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
-    return updateOvertimeSession?.call(
-      index,
-      sessionIndex,
-      timeStart,
-      endTime,
-      location,
-      typeId,
-      approvedId,
-      overnight,
-      reason,
-    );
+    return updateOvertimeSession?.call(index, sessionIndex, timeStart, endTime,
+        location, typeId, approvedId, overnight, reason);
   }
 
   @override
@@ -8534,13 +7797,11 @@ class _$UpdateOvertimeSessionImpl implements _UpdateOvertimeSession {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -8548,86 +7809,64 @@ class _$UpdateOvertimeSessionImpl implements _UpdateOvertimeSession {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
     if (updateOvertimeSession != null) {
-      return updateOvertimeSession(
-        index,
-        sessionIndex,
-        timeStart,
-        endTime,
-        location,
-        typeId,
-        approvedId,
-        overnight,
-        reason,
-      );
+      return updateOvertimeSession(index, sessionIndex, timeStart, endTime,
+          location, typeId, approvedId, overnight, reason);
     }
     return orElse();
   }
@@ -8651,12 +7890,15 @@ class _$UpdateOvertimeSessionImpl implements _UpdateOvertimeSession {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -8695,6 +7937,9 @@ class _$UpdateOvertimeSessionImpl implements _UpdateOvertimeSession {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -8733,6 +7978,9 @@ class _$UpdateOvertimeSessionImpl implements _UpdateOvertimeSession {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -8755,17 +8003,16 @@ class _$UpdateOvertimeSessionImpl implements _UpdateOvertimeSession {
 }
 
 abstract class _UpdateOvertimeSession implements TechEvent {
-  const factory _UpdateOvertimeSession({
-    required final int index,
-    required final int sessionIndex,
-    final DateTime? timeStart,
-    final DateTime? endTime,
-    final int? location,
-    final int? typeId,
-    final int? approvedId,
-    final bool? overnight,
-    final String? reason,
-  }) = _$UpdateOvertimeSessionImpl;
+  const factory _UpdateOvertimeSession(
+      {required final int index,
+      required final int sessionIndex,
+      final DateTime? timeStart,
+      final DateTime? endTime,
+      final int? location,
+      final int? typeId,
+      final int? approvedId,
+      final bool? overnight,
+      final String? reason}) = _$UpdateOvertimeSessionImpl;
 
   int get index;
   int get sessionIndex;
@@ -8778,15 +8025,14 @@ abstract class _UpdateOvertimeSession implements TechEvent {
   String? get reason;
   @JsonKey(ignore: true)
   _$$UpdateOvertimeSessionImplCopyWith<_$UpdateOvertimeSessionImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$LoadHistoryProblemsImplCopyWith<$Res> {
-  factory _$$LoadHistoryProblemsImplCopyWith(
-    _$LoadHistoryProblemsImpl value,
-    $Res Function(_$LoadHistoryProblemsImpl) then,
-  ) = __$$LoadHistoryProblemsImplCopyWithImpl<$Res>;
+  factory _$$LoadHistoryProblemsImplCopyWith(_$LoadHistoryProblemsImpl value,
+          $Res Function(_$LoadHistoryProblemsImpl) then) =
+      __$$LoadHistoryProblemsImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int projectItemId});
 }
@@ -8795,22 +8041,21 @@ abstract class _$$LoadHistoryProblemsImplCopyWith<$Res> {
 class __$$LoadHistoryProblemsImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$LoadHistoryProblemsImpl>
     implements _$$LoadHistoryProblemsImplCopyWith<$Res> {
-  __$$LoadHistoryProblemsImplCopyWithImpl(
-    _$LoadHistoryProblemsImpl _value,
-    $Res Function(_$LoadHistoryProblemsImpl) _then,
-  ) : super(_value, _then);
+  __$$LoadHistoryProblemsImplCopyWithImpl(_$LoadHistoryProblemsImpl _value,
+      $Res Function(_$LoadHistoryProblemsImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? projectItemId = null}) {
-    return _then(
-      _$LoadHistoryProblemsImpl(
-        projectItemId: null == projectItemId
-            ? _value.projectItemId
-            : projectItemId // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+  $Res call({
+    Object? projectItemId = null,
+  }) {
+    return _then(_$LoadHistoryProblemsImpl(
+      projectItemId: null == projectItemId
+          ? _value.projectItemId
+          : projectItemId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
@@ -8844,22 +8089,18 @@ class _$LoadHistoryProblemsImpl implements _LoadHistoryProblems {
   @pragma('vm:prefer-inline')
   _$$LoadHistoryProblemsImplCopyWith<_$LoadHistoryProblemsImpl> get copyWith =>
       __$$LoadHistoryProblemsImplCopyWithImpl<_$LoadHistoryProblemsImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -8867,74 +8108,61 @@ class _$LoadHistoryProblemsImpl implements _LoadHistoryProblems {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return loadHistoryProblems(projectItemId);
@@ -8945,13 +8173,11 @@ class _$LoadHistoryProblemsImpl implements _LoadHistoryProblems {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -8959,71 +8185,58 @@ class _$LoadHistoryProblemsImpl implements _LoadHistoryProblems {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return loadHistoryProblems?.call(projectItemId);
@@ -9034,13 +8247,11 @@ class _$LoadHistoryProblemsImpl implements _LoadHistoryProblems {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -9048,71 +8259,58 @@ class _$LoadHistoryProblemsImpl implements _LoadHistoryProblems {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -9141,12 +8339,15 @@ class _$LoadHistoryProblemsImpl implements _LoadHistoryProblems {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -9185,6 +8386,9 @@ class _$LoadHistoryProblemsImpl implements _LoadHistoryProblems {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -9223,6 +8427,9 @@ class _$LoadHistoryProblemsImpl implements _LoadHistoryProblems {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -9257,19 +8464,18 @@ abstract class _LoadHistoryProblems implements TechEvent {
 /// @nodoc
 abstract class _$$ClearAutoOpenOvertimeImplCopyWith<$Res> {
   factory _$$ClearAutoOpenOvertimeImplCopyWith(
-    _$ClearAutoOpenOvertimeImpl value,
-    $Res Function(_$ClearAutoOpenOvertimeImpl) then,
-  ) = __$$ClearAutoOpenOvertimeImplCopyWithImpl<$Res>;
+          _$ClearAutoOpenOvertimeImpl value,
+          $Res Function(_$ClearAutoOpenOvertimeImpl) then) =
+      __$$ClearAutoOpenOvertimeImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$ClearAutoOpenOvertimeImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$ClearAutoOpenOvertimeImpl>
     implements _$$ClearAutoOpenOvertimeImplCopyWith<$Res> {
-  __$$ClearAutoOpenOvertimeImplCopyWithImpl(
-    _$ClearAutoOpenOvertimeImpl _value,
-    $Res Function(_$ClearAutoOpenOvertimeImpl) _then,
-  ) : super(_value, _then);
+  __$$ClearAutoOpenOvertimeImplCopyWithImpl(_$ClearAutoOpenOvertimeImpl _value,
+      $Res Function(_$ClearAutoOpenOvertimeImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -9297,13 +8503,11 @@ class _$ClearAutoOpenOvertimeImpl implements _ClearAutoOpenOvertime {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -9311,74 +8515,61 @@ class _$ClearAutoOpenOvertimeImpl implements _ClearAutoOpenOvertime {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return clearAutoOpenOvertime();
@@ -9389,13 +8580,11 @@ class _$ClearAutoOpenOvertimeImpl implements _ClearAutoOpenOvertime {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -9403,71 +8592,58 @@ class _$ClearAutoOpenOvertimeImpl implements _ClearAutoOpenOvertime {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return clearAutoOpenOvertime?.call();
@@ -9478,13 +8654,11 @@ class _$ClearAutoOpenOvertimeImpl implements _ClearAutoOpenOvertime {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -9492,71 +8666,58 @@ class _$ClearAutoOpenOvertimeImpl implements _ClearAutoOpenOvertime {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -9585,12 +8746,15 @@ class _$ClearAutoOpenOvertimeImpl implements _ClearAutoOpenOvertime {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -9629,6 +8793,9 @@ class _$ClearAutoOpenOvertimeImpl implements _ClearAutoOpenOvertime {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -9667,6 +8834,9 @@ class _$ClearAutoOpenOvertimeImpl implements _ClearAutoOpenOvertime {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -9693,11 +8863,847 @@ abstract class _ClearAutoOpenOvertime implements TechEvent {
 }
 
 /// @nodoc
+abstract class _$$ClearPendingProjectItemEditImplCopyWith<$Res> {
+  factory _$$ClearPendingProjectItemEditImplCopyWith(
+          _$ClearPendingProjectItemEditImpl value,
+          $Res Function(_$ClearPendingProjectItemEditImpl) then) =
+      __$$ClearPendingProjectItemEditImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearPendingProjectItemEditImplCopyWithImpl<$Res>
+    extends _$TechEventCopyWithImpl<$Res, _$ClearPendingProjectItemEditImpl>
+    implements _$$ClearPendingProjectItemEditImplCopyWith<$Res> {
+  __$$ClearPendingProjectItemEditImplCopyWithImpl(
+      _$ClearPendingProjectItemEditImpl _value,
+      $Res Function(_$ClearPendingProjectItemEditImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearPendingProjectItemEditImpl
+    implements _ClearPendingProjectItemEdit {
+  const _$ClearPendingProjectItemEditImpl();
+
+  @override
+  String toString() {
+    return 'TechEvent.clearPendingProjectItemEdit()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearPendingProjectItemEditImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
+    required TResult Function() addEmptyProject,
+    required TResult Function(String tempId, ProjectResponse apiProject)
+        bindProjectFromApi,
+    required TResult Function(String tempId) removeProject,
+    required TResult Function(String tempId) selectProject,
+    required TResult Function(String tempId, String newName) updateProjectName,
+    required TResult Function() addWork,
+    required TResult Function(int index) removeWork,
+    required TResult Function(int index) expandWork,
+    required TResult Function(
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
+    required TResult Function(DateTime? picked) updateDate,
+    required TResult Function(String type, String? value) updateLocation,
+    required TResult Function(int index, bool enabled) toggleOvertime,
+    required TResult Function(int index) addOvertimeSession,
+    required TResult Function(int index, int sessionIndex)
+        removeOvertimeSession,
+    required TResult Function(
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
+    required TResult Function(int projectItemId) loadHistoryProblems,
+    required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
+    required TResult Function(String value) updatePlanNextDay,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
+    required TResult Function(DateTime pickedDate) submitReport,
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int dailyID) selectReport,
+    required TResult Function(int dailyID) loadDetailData,
+    required TResult Function(DateTime pickedDate, int dailyID)
+        submitEditReport,
+    required TResult Function(int dailyID) deleteReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
+    required TResult Function() resetCopyReport,
+  }) {
+    return clearPendingProjectItemEdit();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
+    TResult? Function()? addEmptyProject,
+    TResult? Function(String tempId, ProjectResponse apiProject)?
+        bindProjectFromApi,
+    TResult? Function(String tempId)? removeProject,
+    TResult? Function(String tempId)? selectProject,
+    TResult? Function(String tempId, String newName)? updateProjectName,
+    TResult? Function()? addWork,
+    TResult? Function(int index)? removeWork,
+    TResult? Function(int index)? expandWork,
+    TResult? Function(
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
+    TResult? Function(DateTime? picked)? updateDate,
+    TResult? Function(String type, String? value)? updateLocation,
+    TResult? Function(int index, bool enabled)? toggleOvertime,
+    TResult? Function(int index)? addOvertimeSession,
+    TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
+    TResult? Function(
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
+    TResult? Function(int projectItemId)? loadHistoryProblems,
+    TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
+    TResult? Function(String value)? updatePlanNextDay,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
+    TResult? Function(DateTime pickedDate)? submitReport,
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int dailyID)? selectReport,
+    TResult? Function(int dailyID)? loadDetailData,
+    TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(int dailyID)? deleteReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
+    TResult? Function()? resetCopyReport,
+  }) {
+    return clearPendingProjectItemEdit?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
+    TResult Function()? addEmptyProject,
+    TResult Function(String tempId, ProjectResponse apiProject)?
+        bindProjectFromApi,
+    TResult Function(String tempId)? removeProject,
+    TResult Function(String tempId)? selectProject,
+    TResult Function(String tempId, String newName)? updateProjectName,
+    TResult Function()? addWork,
+    TResult Function(int index)? removeWork,
+    TResult Function(int index)? expandWork,
+    TResult Function(
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
+    TResult Function(DateTime? picked)? updateDate,
+    TResult Function(String type, String? value)? updateLocation,
+    TResult Function(int index, bool enabled)? toggleOvertime,
+    TResult Function(int index)? addOvertimeSession,
+    TResult Function(int index, int sessionIndex)? removeOvertimeSession,
+    TResult Function(
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
+    TResult Function(int projectItemId)? loadHistoryProblems,
+    TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
+    TResult Function(String value)? updatePlanNextDay,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
+    TResult Function(DateTime pickedDate)? submitReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int dailyID)? selectReport,
+    TResult Function(int dailyID)? loadDetailData,
+    TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(int dailyID)? deleteReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
+    TResult Function()? resetCopyReport,
+    required TResult orElse(),
+  }) {
+    if (clearPendingProjectItemEdit != null) {
+      return clearPendingProjectItemEdit();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_AddEmptyProject value) addEmptyProject,
+    required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
+    required TResult Function(_RemoveProject value) removeProject,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_UpdateProjectName value) updateProjectName,
+    required TResult Function(_AddWork value) addWork,
+    required TResult Function(_RemoveWork value) removeWork,
+    required TResult Function(_ExpandWork value) expandWork,
+    required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateDate value) updateDate,
+    required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_ToggleOvertime value) toggleOvertime,
+    required TResult Function(_AddOvertimeSession value) addOvertimeSession,
+    required TResult Function(_RemoveOvertimeSession value)
+        removeOvertimeSession,
+    required TResult Function(_UpdateOvertimeSession value)
+        updateOvertimeSession,
+    required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
+    required TResult Function(_ClearAutoOpenOvertime value)
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
+    required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
+    required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
+    required TResult Function(_SubmitReportWithDate value) submitReport,
+    required TResult Function(_SendMailReport value) sendMailReport,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_LoadDetailData value) loadDetailData,
+    required TResult Function(_SubmitEditReportWithDate value) submitEditReport,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_CopyReport value) copyReport,
+    required TResult Function(_ResetCopy value) resetCopyReport,
+  }) {
+    return clearPendingProjectItemEdit(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_AddEmptyProject value)? addEmptyProject,
+    TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
+    TResult? Function(_RemoveProject value)? removeProject,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_UpdateProjectName value)? updateProjectName,
+    TResult? Function(_AddWork value)? addWork,
+    TResult? Function(_RemoveWork value)? removeWork,
+    TResult? Function(_ExpandWork value)? expandWork,
+    TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateDate value)? updateDate,
+    TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_ToggleOvertime value)? toggleOvertime,
+    TResult? Function(_AddOvertimeSession value)? addOvertimeSession,
+    TResult? Function(_RemoveOvertimeSession value)? removeOvertimeSession,
+    TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
+    TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
+    TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
+    TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
+    TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
+    TResult? Function(_SubmitReportWithDate value)? submitReport,
+    TResult? Function(_SendMailReport value)? sendMailReport,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_LoadDetailData value)? loadDetailData,
+    TResult? Function(_SubmitEditReportWithDate value)? submitEditReport,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_CopyReport value)? copyReport,
+    TResult? Function(_ResetCopy value)? resetCopyReport,
+  }) {
+    return clearPendingProjectItemEdit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_AddEmptyProject value)? addEmptyProject,
+    TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
+    TResult Function(_RemoveProject value)? removeProject,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_UpdateProjectName value)? updateProjectName,
+    TResult Function(_AddWork value)? addWork,
+    TResult Function(_RemoveWork value)? removeWork,
+    TResult Function(_ExpandWork value)? expandWork,
+    TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateDate value)? updateDate,
+    TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_ToggleOvertime value)? toggleOvertime,
+    TResult Function(_AddOvertimeSession value)? addOvertimeSession,
+    TResult Function(_RemoveOvertimeSession value)? removeOvertimeSession,
+    TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
+    TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
+    TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
+    TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
+    TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
+    TResult Function(_SubmitReportWithDate value)? submitReport,
+    TResult Function(_SendMailReport value)? sendMailReport,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_LoadDetailData value)? loadDetailData,
+    TResult Function(_SubmitEditReportWithDate value)? submitEditReport,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_CopyReport value)? copyReport,
+    TResult Function(_ResetCopy value)? resetCopyReport,
+    required TResult orElse(),
+  }) {
+    if (clearPendingProjectItemEdit != null) {
+      return clearPendingProjectItemEdit(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearPendingProjectItemEdit implements TechEvent {
+  const factory _ClearPendingProjectItemEdit() =
+      _$ClearPendingProjectItemEditImpl;
+}
+
+/// @nodoc
+abstract class _$$RecheckProjectItemImplCopyWith<$Res> {
+  factory _$$RecheckProjectItemImplCopyWith(_$RecheckProjectItemImpl value,
+          $Res Function(_$RecheckProjectItemImpl) then) =
+      __$$RecheckProjectItemImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int projectItemId});
+}
+
+/// @nodoc
+class __$$RecheckProjectItemImplCopyWithImpl<$Res>
+    extends _$TechEventCopyWithImpl<$Res, _$RecheckProjectItemImpl>
+    implements _$$RecheckProjectItemImplCopyWith<$Res> {
+  __$$RecheckProjectItemImplCopyWithImpl(_$RecheckProjectItemImpl _value,
+      $Res Function(_$RecheckProjectItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projectItemId = null,
+  }) {
+    return _then(_$RecheckProjectItemImpl(
+      projectItemId: null == projectItemId
+          ? _value.projectItemId
+          : projectItemId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RecheckProjectItemImpl implements _RecheckProjectItem {
+  const _$RecheckProjectItemImpl({required this.projectItemId});
+
+  @override
+  final int projectItemId;
+
+  @override
+  String toString() {
+    return 'TechEvent.recheckProjectItem(projectItemId: $projectItemId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RecheckProjectItemImpl &&
+            (identical(other.projectItemId, projectItemId) ||
+                other.projectItemId == projectItemId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, projectItemId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RecheckProjectItemImplCopyWith<_$RecheckProjectItemImpl> get copyWith =>
+      __$$RecheckProjectItemImplCopyWithImpl<_$RecheckProjectItemImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
+    required TResult Function() addEmptyProject,
+    required TResult Function(String tempId, ProjectResponse apiProject)
+        bindProjectFromApi,
+    required TResult Function(String tempId) removeProject,
+    required TResult Function(String tempId) selectProject,
+    required TResult Function(String tempId, String newName) updateProjectName,
+    required TResult Function() addWork,
+    required TResult Function(int index) removeWork,
+    required TResult Function(int index) expandWork,
+    required TResult Function(
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
+    required TResult Function(DateTime? picked) updateDate,
+    required TResult Function(String type, String? value) updateLocation,
+    required TResult Function(int index, bool enabled) toggleOvertime,
+    required TResult Function(int index) addOvertimeSession,
+    required TResult Function(int index, int sessionIndex)
+        removeOvertimeSession,
+    required TResult Function(
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
+    required TResult Function(int projectItemId) loadHistoryProblems,
+    required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
+    required TResult Function(String value) updatePlanNextDay,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
+    required TResult Function(DateTime pickedDate) submitReport,
+    required TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
+    required TResult Function() resetSubmitFlags,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(int dailyID) selectReport,
+    required TResult Function(int dailyID) loadDetailData,
+    required TResult Function(DateTime pickedDate, int dailyID)
+        submitEditReport,
+    required TResult Function(int dailyID) deleteReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
+    required TResult Function() resetCopyReport,
+  }) {
+    return recheckProjectItem(projectItemId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
+    TResult? Function()? addEmptyProject,
+    TResult? Function(String tempId, ProjectResponse apiProject)?
+        bindProjectFromApi,
+    TResult? Function(String tempId)? removeProject,
+    TResult? Function(String tempId)? selectProject,
+    TResult? Function(String tempId, String newName)? updateProjectName,
+    TResult? Function()? addWork,
+    TResult? Function(int index)? removeWork,
+    TResult? Function(int index)? expandWork,
+    TResult? Function(
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
+    TResult? Function(DateTime? picked)? updateDate,
+    TResult? Function(String type, String? value)? updateLocation,
+    TResult? Function(int index, bool enabled)? toggleOvertime,
+    TResult? Function(int index)? addOvertimeSession,
+    TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
+    TResult? Function(
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
+    TResult? Function(int projectItemId)? loadHistoryProblems,
+    TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
+    TResult? Function(String value)? updatePlanNextDay,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
+    TResult? Function(DateTime pickedDate)? submitReport,
+    TResult? Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
+    TResult? Function()? resetSubmitFlags,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int dailyID)? selectReport,
+    TResult? Function(int dailyID)? loadDetailData,
+    TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult? Function(int dailyID)? deleteReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
+    TResult? Function()? resetCopyReport,
+  }) {
+    return recheckProjectItem?.call(projectItemId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
+    TResult Function()? addEmptyProject,
+    TResult Function(String tempId, ProjectResponse apiProject)?
+        bindProjectFromApi,
+    TResult Function(String tempId)? removeProject,
+    TResult Function(String tempId)? selectProject,
+    TResult Function(String tempId, String newName)? updateProjectName,
+    TResult Function()? addWork,
+    TResult Function(int index)? removeWork,
+    TResult Function(int index)? expandWork,
+    TResult Function(
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
+    TResult Function(DateTime? picked)? updateDate,
+    TResult Function(String type, String? value)? updateLocation,
+    TResult Function(int index, bool enabled)? toggleOvertime,
+    TResult Function(int index)? addOvertimeSession,
+    TResult Function(int index, int sessionIndex)? removeOvertimeSession,
+    TResult Function(
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
+    TResult Function(int projectItemId)? loadHistoryProblems,
+    TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
+    TResult Function(String value)? updatePlanNextDay,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
+    TResult Function(DateTime pickedDate)? submitReport,
+    TResult Function(
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
+    TResult Function()? resetSubmitFlags,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int dailyID)? selectReport,
+    TResult Function(int dailyID)? loadDetailData,
+    TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
+    TResult Function(int dailyID)? deleteReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
+    TResult Function()? resetCopyReport,
+    required TResult orElse(),
+  }) {
+    if (recheckProjectItem != null) {
+      return recheckProjectItem(projectItemId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_AddEmptyProject value) addEmptyProject,
+    required TResult Function(_BindProjectFromApi value) bindProjectFromApi,
+    required TResult Function(_RemoveProject value) removeProject,
+    required TResult Function(_SelectProject value) selectProject,
+    required TResult Function(_UpdateProjectName value) updateProjectName,
+    required TResult Function(_AddWork value) addWork,
+    required TResult Function(_RemoveWork value) removeWork,
+    required TResult Function(_ExpandWork value) expandWork,
+    required TResult Function(_UpdateWork value) updateWork,
+    required TResult Function(_UpdateDate value) updateDate,
+    required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_ToggleOvertime value) toggleOvertime,
+    required TResult Function(_AddOvertimeSession value) addOvertimeSession,
+    required TResult Function(_RemoveOvertimeSession value)
+        removeOvertimeSession,
+    required TResult Function(_UpdateOvertimeSession value)
+        updateOvertimeSession,
+    required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
+    required TResult Function(_ClearAutoOpenOvertime value)
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
+    required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
+    required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
+    required TResult Function(_SubmitReportWithDate value) submitReport,
+    required TResult Function(_SendMailReport value) sendMailReport,
+    required TResult Function(_ResetSubmitFlags value) resetSubmitFlags,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_SelectReport value) selectReport,
+    required TResult Function(_LoadDetailData value) loadDetailData,
+    required TResult Function(_SubmitEditReportWithDate value) submitEditReport,
+    required TResult Function(_DeleteReport value) deleteReport,
+    required TResult Function(_CopyReport value) copyReport,
+    required TResult Function(_ResetCopy value) resetCopyReport,
+  }) {
+    return recheckProjectItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_AddEmptyProject value)? addEmptyProject,
+    TResult? Function(_BindProjectFromApi value)? bindProjectFromApi,
+    TResult? Function(_RemoveProject value)? removeProject,
+    TResult? Function(_SelectProject value)? selectProject,
+    TResult? Function(_UpdateProjectName value)? updateProjectName,
+    TResult? Function(_AddWork value)? addWork,
+    TResult? Function(_RemoveWork value)? removeWork,
+    TResult? Function(_ExpandWork value)? expandWork,
+    TResult? Function(_UpdateWork value)? updateWork,
+    TResult? Function(_UpdateDate value)? updateDate,
+    TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_ToggleOvertime value)? toggleOvertime,
+    TResult? Function(_AddOvertimeSession value)? addOvertimeSession,
+    TResult? Function(_RemoveOvertimeSession value)? removeOvertimeSession,
+    TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
+    TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
+    TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
+    TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
+    TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
+    TResult? Function(_SubmitReportWithDate value)? submitReport,
+    TResult? Function(_SendMailReport value)? sendMailReport,
+    TResult? Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_SelectReport value)? selectReport,
+    TResult? Function(_LoadDetailData value)? loadDetailData,
+    TResult? Function(_SubmitEditReportWithDate value)? submitEditReport,
+    TResult? Function(_DeleteReport value)? deleteReport,
+    TResult? Function(_CopyReport value)? copyReport,
+    TResult? Function(_ResetCopy value)? resetCopyReport,
+  }) {
+    return recheckProjectItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_AddEmptyProject value)? addEmptyProject,
+    TResult Function(_BindProjectFromApi value)? bindProjectFromApi,
+    TResult Function(_RemoveProject value)? removeProject,
+    TResult Function(_SelectProject value)? selectProject,
+    TResult Function(_UpdateProjectName value)? updateProjectName,
+    TResult Function(_AddWork value)? addWork,
+    TResult Function(_RemoveWork value)? removeWork,
+    TResult Function(_ExpandWork value)? expandWork,
+    TResult Function(_UpdateWork value)? updateWork,
+    TResult Function(_UpdateDate value)? updateDate,
+    TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_ToggleOvertime value)? toggleOvertime,
+    TResult Function(_AddOvertimeSession value)? addOvertimeSession,
+    TResult Function(_RemoveOvertimeSession value)? removeOvertimeSession,
+    TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
+    TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
+    TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
+    TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
+    TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
+    TResult Function(_SubmitReportWithDate value)? submitReport,
+    TResult Function(_SendMailReport value)? sendMailReport,
+    TResult Function(_ResetSubmitFlags value)? resetSubmitFlags,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_SelectReport value)? selectReport,
+    TResult Function(_LoadDetailData value)? loadDetailData,
+    TResult Function(_SubmitEditReportWithDate value)? submitEditReport,
+    TResult Function(_DeleteReport value)? deleteReport,
+    TResult Function(_CopyReport value)? copyReport,
+    TResult Function(_ResetCopy value)? resetCopyReport,
+    required TResult orElse(),
+  }) {
+    if (recheckProjectItem != null) {
+      return recheckProjectItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RecheckProjectItem implements TechEvent {
+  const factory _RecheckProjectItem({required final int projectItemId}) =
+      _$RecheckProjectItemImpl;
+
+  int get projectItemId;
+  @JsonKey(ignore: true)
+  _$$RecheckProjectItemImplCopyWith<_$RecheckProjectItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$UpdatePlanNextDayImplCopyWith<$Res> {
-  factory _$$UpdatePlanNextDayImplCopyWith(
-    _$UpdatePlanNextDayImpl value,
-    $Res Function(_$UpdatePlanNextDayImpl) then,
-  ) = __$$UpdatePlanNextDayImplCopyWithImpl<$Res>;
+  factory _$$UpdatePlanNextDayImplCopyWith(_$UpdatePlanNextDayImpl value,
+          $Res Function(_$UpdatePlanNextDayImpl) then) =
+      __$$UpdatePlanNextDayImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String value});
 }
@@ -9706,22 +9712,21 @@ abstract class _$$UpdatePlanNextDayImplCopyWith<$Res> {
 class __$$UpdatePlanNextDayImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$UpdatePlanNextDayImpl>
     implements _$$UpdatePlanNextDayImplCopyWith<$Res> {
-  __$$UpdatePlanNextDayImplCopyWithImpl(
-    _$UpdatePlanNextDayImpl _value,
-    $Res Function(_$UpdatePlanNextDayImpl) _then,
-  ) : super(_value, _then);
+  __$$UpdatePlanNextDayImplCopyWithImpl(_$UpdatePlanNextDayImpl _value,
+      $Res Function(_$UpdatePlanNextDayImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? value = null}) {
-    return _then(
-      _$UpdatePlanNextDayImpl(
-        null == value
-            ? _value.value
-            : value // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$UpdatePlanNextDayImpl(
+      null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -9754,22 +9759,18 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
   @pragma('vm:prefer-inline')
   _$$UpdatePlanNextDayImplCopyWith<_$UpdatePlanNextDayImpl> get copyWith =>
       __$$UpdatePlanNextDayImplCopyWithImpl<_$UpdatePlanNextDayImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -9777,74 +9778,61 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return updatePlanNextDay(value);
@@ -9855,13 +9843,11 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -9869,71 +9855,58 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return updatePlanNextDay?.call(value);
@@ -9944,13 +9917,11 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -9958,71 +9929,58 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -10051,12 +10009,15 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -10095,6 +10056,9 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -10133,6 +10097,9 @@ class _$UpdatePlanNextDayImpl implements _UpdatePlanNextDay {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -10166,17 +10133,12 @@ abstract class _UpdatePlanNextDay implements TechEvent {
 
 /// @nodoc
 abstract class _$$UpdateExtraInfoImplCopyWith<$Res> {
-  factory _$$UpdateExtraInfoImplCopyWith(
-    _$UpdateExtraInfoImpl value,
-    $Res Function(_$UpdateExtraInfoImpl) then,
-  ) = __$$UpdateExtraInfoImplCopyWithImpl<$Res>;
+  factory _$$UpdateExtraInfoImplCopyWith(_$UpdateExtraInfoImpl value,
+          $Res Function(_$UpdateExtraInfoImpl) then) =
+      __$$UpdateExtraInfoImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({
-    String? problem,
-    String? problemSolve,
-    String? backlog,
-    String? note,
-  });
+  $Res call(
+      {String? problem, String? problemSolve, String? backlog, String? note});
 }
 
 /// @nodoc
@@ -10184,9 +10146,8 @@ class __$$UpdateExtraInfoImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$UpdateExtraInfoImpl>
     implements _$$UpdateExtraInfoImplCopyWith<$Res> {
   __$$UpdateExtraInfoImplCopyWithImpl(
-    _$UpdateExtraInfoImpl _value,
-    $Res Function(_$UpdateExtraInfoImpl) _then,
-  ) : super(_value, _then);
+      _$UpdateExtraInfoImpl _value, $Res Function(_$UpdateExtraInfoImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -10196,38 +10157,32 @@ class __$$UpdateExtraInfoImplCopyWithImpl<$Res>
     Object? backlog = freezed,
     Object? note = freezed,
   }) {
-    return _then(
-      _$UpdateExtraInfoImpl(
-        problem: freezed == problem
-            ? _value.problem
-            : problem // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        problemSolve: freezed == problemSolve
-            ? _value.problemSolve
-            : problemSolve // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        backlog: freezed == backlog
-            ? _value.backlog
-            : backlog // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        note: freezed == note
-            ? _value.note
-            : note // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$UpdateExtraInfoImpl(
+      problem: freezed == problem
+          ? _value.problem
+          : problem // ignore: cast_nullable_to_non_nullable
+              as String?,
+      problemSolve: freezed == problemSolve
+          ? _value.problemSolve
+          : problemSolve // ignore: cast_nullable_to_non_nullable
+              as String?,
+      backlog: freezed == backlog
+          ? _value.backlog
+          : backlog // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
-  const _$UpdateExtraInfoImpl({
-    this.problem,
-    this.problemSolve,
-    this.backlog,
-    this.note,
-  });
+  const _$UpdateExtraInfoImpl(
+      {this.problem, this.problemSolve, this.backlog, this.note});
 
   @override
   final String? problem;
@@ -10264,22 +10219,18 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
   @pragma('vm:prefer-inline')
   _$$UpdateExtraInfoImplCopyWith<_$UpdateExtraInfoImpl> get copyWith =>
       __$$UpdateExtraInfoImplCopyWithImpl<_$UpdateExtraInfoImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -10287,74 +10238,61 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return updateExtraInfo(problem, problemSolve, backlog, note);
@@ -10365,13 +10303,11 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -10379,71 +10315,58 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return updateExtraInfo?.call(problem, problemSolve, backlog, note);
@@ -10454,13 +10377,11 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -10468,71 +10389,58 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -10561,12 +10469,15 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -10605,6 +10516,9 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -10643,6 +10557,9 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -10665,12 +10582,11 @@ class _$UpdateExtraInfoImpl implements _UpdateExtraInfo {
 }
 
 abstract class _UpdateExtraInfo implements TechEvent {
-  const factory _UpdateExtraInfo({
-    final String? problem,
-    final String? problemSolve,
-    final String? backlog,
-    final String? note,
-  }) = _$UpdateExtraInfoImpl;
+  const factory _UpdateExtraInfo(
+      {final String? problem,
+      final String? problemSolve,
+      final String? backlog,
+      final String? note}) = _$UpdateExtraInfoImpl;
 
   String? get problem;
   String? get problemSolve;
@@ -10683,10 +10599,9 @@ abstract class _UpdateExtraInfo implements TechEvent {
 
 /// @nodoc
 abstract class _$$SubmitReportWithDateImplCopyWith<$Res> {
-  factory _$$SubmitReportWithDateImplCopyWith(
-    _$SubmitReportWithDateImpl value,
-    $Res Function(_$SubmitReportWithDateImpl) then,
-  ) = __$$SubmitReportWithDateImplCopyWithImpl<$Res>;
+  factory _$$SubmitReportWithDateImplCopyWith(_$SubmitReportWithDateImpl value,
+          $Res Function(_$SubmitReportWithDateImpl) then) =
+      __$$SubmitReportWithDateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DateTime pickedDate});
 }
@@ -10695,22 +10610,21 @@ abstract class _$$SubmitReportWithDateImplCopyWith<$Res> {
 class __$$SubmitReportWithDateImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$SubmitReportWithDateImpl>
     implements _$$SubmitReportWithDateImplCopyWith<$Res> {
-  __$$SubmitReportWithDateImplCopyWithImpl(
-    _$SubmitReportWithDateImpl _value,
-    $Res Function(_$SubmitReportWithDateImpl) _then,
-  ) : super(_value, _then);
+  __$$SubmitReportWithDateImplCopyWithImpl(_$SubmitReportWithDateImpl _value,
+      $Res Function(_$SubmitReportWithDateImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? pickedDate = null}) {
-    return _then(
-      _$SubmitReportWithDateImpl(
-        null == pickedDate
-            ? _value.pickedDate
-            : pickedDate // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-      ),
-    );
+  $Res call({
+    Object? pickedDate = null,
+  }) {
+    return _then(_$SubmitReportWithDateImpl(
+      null == pickedDate
+          ? _value.pickedDate
+          : pickedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
   }
 }
 
@@ -10743,24 +10657,20 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
   @override
   @pragma('vm:prefer-inline')
   _$$SubmitReportWithDateImplCopyWith<_$SubmitReportWithDateImpl>
-  get copyWith =>
-      __$$SubmitReportWithDateImplCopyWithImpl<_$SubmitReportWithDateImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith =>
+          __$$SubmitReportWithDateImplCopyWithImpl<_$SubmitReportWithDateImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -10768,74 +10678,61 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return submitReport(pickedDate);
@@ -10846,13 +10743,11 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -10860,71 +10755,58 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return submitReport?.call(pickedDate);
@@ -10935,13 +10817,11 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -10949,71 +10829,58 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -11042,12 +10909,15 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -11086,6 +10956,9 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -11124,6 +10997,9 @@ class _$SubmitReportWithDateImpl implements _SubmitReportWithDate {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -11152,15 +11028,14 @@ abstract class _SubmitReportWithDate implements TechEvent {
   DateTime get pickedDate;
   @JsonKey(ignore: true)
   _$$SubmitReportWithDateImplCopyWith<_$SubmitReportWithDateImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$SendMailReportImplCopyWith<$Res> {
-  factory _$$SendMailReportImplCopyWith(
-    _$SendMailReportImpl value,
-    $Res Function(_$SendMailReportImpl) then,
-  ) = __$$SendMailReportImplCopyWithImpl<$Res>;
+  factory _$$SendMailReportImplCopyWith(_$SendMailReportImpl value,
+          $Res Function(_$SendMailReportImpl) then) =
+      __$$SendMailReportImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DateTime pickedDate, BuildContext context, String? shareText});
 }
@@ -11170,9 +11045,8 @@ class __$$SendMailReportImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$SendMailReportImpl>
     implements _$$SendMailReportImplCopyWith<$Res> {
   __$$SendMailReportImplCopyWithImpl(
-    _$SendMailReportImpl _value,
-    $Res Function(_$SendMailReportImpl) _then,
-  ) : super(_value, _then);
+      _$SendMailReportImpl _value, $Res Function(_$SendMailReportImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -11181,33 +11055,28 @@ class __$$SendMailReportImplCopyWithImpl<$Res>
     Object? context = null,
     Object? shareText = freezed,
   }) {
-    return _then(
-      _$SendMailReportImpl(
-        pickedDate: null == pickedDate
-            ? _value.pickedDate
-            : pickedDate // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        context: null == context
-            ? _value.context
-            : context // ignore: cast_nullable_to_non_nullable
-                  as BuildContext,
-        shareText: freezed == shareText
-            ? _value.shareText
-            : shareText // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$SendMailReportImpl(
+      pickedDate: null == pickedDate
+          ? _value.pickedDate
+          : pickedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+      shareText: freezed == shareText
+          ? _value.shareText
+          : shareText // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$SendMailReportImpl implements _SendMailReport {
-  const _$SendMailReportImpl({
-    required this.pickedDate,
-    required this.context,
-    this.shareText,
-  });
+  const _$SendMailReportImpl(
+      {required this.pickedDate, required this.context, this.shareText});
 
   @override
   final DateTime pickedDate;
@@ -11241,22 +11110,18 @@ class _$SendMailReportImpl implements _SendMailReport {
   @pragma('vm:prefer-inline')
   _$$SendMailReportImplCopyWith<_$SendMailReportImpl> get copyWith =>
       __$$SendMailReportImplCopyWithImpl<_$SendMailReportImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -11264,74 +11129,61 @@ class _$SendMailReportImpl implements _SendMailReport {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return sendMailReport(pickedDate, context, shareText);
@@ -11342,13 +11194,11 @@ class _$SendMailReportImpl implements _SendMailReport {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -11356,71 +11206,58 @@ class _$SendMailReportImpl implements _SendMailReport {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return sendMailReport?.call(pickedDate, context, shareText);
@@ -11431,13 +11268,11 @@ class _$SendMailReportImpl implements _SendMailReport {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -11445,71 +11280,58 @@ class _$SendMailReportImpl implements _SendMailReport {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -11538,12 +11360,15 @@ class _$SendMailReportImpl implements _SendMailReport {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -11582,6 +11407,9 @@ class _$SendMailReportImpl implements _SendMailReport {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -11620,6 +11448,9 @@ class _$SendMailReportImpl implements _SendMailReport {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -11642,11 +11473,10 @@ class _$SendMailReportImpl implements _SendMailReport {
 }
 
 abstract class _SendMailReport implements TechEvent {
-  const factory _SendMailReport({
-    required final DateTime pickedDate,
-    required final BuildContext context,
-    final String? shareText,
-  }) = _$SendMailReportImpl;
+  const factory _SendMailReport(
+      {required final DateTime pickedDate,
+      required final BuildContext context,
+      final String? shareText}) = _$SendMailReportImpl;
 
   DateTime get pickedDate;
   BuildContext get context;
@@ -11658,20 +11488,18 @@ abstract class _SendMailReport implements TechEvent {
 
 /// @nodoc
 abstract class _$$ResetSubmitFlagsImplCopyWith<$Res> {
-  factory _$$ResetSubmitFlagsImplCopyWith(
-    _$ResetSubmitFlagsImpl value,
-    $Res Function(_$ResetSubmitFlagsImpl) then,
-  ) = __$$ResetSubmitFlagsImplCopyWithImpl<$Res>;
+  factory _$$ResetSubmitFlagsImplCopyWith(_$ResetSubmitFlagsImpl value,
+          $Res Function(_$ResetSubmitFlagsImpl) then) =
+      __$$ResetSubmitFlagsImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$ResetSubmitFlagsImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$ResetSubmitFlagsImpl>
     implements _$$ResetSubmitFlagsImplCopyWith<$Res> {
-  __$$ResetSubmitFlagsImplCopyWithImpl(
-    _$ResetSubmitFlagsImpl _value,
-    $Res Function(_$ResetSubmitFlagsImpl) _then,
-  ) : super(_value, _then);
+  __$$ResetSubmitFlagsImplCopyWithImpl(_$ResetSubmitFlagsImpl _value,
+      $Res Function(_$ResetSubmitFlagsImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -11698,13 +11526,11 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -11712,74 +11538,61 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return resetSubmitFlags();
@@ -11790,13 +11603,11 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -11804,71 +11615,58 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return resetSubmitFlags?.call();
@@ -11879,13 +11677,11 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -11893,71 +11689,58 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -11986,12 +11769,15 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -12030,6 +11816,9 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -12068,6 +11857,9 @@ class _$ResetSubmitFlagsImpl implements _ResetSubmitFlags {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -12095,10 +11887,9 @@ abstract class _ResetSubmitFlags implements TechEvent {
 
 /// @nodoc
 abstract class _$$ChangeDateRangeImplCopyWith<$Res> {
-  factory _$$ChangeDateRangeImplCopyWith(
-    _$ChangeDateRangeImpl value,
-    $Res Function(_$ChangeDateRangeImpl) then,
-  ) = __$$ChangeDateRangeImplCopyWithImpl<$Res>;
+  factory _$$ChangeDateRangeImplCopyWith(_$ChangeDateRangeImpl value,
+          $Res Function(_$ChangeDateRangeImpl) then) =
+      __$$ChangeDateRangeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DateTime dateStart, DateTime dateEnd});
 }
@@ -12108,25 +11899,25 @@ class __$$ChangeDateRangeImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$ChangeDateRangeImpl>
     implements _$$ChangeDateRangeImplCopyWith<$Res> {
   __$$ChangeDateRangeImplCopyWithImpl(
-    _$ChangeDateRangeImpl _value,
-    $Res Function(_$ChangeDateRangeImpl) _then,
-  ) : super(_value, _then);
+      _$ChangeDateRangeImpl _value, $Res Function(_$ChangeDateRangeImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? dateStart = null, Object? dateEnd = null}) {
-    return _then(
-      _$ChangeDateRangeImpl(
-        dateStart: null == dateStart
-            ? _value.dateStart
-            : dateStart // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        dateEnd: null == dateEnd
-            ? _value.dateEnd
-            : dateEnd // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-      ),
-    );
+  $Res call({
+    Object? dateStart = null,
+    Object? dateEnd = null,
+  }) {
+    return _then(_$ChangeDateRangeImpl(
+      dateStart: null == dateStart
+          ? _value.dateStart
+          : dateStart // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      dateEnd: null == dateEnd
+          ? _value.dateEnd
+          : dateEnd // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
   }
 }
 
@@ -12163,22 +11954,18 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   @pragma('vm:prefer-inline')
   _$$ChangeDateRangeImplCopyWith<_$ChangeDateRangeImpl> get copyWith =>
       __$$ChangeDateRangeImplCopyWithImpl<_$ChangeDateRangeImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -12186,74 +11973,61 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return changeDateRange(dateStart, dateEnd);
@@ -12264,13 +12038,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -12278,71 +12050,58 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
@@ -12353,13 +12112,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -12367,71 +12124,58 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -12460,12 +12204,15 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -12504,6 +12251,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -12542,6 +12292,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -12564,10 +12317,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
 }
 
 abstract class _ChangeDateRange implements TechEvent {
-  const factory _ChangeDateRange({
-    required final DateTime dateStart,
-    required final DateTime dateEnd,
-  }) = _$ChangeDateRangeImpl;
+  const factory _ChangeDateRange(
+      {required final DateTime dateStart,
+      required final DateTime dateEnd}) = _$ChangeDateRangeImpl;
 
   DateTime get dateStart;
   DateTime get dateEnd;
@@ -12579,9 +12331,8 @@ abstract class _ChangeDateRange implements TechEvent {
 /// @nodoc
 abstract class _$$SelectReportImplCopyWith<$Res> {
   factory _$$SelectReportImplCopyWith(
-    _$SelectReportImpl value,
-    $Res Function(_$SelectReportImpl) then,
-  ) = __$$SelectReportImplCopyWithImpl<$Res>;
+          _$SelectReportImpl value, $Res Function(_$SelectReportImpl) then) =
+      __$$SelectReportImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int dailyID});
 }
@@ -12591,21 +12342,20 @@ class __$$SelectReportImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$SelectReportImpl>
     implements _$$SelectReportImplCopyWith<$Res> {
   __$$SelectReportImplCopyWithImpl(
-    _$SelectReportImpl _value,
-    $Res Function(_$SelectReportImpl) _then,
-  ) : super(_value, _then);
+      _$SelectReportImpl _value, $Res Function(_$SelectReportImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? dailyID = null}) {
-    return _then(
-      _$SelectReportImpl(
-        dailyID: null == dailyID
-            ? _value.dailyID
-            : dailyID // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+  $Res call({
+    Object? dailyID = null,
+  }) {
+    return _then(_$SelectReportImpl(
+      dailyID: null == dailyID
+          ? _value.dailyID
+          : dailyID // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
@@ -12644,13 +12394,11 @@ class _$SelectReportImpl implements _SelectReport {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -12658,74 +12406,61 @@ class _$SelectReportImpl implements _SelectReport {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return selectReport(dailyID);
@@ -12736,13 +12471,11 @@ class _$SelectReportImpl implements _SelectReport {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -12750,71 +12483,58 @@ class _$SelectReportImpl implements _SelectReport {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return selectReport?.call(dailyID);
@@ -12825,13 +12545,11 @@ class _$SelectReportImpl implements _SelectReport {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -12839,71 +12557,58 @@ class _$SelectReportImpl implements _SelectReport {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -12932,12 +12637,15 @@ class _$SelectReportImpl implements _SelectReport {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -12976,6 +12684,9 @@ class _$SelectReportImpl implements _SelectReport {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -13014,6 +12725,9 @@ class _$SelectReportImpl implements _SelectReport {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -13047,10 +12761,9 @@ abstract class _SelectReport implements TechEvent {
 
 /// @nodoc
 abstract class _$$LoadDetailDataImplCopyWith<$Res> {
-  factory _$$LoadDetailDataImplCopyWith(
-    _$LoadDetailDataImpl value,
-    $Res Function(_$LoadDetailDataImpl) then,
-  ) = __$$LoadDetailDataImplCopyWithImpl<$Res>;
+  factory _$$LoadDetailDataImplCopyWith(_$LoadDetailDataImpl value,
+          $Res Function(_$LoadDetailDataImpl) then) =
+      __$$LoadDetailDataImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int dailyID});
 }
@@ -13060,21 +12773,20 @@ class __$$LoadDetailDataImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$LoadDetailDataImpl>
     implements _$$LoadDetailDataImplCopyWith<$Res> {
   __$$LoadDetailDataImplCopyWithImpl(
-    _$LoadDetailDataImpl _value,
-    $Res Function(_$LoadDetailDataImpl) _then,
-  ) : super(_value, _then);
+      _$LoadDetailDataImpl _value, $Res Function(_$LoadDetailDataImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? dailyID = null}) {
-    return _then(
-      _$LoadDetailDataImpl(
-        dailyID: null == dailyID
-            ? _value.dailyID
-            : dailyID // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+  $Res call({
+    Object? dailyID = null,
+  }) {
+    return _then(_$LoadDetailDataImpl(
+      dailyID: null == dailyID
+          ? _value.dailyID
+          : dailyID // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
@@ -13107,22 +12819,18 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
   @pragma('vm:prefer-inline')
   _$$LoadDetailDataImplCopyWith<_$LoadDetailDataImpl> get copyWith =>
       __$$LoadDetailDataImplCopyWithImpl<_$LoadDetailDataImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -13130,74 +12838,61 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return loadDetailData(dailyID);
@@ -13208,13 +12903,11 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -13222,71 +12915,58 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return loadDetailData?.call(dailyID);
@@ -13297,13 +12977,11 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -13311,71 +12989,58 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -13404,12 +13069,15 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -13448,6 +13116,9 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -13486,6 +13157,9 @@ class _$LoadDetailDataImpl implements _LoadDetailData {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -13520,9 +13194,9 @@ abstract class _LoadDetailData implements TechEvent {
 /// @nodoc
 abstract class _$$SubmitEditReportWithDateImplCopyWith<$Res> {
   factory _$$SubmitEditReportWithDateImplCopyWith(
-    _$SubmitEditReportWithDateImpl value,
-    $Res Function(_$SubmitEditReportWithDateImpl) then,
-  ) = __$$SubmitEditReportWithDateImplCopyWithImpl<$Res>;
+          _$SubmitEditReportWithDateImpl value,
+          $Res Function(_$SubmitEditReportWithDateImpl) then) =
+      __$$SubmitEditReportWithDateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DateTime pickedDate, int dailyID});
 }
@@ -13532,25 +13206,26 @@ class __$$SubmitEditReportWithDateImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$SubmitEditReportWithDateImpl>
     implements _$$SubmitEditReportWithDateImplCopyWith<$Res> {
   __$$SubmitEditReportWithDateImplCopyWithImpl(
-    _$SubmitEditReportWithDateImpl _value,
-    $Res Function(_$SubmitEditReportWithDateImpl) _then,
-  ) : super(_value, _then);
+      _$SubmitEditReportWithDateImpl _value,
+      $Res Function(_$SubmitEditReportWithDateImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? pickedDate = null, Object? dailyID = null}) {
-    return _then(
-      _$SubmitEditReportWithDateImpl(
-        null == pickedDate
-            ? _value.pickedDate
-            : pickedDate // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        null == dailyID
-            ? _value.dailyID
-            : dailyID // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+  $Res call({
+    Object? pickedDate = null,
+    Object? dailyID = null,
+  }) {
+    return _then(_$SubmitEditReportWithDateImpl(
+      null == pickedDate
+          ? _value.pickedDate
+          : pickedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      null == dailyID
+          ? _value.dailyID
+          : dailyID // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
@@ -13586,23 +13261,19 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
   @override
   @pragma('vm:prefer-inline')
   _$$SubmitEditReportWithDateImplCopyWith<_$SubmitEditReportWithDateImpl>
-  get copyWith =>
-      __$$SubmitEditReportWithDateImplCopyWithImpl<
-        _$SubmitEditReportWithDateImpl
-      >(this, _$identity);
+      get copyWith => __$$SubmitEditReportWithDateImplCopyWithImpl<
+          _$SubmitEditReportWithDateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -13610,74 +13281,61 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return submitEditReport(pickedDate, dailyID);
@@ -13688,13 +13346,11 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -13702,71 +13358,58 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return submitEditReport?.call(pickedDate, dailyID);
@@ -13777,13 +13420,11 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -13791,71 +13432,58 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -13884,12 +13512,15 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -13928,6 +13559,9 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -13966,6 +13600,9 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -13989,23 +13626,21 @@ class _$SubmitEditReportWithDateImpl implements _SubmitEditReportWithDate {
 
 abstract class _SubmitEditReportWithDate implements TechEvent {
   const factory _SubmitEditReportWithDate(
-    final DateTime pickedDate,
-    final int dailyID,
-  ) = _$SubmitEditReportWithDateImpl;
+          final DateTime pickedDate, final int dailyID) =
+      _$SubmitEditReportWithDateImpl;
 
   DateTime get pickedDate;
   int get dailyID;
   @JsonKey(ignore: true)
   _$$SubmitEditReportWithDateImplCopyWith<_$SubmitEditReportWithDateImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$DeleteReportImplCopyWith<$Res> {
   factory _$$DeleteReportImplCopyWith(
-    _$DeleteReportImpl value,
-    $Res Function(_$DeleteReportImpl) then,
-  ) = __$$DeleteReportImplCopyWithImpl<$Res>;
+          _$DeleteReportImpl value, $Res Function(_$DeleteReportImpl) then) =
+      __$$DeleteReportImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int dailyID});
 }
@@ -14015,21 +13650,20 @@ class __$$DeleteReportImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$DeleteReportImpl>
     implements _$$DeleteReportImplCopyWith<$Res> {
   __$$DeleteReportImplCopyWithImpl(
-    _$DeleteReportImpl _value,
-    $Res Function(_$DeleteReportImpl) _then,
-  ) : super(_value, _then);
+      _$DeleteReportImpl _value, $Res Function(_$DeleteReportImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? dailyID = null}) {
-    return _then(
-      _$DeleteReportImpl(
-        null == dailyID
-            ? _value.dailyID
-            : dailyID // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+  $Res call({
+    Object? dailyID = null,
+  }) {
+    return _then(_$DeleteReportImpl(
+      null == dailyID
+          ? _value.dailyID
+          : dailyID // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
@@ -14068,13 +13702,11 @@ class _$DeleteReportImpl implements _DeleteReport {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -14082,74 +13714,61 @@ class _$DeleteReportImpl implements _DeleteReport {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return deleteReport(dailyID);
@@ -14160,13 +13779,11 @@ class _$DeleteReportImpl implements _DeleteReport {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -14174,71 +13791,58 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return deleteReport?.call(dailyID);
@@ -14249,13 +13853,11 @@ class _$DeleteReportImpl implements _DeleteReport {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -14263,71 +13865,58 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -14356,12 +13945,15 @@ class _$DeleteReportImpl implements _DeleteReport {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -14400,6 +13992,9 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -14438,6 +14033,9 @@ class _$DeleteReportImpl implements _DeleteReport {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -14471,18 +14069,16 @@ abstract class _DeleteReport implements TechEvent {
 /// @nodoc
 abstract class _$$CopyReportImplCopyWith<$Res> {
   factory _$$CopyReportImplCopyWith(
-    _$CopyReportImpl value,
-    $Res Function(_$CopyReportImpl) then,
-  ) = __$$CopyReportImplCopyWithImpl<$Res>;
+          _$CopyReportImpl value, $Res Function(_$CopyReportImpl) then) =
+      __$$CopyReportImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({
-    DateTime dateStart,
-    DateTime dateEnd,
-    String keyword,
-    int teamId,
-    int userId,
-    int departmentId,
-  });
+  $Res call(
+      {DateTime dateStart,
+      DateTime dateEnd,
+      String keyword,
+      int teamId,
+      int userId,
+      int departmentId});
 }
 
 /// @nodoc
@@ -14490,9 +14086,8 @@ class __$$CopyReportImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$CopyReportImpl>
     implements _$$CopyReportImplCopyWith<$Res> {
   __$$CopyReportImplCopyWithImpl(
-    _$CopyReportImpl _value,
-    $Res Function(_$CopyReportImpl) _then,
-  ) : super(_value, _then);
+      _$CopyReportImpl _value, $Res Function(_$CopyReportImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -14504,48 +14099,45 @@ class __$$CopyReportImplCopyWithImpl<$Res>
     Object? userId = null,
     Object? departmentId = null,
   }) {
-    return _then(
-      _$CopyReportImpl(
-        dateStart: null == dateStart
-            ? _value.dateStart
-            : dateStart // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        dateEnd: null == dateEnd
-            ? _value.dateEnd
-            : dateEnd // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        keyword: null == keyword
-            ? _value.keyword
-            : keyword // ignore: cast_nullable_to_non_nullable
-                  as String,
-        teamId: null == teamId
-            ? _value.teamId
-            : teamId // ignore: cast_nullable_to_non_nullable
-                  as int,
-        userId: null == userId
-            ? _value.userId
-            : userId // ignore: cast_nullable_to_non_nullable
-                  as int,
-        departmentId: null == departmentId
-            ? _value.departmentId
-            : departmentId // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+    return _then(_$CopyReportImpl(
+      dateStart: null == dateStart
+          ? _value.dateStart
+          : dateStart // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      dateEnd: null == dateEnd
+          ? _value.dateEnd
+          : dateEnd // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      keyword: null == keyword
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
+              as String,
+      teamId: null == teamId
+          ? _value.teamId
+          : teamId // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      departmentId: null == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$CopyReportImpl implements _CopyReport {
-  const _$CopyReportImpl({
-    required this.dateStart,
-    required this.dateEnd,
-    required this.keyword,
-    required this.teamId,
-    required this.userId,
-    required this.departmentId,
-  });
+  const _$CopyReportImpl(
+      {required this.dateStart,
+      required this.dateEnd,
+      required this.keyword,
+      required this.teamId,
+      required this.userId,
+      required this.departmentId});
 
   @override
   final DateTime dateStart;
@@ -14582,14 +14174,7 @@ class _$CopyReportImpl implements _CopyReport {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    dateStart,
-    dateEnd,
-    keyword,
-    teamId,
-    userId,
-    departmentId,
-  );
+      runtimeType, dateStart, dateEnd, keyword, teamId, userId, departmentId);
 
   @JsonKey(ignore: true)
   @override
@@ -14602,13 +14187,11 @@ class _$CopyReportImpl implements _CopyReport {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -14616,84 +14199,65 @@ class _$CopyReportImpl implements _CopyReport {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return copyReport(
-      dateStart,
-      dateEnd,
-      keyword,
-      teamId,
-      userId,
-      departmentId,
-    );
+        dateStart, dateEnd, keyword, teamId, userId, departmentId);
   }
 
   @override
@@ -14701,13 +14265,11 @@ class _$CopyReportImpl implements _CopyReport {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -14715,81 +14277,62 @@ class _$CopyReportImpl implements _CopyReport {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return copyReport?.call(
-      dateStart,
-      dateEnd,
-      keyword,
-      teamId,
-      userId,
-      departmentId,
-    );
+        dateStart, dateEnd, keyword, teamId, userId, departmentId);
   }
 
   @override
@@ -14797,13 +14340,11 @@ class _$CopyReportImpl implements _CopyReport {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -14811,83 +14352,64 @@ class _$CopyReportImpl implements _CopyReport {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
     if (copyReport != null) {
       return copyReport(
-        dateStart,
-        dateEnd,
-        keyword,
-        teamId,
-        userId,
-        departmentId,
-      );
+          dateStart, dateEnd, keyword, teamId, userId, departmentId);
     }
     return orElse();
   }
@@ -14911,12 +14433,15 @@ class _$CopyReportImpl implements _CopyReport {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -14955,6 +14480,9 @@ class _$CopyReportImpl implements _CopyReport {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -14993,6 +14521,9 @@ class _$CopyReportImpl implements _CopyReport {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,
@@ -15015,14 +14546,13 @@ class _$CopyReportImpl implements _CopyReport {
 }
 
 abstract class _CopyReport implements TechEvent {
-  const factory _CopyReport({
-    required final DateTime dateStart,
-    required final DateTime dateEnd,
-    required final String keyword,
-    required final int teamId,
-    required final int userId,
-    required final int departmentId,
-  }) = _$CopyReportImpl;
+  const factory _CopyReport(
+      {required final DateTime dateStart,
+      required final DateTime dateEnd,
+      required final String keyword,
+      required final int teamId,
+      required final int userId,
+      required final int departmentId}) = _$CopyReportImpl;
 
   DateTime get dateStart;
   DateTime get dateEnd;
@@ -15038,9 +14568,8 @@ abstract class _CopyReport implements TechEvent {
 /// @nodoc
 abstract class _$$ResetCopyImplCopyWith<$Res> {
   factory _$$ResetCopyImplCopyWith(
-    _$ResetCopyImpl value,
-    $Res Function(_$ResetCopyImpl) then,
-  ) = __$$ResetCopyImplCopyWithImpl<$Res>;
+          _$ResetCopyImpl value, $Res Function(_$ResetCopyImpl) then) =
+      __$$ResetCopyImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -15048,9 +14577,8 @@ class __$$ResetCopyImplCopyWithImpl<$Res>
     extends _$TechEventCopyWithImpl<$Res, _$ResetCopyImpl>
     implements _$$ResetCopyImplCopyWith<$Res> {
   __$$ResetCopyImplCopyWithImpl(
-    _$ResetCopyImpl _value,
-    $Res Function(_$ResetCopyImpl) _then,
-  ) : super(_value, _then);
+      _$ResetCopyImpl _value, $Res Function(_$ResetCopyImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -15077,13 +14605,11 @@ class _$ResetCopyImpl implements _ResetCopy {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)
+        initAdd,
     required TResult Function() addEmptyProject,
     required TResult Function(String tempId, ProjectResponse apiProject)
-    bindProjectFromApi,
+        bindProjectFromApi,
     required TResult Function(String tempId) removeProject,
     required TResult Function(String tempId) selectProject,
     required TResult Function(String tempId, String newName) updateProjectName,
@@ -15091,74 +14617,61 @@ class _$ResetCopyImpl implements _ResetCopy {
     required TResult Function(int index) removeWork,
     required TResult Function(int index) expandWork,
     required TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)
+        updateWork,
     required TResult Function(DateTime? picked) updateDate,
     required TResult Function(String type, String? value) updateLocation,
     required TResult Function(int index, bool enabled) toggleOvertime,
     required TResult Function(int index) addOvertimeSession,
     required TResult Function(int index, int sessionIndex)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)
+        updateOvertimeSession,
     required TResult Function(int projectItemId) loadHistoryProblems,
     required TResult Function() clearAutoOpenOvertime,
+    required TResult Function() clearPendingProjectItemEdit,
+    required TResult Function(int projectItemId) recheckProjectItem,
     required TResult Function(String value) updatePlanNextDay,
-    required TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )
-    updateExtraInfo,
+    required TResult Function(String? problem, String? problemSolve,
+            String? backlog, String? note)
+        updateExtraInfo,
     required TResult Function(DateTime pickedDate) submitReport,
     required TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)
+        sendMailReport,
     required TResult Function() resetSubmitFlags,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
-    changeDateRange,
+        changeDateRange,
     required TResult Function(int dailyID) selectReport,
     required TResult Function(int dailyID) loadDetailData,
     required TResult Function(DateTime pickedDate, int dailyID)
-    submitEditReport,
+        submitEditReport,
     required TResult Function(int dailyID) deleteReport,
-    required TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )
-    copyReport,
+    required TResult Function(DateTime dateStart, DateTime dateEnd,
+            String keyword, int teamId, int userId, int departmentId)
+        copyReport,
     required TResult Function() resetCopyReport,
   }) {
     return resetCopyReport();
@@ -15169,13 +14682,11 @@ class _$ResetCopyImpl implements _ResetCopy {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult? Function()? addEmptyProject,
     TResult? Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult? Function(String tempId)? removeProject,
     TResult? Function(String tempId)? selectProject,
     TResult? Function(String tempId, String newName)? updateProjectName,
@@ -15183,71 +14694,58 @@ class _$ResetCopyImpl implements _ResetCopy {
     TResult? Function(int index)? removeWork,
     TResult? Function(int index)? expandWork,
     TResult? Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult? Function(DateTime? picked)? updateDate,
     TResult? Function(String type, String? value)? updateLocation,
     TResult? Function(int index, bool enabled)? toggleOvertime,
     TResult? Function(int index)? addOvertimeSession,
     TResult? Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult? Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult? Function(int projectItemId)? loadHistoryProblems,
     TResult? Function()? clearAutoOpenOvertime,
+    TResult? Function()? clearPendingProjectItemEdit,
+    TResult? Function(int projectItemId)? recheckProjectItem,
     TResult? Function(String value)? updatePlanNextDay,
-    TResult? Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult? Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult? Function(DateTime pickedDate)? submitReport,
     TResult? Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult? Function()? resetSubmitFlags,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(int dailyID)? selectReport,
     TResult? Function(int dailyID)? loadDetailData,
     TResult? Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult? Function(int dailyID)? deleteReport,
-    TResult? Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult? Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult? Function()? resetCopyReport,
   }) {
     return resetCopyReport?.call();
@@ -15258,13 +14756,11 @@ class _$ResetCopyImpl implements _ResetCopy {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-      List<CopyNullResponse> copyItems,
-      List<ProjectResponse> rtcProject,
-    )?
-    initAdd,
+            List<CopyNullResponse> copyItems, List<ProjectResponse> rtcProject)?
+        initAdd,
     TResult Function()? addEmptyProject,
     TResult Function(String tempId, ProjectResponse apiProject)?
-    bindProjectFromApi,
+        bindProjectFromApi,
     TResult Function(String tempId)? removeProject,
     TResult Function(String tempId)? selectProject,
     TResult Function(String tempId, String newName)? updateProjectName,
@@ -15272,71 +14768,58 @@ class _$ResetCopyImpl implements _ResetCopy {
     TResult Function(int index)? removeWork,
     TResult Function(int index)? expandWork,
     TResult Function(
-      int index,
-      double? totalHours,
-      double? totalHourOT,
-      double? percentComplete,
-      String? content,
-      String? results,
-      String? mission,
-      int? projectItemId,
-      String? code,
-      String? backlog,
-      String? problem,
-      String? problemSolve,
-      String? note,
-      String? location,
-    )?
-    updateWork,
+            int index,
+            double? totalHours,
+            double? totalHourOT,
+            double? percentComplete,
+            String? content,
+            String? results,
+            String? mission,
+            int? projectItemId,
+            String? code,
+            String? backlog,
+            String? problem,
+            String? problemSolve,
+            String? note,
+            String? location)?
+        updateWork,
     TResult Function(DateTime? picked)? updateDate,
     TResult Function(String type, String? value)? updateLocation,
     TResult Function(int index, bool enabled)? toggleOvertime,
     TResult Function(int index)? addOvertimeSession,
     TResult Function(int index, int sessionIndex)? removeOvertimeSession,
     TResult Function(
-      int index,
-      int sessionIndex,
-      DateTime? timeStart,
-      DateTime? endTime,
-      int? location,
-      int? typeId,
-      int? approvedId,
-      bool? overnight,
-      String? reason,
-    )?
-    updateOvertimeSession,
+            int index,
+            int sessionIndex,
+            DateTime? timeStart,
+            DateTime? endTime,
+            int? location,
+            int? typeId,
+            int? approvedId,
+            bool? overnight,
+            String? reason)?
+        updateOvertimeSession,
     TResult Function(int projectItemId)? loadHistoryProblems,
     TResult Function()? clearAutoOpenOvertime,
+    TResult Function()? clearPendingProjectItemEdit,
+    TResult Function(int projectItemId)? recheckProjectItem,
     TResult Function(String value)? updatePlanNextDay,
-    TResult Function(
-      String? problem,
-      String? problemSolve,
-      String? backlog,
-      String? note,
-    )?
-    updateExtraInfo,
+    TResult Function(String? problem, String? problemSolve, String? backlog,
+            String? note)?
+        updateExtraInfo,
     TResult Function(DateTime pickedDate)? submitReport,
     TResult Function(
-      DateTime pickedDate,
-      BuildContext context,
-      String? shareText,
-    )?
-    sendMailReport,
+            DateTime pickedDate, BuildContext context, String? shareText)?
+        sendMailReport,
     TResult Function()? resetSubmitFlags,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(int dailyID)? selectReport,
     TResult Function(int dailyID)? loadDetailData,
     TResult Function(DateTime pickedDate, int dailyID)? submitEditReport,
     TResult Function(int dailyID)? deleteReport,
-    TResult Function(
-      DateTime dateStart,
-      DateTime dateEnd,
-      String keyword,
-      int teamId,
-      int userId,
-      int departmentId,
-    )?
-    copyReport,
+    TResult Function(DateTime dateStart, DateTime dateEnd, String keyword,
+            int teamId, int userId, int departmentId)?
+        copyReport,
     TResult Function()? resetCopyReport,
     required TResult orElse(),
   }) {
@@ -15365,12 +14848,15 @@ class _$ResetCopyImpl implements _ResetCopy {
     required TResult Function(_ToggleOvertime value) toggleOvertime,
     required TResult Function(_AddOvertimeSession value) addOvertimeSession,
     required TResult Function(_RemoveOvertimeSession value)
-    removeOvertimeSession,
+        removeOvertimeSession,
     required TResult Function(_UpdateOvertimeSession value)
-    updateOvertimeSession,
+        updateOvertimeSession,
     required TResult Function(_LoadHistoryProblems value) loadHistoryProblems,
     required TResult Function(_ClearAutoOpenOvertime value)
-    clearAutoOpenOvertime,
+        clearAutoOpenOvertime,
+    required TResult Function(_ClearPendingProjectItemEdit value)
+        clearPendingProjectItemEdit,
+    required TResult Function(_RecheckProjectItem value) recheckProjectItem,
     required TResult Function(_UpdatePlanNextDay value) updatePlanNextDay,
     required TResult Function(_UpdateExtraInfo value) updateExtraInfo,
     required TResult Function(_SubmitReportWithDate value) submitReport,
@@ -15409,6 +14895,9 @@ class _$ResetCopyImpl implements _ResetCopy {
     TResult? Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult? Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult? Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult? Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult? Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult? Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult? Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult? Function(_SubmitReportWithDate value)? submitReport,
@@ -15447,6 +14936,9 @@ class _$ResetCopyImpl implements _ResetCopy {
     TResult Function(_UpdateOvertimeSession value)? updateOvertimeSession,
     TResult Function(_LoadHistoryProblems value)? loadHistoryProblems,
     TResult Function(_ClearAutoOpenOvertime value)? clearAutoOpenOvertime,
+    TResult Function(_ClearPendingProjectItemEdit value)?
+        clearPendingProjectItemEdit,
+    TResult Function(_RecheckProjectItem value)? recheckProjectItem,
     TResult Function(_UpdatePlanNextDay value)? updatePlanNextDay,
     TResult Function(_UpdateExtraInfo value)? updateExtraInfo,
     TResult Function(_SubmitReportWithDate value)? submitReport,

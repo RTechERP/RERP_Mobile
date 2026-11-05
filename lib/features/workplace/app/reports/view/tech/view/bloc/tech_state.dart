@@ -109,6 +109,13 @@ class TechState extends BaseBlocState {
   /// (thiếu ngày kế hoạch / actual) — không được phép báo cáo trên các hạng mục này.
   final Set<int> ineligibleProjectItemIds;
 
+  /// `projectItemId` cần chuyển sang màn chỉnh sửa hạng mục công việc.
+  ///
+  /// Khi người dùng chọn một hạng mục mà BE báo chưa đủ thông tin, bloc set
+  /// giá trị này để UI điều hướng sang màn chỉnh sửa đúng ID hạng mục.
+  /// UI đọc xong gửi [TechEvent.clearPendingProjectItemEdit] để reset về `null`.
+  final int? pendingProjectItemEditId;
+
   /// Các phát sinh của từng hạng mục, cache theo `projectItemId`.
   ///
   /// Chỉ để hiển thị tham khảo ở card "Các phát sinh" — KHÔNG điền
@@ -217,6 +224,7 @@ class TechState extends BaseBlocState {
     this.isProjectItemRequired = false,
     this.currentReportDate,
     this.ineligibleProjectItemIds = const {},
+    this.pendingProjectItemEditId,
     this.historyProblems = const {},
     this.loadingHistoryProblemIds = const {},
     this.autoOpenOvertimeIndex,
@@ -270,6 +278,7 @@ class TechState extends BaseBlocState {
     isProjectItemRequired: false,
     currentReportDate: null,
     ineligibleProjectItemIds: {},
+    pendingProjectItemEditId: null,
     historyProblems: {},
     loadingHistoryProblemIds: {},
     autoOpenOvertimeIndex: null,
@@ -335,6 +344,7 @@ class TechState extends BaseBlocState {
     isProjectItemRequired,
     currentReportDate,
     ineligibleProjectItemIds,
+    pendingProjectItemEditId,
     historyProblems,
     loadingHistoryProblemIds,
     autoOpenOvertimeIndex,

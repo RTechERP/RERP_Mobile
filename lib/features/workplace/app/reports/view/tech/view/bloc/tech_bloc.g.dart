@@ -123,9 +123,10 @@ abstract class _$TechStateCWProxy {
 
   TechState ineligibleProjectItemIds(Set<int> ineligibleProjectItemIds);
 
+  TechState pendingProjectItemEditId(int? pendingProjectItemEditId);
+
   TechState historyProblems(
-    Map<int, List<ProjectHistoryProblem>> historyProblems,
-  );
+      Map<int, List<ProjectHistoryProblem>> historyProblems);
 
   TechState loadingHistoryProblemIds(Set<int> loadingHistoryProblemIds);
 
@@ -196,6 +197,7 @@ abstract class _$TechStateCWProxy {
     bool? isProjectItemRequired,
     DateTime? currentReportDate,
     Set<int>? ineligibleProjectItemIds,
+    int? pendingProjectItemEditId,
     Map<int, List<ProjectHistoryProblem>>? historyProblems,
     Set<int>? loadingHistoryProblemIds,
     int? autoOpenOvertimeIndex,
@@ -415,9 +417,13 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
       this(ineligibleProjectItemIds: ineligibleProjectItemIds);
 
   @override
+  TechState pendingProjectItemEditId(int? pendingProjectItemEditId) =>
+      this(pendingProjectItemEditId: pendingProjectItemEditId);
+
+  @override
   TechState historyProblems(
-    Map<int, List<ProjectHistoryProblem>> historyProblems,
-  ) => this(historyProblems: historyProblems);
+          Map<int, List<ProjectHistoryProblem>> historyProblems) =>
+      this(historyProblems: historyProblems);
 
   @override
   TechState loadingHistoryProblemIds(Set<int> loadingHistoryProblemIds) =>
@@ -428,6 +434,7 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
       this(autoOpenOvertimeIndex: autoOpenOvertimeIndex);
 
   @override
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TechState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -493,6 +500,7 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
     Object? isProjectItemRequired = const $CopyWithPlaceholder(),
     Object? currentReportDate = const $CopyWithPlaceholder(),
     Object? ineligibleProjectItemIds = const $CopyWithPlaceholder(),
+    Object? pendingProjectItemEditId = const $CopyWithPlaceholder(),
     Object? historyProblems = const $CopyWithPlaceholder(),
     Object? loadingHistoryProblemIds = const $CopyWithPlaceholder(),
     Object? autoOpenOvertimeIndex = const $CopyWithPlaceholder(),
@@ -520,14 +528,14 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
           : departs as List<DepartResponse>,
       rtcProject:
           rtcProject == const $CopyWithPlaceholder() || rtcProject == null
-          ? _value.rtcProject
-          // ignore: cast_nullable_to_non_nullable
-          : rtcProject as List<ProjectResponse>,
+              ? _value.rtcProject
+              // ignore: cast_nullable_to_non_nullable
+              : rtcProject as List<ProjectResponse>,
       projectItem:
           projectItem == const $CopyWithPlaceholder() || projectItem == null
-          ? _value.projectItem
-          // ignore: cast_nullable_to_non_nullable
-          : projectItem as List<ProjectItemResponse>,
+              ? _value.projectItem
+              // ignore: cast_nullable_to_non_nullable
+              : projectItem as List<ProjectItemResponse>,
       works: works == const $CopyWithPlaceholder() || works == null
           ? _value.works
           // ignore: cast_nullable_to_non_nullable
@@ -562,14 +570,14 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
           : keyword as String?,
       locationType:
           locationType == const $CopyWithPlaceholder() || locationType == null
-          ? _value.locationType
-          // ignore: cast_nullable_to_non_nullable
-          : locationType as String,
+              ? _value.locationType
+              // ignore: cast_nullable_to_non_nullable
+              : locationType as String,
       siteLocation:
           siteLocation == const $CopyWithPlaceholder() || siteLocation == null
-          ? _value.siteLocation
-          // ignore: cast_nullable_to_non_nullable
-          : siteLocation as String,
+              ? _value.siteLocation
+              // ignore: cast_nullable_to_non_nullable
+              : siteLocation as String,
       location: location == const $CopyWithPlaceholder()
           ? _value.location
           // ignore: cast_nullable_to_non_nullable
@@ -608,14 +616,14 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
           : selectedProjectItem as ProjectItemResponse?,
       isSubmitting:
           isSubmitting == const $CopyWithPlaceholder() || isSubmitting == null
-          ? _value.isSubmitting
-          // ignore: cast_nullable_to_non_nullable
-          : isSubmitting as bool,
+              ? _value.isSubmitting
+              // ignore: cast_nullable_to_non_nullable
+              : isSubmitting as bool,
       submitSuccess:
           submitSuccess == const $CopyWithPlaceholder() || submitSuccess == null
-          ? _value.submitSuccess
-          // ignore: cast_nullable_to_non_nullable
-          : submitSuccess as bool,
+              ? _value.submitSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : submitSuccess as bool,
       projectError: projectError == const $CopyWithPlaceholder()
           ? _value.projectError
           // ignore: cast_nullable_to_non_nullable
@@ -636,8 +644,7 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
           ? _value.userId
           // ignore: cast_nullable_to_non_nullable
           : userId as int?,
-      sendMailSuccess:
-          sendMailSuccess == const $CopyWithPlaceholder() ||
+      sendMailSuccess: sendMailSuccess == const $CopyWithPlaceholder() ||
               sendMailSuccess == null
           ? _value.sendMailSuccess
           // ignore: cast_nullable_to_non_nullable
@@ -654,8 +661,7 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
           ? _value.lastPickedDate
           // ignore: cast_nullable_to_non_nullable
           : lastPickedDate as DateTime?,
-      isLoadingDetail:
-          isLoadingDetail == const $CopyWithPlaceholder() ||
+      isLoadingDetail: isLoadingDetail == const $CopyWithPlaceholder() ||
               isLoadingDetail == null
           ? _value.isLoadingDetail
           // ignore: cast_nullable_to_non_nullable
@@ -674,29 +680,29 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
           : isSaving as bool,
       saveSuccess:
           saveSuccess == const $CopyWithPlaceholder() || saveSuccess == null
-          ? _value.saveSuccess
-          // ignore: cast_nullable_to_non_nullable
-          : saveSuccess as bool,
+              ? _value.saveSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : saveSuccess as bool,
       isDeleting:
           isDeleting == const $CopyWithPlaceholder() || isDeleting == null
-          ? _value.isDeleting
-          // ignore: cast_nullable_to_non_nullable
-          : isDeleting as bool,
+              ? _value.isDeleting
+              // ignore: cast_nullable_to_non_nullable
+              : isDeleting as bool,
       deleteSuccess:
           deleteSuccess == const $CopyWithPlaceholder() || deleteSuccess == null
-          ? _value.deleteSuccess
-          // ignore: cast_nullable_to_non_nullable
-          : deleteSuccess as bool,
+              ? _value.deleteSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : deleteSuccess as bool,
       copyReports:
           copyReports == const $CopyWithPlaceholder() || copyReports == null
-          ? _value.copyReports
-          // ignore: cast_nullable_to_non_nullable
-          : copyReports as List<CopyNullResponse>,
+              ? _value.copyReports
+              // ignore: cast_nullable_to_non_nullable
+              : copyReports as List<CopyNullResponse>,
       isCopyLoading:
           isCopyLoading == const $CopyWithPlaceholder() || isCopyLoading == null
-          ? _value.isCopyLoading
-          // ignore: cast_nullable_to_non_nullable
-          : isCopyLoading as bool,
+              ? _value.isCopyLoading
+              // ignore: cast_nullable_to_non_nullable
+              : isCopyLoading as bool,
       teamId: teamId == const $CopyWithPlaceholder()
           ? _value.teamId
           // ignore: cast_nullable_to_non_nullable
@@ -713,14 +719,12 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
           ? _value.copyError
           // ignore: cast_nullable_to_non_nullable
           : copyError as String?,
-      dailyOvertimes:
-          dailyOvertimes == const $CopyWithPlaceholder() ||
+      dailyOvertimes: dailyOvertimes == const $CopyWithPlaceholder() ||
               dailyOvertimes == null
           ? _value.dailyOvertimes
           // ignore: cast_nullable_to_non_nullable
           : dailyOvertimes as List<OvertimeSession>,
-      deletedOvertimes:
-          deletedOvertimes == const $CopyWithPlaceholder() ||
+      deletedOvertimes: deletedOvertimes == const $CopyWithPlaceholder() ||
               deletedOvertimes == null
           ? _value.deletedOvertimes
           // ignore: cast_nullable_to_non_nullable
@@ -735,42 +739,46 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
           : approvers as List<ApproverItem>,
       overtimeTypes:
           overtimeTypes == const $CopyWithPlaceholder() || overtimeTypes == null
-          ? _value.overtimeTypes
-          // ignore: cast_nullable_to_non_nullable
-          : overtimeTypes as List<OvertimeType>,
+              ? _value.overtimeTypes
+              // ignore: cast_nullable_to_non_nullable
+              : overtimeTypes as List<OvertimeType>,
       isProjectItemRequired:
           isProjectItemRequired == const $CopyWithPlaceholder() ||
-              isProjectItemRequired == null
-          ? _value.isProjectItemRequired
-          // ignore: cast_nullable_to_non_nullable
-          : isProjectItemRequired as bool,
+                  isProjectItemRequired == null
+              ? _value.isProjectItemRequired
+              // ignore: cast_nullable_to_non_nullable
+              : isProjectItemRequired as bool,
       currentReportDate: currentReportDate == const $CopyWithPlaceholder()
           ? _value.currentReportDate
           // ignore: cast_nullable_to_non_nullable
           : currentReportDate as DateTime?,
       ineligibleProjectItemIds:
           ineligibleProjectItemIds == const $CopyWithPlaceholder() ||
-              ineligibleProjectItemIds == null
-          ? _value.ineligibleProjectItemIds
-          // ignore: cast_nullable_to_non_nullable
-          : ineligibleProjectItemIds as Set<int>,
-      historyProblems:
-          historyProblems == const $CopyWithPlaceholder() ||
+                  ineligibleProjectItemIds == null
+              ? _value.ineligibleProjectItemIds
+              // ignore: cast_nullable_to_non_nullable
+              : ineligibleProjectItemIds as Set<int>,
+      pendingProjectItemEditId:
+          pendingProjectItemEditId == const $CopyWithPlaceholder()
+              ? _value.pendingProjectItemEditId
+              // ignore: cast_nullable_to_non_nullable
+              : pendingProjectItemEditId as int?,
+      historyProblems: historyProblems == const $CopyWithPlaceholder() ||
               historyProblems == null
           ? _value.historyProblems
           // ignore: cast_nullable_to_non_nullable
           : historyProblems as Map<int, List<ProjectHistoryProblem>>,
       loadingHistoryProblemIds:
           loadingHistoryProblemIds == const $CopyWithPlaceholder() ||
-              loadingHistoryProblemIds == null
-          ? _value.loadingHistoryProblemIds
-          // ignore: cast_nullable_to_non_nullable
-          : loadingHistoryProblemIds as Set<int>,
+                  loadingHistoryProblemIds == null
+              ? _value.loadingHistoryProblemIds
+              // ignore: cast_nullable_to_non_nullable
+              : loadingHistoryProblemIds as Set<int>,
       autoOpenOvertimeIndex:
           autoOpenOvertimeIndex == const $CopyWithPlaceholder()
-          ? _value.autoOpenOvertimeIndex
-          // ignore: cast_nullable_to_non_nullable
-          : autoOpenOvertimeIndex as int?,
+              ? _value.autoOpenOvertimeIndex
+              // ignore: cast_nullable_to_non_nullable
+              : autoOpenOvertimeIndex as int?,
     );
   }
 }

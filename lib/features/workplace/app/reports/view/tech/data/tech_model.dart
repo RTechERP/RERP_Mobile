@@ -9,7 +9,8 @@ import '../../../data/datasource/models/report_model.dart';
 class OvertimeSession extends Equatable {
   /// Số ca làm thêm tối đa được khai báo cho 1 hạng mục trong 1 ngày.
   ///
-  /// Ca 1: 18:00 - 20:00, Ca 2: 20:00 - 22:00, Ca 3: 22:00 - 23:59.
+  /// Ca 1: 18:00 - hiện tại, Ca 2: hiện tại - hiện tại + 2h,
+  /// Ca 3: giờ kết thúc Ca 2 - 23:59.
   /// Từ Ca 4 trở đi phải khai báo làm đêm.
   static const int maxShifts = 3;
 
@@ -57,6 +58,21 @@ class OvertimeSession extends Equatable {
   /// Đánh dấu xoá mềm — gửi lên BE cùng payload để dọn cả 2 bảng.
   final bool isDeleted;
 
+  /// Ca làm thêm có phát sinh hay không (được BE duyệt ở module làm thêm).
+  final bool isProblem;
+
+  /// Cờ duyệt của người duyệt (trưởng phòng / đội trưởng).
+  final bool isApproved;
+
+  /// Cờ duyệt của HR.
+  final bool isApprovedHR;
+
+  /// Cờ duyệt của ban giám đốc.
+  final bool isApprovedBGD;
+
+  /// ID người duyệt HR.
+  final int approveHR;
+
   const OvertimeSession({
     required this.id,
     required this.employeeId,
@@ -73,6 +89,11 @@ class OvertimeSession extends Equatable {
     this.costOvernight = 0,
     this.reason = '',
     this.isDeleted = false,
+    this.isProblem = false,
+    this.isApproved = false,
+    this.isApprovedHR = false,
+    this.isApprovedBGD = false,
+    this.approveHR = 0,
   });
 
   /// Tạo ca làm thêm mới (chưa lưu) gắn với hạng mục công việc.
@@ -130,6 +151,11 @@ class OvertimeSession extends Equatable {
       costOvernight: record.costOvernight ?? 0,
       reason: record.reason ?? '',
       isDeleted: record.isDeleted ?? false,
+      isProblem: record.isProblem ?? false,
+      isApproved: record.isApproved ?? false,
+      isApprovedHR: record.isApprovedHR ?? false,
+      isApprovedBGD: record.isApprovedBGD ?? false,
+      approveHR: record.approvedHR ?? 0,
     );
   }
 
@@ -224,6 +250,11 @@ class OvertimeSession extends Equatable {
     double? costOvernight,
     String? reason,
     bool? isDeleted,
+    bool? isProblem,
+    bool? isApproved,
+    bool? isApprovedHR,
+    bool? isApprovedBGD,
+    int? approveHR,
   }) {
     return OvertimeSession(
       id: id ?? this.id,
@@ -241,6 +272,11 @@ class OvertimeSession extends Equatable {
       costOvernight: costOvernight ?? this.costOvernight,
       reason: reason ?? this.reason,
       isDeleted: isDeleted ?? this.isDeleted,
+      isProblem: isProblem ?? this.isProblem,
+      isApproved: isApproved ?? this.isApproved,
+      isApprovedHR: isApprovedHR ?? this.isApprovedHR,
+      isApprovedBGD: isApprovedBGD ?? this.isApprovedBGD,
+      approveHR: approveHR ?? this.approveHR,
     );
   }
 
@@ -250,7 +286,7 @@ class OvertimeSession extends Equatable {
       'ID': id,
       'EmployeeID': employeeId,
       'ApprovedID': approvedId,
-      'DateRegister': _formatIso(dateRegister),
+      'DateRegister': _formatDateRegister(dateRegister),
       'TimeStart': _formatIso(timeStart),
       'EndTime': _formatIso(endTime),
       'TimeReality': timeReality,
@@ -261,6 +297,11 @@ class OvertimeSession extends Equatable {
       'Overnight': overnight,
       'CostOvernight': overnight ? 30000 : 0,
       'Reason': reason,
+      'IsProblem': isProblem,
+      'IsApproved': isApproved,
+      'IsApprovedHR': isApprovedHR,
+      'IsApprovedBGD': isApprovedBGD,
+      'ApproveHR': approveHR,
       'IsDeleted': isDeleted,
     };
   }
@@ -268,6 +309,19 @@ class OvertimeSession extends Equatable {
   /// Payload rút gọn cho bản ghi đã xoá mềm (chỉ cần ID + EmployeeID + IsDeleted).
   Map<String, dynamic> toDeletePayload() {
     return {'ID': id, 'EmployeeID': employeeId, 'IsDeleted': true};
+  }
+
+  /// Định dạng `DateRegister` theo convention của BE.
+  ///
+  /// BE quy đổi giờ đăng ký theo header `TimeZoneOffset` (+07:00), nên mốc
+  /// gửi lên phải là 07:00:00 để khi BE quy đổi ra vẫn đúng ngày đăng ký
+  /// (khớp với `GET /DailyReportTech/get-overtime-by-date`).
+  static String? _formatDateRegister(DateTime? dt) {
+    if (dt == null) return null;
+    final y = dt.year.toString().padLeft(4, '0');
+    final m = dt.month.toString().padLeft(2, '0');
+    final d = dt.day.toString().padLeft(2, '0');
+    return '$y-$m-${d}T07:00:00';
   }
 
   static String? _formatIso(DateTime? dt) {
@@ -297,6 +351,11 @@ class OvertimeSession extends Equatable {
     costOvernight,
     reason,
     isDeleted,
+    isProblem,
+    isApproved,
+    isApprovedHR,
+    isApprovedBGD,
+    approveHR,
   ];
 }
 

@@ -183,7 +183,7 @@ class ReportRepoImpl implements ReportRepo {
 
   /// Kiểm tra hạng mục công việc đã đủ thông tin để báo cáo hay chưa.
   @override
-  Future<Either<BaseError, bool>> checkInformationReport({
+  Future<Either<BaseError, bool?>> checkInformationReport({
     required int projectTaskId,
   }) async {
     try {
@@ -191,7 +191,8 @@ class ReportRepoImpl implements ReportRepo {
         projectTaskId: projectTaskId,
       );
 
-      return right(res.data ?? false);
+      // `null` = BE không xác nhận → để caller quyết định, không tự chặn.
+      return right(res.data);
     } on DioException catch (e) {
       return left(e.baseError);
     }
