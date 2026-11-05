@@ -420,7 +420,10 @@ class _TechOvertimeSheetState extends State<TechOvertimeSheet> {
               borderRadius: BorderRadius.circular(20),
               onTap: () => _addShift(sessions),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: AppColors.primaryERP),
@@ -523,11 +526,7 @@ class _EmptyShiftBox extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(
-              Icons.nightlight_round,
-              size: 40,
-              color: AppColors.gray,
-            ),
+            const Icon(Icons.nightlight_round, size: 40, color: AppColors.gray),
             const SizedBox(height: 8),
             Text(
               canCreateNew
@@ -608,10 +607,7 @@ class _OvertimeShiftFormState extends State<_OvertimeShiftForm> {
     // muộn hơn thời điểm mở sheet.
     _syncLabel(_approverController, _approverNameOf(widget.session.approvedId));
     _syncLabel(_typeController, _typeLabelOf(widget.session.typeId));
-    _syncLabel(
-      _locationController,
-      _locationLabelOf(widget.session.location),
-    );
+    _syncLabel(_locationController, _locationLabelOf(widget.session.location));
 
     // Đồng bộ tick "Phụ cấp ăn tối" khi bloc tự động bật (ca 18:00 - 20:00).
     _syncOvernight(oldWidget.session.overnight, widget.session.overnight);
@@ -624,7 +620,8 @@ class _OvertimeShiftFormState extends State<_OvertimeShiftForm> {
   void _syncOvernight(bool oldValue, bool newValue) {
     if (oldValue == newValue) return;
 
-    final name = 'tech_ot_sheet_overnight_${widget.workIndex}_${widget.sessionIndex}';
+    final name =
+        'tech_ot_sheet_overnight_${widget.workIndex}_${widget.sessionIndex}';
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
@@ -706,10 +703,7 @@ class _OvertimeShiftFormState extends State<_OvertimeShiftForm> {
         .toList();
 
     if (items.isEmpty) {
-      context.showMessage(
-        'Chưa có người duyệt',
-        type: SnackBarType.error,
-      );
+      context.showMessage('Chưa có người duyệt', type: SnackBarType.error);
       return;
     }
 
@@ -720,8 +714,8 @@ class _OvertimeShiftFormState extends State<_OvertimeShiftForm> {
       displayText: (a) => '${a.code ?? ''} - ${a.fullName ?? ''}'.trim(),
       onSelected: (item) {
         final idValue = approvedOvertimePayloadValue(item);
-        _approverController.text =
-            '${item.code ?? ''} - ${item.fullName ?? ''}'.trim();
+        _approverController.text = '${item.code ?? ''} - ${item.fullName ?? ''}'
+            .trim();
         bloc.add(
           TechEvent.updateOvertimeSession(
             index: widget.workIndex,
@@ -741,10 +735,7 @@ class _OvertimeShiftFormState extends State<_OvertimeShiftForm> {
         .toList();
 
     if (items.isEmpty) {
-      context.showMessage(
-        'Chưa có loại làm thêm',
-        type: SnackBarType.error,
-      );
+      context.showMessage('Chưa có loại làm thêm', type: SnackBarType.error);
       return;
     }
 

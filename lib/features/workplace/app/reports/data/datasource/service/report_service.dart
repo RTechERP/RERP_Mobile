@@ -109,9 +109,7 @@ class ReportService extends DioBaseApiService {
       body: payload,
       parser: (json) => BaseData<List<int>>.fromJson(
         json,
-        (data) => (data as List)
-            .map((e) => (e as num).toInt())
-            .toList(),
+        (data) => (data as List).map((e) => (e as num).toInt()).toList(),
       ),
     );
   }
@@ -155,10 +153,25 @@ class ReportService extends DioBaseApiService {
     return post<BaseData<void>>(
       ApiEndPoint.saveOvertimeTech,
       body: payload,
-      options: Options(
-        headers: {'TimeZoneOffset': offsetMinutes},
-      ),
+      options: Options(headers: {'TimeZoneOffset': offsetMinutes}),
       parser: (json) => BaseData<void>.fromJson(json, (_) => null),
+    );
+  }
+
+  /// Lấy các phát sinh của một hạng mục công việc.
+  Future<BaseData<List<ProjectHistoryProblem>>>
+  getProjectHistoryProblemByProjectItem({required int projectItemId}) async {
+    return get<BaseData<List<ProjectHistoryProblem>>>(
+      ApiEndPoint.getProjectHistoryProblemByProjectItem,
+      query: {'projectItemId': projectItemId},
+      parser: (json) => BaseData<List<ProjectHistoryProblem>>.fromJson(
+        json,
+        (data) => (data as List)
+            .map(
+              (e) => ProjectHistoryProblem.fromJson(e as Map<String, dynamic>),
+            )
+            .toList(),
+      ),
     );
   }
 
@@ -241,7 +254,9 @@ class ReportService extends DioBaseApiService {
     );
   }
 
-  Future<BaseData<void>> deleteSaleAdminReportById({required int dailyID}) async {
+  Future<BaseData<void>> deleteSaleAdminReportById({
+    required int dailyID,
+  }) async {
     return post<BaseData<void>>(
       ApiEndPoint.deleteSaleAdminReport,
       query: {'id': dailyID},
@@ -512,12 +527,12 @@ class ReportService extends DioBaseApiService {
       query: {'id': dailyID},
       parser: (json) => BaseData<List<DetailSaleAdminReportResponse>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map(
               (e) => DetailSaleAdminReportResponse.fromJson(
-            e as Map<String, dynamic>,
-          ),
-        )
+                e as Map<String, dynamic>,
+              ),
+            )
             .toList(),
       ),
     );
@@ -685,8 +700,10 @@ class ReportService extends DioBaseApiService {
     final query = <String, dynamic>{
       'page': page,
       'size': size,
-      'dateStart': '${dateStart.year}-${dateStart.month.toString().padLeft(2, '0')}-${dateStart.day.toString().padLeft(2, '0')}T${dateStart.hour.toString().padLeft(2, '0')}:${dateStart.minute.toString().padLeft(2, '0')}:${dateStart.second.toString().padLeft(2, '0')}',
-      'dateEnd': '${dateEnd.year}-${dateEnd.month.toString().padLeft(2, '0')}-${dateEnd.day.toString().padLeft(2, '0')}T${dateEnd.hour.toString().padLeft(2, '0')}:${dateEnd.minute.toString().padLeft(2, '0')}:${dateEnd.second.toString().padLeft(2, '0')}',
+      'dateStart':
+          '${dateStart.year}-${dateStart.month.toString().padLeft(2, '0')}-${dateStart.day.toString().padLeft(2, '0')}T${dateStart.hour.toString().padLeft(2, '0')}:${dateStart.minute.toString().padLeft(2, '0')}:${dateStart.second.toString().padLeft(2, '0')}',
+      'dateEnd':
+          '${dateEnd.year}-${dateEnd.month.toString().padLeft(2, '0')}-${dateEnd.day.toString().padLeft(2, '0')}T${dateEnd.hour.toString().padLeft(2, '0')}:${dateEnd.minute.toString().padLeft(2, '0')}:${dateEnd.second.toString().padLeft(2, '0')}',
       'filterText': filterText,
     };
     if (employeeId != null) {
@@ -773,7 +790,6 @@ class ReportService extends DioBaseApiService {
     int? userId,
     String? keyword,
   }) async {
-
     String fmt(DateTime d) {
       final y = d.year.toString().padLeft(4, '0');
       final m = d.month.toString().padLeft(2, '0');
@@ -799,9 +815,8 @@ class ReportService extends DioBaseApiService {
       query: query,
       parser: (json) => BaseData<List<SaleAdminResponse>>.fromJson(
         json,
-            (data) => (data as List)
-            .map((e) => SaleAdminResponse.fromJson(e))
-            .toList(),
+        (data) =>
+            (data as List).map((e) => SaleAdminResponse.fromJson(e)).toList(),
       ),
     );
   }

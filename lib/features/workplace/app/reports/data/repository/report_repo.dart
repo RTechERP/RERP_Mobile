@@ -47,6 +47,10 @@ abstract class ReportRepo {
     required Map<String, dynamic> payload,
   });
 
+  /// Lấy các phát sinh của một hạng mục công việc.
+  Future<Either<BaseError, List<ProjectHistoryProblem>>>
+  getProjectHistoryProblemByProjectItem({required int projectItemId});
+
   /// Kiểm tra hạng mục công việc đã đủ thông tin để báo cáo hay chưa.
   Future<Either<BaseError, bool>> checkInformationReport({
     required int projectTaskId,
@@ -169,7 +173,8 @@ abstract class ReportRepo {
     String filterText,
     int customerId,
     int groupType,
-    int projectId});
+    int projectId,
+  });
 
   Future<Either<BaseError, List<SaleAdminResponse>>> getSaleAdminDailyReport({
     required DateTime dateStart,
@@ -185,7 +190,8 @@ abstract class ReportRepo {
     required Map<String, dynamic> payload,
   });
 
-  Future<Either<BaseError, List<SaleAdminTypeReportResponse>>> getAdminTypeReport();
+  Future<Either<BaseError, List<SaleAdminTypeReportResponse>>>
+  getAdminTypeReport();
   Future<Either<BaseError, List<SaleAdminProjectResponse>>> getAdminProject();
   Future<Either<BaseError, List<SaleAdminCustomerResponse>>> getAdminCustomer();
 
@@ -193,7 +199,9 @@ abstract class ReportRepo {
     required int dailyID,
   });
 
-  Future<Either<BaseError, String>> deleteSaleAdminReport({required int dailyID});
+  Future<Either<BaseError, String>> deleteSaleAdminReport({
+    required int dailyID,
+  });
 
   /// Lấy danh sách báo cáo phòng Kế toán (Accountant)
   Future<Either<BaseError, List<AccountantItem>>> getAccountantReport({
@@ -214,5 +222,7 @@ abstract class ReportRepo {
   Future<Either<BaseError, String>> deleteReportAccounting({required int id});
 
   /// Lấy chi tiết báo cáo phòng Kế toán theo ID
-  Future<Either<BaseError, AccountantItem>> getAccountantById({required int id});
+  Future<Either<BaseError, AccountantItem>> getAccountantById({
+    required int id,
+  });
 }

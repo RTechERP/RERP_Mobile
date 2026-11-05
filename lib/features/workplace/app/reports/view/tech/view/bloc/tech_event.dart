@@ -3,7 +3,7 @@ part of 'tech_bloc.dart';
 @freezed
 class TechEvent with _$TechEvent {
   const factory TechEvent.init() = _Init;
-  
+
   /// Khởi tạo với list các báo cáo được copy
   const factory TechEvent.initAdd({
     required List<CopyNullResponse> copyItems,
@@ -95,6 +95,15 @@ class TechEvent with _$TechEvent {
     bool? overnight,
     String? reason,
   }) = _UpdateOvertimeSession;
+
+  /// ===== PHÁT SINH =====
+  /// Tải các phát sinh của một hạng mục công việc (chỉ để tham khảo).
+  const factory TechEvent.loadHistoryProblems({required int projectItemId}) =
+      _LoadHistoryProblems;
+
+  /// ===== TỰ ĐỘNG MỞ SHEET LÀM THÊM =====
+  /// Xoá tín hiệu "tự mở sheet làm thêm" sau khi UI đã mở sheet.
+  const factory TechEvent.clearAutoOpenOvertime() = _ClearAutoOpenOvertime;
 
   /// ===== GLOBAL =====
   const factory TechEvent.updatePlanNextDay(String value) = _UpdatePlanNextDay;

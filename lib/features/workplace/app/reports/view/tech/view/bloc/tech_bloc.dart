@@ -162,11 +162,66 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         resetCopyReport: () => _onResetCopy(emit),
         updateExtraInfo: (problem, problemSolve, backlog, note) =>
             _onUpdateExtraInfo(problem, problemSolve, backlog, note, emit),
+        loadHistoryProblems: (projectItemId) =>
+            _onLoadHistoryProblems(projectItemId, emit),
+        clearAutoOpenOvertime: () => _onClearAutoOpenOvertime(emit),
       );
     }, transformer: (events, mapper) => events.asyncExpand(mapper));
   }
 
   // ================== HANDLERS ==================
+
+  /// Tải các phát sinh của một hạng mục công việc.
+  ///
+  /// Kết quả được cache theo `projectItemId` nên mở/đóng card nhiều lần
+  /// không gọi lại API. Bỏ qua khi đang tải hoặc đã có cache.
+  Future<void> _onLoadHistoryProblems(
+    int projectItemId,
+    Emitter<TechState> emit,
+  ) async {
+    if (projectItemId <= 0) return;
+    if (state.historyProblems.containsKey(projectItemId)) return;
+    if (state.loadingHistoryProblemIds.contains(projectItemId)) return;
+
+    emit(
+      state.copyWith(
+        loadingHistoryProblemIds: {
+          ...state.loadingHistoryProblemIds,
+          projectItemId,
+        },
+      ),
+    );
+
+    final res = await _reportRepo.getProjectHistoryProblemByProjectItem(
+      projectItemId: projectItemId,
+    );
+
+    final loading = {...state.loadingHistoryProblemIds}..remove(projectItemId);
+
+    res.fold(
+      (l) {
+        _log.logE('Get history problem failed: ${l.getErrorMessage}');
+        emit(state.copyWith(loadingHistoryProblemIds: loading));
+      },
+      (problems) {
+        emit(
+          state.copyWith(
+            loadingHistoryProblemIds: loading,
+            historyProblems: {
+              ...state.historyProblems,
+              projectItemId: problems,
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  /// Reset tín hiệu tự mở bottom sheet làm thêm.
+  Future<void> _onClearAutoOpenOvertime(Emitter<TechState> emit) async {
+    if (state.autoOpenOvertimeIndex == null) return;
+    emit(state.copyWith(autoOpenOvertimeIndex: null));
+  }
 
   Future<void> _onUpdatePlanNextDay(
     String planNextDay,
@@ -825,6 +880,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     );
 
     // Đổi hạng mục công việc → gắn lại các ca làm thêm tương ứng với hạng mục mới.
+    int? autoOpenIndex;
     if (projectItemId != null && projectItemId != old.projectItemId) {
       final matched = state.dailyOvertimes
           .where(
@@ -846,6 +902,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         totalHourOT: _sumOvertimeHours(sessions),
       );
 
+      // Hạng mục trùng với ca làm thêm đã đăng ký trước → tự tích "Có làm thêm"
+      // và mở sheet để người dùng xem lại thông tin ca đã lấy từ API.
+      if (matched.isNotEmpty) autoOpenIndex = index;
+
       // Hạng mục thiếu thông tin kế hoạch/actual → không được phép báo cáo.
       if (effectiveProjectItemId != null && effectiveProjectItemId > 0) {
         await _checkWorkItemEligibility(effectiveProjectItemId, emit);
@@ -861,6 +921,7 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           return p;
         }).toList(),
         selectedProject: selected.copyWith(works: newWorks),
+        autoOpenOvertimeIndex: autoOpenIndex,
       ),
     );
   }
@@ -1037,8 +1098,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         tableName: 'EmployeeOvertime',
       );
       approveId = approveRes
-              .getOrElse(() => const FillApproverItem(approveId: 0))
-              .approveId;
+          .getOrElse(() => const FillApproverItem(approveId: 0))
+          .approveId;
     }
 
     // Danh sách người duyệt để chọn trong bottom sheet khai báo ca làm thêm.
@@ -1232,9 +1293,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     } else {
       // Ca n+1: bắt đầu tại giờ kết thúc ca trước, kéo dài 2 tiếng,
       // không vượt quá 23:59 của ngày báo cáo.
-      final prevStart = previous.timeStart ?? dayStart.add(
-        const Duration(hours: 18),
-      );
+      final prevStart =
+          previous.timeStart ?? dayStart.add(const Duration(hours: 18));
       final prevEnd =
           previous.endTime ?? prevStart.add(const Duration(hours: 2));
 
@@ -1376,7 +1436,8 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     // Chỉ tự động áp dụng khi khung giờ thay đổi — không ghi đè lựa chọn
     // thủ công của người dùng khi họ bỏ tick ở các lần cập nhật khác.
     final timeChanged = timeStart != null || endTime != null;
-    final newOvernight = overnight ??
+    final newOvernight =
+        overnight ??
         (timeChanged && OvertimeSession.isDinnerShift(newStart, newEnd)
             ? true
             : old.overnight);

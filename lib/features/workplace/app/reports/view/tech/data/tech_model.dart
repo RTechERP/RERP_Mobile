@@ -267,11 +267,7 @@ class OvertimeSession extends Equatable {
 
   /// Payload rút gọn cho bản ghi đã xoá mềm (chỉ cần ID + EmployeeID + IsDeleted).
   Map<String, dynamic> toDeletePayload() {
-    return {
-      'ID': id,
-      'EmployeeID': employeeId,
-      'IsDeleted': true,
-    };
+    return {'ID': id, 'EmployeeID': employeeId, 'IsDeleted': true};
   }
 
   static String? _formatIso(DateTime? dt) {
@@ -355,7 +351,6 @@ class TechWork extends Equatable {
   /// Người dùng có bật chế độ khai báo làm thêm cho hạng mục này hay không.
   final bool hasOvertime;
 
-
   const TechWork({
     required this.id,
     required this.code,
@@ -363,8 +358,8 @@ class TechWork extends Equatable {
     required this.userId,
     required this.dateReport,
     this.projectCode,
-     this.projectName,
-     this.projectText,
+    this.projectName,
+    this.projectText,
     required this.totalHours,
     this.totalHourOT,
     required this.percentComplete,
@@ -445,7 +440,6 @@ class TechWork extends Equatable {
     );
   }
 
-
   factory TechWork.fromReportResponse(ReportResponse r) => TechWork(
     id: r.id,
     code: r.code,
@@ -479,13 +473,13 @@ class TechWork extends Equatable {
   );
 
   factory TechWork.fromDetailReportResponse(
-      DetailReportResponse r, {
-        required String code,
-        required String fullName,
-        required String positionName,
-        required String mission,
-        required String projectItemCode,
-      }) {
+    DetailReportResponse r, {
+    required String code,
+    required String fullName,
+    required String positionName,
+    required String mission,
+    required String projectItemCode,
+  }) {
     return TechWork(
       id: r.id,
       code: code,
@@ -641,10 +635,9 @@ class TechWork extends Equatable {
   ];
 }
 
-
 class TechProject extends Equatable {
-  final String tempId;        // local id (UUID)
-  final int? projectId;      // backend id
+  final String tempId; // local id (UUID)
+  final int? projectId; // backend id
   final String? projectCode;
   final String? name;
 
@@ -659,7 +652,7 @@ class TechProject extends Equatable {
     this.projectCode,
     this.name,
     this.works = const [],
-    this.code
+    this.code,
   });
 
   TechProject copyWith({
@@ -668,7 +661,7 @@ class TechProject extends Equatable {
     String? projectCode,
     String? name,
     List<TechWork>? works,
-    String? code
+    String? code,
   }) {
     return TechProject(
       tempId: tempId ?? this.tempId,
@@ -690,6 +683,3 @@ class TechProject extends Equatable {
     code,
   ];
 }
-
-
-

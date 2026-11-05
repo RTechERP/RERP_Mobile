@@ -64,7 +64,12 @@ class ApiEndPoint {
   static const String saveOvertimeTech = '/DailyReportTech/save-overtime-tech';
 
   /// Lấy ca làm thêm đã đăng ký trong ngày (kèm ProjectItemID).
-  static const String getOvertimeByDate = '/DailyReportTech/get-overtime-by-date';
+  static const String getOvertimeByDate =
+      '/DailyReportTech/get-overtime-by-date';
+
+  /// Lấy các phát sinh của một hạng mục công việc.
+  static const String getProjectHistoryProblemByProjectItem =
+      '/DailyReportTech/get-project-history-problem-by-project-item';
 
   /// Kiểm tra hạng mục công việc có đủ thông tin để báo cáo hay chưa.
   static const String checkInformationReport =
@@ -187,6 +192,7 @@ class ApiEndPoint {
   /// Tìm kiếm yêu cầu thuê xe tải.
   /// API: POST /VehicleRentalRequest/search
   static const String searchVehicleRental = '/VehicleRentalRequest/search';
+
   /// API: POST /VehicleRentalRequest/save-data
   static const String saveVehicleRental = '/VehicleRentalRequest/save-data';
 
@@ -531,7 +537,8 @@ class ApiEndPoint {
   static const String updateStatusReceive = '/billexport/status-receive';
 
   // Material Category
-  static const String getMaterialCategories = '/MaterialCategory/get-material-categories';
+  static const String getMaterialCategories =
+      '/MaterialCategory/get-material-categories';
 
   /// Lấy chi tiết phiếu card theo registrationId.
   /// API: GET /ESLRegistration/get-details?registrationId=X.

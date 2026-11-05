@@ -52,9 +52,9 @@ class TechReportCard extends StatelessWidget {
         ),
         child: Material(
           color: Colors.transparent,
-        child: InkWell(
-          onTap: hasProject ? onTap : null,
-          borderRadius: BorderRadius.circular(16),
+          child: InkWell(
+            onTap: hasProject ? onTap : null,
+            borderRadius: BorderRadius.circular(16),
             child: Column(
               children: [
                 Padding(

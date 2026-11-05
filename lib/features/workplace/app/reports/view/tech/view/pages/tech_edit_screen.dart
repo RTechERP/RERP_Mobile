@@ -19,6 +19,7 @@ import '../../data/tech_model.dart';
 import '../bloc/tech_bloc.dart';
 import '../widgets/tech_admin_hours_chip.dart';
 import '../widgets/tech_edit_work_item.dart';
+import '../widgets/tech_history_problems_card.dart';
 
 class TechEditScreen extends StatefulWidget {
   final int dailyId;
@@ -191,7 +192,9 @@ class _TechEditScreenState
                                                     decoration: BoxDecoration(
                                                       color: AppColors
                                                           .primaryERP
-                                                          .withValues(alpha:0.1),
+                                                          .withValues(
+                                                            alpha: 0.1,
+                                                          ),
 
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -380,7 +383,8 @@ class _TechEditScreenState
                                       );
                                     },
                                   ),
-                                  if (state.locationType == TechLocation.site) ...[
+                                  if (state.locationType ==
+                                      TechLocation.site) ...[
                                     const SizedBox(height: 12),
                                     FormInputField(
                                       icon: Icons.location_on_outlined,
@@ -540,6 +544,12 @@ class _TechEditScreenState
                                       },
                                     ),
                                   ],
+
+                                  /// ===== CÁC PHÁT SINH (UI riêng) =====
+                                  /// Ngoài khối "hiện thông tin bổ sung" để phát
+                                  /// sinh của hạng mục luôn hiển thị ngay khi có.
+                                  const SizedBox(height: 12),
+                                  const TechHistoryProblemsCard(),
                                 ],
                               ),
                             ),
@@ -652,10 +662,7 @@ class _TechEditScreenState
                       ? DialogService.buildMailPreviewText(state, pickedDate)
                       : null;
                   // Truyền date + shareText qua pop()
-                  context.pop({
-                    'date': pickedDate,
-                    'shareText': shareText,
-                  });
+                  context.pop({'date': pickedDate, 'shareText': shareText});
                 }
               }
             },
@@ -672,7 +679,7 @@ class _TechEditScreenState
                 child: AbsorbPointer(
                   absorbing: true,
                   child: Container(
-                    color: Colors.black.withValues(alpha:0.45),
+                    color: Colors.black.withValues(alpha: 0.45),
                     alignment: Alignment.center,
                     child: Lottie.asset(
                       'assets/lotties/Loading.json',

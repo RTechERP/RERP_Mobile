@@ -84,9 +84,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
   @override
   void initState() {
     super.initState();
-    _categoryController = TextEditingController(
-      text: widget.report.mission,
-    );
+    _categoryController = TextEditingController(text: widget.report.mission);
 
     _percentController = TextEditingController(
       text: widget.report.percentComplete.toInt().toString(),
@@ -96,9 +94,7 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
       text: _formatHour(widget.report.totalHours),
     );
 
-    _contentController = TextEditingController(
-      text: widget.report.content,
-    );
+    _contentController = TextEditingController(text: widget.report.content);
   }
 
   @override
@@ -265,200 +261,208 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
   Widget _buildContent(BuildContext context) {
     return Column(
       children: [
-            /// ===== CATEGORY (MISSION TỪ BE) =====
-            GestureDetector(
-              onTap: widget.readonly
-                  ? null
-                  : () {
-                      openSelectBottomSheet(
-                        context: context,
-                        title: 'Chọn hạng mục',
-                        items: context.read<TechBloc>().state.projectItem, // Lấy trực tiếp từ state
-                        displayText: (v) => '${v.code} - ${v.mission}',
-                        // onAdd: () => context.push(RouteNames.workCategoryAdd),
-                        onSelected: (item) {
-                          final isPercentageZero = (item.percentageActual ?? 0) == 0;
-                          final oldMission = widget.report.mission;
-                          final currentContent = widget.report.content;
+        /// ===== CATEGORY (MISSION TỪ BE) =====
+        GestureDetector(
+          onTap: widget.readonly
+              ? null
+              : () {
+                  openSelectBottomSheet(
+                    context: context,
+                    title: 'Chọn hạng mục',
+                    items: context
+                        .read<TechBloc>()
+                        .state
+                        .projectItem, // Lấy trực tiếp từ state
+                    displayText: (v) => '${v.code} - ${v.mission}',
+                    // onAdd: () => context.push(RouteNames.workCategoryAdd),
+                    onSelected: (item) {
+                      final isPercentageZero =
+                          (item.percentageActual ?? 0) == 0;
+                      final oldMission = widget.report.mission;
+                      final currentContent = widget.report.content;
 
-                          String? newContent;
-                          if (isPercentageZero) {
-                            // percentageActual == 0: auto-fill with mission
-                            newContent = item.mission ?? '';
-                          } else {
-                            // percentageActual > 0: only clear if content was auto-filled from old mission
-                            final wasAutoFilled = oldMission.isNotEmpty &&
-                                oldMission == currentContent;
-                            newContent = wasAutoFilled ? '' : null;
-                          }
+                      String? newContent;
+                      if (isPercentageZero) {
+                        // percentageActual == 0: auto-fill with mission
+                        newContent = item.mission ?? '';
+                      } else {
+                        // percentageActual > 0: only clear if content was auto-filled from old mission
+                        final wasAutoFilled =
+                            oldMission.isNotEmpty &&
+                            oldMission == currentContent;
+                        newContent = wasAutoFilled ? '' : null;
+                      }
 
-                          context.read<TechBloc>().add(
-                            TechEvent.updateWork(
-                              index: widget.index,
-                              mission: item.mission,
-                              projectItemId: item.id,
-                              code: item.code,
-                              percentComplete: item.percentageActual,
-                              content: newContent,
-                            ),
-                          );
-                        },
-                      );
-                    },
-              child: AbsorbPointer(
-                child: FormInputField(
-                  autoExpand: true,
-                  key: ValueKey('work_${widget.report.id}'),
-                  nameForm: 'tech_add_category_${widget.report.id}',
-                  nameTextField: 'category_${widget.report.id}',
-                  label: 'Hạng mục',
-                  controller: _categoryController,
-                  readOnly: true,
-                  icon: Icons.category_outlined,
-                  isRequired: true,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (v) {
-                    if (v == null || v.trim().isEmpty) return 'Vui lòng chọn hạng mục';
-                    return null;
-                  },
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 8),
-
-            /// ===== TOTAL + PERCENT =====
-            Row(
-              children: [
-                Expanded(
-                  child: FormInputField(
-                    key: ValueKey('total_${widget.report.id}'),
-                    icon: Icons.timer_outlined,
-                    nameForm: 'tech_add_total_${widget.report.id}',
-                    nameTextField: 'total_${widget.report.id}',
-                    label: 'Số giờ',
-                    keyboardType:
-                        const TextInputType.numberWithOptions(decimal: true),
-                    controller: _totalController,
-                    onChanged: (v) {
                       context.read<TechBloc>().add(
                         TechEvent.updateWork(
                           index: widget.index,
-                          totalHours: _parseHour(v),
+                          mission: item.mission,
+                          projectItemId: item.id,
+                          code: item.code,
+                          percentComplete: item.percentageActual,
+                          content: newContent,
                         ),
                       );
                     },
-                    isRequired: true,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (v) => _validateAdminHour(v),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: FormInputField(
-                    key: ValueKey('percent_${widget.report.id}'),
-                    icon: Icons.percent_outlined,
-                    nameForm: 'tech_add_percent_${widget.report.id}',
-                    nameTextField: 'percent_${widget.report.id}',
-                    label: 'Tiến độ',
-                    keyboardType: TextInputType.number,
-                    controller: _percentController,
-                    onChanged: (v) {
-                      context.read<TechBloc>().add(
-                        TechEvent.updateWork(
-                          index: widget.index,
-                          percentComplete: double.tryParse(v ?? '') ?? 0,
-                        ),
-                      );
-                    },
-                    isRequired: true,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (v) {
-                      if (v == null || v.trim().isEmpty) {
-                        return 'Nhập tiến độ';
-                      }
-                      final percent = double.tryParse(v) ?? 0;
-                      if (percent < 0 || percent > 100) {
-                        return '% Hoàn thành phải từ 0 đến 100';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 8),
-
-            /// ===== CONTENT =====
-            FormInputField(
-              key: ValueKey('content_${widget.report.id}'),
-
-              icon: Icons.note_outlined,
-              nameForm: 'tech_add_content_${widget.report.id}',
-              nameTextField: 'content_${widget.report.id}',
-
-              label: 'Nội dung công việc',
+                  );
+                },
+          child: AbsorbPointer(
+            child: FormInputField(
               autoExpand: true,
-              keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.newline,
-              controller: _contentController,
-              onChanged: (v) {
-                context.read<TechBloc>().add(
-                  TechEvent.updateWork(index: widget.index, content: v),
-                );
-              },
-              isRequired: true,
-              validator: (v) {
-                if (v == null || v.trim().isEmpty) return 'Vui lòng nhập nội dung công việc';
-                return null;
-              }
-            ),
-
-            const SizedBox(height: 8),
-
-            /// ===== RESULT =====
-            FormInputField(
-              key: ValueKey('result_${widget.report.id}'),
-
-              icon: Icons.note_outlined,
-              nameForm: 'tech_add_result_${widget.report.id}',
-              nameTextField: 'result_${widget.report.id}',
-              label: 'Kết quả',
-              autoExpand: true,
-              keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.newline,
-              initialValue: widget.report.results,
-              onChanged: (v) {
-                context.read<TechBloc>().add(
-                  TechEvent.updateWork(index: widget.index, results: v),
-                );
-              },
+              key: ValueKey('work_${widget.report.id}'),
+              nameForm: 'tech_add_category_${widget.report.id}',
+              nameTextField: 'category_${widget.report.id}',
+              label: 'Hạng mục',
+              controller: _categoryController,
+              readOnly: true,
+              icon: Icons.category_outlined,
               isRequired: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (v) {
-                if (v == null || v.trim().isEmpty) return 'Vui lòng nhập kết quả';
+                if (v == null || v.trim().isEmpty)
+                  return 'Vui lòng chọn hạng mục';
                 return null;
-              }
+              },
             ),
-            const SizedBox(height: 8),
+          ),
+        ),
 
-            /// ===== OVERTIME (LÀM THÊM) =====
-            TechOvertimeToggle(
-              report: widget.report,
-              index: widget.index,
-              reportDate: _reportDate,
-            ),
+        const SizedBox(height: 8),
 
-            if (widget.report.hasOvertime) ...[
-              const SizedBox(height: 8),
-              TechOvertimeSection(
-                work: widget.report,
-                workIndex: widget.index,
-                reportDate: _reportDate,
+        /// ===== TOTAL + PERCENT =====
+        Row(
+          children: [
+            Expanded(
+              child: FormInputField(
+                key: ValueKey('total_${widget.report.id}'),
+                icon: Icons.timer_outlined,
+                nameForm: 'tech_add_total_${widget.report.id}',
+                nameTextField: 'total_${widget.report.id}',
+                label: 'Số giờ',
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                controller: _totalController,
+                onChanged: (v) {
+                  context.read<TechBloc>().add(
+                    TechEvent.updateWork(
+                      index: widget.index,
+                      totalHours: _parseHour(v),
+                    ),
+                  );
+                },
+                isRequired: true,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (v) => _validateAdminHour(v),
               ),
-            ],
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: FormInputField(
+                key: ValueKey('percent_${widget.report.id}'),
+                icon: Icons.percent_outlined,
+                nameForm: 'tech_add_percent_${widget.report.id}',
+                nameTextField: 'percent_${widget.report.id}',
+                label: 'Tiến độ',
+                keyboardType: TextInputType.number,
+                controller: _percentController,
+                onChanged: (v) {
+                  context.read<TechBloc>().add(
+                    TechEvent.updateWork(
+                      index: widget.index,
+                      percentComplete: double.tryParse(v ?? '') ?? 0,
+                    ),
+                  );
+                },
+                isRequired: true,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (v) {
+                  if (v == null || v.trim().isEmpty) {
+                    return 'Nhập tiến độ';
+                  }
+                  final percent = double.tryParse(v) ?? 0;
+                  if (percent < 0 || percent > 100) {
+                    return '% Hoàn thành phải từ 0 đến 100';
+                  }
+                  return null;
+                },
+              ),
+            ),
           ],
-        );
+        ),
+
+        const SizedBox(height: 8),
+
+        /// ===== CONTENT =====
+        FormInputField(
+          key: ValueKey('content_${widget.report.id}'),
+
+          icon: Icons.note_outlined,
+          nameForm: 'tech_add_content_${widget.report.id}',
+          nameTextField: 'content_${widget.report.id}',
+
+          label: 'Nội dung công việc',
+          autoExpand: true,
+          keyboardType: TextInputType.multiline,
+          textInputAction: TextInputAction.newline,
+          controller: _contentController,
+          onChanged: (v) {
+            context.read<TechBloc>().add(
+              TechEvent.updateWork(index: widget.index, content: v),
+            );
+          },
+          isRequired: true,
+          validator: (v) {
+            if (v == null || v.trim().isEmpty)
+              return 'Vui lòng nhập nội dung công việc';
+            return null;
+          },
+        ),
+
+        const SizedBox(height: 8),
+
+        /// ===== RESULT =====
+        FormInputField(
+          key: ValueKey('result_${widget.report.id}'),
+
+          icon: Icons.note_outlined,
+          nameForm: 'tech_add_result_${widget.report.id}',
+          nameTextField: 'result_${widget.report.id}',
+          label: 'Kết quả',
+          autoExpand: true,
+          keyboardType: TextInputType.multiline,
+          textInputAction: TextInputAction.newline,
+          initialValue: widget.report.results,
+          onChanged: (v) {
+            context.read<TechBloc>().add(
+              TechEvent.updateWork(index: widget.index, results: v),
+            );
+          },
+          isRequired: true,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (v) {
+            if (v == null || v.trim().isEmpty) return 'Vui lòng nhập kết quả';
+            return null;
+          },
+        ),
+        const SizedBox(height: 8),
+
+        /// ===== OVERTIME (LÀM THÊM) =====
+        TechOvertimeToggle(
+          report: widget.report,
+          index: widget.index,
+          reportDate: _reportDate,
+        ),
+
+        if (widget.report.hasOvertime) ...[
+          const SizedBox(height: 8),
+          TechOvertimeSection(
+            work: widget.report,
+            workIndex: widget.index,
+            reportDate: _reportDate,
+          ),
+        ],
+      ],
+    );
   }
 }

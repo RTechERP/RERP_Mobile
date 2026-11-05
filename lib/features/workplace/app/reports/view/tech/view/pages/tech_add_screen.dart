@@ -21,6 +21,7 @@ import '../../data/tech_model.dart';
 import '../bloc/tech_bloc.dart';
 import '../widgets/tech_add_work_item.dart';
 import '../widgets/tech_admin_hours_chip.dart';
+import '../widgets/tech_history_problems_card.dart';
 
 class TechAddScreen extends StatefulWidget {
   final List<CopyNullResponse>? copyItems;
@@ -56,10 +57,12 @@ class _TechAddScreenState
   @override
   void initState() {
     super.initState();
-    bloc.add(TechEvent.initAdd(
-      copyItems: widget.copyItems ?? [],
-      rtcProject: widget.rtcProject ?? [],
-    ));
+    bloc.add(
+      TechEvent.initAdd(
+        copyItems: widget.copyItems ?? [],
+        rtcProject: widget.rtcProject ?? [],
+      ),
+    );
   }
 
   @override
@@ -76,661 +79,688 @@ class _TechAddScreenState
       },
       child: Stack(
         children: [
-        BaseScaffold(
-          appBar: AppBarCommon(
-            title: const Text('Tạo báo cáo'),
-            actions: [
-              BlocBuilder<TechBloc, TechState>(
-                buildWhen: (prev, curr) => prev.projects != curr.projects,
-                builder: (context, state) => Padding(
-                  padding: const EdgeInsets.only(right: 12),
-                  child: TechAdminHoursChip(
-                    totalHours: TechAdminHoursChip.totalOf(state.projects),
+          BaseScaffold(
+            appBar: AppBarCommon(
+              title: const Text('Tạo báo cáo'),
+              actions: [
+                BlocBuilder<TechBloc, TechState>(
+                  buildWhen: (prev, curr) => prev.projects != curr.projects,
+                  builder: (context, state) => Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: TechAdminHoursChip(
+                      totalHours: TechAdminHoursChip.totalOf(state.projects),
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          body: BlocBuilder<TechBloc, TechState>(
-            builder: (context, state) {
-              return Column(
-                children: [
-                  Expanded(
+              ],
+            ),
+            body: BlocBuilder<TechBloc, TechState>(
+              builder: (context, state) {
+                return Column(
+                  children: [
+                    Expanded(
                       child: FormBuilder(
                         key: _screenFormKey,
                         autovalidateMode: AutovalidateMode.disabled,
                         initialValue: {'location_type': state.locationType},
-                      child: SingleChildScrollView(
-                        padding: const EdgeInsets.all(8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            /// ===== NGÀY =====
-                            FormCard(
-                              child: FormDateTimePicker(
-                                icon: Icons.calendar_today,
-                                nameForm: 'tech_add_date',
-                                nameTimePicker: 'date_time',
-                                label: 'Ngày báo cáo',
-                                inputType: InputType.date,
-                                initialValue: _initialReportDate(),
-                                format: DateFormat('dd/MM/yyyy'),
-                                isRequired: true,
-                                onChanged: (v) =>
-                                    bloc.add(TechEvent.updateDate(v)),
-                                validator: (v) {
-                                  if (v == null)
-                                    return 'Vui lòng chọn ngày báo cáo';
-                                  return null;
-                                },
+                        child: SingleChildScrollView(
+                          padding: const EdgeInsets.all(8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              /// ===== NGÀY =====
+                              FormCard(
+                                child: FormDateTimePicker(
+                                  icon: Icons.calendar_today,
+                                  nameForm: 'tech_add_date',
+                                  nameTimePicker: 'date_time',
+                                  label: 'Ngày báo cáo',
+                                  inputType: InputType.date,
+                                  initialValue: _initialReportDate(),
+                                  format: DateFormat('dd/MM/yyyy'),
+                                  isRequired: true,
+                                  onChanged: (v) =>
+                                      bloc.add(TechEvent.updateDate(v)),
+                                  validator: (v) {
+                                    if (v == null)
+                                      return 'Vui lòng chọn ngày báo cáo';
+                                    return null;
+                                  },
+                                ),
                               ),
-                            ),
 
-                            const SizedBox(height: 8),
+                              const SizedBox(height: 8),
 
-                            /// ===== PROJECT + WORK =====
-                            FormCard(
-                              title: 'Nội dung báo cáo',
-                              child: BlocBuilder<TechBloc, TechState>(
-                                buildWhen: (prev, curr) =>
-                                    prev.projects != curr.projects ||
-                                    prev.expandedWorkIndex !=
-                                        curr.expandedWorkIndex ||
-                                    prev.selectedProject !=
-                                        curr.selectedProject,
-                                builder: (context, state) {
-                                  if (state.projects.isEmpty) {
-                                    return CustomTextButton(
-                                      width: double.infinity,
-                                      bgColor: AppColors.grayColor[10],
-                                      colorText: AppColors.primaryERPlight,
-                                      buttonFn: () {
-                                        bloc.add(
-                                          const TechEvent.addEmptyProject(),
-                                        ); // ✅ đổi event
-                                      },
-                                      child: const Text('Thêm dự án'),
-                                    );
-                                  }
+                              /// ===== PROJECT + WORK =====
+                              FormCard(
+                                title: 'Nội dung báo cáo',
+                                child: BlocBuilder<TechBloc, TechState>(
+                                  buildWhen: (prev, curr) =>
+                                      prev.projects != curr.projects ||
+                                      prev.expandedWorkIndex !=
+                                          curr.expandedWorkIndex ||
+                                      prev.selectedProject !=
+                                          curr.selectedProject,
+                                  builder: (context, state) {
+                                    if (state.projects.isEmpty) {
+                                      return CustomTextButton(
+                                        width: double.infinity,
+                                        bgColor: AppColors.grayColor[10],
+                                        colorText: AppColors.primaryERPlight,
+                                        buttonFn: () {
+                                          bloc.add(
+                                            const TechEvent.addEmptyProject(),
+                                          ); // ✅ đổi event
+                                        },
+                                        child: const Text('Thêm dự án'),
+                                      );
+                                    }
 
-                                  return Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      /// ===== TAB PROJECT =====
-                                      SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          children: [
-                                            ...state.projects.map((project) {
-                                              final isActive =
-                                                  project.tempId ==
-                                                  state.selectedProject?.tempId;
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        /// ===== TAB PROJECT =====
+                                        SingleChildScrollView(
+                                          scrollDirection: Axis.horizontal,
+                                          child: Row(
+                                            children: [
+                                              ...state.projects.map((project) {
+                                                final isActive =
+                                                    project.tempId ==
+                                                    state
+                                                        .selectedProject
+                                                        ?.tempId;
 
-                                              return Padding(
-                                                padding: const EdgeInsets.only(
-                                                  right: 8,
-                                                ),
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    bloc.add(
-                                                      TechEvent.selectProject(
-                                                        tempId: project.tempId,
+                                                return Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                        right: 8,
                                                       ),
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    padding:
-                                                        const EdgeInsets.symmetric(
-                                                          horizontal: 10,
-                                                          vertical: 8,
+                                                  child: GestureDetector(
+                                                    onTap: () {
+                                                      bloc.add(
+                                                        TechEvent.selectProject(
+                                                          tempId:
+                                                              project.tempId,
                                                         ),
-                                                    decoration: BoxDecoration(
-                                                      color: isActive
-                                                          ? AppColors.primaryERP
-                                                                .withValues(alpha:
-                                                                  0.1,
-                                                                )
-                                                          : Colors.transparent,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                            8,
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                      padding:
+                                                          const EdgeInsets.symmetric(
+                                                            horizontal: 10,
+                                                            vertical: 8,
                                                           ),
-                                                      border: Border.all(
+                                                      decoration: BoxDecoration(
                                                         color: isActive
                                                             ? AppColors
                                                                   .primaryERP
+                                                                  .withValues(
+                                                                    alpha: 0.1,
+                                                                  )
                                                             : Colors
-                                                                  .grey
-                                                                  .shade300,
+                                                                  .transparent,
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              8,
+                                                            ),
+                                                        border: Border.all(
+                                                          color: isActive
+                                                              ? AppColors
+                                                                    .primaryERP
+                                                              : Colors
+                                                                    .grey
+                                                                    .shade300,
+                                                        ),
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Text(
+                                                            project.projectCode ??
+                                                                '',
+                                                            style: TextStyle(
+                                                              color: isActive
+                                                                  ? AppColors
+                                                                        .primaryERP
+                                                                  : Colors
+                                                                        .black87,
+                                                              fontWeight:
+                                                                  isActive
+                                                                  ? FontWeight
+                                                                        .w600
+                                                                  : FontWeight
+                                                                        .normal,
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 6,
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              bloc.add(
+                                                                TechEvent.removeProject(
+                                                                  tempId: project
+                                                                      .tempId,
+                                                                ),
+                                                              );
+                                                            },
+                                                            child: const Icon(
+                                                              Icons.close,
+                                                              size: 16,
+                                                              color: Colors
+                                                                  .redAccent,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Text(
-                                                          project.projectCode ??
-                                                              '',
-                                                          style: TextStyle(
-                                                            color: isActive
-                                                                ? AppColors
-                                                                      .primaryERP
-                                                                : Colors
-                                                                      .black87,
-                                                            fontWeight: isActive
-                                                                ? FontWeight
-                                                                      .w600
-                                                                : FontWeight
-                                                                      .normal,
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 6,
-                                                        ),
-                                                        GestureDetector(
-                                                          onTap: () {
-                                                            bloc.add(
-                                                              TechEvent.removeProject(
-                                                                tempId: project
-                                                                    .tempId,
-                                                              ),
-                                                            );
-                                                          },
-                                                          child: const Icon(
-                                                            Icons.close,
-                                                            size: 16,
-                                                            color: Colors
-                                                                .redAccent,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
                                                   ),
-                                                ),
-                                              );
-                                            }),
-
-                                            /// ➕ ADD PROJECT
-                                            IconButton(
-                                              onPressed: () {
-                                                bloc.add(
-                                                  const TechEvent.addEmptyProject(),
                                                 );
-                                              },
-                                              icon: const Icon(
-                                                Icons.add_circle_outline,
+                                              }),
+
+                                              /// ➕ ADD PROJECT
+                                              IconButton(
+                                                onPressed: () {
+                                                  bloc.add(
+                                                    const TechEvent.addEmptyProject(),
+                                                  );
+                                                },
+                                                icon: const Icon(
+                                                  Icons.add_circle_outline,
+                                                ),
+                                                color: AppColors.primaryERP,
                                               ),
-                                              color: AppColors.primaryERP,
-
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-
-                                      const SizedBox(height: 8),
-
-                                      /// ===== SELECT PROJECT NAME (bind API) =====
-                                      if (state.selectedProject != null)
-                                        GestureDetector(
-                                          key: ValueKey(
-                                            'project_${state.selectedProject!.tempId}_${state.selectedProject?.projectId}',
-                                          ),
-                                          onTap: () {
-                                            openSelectBottomSheet(
-                                              context: context,
-                                              title: 'Chọn dự án',
-                                              items: state.rtcProject,
-                                              displayText: (v) =>
-                                                  '${v.projectCode} - ${v.projectName}',
-                                              onSelected: (v) {
-                                                final tempId = state
-                                                    .selectedProject!
-                                                    .tempId;
-
-                                                bloc.add(
-                                                  TechEvent.bindProjectFromApi(
-                                                    tempId: tempId,
-                                                    apiProject: v,
-                                                  ),
-                                                );
-                                                bloc.add(
-                                                  TechEvent.selectProject(
-                                                    tempId: tempId,
-                                                  ),
-                                                );
-                                              },
-                                            );
-                                          },
-                                          child: AbsorbPointer(
-                                            child: FormInputField(
-                                              nameForm:
-                                                  'tech_add_project_${state.selectedProject!.tempId}_${state.selectedProject?.projectId}',
-                                              nameTextField:
-                                                  'tech_project_${state.selectedProject!.tempId}_${state.selectedProject?.projectId}',
-                                              label: 'Dự án',
-                                              readOnly: true,
-                                              icon: Icons.work_outline,
-                                              initialValue:
-                                                  state
-                                                          .selectedProject!
-                                                          .projectId !=
-                                                      null
-                                                  ? '${state.selectedProject!.projectCode} - ${state.selectedProject!.name}'
-                                                  : null,
-                                              isRequired: true,
-                                              validator: (v) {
-                                                if (v == null ||
-                                                    v.trim().isEmpty) {
-                                                  return 'Vui lòng chọn dự án';
-                                                }
-                                                return null;
-                                              },
-                                            ),
+                                            ],
                                           ),
                                         ),
 
-                                      const SizedBox(height: 8),
+                                        const SizedBox(height: 8),
 
-                                      /// ===== LIST WORK =====
-                                      if (state.selectedProject != null)
-                                        ...state.selectedProject!.works
-                                            .asMap()
-                                            .entries
-                                            .map((entry) {
-                                              final wIndex = entry.key;
-                                              final work = entry.value;
+                                        /// ===== SELECT PROJECT NAME (bind API) =====
+                                        if (state.selectedProject != null)
+                                          GestureDetector(
+                                            key: ValueKey(
+                                              'project_${state.selectedProject!.tempId}_${state.selectedProject?.projectId}',
+                                            ),
+                                            onTap: () {
+                                              openSelectBottomSheet(
+                                                context: context,
+                                                title: 'Chọn dự án',
+                                                items: state.rtcProject,
+                                                displayText: (v) =>
+                                                    '${v.projectCode} - ${v.projectName}',
+                                                onSelected: (v) {
+                                                  final tempId = state
+                                                      .selectedProject!
+                                                      .tempId;
 
-                                              final hasData =
-                                                  work.mission.isNotEmpty;
-                                              final codeText =
-                                                  work.code.isNotEmpty
-                                                  ? work.code
-                                                  : 'Công việc ${wIndex + 1}';
-
-                                              return Padding(
-                                                padding: const EdgeInsets.only(
-                                                  bottom: 8.0,
-                                                ),
-                                                child: TechAddWorkItem(
-                                                  key: ValueKey(work.id),
-                                                  report: work,
-                                                  readonly: false,
-                                                  title: hasData
-                                                      ? codeText
-                                                      : 'Công việc ${wIndex + 1}',
-                                                  index: wIndex,
-                                                  isExpanded:
-                                                      state.expandedWorkIndex ==
-                                                      wIndex,
-                                                  onToggleExpand: () {
-                                                    bloc.add(
-                                                      TechEvent.expandWork(
-                                                        index: wIndex,
-                                                      ),
-                                                    );
-                                                  },
-                                                  onDelete: () {
-                                                    bloc.add(
-                                                      TechEvent.removeWork(
-                                                        index: wIndex,
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
+                                                  bloc.add(
+                                                    TechEvent.bindProjectFromApi(
+                                                      tempId: tempId,
+                                                      apiProject: v,
+                                                    ),
+                                                  );
+                                                  bloc.add(
+                                                    TechEvent.selectProject(
+                                                      tempId: tempId,
+                                                    ),
+                                                  );
+                                                },
                                               );
-                                            }),
-
-                                      const SizedBox(height: 8),
-
-                                      /// ===== ADD WORK =====
-                                      Center(
-                                        child: InkResponse(
-                                          onTap: () {
-                                            bloc.add(const TechEvent.addWork());
-                                          },
-                                          radius: 28,
-                                          child: const Icon(
-                                            Icons.add_circle_outline,
-                                            size: 32,
-                                            color: AppColors.primaryERP,
+                                            },
+                                            child: AbsorbPointer(
+                                              child: FormInputField(
+                                                nameForm:
+                                                    'tech_add_project_${state.selectedProject!.tempId}_${state.selectedProject?.projectId}',
+                                                nameTextField:
+                                                    'tech_project_${state.selectedProject!.tempId}_${state.selectedProject?.projectId}',
+                                                label: 'Dự án',
+                                                readOnly: true,
+                                                icon: Icons.work_outline,
+                                                initialValue:
+                                                    state
+                                                            .selectedProject!
+                                                            .projectId !=
+                                                        null
+                                                    ? '${state.selectedProject!.projectCode} - ${state.selectedProject!.name}'
+                                                    : null,
+                                                isRequired: true,
+                                                validator: (v) {
+                                                  if (v == null ||
+                                                      v.trim().isEmpty) {
+                                                    return 'Vui lòng chọn dự án';
+                                                  }
+                                                  return null;
+                                                },
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              ),
-                            ),
 
-                            const SizedBox(height: 8),
+                                        const SizedBox(height: 8),
 
-                            FormCard(
-                              child: FormInputField(
-                                icon: Icons.next_plan_outlined,
-                                nameForm: 'tech_add_next_plan',
-                                nameTextField: 'next_plan',
-                                label: 'Kế hoạch ngày tiếp theo',
-                                autoExpand: true,
-                                keyboardType: TextInputType.multiline,
-                                textInputAction: TextInputAction
-                                    .newline, // ⬅ Enter xuống dòng
-                                initialValue: state.planNextDay ?? '',
-                                onChanged: (v) {
-                                  if (v == null) return;
+                                        /// ===== LIST WORK =====
+                                        if (state.selectedProject != null)
+                                          ...state.selectedProject!.works
+                                              .asMap()
+                                              .entries
+                                              .map((entry) {
+                                                final wIndex = entry.key;
+                                                final work = entry.value;
 
-                                  bloc.add(TechEvent.updatePlanNextDay(v));
-                                },
-                                isRequired: true,
-                                validator: (v) {
-                                  if (v == null || v.trim().isEmpty) {
-                                    return 'Vui lòng nhập kế hoạch ngày tiếp theo';
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
+                                                final hasData =
+                                                    work.mission.isNotEmpty;
+                                                final codeText =
+                                                    work.code.isNotEmpty
+                                                    ? work.code
+                                                    : 'Công việc ${wIndex + 1}';
 
-                            const SizedBox(height: 8),
+                                                return Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                        bottom: 8.0,
+                                                      ),
+                                                  child: TechAddWorkItem(
+                                                    key: ValueKey(work.id),
+                                                    report: work,
+                                                    readonly: false,
+                                                    title: hasData
+                                                        ? codeText
+                                                        : 'Công việc ${wIndex + 1}',
+                                                    index: wIndex,
+                                                    isExpanded:
+                                                        state
+                                                            .expandedWorkIndex ==
+                                                        wIndex,
+                                                    onToggleExpand: () {
+                                                      bloc.add(
+                                                        TechEvent.expandWork(
+                                                          index: wIndex,
+                                                        ),
+                                                      );
+                                                    },
+                                                    onDelete: () {
+                                                      bloc.add(
+                                                        TechEvent.removeWork(
+                                                          index: wIndex,
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                );
+                                              }),
 
-                            /// ===== LOCATION =====
-                            FormCard(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  FormChoiceGroup<String>(
-                                    name: 'location_type',
-                                    label: 'Địa điểm làm việc',
-                                    icon: Icons.location_on_outlined,
-                                    initialValue: state.locationType,
-                                    columns: 2,
-                                    options: [
-                                      for (final option in TechLocation.options)
-                                        FormChoiceOption(
-                                          value: option,
-                                          label: option,
-                                          selectedColor: AppColors.primaryERP,
-                                        ),
-                                    ],
-                                    onChanged: (v) {
-                                      if (v == null) return;
-                                      bloc.add(
-                                        TechEvent.updateLocation(type: v),
-                                      );
-                                    },
-                                  ),
-                                  if (state.locationType == TechLocation.site) ...[
-                                    const SizedBox(height: 12),
-                                    FormInputField(
-                                      icon: Icons.location_on_outlined,
-                                      nameForm: 'tech_add_location',
-                                      nameTextField: 'tech_add_other_location',
-                                      label: 'Địa điểm công tác',
-                                      initialValue: state.siteLocation,
-                                      isRequired: true,
-                                      validator: (v) {
-                                        if (v == null || v.trim().isEmpty) {
-                                          return 'Vui lòng nhập địa điểm công tác';
-                                        }
-                                        return null;
-                                      },
-                                      onChanged: (v) {
-                                        bloc.add(
-                                          TechEvent.updateLocation(
-                                            type: TechLocation.site,
-                                            value: v,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ],
-                              ),
-                            ),
+                                        const SizedBox(height: 8),
 
-                            const SizedBox(height: 8),
-
-                            /// ===== EXTRA INFO =====
-                            FormCard(
-                              title: 'Thông tin bổ sung',
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () => setState(
-                                      () => _showExtraInfo = !_showExtraInfo,
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Icon(
-                                          _showExtraInfo
-                                              ? Icons.keyboard_arrow_up_rounded
-                                              : Icons
-                                                    .keyboard_arrow_down_rounded,
-                                          color: AppColors.primaryERP,
-                                        ),
-                                        const SizedBox(width: 4),
-                                        Text(
-                                          _showExtraInfo
-                                              ? 'Ẩn thông tin bổ sung'
-                                              : 'Hiện thông tin bổ sung',
-                                          style: const TextStyle(
-                                            color: AppColors.primaryERP,
-                                            fontWeight: FontWeight.w600,
+                                        /// ===== ADD WORK =====
+                                        Center(
+                                          child: InkResponse(
+                                            onTap: () {
+                                              bloc.add(
+                                                const TechEvent.addWork(),
+                                              );
+                                            },
+                                            radius: 28,
+                                            child: const Icon(
+                                              Icons.add_circle_outline,
+                                              size: 32,
+                                              color: AppColors.primaryERP,
+                                            ),
                                           ),
                                         ),
                                       ],
-                                    ),
-                                  ),
-
-                                  if (_showExtraInfo) ...[
-                                    const SizedBox(height: 8),
-                                    FormInputField(
-                                      icon: Icons.report_problem_outlined,
-                                      nameForm: 'tech_add_problem',
-                                      nameTextField: 'problem',
-                                      label: 'Vấn đề phát sinh',
-                                      maxLines: 1,
-                                      keyboardType: TextInputType.multiline,
-                                      textInputAction: TextInputAction
-                                          .newline, // ⬅ Enter xuống dòng
-                                      initialValue: state.problem ?? '',
-                                      onChanged: (v) {
-                                        bloc.add(
-                                          TechEvent.updateExtraInfo(problem: v),
-                                        );
-                                      },
-                                    ),
-                                    const SizedBox(height: 8),
-
-                                    FormInputField(
-                                      icon: Icons.report_problem_outlined,
-                                      nameForm: 'tech_add_problem_solve',
-                                      nameTextField: 'problem_solve',
-                                      label: 'Hướng giải quyết',
-                                      maxLines: 1,
-                                      keyboardType: TextInputType.multiline,
-                                      textInputAction: TextInputAction
-                                          .newline, // ⬅ Enter xuống dòng
-                                      initialValue: state.problemSolve ?? '',
-                                      onChanged: (v) {
-                                        bloc.add(
-                                          TechEvent.updateExtraInfo(
-                                            problemSolve: v,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    const SizedBox(height: 8),
-
-                                    FormInputField(
-                                      icon: Icons.report_problem_outlined,
-                                      nameForm: 'tech_add_backlog',
-                                      nameTextField: 'block',
-                                      label: 'Tồn đọng',
-                                      maxLines: 1,
-                                      keyboardType: TextInputType.multiline,
-                                      textInputAction: TextInputAction
-                                          .newline, // ⬅ Enter xuống dòng
-                                      initialValue: state.backlog ?? '',
-                                      onChanged: (v) {
-                                        bloc.add(
-                                          TechEvent.updateExtraInfo(backlog: v),
-                                        );
-                                      },
-                                    ),
-                                    const SizedBox(height: 8),
-
-                                    FormInputField(
-                                      icon: Icons.report_problem_outlined,
-                                      nameForm: 'tech_add_note',
-                                      nameTextField: 'note',
-                                      label: 'Ghi chú/Lý do tồn đọng',
-                                      maxLines: 1,
-                                      keyboardType: TextInputType.multiline,
-                                      textInputAction: TextInputAction
-                                          .newline, // ⬅ Enter xuống dòng
-                                      initialValue: state.note ?? '',
-                                      onChanged: (v) {
-                                        bloc.add(
-                                          TechEvent.updateExtraInfo(note: v),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ],
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
-                          ],
+
+                              const SizedBox(height: 8),
+
+                              FormCard(
+                                child: FormInputField(
+                                  icon: Icons.next_plan_outlined,
+                                  nameForm: 'tech_add_next_plan',
+                                  nameTextField: 'next_plan',
+                                  label: 'Kế hoạch ngày tiếp theo',
+                                  autoExpand: true,
+                                  keyboardType: TextInputType.multiline,
+                                  textInputAction: TextInputAction
+                                      .newline, // ⬅ Enter xuống dòng
+                                  initialValue: state.planNextDay ?? '',
+                                  onChanged: (v) {
+                                    if (v == null) return;
+
+                                    bloc.add(TechEvent.updatePlanNextDay(v));
+                                  },
+                                  isRequired: true,
+                                  validator: (v) {
+                                    if (v == null || v.trim().isEmpty) {
+                                      return 'Vui lòng nhập kế hoạch ngày tiếp theo';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+
+                              const SizedBox(height: 8),
+
+                              /// ===== LOCATION =====
+                              FormCard(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    FormChoiceGroup<String>(
+                                      name: 'location_type',
+                                      label: 'Địa điểm làm việc',
+                                      icon: Icons.location_on_outlined,
+                                      initialValue: state.locationType,
+                                      columns: 2,
+                                      options: [
+                                        for (final option
+                                            in TechLocation.options)
+                                          FormChoiceOption(
+                                            value: option,
+                                            label: option,
+                                            selectedColor: AppColors.primaryERP,
+                                          ),
+                                      ],
+                                      onChanged: (v) {
+                                        if (v == null) return;
+                                        bloc.add(
+                                          TechEvent.updateLocation(type: v),
+                                        );
+                                      },
+                                    ),
+                                    if (state.locationType ==
+                                        TechLocation.site) ...[
+                                      const SizedBox(height: 12),
+                                      FormInputField(
+                                        icon: Icons.location_on_outlined,
+                                        nameForm: 'tech_add_location',
+                                        nameTextField:
+                                            'tech_add_other_location',
+                                        label: 'Địa điểm công tác',
+                                        initialValue: state.siteLocation,
+                                        isRequired: true,
+                                        validator: (v) {
+                                          if (v == null || v.trim().isEmpty) {
+                                            return 'Vui lòng nhập địa điểm công tác';
+                                          }
+                                          return null;
+                                        },
+                                        onChanged: (v) {
+                                          bloc.add(
+                                            TechEvent.updateLocation(
+                                              type: TechLocation.site,
+                                              value: v,
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ],
+                                ),
+                              ),
+
+                              const SizedBox(height: 8),
+
+                              /// ===== EXTRA INFO =====
+                              FormCard(
+                                title: 'Thông tin bổ sung',
+                                child: Column(
+                                  children: [
+                                    InkWell(
+                                      onTap: () => setState(
+                                        () => _showExtraInfo = !_showExtraInfo,
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(
+                                            _showExtraInfo
+                                                ? Icons
+                                                      .keyboard_arrow_up_rounded
+                                                : Icons
+                                                      .keyboard_arrow_down_rounded,
+                                            color: AppColors.primaryERP,
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Text(
+                                            _showExtraInfo
+                                                ? 'Ẩn thông tin bổ sung'
+                                                : 'Hiện thông tin bổ sung',
+                                            style: const TextStyle(
+                                              color: AppColors.primaryERP,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+
+                                    if (_showExtraInfo) ...[
+                                      const SizedBox(height: 8),
+                                      FormInputField(
+                                        icon: Icons.report_problem_outlined,
+                                        nameForm: 'tech_add_problem',
+                                        nameTextField: 'problem',
+                                        label: 'Vấn đề phát sinh',
+                                        maxLines: 1,
+                                        keyboardType: TextInputType.multiline,
+                                        textInputAction: TextInputAction
+                                            .newline, // ⬅ Enter xuống dòng
+                                        initialValue: state.problem ?? '',
+                                        onChanged: (v) {
+                                          bloc.add(
+                                            TechEvent.updateExtraInfo(
+                                              problem: v,
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      const SizedBox(height: 8),
+
+                                      FormInputField(
+                                        icon: Icons.report_problem_outlined,
+                                        nameForm: 'tech_add_problem_solve',
+                                        nameTextField: 'problem_solve',
+                                        label: 'Hướng giải quyết',
+                                        maxLines: 1,
+                                        keyboardType: TextInputType.multiline,
+                                        textInputAction: TextInputAction
+                                            .newline, // ⬅ Enter xuống dòng
+                                        initialValue: state.problemSolve ?? '',
+                                        onChanged: (v) {
+                                          bloc.add(
+                                            TechEvent.updateExtraInfo(
+                                              problemSolve: v,
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      const SizedBox(height: 8),
+
+                                      FormInputField(
+                                        icon: Icons.report_problem_outlined,
+                                        nameForm: 'tech_add_backlog',
+                                        nameTextField: 'block',
+                                        label: 'Tồn đọng',
+                                        maxLines: 1,
+                                        keyboardType: TextInputType.multiline,
+                                        textInputAction: TextInputAction
+                                            .newline, // ⬅ Enter xuống dòng
+                                        initialValue: state.backlog ?? '',
+                                        onChanged: (v) {
+                                          bloc.add(
+                                            TechEvent.updateExtraInfo(
+                                              backlog: v,
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      const SizedBox(height: 8),
+
+                                      FormInputField(
+                                        icon: Icons.report_problem_outlined,
+                                        nameForm: 'tech_add_note',
+                                        nameTextField: 'note',
+                                        label: 'Ghi chú/Lý do tồn đọng',
+                                        maxLines: 1,
+                                        keyboardType: TextInputType.multiline,
+                                        textInputAction: TextInputAction
+                                            .newline, // ⬅ Enter xuống dòng
+                                        initialValue: state.note ?? '',
+                                        onChanged: (v) {
+                                          bloc.add(
+                                            TechEvent.updateExtraInfo(note: v),
+                                          );
+                                        },
+                                      ),
+                                    ],
+
+                                    /// ===== CÁC PHÁT SINH (UI riêng) =====
+                                    /// Ngoài khối "hiện thông tin bổ sung" để phát
+                                    /// sinh của hạng mục luôn hiển thị ngay khi có.
+                                    const SizedBox(height: 12),
+                                    const TechHistoryProblemsCard(),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0,
-                      vertical: 8.0,
-                    ),
-                    child: FormActions(
-                      mode: FormActionMode.add,
-                      onSubmit: () async {
-                        FocusScope.of(context).unfocus();
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 8.0,
+                      ),
+                      child: FormActions(
+                        mode: FormActionMode.add,
+                        onSubmit: () async {
+                          FocusScope.of(context).unfocus();
 
-                        // Reset trạng thái lỗi của lần submit trước (nếu có) trước khi thử lại
-                        setState(() => _hasSubmitError = false);
+                          // Reset trạng thái lỗi của lần submit trước (nếu có) trước khi thử lại
+                          setState(() => _hasSubmitError = false);
 
-                        final formState = _screenFormKey.currentState;
-                        if (formState == null) return;
+                          final formState = _screenFormKey.currentState;
+                          if (formState == null) return;
 
-                        final isValid = formState.saveAndValidate();
-                        if (!isValid) {
-                          FormHelper.focusFirstError(
-                            formState: formState,
-                            priorityFields: [
-                              'tech_add_date', // Ngày báo cáo
-                              'tech_add_project', // Dự án
-                              'tech_add_category', // Hạng mục
-                              'tech_add_total', // Tổng giờ
-                              'tech_add_percent', // Tiến độ
-                              'tech_add_content', // Nội dung
-                              'tech_add_result', // Kết quả
-                            ],
+                          final isValid = formState.saveAndValidate();
+                          if (!isValid) {
+                            FormHelper.focusFirstError(
+                              formState: formState,
+                              priorityFields: [
+                                'tech_add_date', // Ngày báo cáo
+                                'tech_add_project', // Dự án
+                                'tech_add_category', // Hạng mục
+                                'tech_add_total', // Tổng giờ
+                                'tech_add_percent', // Tiến độ
+                                'tech_add_content', // Nội dung
+                                'tech_add_result', // Kết quả
+                              ],
+                            );
+                            return;
+                          }
+
+                          final values = formState.value;
+
+                          final error = ValidateHelper.validateReport<TechWork>(
+                            date: values['tech_add_date'] as DateTime?,
+                            projectId: state.selectedProject?.projectId ?? 0,
+                            works: state.selectedProject?.works ?? [],
+                            location: state.location,
+                            nextPlan: values['next_plan'] as String?,
+                            requireLocationDetail:
+                                state.locationType == TechLocation.site,
+                            getProjectItemId: (w) => w.projectItemId,
+                            getTotalHours: (w) => w.totalHours,
+                            getOtHours: (w) => w.totalHourOT,
+                            getPercent: (w) => w.percentComplete,
+                            getContent: (w) => w.content,
+                            getResult: (w) => w.results,
                           );
-                          return;
-                        }
 
-                        final values = formState.value;
+                          if (error != null) {
+                            showMessage(
+                              context,
+                              error,
+                              type: SnackBarType.error,
+                            );
+                            return;
+                          }
 
-                        final error = ValidateHelper.validateReport<TechWork>(
-                          date: values['tech_add_date'] as DateTime?,
-                          projectId: state.selectedProject?.projectId ?? 0,
-                          works: state.selectedProject?.works ?? [],
-                          location: state.location,
-                          nextPlan: values['next_plan'] as String?,
-                          requireLocationDetail:
-                              state.locationType == TechLocation.site,
-                          getProjectItemId: (w) => w.projectItemId,
-                          getTotalHours: (w) => w.totalHours,
-                          getOtHours: (w) => w.totalHourOT,
-                          getPercent: (w) => w.percentComplete,
-                          getContent: (w) => w.content,
-                          getResult: (w) => w.results,
-                        );
+                          final pickedDate =
+                              values['tech_add_date'] as DateTime;
+                          bloc.add(const TechEvent.resetSubmitFlags());
+                          bloc.add(TechEvent.submitReport(pickedDate));
+                        },
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+          BlocListener<TechBloc, TechState>(
+            listenWhen: (p, c) =>
+                p.submitSuccess != c.submitSuccess ||
+                p.status != c.status ||
+                p.message != c.message,
+            listener: (context, state) async {
+              if (state.status == BaseStateStatus.failed &&
+                  state.message != null &&
+                  state.message!.isNotEmpty) {
+                setState(() => _hasSubmitError = true);
+                showMessage(context, state.message!, type: SnackBarType.error);
+                return;
+              }
 
-                        if (error != null) {
-                          showMessage(context, error, type: SnackBarType.error);
-                          return;
-                        }
+              if (state.submitSuccess == true) {
+                if (context.mounted) {
+                  final formState = _screenFormKey.currentState;
+                  final pickedDate =
+                      formState?.value['tech_add_date'] as DateTime?;
+                  // Build shareText từ state TRƯỚC KHI pop — tránh timing issue
+                  final shareText = pickedDate != null
+                      ? DialogService.buildMailPreviewText(state, pickedDate)
+                      : null;
+                  // Truyền date + shareText qua pop()
+                  context.pop({'date': pickedDate, 'shareText': shareText});
+                }
+              }
+            },
+            child: const SizedBox.shrink(),
+          ),
+          BlocBuilder<TechBloc, TechState>(
+            buildWhen: (p, c) => p.isSubmitting != c.isSubmitting,
+            builder: (context, state) {
+              if (!state.isSubmitting) {
+                return const SizedBox.shrink();
+              }
 
-                        final pickedDate = values['tech_add_date'] as DateTime;
-                        bloc.add(const TechEvent.resetSubmitFlags());
-                        bloc.add(TechEvent.submitReport(pickedDate));
-                      },
+              return Positioned.fill(
+                child: AbsorbPointer(
+                  absorbing: true,
+                  child: Container(
+                    color: Colors.black.withValues(alpha: 0.45),
+                    alignment: Alignment.center,
+                    child: Lottie.asset(
+                      'assets/lotties/Loading.json',
+                      width: 240,
+                      height: 240,
+                      repeat: true,
                     ),
                   ),
-                ],
+                ),
               );
             },
           ),
-        ),
-        BlocListener<TechBloc, TechState>(
-          listenWhen: (p, c) =>
-              p.submitSuccess != c.submitSuccess ||
-              p.status != c.status ||
-              p.message != c.message,
-          listener: (context, state) async {
-            if (state.status == BaseStateStatus.failed &&
-                state.message != null &&
-                state.message!.isNotEmpty) {
-              setState(() => _hasSubmitError = true);
-              showMessage(context, state.message!, type: SnackBarType.error);
-              return;
-            }
-
-            if (state.submitSuccess == true) {
-              if (context.mounted) {
-                final formState = _screenFormKey.currentState;
-                final pickedDate = formState?.value['tech_add_date'] as DateTime?;
-                // Build shareText từ state TRƯỚC KHI pop — tránh timing issue
-                final shareText = pickedDate != null
-                    ? DialogService.buildMailPreviewText(state, pickedDate)
-                    : null;
-                // Truyền date + shareText qua pop()
-                context.pop({
-                  'date': pickedDate,
-                  'shareText': shareText,
-                });
-              }
-            }
-          },
-          child: const SizedBox.shrink(),
-        ),
-        BlocBuilder<TechBloc, TechState>(
-          buildWhen: (p, c) => p.isSubmitting != c.isSubmitting,
-          builder: (context, state) {
-            if (!state.isSubmitting) {
-              return const SizedBox.shrink();
-            }
-
-            return Positioned.fill(
-              child: AbsorbPointer(
-                absorbing: true,
-                child: Container(
-                  color: Colors.black.withValues(alpha: 0.45),
-                  alignment: Alignment.center,
-                  child: Lottie.asset(
-                    'assets/lotties/Loading.json',
-                    width: 240,
-                    height: 240,
-                    repeat: true,
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
-      ],
-    ),
+        ],
+      ),
     );
   }
 }

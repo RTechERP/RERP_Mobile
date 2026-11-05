@@ -102,7 +102,9 @@ class _OvertimeShiftChip extends StatelessWidget {
   Future<void> _confirmRemove(BuildContext context) async {
     final bloc = context.read<TechBloc>();
     final works = bloc.state.selectedProject?.works ?? const <TechWork>[];
-    final total = workIndex < works.length ? works[workIndex].overtimes.length : 0;
+    final total = workIndex < works.length
+        ? works[workIndex].overtimes.length
+        : 0;
 
     if (total <= 1) {
       final confirmed = await DialogService.showConfirmDialog(
@@ -141,7 +143,9 @@ class _OvertimeShiftChip extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.primaryERP.withValues(alpha: 0.08),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: AppColors.primaryERP.withValues(alpha: 0.4)),
+          border: Border.all(
+            color: AppColors.primaryERP.withValues(alpha: 0.4),
+          ),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

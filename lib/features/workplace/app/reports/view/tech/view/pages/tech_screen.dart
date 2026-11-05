@@ -71,7 +71,7 @@ class _TechScreenState
       final aIsPast = da == null || da.isBefore(todayStart);
       final bIsPast = db == null || db.isBefore(todayStart);
 
-      if (aIsPast && !bIsPast) return 1;  // a là quá khứ → xuống dưới
+      if (aIsPast && !bIsPast) return 1; // a là quá khứ → xuống dưới
       if (!aIsPast && bIsPast) return -1; // b là quá khứ → a lên trên
 
       if (!aIsPast && !bIsPast) {
@@ -410,7 +410,8 @@ class _TechScreenState
 
                               if (shareText != null && shareText.isNotEmpty) {
                                 await Clipboard.setData(
-                                    ClipboardData(text: shareText));
+                                  ClipboardData(text: shareText),
+                                );
 
                                 await SharePlus.instance.share(
                                   ShareParams(

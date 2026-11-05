@@ -166,6 +166,21 @@ class ReportRepoImpl implements ReportRepo {
     }
   }
 
+  /// Lấy các phát sinh của một hạng mục công việc.
+  @override
+  Future<Either<BaseError, List<ProjectHistoryProblem>>>
+  getProjectHistoryProblemByProjectItem({required int projectItemId}) async {
+    try {
+      final res = await _service.getProjectHistoryProblemByProjectItem(
+        projectItemId: projectItemId,
+      );
+
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
   /// Kiểm tra hạng mục công việc đã đủ thông tin để báo cáo hay chưa.
   @override
   Future<Either<BaseError, bool>> checkInformationReport({
@@ -744,7 +759,8 @@ class ReportRepoImpl implements ReportRepo {
 
       if (list.isEmpty) {
         return left(
-        BaseError.httpInternalServerError('Không tìm thấy báo cáo'));
+          BaseError.httpInternalServerError('Không tìm thấy báo cáo'),
+        );
       }
 
       return right(list.first);

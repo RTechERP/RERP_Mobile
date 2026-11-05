@@ -11,7 +11,6 @@ class TechState extends BaseBlocState {
 
   final DetailReportResponse? detailReport;
 
-
   final List<ProjectItemResponse> projectItem;
 
   final List<TechWork> works;
@@ -99,6 +98,7 @@ class TechState extends BaseBlocState {
 
   /// Danh sách loại làm thêm (từ `/EmployeeTypeOverTime`).
   final List<OvertimeType> overtimeTypes;
+
   /// `true` khi phòng ban của nhân viên bắt buộc chọn Dự án + Hạng mục.
   final bool isProjectItemRequired;
 
@@ -108,6 +108,55 @@ class TechState extends BaseBlocState {
   /// Danh sách hạng mục công việc chưa đủ thông tin để báo cáo
   /// (thiếu ngày kế hoạch / actual) — không được phép báo cáo trên các hạng mục này.
   final Set<int> ineligibleProjectItemIds;
+
+  /// Các phát sinh của từng hạng mục, cache theo `projectItemId`.
+  ///
+  /// Chỉ để hiển thị tham khảo ở card "Các phát sinh" — KHÔNG điền
+  /// vào các trường "Vấn đề phát sinh / Hướng giải quyết / Tồn đọng / Ghi chú".
+  final Map<int, List<ProjectHistoryProblem>> historyProblems;
+
+  /// Các `projectItemId` đang tải các phát sinh.
+  final Set<int> loadingHistoryProblemIds;
+
+  /// Index hạng mục cần tự mở bottom sheet làm thêm sau khi người dùng chọn
+  /// hạng mục trùng với ca làm thêm đã đăng ký trước đó.
+  ///
+  /// `null` = không có yêu cầu mở sheet. UI đọc giá trị này để mở sheet rồi
+  /// gửi [TechEvent.clearAutoOpenOvertime] để reset về `null`.
+  final int? autoOpenOvertimeIndex;
+
+  /// Hạng mục công việc đang được thao tác trên form.
+  ///
+  /// Lấy theo hạng mục đang mở rộng (mặc định hạng mục đầu tiên) — dùng làm
+  /// nguồn cho card "Phát sinh".
+  TechWork? get focusedWork {
+    final project = selectedProject;
+    if (project == null || project.works.isEmpty) return null;
+
+    final index = (expandedWorkIndex ?? 0).clamp(0, project.works.length - 1);
+    return project.works[index];
+  }
+
+  /// `projectItemId` của hạng mục đang thao tác (null nếu chưa chọn hạng mục).
+  int? get focusedProjectItemId {
+    final id = focusedWork?.projectItemId;
+    return (id == null || id <= 0) ? null : id;
+  }
+
+  /// Nhãn hạng mục đang thao tác dạng `mã - tên hạng mục`.
+  String? get focusedProjectItemLabel {
+    final work = focusedWork;
+    if (work == null) return null;
+
+    final code = work.code.trim();
+    final mission = work.mission.trim();
+
+    if (code.isEmpty && mission.isEmpty) return null;
+    if (code.isEmpty) return mission;
+    if (mission.isEmpty) return code;
+
+    return '$code - $mission';
+  }
 
   const TechState({
     required super.status,
@@ -168,6 +217,9 @@ class TechState extends BaseBlocState {
     this.isProjectItemRequired = false,
     this.currentReportDate,
     this.ineligibleProjectItemIds = const {},
+    this.historyProblems = const {},
+    this.loadingHistoryProblemIds = const {},
+    this.autoOpenOvertimeIndex,
   });
 
   factory TechState.init() => const TechState(
@@ -218,6 +270,9 @@ class TechState extends BaseBlocState {
     isProjectItemRequired: false,
     currentReportDate: null,
     ineligibleProjectItemIds: {},
+    historyProblems: {},
+    loadingHistoryProblemIds: {},
+    autoOpenOvertimeIndex: null,
   );
 
   @override
@@ -280,5 +335,8 @@ class TechState extends BaseBlocState {
     isProjectItemRequired,
     currentReportDate,
     ineligibleProjectItemIds,
+    historyProblems,
+    loadingHistoryProblemIds,
+    autoOpenOvertimeIndex,
   ];
 }
