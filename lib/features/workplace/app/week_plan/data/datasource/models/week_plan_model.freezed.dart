@@ -10018,7 +10018,7 @@ mixin _$WeekPlanDetailResponse {
   @JsonKey(name: 'Status')
   int? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'STT')
-  int? get stt => throw _privateConstructorUsedError;
+  String? get stt => throw _privateConstructorUsedError;
   @JsonKey(name: 'UserID')
   int? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProjectID')
@@ -10125,7 +10125,7 @@ abstract class $WeekPlanDetailResponseCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'Status') int? status,
-      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'STT') String? stt,
       @JsonKey(name: 'UserID') int? userId,
       @JsonKey(name: 'ProjectID') int? projectId,
       @JsonKey(name: 'Mission') String? mission,
@@ -10248,7 +10248,7 @@ class _$WeekPlanDetailResponseCopyWithImpl<$Res,
       stt: freezed == stt
           ? _value.stt
           : stt // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -10445,7 +10445,7 @@ abstract class _$$WeekPlanDetailResponseImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'ID') int? id,
       @JsonKey(name: 'Status') int? status,
-      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'STT') String? stt,
       @JsonKey(name: 'UserID') int? userId,
       @JsonKey(name: 'ProjectID') int? projectId,
       @JsonKey(name: 'Mission') String? mission,
@@ -10567,7 +10567,7 @@ class __$$WeekPlanDetailResponseImplCopyWithImpl<$Res>
       stt: freezed == stt
           ? _value.stt
           : stt // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -10816,7 +10816,7 @@ class _$WeekPlanDetailResponseImpl implements _WeekPlanDetailResponse {
   final int? status;
   @override
   @JsonKey(name: 'STT')
-  final int? stt;
+  final String? stt;
   @override
   @JsonKey(name: 'UserID')
   final int? userId;
@@ -11127,7 +11127,7 @@ abstract class _WeekPlanDetailResponse implements WeekPlanDetailResponse {
   const factory _WeekPlanDetailResponse(
       {@JsonKey(name: 'ID') final int? id,
       @JsonKey(name: 'Status') final int? status,
-      @JsonKey(name: 'STT') final int? stt,
+      @JsonKey(name: 'STT') final String? stt,
       @JsonKey(name: 'UserID') final int? userId,
       @JsonKey(name: 'ProjectID') final int? projectId,
       @JsonKey(name: 'Mission') final String? mission,
@@ -11187,7 +11187,7 @@ abstract class _WeekPlanDetailResponse implements WeekPlanDetailResponse {
   int? get status;
   @override
   @JsonKey(name: 'STT')
-  int? get stt;
+  String? get stt;
   @override
   @JsonKey(name: 'UserID')
   int? get userId;

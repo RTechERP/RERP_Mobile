@@ -502,7 +502,7 @@ class WeekPlanDetailResponse with _$WeekPlanDetailResponse {
   const factory WeekPlanDetailResponse({
     @JsonKey(name: 'ID') int? id,
     @JsonKey(name: 'Status') int? status,
-    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'STT') String? stt,
     @JsonKey(name: 'UserID') int? userId,
     @JsonKey(name: 'ProjectID') int? projectId,
     @JsonKey(name: 'Mission') String? mission,

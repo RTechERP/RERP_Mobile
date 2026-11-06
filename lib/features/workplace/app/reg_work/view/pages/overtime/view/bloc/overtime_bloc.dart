@@ -60,6 +60,10 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
               slip: slip,
               fileInfo: fileInfo,
             ),
+        loadProjectItems: (projectId) =>
+            _onLoadProjectItems(emit, projectId: projectId),
+        loadProjectItemsAll: (projectId) =>
+            _onLoadProjectItemsAll(emit, projectId: projectId),
       );
     });
   }
@@ -166,8 +170,33 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
         return;
       }
 
-      final isProjectRequired = DepartmentGroups.overtimeDepartmentID
+      final isProjectRequiredByDepartment = DepartmentGroups.overtimeDepartmentID
           .contains(user.departmentId);
+
+      // Danh sách phòng ban bắt buộc chọn hạng mục: hardcode + API.
+      final deptRequireRes = await _overtimeRepo.getDepartmentRequireProjectItem();
+      final apiRequireDepartments = deptRequireRes.fold(
+        (_) => const <int>[],
+        (r) => r,
+      );
+      final requireDepartments = {
+        ...DepartmentGroups.departmentRequireProjectItem,
+        ...apiRequireDepartments,
+      };
+
+      // Hạng mục công việc bắt buộc theo phòng ban, trừ user có mã quyền N80.
+      final permissions = user.permissions.split(',').map((p) => p.trim());
+      final skipProjectItemValidate = permissions.any(
+        (p) => PermissionGroups.skipProjectItemValidate.contains(p),
+      );
+      final isProjectItemRequired =
+          requireDepartments.contains(user.departmentId) &&
+          !skipProjectItemValidate;
+
+      // Hạng mục được lấy theo dự án nên phòng ban bắt buộc hạng mục cũng
+      // bắt buộc chọn dự án.
+      final isProjectRequired =
+          isProjectRequiredByDepartment || isProjectItemRequired;
 
       final approverRes = await _overtimeRepo.getApprover();
       final typeRes = await _overtimeRepo.getOvertimeType();
@@ -236,6 +265,8 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
           loginName: user.loginName,
           approveId: fillApprover,
           isProjectRequired: isProjectRequired,
+          isProjectItemRequired: isProjectItemRequired,
+          departmentRequireProjectItemIds: requireDepartments.toList(),
         ),
       );
     } finally {
@@ -353,6 +384,7 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
           'TimeReality': timeReality,
           'Location': s.location,
           'ProjectID': s.projectId ?? 0,
+          'ProjectItemID': s.projectItemId ?? 0,
           'Overnight': s.overnight,
           'CostOvernight': s.overnight ? 30000 : 0,
           'TypeID': s.typeId,
@@ -366,6 +398,11 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
 
         final payload = <String, dynamic>{
           'EmployeeOvertimes': [slipObject],
+          // Liên kết ca làm thêm với hạng mục công việc qua bảng trung gian.
+          'employeeOvertimeProjectItem': <String, dynamic>{
+            'EmployeeOvertimeID': 0,
+            'ProjectItemID': s.projectItemId ?? 0,
+          },
           'employeeOvertimeFile': <String, dynamic>{
             'ID': 0,
             'EmployeeOvertimeID': 0,
@@ -498,6 +535,147 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
     emit(state.copyWith(submitSuccess: false, editSuccess: false, message: null));
   }
 
+  /// Lấy danh sách hạng mục công việc của một dự án, đảm bảo đã tải xong.
+  ///
+  /// Nếu chưa có trong cache sẽ gọi API rồi chờ tải xong mới trả về — dùng cho
+  /// sheet chọn hạng mục để luôn có danh sách để hiển thị.
+  Future<List<OvertimeProjectItem>> loadProjectItems(int projectId) async {
+    if (projectId <= 0) return const [];
+
+    final cached = state.projectItemsOf(projectId);
+    if (cached.isNotEmpty) return cached;
+
+    // Đã tải xong nhưng không có hạng mục nào → trả về rỗng, không gọi lại.
+    if (!state.loadedProjectItemIds.contains(projectId)) {
+      add(OvertimeEvent.loadProjectItems(projectId: projectId));
+      await stream.firstWhere(
+        (s) => s.loadedProjectItemIds.contains(projectId),
+      );
+    }
+
+    return state.projectItemsOf(projectId);
+  }
+
+  /// Lấy danh sách hạng mục công việc **đầy đủ** của một dự án, đảm bảo đã
+  /// tải xong.
+  ///
+  /// Dùng ở màn chi tiết/sửa phiếu vì hạng mục đã lưu có thể đã hoàn thành nên
+  /// không nằm trong danh sách "đang thực hiện" (`status = 2`).
+  Future<List<OvertimeProjectItem>> loadProjectItemsAll(int projectId) async {
+    if (projectId <= 0) return const [];
+
+    final cached = state.projectItemsAllOf(projectId);
+    if (cached.isNotEmpty) return cached;
+
+    if (!state.loadedProjectItemAllIds.contains(projectId)) {
+      add(OvertimeEvent.loadProjectItemsAll(projectId: projectId));
+      await stream.firstWhere(
+        (s) => s.loadedProjectItemAllIds.contains(projectId),
+      );
+    }
+
+    return state.projectItemsAllOf(projectId);
+  }
+
+  /// Tải danh sách hạng mục công việc của một dự án.
+  ///
+  /// Kết quả cache theo `projectId` — chọn lại cùng dự án sẽ không gọi API lần
+  /// nữa. Bỏ qua khi đang tải hoặc đã có cache.
+  Future<void> _onLoadProjectItems(
+    Emitter<OvertimeState> emit, {
+    required int projectId,
+  }) async {
+    if (projectId <= 0) return;
+    if (state.projectItems.containsKey(projectId)) return;
+    if (state.loadingProjectItemIds.contains(projectId)) return;
+
+    emit(
+      state.copyWith(
+        loadingProjectItemIds: {
+          ...state.loadingProjectItemIds,
+          projectId,
+        },
+      ),
+    );
+
+    final res = await _overtimeRepo.getProjectItemByUser(
+      projectId: projectId,
+      status: 2,
+    );
+
+    final loading = {...state.loadingProjectItemIds}..remove(projectId);
+    final loaded = {...state.loadedProjectItemIds, projectId};
+
+    res.fold(
+      (l) {
+        _log.logE(
+          '❌ OvertimeBloc loadProjectItems failed (projectId=$projectId): $l',
+        );
+        emit(state.copyWith(
+          loadingProjectItemIds: loading,
+          loadedProjectItemIds: loaded,
+        ));
+      },
+      (r) {
+        _log.logI(
+          '✅ OvertimeBloc loadProjectItems success (projectId=$projectId): ${r.length} items',
+        );
+        emit(
+          state.copyWith(
+            loadingProjectItemIds: loading,
+            loadedProjectItemIds: loaded,
+            projectItems: {
+              ...state.projectItems,
+              projectId: r,
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  /// Tải danh sách hạng mục công việc **đầy đủ** của một dự án (`status = -1`).
+  ///
+  /// Dùng ở màn chi tiết/sửa phiếu vì hạng mục đã lưu có thể đã hoàn thành
+  /// nên không nằm trong danh sách "đang thực hiện" (`status = 2`).
+  Future<void> _onLoadProjectItemsAll(
+    Emitter<OvertimeState> emit, {
+    required int projectId,
+  }) async {
+    if (projectId <= 0) return;
+    if (state.projectItemsAll.containsKey(projectId)) return;
+
+    final res = await _overtimeRepo.getProjectItemByUser(
+      projectId: projectId,
+      status: -1,
+    );
+
+    final loaded = {...state.loadedProjectItemAllIds, projectId};
+
+    res.fold(
+      (l) {
+        _log.logE(
+          '❌ OvertimeBloc loadProjectItemsAll failed (projectId=$projectId): $l',
+        );
+        emit(state.copyWith(loadedProjectItemAllIds: loaded));
+      },
+      (r) {
+        _log.logI(
+          '✅ OvertimeBloc loadProjectItemsAll success (projectId=$projectId): ${r.length} items',
+        );
+        emit(
+          state.copyWith(
+            loadedProjectItemAllIds: loaded,
+            projectItemsAll: {
+              ...state.projectItemsAll,
+              projectId: r,
+            },
+          ),
+        );
+      },
+    );
+  }
+
   Future<void> _onFetchDetail(
     Emitter<OvertimeState> emit, {
     required int id,
@@ -514,9 +692,24 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
             status: BaseStateStatus.failed,
           ));
         },
-        (item) {
-          _log.logI('✅ OvertimeBloc fetchDetail success: ${item.id}');
-          emit(state.copyWith(isFetchingDetail: false, detailItem: item));
+        (response) {
+          final item = response.employeeOvertime;
+          _log.logI('✅ OvertimeBloc fetchDetail success: ${item?.id}');
+          emit(
+            state.copyWith(
+              isFetchingDetail: false,
+              detailItem: item,
+              detailFile: response.overTimeFile,
+              detailProjectItemLink: response.overTimeProjectItem,
+            ),
+          );
+
+          // Tải danh sách hạng mục công việc đầy đủ (status = -1) của dự án để
+          // hiển thị tên hạng mục đã lưu và cho người dùng đổi hạng mục.
+          final projectId = item?.projectId;
+          if (projectId != null && projectId > 0) {
+            add(OvertimeEvent.loadProjectItemsAll(projectId: projectId));
+          }
         },
       );
     } catch (e) {
@@ -574,6 +767,7 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
         'TimeReality': timeReality,
         'Location': slip.location,
         'ProjectID': slip.projectId ?? 0,
+        'ProjectItemID': slip.projectItemId ?? 0,
         'Overnight': slip.overnight,
         'CostOvernight': slip.overnight ? 30000 : 0,
         'TypeID': slip.typeId,
@@ -587,6 +781,11 @@ class OvertimeBloc extends BaseBloc<OvertimeEvent, OvertimeState> {
 
       final payload = <String, dynamic>{
         'EmployeeOvertimes': [slipObject],
+        // Liên kết ca làm thêm với hạng mục công việc qua bảng trung gian.
+        'employeeOvertimeProjectItem': <String, dynamic>{
+          'EmployeeOvertimeID': id,
+          'ProjectItemID': slip.projectItemId ?? 0,
+        },
         'employeeOvertimeFile': <String, dynamic>{
           'ID': 0,
           'EmployeeOvertimeID': id,

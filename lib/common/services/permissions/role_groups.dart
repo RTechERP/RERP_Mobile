@@ -11,6 +11,14 @@ class DepartmentGroups {
   /// ===== DEPARTMENT OVERTIME =====
   static const overtimeDepartmentID = [2, 24, 25, 26, 27, 32];
 
+  /// Phòng ban bắt buộc phải chọn Hạng mục công việc khi đăng ký làm thêm.
+  ///
+  /// Áp dụng khi người dùng đã chọn Dự án (hạng mục được lấy theo dự án).
+  /// User có mã quyền `N80` được miễn validate này.
+  static const departmentRequireProjectItem = [
+    2, 9, 10, 23, 24, 25, 26, 27, 32,
+  ];
+
   /// Phòng ban bắt buộc phải chọn Dự án + Hạng mục công việc khi báo cáo kỹ thuật.
   /// (BE cũng chặn khi `ProjectID <= 0` hoặc `ProjectItemID <= 0`.)
   static const techReportRequireProjectItem = [
@@ -69,4 +77,7 @@ class PermissionGroups {
   static const senior = ['N85'];
   static const headOfDepartment = ['N32'];
   static const boardOfDirector = ['N1'];
+
+  /// Mã quyền miễn validate Hạng mục công việc khi đăng ký làm thêm.
+  static const skipProjectItemValidate = ['N80'];
 }

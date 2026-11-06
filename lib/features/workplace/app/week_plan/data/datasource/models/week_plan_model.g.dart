@@ -919,7 +919,7 @@ _$WeekPlanDetailResponseImpl _$$WeekPlanDetailResponseImplFromJson(
     _$WeekPlanDetailResponseImpl(
       id: (json['ID'] as num?)?.toInt(),
       status: (json['Status'] as num?)?.toInt(),
-      stt: (json['STT'] as num?)?.toInt(),
+      stt: json['STT'] as String?,
       userId: (json['UserID'] as num?)?.toInt(),
       projectId: (json['ProjectID'] as num?)?.toInt(),
       mission: json['Mission'] as String?,

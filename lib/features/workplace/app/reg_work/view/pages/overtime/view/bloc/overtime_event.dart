@@ -27,4 +27,17 @@ class OvertimeEvent with _$OvertimeEvent {
     required OvertimeAddSlip slip,
     Map<String, String?>? fileInfo,
   }) = _SubmitEdit;
+
+  /// Tải danh sách hạng mục công việc của một dự án.
+  ///
+  /// Gọi khi người dùng chọn dự án — kết quả cache theo `projectId` trong state.
+  const factory OvertimeEvent.loadProjectItems({required int projectId}) =
+      _LoadProjectItems;
+
+  /// Tải danh sách hạng mục công việc **đầy đủ** của một dự án (`status = -1`).
+  ///
+  /// Dùng ở màn chi tiết/sửa phiếu: hạng mục đã lưu có thể đã hoàn thành nên
+  /// không nằm trong danh sách "đang thực hiện" (`status = 2`).
+  const factory OvertimeEvent.loadProjectItemsAll({required int projectId}) =
+      _LoadProjectItemsAll;
 }

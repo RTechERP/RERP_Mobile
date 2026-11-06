@@ -254,6 +254,11 @@ class ApiEndPoint {
 
   static const String getOvertimeById = '/EmployeeOverTime/get-by-id';
 
+  /// Danh sách departmentID bắt buộc chọn hạng mục công việc khi đăng ký
+  /// làm thêm. Bổ sung cho danh sách hardcode phía app.
+  static const String getDepartmentRequireProjectItem =
+      '/EmployeeOverTime/get-department-require-project-item';
+
   static const String getApproverOvertime = '/EmployeeOverTime/get-approver';
 
   static const String getWorkTrip =

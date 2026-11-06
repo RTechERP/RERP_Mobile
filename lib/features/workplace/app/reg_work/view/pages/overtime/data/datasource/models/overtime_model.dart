@@ -155,12 +155,106 @@ class OvertimeDetailItem with _$OvertimeDetailItem {
     @JsonKey(name: 'StatusTBPText') String? statusTbpText,
     @JsonKey(name: 'StatusHRText') String? statusHrText,
     @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'ProjectItemID') int? projectItemId,
     @JsonKey(name: 'ApprovedID') int? approvedId,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'DecilineApprove') int? declineApprove,
+    @JsonKey(name: 'CostOvertime') double? costOvertime,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'ReasonHREdit') String? reasonHrEdit,
+    @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBgd,
+    @JsonKey(name: 'ApprovedBGDID') int? approvedBgdId,
+    @JsonKey(name: 'DateApprovedBGD') DateTime? dateApprovedBgd,
+    @JsonKey(name: 'IsSeniorApproved') bool? isSeniorApproved,
+    @JsonKey(name: 'ApprovedSeniorID') int? approvedSeniorId,
+    @JsonKey(name: 'DateApprovedSenitor') DateTime? dateApprovedSenitor,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
+    @JsonKey(name: 'DecilineApproveSenior') int? declineApproveSenior,
   }) = _OvertimeDetailItem;
 
   factory OvertimeDetailItem.fromJson(Map<String, dynamic> json) =>
       _$OvertimeDetailItemFromJson(json);
 }
+
+/// Liên kết ca làm thêm với hạng mục công việc (bảng trung gian
+/// `EmployeeOvertimeProjectItem`).
+@freezed
+class OvertimeProjectItemLink with _$OvertimeProjectItemLink {
+  const factory OvertimeProjectItemLink({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'EmployeeOvertimeID') int? employeeOvertimeId,
+    @JsonKey(name: 'ProjectItemID') int? projectItemId,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+  }) = _OvertimeProjectItemLink;
+
+  factory OvertimeProjectItemLink.fromJson(Map<String, dynamic> json) =>
+      _$OvertimeProjectItemLinkFromJson(json);
+}
+
+/// File đính kèm của phiếu làm thêm.
+@freezed
+class OvertimeFileItem with _$OvertimeFileItem {
+  const factory OvertimeFileItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'EmployeeOvertimeID') int? employeeOvertimeId,
+    @JsonKey(name: 'FileName') String? fileName,
+    @JsonKey(name: 'OriginPath') String? originPath,
+    @JsonKey(name: 'ServerPath') String? serverPath,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _OvertimeFileItem;
+
+  factory OvertimeFileItem.fromJson(Map<String, dynamic> json) =>
+      _$OvertimeFileItemFromJson(json);
+}
+/// Toàn bộ response của `GET /EmployeeOverTime/get-by-id`.
+///
+/// Gồm phiếu làm thêm, file đính kèm và liên kết hạng mục công việc.
+@freezed
+class OvertimeDetailResponse with _$OvertimeDetailResponse {
+  const factory OvertimeDetailResponse({
+    @JsonKey(name: 'employeeOverTime') OvertimeDetailItem? employeeOvertime,
+    @JsonKey(name: 'overTimeFile') OvertimeFileItem? overTimeFile,
+    @JsonKey(name: 'overTimeProjectItem')
+    OvertimeProjectItemLink? overTimeProjectItem,
+  }) = _OvertimeDetailResponse;
+
+  factory OvertimeDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$OvertimeDetailResponseFromJson(json);
+}
+
+/// Hạng mục công việc (`ProjectItem`) của một dự án.
+///
+/// Lấy từ `GET /DailyReportTech/get-project-item-by-user` — chỉ trả về các hạng
+/// mục mà nhân viên đang được giao việc (mặc định `status = 2`).
+@freezed
+class OvertimeProjectItem with _$OvertimeProjectItem {
+  const factory OvertimeProjectItem({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Mission') String? mission,
+    @JsonKey(name: 'PercentageActual') double? percentageActual,
+    @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
+    @JsonKey(name: 'PlanEndDate') DateTime? planEndDate,
+    @JsonKey(name: 'TotalDayPlan') double? totalDayPlan,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'IsCheckedToday') int? isCheckedToday,
+  }) = _OvertimeProjectItem;
+
+  factory OvertimeProjectItem.fromJson(Map<String, dynamic> json) =>
+      _$OvertimeProjectItemFromJson(json);
+}
+
 /// Một khoảng thời gian làm thêm khi tạo mới phiếu (không freezed — dùng trong event/form).
 class OvertimeAddSlip {
   const OvertimeAddSlip({
@@ -171,6 +265,7 @@ class OvertimeAddSlip {
     required this.overnight,
     required this.reason,
     this.projectId,
+    this.projectItemId,
   });
 
   final DateTime timeStart;
@@ -181,10 +276,14 @@ class OvertimeAddSlip {
   final String reason;
   final int? projectId;
 
+  /// Hạng mục công việc mà ca làm thêm này gắn vào (`ProjectItemID`).
+  final int? projectItemId;
+
   @override
   String toString() =>
       'OvertimeAddSlip(timeStart: $timeStart, endTime: $endTime, typeId: $typeId, '
-      'location: $location, overnight: $overnight, projectId: $projectId, reason: $reason)';
+      'location: $location, overnight: $overnight, projectId: $projectId, '
+      'projectItemId: $projectItemId, reason: $reason)';
 }
 
 @freezed

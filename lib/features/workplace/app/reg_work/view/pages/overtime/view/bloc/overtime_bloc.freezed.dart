@@ -40,6 +40,8 @@ mixin _$OvertimeEvent {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)
         submitEdit,
+    required TResult Function(int projectId) loadProjectItems,
+    required TResult Function(int projectId) loadProjectItemsAll,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +63,8 @@ mixin _$OvertimeEvent {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult? Function(int projectId)? loadProjectItems,
+    TResult? Function(int projectId)? loadProjectItemsAll,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +86,8 @@ mixin _$OvertimeEvent {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult Function(int projectId)? loadProjectItems,
+    TResult Function(int projectId)? loadProjectItemsAll,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -95,6 +101,8 @@ mixin _$OvertimeEvent {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_LoadProjectItems value) loadProjectItems,
+    required TResult Function(_LoadProjectItemsAll value) loadProjectItemsAll,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -107,6 +115,8 @@ mixin _$OvertimeEvent {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_LoadProjectItems value)? loadProjectItems,
+    TResult? Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -119,6 +129,8 @@ mixin _$OvertimeEvent {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_LoadProjectItems value)? loadProjectItems,
+    TResult Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -201,6 +213,8 @@ class _$InitImpl implements _Init {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)
         submitEdit,
+    required TResult Function(int projectId) loadProjectItems,
+    required TResult Function(int projectId) loadProjectItemsAll,
   }) {
     return init();
   }
@@ -225,6 +239,8 @@ class _$InitImpl implements _Init {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult? Function(int projectId)? loadProjectItems,
+    TResult? Function(int projectId)? loadProjectItemsAll,
   }) {
     return init?.call();
   }
@@ -249,6 +265,8 @@ class _$InitImpl implements _Init {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult Function(int projectId)? loadProjectItems,
+    TResult Function(int projectId)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -268,6 +286,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_LoadProjectItems value) loadProjectItems,
+    required TResult Function(_LoadProjectItemsAll value) loadProjectItemsAll,
   }) {
     return init(this);
   }
@@ -283,6 +303,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_LoadProjectItems value)? loadProjectItems,
+    TResult? Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
   }) {
     return init?.call(this);
   }
@@ -298,6 +320,8 @@ class _$InitImpl implements _Init {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_LoadProjectItems value)? loadProjectItems,
+    TResult Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -371,6 +395,8 @@ class _$InitAddImpl implements _InitAdd {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)
         submitEdit,
+    required TResult Function(int projectId) loadProjectItems,
+    required TResult Function(int projectId) loadProjectItemsAll,
   }) {
     return initAdd();
   }
@@ -395,6 +421,8 @@ class _$InitAddImpl implements _InitAdd {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult? Function(int projectId)? loadProjectItems,
+    TResult? Function(int projectId)? loadProjectItemsAll,
   }) {
     return initAdd?.call();
   }
@@ -419,6 +447,8 @@ class _$InitAddImpl implements _InitAdd {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult Function(int projectId)? loadProjectItems,
+    TResult Function(int projectId)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -438,6 +468,8 @@ class _$InitAddImpl implements _InitAdd {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_LoadProjectItems value) loadProjectItems,
+    required TResult Function(_LoadProjectItemsAll value) loadProjectItemsAll,
   }) {
     return initAdd(this);
   }
@@ -453,6 +485,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_LoadProjectItems value)? loadProjectItems,
+    TResult? Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
   }) {
     return initAdd?.call(this);
   }
@@ -468,6 +502,8 @@ class _$InitAddImpl implements _InitAdd {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_LoadProjectItems value)? loadProjectItems,
+    TResult Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (initAdd != null) {
@@ -636,6 +672,8 @@ class _$SubmitBatchImpl implements _SubmitBatch {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)
         submitEdit,
+    required TResult Function(int projectId) loadProjectItems,
+    required TResult Function(int projectId) loadProjectItemsAll,
   }) {
     return submitBatch(approvedId, dateRegister, isProblem, slips, fileInfo);
   }
@@ -660,6 +698,8 @@ class _$SubmitBatchImpl implements _SubmitBatch {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult? Function(int projectId)? loadProjectItems,
+    TResult? Function(int projectId)? loadProjectItemsAll,
   }) {
     return submitBatch?.call(
         approvedId, dateRegister, isProblem, slips, fileInfo);
@@ -685,6 +725,8 @@ class _$SubmitBatchImpl implements _SubmitBatch {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult Function(int projectId)? loadProjectItems,
+    TResult Function(int projectId)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (submitBatch != null) {
@@ -704,6 +746,8 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_LoadProjectItems value) loadProjectItems,
+    required TResult Function(_LoadProjectItemsAll value) loadProjectItemsAll,
   }) {
     return submitBatch(this);
   }
@@ -719,6 +763,8 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_LoadProjectItems value)? loadProjectItems,
+    TResult? Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
   }) {
     return submitBatch?.call(this);
   }
@@ -734,6 +780,8 @@ class _$SubmitBatchImpl implements _SubmitBatch {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_LoadProjectItems value)? loadProjectItems,
+    TResult Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (submitBatch != null) {
@@ -850,6 +898,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)
         submitEdit,
+    required TResult Function(int projectId) loadProjectItems,
+    required TResult Function(int projectId) loadProjectItemsAll,
   }) {
     return onCancelSubmit(id);
   }
@@ -874,6 +924,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult? Function(int projectId)? loadProjectItems,
+    TResult? Function(int projectId)? loadProjectItemsAll,
   }) {
     return onCancelSubmit?.call(id);
   }
@@ -898,6 +950,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult Function(int projectId)? loadProjectItems,
+    TResult Function(int projectId)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (onCancelSubmit != null) {
@@ -917,6 +971,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_LoadProjectItems value) loadProjectItems,
+    required TResult Function(_LoadProjectItemsAll value) loadProjectItemsAll,
   }) {
     return onCancelSubmit(this);
   }
@@ -932,6 +988,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_LoadProjectItems value)? loadProjectItems,
+    TResult? Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
   }) {
     return onCancelSubmit?.call(this);
   }
@@ -947,6 +1005,8 @@ class _$OnCancelSubmitImpl implements _OnCancelSubmit {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_LoadProjectItems value)? loadProjectItems,
+    TResult Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (onCancelSubmit != null) {
@@ -1061,6 +1121,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)
         submitEdit,
+    required TResult Function(int projectId) loadProjectItems,
+    required TResult Function(int projectId) loadProjectItemsAll,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -1085,6 +1147,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult? Function(int projectId)? loadProjectItems,
+    TResult? Function(int projectId)? loadProjectItemsAll,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -1109,6 +1173,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult Function(int projectId)? loadProjectItems,
+    TResult Function(int projectId)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1128,6 +1194,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_LoadProjectItems value) loadProjectItems,
+    required TResult Function(_LoadProjectItemsAll value) loadProjectItemsAll,
   }) {
     return changeDateRange(this);
   }
@@ -1143,6 +1211,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_LoadProjectItems value)? loadProjectItems,
+    TResult? Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
   }) {
     return changeDateRange?.call(this);
   }
@@ -1158,6 +1228,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_LoadProjectItems value)? loadProjectItems,
+    TResult Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1239,6 +1311,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)
         submitEdit,
+    required TResult Function(int projectId) loadProjectItems,
+    required TResult Function(int projectId) loadProjectItemsAll,
   }) {
     return clearSubmitState();
   }
@@ -1263,6 +1337,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult? Function(int projectId)? loadProjectItems,
+    TResult? Function(int projectId)? loadProjectItemsAll,
   }) {
     return clearSubmitState?.call();
   }
@@ -1287,6 +1363,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult Function(int projectId)? loadProjectItems,
+    TResult Function(int projectId)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -1306,6 +1384,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_LoadProjectItems value) loadProjectItems,
+    required TResult Function(_LoadProjectItemsAll value) loadProjectItemsAll,
   }) {
     return clearSubmitState(this);
   }
@@ -1321,6 +1401,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_LoadProjectItems value)? loadProjectItems,
+    TResult? Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
   }) {
     return clearSubmitState?.call(this);
   }
@@ -1336,6 +1418,8 @@ class _$ClearSubmitStateImpl implements _ClearSubmitState {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_LoadProjectItems value)? loadProjectItems,
+    TResult Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (clearSubmitState != null) {
@@ -1435,6 +1519,8 @@ class _$FetchDetailImpl implements _FetchDetail {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)
         submitEdit,
+    required TResult Function(int projectId) loadProjectItems,
+    required TResult Function(int projectId) loadProjectItemsAll,
   }) {
     return fetchDetail(id);
   }
@@ -1459,6 +1545,8 @@ class _$FetchDetailImpl implements _FetchDetail {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult? Function(int projectId)? loadProjectItems,
+    TResult? Function(int projectId)? loadProjectItemsAll,
   }) {
     return fetchDetail?.call(id);
   }
@@ -1483,6 +1571,8 @@ class _$FetchDetailImpl implements _FetchDetail {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult Function(int projectId)? loadProjectItems,
+    TResult Function(int projectId)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (fetchDetail != null) {
@@ -1502,6 +1592,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_LoadProjectItems value) loadProjectItems,
+    required TResult Function(_LoadProjectItemsAll value) loadProjectItemsAll,
   }) {
     return fetchDetail(this);
   }
@@ -1517,6 +1609,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_LoadProjectItems value)? loadProjectItems,
+    TResult? Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
   }) {
     return fetchDetail?.call(this);
   }
@@ -1532,6 +1626,8 @@ class _$FetchDetailImpl implements _FetchDetail {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_LoadProjectItems value)? loadProjectItems,
+    TResult Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (fetchDetail != null) {
@@ -1700,6 +1796,8 @@ class _$SubmitEditImpl implements _SubmitEdit {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)
         submitEdit,
+    required TResult Function(int projectId) loadProjectItems,
+    required TResult Function(int projectId) loadProjectItemsAll,
   }) {
     return submitEdit(id, approvedId, dateRegister, isProblem, slip, fileInfo);
   }
@@ -1724,6 +1822,8 @@ class _$SubmitEditImpl implements _SubmitEdit {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult? Function(int projectId)? loadProjectItems,
+    TResult? Function(int projectId)? loadProjectItemsAll,
   }) {
     return submitEdit?.call(
         id, approvedId, dateRegister, isProblem, slip, fileInfo);
@@ -1749,6 +1849,8 @@ class _$SubmitEditImpl implements _SubmitEdit {
             OvertimeAddSlip slip,
             Map<String, String?>? fileInfo)?
         submitEdit,
+    TResult Function(int projectId)? loadProjectItems,
+    TResult Function(int projectId)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (submitEdit != null) {
@@ -1769,6 +1871,8 @@ class _$SubmitEditImpl implements _SubmitEdit {
     required TResult Function(_ClearSubmitState value) clearSubmitState,
     required TResult Function(_FetchDetail value) fetchDetail,
     required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_LoadProjectItems value) loadProjectItems,
+    required TResult Function(_LoadProjectItemsAll value) loadProjectItemsAll,
   }) {
     return submitEdit(this);
   }
@@ -1784,6 +1888,8 @@ class _$SubmitEditImpl implements _SubmitEdit {
     TResult? Function(_ClearSubmitState value)? clearSubmitState,
     TResult? Function(_FetchDetail value)? fetchDetail,
     TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_LoadProjectItems value)? loadProjectItems,
+    TResult? Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
   }) {
     return submitEdit?.call(this);
   }
@@ -1799,6 +1905,8 @@ class _$SubmitEditImpl implements _SubmitEdit {
     TResult Function(_ClearSubmitState value)? clearSubmitState,
     TResult Function(_FetchDetail value)? fetchDetail,
     TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_LoadProjectItems value)? loadProjectItems,
+    TResult Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
     required TResult orElse(),
   }) {
     if (submitEdit != null) {
@@ -1825,5 +1933,437 @@ abstract class _SubmitEdit implements OvertimeEvent {
   Map<String, String?>? get fileInfo;
   @JsonKey(ignore: true)
   _$$SubmitEditImplCopyWith<_$SubmitEditImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadProjectItemsImplCopyWith<$Res> {
+  factory _$$LoadProjectItemsImplCopyWith(_$LoadProjectItemsImpl value,
+          $Res Function(_$LoadProjectItemsImpl) then) =
+      __$$LoadProjectItemsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int projectId});
+}
+
+/// @nodoc
+class __$$LoadProjectItemsImplCopyWithImpl<$Res>
+    extends _$OvertimeEventCopyWithImpl<$Res, _$LoadProjectItemsImpl>
+    implements _$$LoadProjectItemsImplCopyWith<$Res> {
+  __$$LoadProjectItemsImplCopyWithImpl(_$LoadProjectItemsImpl _value,
+      $Res Function(_$LoadProjectItemsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projectId = null,
+  }) {
+    return _then(_$LoadProjectItemsImpl(
+      projectId: null == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadProjectItemsImpl implements _LoadProjectItems {
+  const _$LoadProjectItemsImpl({required this.projectId});
+
+  @override
+  final int projectId;
+
+  @override
+  String toString() {
+    return 'OvertimeEvent.loadProjectItems(projectId: $projectId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadProjectItemsImpl &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, projectId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadProjectItemsImplCopyWith<_$LoadProjectItemsImpl> get copyWith =>
+      __$$LoadProjectItemsImplCopyWithImpl<_$LoadProjectItemsImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            List<OvertimeAddSlip> slips,
+            Map<String, String?>? fileInfo)
+        submitBatch,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)
+        submitEdit,
+    required TResult Function(int projectId) loadProjectItems,
+    required TResult Function(int projectId) loadProjectItemsAll,
+  }) {
+    return loadProjectItems(projectId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(int approvedId, DateTime dateRegister, bool isProblem,
+            List<OvertimeAddSlip> slips, Map<String, String?>? fileInfo)?
+        submitBatch,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
+    TResult? Function(int projectId)? loadProjectItems,
+    TResult? Function(int projectId)? loadProjectItemsAll,
+  }) {
+    return loadProjectItems?.call(projectId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(int approvedId, DateTime dateRegister, bool isProblem,
+            List<OvertimeAddSlip> slips, Map<String, String?>? fileInfo)?
+        submitBatch,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
+    TResult Function(int projectId)? loadProjectItems,
+    TResult Function(int projectId)? loadProjectItemsAll,
+    required TResult orElse(),
+  }) {
+    if (loadProjectItems != null) {
+      return loadProjectItems(projectId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_SubmitBatch value) submitBatch,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_LoadProjectItems value) loadProjectItems,
+    required TResult Function(_LoadProjectItemsAll value) loadProjectItemsAll,
+  }) {
+    return loadProjectItems(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_SubmitBatch value)? submitBatch,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_LoadProjectItems value)? loadProjectItems,
+    TResult? Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
+  }) {
+    return loadProjectItems?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_SubmitBatch value)? submitBatch,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_LoadProjectItems value)? loadProjectItems,
+    TResult Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
+    required TResult orElse(),
+  }) {
+    if (loadProjectItems != null) {
+      return loadProjectItems(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadProjectItems implements OvertimeEvent {
+  const factory _LoadProjectItems({required final int projectId}) =
+      _$LoadProjectItemsImpl;
+
+  int get projectId;
+  @JsonKey(ignore: true)
+  _$$LoadProjectItemsImplCopyWith<_$LoadProjectItemsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadProjectItemsAllImplCopyWith<$Res> {
+  factory _$$LoadProjectItemsAllImplCopyWith(_$LoadProjectItemsAllImpl value,
+          $Res Function(_$LoadProjectItemsAllImpl) then) =
+      __$$LoadProjectItemsAllImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int projectId});
+}
+
+/// @nodoc
+class __$$LoadProjectItemsAllImplCopyWithImpl<$Res>
+    extends _$OvertimeEventCopyWithImpl<$Res, _$LoadProjectItemsAllImpl>
+    implements _$$LoadProjectItemsAllImplCopyWith<$Res> {
+  __$$LoadProjectItemsAllImplCopyWithImpl(_$LoadProjectItemsAllImpl _value,
+      $Res Function(_$LoadProjectItemsAllImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projectId = null,
+  }) {
+    return _then(_$LoadProjectItemsAllImpl(
+      projectId: null == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadProjectItemsAllImpl implements _LoadProjectItemsAll {
+  const _$LoadProjectItemsAllImpl({required this.projectId});
+
+  @override
+  final int projectId;
+
+  @override
+  String toString() {
+    return 'OvertimeEvent.loadProjectItemsAll(projectId: $projectId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadProjectItemsAllImpl &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, projectId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadProjectItemsAllImplCopyWith<_$LoadProjectItemsAllImpl> get copyWith =>
+      __$$LoadProjectItemsAllImplCopyWithImpl<_$LoadProjectItemsAllImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() initAdd,
+    required TResult Function(
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            List<OvertimeAddSlip> slips,
+            Map<String, String?>? fileInfo)
+        submitBatch,
+    required TResult Function(int id) onCancelSubmit,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function() clearSubmitState,
+    required TResult Function(int id) fetchDetail,
+    required TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)
+        submitEdit,
+    required TResult Function(int projectId) loadProjectItems,
+    required TResult Function(int projectId) loadProjectItemsAll,
+  }) {
+    return loadProjectItemsAll(projectId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? initAdd,
+    TResult? Function(int approvedId, DateTime dateRegister, bool isProblem,
+            List<OvertimeAddSlip> slips, Map<String, String?>? fileInfo)?
+        submitBatch,
+    TResult? Function(int id)? onCancelSubmit,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function()? clearSubmitState,
+    TResult? Function(int id)? fetchDetail,
+    TResult? Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
+    TResult? Function(int projectId)? loadProjectItems,
+    TResult? Function(int projectId)? loadProjectItemsAll,
+  }) {
+    return loadProjectItemsAll?.call(projectId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? initAdd,
+    TResult Function(int approvedId, DateTime dateRegister, bool isProblem,
+            List<OvertimeAddSlip> slips, Map<String, String?>? fileInfo)?
+        submitBatch,
+    TResult Function(int id)? onCancelSubmit,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function()? clearSubmitState,
+    TResult Function(int id)? fetchDetail,
+    TResult Function(
+            int id,
+            int approvedId,
+            DateTime dateRegister,
+            bool isProblem,
+            OvertimeAddSlip slip,
+            Map<String, String?>? fileInfo)?
+        submitEdit,
+    TResult Function(int projectId)? loadProjectItems,
+    TResult Function(int projectId)? loadProjectItemsAll,
+    required TResult orElse(),
+  }) {
+    if (loadProjectItemsAll != null) {
+      return loadProjectItemsAll(projectId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_InitAdd value) initAdd,
+    required TResult Function(_SubmitBatch value) submitBatch,
+    required TResult Function(_OnCancelSubmit value) onCancelSubmit,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ClearSubmitState value) clearSubmitState,
+    required TResult Function(_FetchDetail value) fetchDetail,
+    required TResult Function(_SubmitEdit value) submitEdit,
+    required TResult Function(_LoadProjectItems value) loadProjectItems,
+    required TResult Function(_LoadProjectItemsAll value) loadProjectItemsAll,
+  }) {
+    return loadProjectItemsAll(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_InitAdd value)? initAdd,
+    TResult? Function(_SubmitBatch value)? submitBatch,
+    TResult? Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ClearSubmitState value)? clearSubmitState,
+    TResult? Function(_FetchDetail value)? fetchDetail,
+    TResult? Function(_SubmitEdit value)? submitEdit,
+    TResult? Function(_LoadProjectItems value)? loadProjectItems,
+    TResult? Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
+  }) {
+    return loadProjectItemsAll?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_InitAdd value)? initAdd,
+    TResult Function(_SubmitBatch value)? submitBatch,
+    TResult Function(_OnCancelSubmit value)? onCancelSubmit,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ClearSubmitState value)? clearSubmitState,
+    TResult Function(_FetchDetail value)? fetchDetail,
+    TResult Function(_SubmitEdit value)? submitEdit,
+    TResult Function(_LoadProjectItems value)? loadProjectItems,
+    TResult Function(_LoadProjectItemsAll value)? loadProjectItemsAll,
+    required TResult orElse(),
+  }) {
+    if (loadProjectItemsAll != null) {
+      return loadProjectItemsAll(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadProjectItemsAll implements OvertimeEvent {
+  const factory _LoadProjectItemsAll({required final int projectId}) =
+      _$LoadProjectItemsAllImpl;
+
+  int get projectId;
+  @JsonKey(ignore: true)
+  _$$LoadProjectItemsAllImplCopyWith<_$LoadProjectItemsAllImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

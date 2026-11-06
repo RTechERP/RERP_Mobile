@@ -30,6 +30,7 @@ typedef OvertimeAddSlipRow = ({
   int typeId,
   int location,
   int? projectId,
+  int? projectItemId,
   bool overnight,
   String reason,
 });
@@ -1405,6 +1406,8 @@ class ValidateHelper {
   ///
   /// [departmentId]: nếu = 2 (kỹ thuật/dự án) thì dự án là bắt buộc.
   /// [hasAttachment]: `true` khi đã chọn ít nhất 1 file.
+  /// [isProjectItemRequired]: phòng ban bắt buộc chọn hạng mục công việc khi
+  /// đã chọn dự án (user có mã quyền `N80` được miễn).
   static String? validateOvertimeAddSubmit({
     required String? approverIdRaw,
     required DateTime? dateRegister,
@@ -1412,6 +1415,7 @@ class ValidateHelper {
     required List<OvertimeAddSlipRow> slips,
     bool hasAttachment = false,
     int? departmentId,
+    bool isProjectItemRequired = true,
   }) {
     final apTrim = (approverIdRaw ?? '').trim();
     if (apTrim.isEmpty) return 'Vui lòng chọn người duyệt';
@@ -1461,6 +1465,17 @@ class ValidateHelper {
 
       if (departmentId == 2 && (s.projectId == null || s.projectId! <= 0)) {
         return '${prefix}Vui lòng chọn dự án';
+      }
+
+      // Phòng ban bắt buộc hạng mục → bắt buộc chọn dự án (hạng mục lấy theo
+      // dự án) và chọn hạng mục công việc thuộc dự án đó.
+      if (isProjectItemRequired) {
+        if (s.projectId == null || s.projectId! <= 0) {
+          return '${prefix}Vui lòng chọn dự án';
+        }
+        if (s.projectItemId == null || s.projectItemId! <= 0) {
+          return '${prefix}Vui lòng chọn hạng mục công việc';
+        }
       }
 
       if (s.reason.trim().isEmpty) return '${prefix}Vui lòng nhập lý do';

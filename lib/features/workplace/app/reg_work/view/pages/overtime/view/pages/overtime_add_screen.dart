@@ -144,6 +144,14 @@ class _OvertimeAddScreenPageState
       _formKey.currentState?.fields['ot_slip_${slipKey}_time_start']?.value
           as DateTime?;
 
+  /// ID dự án đang chọn của một phiếu (null nếu chưa chọn).
+  int? _getSlipProjectId(String slipKey) {
+    final raw =
+        _formKey.currentState?.fields['ot_slip_${slipKey}_project_id']?.value;
+    final id = int.tryParse('${raw ?? ''}');
+    return (id == null || id <= 0) ? null : id;
+  }
+
   // ── Reactive callbacks ────────────────────────────────────────────────
 
   /// Khi ô "Từ" thay đổi — chỉ rebuild để cập nhật firstDate của ô "Đến".
@@ -229,6 +237,8 @@ class _OvertimeAddScreenPageState
               0,
           projectId:
               int.tryParse('${values['ot_slip_${key}_project_id'] ?? ''}'),
+          projectItemId: int.tryParse(
+              '${values['ot_slip_${key}_project_item_id'] ?? ''}'),
           overnight: (values['ot_slip_${key}_overnight'] as bool?) ?? false,
           reason: '${values['ot_slip_${key}_reason'] ?? ''}'.trim(),
         ),
@@ -322,10 +332,58 @@ class _OvertimeAddScreenPageState
       displayText: (p) =>
           '${p.projectCode ?? ''} - ${p.projectName ?? ''}'.trim(),
       onSelected: (p) {
+        // Đổi dự án → xoá hạng mục cũ (không còn thuộc dự án mới).
+        form.fields['ot_slip_${slipKey}_project_item_id']?.didChange('');
+        form.fields['ot_slip_${slipKey}_project_item_text']?.didChange('');
+
         form.fields['ot_slip_${slipKey}_project_id']
             ?.didChange(p.id.toString());
         form.fields['ot_slip_${slipKey}_project_text']
             ?.didChange(p.projectName ?? '');
+
+        // Tải hạng mục công việc của dự án vừa chọn.
+        bloc.add(OvertimeEvent.loadProjectItems(projectId: p.id));
+        setState(() {});
+      },
+    );
+  }
+
+  /// Mở sheet chọn hạng mục công việc của dự án đang chọn.
+  ///
+  /// Hạng mục được tải theo `projectId` khi người dùng chọn dự án; nếu chưa có
+  /// trong cache thì gọi API ngay.
+  Future<void> _openProjectItemSheet(String slipKey) async {
+    FocusScope.of(context).unfocus();
+    final form = _formKey.currentState;
+    if (form == null) return;
+
+    final projectId =
+        int.tryParse('${form.fields['ot_slip_${slipKey}_project_id']?.value ?? ''}');
+    if (projectId == null || projectId <= 0) {
+      context.showMessage('Vui lòng chọn dự án trước',
+          type: SnackBarType.error);
+      return;
+    }
+
+    final items = await bloc.loadProjectItems(projectId);
+    if (!mounted) return;
+
+    if (items.isEmpty) {
+      context.showMessage('Dự án chưa có hạng mục công việc',
+          type: SnackBarType.error);
+      return;
+    }
+
+    await openSelectBottomSheet<OvertimeProjectItem>(
+      context: context,
+      title: 'Chọn hạng mục công việc',
+      items: items,
+      displayText: (i) => '${i.code ?? ''} - ${i.mission ?? ''}'.trim(),
+      onSelected: (i) {
+        form.fields['ot_slip_${slipKey}_project_item_id']
+            ?.didChange(i.id.toString());
+        form.fields['ot_slip_${slipKey}_project_item_text']
+            ?.didChange(i.mission ?? '');
         setState(() {});
       },
     );
@@ -371,6 +429,7 @@ class _OvertimeAddScreenPageState
       slips: _collectSlipRows(values),
       hasAttachment: attachedFiles.isNotEmpty,
       departmentId: null,
+      isProjectItemRequired: state.isProjectItemRequired,
     );
     if (err != null) {
       context.showMessage(err, type: SnackBarType.error);
@@ -391,6 +450,8 @@ class _OvertimeAddScreenPageState
           int.tryParse('${values['ot_slip_${key}_location_id'] ?? ''}') ?? 0;
       final projectId =
           int.tryParse('${values['ot_slip_${key}_project_id'] ?? ''}');
+      final projectItemId = int.tryParse(
+          '${values['ot_slip_${key}_project_item_id'] ?? ''}');
       final overnight =
           (values['ot_slip_${key}_overnight'] as bool?) ?? false;
       final reason =
@@ -404,6 +465,7 @@ class _OvertimeAddScreenPageState
         overnight: overnight,
         reason: reason,
         projectId: projectId,
+        projectItemId: projectItemId,
       ));
     }
 
@@ -640,6 +702,8 @@ class _OvertimeAddScreenPageState
                                               dateRegister: _getDateRegister(),
                                               onTypeTap: _openTypeSheet,
                                               onProjectTap: _openProjectSheet,
+                                              onProjectItemTap:
+                                                  _openProjectItemSheet,
                                               computedHours:
                                                   _computeSlipHours(key),
                                               initialTimeStart:
@@ -652,6 +716,10 @@ class _OvertimeAddScreenPageState
                                                   _onSlipOvernightChanged,
                                               isProjectRequired:
                                                   state.isProjectRequired,
+                                              isProjectItemRequired:
+                                                  state.isProjectItemRequired,
+                                              hasProjectSelected:
+                                                  _getSlipProjectId(key) != null,
                                             ),
                                         ],
                                       ),
