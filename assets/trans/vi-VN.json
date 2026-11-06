@@ -162,6 +162,9 @@
     "bac_ninh": "Bắc Ninh",
     "dan_phuong": "Đan Phượng"
   },
+  "warehouse_demo": {
+    "inventory_check": "Kiểm kê"
+  },
   "warehouse_sale": {
     "grn": "Phiếu nhập",
     "gdn": "Phiếu xuất",

@@ -524,6 +524,24 @@ class ApiEndPoint {
   /// API: POST /HistoryImportExport
   static const String getHistoryImportExport = '/HistoryImportExport';
 
+  /// Kiểm kê kho — danh sách nhân viên được giao kiểm kê.
+  /// API: GET /WarehouseInventoryCount/get-employees
+  static const String getInventoryCountEmployees =
+      '/WarehouseInventoryCount/get-employees';
+
+  /// Kiểm kê kho — danh sách đợt kiểm kê trong khoảng ngày.
+  /// API: GET /WarehouseInventoryCount/get-all?dateStart=yyyy-MM-dd&dateEnd=yyyy-MM-dd
+  static const String getInventoryCounts = '/WarehouseInventoryCount/get-all';
+
+  /// Kiểm kê kho — sinh mã đợt kiểm kê theo ngày.
+  /// API: GET /WarehouseInventoryCount/generate-code?date=yyyy-MM-dd
+  static const String generateInventoryCountCode =
+      '/WarehouseInventoryCount/generate-code';
+
+  /// Kiểm kê kho — tạo mới đợt kiểm kê.
+  /// API: POST /WarehouseInventoryCount/save-data
+  static const String saveInventoryCount = '/WarehouseInventoryCount/save-data';
+
   // Material Category
   static const String getMaterialCategories = '/MaterialCategory/get-material-categories';
 

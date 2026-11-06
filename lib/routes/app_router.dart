@@ -213,6 +213,8 @@ import '../features/workplace/app/summary_work/overtime/view/pages/summary_overt
 import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/warehouse_demo_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/pages/inventory_check_add_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/pages/inventory_check_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/view/pages/history_import_export_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/pages/sale_gdn_detail_screen.dart';
@@ -1911,6 +1913,17 @@ class AppRouter {
             areaName: extra?['areaName'] as String? ?? '',
           );
         },
+      ),
+
+      // Warehouse Demo - Kiểm kê
+      GoRoute(
+        path: RouteNames.warehouseDemoInventoryCheck,
+        builder: (context, state) => const InventoryCheckScreen(),
+      ),
+
+      GoRoute(
+        path: RouteNames.warehouseDemoInventoryCheckAdd,
+        builder: (context, state) => const InventoryCheckAddScreen(),
       ),
 
       // Warehouse AGV

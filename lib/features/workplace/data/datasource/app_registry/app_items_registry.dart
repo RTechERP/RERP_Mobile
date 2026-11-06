@@ -427,14 +427,14 @@ class AppItemRegistry {
       imageUrl: AppImages.warehouse_sale,
       route: RouteNames.warehouseSaleArea,
     ),
-    // AppItemModel(
-    //   id: 'warehouse:demo',
-    //   name: 'warehouse.demo'.tr(),
-    //   iconCodePoint: Icons.warehouse_outlined.codePoint,
-    //   iconFontFamily: 'MaterialIcons',
-    //   tab: 'warehouse',
-    //   route: RouteNames.warehouseDemoArea,
-    // ),
+    AppItemModel(
+      id: 'warehouse:demo',
+      name: 'warehouse.demo'.tr(),
+      iconCodePoint: Icons.warehouse_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      route: RouteNames.warehouseDemoArea,
+    ),
     // AppItemModel(
     //   id: 'warehouse:agv',
     //   name: 'warehouse.agv'.tr(),
@@ -530,6 +530,18 @@ class AppItemRegistry {
       route: RouteNames.warehouseSaleHistoryImportExport,
     ),
   ];
+  static final List<AppItemModel> warehouse_demo = [
+    /// ================= WAREHOUSE DEMO =================
+    AppItemModel(
+      id: 'warehouse_demo:inventory_check',
+      name: 'warehouse_demo.inventory_check'.tr(),
+      iconCodePoint: Icons.fact_check_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      route: RouteNames.warehouseDemoInventoryCheck,
+    ),
+  ];
+
   static final List<AppItemModel> all = [
     ...regwork,
     ...reggeneral,

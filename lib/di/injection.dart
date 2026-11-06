@@ -197,6 +197,10 @@ import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/hist
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/repository/history_import_export_repo.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/data/repository/history_import_export_repo_impl.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/view/bloc/history_import_export_bloc.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/data/datasource/service/inventory_check_service.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/data/repository/inventory_check_repo.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/data/repository/inventory_check_repo_impl.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/bloc/inventory_check_bloc.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/service/sale_gdn_service.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo_impl.dart';
@@ -393,6 +397,10 @@ void configureDependencies() {
     () => HistoryImportExportService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<InventoryCheckService>(
+    () => InventoryCheckService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<SignatureService>(
     () => SignatureService(getIt<Dio>()),
   );
@@ -575,6 +583,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<HistoryImportExportRepo>(
     () => HistoryImportExportRepoImpl(getIt<HistoryImportExportService>()),
+  );
+
+  getIt.registerLazySingleton<InventoryCheckRepo>(
+    () => InventoryCheckRepoImpl(getIt<InventoryCheckService>()),
   );
 
   getIt.registerLazySingleton<SignatureRepo>(
@@ -924,6 +936,13 @@ getIt.registerLazySingleton<ApproveBookingGuestHouseBloc>(
   getIt.registerFactory<HistoryImportExportBloc>(
     () => HistoryImportExportBloc(
       getIt<HistoryImportExportRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<InventoryCheckBloc>(
+    () => InventoryCheckBloc(
+      getIt<InventoryCheckRepo>(),
       getIt<LogUtils>(),
     ),
   );
