@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:rtc_erp/base/bloc/bloc_status.dart';
@@ -16,6 +15,7 @@ import 'package:rtc_erp/common/widgets/form/index.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/data/datasource/models/inventory_check_model.dart';
 
 import '../bloc/inventory_check_bloc.dart';
+import '../widgets/inventory_check_form.dart';
 
 /// Màn tạo mới đợt kiểm kê kho.
 ///
@@ -53,13 +53,6 @@ class _InventoryCheckAddScreenState
 
   /// Nhân viên kiểm kê đang chọn (null = chưa chọn).
   InventoryCheckEmployee? _selectedEmployee;
-
-  /// Danh sách kho có thể chọn — trùng với bộ lọc của màn danh sách.
-  static const List<FormChoiceOption<int>> _warehouseOptions = [
-    FormChoiceOption(value: 1, label: 'Kho Demo'),
-    FormChoiceOption(value: 2, label: 'Kho Modula'),
-    FormChoiceOption(value: 3, label: 'Kho AGV'),
-  ];
 
   @override
   void initState() {
@@ -146,154 +139,35 @@ class _InventoryCheckAddScreenState
       body: Column(
         children: [
           Expanded(
-            child: FormBuilder(
-              key: _formKey,
-              child: ListView(
-                padding: const EdgeInsets.all(16),
-                children: [
-                  FormCard(
-                    title: 'Thông tin đợt kiểm kê',
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        /// ===== MÃ ĐỢT KIỂM KÊ =====
-                        BlocBuilder<InventoryCheckBloc, InventoryCheckState>(
-                          bloc: bloc,
-                          buildWhen: (prev, curr) =>
-                              prev.isGeneratingCode != curr.isGeneratingCode,
-                          builder: (context, state) {
-                            return FormInputField(
-                              nameForm: 'inventory_check_code',
-                              nameTextField: 'inventory_check_code_field',
-                              label: 'Mã đợt kiểm kê',
-                              icon: Icons.qr_code_2_outlined,
-                              controller: _codeController,
-                              readOnly: true,
-                              isRequired: true,
-                              validator: FormBuilderValidators.required(
-                                errorText: 'Vui lòng nhập mã đợt kiểm kê',
-                              ),
-                              suffixIcon: state.isGeneratingCode
-                                  ? const Padding(
-                                      padding: EdgeInsets.all(12),
-                                      child: SizedBox(
-                                        width: 16,
-                                        height: 16,
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 2,
-                                        ),
-                                      ),
-                                    )
-                                  : null,
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 12),
-
-                        /// ===== TÊN ĐỢT KIỂM KÊ =====
-                        FormInputField(
-                          nameForm: 'inventory_check_name',
-                          nameTextField: 'inventory_check_name_field',
-                          label: 'Tên đợt kiểm kê',
-                          icon: Icons.title_outlined,
-                          initialValue: _defaultName,
-                          isRequired: true,
-                          validator: FormBuilderValidators.required(
-                            errorText: 'Vui lòng nhập tên đợt kiểm kê',
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-
-                        /// ===== NGÀY KIỂM KÊ =====
-                        FormDateTimePicker(
-                          nameForm: 'inventory_check_date',
-                          nameTimePicker: 'inventory_check_date_time',
-                          label: 'Ngày kiểm kê',
-                          icon: Icons.event_outlined,
-                          inputType: InputType.date,
-                          format: DateFormat('dd/MM/yyyy'),
-                          initialValue: _dateCount,
-                          initialDate: _dateCount,
-                          isRequired: true,
-                          validator: FormBuilderValidators.required(
-                            errorText: 'Vui lòng chọn ngày kiểm kê',
-                          ),
-                          onChanged: (value) {
-                            if (value == null) return;
-                            _dateCount = value;
-                            // Đổi ngày → sinh lại mã đợt theo ngày mới.
-                            bloc.add(InventoryCheckEvent.generateCode(value));
-                          },
-                        ),
-                        const SizedBox(height: 16),
-
-                        /// ===== KHO KIỂM KÊ =====
-                        FormChoiceGroup<int>(
-                          name: 'inventory_check_warehouse',
-                          label: 'Kho kiểm kê',
-                          icon: Icons.warehouse_outlined,
-                          columns: 3,
-                          initialValue: 1,
-                          options: _warehouseOptions,
-                          isRequired: true,
-                        ),
-                        const SizedBox(height: 16),
-
-                        /// ===== NGƯỜI KIỂM KÊ =====
-                        GestureDetector(
-                          onTap: _openEmployeeSheet,
-                          child: AbsorbPointer(
-                            child: FormInputField(
-                              nameForm: 'inventory_check_employee',
-                              nameTextField: 'inventory_check_employee_field',
-                              label: 'Người kiểm kê',
-                              icon: Icons.person_outline,
-                              controller: _employeeController,
-                              readOnly: true,
-                              isRequired: true,
-                              validator: FormBuilderValidators.required(
-                                errorText: 'Vui lòng chọn người kiểm kê',
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-
-                        /// ===== TRẠNG THÁI =====
-                        FormChoiceGroup<bool>(
-                          name: 'inventory_check_status',
-                          label: 'Trạng thái',
-                          icon: Icons.flag_outlined,
-                          columns: 2,
-                          initialValue: false,
-                          options: const [
-                            FormChoiceOption(
-                              value: false,
-                              label: 'Chưa hoàn thành',
-                            ),
-                            FormChoiceOption(
-                              value: true,
-                              label: 'Đã hoàn thành',
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-
-                        /// ===== GHI CHÚ =====
-                        FormInputField(
-                          nameForm: 'inventory_check_note',
-                          nameTextField: 'inventory_check_note_field',
-                          label: 'Ghi chú',
-                          icon: Icons.note_alt_outlined,
-                          autoExpand: true,
-                          keyboardType: TextInputType.multiline,
-                          textInputAction: TextInputAction.newline,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            child: ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
+                BlocBuilder<InventoryCheckBloc, InventoryCheckState>(
+                  bloc: bloc,
+                  buildWhen: (prev, curr) =>
+                      prev.isGeneratingCode != curr.isGeneratingCode,
+                  builder: (context, state) {
+                    return InventoryCheckForm(
+                      formKey: _formKey,
+                      codeController: _codeController,
+                      employeeController: _employeeController,
+                      name: _defaultName,
+                      dateCount: _dateCount,
+                      warehouseId: 1,
+                      employeeId: _selectedEmployee?.id,
+                      isComplete: false,
+                      note: '',
+                      isGeneratingCode: state.isGeneratingCode,
+                      onDateChanged: (value) {
+                        _dateCount = value;
+                        // Đổi ngày → sinh lại mã đợt theo ngày mới.
+                        bloc.add(InventoryCheckEvent.generateCode(value));
+                      },
+                      onTapEmployee: _openEmployeeSheet,
+                    );
+                  },
+                ),
+              ],
             ),
           ),
           Padding(

@@ -747,14 +747,18 @@ class DialogService {
     return confirmed;
   }
 
-  static Future<bool> showConfirmDelete({required BuildContext context}) async {
+  static Future<bool> showConfirmDelete({
+    required BuildContext context,
+    String title = 'Xác nhận xoá',
+    String description = 'Bạn có chắc muốn xoá báo cáo này không?',
+  }) async {
     bool confirmed = false;
 
     await BaseDialog.twoOptionVerticalDialog(
       context: context,
       image: const Icon(Icons.delete_outline, size: 64, color: Colors.red),
-      title: 'Xác nhận xoá',
-      description: 'Bạn có chắc muốn xoá báo cáo này không?',
+      title: title,
+      description: description,
       contentTopButton: 'Xoá',
       topButtonFunc: () {
         confirmed = true;

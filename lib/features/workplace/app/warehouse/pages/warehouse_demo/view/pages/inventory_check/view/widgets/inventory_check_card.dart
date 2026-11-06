@@ -10,9 +10,16 @@ import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/vi
 /// Bố cục: mã đợt + tên đợt → chip trạng thái → kho → người kiểm kê → ngày
 /// kiểm kê → số sản phẩm → ghi chú.
 class InventoryCheckCard extends StatelessWidget {
-  const InventoryCheckCard({super.key, required this.item});
+  const InventoryCheckCard({
+    super.key,
+    required this.item,
+    this.onTap,
+  });
 
   final InventoryCountItem item;
+
+  /// Bấm vào card → mở màn chỉnh sửa đợt kiểm kê.
+  final VoidCallback? onTap;
 
   /// Màu nhận diện: xanh khi đã hoàn thành, cam khi đang kiểm kê.
   Color get _accent => (item.isComplete ?? false)
@@ -38,28 +45,32 @@ class InventoryCheckCard extends StatelessWidget {
         backgroundColor: AppColors.white,
         borderRadius: const BorderRadius.all(Radius.circular(14)),
         padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            _HeaderRow(item: item, accent: _accent),
-            const SizedBox(height: 10),
-            const Divider(height: 1, color: AppColors.borderColor),
-            const SizedBox(height: 10),
-            _WarehouseRow(warehouseName: item.warehouseName),
-            const SizedBox(height: 8),
-            _EmployeeRow(
-              employeeName: item.employeeName,
-              employeeCode: item.employeeCode,
-            ),
-            const SizedBox(height: 8),
-            _DateRow(dateCount: item.dateCount),
-            const SizedBox(height: 10),
-            _TotalItemsStrip(totalItems: item.totalItems, accent: _accent),
-            if ((item.note ?? '').trim().isNotEmpty) ...[
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: const BorderRadius.all(Radius.circular(14)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _HeaderRow(item: item, accent: _accent),
               const SizedBox(height: 10),
-              _NoteRow(note: item.note!),
+              const Divider(height: 1, color: AppColors.borderColor),
+              const SizedBox(height: 10),
+              _WarehouseRow(warehouseName: item.warehouseName),
+              const SizedBox(height: 8),
+              _EmployeeRow(
+                employeeName: item.employeeName,
+                employeeCode: item.employeeCode,
+              ),
+              const SizedBox(height: 8),
+              _DateRow(dateCount: item.dateCount),
+              const SizedBox(height: 10),
+              _TotalItemsStrip(totalItems: item.totalItems, accent: _accent),
+              if ((item.note ?? '').trim().isNotEmpty) ...[
+                const SizedBox(height: 10),
+                _NoteRow(note: item.note!),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

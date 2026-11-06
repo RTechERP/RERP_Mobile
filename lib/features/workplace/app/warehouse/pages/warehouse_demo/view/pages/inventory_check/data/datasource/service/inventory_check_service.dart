@@ -10,6 +10,17 @@ import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/vi
 class InventoryCheckService extends DioBaseApiService {
   InventoryCheckService(super.dio);
 
+  /// Bóc mảng dữ liệu từ response — server có thể trả mảng trực tiếp hoặc
+  /// bọc trong `{ "data": [...] }`.
+  static List<dynamic> _extractList(dynamic json) {
+    if (json is List) return json;
+    if (json is Map<String, dynamic>) {
+      final data = json['data'];
+      if (data is List) return data;
+    }
+    return const <dynamic>[];
+  }
+
   /// Lấy danh sách nhân viên được giao kiểm kê —
   /// `GET /WarehouseInventoryCount/get-employees`.
   Future<BaseData<List<InventoryCheckEmployee>>> getEmployees() async {
@@ -17,7 +28,7 @@ class InventoryCheckService extends DioBaseApiService {
       ApiEndPoint.getInventoryCountEmployees,
       parser: (json) => BaseData<List<InventoryCheckEmployee>>.fromJson(
         json,
-        (data) => ((data as List?) ?? const <dynamic>[])
+        (data) => _extractList(data)
             .map(
               (e) => InventoryCheckEmployee.fromJson(e as Map<String, dynamic>),
             )
@@ -39,7 +50,7 @@ class InventoryCheckService extends DioBaseApiService {
       query: {'dateStart': dateStart, 'dateEnd': dateEnd},
       parser: (json) => BaseData<List<InventoryCountItem>>.fromJson(
         json,
-        (data) => ((data as List?) ?? const <dynamic>[])
+        (data) => _extractList(data)
             .map((e) => InventoryCountItem.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
@@ -54,8 +65,16 @@ class InventoryCheckService extends DioBaseApiService {
     return get<BaseData<String>>(
       ApiEndPoint.generateInventoryCountCode,
       query: {'date': date},
-      parser: (json) =>
-          BaseData<String>.fromJson(json, (data) => (data as String?) ?? ''),
+      parser: (json) {
+        if (json is String) {
+          return BaseData<String>.fromJson({'data': json}, (_) => json);
+        }
+        final map = json as Map<String, dynamic>;
+        return BaseData<String>.fromJson(
+          map,
+          (data) => (data as String?) ?? '',
+        );
+      },
     );
   }
 
@@ -73,6 +92,46 @@ class InventoryCheckService extends DioBaseApiService {
         (data) =>
             InventoryCountSaveResult.fromJson(data as Map<String, dynamic>),
       ),
+    );
+  }
+
+  /// Lấy chi tiết một đợt kiểm kê —
+  /// `GET /WarehouseInventoryCount/get-by-id?id=X`.
+  ///
+  /// Dùng để fill sẵn form ở màn chỉnh sửa đợt kiểm kê.
+  ///
+  /// Server có thể trả object trực tiếp hoặc bọc trong `{ "data": {...} }` →
+  /// parser nhận cả 2 dạng.
+  Future<BaseData<InventoryCountDetail>> getInventoryCountById({
+    required int id,
+  }) async {
+    return get<BaseData<InventoryCountDetail>>(
+      ApiEndPoint.getInventoryCountById,
+      query: {'id': id},
+      parser: (json) {
+        final map = json as Map<String, dynamic>;
+        final data = map['data'];
+        final detailJson = data is Map<String, dynamic> ? data : map;
+        return BaseData<InventoryCountDetail>.fromJson(
+          map,
+          (_) => InventoryCountDetail.fromJson(detailJson),
+        );
+      },
+    );
+  }
+
+  /// Xoá một đợt kiểm kê — `POST /WarehouseInventoryCount/delete?id=X`.
+  ///
+  /// Server trả `data` là `true` khi xoá thành công.
+  Future<BaseData<bool>> deleteInventoryCount({required int id}) async {
+    return post<BaseData<bool>>(
+      ApiEndPoint.deleteInventoryCount,
+      query: {'id': id},
+      parser: (json) {
+        final map = json as Map<String, dynamic>;
+        final data = map['data'];
+        return BaseData<bool>.fromJson(map, (_) => data == true);
+      },
     );
   }
 }

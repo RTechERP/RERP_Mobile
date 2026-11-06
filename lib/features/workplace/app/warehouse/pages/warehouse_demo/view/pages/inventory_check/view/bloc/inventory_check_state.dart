@@ -37,6 +37,21 @@ class InventoryCheckState extends BaseBlocState {
   /// Thông tin đợt kiểm kê vừa tạo.
   final InventoryCountSaveResult? savedResult;
 
+  /// Chi tiết đợt kiểm kê đang được xem / sửa.
+  final InventoryCountDetail? detail;
+
+  /// Đang tải chi tiết đợt kiểm kê.
+  final bool isLoadingDetail;
+
+  /// Đang xoá đợt kiểm kê.
+  final bool isDeleting;
+
+  /// Xoá đợt kiểm kê thành công.
+  final bool deleteSuccess;
+
+  /// Thông báo lỗi khi xoá đợt kiểm kê thất bại.
+  final String? deleteError;
+
   const InventoryCheckState({
     required super.status,
     super.message,
@@ -52,6 +67,11 @@ class InventoryCheckState extends BaseBlocState {
     this.isSaving = false,
     this.saveSuccess = false,
     this.savedResult,
+    this.detail,
+    this.isLoadingDetail = false,
+    this.isDeleting = false,
+    this.deleteSuccess = false,
+    this.deleteError,
   });
 
   /// Mặc định lọc trong tháng hiện tại.
@@ -106,5 +126,10 @@ class InventoryCheckState extends BaseBlocState {
     isSaving,
     saveSuccess,
     savedResult,
+    detail,
+    isLoadingDetail,
+    isDeleting,
+    deleteSuccess,
+    deleteError,
   ];
 }

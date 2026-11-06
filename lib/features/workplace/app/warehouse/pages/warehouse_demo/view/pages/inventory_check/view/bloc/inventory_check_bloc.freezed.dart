@@ -27,6 +27,8 @@ mixin _$InventoryCheckEvent {
         changeDateRange,
     required TResult Function(DateTime date) generateCode,
     required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,6 +41,8 @@ mixin _$InventoryCheckEvent {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(DateTime date)? generateCode,
     TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +55,8 @@ mixin _$InventoryCheckEvent {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(DateTime date)? generateCode,
     TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -65,6 +71,8 @@ mixin _$InventoryCheckEvent {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_GenerateCode value) generateCode,
     required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,6 +85,8 @@ mixin _$InventoryCheckEvent {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_GenerateCode value)? generateCode,
     TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -89,6 +99,8 @@ mixin _$InventoryCheckEvent {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_GenerateCode value)? generateCode,
     TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -159,6 +171,8 @@ class _$FetchImpl implements _Fetch {
         changeDateRange,
     required TResult Function(DateTime date) generateCode,
     required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
   }) {
     return fetch();
   }
@@ -174,6 +188,8 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(DateTime date)? generateCode,
     TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
   }) {
     return fetch?.call();
   }
@@ -189,6 +205,8 @@ class _$FetchImpl implements _Fetch {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(DateTime date)? generateCode,
     TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -209,6 +227,8 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_GenerateCode value) generateCode,
     required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
   }) {
     return fetch(this);
   }
@@ -224,6 +244,8 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_GenerateCode value)? generateCode,
     TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
   }) {
     return fetch?.call(this);
   }
@@ -239,6 +261,8 @@ class _$FetchImpl implements _Fetch {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_GenerateCode value)? generateCode,
     TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -299,6 +323,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
         changeDateRange,
     required TResult Function(DateTime date) generateCode,
     required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
   }) {
     return fetchEmployees();
   }
@@ -314,6 +340,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(DateTime date)? generateCode,
     TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
   }) {
     return fetchEmployees?.call();
   }
@@ -329,6 +357,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(DateTime date)? generateCode,
     TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -349,6 +379,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_GenerateCode value) generateCode,
     required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
   }) {
     return fetchEmployees(this);
   }
@@ -364,6 +396,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_GenerateCode value)? generateCode,
     TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
   }) {
     return fetchEmployees?.call(this);
   }
@@ -379,6 +413,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_GenerateCode value)? generateCode,
     TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -465,6 +501,8 @@ class _$SearchImpl implements _Search {
         changeDateRange,
     required TResult Function(DateTime date) generateCode,
     required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
   }) {
     return search(keyword);
   }
@@ -480,6 +518,8 @@ class _$SearchImpl implements _Search {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(DateTime date)? generateCode,
     TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
   }) {
     return search?.call(keyword);
   }
@@ -495,6 +535,8 @@ class _$SearchImpl implements _Search {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(DateTime date)? generateCode,
     TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -515,6 +557,8 @@ class _$SearchImpl implements _Search {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_GenerateCode value) generateCode,
     required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
   }) {
     return search(this);
   }
@@ -530,6 +574,8 @@ class _$SearchImpl implements _Search {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_GenerateCode value)? generateCode,
     TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
   }) {
     return search?.call(this);
   }
@@ -545,6 +591,8 @@ class _$SearchImpl implements _Search {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_GenerateCode value)? generateCode,
     TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -638,6 +686,8 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
         changeDateRange,
     required TResult Function(DateTime date) generateCode,
     required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
   }) {
     return selectEmployee(employeeId);
   }
@@ -653,6 +703,8 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(DateTime date)? generateCode,
     TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
   }) {
     return selectEmployee?.call(employeeId);
   }
@@ -668,6 +720,8 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(DateTime date)? generateCode,
     TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (selectEmployee != null) {
@@ -688,6 +742,8 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_GenerateCode value) generateCode,
     required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
   }) {
     return selectEmployee(this);
   }
@@ -703,6 +759,8 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_GenerateCode value)? generateCode,
     TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
   }) {
     return selectEmployee?.call(this);
   }
@@ -718,6 +776,8 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_GenerateCode value)? generateCode,
     TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (selectEmployee != null) {
@@ -812,6 +872,8 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
         changeDateRange,
     required TResult Function(DateTime date) generateCode,
     required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
   }) {
     return changeWarehouseFilter(warehouseId);
   }
@@ -827,6 +889,8 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(DateTime date)? generateCode,
     TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
   }) {
     return changeWarehouseFilter?.call(warehouseId);
   }
@@ -842,6 +906,8 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(DateTime date)? generateCode,
     TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (changeWarehouseFilter != null) {
@@ -862,6 +928,8 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_GenerateCode value) generateCode,
     required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
   }) {
     return changeWarehouseFilter(this);
   }
@@ -877,6 +945,8 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_GenerateCode value)? generateCode,
     TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
   }) {
     return changeWarehouseFilter?.call(this);
   }
@@ -892,6 +962,8 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_GenerateCode value)? generateCode,
     TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (changeWarehouseFilter != null) {
@@ -994,6 +1066,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         changeDateRange,
     required TResult Function(DateTime date) generateCode,
     required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -1009,6 +1083,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(DateTime date)? generateCode,
     TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -1024,6 +1100,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(DateTime date)? generateCode,
     TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1044,6 +1122,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_GenerateCode value) generateCode,
     required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
   }) {
     return changeDateRange(this);
   }
@@ -1059,6 +1139,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_GenerateCode value)? generateCode,
     TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
   }) {
     return changeDateRange?.call(this);
   }
@@ -1074,6 +1156,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_GenerateCode value)? generateCode,
     TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1168,6 +1252,8 @@ class _$GenerateCodeImpl implements _GenerateCode {
         changeDateRange,
     required TResult Function(DateTime date) generateCode,
     required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
   }) {
     return generateCode(date);
   }
@@ -1183,6 +1269,8 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(DateTime date)? generateCode,
     TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
   }) {
     return generateCode?.call(date);
   }
@@ -1198,6 +1286,8 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(DateTime date)? generateCode,
     TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (generateCode != null) {
@@ -1218,6 +1308,8 @@ class _$GenerateCodeImpl implements _GenerateCode {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_GenerateCode value) generateCode,
     required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
   }) {
     return generateCode(this);
   }
@@ -1233,6 +1325,8 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_GenerateCode value)? generateCode,
     TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
   }) {
     return generateCode?.call(this);
   }
@@ -1248,6 +1342,8 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_GenerateCode value)? generateCode,
     TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (generateCode != null) {
@@ -1348,6 +1444,8 @@ class _$SaveImpl implements _Save {
         changeDateRange,
     required TResult Function(DateTime date) generateCode,
     required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
   }) {
     return save(payload);
   }
@@ -1363,6 +1461,8 @@ class _$SaveImpl implements _Save {
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult? Function(DateTime date)? generateCode,
     TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
   }) {
     return save?.call(payload);
   }
@@ -1378,6 +1478,8 @@ class _$SaveImpl implements _Save {
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
     TResult Function(DateTime date)? generateCode,
     TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
     required TResult orElse(),
   }) {
     if (save != null) {
@@ -1398,6 +1500,8 @@ class _$SaveImpl implements _Save {
     required TResult Function(_ChangeDateRange value) changeDateRange,
     required TResult Function(_GenerateCode value) generateCode,
     required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
   }) {
     return save(this);
   }
@@ -1413,6 +1517,8 @@ class _$SaveImpl implements _Save {
     TResult? Function(_ChangeDateRange value)? changeDateRange,
     TResult? Function(_GenerateCode value)? generateCode,
     TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
   }) {
     return save?.call(this);
   }
@@ -1428,6 +1534,8 @@ class _$SaveImpl implements _Save {
     TResult Function(_ChangeDateRange value)? changeDateRange,
     TResult Function(_GenerateCode value)? generateCode,
     TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
     if (save != null) {
@@ -1443,5 +1551,371 @@ abstract class _Save implements InventoryCheckEvent {
   InventoryCountSavePayload get payload;
   @JsonKey(ignore: true)
   _$$SaveImplCopyWith<_$SaveImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetByIdImplCopyWith<$Res> {
+  factory _$$GetByIdImplCopyWith(
+          _$GetByIdImpl value, $Res Function(_$GetByIdImpl) then) =
+      __$$GetByIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$GetByIdImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$GetByIdImpl>
+    implements _$$GetByIdImplCopyWith<$Res> {
+  __$$GetByIdImplCopyWithImpl(
+      _$GetByIdImpl _value, $Res Function(_$GetByIdImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$GetByIdImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetByIdImpl implements _GetById {
+  const _$GetByIdImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.getById(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetByIdImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetByIdImplCopyWith<_$GetByIdImpl> get copyWith =>
+      __$$GetByIdImplCopyWithImpl<_$GetByIdImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+  }) {
+    return getById(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+  }) {
+    return getById?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    required TResult orElse(),
+  }) {
+    if (getById != null) {
+      return getById(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+  }) {
+    return getById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+  }) {
+    return getById?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (getById != null) {
+      return getById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetById implements InventoryCheckEvent {
+  const factory _GetById(final int id) = _$GetByIdImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$GetByIdImplCopyWith<_$GetByIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteImplCopyWith<$Res> {
+  factory _$$DeleteImplCopyWith(
+          _$DeleteImpl value, $Res Function(_$DeleteImpl) then) =
+      __$$DeleteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$DeleteImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$DeleteImpl>
+    implements _$$DeleteImplCopyWith<$Res> {
+  __$$DeleteImplCopyWithImpl(
+      _$DeleteImpl _value, $Res Function(_$DeleteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$DeleteImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteImpl implements _Delete {
+  const _$DeleteImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.delete(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
+      __$$DeleteImplCopyWithImpl<_$DeleteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+  }) {
+    return delete(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+  }) {
+    return delete?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+  }) {
+    return delete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+  }) {
+    return delete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Delete implements InventoryCheckEvent {
+  const factory _Delete(final int id) = _$DeleteImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

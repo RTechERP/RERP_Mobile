@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:rtc_erp/base/bloc/bloc_status.dart';
+import 'package:rtc_erp/base/network/errors/extension.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import 'package:rtc_erp/base/widgets/base_widget.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
+import 'package:rtc_erp/common/utils/dialog/dialog_service.dart';
 import 'package:rtc_erp/common/utils/navigation/navigation_utils.dart';
+import 'package:rtc_erp/common/utils/snack_bar_helper.dart' show SnackBarType;
 import 'package:rtc_erp/common/widgets/date_range_picker.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/data/datasource/models/inventory_check_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/bloc/inventory_check_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_card.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_filter_sheet.dart';
@@ -37,6 +42,31 @@ class _InventoryCheckScreenState
     super.initState();
     bloc.add(const InventoryCheckEvent.fetch());
     bloc.add(const InventoryCheckEvent.fetchEmployees());
+  }
+
+  @override
+  bool listenWhen(
+    InventoryCheckState previous,
+    InventoryCheckState current,
+  ) {
+    return previous.deleteSuccess != current.deleteSuccess ||
+        previous.deleteError != current.deleteError;
+  }
+
+  @override
+  void listener(BuildContext context, InventoryCheckState state) {
+    if (state.deleteSuccess) {
+      context.showMessage(
+        'Xoá đợt kiểm kê thành công',
+        type: SnackBarType.success,
+      );
+      bloc.add(const InventoryCheckEvent.fetch());
+      return;
+    }
+    final deleteError = state.deleteError;
+    if (deleteError != null && deleteError.isNotEmpty) {
+      context.showMessage(deleteError, type: SnackBarType.error);
+    }
   }
 
   @override
@@ -129,11 +159,66 @@ class _InventoryCheckScreenState
                 isFiltered: _hasFilter(state),
               );
             }
-            return InventoryCheckCard(item: items[index - 1]);
+            final item = items[index - 1];
+            final itemId = item.id;
+            return Slidable(
+              key: ValueKey('inventory_check_$itemId'),
+              groupTag: 'inventory_check_slidable',
+              endActionPane: ActionPane(
+                motion: const DrawerMotion(),
+                extentRatio: 0.22,
+                children: [
+                  SlidableAction(
+                    onPressed: (actionContext) async {
+                      Slidable.of(actionContext)?.close();
+                      await _confirmDelete(item);
+                    },
+                    backgroundColor: AppColors.alert,
+                    foregroundColor: Colors.white,
+                    icon: Icons.delete_outline,
+                    label: 'Xoá',
+                  ),
+                ],
+              ),
+              child: InventoryCheckCard(
+                item: item,
+                onTap: itemId == null ? null : () => _openEditScreen(itemId),
+              ),
+            );
           },
         ),
       );
     });
+  }
+
+  /// Mở màn chỉnh sửa đợt kiểm kê, quay lại sẽ tải lại danh sách.
+  Future<void> _openEditScreen(int id) async {
+    final updated = await context.push<bool>(
+      RouteNames.warehouseDemoInventoryCheckEdit,
+      extra: id,
+    );
+    if (!mounted) return;
+    if (updated == true) {
+      bloc.add(const InventoryCheckEvent.fetch());
+    }
+  }
+
+  /// Xác nhận xoá đợt kiểm kê — toàn bộ chi tiết kiểm kê liên quan cũng
+  /// bị xoá theo.
+  Future<void> _confirmDelete(InventoryCountItem item) async {
+    final id = item.id;
+    if (id == null) return;
+
+    final confirmed = await DialogService.showConfirmDelete(
+      context: context,
+      title: 'Xác nhận xoá',
+      description:
+          'Bạn có chắc muốn xoá đợt kiểm kê "${(item.code ?? '').trim()}" không? '
+          'Toàn bộ chi tiết kiểm kê liên quan cũng sẽ bị xoá.',
+    );
+    if (!mounted || !confirmed) return;
+
+    bloc.add(InventoryCheckEvent.delete(id));
   }
 
   /// Mở bottom sheet chọn khoảng ngày; áp dụng xong sẽ tải lại danh sách.

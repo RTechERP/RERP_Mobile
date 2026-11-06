@@ -35,6 +35,16 @@ abstract class _$InventoryCheckStateCWProxy {
 
   InventoryCheckState savedResult(InventoryCountSaveResult? savedResult);
 
+  InventoryCheckState detail(InventoryCountDetail? detail);
+
+  InventoryCheckState isLoadingDetail(bool isLoadingDetail);
+
+  InventoryCheckState isDeleting(bool isDeleting);
+
+  InventoryCheckState deleteSuccess(bool deleteSuccess);
+
+  InventoryCheckState deleteError(String? deleteError);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `InventoryCheckState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -56,6 +66,11 @@ abstract class _$InventoryCheckStateCWProxy {
     bool? isSaving,
     bool? saveSuccess,
     InventoryCountSaveResult? savedResult,
+    InventoryCountDetail? detail,
+    bool? isLoadingDetail,
+    bool? isDeleting,
+    bool? deleteSuccess,
+    String? deleteError,
   });
 }
 
@@ -118,6 +133,26 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
       this(savedResult: savedResult);
 
   @override
+  InventoryCheckState detail(InventoryCountDetail? detail) =>
+      this(detail: detail);
+
+  @override
+  InventoryCheckState isLoadingDetail(bool isLoadingDetail) =>
+      this(isLoadingDetail: isLoadingDetail);
+
+  @override
+  InventoryCheckState isDeleting(bool isDeleting) =>
+      this(isDeleting: isDeleting);
+
+  @override
+  InventoryCheckState deleteSuccess(bool deleteSuccess) =>
+      this(deleteSuccess: deleteSuccess);
+
+  @override
+  InventoryCheckState deleteError(String? deleteError) =>
+      this(deleteError: deleteError);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `InventoryCheckState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -140,6 +175,11 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
     Object? isSaving = const $CopyWithPlaceholder(),
     Object? saveSuccess = const $CopyWithPlaceholder(),
     Object? savedResult = const $CopyWithPlaceholder(),
+    Object? detail = const $CopyWithPlaceholder(),
+    Object? isLoadingDetail = const $CopyWithPlaceholder(),
+    Object? isDeleting = const $CopyWithPlaceholder(),
+    Object? deleteSuccess = const $CopyWithPlaceholder(),
+    Object? deleteError = const $CopyWithPlaceholder(),
   }) {
     return InventoryCheckState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -201,6 +241,29 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
           ? _value.savedResult
           // ignore: cast_nullable_to_non_nullable
           : savedResult as InventoryCountSaveResult?,
+      detail: detail == const $CopyWithPlaceholder()
+          ? _value.detail
+          // ignore: cast_nullable_to_non_nullable
+          : detail as InventoryCountDetail?,
+      isLoadingDetail: isLoadingDetail == const $CopyWithPlaceholder() ||
+              isLoadingDetail == null
+          ? _value.isLoadingDetail
+          // ignore: cast_nullable_to_non_nullable
+          : isLoadingDetail as bool,
+      isDeleting:
+          isDeleting == const $CopyWithPlaceholder() || isDeleting == null
+              ? _value.isDeleting
+              // ignore: cast_nullable_to_non_nullable
+              : isDeleting as bool,
+      deleteSuccess:
+          deleteSuccess == const $CopyWithPlaceholder() || deleteSuccess == null
+              ? _value.deleteSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : deleteSuccess as bool,
+      deleteError: deleteError == const $CopyWithPlaceholder()
+          ? _value.deleteError
+          // ignore: cast_nullable_to_non_nullable
+          : deleteError as String?,
     );
   }
 }

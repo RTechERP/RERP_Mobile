@@ -31,4 +31,10 @@ class InventoryCheckEvent with _$InventoryCheckEvent {
   /// Lưu đợt kiểm kê mới.
   const factory InventoryCheckEvent.save(InventoryCountSavePayload payload) =
       _Save;
+
+  /// Lấy chi tiết một đợt kiểm kê (dùng để fill màn chỉnh sửa).
+  const factory InventoryCheckEvent.getById(int id) = _GetById;
+
+  /// Xoá một đợt kiểm kê (kèm toàn bộ chi tiết kiểm kê liên quan).
+  const factory InventoryCheckEvent.delete(int id) = _Delete;
 }

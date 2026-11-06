@@ -214,6 +214,7 @@ import '../features/workplace/app/warehouse/enums/warehouse_type.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_area_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/warehouse_demo_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/pages/inventory_check_add_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/pages/inventory_check_edit_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/pages/inventory_check_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/view/pages/history_import_export_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
@@ -1924,6 +1925,19 @@ class AppRouter {
       GoRoute(
         path: RouteNames.warehouseDemoInventoryCheckAdd,
         builder: (context, state) => const InventoryCheckAddScreen(),
+      ),
+
+      GoRoute(
+        path: RouteNames.warehouseDemoInventoryCheckEdit,
+        builder: (context, state) {
+          final extra = state.extra;
+          if (extra is! int) {
+            return const Scaffold(
+              body: Center(child: Text('Thiếu id đợt kiểm kê')),
+            );
+          }
+          return InventoryCheckEditScreen(id: extra);
+        },
       ),
 
       // Warehouse AGV

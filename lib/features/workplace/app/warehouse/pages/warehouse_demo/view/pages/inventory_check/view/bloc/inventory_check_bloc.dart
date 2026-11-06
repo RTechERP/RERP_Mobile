@@ -39,6 +39,8 @@ class InventoryCheckBloc
             _onChangeDateRange(emit, dateStart: dateStart, dateEnd: dateEnd),
         generateCode: (date) => _onGenerateCode(emit, date: date),
         save: (payload) => _onSave(emit, payload: payload),
+        getById: (id) => _onGetById(emit, id: id),
+        delete: (id) => _onDelete(emit, id: id),
       );
     });
   }
@@ -195,6 +197,86 @@ class InventoryCheckBloc
             status: BaseStateStatus.success,
             message: null,
             savedResult: result,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Lấy chi tiết một đợt kiểm kê (dùng để fill màn chỉnh sửa).
+  Future<void> _onGetById(
+    Emitter<InventoryCheckState> emit, {
+    required int id,
+  }) async {
+    emit(
+      state.copyWith(
+        isLoadingDetail: true,
+        message: null,
+        detail: null,
+        status: BaseStateStatus.loading,
+      ),
+    );
+
+    final res = await _repo.getInventoryCountById(id: id);
+
+    res.fold(
+      (err) {
+        _log.logE('❌ getInventoryCountById failed: $err');
+        emit(
+          state.copyWith(
+            isLoadingDetail: false,
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ),
+        );
+      },
+      (detail) {
+        _log.logI('✅ getInventoryCountById success - id: ${detail.id}');
+        emit(
+          state.copyWith(
+            isLoadingDetail: false,
+            status: BaseStateStatus.success,
+            message: null,
+            detail: detail,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Xoá một đợt kiểm kê (kèm toàn bộ chi tiết kiểm kê liên quan).
+  Future<void> _onDelete(
+    Emitter<InventoryCheckState> emit, {
+    required int id,
+  }) async {
+    emit(
+      state.copyWith(
+        isDeleting: true,
+        deleteSuccess: false,
+        deleteError: null,
+      ),
+    );
+
+    final res = await _repo.deleteInventoryCount(id: id);
+
+    res.fold(
+      (err) {
+        _log.logE('❌ deleteInventoryCount failed: $err');
+        emit(
+          state.copyWith(
+            isDeleting: false,
+            deleteSuccess: false,
+            deleteError: err.getErrorMessage,
+          ),
+        );
+      },
+      (success) {
+        _log.logI('✅ deleteInventoryCount success - id: $id');
+        emit(
+          state.copyWith(
+            isDeleting: false,
+            deleteSuccess: success,
+            deleteError: null,
           ),
         );
       },

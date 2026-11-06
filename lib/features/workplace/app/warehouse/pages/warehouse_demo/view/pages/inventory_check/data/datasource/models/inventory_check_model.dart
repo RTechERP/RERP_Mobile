@@ -137,3 +137,29 @@ class InventoryCountSaveResult with _$InventoryCountSaveResult {
   factory InventoryCountSaveResult.fromJson(Map<String, dynamic> json) =>
       _$InventoryCountSaveResultFromJson(json);
 }
+
+/// Chi tiết một đợt kiểm kê — trả về từ API
+/// `GET /WarehouseInventoryCount/get-by-id?id=X`.
+///
+/// Dùng để fill sẵn form ở màn chỉnh sửa đợt kiểm kê.
+@freezed
+class InventoryCountDetail with _$InventoryCountDetail {
+  const factory InventoryCountDetail({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Name') String? name,
+    @JsonKey(name: 'WarehouseID') int? warehouseId,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'DateCount') String? dateCount,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'CreatedDate') String? createdDate,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'UpdatedDate') String? updatedDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'IsComplete') bool? isComplete,
+  }) = _InventoryCountDetail;
+
+  factory InventoryCountDetail.fromJson(Map<String, dynamic> json) =>
+      _$InventoryCountDetailFromJson(json);
+}

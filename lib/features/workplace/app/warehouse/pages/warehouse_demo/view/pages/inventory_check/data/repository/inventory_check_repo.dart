@@ -22,4 +22,12 @@ abstract class InventoryCheckRepo {
   Future<Either<BaseError, InventoryCountSaveResult>> saveInventoryCount({
     required InventoryCountSavePayload payload,
   });
+
+  /// Lấy chi tiết một đợt kiểm kê theo [id] (dùng để fill màn chỉnh sửa).
+  Future<Either<BaseError, InventoryCountDetail>> getInventoryCountById({
+    required int id,
+  });
+
+  /// Xoá một đợt kiểm kê theo [id] (kèm toàn bộ chi tiết liên quan).
+  Future<Either<BaseError, bool>> deleteInventoryCount({required int id});
 }

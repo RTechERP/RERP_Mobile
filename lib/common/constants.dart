@@ -542,6 +542,14 @@ class ApiEndPoint {
   /// API: POST /WarehouseInventoryCount/save-data
   static const String saveInventoryCount = '/WarehouseInventoryCount/save-data';
 
+  /// Kiểm kê kho — chi tiết một đợt kiểm kê theo id (dùng để fill màn sửa).
+  /// API: GET /WarehouseInventoryCount/get-by-id?id=X
+  static const String getInventoryCountById = '/WarehouseInventoryCount/get-by-id';
+
+  /// Kiểm kê kho — xoá một đợt kiểm kê (kèm toàn bộ chi tiết liên quan).
+  /// API: POST /WarehouseInventoryCount/delete?id=X
+  static const String deleteInventoryCount = '/WarehouseInventoryCount/delete';
+
   // Material Category
   static const String getMaterialCategories = '/MaterialCategory/get-material-categories';
 
