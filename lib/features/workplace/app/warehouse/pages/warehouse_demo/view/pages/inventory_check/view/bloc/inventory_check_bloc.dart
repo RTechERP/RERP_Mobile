@@ -41,6 +41,17 @@ class InventoryCheckBloc
         save: (payload) => _onSave(emit, payload: payload),
         getById: (id) => _onGetById(emit, id: id),
         delete: (id) => _onDelete(emit, id: id),
+        fetchSheet: (countId) => _onFetchSheet(emit, countId: countId),
+        searchSheet: (keyword) async => _onSearchSheet(emit, keyword: keyword),
+        filterSheet: (filter) async => _onFilterSheet(emit, filter: filter),
+        fetchProductGroupsRtc: (warehouseId, warehouseType) =>
+            _onFetchProductGroupsRtc(
+              emit,
+              warehouseId: warehouseId,
+              warehouseType: warehouseType,
+            ),
+        filterSheetProductGroup: (groupId) async =>
+            _onFilterSheetProductGroup(emit, groupId: groupId),
       );
     });
   }
@@ -250,11 +261,7 @@ class InventoryCheckBloc
     required int id,
   }) async {
     emit(
-      state.copyWith(
-        isDeleting: true,
-        deleteSuccess: false,
-        deleteError: null,
-      ),
+      state.copyWith(isDeleting: true, deleteSuccess: false, deleteError: null),
     );
 
     final res = await _repo.deleteInventoryCount(id: id);
@@ -283,6 +290,103 @@ class InventoryCheckBloc
     );
   }
 
+  /// Lấy phiếu kiểm kê kèm danh sách sản phẩm đã kiểm kê.
+  Future<void> _onFetchSheet(
+    Emitter<InventoryCheckState> emit, {
+    required int countId,
+  }) async {
+    emit(
+      state.copyWith(
+        isLoadingSheet: true,
+        sheet: null,
+        sheetKeyword: '',
+        sheetFilter: null,
+      ),
+    );
+
+    final res = await _repo.getInventoryCountSheet(countId: countId);
+
+    res.fold(
+      (err) {
+        _log.logE('❌ getInventoryCountSheet failed: $err');
+        emit(state.copyWith(isLoadingSheet: false));
+      },
+      (sheet) {
+        _log.logI(
+          '✅ getInventoryCountSheet success - items: ${sheet.items.length}',
+        );
+        emit(state.copyWith(isLoadingSheet: false, sheet: sheet));
+      },
+    );
+  }
+
+  /// Tìm kiếm trong danh sách sản phẩm của phiếu (lọc cục bộ).
+  void _onSearchSheet(
+    Emitter<InventoryCheckState> emit, {
+    required String keyword,
+  }) {
+    emit(state.copyWith(sheetKeyword: keyword.trim()));
+  }
+
+  /// Đổi bộ lọc sắp xếp danh sách sản phẩm của phiếu (lọc cục bộ).
+  ///
+  /// [filter] null = không lọc (hiển thị tất cả).
+  void _onFilterSheet(
+    Emitter<InventoryCheckState> emit, {
+    required InventoryCheckSheetFilter? filter,
+  }) {
+    emit(state.copyWith(sheetFilter: filter));
+  }
+
   /// Format ngày theo `yyyy-MM-dd` đúng format API `get-all` yêu cầu.
   String _formatApiDate(DateTime date) => DateFormat('yyyy-MM-dd').format(date);
+
+  /// Lọc danh sách sản phẩm của phiếu theo nhóm sản phẩm (hãng).
+  ///
+  /// [groupId] null = không lọc theo nhóm sản phẩm.
+  void _onFilterSheetProductGroup(
+    Emitter<InventoryCheckState> emit, {
+    required int? groupId,
+  }) {
+    emit(state.copyWith(sheetProductGroupId: groupId));
+  }
+
+  /// Tải nhóm sản phẩm RTC để bổ sung sản phẩm vào phiếu kiểm kê.
+  Future<void> _onFetchProductGroupsRtc(
+    Emitter<InventoryCheckState> emit, {
+    required int warehouseId,
+    required int warehouseType,
+  }) async {
+    emit(state.copyWith(isLoadingProductGroupsRtc: true));
+
+    final res = await _repo.getProductGroupRtcNew(
+      warehouseId: warehouseId,
+      warehouseType: warehouseType,
+    );
+
+    res.fold(
+      (err) {
+        _log.logE('❌ getProductGroupRtcNew failed: $err');
+        emit(
+          state.copyWith(
+            isLoadingProductGroupsRtc: false,
+            productGroupsRtcWarehouseId: warehouseId,
+            message: err.getErrorMessage,
+          ),
+        );
+      },
+      (groups) {
+        _log.logI(
+          '✅ getProductGroupRtcNew success - total: ${groups.length}',
+        );
+        emit(
+          state.copyWith(
+            isLoadingProductGroupsRtc: false,
+            productGroupsRtc: groups,
+            productGroupsRtcWarehouseId: warehouseId,
+          ),
+        );
+      },
+    );
+  }
 }

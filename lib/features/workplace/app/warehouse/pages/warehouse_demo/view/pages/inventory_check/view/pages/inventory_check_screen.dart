@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:rtc_erp/base/bloc/bloc_status.dart';
@@ -14,6 +13,7 @@ import 'package:rtc_erp/common/utils/snack_bar_helper.dart' show SnackBarType;
 import 'package:rtc_erp/common/widgets/date_range_picker.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/data/datasource/models/inventory_check_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/bloc/inventory_check_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_menu_sheet.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_card.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_filter_sheet.dart';
 import 'package:rtc_erp/routes/route_names.dart';
@@ -45,10 +45,7 @@ class _InventoryCheckScreenState
   }
 
   @override
-  bool listenWhen(
-    InventoryCheckState previous,
-    InventoryCheckState current,
-  ) {
+  bool listenWhen(InventoryCheckState previous, InventoryCheckState current) {
     return previous.deleteSuccess != current.deleteSuccess ||
         previous.deleteError != current.deleteError;
   }
@@ -161,34 +158,40 @@ class _InventoryCheckScreenState
             }
             final item = items[index - 1];
             final itemId = item.id;
-            return Slidable(
-              key: ValueKey('inventory_check_$itemId'),
-              groupTag: 'inventory_check_slidable',
-              endActionPane: ActionPane(
-                motion: const DrawerMotion(),
-                extentRatio: 0.22,
-                children: [
-                  SlidableAction(
-                    onPressed: (actionContext) async {
-                      Slidable.of(actionContext)?.close();
-                      await _confirmDelete(item);
-                    },
-                    backgroundColor: AppColors.alert,
-                    foregroundColor: Colors.white,
-                    icon: Icons.delete_outline,
-                    label: 'Xoá',
-                  ),
-                ],
-              ),
-              child: InventoryCheckCard(
-                item: item,
-                onTap: itemId == null ? null : () => _openEditScreen(itemId),
-              ),
+            return InventoryCheckCard(
+              item: item,
+              onTap: itemId == null ? null : () => _openMenu(item),
             );
           },
         ),
       );
     });
+  }
+
+  /// Mở menu thao tác khi bấm vào card đợt kiểm kê.
+  ///
+  /// Menu gồm: chi tiết, chỉnh sửa, xoá.
+  Future<void> _openMenu(InventoryCountItem item) async {
+    final id = item.id;
+    if (id == null) return;
+
+    final actionId = await InventoryCheckMenuSheet.show(
+      context,
+      countCode: item.code,
+    );
+    if (!mounted || actionId == null) return;
+
+    switch (actionId) {
+      case 'detail':
+        await _openSheetScreen(id);
+        break;
+      case 'edit':
+        await _openEditScreen(id);
+        break;
+      case 'delete':
+        await _confirmDelete(item);
+        break;
+    }
   }
 
   /// Mở màn chỉnh sửa đợt kiểm kê, quay lại sẽ tải lại danh sách.
@@ -201,6 +204,14 @@ class _InventoryCheckScreenState
     if (updated == true) {
       bloc.add(const InventoryCheckEvent.fetch());
     }
+  }
+
+  /// Mở màn chi tiết phiếu kiểm kê (danh sách sản phẩm đã kiểm kê).
+  Future<void> _openSheetScreen(int id) async {
+    await context.push<bool>(
+      RouteNames.warehouseDemoInventoryCheckSheet,
+      extra: id,
+    );
   }
 
   /// Xác nhận xoá đợt kiểm kê — toàn bộ chi tiết kiểm kê liên quan cũng

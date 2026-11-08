@@ -2093,3 +2093,2127 @@ abstract class _InventoryCountDetail implements InventoryCountDetail {
   _$$InventoryCountDetailImplCopyWith<_$InventoryCountDetailImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+InventoryCountSheet _$InventoryCountSheetFromJson(Map<String, dynamic> json) {
+  return _InventoryCountSheet.fromJson(json);
+}
+
+/// @nodoc
+mixin _$InventoryCountSheet {
+  /// Thông tin đợt kiểm kê.
+  @JsonKey(name: 'Master')
+  InventoryCountSheetMaster? get master => throw _privateConstructorUsedError;
+
+  /// Danh sách sản phẩm đã kiểm kê.
+  @JsonKey(name: 'Items')
+  List<InventoryCountSheetItem> get items => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InventoryCountSheetCopyWith<InventoryCountSheet> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InventoryCountSheetCopyWith<$Res> {
+  factory $InventoryCountSheetCopyWith(
+          InventoryCountSheet value, $Res Function(InventoryCountSheet) then) =
+      _$InventoryCountSheetCopyWithImpl<$Res, InventoryCountSheet>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'Master') InventoryCountSheetMaster? master,
+      @JsonKey(name: 'Items') List<InventoryCountSheetItem> items});
+
+  $InventoryCountSheetMasterCopyWith<$Res>? get master;
+}
+
+/// @nodoc
+class _$InventoryCountSheetCopyWithImpl<$Res, $Val extends InventoryCountSheet>
+    implements $InventoryCountSheetCopyWith<$Res> {
+  _$InventoryCountSheetCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? master = freezed,
+    Object? items = null,
+  }) {
+    return _then(_value.copyWith(
+      master: freezed == master
+          ? _value.master
+          : master // ignore: cast_nullable_to_non_nullable
+              as InventoryCountSheetMaster?,
+      items: null == items
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<InventoryCountSheetItem>,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InventoryCountSheetMasterCopyWith<$Res>? get master {
+    if (_value.master == null) {
+      return null;
+    }
+
+    return $InventoryCountSheetMasterCopyWith<$Res>(_value.master!, (value) {
+      return _then(_value.copyWith(master: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$InventoryCountSheetImplCopyWith<$Res>
+    implements $InventoryCountSheetCopyWith<$Res> {
+  factory _$$InventoryCountSheetImplCopyWith(_$InventoryCountSheetImpl value,
+          $Res Function(_$InventoryCountSheetImpl) then) =
+      __$$InventoryCountSheetImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'Master') InventoryCountSheetMaster? master,
+      @JsonKey(name: 'Items') List<InventoryCountSheetItem> items});
+
+  @override
+  $InventoryCountSheetMasterCopyWith<$Res>? get master;
+}
+
+/// @nodoc
+class __$$InventoryCountSheetImplCopyWithImpl<$Res>
+    extends _$InventoryCountSheetCopyWithImpl<$Res, _$InventoryCountSheetImpl>
+    implements _$$InventoryCountSheetImplCopyWith<$Res> {
+  __$$InventoryCountSheetImplCopyWithImpl(_$InventoryCountSheetImpl _value,
+      $Res Function(_$InventoryCountSheetImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? master = freezed,
+    Object? items = null,
+  }) {
+    return _then(_$InventoryCountSheetImpl(
+      master: freezed == master
+          ? _value.master
+          : master // ignore: cast_nullable_to_non_nullable
+              as InventoryCountSheetMaster?,
+      items: null == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<InventoryCountSheetItem>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$InventoryCountSheetImpl implements _InventoryCountSheet {
+  const _$InventoryCountSheetImpl(
+      {@JsonKey(name: 'Master') this.master,
+      @JsonKey(name: 'Items')
+      final List<InventoryCountSheetItem> items = const []})
+      : _items = items;
+
+  factory _$InventoryCountSheetImpl.fromJson(Map<String, dynamic> json) =>
+      _$$InventoryCountSheetImplFromJson(json);
+
+  /// Thông tin đợt kiểm kê.
+  @override
+  @JsonKey(name: 'Master')
+  final InventoryCountSheetMaster? master;
+
+  /// Danh sách sản phẩm đã kiểm kê.
+  final List<InventoryCountSheetItem> _items;
+
+  /// Danh sách sản phẩm đã kiểm kê.
+  @override
+  @JsonKey(name: 'Items')
+  List<InventoryCountSheetItem> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
+
+  @override
+  String toString() {
+    return 'InventoryCountSheet(master: $master, items: $items)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InventoryCountSheetImpl &&
+            (identical(other.master, master) || other.master == master) &&
+            const DeepCollectionEquality().equals(other._items, _items));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, master, const DeepCollectionEquality().hash(_items));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InventoryCountSheetImplCopyWith<_$InventoryCountSheetImpl> get copyWith =>
+      __$$InventoryCountSheetImplCopyWithImpl<_$InventoryCountSheetImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$InventoryCountSheetImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _InventoryCountSheet implements InventoryCountSheet {
+  const factory _InventoryCountSheet(
+          {@JsonKey(name: 'Master') final InventoryCountSheetMaster? master,
+          @JsonKey(name: 'Items') final List<InventoryCountSheetItem> items}) =
+      _$InventoryCountSheetImpl;
+
+  factory _InventoryCountSheet.fromJson(Map<String, dynamic> json) =
+      _$InventoryCountSheetImpl.fromJson;
+
+  @override
+
+  /// Thông tin đợt kiểm kê.
+  @JsonKey(name: 'Master')
+  InventoryCountSheetMaster? get master;
+  @override
+
+  /// Danh sách sản phẩm đã kiểm kê.
+  @JsonKey(name: 'Items')
+  List<InventoryCountSheetItem> get items;
+  @override
+  @JsonKey(ignore: true)
+  _$$InventoryCountSheetImplCopyWith<_$InventoryCountSheetImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+InventoryCountSheetMaster _$InventoryCountSheetMasterFromJson(
+    Map<String, dynamic> json) {
+  return _InventoryCountSheetMaster.fromJson(json);
+}
+
+/// @nodoc
+mixin _$InventoryCountSheetMaster {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Name')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'WarehouseID')
+  int? get warehouseId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'WarehouseName')
+  String? get warehouseName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeName')
+  String? get employeeName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeCode')
+  String? get employeeCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateCount')
+  String? get dateCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  String? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  String? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsComplete')
+  bool? get isComplete => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InventoryCountSheetMasterCopyWith<InventoryCountSheetMaster> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InventoryCountSheetMasterCopyWith<$Res> {
+  factory $InventoryCountSheetMasterCopyWith(InventoryCountSheetMaster value,
+          $Res Function(InventoryCountSheetMaster) then) =
+      _$InventoryCountSheetMasterCopyWithImpl<$Res, InventoryCountSheetMaster>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'WarehouseID') int? warehouseId,
+      @JsonKey(name: 'WarehouseName') String? warehouseName,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'EmployeeName') String? employeeName,
+      @JsonKey(name: 'EmployeeCode') String? employeeCode,
+      @JsonKey(name: 'DateCount') String? dateCount,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') String? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'IsComplete') bool? isComplete});
+}
+
+/// @nodoc
+class _$InventoryCountSheetMasterCopyWithImpl<$Res,
+        $Val extends InventoryCountSheetMaster>
+    implements $InventoryCountSheetMasterCopyWith<$Res> {
+  _$InventoryCountSheetMasterCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? warehouseId = freezed,
+    Object? warehouseName = freezed,
+    Object? employeeId = freezed,
+    Object? employeeName = freezed,
+    Object? employeeCode = freezed,
+    Object? dateCount = freezed,
+    Object? note = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+    Object? isComplete = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      warehouseId: freezed == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      warehouseName: freezed == warehouseName
+          ? _value.warehouseName
+          : warehouseName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeName: freezed == employeeName
+          ? _value.employeeName
+          : employeeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeCode: freezed == employeeCode
+          ? _value.employeeCode
+          : employeeCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateCount: freezed == dateCount
+          ? _value.dateCount
+          : dateCount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isComplete: freezed == isComplete
+          ? _value.isComplete
+          : isComplete // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$InventoryCountSheetMasterImplCopyWith<$Res>
+    implements $InventoryCountSheetMasterCopyWith<$Res> {
+  factory _$$InventoryCountSheetMasterImplCopyWith(
+          _$InventoryCountSheetMasterImpl value,
+          $Res Function(_$InventoryCountSheetMasterImpl) then) =
+      __$$InventoryCountSheetMasterImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'WarehouseID') int? warehouseId,
+      @JsonKey(name: 'WarehouseName') String? warehouseName,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'EmployeeName') String? employeeName,
+      @JsonKey(name: 'EmployeeCode') String? employeeCode,
+      @JsonKey(name: 'DateCount') String? dateCount,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'CreatedDate') String? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') String? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'IsComplete') bool? isComplete});
+}
+
+/// @nodoc
+class __$$InventoryCountSheetMasterImplCopyWithImpl<$Res>
+    extends _$InventoryCountSheetMasterCopyWithImpl<$Res,
+        _$InventoryCountSheetMasterImpl>
+    implements _$$InventoryCountSheetMasterImplCopyWith<$Res> {
+  __$$InventoryCountSheetMasterImplCopyWithImpl(
+      _$InventoryCountSheetMasterImpl _value,
+      $Res Function(_$InventoryCountSheetMasterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? warehouseId = freezed,
+    Object? warehouseName = freezed,
+    Object? employeeId = freezed,
+    Object? employeeName = freezed,
+    Object? employeeCode = freezed,
+    Object? dateCount = freezed,
+    Object? note = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? isDeleted = freezed,
+    Object? isComplete = freezed,
+  }) {
+    return _then(_$InventoryCountSheetMasterImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      warehouseId: freezed == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      warehouseName: freezed == warehouseName
+          ? _value.warehouseName
+          : warehouseName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeName: freezed == employeeName
+          ? _value.employeeName
+          : employeeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeCode: freezed == employeeCode
+          ? _value.employeeCode
+          : employeeCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateCount: freezed == dateCount
+          ? _value.dateCount
+          : dateCount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isComplete: freezed == isComplete
+          ? _value.isComplete
+          : isComplete // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$InventoryCountSheetMasterImpl implements _InventoryCountSheetMaster {
+  const _$InventoryCountSheetMasterImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'Name') this.name,
+      @JsonKey(name: 'WarehouseID') this.warehouseId,
+      @JsonKey(name: 'WarehouseName') this.warehouseName,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'EmployeeName') this.employeeName,
+      @JsonKey(name: 'EmployeeCode') this.employeeCode,
+      @JsonKey(name: 'DateCount') this.dateCount,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'IsComplete') this.isComplete});
+
+  factory _$InventoryCountSheetMasterImpl.fromJson(Map<String, dynamic> json) =>
+      _$$InventoryCountSheetMasterImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'Name')
+  final String? name;
+  @override
+  @JsonKey(name: 'WarehouseID')
+  final int? warehouseId;
+  @override
+  @JsonKey(name: 'WarehouseName')
+  final String? warehouseName;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'EmployeeName')
+  final String? employeeName;
+  @override
+  @JsonKey(name: 'EmployeeCode')
+  final String? employeeCode;
+  @override
+  @JsonKey(name: 'DateCount')
+  final String? dateCount;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final String? createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final String? updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'IsComplete')
+  final bool? isComplete;
+
+  @override
+  String toString() {
+    return 'InventoryCountSheetMaster(id: $id, code: $code, name: $name, warehouseId: $warehouseId, warehouseName: $warehouseName, employeeId: $employeeId, employeeName: $employeeName, employeeCode: $employeeCode, dateCount: $dateCount, note: $note, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, isDeleted: $isDeleted, isComplete: $isComplete)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InventoryCountSheetMasterImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.warehouseId, warehouseId) ||
+                other.warehouseId == warehouseId) &&
+            (identical(other.warehouseName, warehouseName) ||
+                other.warehouseName == warehouseName) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.employeeName, employeeName) ||
+                other.employeeName == employeeName) &&
+            (identical(other.employeeCode, employeeCode) ||
+                other.employeeCode == employeeCode) &&
+            (identical(other.dateCount, dateCount) ||
+                other.dateCount == dateCount) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.isComplete, isComplete) ||
+                other.isComplete == isComplete));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      code,
+      name,
+      warehouseId,
+      warehouseName,
+      employeeId,
+      employeeName,
+      employeeCode,
+      dateCount,
+      note,
+      createdDate,
+      createdBy,
+      updatedDate,
+      updatedBy,
+      isDeleted,
+      isComplete);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InventoryCountSheetMasterImplCopyWith<_$InventoryCountSheetMasterImpl>
+      get copyWith => __$$InventoryCountSheetMasterImplCopyWithImpl<
+          _$InventoryCountSheetMasterImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$InventoryCountSheetMasterImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _InventoryCountSheetMaster implements InventoryCountSheetMaster {
+  const factory _InventoryCountSheetMaster(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'Name') final String? name,
+          @JsonKey(name: 'WarehouseID') final int? warehouseId,
+          @JsonKey(name: 'WarehouseName') final String? warehouseName,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'EmployeeName') final String? employeeName,
+          @JsonKey(name: 'EmployeeCode') final String? employeeCode,
+          @JsonKey(name: 'DateCount') final String? dateCount,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'CreatedDate') final String? createdDate,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'UpdatedDate') final String? updatedDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+          @JsonKey(name: 'IsComplete') final bool? isComplete}) =
+      _$InventoryCountSheetMasterImpl;
+
+  factory _InventoryCountSheetMaster.fromJson(Map<String, dynamic> json) =
+      _$InventoryCountSheetMasterImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'Name')
+  String? get name;
+  @override
+  @JsonKey(name: 'WarehouseID')
+  int? get warehouseId;
+  @override
+  @JsonKey(name: 'WarehouseName')
+  String? get warehouseName;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'EmployeeName')
+  String? get employeeName;
+  @override
+  @JsonKey(name: 'EmployeeCode')
+  String? get employeeCode;
+  @override
+  @JsonKey(name: 'DateCount')
+  String? get dateCount;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  String? get createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  String? get updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'IsComplete')
+  bool? get isComplete;
+  @override
+  @JsonKey(ignore: true)
+  _$$InventoryCountSheetMasterImplCopyWith<_$InventoryCountSheetMasterImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+InventoryProductGroupRtc _$InventoryProductGroupRtcFromJson(
+    Map<String, dynamic> json) {
+  return _InventoryProductGroupRtc.fromJson(json);
+}
+
+/// @nodoc
+mixin _$InventoryProductGroupRtc {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+
+  /// Mã nhóm sản phẩm (vd. `N30`).
+  @JsonKey(name: 'ProductGroupNo')
+  String? get groupNo => throw _privateConstructorUsedError;
+
+  /// Tên nhóm sản phẩm (vd. `CAMERA CARD`).
+  @JsonKey(name: 'ProductGroupName')
+  String? get groupName => throw _privateConstructorUsedError;
+
+  /// Thứ tự hiển thị.
+  @JsonKey(name: 'NumberOrder')
+  int? get numberOrder => throw _privateConstructorUsedError;
+
+  /// Id kho chứa nhóm sản phẩm.
+  @JsonKey(name: 'WarehouseID')
+  int? get warehouseId => throw _privateConstructorUsedError;
+
+  /// Loại kho (1 = kho demo).
+  @JsonKey(name: 'WarehouseType')
+  int? get warehouseType => throw _privateConstructorUsedError;
+
+  /// Nhóm đã bị xoá hay chưa.
+  @JsonKey(name: 'IsDeleted')
+  bool get isDeleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InventoryProductGroupRtcCopyWith<InventoryProductGroupRtc> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InventoryProductGroupRtcCopyWith<$Res> {
+  factory $InventoryProductGroupRtcCopyWith(InventoryProductGroupRtc value,
+          $Res Function(InventoryProductGroupRtc) then) =
+      _$InventoryProductGroupRtcCopyWithImpl<$Res, InventoryProductGroupRtc>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProductGroupNo') String? groupNo,
+      @JsonKey(name: 'ProductGroupName') String? groupName,
+      @JsonKey(name: 'NumberOrder') int? numberOrder,
+      @JsonKey(name: 'WarehouseID') int? warehouseId,
+      @JsonKey(name: 'WarehouseType') int? warehouseType,
+      @JsonKey(name: 'IsDeleted') bool isDeleted});
+}
+
+/// @nodoc
+class _$InventoryProductGroupRtcCopyWithImpl<$Res,
+        $Val extends InventoryProductGroupRtc>
+    implements $InventoryProductGroupRtcCopyWith<$Res> {
+  _$InventoryProductGroupRtcCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? groupNo = freezed,
+    Object? groupName = freezed,
+    Object? numberOrder = freezed,
+    Object? warehouseId = freezed,
+    Object? warehouseType = freezed,
+    Object? isDeleted = null,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      groupNo: freezed == groupNo
+          ? _value.groupNo
+          : groupNo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      groupName: freezed == groupName
+          ? _value.groupName
+          : groupName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      numberOrder: freezed == numberOrder
+          ? _value.numberOrder
+          : numberOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
+      warehouseId: freezed == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      warehouseType: freezed == warehouseType
+          ? _value.warehouseType
+          : warehouseType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: null == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$InventoryProductGroupRtcImplCopyWith<$Res>
+    implements $InventoryProductGroupRtcCopyWith<$Res> {
+  factory _$$InventoryProductGroupRtcImplCopyWith(
+          _$InventoryProductGroupRtcImpl value,
+          $Res Function(_$InventoryProductGroupRtcImpl) then) =
+      __$$InventoryProductGroupRtcImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProductGroupNo') String? groupNo,
+      @JsonKey(name: 'ProductGroupName') String? groupName,
+      @JsonKey(name: 'NumberOrder') int? numberOrder,
+      @JsonKey(name: 'WarehouseID') int? warehouseId,
+      @JsonKey(name: 'WarehouseType') int? warehouseType,
+      @JsonKey(name: 'IsDeleted') bool isDeleted});
+}
+
+/// @nodoc
+class __$$InventoryProductGroupRtcImplCopyWithImpl<$Res>
+    extends _$InventoryProductGroupRtcCopyWithImpl<$Res,
+        _$InventoryProductGroupRtcImpl>
+    implements _$$InventoryProductGroupRtcImplCopyWith<$Res> {
+  __$$InventoryProductGroupRtcImplCopyWithImpl(
+      _$InventoryProductGroupRtcImpl _value,
+      $Res Function(_$InventoryProductGroupRtcImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? groupNo = freezed,
+    Object? groupName = freezed,
+    Object? numberOrder = freezed,
+    Object? warehouseId = freezed,
+    Object? warehouseType = freezed,
+    Object? isDeleted = null,
+  }) {
+    return _then(_$InventoryProductGroupRtcImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      groupNo: freezed == groupNo
+          ? _value.groupNo
+          : groupNo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      groupName: freezed == groupName
+          ? _value.groupName
+          : groupName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      numberOrder: freezed == numberOrder
+          ? _value.numberOrder
+          : numberOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
+      warehouseId: freezed == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      warehouseType: freezed == warehouseType
+          ? _value.warehouseType
+          : warehouseType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: null == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$InventoryProductGroupRtcImpl implements _InventoryProductGroupRtc {
+  const _$InventoryProductGroupRtcImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProductGroupNo') this.groupNo,
+      @JsonKey(name: 'ProductGroupName') this.groupName,
+      @JsonKey(name: 'NumberOrder') this.numberOrder,
+      @JsonKey(name: 'WarehouseID') this.warehouseId,
+      @JsonKey(name: 'WarehouseType') this.warehouseType,
+      @JsonKey(name: 'IsDeleted') this.isDeleted = false});
+
+  factory _$InventoryProductGroupRtcImpl.fromJson(Map<String, dynamic> json) =>
+      _$$InventoryProductGroupRtcImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+
+  /// Mã nhóm sản phẩm (vd. `N30`).
+  @override
+  @JsonKey(name: 'ProductGroupNo')
+  final String? groupNo;
+
+  /// Tên nhóm sản phẩm (vd. `CAMERA CARD`).
+  @override
+  @JsonKey(name: 'ProductGroupName')
+  final String? groupName;
+
+  /// Thứ tự hiển thị.
+  @override
+  @JsonKey(name: 'NumberOrder')
+  final int? numberOrder;
+
+  /// Id kho chứa nhóm sản phẩm.
+  @override
+  @JsonKey(name: 'WarehouseID')
+  final int? warehouseId;
+
+  /// Loại kho (1 = kho demo).
+  @override
+  @JsonKey(name: 'WarehouseType')
+  final int? warehouseType;
+
+  /// Nhóm đã bị xoá hay chưa.
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool isDeleted;
+
+  @override
+  String toString() {
+    return 'InventoryProductGroupRtc(id: $id, groupNo: $groupNo, groupName: $groupName, numberOrder: $numberOrder, warehouseId: $warehouseId, warehouseType: $warehouseType, isDeleted: $isDeleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InventoryProductGroupRtcImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.groupNo, groupNo) || other.groupNo == groupNo) &&
+            (identical(other.groupName, groupName) ||
+                other.groupName == groupName) &&
+            (identical(other.numberOrder, numberOrder) ||
+                other.numberOrder == numberOrder) &&
+            (identical(other.warehouseId, warehouseId) ||
+                other.warehouseId == warehouseId) &&
+            (identical(other.warehouseType, warehouseType) ||
+                other.warehouseType == warehouseType) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, groupNo, groupName,
+      numberOrder, warehouseId, warehouseType, isDeleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InventoryProductGroupRtcImplCopyWith<_$InventoryProductGroupRtcImpl>
+      get copyWith => __$$InventoryProductGroupRtcImplCopyWithImpl<
+          _$InventoryProductGroupRtcImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$InventoryProductGroupRtcImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _InventoryProductGroupRtc implements InventoryProductGroupRtc {
+  const factory _InventoryProductGroupRtc(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'ProductGroupNo') final String? groupNo,
+          @JsonKey(name: 'ProductGroupName') final String? groupName,
+          @JsonKey(name: 'NumberOrder') final int? numberOrder,
+          @JsonKey(name: 'WarehouseID') final int? warehouseId,
+          @JsonKey(name: 'WarehouseType') final int? warehouseType,
+          @JsonKey(name: 'IsDeleted') final bool isDeleted}) =
+      _$InventoryProductGroupRtcImpl;
+
+  factory _InventoryProductGroupRtc.fromJson(Map<String, dynamic> json) =
+      _$InventoryProductGroupRtcImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+
+  /// Mã nhóm sản phẩm (vd. `N30`).
+  @JsonKey(name: 'ProductGroupNo')
+  String? get groupNo;
+  @override
+
+  /// Tên nhóm sản phẩm (vd. `CAMERA CARD`).
+  @JsonKey(name: 'ProductGroupName')
+  String? get groupName;
+  @override
+
+  /// Thứ tự hiển thị.
+  @JsonKey(name: 'NumberOrder')
+  int? get numberOrder;
+  @override
+
+  /// Id kho chứa nhóm sản phẩm.
+  @JsonKey(name: 'WarehouseID')
+  int? get warehouseId;
+  @override
+
+  /// Loại kho (1 = kho demo).
+  @JsonKey(name: 'WarehouseType')
+  int? get warehouseType;
+  @override
+
+  /// Nhóm đã bị xoá hay chưa.
+  @JsonKey(name: 'IsDeleted')
+  bool get isDeleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$InventoryProductGroupRtcImplCopyWith<_$InventoryProductGroupRtcImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+InventoryCountSheetItem _$InventoryCountSheetItemFromJson(
+    Map<String, dynamic> json) {
+  return _InventoryCountSheetItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$InventoryCountSheetItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+
+  /// Id đợt kiểm kê cha.
+  @JsonKey(name: 'WarehouseInventoryCountID')
+  int? get warehouseInventoryCountId => throw _privateConstructorUsedError;
+
+  /// Id sản phẩm (theo hệ thống RTC).
+  @JsonKey(name: 'ProductRTCID')
+  int? get productRtcId => throw _privateConstructorUsedError;
+
+  /// Mã sản phẩm.
+  @JsonKey(name: 'ProductCode')
+  String? get productCode => throw _privateConstructorUsedError;
+
+  /// Tên sản phẩm.
+  @JsonKey(name: 'ProductName')
+  String? get productName => throw _privateConstructorUsedError;
+
+  /// Mã nội bộ sản phẩm.
+  @JsonKey(name: 'ProductCodeRTC')
+  String? get productCodeRtc => throw _privateConstructorUsedError;
+
+  /// Nhà sản xuất.
+  @JsonKey(name: 'Maker')
+  String? get maker => throw _privateConstructorUsedError;
+
+  /// Đơn vị tính.
+  @JsonKey(name: 'UnitName')
+  String? get unitName => throw _privateConstructorUsedError;
+
+  /// Địa chỉ kho (ô lưu trữ).
+  @JsonKey(name: 'AddressBox')
+  String? get addressBox => throw _privateConstructorUsedError;
+
+  /// Vị trí lưu kho.
+  @JsonKey(name: 'LocationName')
+  String? get locationName => throw _privateConstructorUsedError;
+
+  /// Số serial.
+  @JsonKey(name: 'SerialNumber')
+  String? get serialNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Serial')
+  String? get serial => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PartNumber')
+  String? get partNumber => throw _privateConstructorUsedError;
+
+  /// Id nhóm sản phẩm.
+  @JsonKey(name: 'ProductGroupRTCID')
+  int? get productGroupRtcId => throw _privateConstructorUsedError;
+
+  /// Tên nhóm sản phẩm.
+  @JsonKey(name: 'ProductGroupName')
+  String? get productGroupName => throw _privateConstructorUsedError;
+
+  /// Vị trí kho Modula.
+  @JsonKey(name: 'ModulaLocationName')
+  String? get modulaLocationName => throw _privateConstructorUsedError;
+
+  /// Số lượng tồn trong kho.
+  @JsonKey(name: 'NumberInStore')
+  int get numberInStore => throw _privateConstructorUsedError;
+
+  /// Tồn kho thực tế (hệ thống).
+  @JsonKey(name: 'InventoryReal')
+  int get inventoryReal => throw _privateConstructorUsedError;
+
+  /// Số lượng nhập.
+  @JsonKey(name: 'NumberImport')
+  double get numberImport => throw _privateConstructorUsedError;
+
+  /// Số lượng xuất.
+  @JsonKey(name: 'NumberExport')
+  double get numberExport => throw _privateConstructorUsedError;
+
+  /// Số lượng đang mượn.
+  @JsonKey(name: 'NumberBorrowing')
+  int get numberBorrowing => throw _privateConstructorUsedError;
+
+  /// Số lượng xuất mượn.
+  @JsonKey(name: 'QuantityExportMuon')
+  int get quantityExportMuon => throw _privateConstructorUsedError;
+
+  /// Số lượng thực tế kiểm kê (null = chưa kiểm kê).
+  @JsonKey(name: 'QuantityActual')
+  double? get quantityActual => throw _privateConstructorUsedError;
+
+  /// Chênh lệch giữa thực tế và tồn kho (null = chưa kiểm kê).
+  @JsonKey(name: 'Difference')
+  double? get difference => throw _privateConstructorUsedError;
+
+  /// Ghi chú của dòng kiểm kê.
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+
+  /// Đã kiểm kê dòng này hay chưa.
+  @JsonKey(name: 'HasCounted')
+  bool get hasCounted => throw _privateConstructorUsedError;
+
+  /// Số lượng đang mượn (chi tiết).
+  @JsonKey(name: 'BorrowedQuantity')
+  double? get borrowedQuantity => throw _privateConstructorUsedError;
+
+  /// Số lượng khách hàng đang mượn.
+  @JsonKey(name: 'CustomerBorrowedQuantity')
+  double? get customerBorrowedQuantity => throw _privateConstructorUsedError;
+
+  /// Tồn kho tổng.
+  @JsonKey(name: 'InventoryQuantity')
+  double? get inventoryQuantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  String? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InventoryCountSheetItemCopyWith<InventoryCountSheetItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InventoryCountSheetItemCopyWith<$Res> {
+  factory $InventoryCountSheetItemCopyWith(InventoryCountSheetItem value,
+          $Res Function(InventoryCountSheetItem) then) =
+      _$InventoryCountSheetItemCopyWithImpl<$Res, InventoryCountSheetItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'WarehouseInventoryCountID')
+      int? warehouseInventoryCountId,
+      @JsonKey(name: 'ProductRTCID') int? productRtcId,
+      @JsonKey(name: 'ProductCode') String? productCode,
+      @JsonKey(name: 'ProductName') String? productName,
+      @JsonKey(name: 'ProductCodeRTC') String? productCodeRtc,
+      @JsonKey(name: 'Maker') String? maker,
+      @JsonKey(name: 'UnitName') String? unitName,
+      @JsonKey(name: 'AddressBox') String? addressBox,
+      @JsonKey(name: 'LocationName') String? locationName,
+      @JsonKey(name: 'SerialNumber') String? serialNumber,
+      @JsonKey(name: 'Serial') String? serial,
+      @JsonKey(name: 'PartNumber') String? partNumber,
+      @JsonKey(name: 'ProductGroupRTCID') int? productGroupRtcId,
+      @JsonKey(name: 'ProductGroupName') String? productGroupName,
+      @JsonKey(name: 'ModulaLocationName') String? modulaLocationName,
+      @JsonKey(name: 'NumberInStore') int numberInStore,
+      @JsonKey(name: 'InventoryReal') int inventoryReal,
+      @JsonKey(name: 'NumberImport') double numberImport,
+      @JsonKey(name: 'NumberExport') double numberExport,
+      @JsonKey(name: 'NumberBorrowing') int numberBorrowing,
+      @JsonKey(name: 'QuantityExportMuon') int quantityExportMuon,
+      @JsonKey(name: 'QuantityActual') double? quantityActual,
+      @JsonKey(name: 'Difference') double? difference,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'HasCounted') bool hasCounted,
+      @JsonKey(name: 'BorrowedQuantity') double? borrowedQuantity,
+      @JsonKey(name: 'CustomerBorrowedQuantity')
+      double? customerBorrowedQuantity,
+      @JsonKey(name: 'InventoryQuantity') double? inventoryQuantity,
+      @JsonKey(name: 'UpdatedDate') String? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy});
+}
+
+/// @nodoc
+class _$InventoryCountSheetItemCopyWithImpl<$Res,
+        $Val extends InventoryCountSheetItem>
+    implements $InventoryCountSheetItemCopyWith<$Res> {
+  _$InventoryCountSheetItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? warehouseInventoryCountId = freezed,
+    Object? productRtcId = freezed,
+    Object? productCode = freezed,
+    Object? productName = freezed,
+    Object? productCodeRtc = freezed,
+    Object? maker = freezed,
+    Object? unitName = freezed,
+    Object? addressBox = freezed,
+    Object? locationName = freezed,
+    Object? serialNumber = freezed,
+    Object? serial = freezed,
+    Object? partNumber = freezed,
+    Object? productGroupRtcId = freezed,
+    Object? productGroupName = freezed,
+    Object? modulaLocationName = freezed,
+    Object? numberInStore = null,
+    Object? inventoryReal = null,
+    Object? numberImport = null,
+    Object? numberExport = null,
+    Object? numberBorrowing = null,
+    Object? quantityExportMuon = null,
+    Object? quantityActual = freezed,
+    Object? difference = freezed,
+    Object? note = freezed,
+    Object? hasCounted = null,
+    Object? borrowedQuantity = freezed,
+    Object? customerBorrowedQuantity = freezed,
+    Object? inventoryQuantity = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      warehouseInventoryCountId: freezed == warehouseInventoryCountId
+          ? _value.warehouseInventoryCountId
+          : warehouseInventoryCountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productRtcId: freezed == productRtcId
+          ? _value.productRtcId
+          : productRtcId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productCode: freezed == productCode
+          ? _value.productCode
+          : productCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productName: freezed == productName
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productCodeRtc: freezed == productCodeRtc
+          ? _value.productCodeRtc
+          : productCodeRtc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      maker: freezed == maker
+          ? _value.maker
+          : maker // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitName: freezed == unitName
+          ? _value.unitName
+          : unitName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressBox: freezed == addressBox
+          ? _value.addressBox
+          : addressBox // ignore: cast_nullable_to_non_nullable
+              as String?,
+      locationName: freezed == locationName
+          ? _value.locationName
+          : locationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serialNumber: freezed == serialNumber
+          ? _value.serialNumber
+          : serialNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serial: freezed == serial
+          ? _value.serial
+          : serial // ignore: cast_nullable_to_non_nullable
+              as String?,
+      partNumber: freezed == partNumber
+          ? _value.partNumber
+          : partNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productGroupRtcId: freezed == productGroupRtcId
+          ? _value.productGroupRtcId
+          : productGroupRtcId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productGroupName: freezed == productGroupName
+          ? _value.productGroupName
+          : productGroupName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      modulaLocationName: freezed == modulaLocationName
+          ? _value.modulaLocationName
+          : modulaLocationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      numberInStore: null == numberInStore
+          ? _value.numberInStore
+          : numberInStore // ignore: cast_nullable_to_non_nullable
+              as int,
+      inventoryReal: null == inventoryReal
+          ? _value.inventoryReal
+          : inventoryReal // ignore: cast_nullable_to_non_nullable
+              as int,
+      numberImport: null == numberImport
+          ? _value.numberImport
+          : numberImport // ignore: cast_nullable_to_non_nullable
+              as double,
+      numberExport: null == numberExport
+          ? _value.numberExport
+          : numberExport // ignore: cast_nullable_to_non_nullable
+              as double,
+      numberBorrowing: null == numberBorrowing
+          ? _value.numberBorrowing
+          : numberBorrowing // ignore: cast_nullable_to_non_nullable
+              as int,
+      quantityExportMuon: null == quantityExportMuon
+          ? _value.quantityExportMuon
+          : quantityExportMuon // ignore: cast_nullable_to_non_nullable
+              as int,
+      quantityActual: freezed == quantityActual
+          ? _value.quantityActual
+          : quantityActual // ignore: cast_nullable_to_non_nullable
+              as double?,
+      difference: freezed == difference
+          ? _value.difference
+          : difference // ignore: cast_nullable_to_non_nullable
+              as double?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hasCounted: null == hasCounted
+          ? _value.hasCounted
+          : hasCounted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      borrowedQuantity: freezed == borrowedQuantity
+          ? _value.borrowedQuantity
+          : borrowedQuantity // ignore: cast_nullable_to_non_nullable
+              as double?,
+      customerBorrowedQuantity: freezed == customerBorrowedQuantity
+          ? _value.customerBorrowedQuantity
+          : customerBorrowedQuantity // ignore: cast_nullable_to_non_nullable
+              as double?,
+      inventoryQuantity: freezed == inventoryQuantity
+          ? _value.inventoryQuantity
+          : inventoryQuantity // ignore: cast_nullable_to_non_nullable
+              as double?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$InventoryCountSheetItemImplCopyWith<$Res>
+    implements $InventoryCountSheetItemCopyWith<$Res> {
+  factory _$$InventoryCountSheetItemImplCopyWith(
+          _$InventoryCountSheetItemImpl value,
+          $Res Function(_$InventoryCountSheetItemImpl) then) =
+      __$$InventoryCountSheetItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'WarehouseInventoryCountID')
+      int? warehouseInventoryCountId,
+      @JsonKey(name: 'ProductRTCID') int? productRtcId,
+      @JsonKey(name: 'ProductCode') String? productCode,
+      @JsonKey(name: 'ProductName') String? productName,
+      @JsonKey(name: 'ProductCodeRTC') String? productCodeRtc,
+      @JsonKey(name: 'Maker') String? maker,
+      @JsonKey(name: 'UnitName') String? unitName,
+      @JsonKey(name: 'AddressBox') String? addressBox,
+      @JsonKey(name: 'LocationName') String? locationName,
+      @JsonKey(name: 'SerialNumber') String? serialNumber,
+      @JsonKey(name: 'Serial') String? serial,
+      @JsonKey(name: 'PartNumber') String? partNumber,
+      @JsonKey(name: 'ProductGroupRTCID') int? productGroupRtcId,
+      @JsonKey(name: 'ProductGroupName') String? productGroupName,
+      @JsonKey(name: 'ModulaLocationName') String? modulaLocationName,
+      @JsonKey(name: 'NumberInStore') int numberInStore,
+      @JsonKey(name: 'InventoryReal') int inventoryReal,
+      @JsonKey(name: 'NumberImport') double numberImport,
+      @JsonKey(name: 'NumberExport') double numberExport,
+      @JsonKey(name: 'NumberBorrowing') int numberBorrowing,
+      @JsonKey(name: 'QuantityExportMuon') int quantityExportMuon,
+      @JsonKey(name: 'QuantityActual') double? quantityActual,
+      @JsonKey(name: 'Difference') double? difference,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'HasCounted') bool hasCounted,
+      @JsonKey(name: 'BorrowedQuantity') double? borrowedQuantity,
+      @JsonKey(name: 'CustomerBorrowedQuantity')
+      double? customerBorrowedQuantity,
+      @JsonKey(name: 'InventoryQuantity') double? inventoryQuantity,
+      @JsonKey(name: 'UpdatedDate') String? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy});
+}
+
+/// @nodoc
+class __$$InventoryCountSheetItemImplCopyWithImpl<$Res>
+    extends _$InventoryCountSheetItemCopyWithImpl<$Res,
+        _$InventoryCountSheetItemImpl>
+    implements _$$InventoryCountSheetItemImplCopyWith<$Res> {
+  __$$InventoryCountSheetItemImplCopyWithImpl(
+      _$InventoryCountSheetItemImpl _value,
+      $Res Function(_$InventoryCountSheetItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? warehouseInventoryCountId = freezed,
+    Object? productRtcId = freezed,
+    Object? productCode = freezed,
+    Object? productName = freezed,
+    Object? productCodeRtc = freezed,
+    Object? maker = freezed,
+    Object? unitName = freezed,
+    Object? addressBox = freezed,
+    Object? locationName = freezed,
+    Object? serialNumber = freezed,
+    Object? serial = freezed,
+    Object? partNumber = freezed,
+    Object? productGroupRtcId = freezed,
+    Object? productGroupName = freezed,
+    Object? modulaLocationName = freezed,
+    Object? numberInStore = null,
+    Object? inventoryReal = null,
+    Object? numberImport = null,
+    Object? numberExport = null,
+    Object? numberBorrowing = null,
+    Object? quantityExportMuon = null,
+    Object? quantityActual = freezed,
+    Object? difference = freezed,
+    Object? note = freezed,
+    Object? hasCounted = null,
+    Object? borrowedQuantity = freezed,
+    Object? customerBorrowedQuantity = freezed,
+    Object? inventoryQuantity = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+  }) {
+    return _then(_$InventoryCountSheetItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      warehouseInventoryCountId: freezed == warehouseInventoryCountId
+          ? _value.warehouseInventoryCountId
+          : warehouseInventoryCountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productRtcId: freezed == productRtcId
+          ? _value.productRtcId
+          : productRtcId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productCode: freezed == productCode
+          ? _value.productCode
+          : productCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productName: freezed == productName
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productCodeRtc: freezed == productCodeRtc
+          ? _value.productCodeRtc
+          : productCodeRtc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      maker: freezed == maker
+          ? _value.maker
+          : maker // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitName: freezed == unitName
+          ? _value.unitName
+          : unitName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressBox: freezed == addressBox
+          ? _value.addressBox
+          : addressBox // ignore: cast_nullable_to_non_nullable
+              as String?,
+      locationName: freezed == locationName
+          ? _value.locationName
+          : locationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serialNumber: freezed == serialNumber
+          ? _value.serialNumber
+          : serialNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serial: freezed == serial
+          ? _value.serial
+          : serial // ignore: cast_nullable_to_non_nullable
+              as String?,
+      partNumber: freezed == partNumber
+          ? _value.partNumber
+          : partNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productGroupRtcId: freezed == productGroupRtcId
+          ? _value.productGroupRtcId
+          : productGroupRtcId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productGroupName: freezed == productGroupName
+          ? _value.productGroupName
+          : productGroupName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      modulaLocationName: freezed == modulaLocationName
+          ? _value.modulaLocationName
+          : modulaLocationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      numberInStore: null == numberInStore
+          ? _value.numberInStore
+          : numberInStore // ignore: cast_nullable_to_non_nullable
+              as int,
+      inventoryReal: null == inventoryReal
+          ? _value.inventoryReal
+          : inventoryReal // ignore: cast_nullable_to_non_nullable
+              as int,
+      numberImport: null == numberImport
+          ? _value.numberImport
+          : numberImport // ignore: cast_nullable_to_non_nullable
+              as double,
+      numberExport: null == numberExport
+          ? _value.numberExport
+          : numberExport // ignore: cast_nullable_to_non_nullable
+              as double,
+      numberBorrowing: null == numberBorrowing
+          ? _value.numberBorrowing
+          : numberBorrowing // ignore: cast_nullable_to_non_nullable
+              as int,
+      quantityExportMuon: null == quantityExportMuon
+          ? _value.quantityExportMuon
+          : quantityExportMuon // ignore: cast_nullable_to_non_nullable
+              as int,
+      quantityActual: freezed == quantityActual
+          ? _value.quantityActual
+          : quantityActual // ignore: cast_nullable_to_non_nullable
+              as double?,
+      difference: freezed == difference
+          ? _value.difference
+          : difference // ignore: cast_nullable_to_non_nullable
+              as double?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hasCounted: null == hasCounted
+          ? _value.hasCounted
+          : hasCounted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      borrowedQuantity: freezed == borrowedQuantity
+          ? _value.borrowedQuantity
+          : borrowedQuantity // ignore: cast_nullable_to_non_nullable
+              as double?,
+      customerBorrowedQuantity: freezed == customerBorrowedQuantity
+          ? _value.customerBorrowedQuantity
+          : customerBorrowedQuantity // ignore: cast_nullable_to_non_nullable
+              as double?,
+      inventoryQuantity: freezed == inventoryQuantity
+          ? _value.inventoryQuantity
+          : inventoryQuantity // ignore: cast_nullable_to_non_nullable
+              as double?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$InventoryCountSheetItemImpl implements _InventoryCountSheetItem {
+  const _$InventoryCountSheetItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'WarehouseInventoryCountID')
+      this.warehouseInventoryCountId,
+      @JsonKey(name: 'ProductRTCID') this.productRtcId,
+      @JsonKey(name: 'ProductCode') this.productCode,
+      @JsonKey(name: 'ProductName') this.productName,
+      @JsonKey(name: 'ProductCodeRTC') this.productCodeRtc,
+      @JsonKey(name: 'Maker') this.maker,
+      @JsonKey(name: 'UnitName') this.unitName,
+      @JsonKey(name: 'AddressBox') this.addressBox,
+      @JsonKey(name: 'LocationName') this.locationName,
+      @JsonKey(name: 'SerialNumber') this.serialNumber,
+      @JsonKey(name: 'Serial') this.serial,
+      @JsonKey(name: 'PartNumber') this.partNumber,
+      @JsonKey(name: 'ProductGroupRTCID') this.productGroupRtcId,
+      @JsonKey(name: 'ProductGroupName') this.productGroupName,
+      @JsonKey(name: 'ModulaLocationName') this.modulaLocationName,
+      @JsonKey(name: 'NumberInStore') this.numberInStore = 0,
+      @JsonKey(name: 'InventoryReal') this.inventoryReal = 0,
+      @JsonKey(name: 'NumberImport') this.numberImport = 0,
+      @JsonKey(name: 'NumberExport') this.numberExport = 0,
+      @JsonKey(name: 'NumberBorrowing') this.numberBorrowing = 0,
+      @JsonKey(name: 'QuantityExportMuon') this.quantityExportMuon = 0,
+      @JsonKey(name: 'QuantityActual') this.quantityActual,
+      @JsonKey(name: 'Difference') this.difference,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'HasCounted') this.hasCounted = false,
+      @JsonKey(name: 'BorrowedQuantity') this.borrowedQuantity,
+      @JsonKey(name: 'CustomerBorrowedQuantity') this.customerBorrowedQuantity,
+      @JsonKey(name: 'InventoryQuantity') this.inventoryQuantity,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy});
+
+  factory _$InventoryCountSheetItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$InventoryCountSheetItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+
+  /// Id đợt kiểm kê cha.
+  @override
+  @JsonKey(name: 'WarehouseInventoryCountID')
+  final int? warehouseInventoryCountId;
+
+  /// Id sản phẩm (theo hệ thống RTC).
+  @override
+  @JsonKey(name: 'ProductRTCID')
+  final int? productRtcId;
+
+  /// Mã sản phẩm.
+  @override
+  @JsonKey(name: 'ProductCode')
+  final String? productCode;
+
+  /// Tên sản phẩm.
+  @override
+  @JsonKey(name: 'ProductName')
+  final String? productName;
+
+  /// Mã nội bộ sản phẩm.
+  @override
+  @JsonKey(name: 'ProductCodeRTC')
+  final String? productCodeRtc;
+
+  /// Nhà sản xuất.
+  @override
+  @JsonKey(name: 'Maker')
+  final String? maker;
+
+  /// Đơn vị tính.
+  @override
+  @JsonKey(name: 'UnitName')
+  final String? unitName;
+
+  /// Địa chỉ kho (ô lưu trữ).
+  @override
+  @JsonKey(name: 'AddressBox')
+  final String? addressBox;
+
+  /// Vị trí lưu kho.
+  @override
+  @JsonKey(name: 'LocationName')
+  final String? locationName;
+
+  /// Số serial.
+  @override
+  @JsonKey(name: 'SerialNumber')
+  final String? serialNumber;
+  @override
+  @JsonKey(name: 'Serial')
+  final String? serial;
+  @override
+  @JsonKey(name: 'PartNumber')
+  final String? partNumber;
+
+  /// Id nhóm sản phẩm.
+  @override
+  @JsonKey(name: 'ProductGroupRTCID')
+  final int? productGroupRtcId;
+
+  /// Tên nhóm sản phẩm.
+  @override
+  @JsonKey(name: 'ProductGroupName')
+  final String? productGroupName;
+
+  /// Vị trí kho Modula.
+  @override
+  @JsonKey(name: 'ModulaLocationName')
+  final String? modulaLocationName;
+
+  /// Số lượng tồn trong kho.
+  @override
+  @JsonKey(name: 'NumberInStore')
+  final int numberInStore;
+
+  /// Tồn kho thực tế (hệ thống).
+  @override
+  @JsonKey(name: 'InventoryReal')
+  final int inventoryReal;
+
+  /// Số lượng nhập.
+  @override
+  @JsonKey(name: 'NumberImport')
+  final double numberImport;
+
+  /// Số lượng xuất.
+  @override
+  @JsonKey(name: 'NumberExport')
+  final double numberExport;
+
+  /// Số lượng đang mượn.
+  @override
+  @JsonKey(name: 'NumberBorrowing')
+  final int numberBorrowing;
+
+  /// Số lượng xuất mượn.
+  @override
+  @JsonKey(name: 'QuantityExportMuon')
+  final int quantityExportMuon;
+
+  /// Số lượng thực tế kiểm kê (null = chưa kiểm kê).
+  @override
+  @JsonKey(name: 'QuantityActual')
+  final double? quantityActual;
+
+  /// Chênh lệch giữa thực tế và tồn kho (null = chưa kiểm kê).
+  @override
+  @JsonKey(name: 'Difference')
+  final double? difference;
+
+  /// Ghi chú của dòng kiểm kê.
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+
+  /// Đã kiểm kê dòng này hay chưa.
+  @override
+  @JsonKey(name: 'HasCounted')
+  final bool hasCounted;
+
+  /// Số lượng đang mượn (chi tiết).
+  @override
+  @JsonKey(name: 'BorrowedQuantity')
+  final double? borrowedQuantity;
+
+  /// Số lượng khách hàng đang mượn.
+  @override
+  @JsonKey(name: 'CustomerBorrowedQuantity')
+  final double? customerBorrowedQuantity;
+
+  /// Tồn kho tổng.
+  @override
+  @JsonKey(name: 'InventoryQuantity')
+  final double? inventoryQuantity;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final String? updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+
+  @override
+  String toString() {
+    return 'InventoryCountSheetItem(id: $id, warehouseInventoryCountId: $warehouseInventoryCountId, productRtcId: $productRtcId, productCode: $productCode, productName: $productName, productCodeRtc: $productCodeRtc, maker: $maker, unitName: $unitName, addressBox: $addressBox, locationName: $locationName, serialNumber: $serialNumber, serial: $serial, partNumber: $partNumber, productGroupRtcId: $productGroupRtcId, productGroupName: $productGroupName, modulaLocationName: $modulaLocationName, numberInStore: $numberInStore, inventoryReal: $inventoryReal, numberImport: $numberImport, numberExport: $numberExport, numberBorrowing: $numberBorrowing, quantityExportMuon: $quantityExportMuon, quantityActual: $quantityActual, difference: $difference, note: $note, hasCounted: $hasCounted, borrowedQuantity: $borrowedQuantity, customerBorrowedQuantity: $customerBorrowedQuantity, inventoryQuantity: $inventoryQuantity, updatedDate: $updatedDate, updatedBy: $updatedBy)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InventoryCountSheetItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.warehouseInventoryCountId,
+                    warehouseInventoryCountId) ||
+                other.warehouseInventoryCountId == warehouseInventoryCountId) &&
+            (identical(other.productRtcId, productRtcId) ||
+                other.productRtcId == productRtcId) &&
+            (identical(other.productCode, productCode) ||
+                other.productCode == productCode) &&
+            (identical(other.productName, productName) ||
+                other.productName == productName) &&
+            (identical(other.productCodeRtc, productCodeRtc) ||
+                other.productCodeRtc == productCodeRtc) &&
+            (identical(other.maker, maker) || other.maker == maker) &&
+            (identical(other.unitName, unitName) ||
+                other.unitName == unitName) &&
+            (identical(other.addressBox, addressBox) ||
+                other.addressBox == addressBox) &&
+            (identical(other.locationName, locationName) ||
+                other.locationName == locationName) &&
+            (identical(other.serialNumber, serialNumber) ||
+                other.serialNumber == serialNumber) &&
+            (identical(other.serial, serial) || other.serial == serial) &&
+            (identical(other.partNumber, partNumber) ||
+                other.partNumber == partNumber) &&
+            (identical(other.productGroupRtcId, productGroupRtcId) ||
+                other.productGroupRtcId == productGroupRtcId) &&
+            (identical(other.productGroupName, productGroupName) ||
+                other.productGroupName == productGroupName) &&
+            (identical(other.modulaLocationName, modulaLocationName) ||
+                other.modulaLocationName == modulaLocationName) &&
+            (identical(other.numberInStore, numberInStore) ||
+                other.numberInStore == numberInStore) &&
+            (identical(other.inventoryReal, inventoryReal) ||
+                other.inventoryReal == inventoryReal) &&
+            (identical(other.numberImport, numberImport) ||
+                other.numberImport == numberImport) &&
+            (identical(other.numberExport, numberExport) ||
+                other.numberExport == numberExport) &&
+            (identical(other.numberBorrowing, numberBorrowing) ||
+                other.numberBorrowing == numberBorrowing) &&
+            (identical(other.quantityExportMuon, quantityExportMuon) ||
+                other.quantityExportMuon == quantityExportMuon) &&
+            (identical(other.quantityActual, quantityActual) ||
+                other.quantityActual == quantityActual) &&
+            (identical(other.difference, difference) ||
+                other.difference == difference) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.hasCounted, hasCounted) ||
+                other.hasCounted == hasCounted) &&
+            (identical(other.borrowedQuantity, borrowedQuantity) ||
+                other.borrowedQuantity == borrowedQuantity) &&
+            (identical(
+                    other.customerBorrowedQuantity, customerBorrowedQuantity) ||
+                other.customerBorrowedQuantity == customerBorrowedQuantity) &&
+            (identical(other.inventoryQuantity, inventoryQuantity) ||
+                other.inventoryQuantity == inventoryQuantity) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        warehouseInventoryCountId,
+        productRtcId,
+        productCode,
+        productName,
+        productCodeRtc,
+        maker,
+        unitName,
+        addressBox,
+        locationName,
+        serialNumber,
+        serial,
+        partNumber,
+        productGroupRtcId,
+        productGroupName,
+        modulaLocationName,
+        numberInStore,
+        inventoryReal,
+        numberImport,
+        numberExport,
+        numberBorrowing,
+        quantityExportMuon,
+        quantityActual,
+        difference,
+        note,
+        hasCounted,
+        borrowedQuantity,
+        customerBorrowedQuantity,
+        inventoryQuantity,
+        updatedDate,
+        updatedBy
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InventoryCountSheetItemImplCopyWith<_$InventoryCountSheetItemImpl>
+      get copyWith => __$$InventoryCountSheetItemImplCopyWithImpl<
+          _$InventoryCountSheetItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$InventoryCountSheetItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _InventoryCountSheetItem implements InventoryCountSheetItem {
+  const factory _InventoryCountSheetItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'WarehouseInventoryCountID')
+          final int? warehouseInventoryCountId,
+          @JsonKey(name: 'ProductRTCID') final int? productRtcId,
+          @JsonKey(name: 'ProductCode') final String? productCode,
+          @JsonKey(name: 'ProductName') final String? productName,
+          @JsonKey(name: 'ProductCodeRTC') final String? productCodeRtc,
+          @JsonKey(name: 'Maker') final String? maker,
+          @JsonKey(name: 'UnitName') final String? unitName,
+          @JsonKey(name: 'AddressBox') final String? addressBox,
+          @JsonKey(name: 'LocationName') final String? locationName,
+          @JsonKey(name: 'SerialNumber') final String? serialNumber,
+          @JsonKey(name: 'Serial') final String? serial,
+          @JsonKey(name: 'PartNumber') final String? partNumber,
+          @JsonKey(name: 'ProductGroupRTCID') final int? productGroupRtcId,
+          @JsonKey(name: 'ProductGroupName') final String? productGroupName,
+          @JsonKey(name: 'ModulaLocationName') final String? modulaLocationName,
+          @JsonKey(name: 'NumberInStore') final int numberInStore,
+          @JsonKey(name: 'InventoryReal') final int inventoryReal,
+          @JsonKey(name: 'NumberImport') final double numberImport,
+          @JsonKey(name: 'NumberExport') final double numberExport,
+          @JsonKey(name: 'NumberBorrowing') final int numberBorrowing,
+          @JsonKey(name: 'QuantityExportMuon') final int quantityExportMuon,
+          @JsonKey(name: 'QuantityActual') final double? quantityActual,
+          @JsonKey(name: 'Difference') final double? difference,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'HasCounted') final bool hasCounted,
+          @JsonKey(name: 'BorrowedQuantity') final double? borrowedQuantity,
+          @JsonKey(name: 'CustomerBorrowedQuantity')
+          final double? customerBorrowedQuantity,
+          @JsonKey(name: 'InventoryQuantity') final double? inventoryQuantity,
+          @JsonKey(name: 'UpdatedDate') final String? updatedDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy}) =
+      _$InventoryCountSheetItemImpl;
+
+  factory _InventoryCountSheetItem.fromJson(Map<String, dynamic> json) =
+      _$InventoryCountSheetItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+
+  /// Id đợt kiểm kê cha.
+  @JsonKey(name: 'WarehouseInventoryCountID')
+  int? get warehouseInventoryCountId;
+  @override
+
+  /// Id sản phẩm (theo hệ thống RTC).
+  @JsonKey(name: 'ProductRTCID')
+  int? get productRtcId;
+  @override
+
+  /// Mã sản phẩm.
+  @JsonKey(name: 'ProductCode')
+  String? get productCode;
+  @override
+
+  /// Tên sản phẩm.
+  @JsonKey(name: 'ProductName')
+  String? get productName;
+  @override
+
+  /// Mã nội bộ sản phẩm.
+  @JsonKey(name: 'ProductCodeRTC')
+  String? get productCodeRtc;
+  @override
+
+  /// Nhà sản xuất.
+  @JsonKey(name: 'Maker')
+  String? get maker;
+  @override
+
+  /// Đơn vị tính.
+  @JsonKey(name: 'UnitName')
+  String? get unitName;
+  @override
+
+  /// Địa chỉ kho (ô lưu trữ).
+  @JsonKey(name: 'AddressBox')
+  String? get addressBox;
+  @override
+
+  /// Vị trí lưu kho.
+  @JsonKey(name: 'LocationName')
+  String? get locationName;
+  @override
+
+  /// Số serial.
+  @JsonKey(name: 'SerialNumber')
+  String? get serialNumber;
+  @override
+  @JsonKey(name: 'Serial')
+  String? get serial;
+  @override
+  @JsonKey(name: 'PartNumber')
+  String? get partNumber;
+  @override
+
+  /// Id nhóm sản phẩm.
+  @JsonKey(name: 'ProductGroupRTCID')
+  int? get productGroupRtcId;
+  @override
+
+  /// Tên nhóm sản phẩm.
+  @JsonKey(name: 'ProductGroupName')
+  String? get productGroupName;
+  @override
+
+  /// Vị trí kho Modula.
+  @JsonKey(name: 'ModulaLocationName')
+  String? get modulaLocationName;
+  @override
+
+  /// Số lượng tồn trong kho.
+  @JsonKey(name: 'NumberInStore')
+  int get numberInStore;
+  @override
+
+  /// Tồn kho thực tế (hệ thống).
+  @JsonKey(name: 'InventoryReal')
+  int get inventoryReal;
+  @override
+
+  /// Số lượng nhập.
+  @JsonKey(name: 'NumberImport')
+  double get numberImport;
+  @override
+
+  /// Số lượng xuất.
+  @JsonKey(name: 'NumberExport')
+  double get numberExport;
+  @override
+
+  /// Số lượng đang mượn.
+  @JsonKey(name: 'NumberBorrowing')
+  int get numberBorrowing;
+  @override
+
+  /// Số lượng xuất mượn.
+  @JsonKey(name: 'QuantityExportMuon')
+  int get quantityExportMuon;
+  @override
+
+  /// Số lượng thực tế kiểm kê (null = chưa kiểm kê).
+  @JsonKey(name: 'QuantityActual')
+  double? get quantityActual;
+  @override
+
+  /// Chênh lệch giữa thực tế và tồn kho (null = chưa kiểm kê).
+  @JsonKey(name: 'Difference')
+  double? get difference;
+  @override
+
+  /// Ghi chú của dòng kiểm kê.
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+
+  /// Đã kiểm kê dòng này hay chưa.
+  @JsonKey(name: 'HasCounted')
+  bool get hasCounted;
+  @override
+
+  /// Số lượng đang mượn (chi tiết).
+  @JsonKey(name: 'BorrowedQuantity')
+  double? get borrowedQuantity;
+  @override
+
+  /// Số lượng khách hàng đang mượn.
+  @JsonKey(name: 'CustomerBorrowedQuantity')
+  double? get customerBorrowedQuantity;
+  @override
+
+  /// Tồn kho tổng.
+  @JsonKey(name: 'InventoryQuantity')
+  double? get inventoryQuantity;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  String? get updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(ignore: true)
+  _$$InventoryCountSheetItemImplCopyWith<_$InventoryCountSheetItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

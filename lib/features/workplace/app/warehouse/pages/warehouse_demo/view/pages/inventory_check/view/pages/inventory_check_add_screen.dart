@@ -74,10 +74,7 @@ class _InventoryCheckAddScreenState
   }
 
   @override
-  bool listenWhen(
-    InventoryCheckState previous,
-    InventoryCheckState current,
-  ) {
+  bool listenWhen(InventoryCheckState previous, InventoryCheckState current) {
     return previous.generatedCode != current.generatedCode ||
         previous.saveSuccess != current.saveSuccess ||
         previous.message != current.message;

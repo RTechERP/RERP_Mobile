@@ -10,15 +10,11 @@ import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/vi
 /// Bố cục: mã đợt + tên đợt → chip trạng thái → kho → người kiểm kê → ngày
 /// kiểm kê → số sản phẩm → ghi chú.
 class InventoryCheckCard extends StatelessWidget {
-  const InventoryCheckCard({
-    super.key,
-    required this.item,
-    this.onTap,
-  });
+  const InventoryCheckCard({super.key, required this.item, this.onTap});
 
   final InventoryCountItem item;
 
-  /// Bấm vào card → mở màn chỉnh sửa đợt kiểm kê.
+  /// Bấm vào card → mở menu thao tác của đợt kiểm kê.
   final VoidCallback? onTap;
 
   /// Màu nhận diện: xanh khi đã hoàn thành, cam khi đang kiểm kê.

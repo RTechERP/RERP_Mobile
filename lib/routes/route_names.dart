@@ -318,6 +318,8 @@ class RouteNames {
       '/warehouse_demo_inventory_check/add';
   static const warehouseDemoInventoryCheckEdit =
       '/warehouse_demo_inventory_check/edit';
+  static const warehouseDemoInventoryCheckSheet =
+      '/warehouse_demo_inventory_check/sheet';
 
   // Summary Work
   static const summaryWorkLeaving = '/summary-work/leaving';

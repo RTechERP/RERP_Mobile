@@ -216,6 +216,7 @@ import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/ware
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/pages/inventory_check_add_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/pages/inventory_check_edit_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/pages/inventory_check_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/pages/inventory_check_sheet_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/view/pages/history_import_export_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/pages/sale_gdn_detail_screen.dart';
@@ -1937,6 +1938,19 @@ class AppRouter {
             );
           }
           return InventoryCheckEditScreen(id: extra);
+        },
+      ),
+
+      GoRoute(
+        path: RouteNames.warehouseDemoInventoryCheckSheet,
+        builder: (context, state) {
+          final extra = state.extra;
+          if (extra is! int) {
+            return const Scaffold(
+              body: Center(child: Text('Thiếu id đợt kiểm kê')),
+            );
+          }
+          return InventoryCheckSheetScreen(countId: extra);
         },
       ),
 

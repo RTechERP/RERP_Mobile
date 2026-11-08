@@ -29,6 +29,12 @@ mixin _$InventoryCheckEvent {
     required TResult Function(InventoryCountSavePayload payload) save,
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,6 +49,12 @@ mixin _$InventoryCheckEvent {
     TResult? Function(InventoryCountSavePayload payload)? save,
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +69,11 @@ mixin _$InventoryCheckEvent {
     TResult Function(InventoryCountSavePayload payload)? save,
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -73,6 +90,13 @@ mixin _$InventoryCheckEvent {
     required TResult Function(_Save value) save,
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +111,11 @@ mixin _$InventoryCheckEvent {
     TResult? Function(_Save value)? save,
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -101,6 +130,11 @@ mixin _$InventoryCheckEvent {
     TResult Function(_Save value)? save,
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -173,6 +207,12 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(InventoryCountSavePayload payload) save,
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
   }) {
     return fetch();
   }
@@ -190,6 +230,12 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(InventoryCountSavePayload payload)? save,
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
   }) {
     return fetch?.call();
   }
@@ -207,6 +253,11 @@ class _$FetchImpl implements _Fetch {
     TResult Function(InventoryCountSavePayload payload)? save,
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -229,6 +280,13 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(_Save value) save,
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
   }) {
     return fetch(this);
   }
@@ -246,6 +304,11 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(_Save value)? save,
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
   }) {
     return fetch?.call(this);
   }
@@ -263,6 +326,11 @@ class _$FetchImpl implements _Fetch {
     TResult Function(_Save value)? save,
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -325,6 +393,12 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(InventoryCountSavePayload payload) save,
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
   }) {
     return fetchEmployees();
   }
@@ -342,6 +416,12 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(InventoryCountSavePayload payload)? save,
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
   }) {
     return fetchEmployees?.call();
   }
@@ -359,6 +439,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(InventoryCountSavePayload payload)? save,
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -381,6 +466,13 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(_Save value) save,
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
   }) {
     return fetchEmployees(this);
   }
@@ -398,6 +490,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(_Save value)? save,
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
   }) {
     return fetchEmployees?.call(this);
   }
@@ -415,6 +512,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(_Save value)? save,
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -503,6 +605,12 @@ class _$SearchImpl implements _Search {
     required TResult Function(InventoryCountSavePayload payload) save,
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
   }) {
     return search(keyword);
   }
@@ -520,6 +628,12 @@ class _$SearchImpl implements _Search {
     TResult? Function(InventoryCountSavePayload payload)? save,
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
   }) {
     return search?.call(keyword);
   }
@@ -537,6 +651,11 @@ class _$SearchImpl implements _Search {
     TResult Function(InventoryCountSavePayload payload)? save,
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -559,6 +678,13 @@ class _$SearchImpl implements _Search {
     required TResult Function(_Save value) save,
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
   }) {
     return search(this);
   }
@@ -576,6 +702,11 @@ class _$SearchImpl implements _Search {
     TResult? Function(_Save value)? save,
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
   }) {
     return search?.call(this);
   }
@@ -593,6 +724,11 @@ class _$SearchImpl implements _Search {
     TResult Function(_Save value)? save,
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -688,6 +824,12 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     required TResult Function(InventoryCountSavePayload payload) save,
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
   }) {
     return selectEmployee(employeeId);
   }
@@ -705,6 +847,12 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult? Function(InventoryCountSavePayload payload)? save,
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
   }) {
     return selectEmployee?.call(employeeId);
   }
@@ -722,6 +870,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult Function(InventoryCountSavePayload payload)? save,
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (selectEmployee != null) {
@@ -744,6 +897,13 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     required TResult Function(_Save value) save,
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
   }) {
     return selectEmployee(this);
   }
@@ -761,6 +921,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult? Function(_Save value)? save,
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
   }) {
     return selectEmployee?.call(this);
   }
@@ -778,6 +943,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult Function(_Save value)? save,
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (selectEmployee != null) {
@@ -874,6 +1044,12 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     required TResult Function(InventoryCountSavePayload payload) save,
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
   }) {
     return changeWarehouseFilter(warehouseId);
   }
@@ -891,6 +1067,12 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult? Function(InventoryCountSavePayload payload)? save,
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
   }) {
     return changeWarehouseFilter?.call(warehouseId);
   }
@@ -908,6 +1090,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult Function(InventoryCountSavePayload payload)? save,
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (changeWarehouseFilter != null) {
@@ -930,6 +1117,13 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     required TResult Function(_Save value) save,
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
   }) {
     return changeWarehouseFilter(this);
   }
@@ -947,6 +1141,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult? Function(_Save value)? save,
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
   }) {
     return changeWarehouseFilter?.call(this);
   }
@@ -964,6 +1163,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult Function(_Save value)? save,
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (changeWarehouseFilter != null) {
@@ -1068,6 +1272,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(InventoryCountSavePayload payload) save,
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -1085,6 +1295,12 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(InventoryCountSavePayload payload)? save,
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -1102,6 +1318,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(InventoryCountSavePayload payload)? save,
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1124,6 +1345,13 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_Save value) save,
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
   }) {
     return changeDateRange(this);
   }
@@ -1141,6 +1369,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_Save value)? save,
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
   }) {
     return changeDateRange?.call(this);
   }
@@ -1158,6 +1391,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_Save value)? save,
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1254,6 +1492,12 @@ class _$GenerateCodeImpl implements _GenerateCode {
     required TResult Function(InventoryCountSavePayload payload) save,
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
   }) {
     return generateCode(date);
   }
@@ -1271,6 +1515,12 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult? Function(InventoryCountSavePayload payload)? save,
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
   }) {
     return generateCode?.call(date);
   }
@@ -1288,6 +1538,11 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult Function(InventoryCountSavePayload payload)? save,
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (generateCode != null) {
@@ -1310,6 +1565,13 @@ class _$GenerateCodeImpl implements _GenerateCode {
     required TResult Function(_Save value) save,
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
   }) {
     return generateCode(this);
   }
@@ -1327,6 +1589,11 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult? Function(_Save value)? save,
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
   }) {
     return generateCode?.call(this);
   }
@@ -1344,6 +1611,11 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult Function(_Save value)? save,
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (generateCode != null) {
@@ -1446,6 +1718,12 @@ class _$SaveImpl implements _Save {
     required TResult Function(InventoryCountSavePayload payload) save,
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
   }) {
     return save(payload);
   }
@@ -1463,6 +1741,12 @@ class _$SaveImpl implements _Save {
     TResult? Function(InventoryCountSavePayload payload)? save,
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
   }) {
     return save?.call(payload);
   }
@@ -1480,6 +1764,11 @@ class _$SaveImpl implements _Save {
     TResult Function(InventoryCountSavePayload payload)? save,
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (save != null) {
@@ -1502,6 +1791,13 @@ class _$SaveImpl implements _Save {
     required TResult Function(_Save value) save,
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
   }) {
     return save(this);
   }
@@ -1519,6 +1815,11 @@ class _$SaveImpl implements _Save {
     TResult? Function(_Save value)? save,
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
   }) {
     return save?.call(this);
   }
@@ -1536,6 +1837,11 @@ class _$SaveImpl implements _Save {
     TResult Function(_Save value)? save,
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (save != null) {
@@ -1629,6 +1935,12 @@ class _$GetByIdImpl implements _GetById {
     required TResult Function(InventoryCountSavePayload payload) save,
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
   }) {
     return getById(id);
   }
@@ -1646,6 +1958,12 @@ class _$GetByIdImpl implements _GetById {
     TResult? Function(InventoryCountSavePayload payload)? save,
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
   }) {
     return getById?.call(id);
   }
@@ -1663,6 +1981,11 @@ class _$GetByIdImpl implements _GetById {
     TResult Function(InventoryCountSavePayload payload)? save,
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (getById != null) {
@@ -1685,6 +2008,13 @@ class _$GetByIdImpl implements _GetById {
     required TResult Function(_Save value) save,
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
   }) {
     return getById(this);
   }
@@ -1702,6 +2032,11 @@ class _$GetByIdImpl implements _GetById {
     TResult? Function(_Save value)? save,
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
   }) {
     return getById?.call(this);
   }
@@ -1719,6 +2054,11 @@ class _$GetByIdImpl implements _GetById {
     TResult Function(_Save value)? save,
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (getById != null) {
@@ -1812,6 +2152,12 @@ class _$DeleteImpl implements _Delete {
     required TResult Function(InventoryCountSavePayload payload) save,
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
   }) {
     return delete(id);
   }
@@ -1829,6 +2175,12 @@ class _$DeleteImpl implements _Delete {
     TResult? Function(InventoryCountSavePayload payload)? save,
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
   }) {
     return delete?.call(id);
   }
@@ -1846,6 +2198,11 @@ class _$DeleteImpl implements _Delete {
     TResult Function(InventoryCountSavePayload payload)? save,
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -1868,6 +2225,13 @@ class _$DeleteImpl implements _Delete {
     required TResult Function(_Save value) save,
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
   }) {
     return delete(this);
   }
@@ -1885,6 +2249,11 @@ class _$DeleteImpl implements _Delete {
     TResult? Function(_Save value)? save,
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
   }) {
     return delete?.call(this);
   }
@@ -1902,6 +2271,11 @@ class _$DeleteImpl implements _Delete {
     TResult Function(_Save value)? save,
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -1918,4 +2292,1111 @@ abstract class _Delete implements InventoryCheckEvent {
   @JsonKey(ignore: true)
   _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchSheetImplCopyWith<$Res> {
+  factory _$$FetchSheetImplCopyWith(
+          _$FetchSheetImpl value, $Res Function(_$FetchSheetImpl) then) =
+      __$$FetchSheetImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int countId});
+}
+
+/// @nodoc
+class __$$FetchSheetImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$FetchSheetImpl>
+    implements _$$FetchSheetImplCopyWith<$Res> {
+  __$$FetchSheetImplCopyWithImpl(
+      _$FetchSheetImpl _value, $Res Function(_$FetchSheetImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? countId = null,
+  }) {
+    return _then(_$FetchSheetImpl(
+      null == countId
+          ? _value.countId
+          : countId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchSheetImpl implements _FetchSheet {
+  const _$FetchSheetImpl(this.countId);
+
+  @override
+  final int countId;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.fetchSheet(countId: $countId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchSheetImpl &&
+            (identical(other.countId, countId) || other.countId == countId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, countId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchSheetImplCopyWith<_$FetchSheetImpl> get copyWith =>
+      __$$FetchSheetImplCopyWithImpl<_$FetchSheetImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+  }) {
+    return fetchSheet(countId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+  }) {
+    return fetchSheet?.call(countId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    required TResult orElse(),
+  }) {
+    if (fetchSheet != null) {
+      return fetchSheet(countId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+  }) {
+    return fetchSheet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+  }) {
+    return fetchSheet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    required TResult orElse(),
+  }) {
+    if (fetchSheet != null) {
+      return fetchSheet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchSheet implements InventoryCheckEvent {
+  const factory _FetchSheet(final int countId) = _$FetchSheetImpl;
+
+  int get countId;
+  @JsonKey(ignore: true)
+  _$$FetchSheetImplCopyWith<_$FetchSheetImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SearchSheetImplCopyWith<$Res> {
+  factory _$$SearchSheetImplCopyWith(
+          _$SearchSheetImpl value, $Res Function(_$SearchSheetImpl) then) =
+      __$$SearchSheetImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String keyword});
+}
+
+/// @nodoc
+class __$$SearchSheetImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$SearchSheetImpl>
+    implements _$$SearchSheetImplCopyWith<$Res> {
+  __$$SearchSheetImplCopyWithImpl(
+      _$SearchSheetImpl _value, $Res Function(_$SearchSheetImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? keyword = null,
+  }) {
+    return _then(_$SearchSheetImpl(
+      null == keyword
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchSheetImpl implements _SearchSheet {
+  const _$SearchSheetImpl(this.keyword);
+
+  @override
+  final String keyword;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.searchSheet(keyword: $keyword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchSheetImpl &&
+            (identical(other.keyword, keyword) || other.keyword == keyword));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, keyword);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchSheetImplCopyWith<_$SearchSheetImpl> get copyWith =>
+      __$$SearchSheetImplCopyWithImpl<_$SearchSheetImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+  }) {
+    return searchSheet(keyword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+  }) {
+    return searchSheet?.call(keyword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    required TResult orElse(),
+  }) {
+    if (searchSheet != null) {
+      return searchSheet(keyword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+  }) {
+    return searchSheet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+  }) {
+    return searchSheet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    required TResult orElse(),
+  }) {
+    if (searchSheet != null) {
+      return searchSheet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchSheet implements InventoryCheckEvent {
+  const factory _SearchSheet(final String keyword) = _$SearchSheetImpl;
+
+  String get keyword;
+  @JsonKey(ignore: true)
+  _$$SearchSheetImplCopyWith<_$SearchSheetImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FilterSheetImplCopyWith<$Res> {
+  factory _$$FilterSheetImplCopyWith(
+          _$FilterSheetImpl value, $Res Function(_$FilterSheetImpl) then) =
+      __$$FilterSheetImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({InventoryCheckSheetFilter? filter});
+}
+
+/// @nodoc
+class __$$FilterSheetImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$FilterSheetImpl>
+    implements _$$FilterSheetImplCopyWith<$Res> {
+  __$$FilterSheetImplCopyWithImpl(
+      _$FilterSheetImpl _value, $Res Function(_$FilterSheetImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = freezed,
+  }) {
+    return _then(_$FilterSheetImpl(
+      freezed == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as InventoryCheckSheetFilter?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FilterSheetImpl implements _FilterSheet {
+  const _$FilterSheetImpl(this.filter);
+
+  @override
+  final InventoryCheckSheetFilter? filter;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.filterSheet(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FilterSheetImpl &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FilterSheetImplCopyWith<_$FilterSheetImpl> get copyWith =>
+      __$$FilterSheetImplCopyWithImpl<_$FilterSheetImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+  }) {
+    return filterSheet(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+  }) {
+    return filterSheet?.call(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    required TResult orElse(),
+  }) {
+    if (filterSheet != null) {
+      return filterSheet(filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+  }) {
+    return filterSheet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+  }) {
+    return filterSheet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    required TResult orElse(),
+  }) {
+    if (filterSheet != null) {
+      return filterSheet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FilterSheet implements InventoryCheckEvent {
+  const factory _FilterSheet(final InventoryCheckSheetFilter? filter) =
+      _$FilterSheetImpl;
+
+  InventoryCheckSheetFilter? get filter;
+  @JsonKey(ignore: true)
+  _$$FilterSheetImplCopyWith<_$FilterSheetImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchProductGroupsRtcImplCopyWith<$Res> {
+  factory _$$FetchProductGroupsRtcImplCopyWith(
+          _$FetchProductGroupsRtcImpl value,
+          $Res Function(_$FetchProductGroupsRtcImpl) then) =
+      __$$FetchProductGroupsRtcImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int warehouseId, int warehouseType});
+}
+
+/// @nodoc
+class __$$FetchProductGroupsRtcImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$FetchProductGroupsRtcImpl>
+    implements _$$FetchProductGroupsRtcImplCopyWith<$Res> {
+  __$$FetchProductGroupsRtcImplCopyWithImpl(_$FetchProductGroupsRtcImpl _value,
+      $Res Function(_$FetchProductGroupsRtcImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? warehouseId = null,
+    Object? warehouseType = null,
+  }) {
+    return _then(_$FetchProductGroupsRtcImpl(
+      warehouseId: null == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as int,
+      warehouseType: null == warehouseType
+          ? _value.warehouseType
+          : warehouseType // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
+  const _$FetchProductGroupsRtcImpl(
+      {required this.warehouseId, required this.warehouseType});
+
+  @override
+  final int warehouseId;
+  @override
+  final int warehouseType;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.fetchProductGroupsRtc(warehouseId: $warehouseId, warehouseType: $warehouseType)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchProductGroupsRtcImpl &&
+            (identical(other.warehouseId, warehouseId) ||
+                other.warehouseId == warehouseId) &&
+            (identical(other.warehouseType, warehouseType) ||
+                other.warehouseType == warehouseType));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, warehouseId, warehouseType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchProductGroupsRtcImplCopyWith<_$FetchProductGroupsRtcImpl>
+      get copyWith => __$$FetchProductGroupsRtcImplCopyWithImpl<
+          _$FetchProductGroupsRtcImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+  }) {
+    return fetchProductGroupsRtc(warehouseId, warehouseType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+  }) {
+    return fetchProductGroupsRtc?.call(warehouseId, warehouseType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    required TResult orElse(),
+  }) {
+    if (fetchProductGroupsRtc != null) {
+      return fetchProductGroupsRtc(warehouseId, warehouseType);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+  }) {
+    return fetchProductGroupsRtc(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+  }) {
+    return fetchProductGroupsRtc?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    required TResult orElse(),
+  }) {
+    if (fetchProductGroupsRtc != null) {
+      return fetchProductGroupsRtc(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchProductGroupsRtc implements InventoryCheckEvent {
+  const factory _FetchProductGroupsRtc(
+      {required final int warehouseId,
+      required final int warehouseType}) = _$FetchProductGroupsRtcImpl;
+
+  int get warehouseId;
+  int get warehouseType;
+  @JsonKey(ignore: true)
+  _$$FetchProductGroupsRtcImplCopyWith<_$FetchProductGroupsRtcImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FilterSheetProductGroupImplCopyWith<$Res> {
+  factory _$$FilterSheetProductGroupImplCopyWith(
+          _$FilterSheetProductGroupImpl value,
+          $Res Function(_$FilterSheetProductGroupImpl) then) =
+      __$$FilterSheetProductGroupImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? groupId});
+}
+
+/// @nodoc
+class __$$FilterSheetProductGroupImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res,
+        _$FilterSheetProductGroupImpl>
+    implements _$$FilterSheetProductGroupImplCopyWith<$Res> {
+  __$$FilterSheetProductGroupImplCopyWithImpl(
+      _$FilterSheetProductGroupImpl _value,
+      $Res Function(_$FilterSheetProductGroupImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? groupId = freezed,
+  }) {
+    return _then(_$FilterSheetProductGroupImpl(
+      freezed == groupId
+          ? _value.groupId
+          : groupId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
+  const _$FilterSheetProductGroupImpl(this.groupId);
+
+  @override
+  final int? groupId;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.filterSheetProductGroup(groupId: $groupId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FilterSheetProductGroupImpl &&
+            (identical(other.groupId, groupId) || other.groupId == groupId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, groupId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FilterSheetProductGroupImplCopyWith<_$FilterSheetProductGroupImpl>
+      get copyWith => __$$FilterSheetProductGroupImplCopyWithImpl<
+          _$FilterSheetProductGroupImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+  }) {
+    return filterSheetProductGroup(groupId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+  }) {
+    return filterSheetProductGroup?.call(groupId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    required TResult orElse(),
+  }) {
+    if (filterSheetProductGroup != null) {
+      return filterSheetProductGroup(groupId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+  }) {
+    return filterSheetProductGroup(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+  }) {
+    return filterSheetProductGroup?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    required TResult orElse(),
+  }) {
+    if (filterSheetProductGroup != null) {
+      return filterSheetProductGroup(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FilterSheetProductGroup implements InventoryCheckEvent {
+  const factory _FilterSheetProductGroup(final int? groupId) =
+      _$FilterSheetProductGroupImpl;
+
+  int? get groupId;
+  @JsonKey(ignore: true)
+  _$$FilterSheetProductGroupImplCopyWith<_$FilterSheetProductGroupImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -90,10 +90,7 @@ class _InventoryCheckEditScreenState
   }
 
   @override
-  bool listenWhen(
-    InventoryCheckState previous,
-    InventoryCheckState current,
-  ) {
+  bool listenWhen(InventoryCheckState previous, InventoryCheckState current) {
     return previous.detail != current.detail ||
         previous.employees != current.employees ||
         previous.saveSuccess != current.saveSuccess ||
@@ -201,10 +198,7 @@ class _InventoryCheckEditScreenState
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 8,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 child: BlocBuilder<InventoryCheckBloc, InventoryCheckState>(
                   bloc: bloc,
                   buildWhen: (prev, curr) => prev.isSaving != curr.isSaving,

@@ -30,4 +30,16 @@ abstract class InventoryCheckRepo {
 
   /// Xoá một đợt kiểm kê theo [id] (kèm toàn bộ chi tiết liên quan).
   Future<Either<BaseError, bool>> deleteInventoryCount({required int id});
+
+  /// Lấy phiếu kiểm kê theo [countId] kèm danh sách sản phẩm đã kiểm kê.
+  Future<Either<BaseError, InventoryCountSheet>> getInventoryCountSheet({
+    required int countId,
+  });
+
+  /// Lấy nhóm sản phẩm RTC trong kho để bổ sung sản phẩm vào phiếu kiểm kê.
+  Future<Either<BaseError, List<InventoryProductGroupRtc>>>
+  getProductGroupRtcNew({
+    required int warehouseId,
+    required int warehouseType,
+  });
 }

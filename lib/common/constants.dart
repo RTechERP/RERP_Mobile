@@ -550,6 +550,16 @@ class ApiEndPoint {
   /// API: POST /WarehouseInventoryCount/delete?id=X
   static const String deleteInventoryCount = '/WarehouseInventoryCount/delete';
 
+  /// Kiểm kê kho — phiếu kiểm kê kèm danh sách sản phẩm đã kiểm kê.
+  /// API: GET /WarehouseInventoryCount/get-inventory-sheet?countId=X
+  static const String getInventoryCountSheet =
+      '/WarehouseInventoryCount/get-inventory-sheet';
+
+  /// Nhóm sản phẩm RTC trong kho — dùng để bổ sung sản phẩm vào phiếu kiểm kê.
+  /// API: GET /ProductRTC/product-group-rtc-new?warehouseId=1&isDeleted=false&isVisible=false&warehouseType=1
+  static const String getProductGroupRtcNew =
+      '/ProductRTC/product-group-rtc-new';
+
   // Material Category
   static const String getMaterialCategories = '/MaterialCategory/get-material-categories';
 

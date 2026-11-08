@@ -45,6 +45,24 @@ abstract class _$InventoryCheckStateCWProxy {
 
   InventoryCheckState deleteError(String? deleteError);
 
+  InventoryCheckState sheet(InventoryCountSheet? sheet);
+
+  InventoryCheckState isLoadingSheet(bool isLoadingSheet);
+
+  InventoryCheckState sheetKeyword(String sheetKeyword);
+
+  InventoryCheckState sheetFilter(InventoryCheckSheetFilter? sheetFilter);
+
+  InventoryCheckState productGroupsRtc(
+      List<InventoryProductGroupRtc> productGroupsRtc);
+
+  InventoryCheckState isLoadingProductGroupsRtc(bool isLoadingProductGroupsRtc);
+
+  InventoryCheckState productGroupsRtcWarehouseId(
+      int? productGroupsRtcWarehouseId);
+
+  InventoryCheckState sheetProductGroupId(int? sheetProductGroupId);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `InventoryCheckState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -71,6 +89,14 @@ abstract class _$InventoryCheckStateCWProxy {
     bool? isDeleting,
     bool? deleteSuccess,
     String? deleteError,
+    InventoryCountSheet? sheet,
+    bool? isLoadingSheet,
+    String? sheetKeyword,
+    InventoryCheckSheetFilter? sheetFilter,
+    List<InventoryProductGroupRtc>? productGroupsRtc,
+    bool? isLoadingProductGroupsRtc,
+    int? productGroupsRtcWarehouseId,
+    int? sheetProductGroupId,
   });
 }
 
@@ -153,6 +179,40 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
       this(deleteError: deleteError);
 
   @override
+  InventoryCheckState sheet(InventoryCountSheet? sheet) => this(sheet: sheet);
+
+  @override
+  InventoryCheckState isLoadingSheet(bool isLoadingSheet) =>
+      this(isLoadingSheet: isLoadingSheet);
+
+  @override
+  InventoryCheckState sheetKeyword(String sheetKeyword) =>
+      this(sheetKeyword: sheetKeyword);
+
+  @override
+  InventoryCheckState sheetFilter(InventoryCheckSheetFilter? sheetFilter) =>
+      this(sheetFilter: sheetFilter);
+
+  @override
+  InventoryCheckState productGroupsRtc(
+          List<InventoryProductGroupRtc> productGroupsRtc) =>
+      this(productGroupsRtc: productGroupsRtc);
+
+  @override
+  InventoryCheckState isLoadingProductGroupsRtc(
+          bool isLoadingProductGroupsRtc) =>
+      this(isLoadingProductGroupsRtc: isLoadingProductGroupsRtc);
+
+  @override
+  InventoryCheckState productGroupsRtcWarehouseId(
+          int? productGroupsRtcWarehouseId) =>
+      this(productGroupsRtcWarehouseId: productGroupsRtcWarehouseId);
+
+  @override
+  InventoryCheckState sheetProductGroupId(int? sheetProductGroupId) =>
+      this(sheetProductGroupId: sheetProductGroupId);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `InventoryCheckState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -180,6 +240,14 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
     Object? isDeleting = const $CopyWithPlaceholder(),
     Object? deleteSuccess = const $CopyWithPlaceholder(),
     Object? deleteError = const $CopyWithPlaceholder(),
+    Object? sheet = const $CopyWithPlaceholder(),
+    Object? isLoadingSheet = const $CopyWithPlaceholder(),
+    Object? sheetKeyword = const $CopyWithPlaceholder(),
+    Object? sheetFilter = const $CopyWithPlaceholder(),
+    Object? productGroupsRtc = const $CopyWithPlaceholder(),
+    Object? isLoadingProductGroupsRtc = const $CopyWithPlaceholder(),
+    Object? productGroupsRtcWarehouseId = const $CopyWithPlaceholder(),
+    Object? sheetProductGroupId = const $CopyWithPlaceholder(),
   }) {
     return InventoryCheckState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -264,6 +332,44 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
           ? _value.deleteError
           // ignore: cast_nullable_to_non_nullable
           : deleteError as String?,
+      sheet: sheet == const $CopyWithPlaceholder()
+          ? _value.sheet
+          // ignore: cast_nullable_to_non_nullable
+          : sheet as InventoryCountSheet?,
+      isLoadingSheet: isLoadingSheet == const $CopyWithPlaceholder() ||
+              isLoadingSheet == null
+          ? _value.isLoadingSheet
+          // ignore: cast_nullable_to_non_nullable
+          : isLoadingSheet as bool,
+      sheetKeyword:
+          sheetKeyword == const $CopyWithPlaceholder() || sheetKeyword == null
+              ? _value.sheetKeyword
+              // ignore: cast_nullable_to_non_nullable
+              : sheetKeyword as String,
+      sheetFilter: sheetFilter == const $CopyWithPlaceholder()
+          ? _value.sheetFilter
+          // ignore: cast_nullable_to_non_nullable
+          : sheetFilter as InventoryCheckSheetFilter?,
+      productGroupsRtc: productGroupsRtc == const $CopyWithPlaceholder() ||
+              productGroupsRtc == null
+          ? _value.productGroupsRtc
+          // ignore: cast_nullable_to_non_nullable
+          : productGroupsRtc as List<InventoryProductGroupRtc>,
+      isLoadingProductGroupsRtc:
+          isLoadingProductGroupsRtc == const $CopyWithPlaceholder() ||
+                  isLoadingProductGroupsRtc == null
+              ? _value.isLoadingProductGroupsRtc
+              // ignore: cast_nullable_to_non_nullable
+              : isLoadingProductGroupsRtc as bool,
+      productGroupsRtcWarehouseId:
+          productGroupsRtcWarehouseId == const $CopyWithPlaceholder()
+              ? _value.productGroupsRtcWarehouseId
+              // ignore: cast_nullable_to_non_nullable
+              : productGroupsRtcWarehouseId as int?,
+      sheetProductGroupId: sheetProductGroupId == const $CopyWithPlaceholder()
+          ? _value.sheetProductGroupId
+          // ignore: cast_nullable_to_non_nullable
+          : sheetProductGroupId as int?,
     );
   }
 }

@@ -37,4 +37,29 @@ class InventoryCheckEvent with _$InventoryCheckEvent {
 
   /// Xoá một đợt kiểm kê (kèm toàn bộ chi tiết kiểm kê liên quan).
   const factory InventoryCheckEvent.delete(int id) = _Delete;
+
+  /// Lấy phiếu kiểm kê kèm danh sách sản phẩm đã kiểm kê.
+  const factory InventoryCheckEvent.fetchSheet(int countId) = _FetchSheet;
+
+  /// Tìm kiếm trong danh sách sản phẩm của phiếu (lọc cục bộ).
+  const factory InventoryCheckEvent.searchSheet(String keyword) = _SearchSheet;
+
+  /// Đổi bộ lọc sắp xếp danh sách sản phẩm của phiếu (lọc cục bộ).
+  ///
+  /// `null` = không lọc (hiển thị tất cả).
+  const factory InventoryCheckEvent.filterSheet(
+    InventoryCheckSheetFilter? filter,
+  ) = _FilterSheet;
+
+  /// Tải nhóm sản phẩm RTC để bổ sung sản phẩm vào phiếu kiểm kê.
+  const factory InventoryCheckEvent.fetchProductGroupsRtc({
+    required int warehouseId,
+    required int warehouseType,
+  }) = _FetchProductGroupsRtc;
+
+  /// Lọc danh sách sản phẩm của phiếu theo nhóm sản phẩm (hãng).
+  ///
+  /// `null` = không lọc theo nhóm sản phẩm.
+  const factory InventoryCheckEvent.filterSheetProductGroup(int? groupId) =
+      _FilterSheetProductGroup;
 }

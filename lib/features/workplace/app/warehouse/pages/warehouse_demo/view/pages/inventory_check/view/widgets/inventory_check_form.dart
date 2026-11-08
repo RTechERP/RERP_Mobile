@@ -164,9 +164,8 @@ class InventoryCheckForm extends StatelessWidget {
                   isRequired: true,
                   // Validate theo nhân viên đã chọn (id) thay vì theo text,
                   // vì khi sửa phiếu cũ tên NV có thể chưa kịp tải về.
-                  validator: (_) => employeeId == null
-                      ? 'Vui lòng chọn người kiểm kê'
-                      : null,
+                  validator: (_) =>
+                      employeeId == null ? 'Vui lòng chọn người kiểm kê' : null,
                 ),
               ),
             ),

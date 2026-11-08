@@ -85,10 +85,45 @@ class InventoryCheckRepoImpl implements InventoryCheckRepo {
   }
 
   @override
-  Future<Either<BaseError, bool>> deleteInventoryCount({required int id}) async {
+  Future<Either<BaseError, bool>> deleteInventoryCount({
+    required int id,
+  }) async {
     try {
       final res = await _service.deleteInventoryCount(id: id);
       return right(res.data ?? false);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, InventoryCountSheet>> getInventoryCountSheet({
+    required int countId,
+  }) async {
+    try {
+      final res = await _service.getInventoryCountSheet(countId: countId);
+      return right(res.data ?? const InventoryCountSheet());
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<InventoryProductGroupRtc>>>
+  getProductGroupRtcNew({
+    required int warehouseId,
+    required int warehouseType,
+  }) async {
+    try {
+      final res = await _service.getProductGroupRtcNew(
+        warehouseId: warehouseId,
+        warehouseType: warehouseType,
+      );
+      return right(res.data ?? const <InventoryProductGroupRtc>[]);
     } on DioException catch (e) {
       return left(e.baseError);
     } catch (e) {
