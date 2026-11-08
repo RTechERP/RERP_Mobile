@@ -19,6 +19,8 @@ import 'overtime_add_constants.dart';
 ///   ot_slip_${slipKey}_type_text    → String (hiển thị tên loại)
 ///   ot_slip_${slipKey}_project_id   → String (ẩn, lưu int)
 ///   ot_slip_${slipKey}_project_text → String (hiển thị tên dự án)
+///   ot_slip_${slipKey}_project_item_id   → String (ẩn, lưu int)
+///   ot_slip_${slipKey}_project_item_text → String (hiển thị hạng mục)
 ///   ot_slip_${slipKey}_location_id  → int (lưu trực tiếp vào FormChoiceGroup)
 ///   ot_slip_${slipKey}_reason       → String
 class OvertimeSlipFormFields extends StatelessWidget {
@@ -28,6 +30,7 @@ class OvertimeSlipFormFields extends StatelessWidget {
     required this.dateRegister,
     required this.onTypeTap,
     required this.onProjectTap,
+    required this.onProjectItemTap,
     this.computedHours,
     this.readOnly = false,
     this.initialTimeStart,
@@ -37,18 +40,25 @@ class OvertimeSlipFormFields extends StatelessWidget {
     this.initialLocationId,
     this.initialProjectId,
     this.initialProjectLabel,
+    this.initialProjectItemId,
+    this.initialProjectItemLabel,
     this.initialReason,
     this.initialOvernight = false,
     this.onTimeStartChanged,
     this.onEndTimeChanged,
     this.onOvernightChanged,
     this.isProjectRequired = true,
+    this.isProjectItemRequired = true,
+    this.hasProjectSelected = false,
   });
 
   final String slipKey;
   final DateTime dateRegister;
   final void Function(String slipKey) onTypeTap;
   final void Function(String slipKey) onProjectTap;
+
+  /// Mở sheet chọn hạng mục công việc — chỉ mở được khi đã chọn dự án.
+  final void Function(String slipKey) onProjectItemTap;
 
   /// Số giờ tính toán từ màn hình cha (EndTime - TimeStart).
   final double? computedHours;
@@ -61,6 +71,8 @@ class OvertimeSlipFormFields extends StatelessWidget {
   final int? initialLocationId;
   final int? initialProjectId;
   final String? initialProjectLabel;
+  final int? initialProjectItemId;
+  final String? initialProjectItemLabel;
   final String? initialReason;
   final bool initialOvernight;
 
@@ -75,6 +87,12 @@ class OvertimeSlipFormFields extends StatelessWidget {
 
   /// Whether project field is required (based on department).
   final bool isProjectRequired;
+
+  /// Whether project item (hạng mục công việc) field is required.
+  final bool isProjectItemRequired;
+
+  /// Đã chọn dự án hay chưa — quyết định có cho mở sheet hạng mục.
+  final bool hasProjectSelected;
 
   /// Format double: bỏ ".0" nếu chẵn, hiện 1 chữ số thập phân nếu lẻ.
   static String _fmtDouble(double h) {
@@ -99,6 +117,11 @@ class OvertimeSlipFormFields extends StatelessWidget {
             ? '—'
             : '${_fmtDouble(computedHours!)} giờ'
         : '—';
+
+    // Hạng mục công việc bắt buộc theo phòng ban (đã loại trừ quyền N80).
+    // Dấu `*` hiển thị theo phòng ban, còn lỗi chỉ báo khi đã chọn dự án vì
+    // hạng mục được lấy theo dự án — khớp ValidateHelper.validateOvertimeAddSubmit.
+    final projectItemRequired = isProjectItemRequired && hasProjectSelected;
 
     return KeyedSubtree(
       key: ValueKey<String>(slipKey),
@@ -130,6 +153,34 @@ class OvertimeSlipFormFields extends StatelessWidget {
               return null;
             },
           ),
+          const SizedBox(height: 12),
+
+          // ── Hạng mục công việc ──────────────────────────────────────
+          FormBuilderField<String>(
+            name: 'ot_slip_${slipKey}_project_item_id',
+            initialValue:
+                initialProjectItemId != null ? initialProjectItemId.toString() : '',
+            builder: (_) => const SizedBox.shrink(),
+          ),
+          FormInputField(
+            readOnly: true,
+            nameForm: 'ot_slip_${slipKey}_project_item_text',
+            nameTextField: 'ot_slip_${slipKey}_project_item_text_tf',
+            label: 'Hạng mục công việc',
+            icon: Icons.category_outlined,
+            initialValue: initialProjectItemLabel ?? '',
+
+            isRequired: isProjectItemRequired,
+            onTap: readOnly || !hasProjectSelected
+                ? null
+                : () => onProjectItemTap(slipKey),
+            validator: (v) {
+              // Chỉ báo lỗi khi đã chọn dự án (hạng mục lấy theo dự án).
+              if (projectItemRequired && (v == null || v.isEmpty)) {
+                return 'Vui lòng chọn hạng mục công việc';
+              }
+              return null;
+            },          ),
           const SizedBox(height: 12),
 
           // Thời gian bắt đầu

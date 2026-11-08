@@ -98,20 +98,155 @@ class ReportService extends DioBaseApiService {
   }
 
   /// Lưu báo cáo công việc "Phòng Kỹ thuật"
+  ///
+  /// Gửi cả danh sách báo cáo trong một request (root là mảng) theo
+  /// `POST /api/DailyReportTech/save-report-tech`.
   Future<BaseData<List<int>>> saveReportTech({
-    required Map<String, dynamic> payload,
+    required List<Map<String, dynamic>> payload,
   }) async {
-    final body = [payload]; // ✅ root là mảng
     return post<BaseData<List<int>>>(
       ApiEndPoint.saveReportTech,
-      body: body, // nếu wrapper không encode thì đổi thành jsonEncode(body)
+      body: payload,
       parser: (json) => BaseData<List<int>>.fromJson(
         json,
+        (data) => (data as List).map((e) => (e as num).toInt()).toList(),
+      ),
+    );
+  }
+
+  /// Lấy danh sách ca làm thêm đã đăng ký trong ngày (kèm ProjectItemID liên kết).
+  Future<BaseData<List<OvertimeRecord>>> getOvertimeByDate({
+    required DateTime dateRegister,
+    int? employeeId,
+  }) async {
+    String fmt(DateTime d) {
+      final y = d.year.toString().padLeft(4, '0');
+      final m = d.month.toString().padLeft(2, '0');
+      final day = d.day.toString().padLeft(2, '0');
+      return '$y-$m-$day';
+    }
+
+    return get<BaseData<List<OvertimeRecord>>>(
+      ApiEndPoint.getOvertimeByDate,
+      query: {
+        'dateRegister': fmt(dateRegister),
+        if (employeeId != null) 'employeeId': employeeId,
+      },
+      parser: (json) => BaseData<List<OvertimeRecord>>.fromJson(
+        json,
         (data) => (data as List)
-            .map((e) => (e as num).toInt())
+            .map((e) => OvertimeRecord.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
     );
+  }
+
+  /// Lưu ca làm thêm kèm liên kết hạng mục công việc.
+  ///
+  /// Bắt buộc gửi header `TimeZoneOffset` (phút lệch so với UTC, VD: 420 cho GMT+7)
+  /// để tránh lệch thời gian.
+  Future<BaseData<void>> saveOvertimeTech({
+    required Map<String, dynamic> payload,
+  }) async {
+    final offsetMinutes = DateTime.now().timeZoneOffset.inMinutes;
+
+    return post<BaseData<void>>(
+      ApiEndPoint.saveOvertimeTech,
+      body: payload,
+      options: Options(headers: {'TimeZoneOffset': offsetMinutes}),
+      parser: (json) => BaseData<void>.fromJson(json, (_) => null),
+    );
+  }
+
+  /// Lấy các phát sinh của một hạng mục công việc.
+  Future<BaseData<List<ProjectHistoryProblem>>>
+  getProjectHistoryProblemByProjectItem({required int projectItemId}) async {
+    return get<BaseData<List<ProjectHistoryProblem>>>(
+      ApiEndPoint.getProjectHistoryProblemByProjectItem,
+      query: {'projectItemId': projectItemId},
+      parser: (json) => BaseData<List<ProjectHistoryProblem>>.fromJson(
+        json,
+        (data) => (data as List)
+            .map(
+              (e) => ProjectHistoryProblem.fromJson(e as Map<String, dynamic>),
+            )
+            .toList(),
+      ),
+    );
+  }
+
+  /// Kiểm tra hạng mục công việc đã đủ thông tin để báo cáo hay chưa.
+  ///
+  /// BE có thể trả `data` dưới nhiều dạng: `true`/`false`, `"true"`/`"false"`,
+  /// `1`/`0`, hoặc object bọc (`{"result": true}`). Vì không có mẫu response
+  /// chính thức, parser ở đây chấp nhận mọi dạng và quy về `null` (= không
+  /// xác định) khi gặp giá trị lạ — cơ chế fail-open ở tầng bloc sẽ cho phép
+  /// báo cáo thay vì chặn oan.
+  Future<BaseData<bool>> checkInformationReport({
+    required int projectTaskId,
+  }) async {
+    return get<BaseData<bool>>(
+      ApiEndPoint.checkInformationReport,
+      query: {'projectTaskID': projectTaskId},
+      parser: _parseCheckInformationResponse,
+    );
+  }
+
+  /// Đọc cờ "đủ thông tin" từ response của `check-information-report`.
+  BaseData<bool> _parseCheckInformationResponse(dynamic json) {
+    if (json is bool) {
+      return BaseData<bool>(data: json, status: 1);
+    }
+
+    if (json is Map<String, dynamic>) {
+      final dynamic raw =
+          json['data'] ??
+          json['result'] ??
+          json['results'] ??
+          json['Data'] ??
+          json['Result'];
+
+      final parsed = _toNullableBool(raw);
+
+      // `data` vắng mặt nhưng `status` = 1 → coi như đủ thông tin.
+      if (parsed == null) {
+        final status = json['status'];
+        if (status is num && status == 1) {
+          return BaseData<bool>(data: true, status: 1);
+        }
+        return BaseData<bool>(
+          data: null,
+          status: status is num ? status.toInt() : null,
+        );
+      }
+
+      return BaseData<bool>(
+        data: parsed,
+        status: json['status'] is num ? (json['status'] as num).toInt() : 1,
+      );
+    }
+
+    // Body rỗng / không phải JSON → không xác định.
+    return BaseData<bool>(data: null, status: null);
+  }
+
+  /// Quy đổi giá trị thô của BE thành bool, trả về `null` nếu không nhận diện được.
+  static bool? _toNullableBool(dynamic raw) {
+    if (raw is bool) return raw;
+    if (raw is num) return raw != 0;
+
+    if (raw is String) {
+      final value = raw.trim().toLowerCase();
+      if (value == 'true') return true;
+      if (value == 'false') return false;
+    }
+
+    if (raw is Map<String, dynamic>) {
+      final nested = raw['result'] ?? raw['data'] ?? raw['IsEligible'];
+      if (nested != raw) return _toNullableBool(nested);
+    }
+
+    return null;
   }
 
   /// Gửi mail báo cáo phòng kỹ thuật
@@ -182,7 +317,9 @@ class ReportService extends DioBaseApiService {
     );
   }
 
-  Future<BaseData<void>> deleteSaleAdminReportById({required int dailyID}) async {
+  Future<BaseData<void>> deleteSaleAdminReportById({
+    required int dailyID,
+  }) async {
     return post<BaseData<void>>(
       ApiEndPoint.deleteSaleAdminReport,
       query: {'id': dailyID},
@@ -453,12 +590,12 @@ class ReportService extends DioBaseApiService {
       query: {'id': dailyID},
       parser: (json) => BaseData<List<DetailSaleAdminReportResponse>>.fromJson(
         json,
-            (data) => (data as List)
+        (data) => (data as List)
             .map(
               (e) => DetailSaleAdminReportResponse.fromJson(
-            e as Map<String, dynamic>,
-          ),
-        )
+                e as Map<String, dynamic>,
+              ),
+            )
             .toList(),
       ),
     );
@@ -713,8 +850,10 @@ class ReportService extends DioBaseApiService {
     final query = <String, dynamic>{
       'page': page,
       'size': size,
-      'dateStart': '${dateStart.year}-${dateStart.month.toString().padLeft(2, '0')}-${dateStart.day.toString().padLeft(2, '0')}T${dateStart.hour.toString().padLeft(2, '0')}:${dateStart.minute.toString().padLeft(2, '0')}:${dateStart.second.toString().padLeft(2, '0')}',
-      'dateEnd': '${dateEnd.year}-${dateEnd.month.toString().padLeft(2, '0')}-${dateEnd.day.toString().padLeft(2, '0')}T${dateEnd.hour.toString().padLeft(2, '0')}:${dateEnd.minute.toString().padLeft(2, '0')}:${dateEnd.second.toString().padLeft(2, '0')}',
+      'dateStart':
+          '${dateStart.year}-${dateStart.month.toString().padLeft(2, '0')}-${dateStart.day.toString().padLeft(2, '0')}T${dateStart.hour.toString().padLeft(2, '0')}:${dateStart.minute.toString().padLeft(2, '0')}:${dateStart.second.toString().padLeft(2, '0')}',
+      'dateEnd':
+          '${dateEnd.year}-${dateEnd.month.toString().padLeft(2, '0')}-${dateEnd.day.toString().padLeft(2, '0')}T${dateEnd.hour.toString().padLeft(2, '0')}:${dateEnd.minute.toString().padLeft(2, '0')}:${dateEnd.second.toString().padLeft(2, '0')}',
       'filterText': filterText,
     };
     if (employeeId != null) {
@@ -801,7 +940,6 @@ class ReportService extends DioBaseApiService {
     int? userId,
     String? keyword,
   }) async {
-
     String fmt(DateTime d) {
       final y = d.year.toString().padLeft(4, '0');
       final m = d.month.toString().padLeft(2, '0');
@@ -827,9 +965,8 @@ class ReportService extends DioBaseApiService {
       query: query,
       parser: (json) => BaseData<List<SaleAdminResponse>>.fromJson(
         json,
-            (data) => (data as List)
-            .map((e) => SaleAdminResponse.fromJson(e))
-            .toList(),
+        (data) =>
+            (data as List).map((e) => SaleAdminResponse.fromJson(e)).toList(),
       ),
     );
   }

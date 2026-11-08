@@ -366,6 +366,73 @@ Map<String, dynamic> _$$ProjectItemResponseImplToJson(
       'EmployeeID': instance.employeeId,
     };
 
+_$OvertimeRecordImpl _$$OvertimeRecordImplFromJson(Map<String, dynamic> json) =>
+    _$OvertimeRecordImpl(
+      id: (json['ID'] as num).toInt(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      approvedId: (json['ApprovedID'] as num?)?.toInt(),
+      dateRegister: json['DateRegister'] == null
+          ? null
+          : DateTime.parse(json['DateRegister'] as String),
+      timeStart: json['TimeStart'] == null
+          ? null
+          : DateTime.parse(json['TimeStart'] as String),
+      endTime: json['EndTime'] == null
+          ? null
+          : DateTime.parse(json['EndTime'] as String),
+      timeReality: (json['TimeReality'] as num?)?.toDouble(),
+      location: (json['Location'] as num?)?.toInt(),
+      typeId: (json['TypeID'] as num?)?.toInt(),
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      projectItemId: (json['ProjectItemID'] as num?)?.toInt(),
+      overnight: json['Overnight'] as bool?,
+      costOvernight: (json['CostOvernight'] as num?)?.toDouble(),
+      reason: json['Reason'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+      isProblem: json['IsProblem'] as bool?,
+      isApproved: json['IsApproved'] as bool?,
+      isApprovedHR: json['IsApprovedHR'] as bool?,
+      isApprovedBGD: json['IsApprovedBGD'] as bool?,
+      approvedHR: (json['ApprovedHR'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$OvertimeRecordImplToJson(
+        _$OvertimeRecordImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'EmployeeID': instance.employeeId,
+      'ApprovedID': instance.approvedId,
+      'DateRegister': instance.dateRegister?.toIso8601String(),
+      'TimeStart': instance.timeStart?.toIso8601String(),
+      'EndTime': instance.endTime?.toIso8601String(),
+      'TimeReality': instance.timeReality,
+      'Location': instance.location,
+      'TypeID': instance.typeId,
+      'ProjectID': instance.projectId,
+      'ProjectItemID': instance.projectItemId,
+      'Overnight': instance.overnight,
+      'CostOvernight': instance.costOvernight,
+      'Reason': instance.reason,
+      'IsDeleted': instance.isDeleted,
+      'IsProblem': instance.isProblem,
+      'IsApproved': instance.isApproved,
+      'IsApprovedHR': instance.isApprovedHR,
+      'IsApprovedBGD': instance.isApprovedBGD,
+      'ApprovedHR': instance.approvedHR,
+    };
+
+_$ApproveInfoImpl _$$ApproveInfoImplFromJson(Map<String, dynamic> json) =>
+    _$ApproveInfoImpl(
+      approveId: (json['ApproveID'] as num?)?.toInt(),
+      approveName: json['ApproveName'] as String?,
+    );
+
+Map<String, dynamic> _$$ApproveInfoImplToJson(_$ApproveInfoImpl instance) =>
+    <String, dynamic>{
+      'ApproveID': instance.approveId,
+      'ApproveName': instance.approveName,
+    };
+
 _$SaveReportTechRequestImpl _$$SaveReportTechRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$SaveReportTechRequestImpl(
@@ -2246,4 +2313,64 @@ Map<String, dynamic> _$$AccountantDetailItemImplToJson(
       'UpdatedBy': instance.updatedBy,
       'UpdatedDate': instance.updatedDate?.toIso8601String(),
       'IsDeleted': instance.isDeleted,
+    };
+
+_$ProjectHistoryProblemImpl _$$ProjectHistoryProblemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProjectHistoryProblemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
+      contentError: json['ContentError'] as String?,
+      reason: json['Reason'] as String?,
+      remedies: json['Remedies'] as String?,
+      issueConclusion: json['IssueConclusion'] as String?,
+      dateProblem: json['DateProblem'] == null
+          ? null
+          : DateTime.parse(json['DateProblem'] as String),
+      dateImplementation: json['DateImplementation'] == null
+          ? null
+          : DateTime.parse(json['DateImplementation'] as String),
+      creatorId: (json['CreatorID'] as num?)?.toInt(),
+      performerId: (json['PerformerID'] as num?)?.toInt(),
+      priorityLevel: (json['PriorityLevel'] as num?)?.toInt(),
+      statusProblem: (json['StatusProblem'] as num?)?.toInt(),
+      issueLogType: (json['IssueLogType'] as num?)?.toInt(),
+      isApprovedPm: json['IsApproved_PM'] as bool?,
+      dateApprovedPm: json['DateApproved_PM'] == null
+          ? null
+          : DateTime.parse(json['DateApproved_PM'] as String),
+      isApprovedTp: json['IsApproved_TP'] as bool?,
+      dateApprovedTp: json['DateApproved_TP'] == null
+          ? null
+          : DateTime.parse(json['DateApproved_TP'] as String),
+      isApprovedPp: json['IsApproved_PP'] as bool?,
+      dateApprovedPp: json['DateApproved_PP'] == null
+          ? null
+          : DateTime.parse(json['DateApproved_PP'] as String),
+    );
+
+Map<String, dynamic> _$$ProjectHistoryProblemImplToJson(
+        _$ProjectHistoryProblemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProjectID': instance.projectId,
+      'STT': instance.stt,
+      'ContentError': instance.contentError,
+      'Reason': instance.reason,
+      'Remedies': instance.remedies,
+      'IssueConclusion': instance.issueConclusion,
+      'DateProblem': instance.dateProblem?.toIso8601String(),
+      'DateImplementation': instance.dateImplementation?.toIso8601String(),
+      'CreatorID': instance.creatorId,
+      'PerformerID': instance.performerId,
+      'PriorityLevel': instance.priorityLevel,
+      'StatusProblem': instance.statusProblem,
+      'IssueLogType': instance.issueLogType,
+      'IsApproved_PM': instance.isApprovedPm,
+      'DateApproved_PM': instance.dateApprovedPm?.toIso8601String(),
+      'IsApproved_TP': instance.isApprovedTp,
+      'DateApproved_TP': instance.dateApprovedTp?.toIso8601String(),
+      'IsApproved_PP': instance.isApprovedPp,
+      'DateApproved_PP': instance.dateApprovedPp?.toIso8601String(),
     };

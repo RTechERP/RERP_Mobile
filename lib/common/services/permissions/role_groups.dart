@@ -10,6 +10,20 @@ class DepartmentGroups {
 
   /// ===== DEPARTMENT OVERTIME =====
   static const overtimeDepartmentID = [2, 24, 25, 26, 27, 32];
+
+  /// Phòng ban bắt buộc phải chọn Hạng mục công việc khi đăng ký làm thêm.
+  ///
+  /// Áp dụng khi người dùng đã chọn Dự án (hạng mục được lấy theo dự án).
+  /// User có mã quyền `N80` được miễn validate này.
+  static const departmentRequireProjectItem = [
+    2, 9, 10, 23, 24, 25, 26, 27, 32,
+  ];
+
+  /// Phòng ban bắt buộc phải chọn Dự án + Hạng mục công việc khi báo cáo kỹ thuật.
+  /// (BE cũng chặn khi `ProjectID <= 0` hoặc `ProjectItemID <= 0`.)
+  static const techReportRequireProjectItem = [
+    2, 9, 10, 23, 24, 25, 26, 27,
+  ];
 }
 
 class EmployeeIdGroups {
@@ -72,4 +86,7 @@ class PermissionGroups {
 
   /// Quyền được thấy menu CRM "Nguồn Lead".
   static const crmLeadSource = ['N124', 'N131', 'N127'];
+
+  /// Mã quyền miễn validate Hạng mục công việc khi đăng ký làm thêm.
+  static const skipProjectItemValidate = ['N80'];
 }

@@ -116,6 +116,25 @@ class OvertimeService extends DioBaseApiService {
     );
   }
 
+  /// Danh sách hạng mục công việc theo dự án.
+  ///
+  /// [status]: 2 = chỉ hạng mục đang thực hiện (mặc định), -1 = tất cả.
+  Future<BaseData<List<OvertimeProjectItem>>> getProjectItemByUser({
+    required int projectId,
+    int status = 2,
+  }) async {
+    return get<BaseData<List<OvertimeProjectItem>>>(
+      ApiEndPoint.getProjectItemByUser,
+      query: {'projectId': projectId, 'status': status},
+      parser: (json) => BaseData<List<OvertimeProjectItem>>.fromJson(
+        json,
+        (data) => (data as List)
+            .map((e) => OvertimeProjectItem.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+    );
+  }
+
   Future<BaseData<void>> saveOvertime({
     required Map<String, dynamic> payload,
   }) async {
@@ -126,17 +145,36 @@ class OvertimeService extends DioBaseApiService {
     );
   }
 
-  Future<BaseData<OvertimeDetailItem>> getOvertimeById(int id) {
-    return get<BaseData<OvertimeDetailItem>>(
+  /// Lấy chi tiết phiếu làm thêm.
+  ///
+  /// Response gồm 3 phần: `employeeOverTime`, `overTimeFile`, `overTimeProjectItem`.
+  Future<BaseData<OvertimeDetailResponse>> getOvertimeById(int id) {
+    return get<BaseData<OvertimeDetailResponse>>(
       '${ApiEndPoint.getOvertimeById}?ID=$id',
-      parser: (json) => BaseData<OvertimeDetailItem>.fromJson(
+      parser: (json) => BaseData<OvertimeDetailResponse>.fromJson(
         json,
         (data) {
-          // Response: { "employeeOverTime": {...}, "overTimeFile": {...} }
           final map = data as Map<String, dynamic>;
-          final inner = (map['employeeOverTime'] ?? map) as Map<String, dynamic>;
-          return OvertimeDetailItem.fromJson(inner);
+          // BE trả về object bọc ngoài; cũng chấp nhận dạng phẳng (chỉ phiếu).
+          if (map.containsKey('employeeOverTime')) {
+            return OvertimeDetailResponse.fromJson(map);
+          }
+          return OvertimeDetailResponse(
+            employeeOvertime: OvertimeDetailItem.fromJson(map),
+          );
         },
+      ),
+    );
+  }
+
+  /// Danh sách departmentID bắt buộc chọn hạng mục công việc khi đăng ký
+  /// làm thêm — bổ sung cho danh sách hardcode phía app.
+  Future<BaseData<List<int>>> getDepartmentRequireProjectItem() {
+    return get<BaseData<List<int>>>(
+      ApiEndPoint.getDepartmentRequireProjectItem,
+      parser: (json) => BaseData<List<int>>.fromJson(
+        json,
+        (data) => (data as List).map((e) => (e as num).toInt()).toList(),
       ),
     );
   }

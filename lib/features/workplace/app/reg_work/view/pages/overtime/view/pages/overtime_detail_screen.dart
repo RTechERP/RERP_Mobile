@@ -78,6 +78,13 @@ class _OvertimeDetailScreenPageState
       (_formKey.currentState?.fields['det_is_problem']?.value as bool?) ??
       false;
 
+  /// Tên file đính kèm đã lưu trên phiếu (từ `overTimeFile`).
+  List<String> _existingFileNames(OvertimeState state) {
+    final name = state.detailFile?.fileName;
+    if (name == null || name.trim().isEmpty) return const [];
+    return [name.trim()];
+  }
+
   // ── Reactive callbacks ─────────────────────────────────────────────────────
 
   void _onSlipTimeStartChanged(String _, DateTime? __) => setState(() {});
@@ -198,10 +205,54 @@ class _OvertimeDetailScreenPageState
       displayText: (p) =>
           '${p.projectCode ?? ''} - ${p.projectName ?? ''}'.trim(),
       onSelected: (p) {
+        // Đổi dự án → xoá hạng mục cũ (không còn thuộc dự án mới).
+        form.fields['ot_slip_${slipKey}_project_item_id']?.didChange('');
+        form.fields['ot_slip_${slipKey}_project_item_text']?.didChange('');
+
         form.fields['ot_slip_${slipKey}_project_id']
             ?.didChange(p.id.toString());
         form.fields['ot_slip_${slipKey}_project_text']
             ?.didChange(p.projectName ?? '');
+
+        bloc.add(OvertimeEvent.loadProjectItems(projectId: p.id));
+        setState(() {});
+      },
+    );
+  }
+
+  /// Mở sheet chọn hạng mục công việc của dự án đang chọn.
+  Future<void> _openProjectItemSheet(String slipKey) async {
+    FocusScope.of(context).unfocus();
+    final form = _formKey.currentState;
+    if (form == null) return;
+
+    final projectId = int.tryParse(
+        '${form.fields['ot_slip_${slipKey}_project_id']?.value ?? ''}');
+    if (projectId == null || projectId <= 0) {
+      context.showMessage('Vui lòng chọn dự án trước',
+          type: SnackBarType.error);
+      return;
+    }
+
+    final items = await bloc.loadProjectItemsAll(projectId);
+    if (!mounted) return;
+
+    if (items.isEmpty) {
+      context.showMessage('Dự án chưa có hạng mục công việc',
+          type: SnackBarType.error);
+      return;
+    }
+
+    await openSelectBottomSheet<OvertimeProjectItem>(
+      context: context,
+      title: 'Chọn hạng mục công việc',
+      items: items,
+      displayText: (i) => _formatProjectItem(i),
+      onSelected: (i) {
+        form.fields['ot_slip_${slipKey}_project_item_id']
+            ?.didChange(i.id.toString());
+        form.fields['ot_slip_${slipKey}_project_item_text']
+            ?.didChange(_formatProjectItem(i));
         setState(() {});
       },
     );
@@ -229,6 +280,8 @@ class _OvertimeDetailScreenPageState
             0;
     final projectId =
         int.tryParse('${values['ot_slip_${_slipKey}_project_id'] ?? ''}');
+    final projectItemId = int.tryParse(
+        '${values['ot_slip_${_slipKey}_project_item_id'] ?? ''}');
     final overnight =
         (values['ot_slip_${_slipKey}_overnight'] as bool?) ?? false;
     final reason = '${values['ot_slip_${_slipKey}_reason'] ?? ''}'.trim();
@@ -244,12 +297,14 @@ class _OvertimeDetailScreenPageState
           typeId: typeId,
           location: location,
           projectId: projectId,
+          projectItemId: projectItemId,
           overnight: overnight,
           reason: reason,
         ),
       ],
       hasAttachment: attachedFiles.isNotEmpty,
       departmentId: null,
+      isProjectItemRequired: bloc.state.isProjectItemRequired,
     );
 
     // Validate form first (inline errors)
@@ -293,6 +348,7 @@ class _OvertimeDetailScreenPageState
         overnight: overnight,
         reason: reason,
         projectId: projectId,
+        projectItemId: projectItemId,
       ),
       fileInfo: fileInfo,
     ));
@@ -324,6 +380,78 @@ class _OvertimeDetailScreenPageState
       if (p.id == projectId) return p.projectName ?? '';
     }
     return '';
+  }
+
+  /// Tên hạng mục công việc theo ID — tra trong cache hạng mục của các dự án.
+  ///
+  /// Ưu tiên danh sách đầy đủ (`status = -1`) vì hạng mục đã lưu có thể đã
+  /// hoàn thành. Trả về theo định dạng `Code - Mission`.
+  String _projectItemLabel(OvertimeState state, int? projectItemId) {
+    if (projectItemId == null) return '';
+    for (final items in state.projectItemsAll.values) {
+      for (final i in items) {
+        if (i.id == projectItemId) return _formatProjectItem(i);
+      }
+    }
+    for (final items in state.projectItems.values) {
+      for (final i in items) {
+        if (i.id == projectItemId) return _formatProjectItem(i);
+      }
+    }
+    return '';
+  }
+
+  /// Định dạng hiển thị hạng mục công việc: `Code - Mission`.
+  String _formatProjectItem(OvertimeProjectItem item) =>
+      '${item.code ?? ''} - ${item.mission ?? ''}'.trim();
+
+  /// ID hạng mục công việc của phiếu.
+  ///
+  /// Ưu tiên `overTimeProjectItem.ProjectItemID` (response chi tiết), fallback
+  /// về `ProjectItemID` nằm trực tiếp trên phiếu.
+  int? _detailProjectItemId(OvertimeState state, OvertimeDetailItem detail) {
+    return state.detailProjectItemLink?.projectItemId ?? detail.projectItemId;
+  }
+
+  /// Đồng bộ nhãn hạng mục công việc vào field khi cache hạng mục tải xong.
+  ///
+  /// `initialValue` của form field chỉ áp dụng lúc đăng ký field, nên khi hạng
+  /// mục về sau (sau lần render đầu) phải gán lại giá trị cho field.
+  ///
+  /// ID lấy từ form (field ẩn) để không ghi đè lựa chọn mới của người dùng —
+  /// fallback về ID của phiếu khi form chưa có giá trị.
+  void _syncProjectItemLabel(OvertimeState state, OvertimeDetailItem detail) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final form = _formKey.currentState;
+      if (form == null) return;
+
+      final formId = form.fields['ot_slip_${_slipKey}_project_item_id']?.value;
+      final selectedId = int.tryParse('${formId ?? ''}');
+      final projectItemId =
+          selectedId ?? _detailProjectItemId(state, detail);
+      if (projectItemId == null) return;
+
+      final label = _projectItemLabel(state, projectItemId);
+      if (label.isEmpty) return;
+
+      final field = form.fields['ot_slip_${_slipKey}_project_item_text'];
+      if (field == null) return;
+      if (field.value == label) return;
+      field.didChange(label);
+    });
+  }
+
+  /// Đã chọn dự án hay chưa — đọc từ form, fallback về dữ liệu chi tiết.
+  ///
+  /// Đọc từ form để phản ánh việc người dùng đổi dự án; fallback về detail
+  /// cho frame đầu tiên (field chưa đăng ký vào form).
+  bool _hasProjectSelected(OvertimeDetailItem detail) {
+    final raw = _formKey.currentState
+        ?.fields['ot_slip_${_slipKey}_project_id']?.value;
+    final id = int.tryParse('${raw ?? ''}');
+    if (id != null && id > 0) return true;
+    return detail.projectId != null && detail.projectId! > 0;
   }
 
   // ── renderUI ──────────────────────────────────────────────────────────────
@@ -364,7 +492,10 @@ class _OvertimeDetailScreenPageState
             p.isSubmitting != c.isSubmitting ||
             p.approvers != c.approvers ||
             p.overtimeTypes != c.overtimeTypes ||
-            p.overtimeProjects != c.overtimeProjects,
+            p.overtimeProjects != c.overtimeProjects ||
+            p.projectItems != c.projectItems ||
+            p.projectItemsAll != c.projectItemsAll ||
+            p.detailProjectItemLink != c.detailProjectItemLink,
         builder: (context, state) {
           // Đợi cả detail lẫn dropdown data sẵn sàng rồi mới render form.
           final dropdownsReady = state.approvers.isNotEmpty ||
@@ -396,6 +527,9 @@ class _OvertimeDetailScreenPageState
               ),
             );
           }
+
+          // Đồng bộ nhãn hạng mục công việc khi cache hạng mục đã tải xong.
+          _syncProjectItemLabel(state, detail);
 
           return BaseScaffold(
             appBar: AppBarCommon(
@@ -522,6 +656,7 @@ class _OvertimeDetailScreenPageState
                                         detail.dateRegister ?? DateTime.now(),
                                     onTypeTap: _openTypeSheet,
                                     onProjectTap: _openProjectSheet,
+                                    onProjectItemTap: _openProjectItemSheet,
                                     computedHours: _computeSlipHours(),
                                     initialTimeStart: detail.timeStart,
                                     initialTimeEnd: detail.endTime,
@@ -530,12 +665,22 @@ class _OvertimeDetailScreenPageState
                                     initialLocationId: detail.location,
                                     initialProjectId: detail.projectId,
                                     initialProjectLabel: _projectLabel(state, detail.projectId),
+                                    initialProjectItemId:
+                                        _detailProjectItemId(state, detail),
+                                    initialProjectItemLabel: _projectItemLabel(
+                                        state,
+                                        _detailProjectItemId(state, detail),
+                                    ),
                                     initialReason: detail.reason,
                                     initialOvernight: detail.overnight ?? false,
                                     onTimeStartChanged: _onSlipTimeStartChanged,
                                     onEndTimeChanged: _onSlipEndTimeChanged,
                                     onOvernightChanged: _onSlipOvernightChanged,
                                     isProjectRequired: state.isProjectRequired,
+                                    isProjectItemRequired:
+                                        state.isProjectItemRequired,
+                                    hasProjectSelected:
+                                        _hasProjectSelected(detail),
                                   ),
                                 ],
                               ),

@@ -7,6 +7,8 @@ import '../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../common/widgets/form/index.dart';
 import '../../data/tech_model.dart';
 import '../bloc/tech_bloc.dart';
+import 'tech_overtime_section.dart';
+import 'tech_overtime_toggle.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../../../routes/route_names.dart';
 
@@ -31,7 +33,6 @@ class TechEditWorkItem extends StatefulWidget {
 class _TechEditWorkItemState extends State<TechEditWorkItem> {
   late TextEditingController _percentController;
   late TextEditingController _totalController;
-  late TextEditingController _otController;
 
   late TextEditingController _contentController;
 
@@ -54,15 +55,18 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
     return value.toString().replaceFirst('.', sep);
   }
 
-  /// Validate hour: must be > 0, ≤ 24, up to 2 digits after decimal allowed.
-  static String? _validateHour(String? raw, {bool required = true}) {
-    if (raw == null || raw.trim().isEmpty) {
-      return required ? 'Nhập số giờ' : null;
-    }
+  /// Validate giờ hành chính: `0 <= TotalHours <= 8.0`, tối đa 2 chữ số thập phân.
+  ///
+  /// Số `0` (hoặc bỏ trống) là giá trị hợp lệ — payload vẫn gửi `TotalHours: 0`.
+  static String? _validateAdminHour(String? raw) {
+    if (raw == null || raw.trim().isEmpty) return null;
+
+    final value = _parseHour(raw);
+    if (value < 0) return 'Số giờ không được nhỏ hơn 0';
+    if (value > 8) return 'Số giờ không được lớn hơn 8';
+
     final v = raw.trim().replaceAll(',', '.');
     final parts = v.split('.');
-    if (parts.isEmpty) return 'Giá trị không hợp lệ';
-    if (double.tryParse(parts[0]) == null) return 'Giá trị không hợp lệ';
     if (parts.length > 2) return 'Giá trị không hợp lệ';
     if (parts.length == 2 && parts[1].isNotEmpty) {
       // Cho phép tối đa 2 chữ số thập phân (VD: 6.8, 6.83)
@@ -70,9 +74,8 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
         return 'Giá trị không hợp lệ';
       }
     }
-    final val = double.tryParse(v) ?? 0;
-    if (required && val <= 0) return 'Số giờ phải > 0';
-    if (val > 24) return 'Số giờ không > 24';
+    if (double.tryParse(v) == null) return 'Giá trị không hợp lệ';
+
     return null;
   }
 
@@ -88,31 +91,18 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
       text: _formatHour(widget.report.totalHours),
     );
 
-    _otController = TextEditingController(
-      text: _formatHour(widget.report.totalHourOT ?? 0),
-    );
+    _contentController = TextEditingController(text: widget.report.content);
 
-    _contentController = TextEditingController(
-      text: widget.report.content,
-    );
+    _resultController = TextEditingController(text: widget.report.results);
 
-    _resultController = TextEditingController(
-      text: widget.report.results,
-    );
-
-    _missionController = TextEditingController(
-      text: widget.report.mission,
-    );
+    _missionController = TextEditingController(text: widget.report.mission);
   }
 
   @override
   void didUpdateWidget(covariant TechEditWorkItem oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    void updateController(
-        TextEditingController controller,
-        String newText,
-        ) {
+    void updateController(TextEditingController controller, String newText) {
       if (controller.text != newText) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!mounted) return;
@@ -129,41 +119,41 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
       widget.report.percentComplete.toInt().toString(),
     );
 
-    updateController(
-      _totalController,
-      _formatHour(widget.report.totalHours),
-    );
+    updateController(_totalController, _formatHour(widget.report.totalHours));
 
-    updateController(
-      _otController,
-      _formatHour(widget.report.totalHourOT ?? 0),
-    );
+    updateController(_contentController, widget.report.content);
 
-    updateController(
-      _contentController,
-      widget.report.content,
-    );
+    updateController(_resultController, widget.report.results);
 
-    updateController(
-      _resultController,
-      widget.report.results,
-    );
-
-    updateController(
-      _missionController,
-      widget.report.mission,
-    );
+    updateController(_missionController, widget.report.mission);
   }
 
   @override
   void dispose() {
     _percentController.dispose();
     _totalController.dispose();
-    _otController.dispose();
     _contentController.dispose();
     _resultController.dispose();
     _missionController.dispose();
     super.dispose();
+  }
+
+  /// Ngày báo cáo — dùng làm mốc cho các ca làm thêm của hạng mục này.
+  ///
+  /// Lấy từ bloc (`currentReportDate`) vì đây là ngày đang khai báo trên form,
+  /// không phải `dateReport` của hạng mục (hạng mục được khởi tạo theo tuần).
+  DateTime get _reportDate {
+    final current = context.read<TechBloc>().state.currentReportDate;
+    if (current != null) {
+      return DateTime(current.year, current.month, current.day);
+    }
+
+    final parsed = DateTime.tryParse(widget.report.dateReport);
+    if (parsed != null) {
+      return DateTime(parsed.year, parsed.month, parsed.day);
+    }
+    final now = DateTime.now();
+    return DateTime(now.year, now.month, now.day);
   }
 
   @override
@@ -181,7 +171,7 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
   Widget _buildContent(BuildContext context) {
     return BlocBuilder<TechBloc, TechState>(
       buildWhen: (prev, curr) =>
-      prev.selectedProject != curr.selectedProject ||
+          prev.selectedProject != curr.selectedProject ||
           prev.projectItem != curr.projectItem,
       builder: (context, state) {
         return Column(
@@ -193,26 +183,25 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
               onTap: widget.readonly
                   ? null
                   : () {
-                openSelectBottomSheet(
-                  context: context,
-                  title: 'Chọn hạng mục',
-                  items: state.projectItem,
-                  displayText: (v) => '${v.code} - ${v.mission}',
-                  onAdd: () => context.push(RouteNames.workCategoryAdd),
-                  onSelected: (item) {
-                    context.read<TechBloc>().add(
-                      TechEvent.updateWork(
-                        index: widget.index,
-                        mission: item.mission,
-                        projectItemId: item.id,
-                        code: item.code,
-                        percentComplete:
-                        item.percentageActual,
-                      ),
-                    );
-                  },
-                );
-              },
+                      openSelectBottomSheet(
+                        context: context,
+                        title: 'Chọn hạng mục',
+                        items: state.projectItem,
+                        displayText: (v) => '${v.code} - ${v.mission}',
+                        onAdd: () => context.push(RouteNames.workCategoryAdd),
+                        onSelected: (item) {
+                          context.read<TechBloc>().add(
+                            TechEvent.updateWork(
+                              index: widget.index,
+                              mission: item.mission,
+                              projectItemId: item.id,
+                              code: item.code,
+                              percentComplete: item.percentageActual,
+                            ),
+                          );
+                        },
+                      );
+                    },
               child: AbsorbPointer(
                 child: FormInputField(
                   autoExpand: true,
@@ -236,21 +225,21 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
 
             const SizedBox(height: 8),
 
-            /// ===== TOTAL + OT =====
+            /// ===== TOTAL + PERCENT =====
             Row(
               children: [
                 Expanded(
                   child: FormInputField(
                     icon: Icons.timer_outlined,
-                    nameForm:
-                    'tech_edit_total_${widget.report.id}',
-                    nameTextField:
-                    'edit_total_${widget.report.id}',
+                    nameForm: 'tech_edit_total_${widget.report.id}',
+                    nameTextField: 'edit_total_${widget.report.id}',
                     label: 'Tổng giờ',
-                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                    keyboardType: const TextInputType.numberWithOptions(
+                      decimal: true,
+                    ),
                     controller: _totalController,
                     isRequired: true,
-                    validator: (v) => _validateHour(v),
+                    validator: (v) => _validateAdminHour(v),
                     onChanged: (v) {
                       context.read<TechBloc>().add(
                         TechEvent.updateWork(
@@ -264,19 +253,28 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
                 const SizedBox(width: 8),
                 Expanded(
                   child: FormInputField(
-                    icon: Icons.timer_outlined,
-                    nameForm: 'tech_edit_ot_${widget.report.id}',
-                    nameTextField:
-                    'edit_ot_${widget.report.id}',
-                    label: 'OT',
-                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                    controller: _otController,
-                    validator: (v) => _validateHour(v, required: false),
+                    icon: Icons.percent_outlined,
+                    nameForm: 'tech_edit_percent_${widget.report.id}',
+                    nameTextField: 'edit_percent_${widget.report.id}',
+                    label: 'Tiến độ',
+                    keyboardType: TextInputType.number,
+                    controller: _percentController,
+                    isRequired: true,
+                    validator: (v) {
+                      if (v == null || v.trim().isEmpty) {
+                        return 'Vui lòng nhập tiến độ';
+                      }
+                      final percent = double.tryParse(v) ?? 0;
+                      if (percent < 0 || percent > 100) {
+                        return '% Hoàn thành phải từ 0 đến 100';
+                      }
+                      return null;
+                    },
                     onChanged: (v) {
                       context.read<TechBloc>().add(
                         TechEvent.updateWork(
                           index: widget.index,
-                          totalHourOT: _parseHour(v),
+                          percentComplete: double.tryParse(v ?? '') ?? 0,
                         ),
                       );
                     },
@@ -287,52 +285,15 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
 
             const SizedBox(height: 8),
 
-            /// ===== PERCENT =====
-            FormInputField(
-              icon: Icons.percent_outlined,
-              nameForm:
-              'tech_edit_percent_${widget.report.id}',
-              nameTextField:
-              'edit_percent_${widget.report.id}',
-              label: 'Tiến độ hoàn thành',
-              keyboardType: TextInputType.number,
-              controller: _percentController,
-              isRequired: true,
-              validator: (v) {
-                if (v == null || v.trim().isEmpty) {
-                  return 'Vui lòng nhập tiến độ hoàn thành';
-                }
-                final percent = double.tryParse(v) ?? 0;
-                if (percent <= 0 || percent > 100) {
-                  return '% Hoàn thành phải từ 1 đến 100';
-                }
-                return null;
-              },
-              onChanged: (v) {
-                context.read<TechBloc>().add(
-                  TechEvent.updateWork(
-                    index: widget.index,
-                    percentComplete:
-                    double.tryParse(v ?? '') ?? 0,
-                  ),
-                );
-              },
-            ),
-
-            const SizedBox(height: 8),
-
             /// ===== CONTENT =====
             FormInputField(
-              nameForm:
-              'tech_edit_content_${widget.report.id}',
-              nameTextField:
-              'edit_content_${widget.report.id}',
+              nameForm: 'tech_edit_content_${widget.report.id}',
+              nameTextField: 'edit_content_${widget.report.id}',
               icon: Icons.note_outlined,
               label: 'Nội dung công việc',
               autoExpand: true,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction
-                  .newline,
+              textInputAction: TextInputAction.newline,
               controller: _contentController,
               isRequired: true,
               validator: (v) {
@@ -343,10 +304,7 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
               },
               onChanged: (v) {
                 context.read<TechBloc>().add(
-                  TechEvent.updateWork(
-                    index: widget.index,
-                    content: v,
-                  ),
+                  TechEvent.updateWork(index: widget.index, content: v),
                 );
               },
             ),
@@ -355,31 +313,44 @@ class _TechEditWorkItemState extends State<TechEditWorkItem> {
 
             /// ===== RESULT =====
             FormInputField(
-              nameForm:
-              'tech_edit_result_${widget.report.id}',
-              nameTextField:
-              'edit_result_${widget.report.id}',
+              nameForm: 'tech_edit_result_${widget.report.id}',
+              nameTextField: 'edit_result_${widget.report.id}',
               icon: Icons.note_outlined,
               label: 'Kết quả',
               autoExpand: true,
               keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction
-                  .newline,
+              textInputAction: TextInputAction.newline,
               controller: _resultController,
               isRequired: true,
               validator: (v) {
-                if (v == null || v.trim().isEmpty) return 'Vui lòng nhập kết quả';
+                if (v == null || v.trim().isEmpty)
+                  return 'Vui lòng nhập kết quả';
                 return null;
               },
               onChanged: (v) {
                 context.read<TechBloc>().add(
-                  TechEvent.updateWork(
-                    index: widget.index,
-                    results: v,
-                  ),
+                  TechEvent.updateWork(index: widget.index, results: v),
                 );
               },
             ),
+
+            const SizedBox(height: 8),
+
+            /// ===== OVERTIME (LÀM THÊM) =====
+            TechOvertimeToggle(
+              report: widget.report,
+              index: widget.index,
+              reportDate: _reportDate,
+            ),
+
+            if (widget.report.hasOvertime) ...[
+              const SizedBox(height: 8),
+              TechOvertimeSection(
+                work: widget.report,
+                workIndex: widget.index,
+                reportDate: _reportDate,
+              ),
+            ],
           ],
         );
       },

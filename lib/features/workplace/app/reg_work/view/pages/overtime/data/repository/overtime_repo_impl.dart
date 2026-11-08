@@ -77,6 +77,27 @@ class OvertimeRepoImpl implements OvertimeRepo {
   }
 
   @override
+  Future<Either<BaseError, List<OvertimeProjectItem>>> getProjectItemByUser({
+    required int projectId,
+    int status = 2,
+  }) async {
+    try {
+      final res = await _service.getProjectItemByUser(
+        projectId: projectId,
+        status: status,
+      );
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
   Future<Either<BaseError, void>> saveOvertime({
     required Map<String, dynamic> payload,
   }) async {
@@ -96,9 +117,26 @@ class OvertimeRepoImpl implements OvertimeRepo {
   }
 
   @override
-  Future<Either<BaseError, OvertimeDetailItem>> getOvertimeById(int id) async {
+  Future<Either<BaseError, OvertimeDetailResponse>> getOvertimeById(
+    int id,
+  ) async {
     try {
       final res = await _service.getOvertimeById(id);
+      if (res.status == 1 && res.data != null) {
+        return right(res.data!);
+      }
+      return left(
+        BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<int>>> getDepartmentRequireProjectItem() async {
+    try {
+      final res = await _service.getDepartmentRequireProjectItem();
       if (res.status == 1 && res.data != null) {
         return right(res.data!);
       }

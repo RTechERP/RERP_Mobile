@@ -236,6 +236,65 @@ class ProjectItemResponse with _$ProjectItemResponse {
 }
 
 /// ==========================
+/// 🔹 Overtime Record Model
+///
+/// Bản ghi ca làm thêm (`EmployeeOvertime`) kèm liên kết tới hạng mục công việc
+/// (`ProjectItemID`) — BE ánh xạ qua bảng trung gian `EmployeeOvertimeProjectItem`.
+/// ==========================
+@freezed
+class OvertimeRecord with _$OvertimeRecord {
+  const factory OvertimeRecord({
+    @JsonKey(name: 'ID') required int id,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'ApprovedID') int? approvedId,
+    @JsonKey(name: 'DateRegister') DateTime? dateRegister,
+    @JsonKey(name: 'TimeStart') DateTime? timeStart,
+    @JsonKey(name: 'EndTime') DateTime? endTime,
+    @JsonKey(name: 'TimeReality') double? timeReality,
+    @JsonKey(name: 'Location') int? location,
+    @JsonKey(name: 'TypeID') int? typeId,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'ProjectItemID') int? projectItemId,
+    @JsonKey(name: 'Overnight') bool? overnight,
+    @JsonKey(name: 'CostOvernight') double? costOvernight,
+    @JsonKey(name: 'Reason') String? reason,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+
+    /// Cờ phát sinh của ca làm thêm.
+    @JsonKey(name: 'IsProblem') bool? isProblem,
+
+    /// Cờ duyệt của người duyệt (trưởng phòng / đội trưởng).
+    @JsonKey(name: 'IsApproved') bool? isApproved,
+
+    /// Cờ duyệt của HR.
+    @JsonKey(name: 'IsApprovedHR') bool? isApprovedHR,
+
+    /// Cờ duyệt của ban giám đốc (có thể `null` với bản ghi cũ).
+    @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBGD,
+
+    /// ID người duyệt HR.
+    @JsonKey(name: 'ApprovedHR') int? approvedHR,
+  }) = _OvertimeRecord;
+
+  factory OvertimeRecord.fromJson(Map<String, dynamic> json) =>
+      _$OvertimeRecordFromJson(json);
+}
+
+/// ==========================
+/// 🔹 Default Approver Model (người duyệt mặc định cho nhân viên)
+/// ==========================
+@freezed
+class ApproveInfo with _$ApproveInfo {
+  const factory ApproveInfo({
+    @JsonKey(name: 'ApproveID') int? approveId,
+    @JsonKey(name: 'ApproveName') String? approveName,
+  }) = _ApproveInfo;
+
+  factory ApproveInfo.fromJson(Map<String, dynamic> json) =>
+      _$ApproveInfoFromJson(json);
+}
+
+/// ==========================
 /// 🔹 Save Report Tech Request Model
 /// ==========================
 
@@ -732,7 +791,6 @@ class DetailLXCPReportResponse with _$DetailLXCPReportResponse {
       _$DetailLXCPReportResponseFromJson(json);
 }
 
-
 @freezed
 class DetailSaleReportResponse with _$DetailSaleReportResponse {
   const factory DetailSaleReportResponse({
@@ -748,8 +806,8 @@ class DetailSaleReportResponse with _$DetailSaleReportResponse {
     @JsonKey(name: 'Visit') String? visit,
     @JsonKey(name: 'Demo') String? demo,
 
-    @JsonKey(name: 'Result')  String? result,
-    @JsonKey(name: 'ProblemBacklog')  String? problemBacklog,
+    @JsonKey(name: 'Result') String? result,
+    @JsonKey(name: 'ProblemBacklog') String? problemBacklog,
     @JsonKey(name: 'PlanNext') String? planNext,
     @JsonKey(name: 'Note') String? note,
 
@@ -774,17 +832,18 @@ class DetailSaleReportResponse with _$DetailSaleReportResponse {
     @JsonKey(name: 'ProductOfCustomer') String? productOfCustomer,
     @JsonKey(name: 'RequestOfCustomer') String? requestOfCustomer,
 
-    @JsonKey(name: 'ProjectID')  int? projectId,
+    @JsonKey(name: 'ProjectID') int? projectId,
     @JsonKey(name: 'FirmBaseID') int? firmBaseId,
     @JsonKey(name: 'ProjectTypeBaseID') int? projectTypeBaseId,
 
     @JsonKey(name: 'SaleOpportunity') bool? saleOpportunity,
-    @JsonKey(name: 'WarehouseID')  int? warehouseId,
+    @JsonKey(name: 'WarehouseID') int? warehouseId,
   }) = _DetailSaleReportResponse;
 
   factory DetailSaleReportResponse.fromJson(Map<String, dynamic> json) =>
       _$DetailSaleReportResponseFromJson(json);
 }
+
 @freezed
 class SaleProjectResponse with _$SaleProjectResponse {
   const factory SaleProjectResponse({
@@ -803,7 +862,7 @@ class SaleProjectResponse with _$SaleProjectResponse {
     @JsonKey(name: 'Note') required String note,
 
     @JsonKey(name: 'IsApproved') bool? isApproved,
-    @JsonKey(name: 'ContactID')  int? contactId,
+    @JsonKey(name: 'ContactID') int? contactId,
 
     @JsonKey(name: 'PO') String? po,
 
@@ -929,7 +988,7 @@ class TypeProjectResponse with _$TypeProjectResponse {
 class StatusProjectResponse with _$StatusProjectResponse {
   const factory StatusProjectResponse({
     @JsonKey(name: 'ID') required int id,
-    @JsonKey(name: 'StatusName')  String? statusName,
+    @JsonKey(name: 'StatusName') String? statusName,
     @JsonKey(name: 'CreatedDate') String? createdDate,
     @JsonKey(name: 'CreatedBy') String? createdBy,
     @JsonKey(name: 'UpdatedDate') String? updatedDate,
@@ -1003,6 +1062,7 @@ class SaleEmployeeResponse with _$SaleEmployeeResponse {
   factory SaleEmployeeResponse.fromJson(Map<String, dynamic> json) =>
       _$SaleEmployeeResponseFromJson(json);
 }
+
 @freezed
 class SaleRequest with _$SaleRequest {
   const factory SaleRequest({
@@ -1106,7 +1166,7 @@ class SaleReportItem with _$SaleReportItem {
     @JsonKey(name: 'Note') String? note,
 
     @JsonKey(name: 'BigAccount') bool? bigAccount,
-    @JsonKey(name: 'GroupType')  int? groupType,
+    @JsonKey(name: 'GroupType') int? groupType,
 
     @JsonKey(name: 'Content') String? content,
     @JsonKey(name: 'UserLoginID') int? userLoginId,
@@ -1298,9 +1358,7 @@ class SaleAdminDetailReportResponse with _$SaleAdminDetailReportResponse {
     @JsonKey(name: 'STT') int? stt,
   }) = _SaleAdminDetailReportResponse;
 
-  factory SaleAdminDetailReportResponse.fromJson(
-      Map<String, dynamic> json,
-      ) =>
+  factory SaleAdminDetailReportResponse.fromJson(Map<String, dynamic> json) =>
       _$SaleAdminDetailReportResponseFromJson(json);
 }
 
@@ -1427,9 +1485,8 @@ class DetailSaleAdminReportResponse with _$DetailSaleAdminReportResponse {
     @JsonKey(name: 'ProjectID') int? projectId,
   }) = _DetailSaleAdminReportResponse;
 
-  factory DetailSaleAdminReportResponse.fromJson(
-      Map<String, dynamic> json,
-      ) => _$DetailSaleAdminReportResponseFromJson(json);
+  factory DetailSaleAdminReportResponse.fromJson(Map<String, dynamic> json) =>
+      _$DetailSaleAdminReportResponseFromJson(json);
 }
 
 @freezed
@@ -1454,9 +1511,7 @@ class AccountantItem with _$AccountantItem {
     @JsonKey(name: 'RowNum') int? rowNum,
   }) = _AccountantItem;
 
-  factory AccountantItem.fromJson(
-      Map<String, dynamic> json,
-      ) =>
+  factory AccountantItem.fromJson(Map<String, dynamic> json) =>
       _$AccountantItemFromJson(json);
 }
 
@@ -1479,8 +1534,41 @@ class AccountantDetailItem with _$AccountantDetailItem {
     @JsonKey(name: 'IsDeleted') bool? isDeleted,
   }) = _AccountantDetailItem;
 
-  factory AccountantDetailItem.fromJson(
-      Map<String, dynamic> json,
-      ) =>
+  factory AccountantDetailItem.fromJson(Map<String, dynamic> json) =>
       _$AccountantDetailItemFromJson(json);
+}
+
+/// ==========================
+/// 🔹 Project History Problem Model
+///
+/// Phát sinh trong quá khứ của một hạng mục công việc.
+/// `GET /DailyReportTech/get-project-history-problem-by-project-item`
+/// ==========================
+@freezed
+class ProjectHistoryProblem with _$ProjectHistoryProblem {
+  const factory ProjectHistoryProblem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'ContentError') String? contentError,
+    @JsonKey(name: 'Reason') String? reason,
+    @JsonKey(name: 'Remedies') String? remedies,
+    @JsonKey(name: 'IssueConclusion') String? issueConclusion,
+    @JsonKey(name: 'DateProblem') DateTime? dateProblem,
+    @JsonKey(name: 'DateImplementation') DateTime? dateImplementation,
+    @JsonKey(name: 'CreatorID') int? creatorId,
+    @JsonKey(name: 'PerformerID') int? performerId,
+    @JsonKey(name: 'PriorityLevel') int? priorityLevel,
+    @JsonKey(name: 'StatusProblem') int? statusProblem,
+    @JsonKey(name: 'IssueLogType') int? issueLogType,
+    @JsonKey(name: 'IsApproved_PM') bool? isApprovedPm,
+    @JsonKey(name: 'DateApproved_PM') DateTime? dateApprovedPm,
+    @JsonKey(name: 'IsApproved_TP') bool? isApprovedTp,
+    @JsonKey(name: 'DateApproved_TP') DateTime? dateApprovedTp,
+    @JsonKey(name: 'IsApproved_PP') bool? isApprovedPp,
+    @JsonKey(name: 'DateApproved_PP') DateTime? dateApprovedPp,
+  }) = _ProjectHistoryProblem;
+
+  factory ProjectHistoryProblem.fromJson(Map<String, dynamic> json) =>
+      _$ProjectHistoryProblemFromJson(json);
 }

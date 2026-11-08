@@ -98,7 +98,7 @@ class ReportRepoImpl implements ReportRepo {
   /// Trường hợp `status == 1` nhưng `data` rỗng → trả về lỗi để caller xử lý.
   @override
   Future<Either<BaseError, List<int>>> saveReportTech({
-    required Map<String, dynamic> payload,
+    required List<Map<String, dynamic>> payload,
   }) async {
     try {
       final res = await _service.saveReportTech(payload: payload);
@@ -121,6 +121,78 @@ class ReportRepoImpl implements ReportRepo {
       }
 
       return right(ids);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  /// Lấy ca làm thêm đã đăng ký trong ngày (kèm `ProjectItemID` liên kết).
+  @override
+  Future<Either<BaseError, List<OvertimeRecord>>> getOvertimeByDate({
+    required DateTime dateRegister,
+    int? employeeId,
+  }) async {
+    try {
+      final res = await _service.getOvertimeByDate(
+        dateRegister: dateRegister,
+        employeeId: employeeId,
+      );
+
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  /// Lưu ca làm thêm kèm liên kết hạng mục công việc.
+  @override
+  Future<Either<BaseError, void>> saveOvertimeTech({
+    required Map<String, dynamic> payload,
+  }) async {
+    try {
+      final res = await _service.saveOvertimeTech(payload: payload);
+
+      if (res.status == 1) {
+        return right(null);
+      }
+
+      return left(
+        BaseError.httpInternalServerError(
+          res.message ?? 'Lưu thông tin làm thêm thất bại',
+        ),
+      );
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  /// Lấy các phát sinh của một hạng mục công việc.
+  @override
+  Future<Either<BaseError, List<ProjectHistoryProblem>>>
+  getProjectHistoryProblemByProjectItem({required int projectItemId}) async {
+    try {
+      final res = await _service.getProjectHistoryProblemByProjectItem(
+        projectItemId: projectItemId,
+      );
+
+      return right(res.data ?? []);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  /// Kiểm tra hạng mục công việc đã đủ thông tin để báo cáo hay chưa.
+  @override
+  Future<Either<BaseError, bool?>> checkInformationReport({
+    required int projectTaskId,
+  }) async {
+    try {
+      final res = await _service.checkInformationReport(
+        projectTaskId: projectTaskId,
+      );
+
+      // `null` = BE không xác nhận → để caller quyết định, không tự chặn.
+      return right(res.data);
     } on DioException catch (e) {
       return left(e.baseError);
     }
@@ -750,7 +822,8 @@ class ReportRepoImpl implements ReportRepo {
 
       if (list.isEmpty) {
         return left(
-        BaseError.httpInternalServerError('Không tìm thấy báo cáo'));
+          BaseError.httpInternalServerError('Không tìm thấy báo cáo'),
+        );
       }
 
       return right(list.first);

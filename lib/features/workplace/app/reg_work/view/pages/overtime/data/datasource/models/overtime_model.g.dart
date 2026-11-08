@@ -274,7 +274,33 @@ _$OvertimeDetailItemImpl _$$OvertimeDetailItemImplFromJson(
       statusTbpText: json['StatusTBPText'] as String?,
       statusHrText: json['StatusHRText'] as String?,
       projectId: (json['ProjectID'] as num?)?.toInt(),
+      projectItemId: (json['ProjectItemID'] as num?)?.toInt(),
       approvedId: (json['ApprovedID'] as num?)?.toInt(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      declineApprove: (json['DecilineApprove'] as num?)?.toInt(),
+      costOvertime: (json['CostOvertime'] as num?)?.toDouble(),
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      reasonHrEdit: json['ReasonHREdit'] as String?,
+      isApprovedBgd: json['IsApprovedBGD'] as bool?,
+      approvedBgdId: (json['ApprovedBGDID'] as num?)?.toInt(),
+      dateApprovedBgd: json['DateApprovedBGD'] == null
+          ? null
+          : DateTime.parse(json['DateApprovedBGD'] as String),
+      isSeniorApproved: json['IsSeniorApproved'] as bool?,
+      approvedSeniorId: (json['ApprovedSeniorID'] as num?)?.toInt(),
+      dateApprovedSenitor: json['DateApprovedSenitor'] == null
+          ? null
+          : DateTime.parse(json['DateApprovedSenitor'] as String),
+      isDeleted: json['IsDeleted'] as bool?,
+      reasonDecilineSenior: json['ReasonDecilineSenior'] as String?,
+      declineApproveSenior: (json['DecilineApproveSenior'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$OvertimeDetailItemImplToJson(
@@ -309,7 +335,144 @@ Map<String, dynamic> _$$OvertimeDetailItemImplToJson(
       'StatusTBPText': instance.statusTbpText,
       'StatusHRText': instance.statusHrText,
       'ProjectID': instance.projectId,
+      'ProjectItemID': instance.projectItemId,
       'ApprovedID': instance.approvedId,
+      'EmployeeID': instance.employeeId,
+      'DecilineApprove': instance.declineApprove,
+      'CostOvertime': instance.costOvertime,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'ReasonHREdit': instance.reasonHrEdit,
+      'IsApprovedBGD': instance.isApprovedBgd,
+      'ApprovedBGDID': instance.approvedBgdId,
+      'DateApprovedBGD': instance.dateApprovedBgd?.toIso8601String(),
+      'IsSeniorApproved': instance.isSeniorApproved,
+      'ApprovedSeniorID': instance.approvedSeniorId,
+      'DateApprovedSenitor': instance.dateApprovedSenitor?.toIso8601String(),
+      'IsDeleted': instance.isDeleted,
+      'ReasonDecilineSenior': instance.reasonDecilineSenior,
+      'DecilineApproveSenior': instance.declineApproveSenior,
+    };
+
+_$OvertimeProjectItemLinkImpl _$$OvertimeProjectItemLinkImplFromJson(
+        Map<String, dynamic> json) =>
+    _$OvertimeProjectItemLinkImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      employeeOvertimeId: (json['EmployeeOvertimeID'] as num?)?.toInt(),
+      projectItemId: (json['ProjectItemID'] as num?)?.toInt(),
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      createdBy: json['CreatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+    );
+
+Map<String, dynamic> _$$OvertimeProjectItemLinkImplToJson(
+        _$OvertimeProjectItemLinkImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'EmployeeOvertimeID': instance.employeeOvertimeId,
+      'ProjectItemID': instance.projectItemId,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'CreatedBy': instance.createdBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+    };
+
+_$OvertimeFileItemImpl _$$OvertimeFileItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$OvertimeFileItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      employeeOvertimeId: (json['EmployeeOvertimeID'] as num?)?.toInt(),
+      fileName: json['FileName'] as String?,
+      originPath: json['OriginPath'] as String?,
+      serverPath: json['ServerPath'] as String?,
+      createdBy: json['CreatedBy'] as String?,
+      createdDate: json['CreatedDate'] == null
+          ? null
+          : DateTime.parse(json['CreatedDate'] as String),
+      updatedBy: json['UpdatedBy'] as String?,
+      updatedDate: json['UpdatedDate'] == null
+          ? null
+          : DateTime.parse(json['UpdatedDate'] as String),
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$OvertimeFileItemImplToJson(
+        _$OvertimeFileItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'EmployeeOvertimeID': instance.employeeOvertimeId,
+      'FileName': instance.fileName,
+      'OriginPath': instance.originPath,
+      'ServerPath': instance.serverPath,
+      'CreatedBy': instance.createdBy,
+      'CreatedDate': instance.createdDate?.toIso8601String(),
+      'UpdatedBy': instance.updatedBy,
+      'UpdatedDate': instance.updatedDate?.toIso8601String(),
+      'IsDeleted': instance.isDeleted,
+    };
+
+_$OvertimeDetailResponseImpl _$$OvertimeDetailResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$OvertimeDetailResponseImpl(
+      employeeOvertime: json['employeeOverTime'] == null
+          ? null
+          : OvertimeDetailItem.fromJson(
+              json['employeeOverTime'] as Map<String, dynamic>),
+      overTimeFile: json['overTimeFile'] == null
+          ? null
+          : OvertimeFileItem.fromJson(
+              json['overTimeFile'] as Map<String, dynamic>),
+      overTimeProjectItem: json['overTimeProjectItem'] == null
+          ? null
+          : OvertimeProjectItemLink.fromJson(
+              json['overTimeProjectItem'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$OvertimeDetailResponseImplToJson(
+        _$OvertimeDetailResponseImpl instance) =>
+    <String, dynamic>{
+      'employeeOverTime': instance.employeeOvertime,
+      'overTimeFile': instance.overTimeFile,
+      'overTimeProjectItem': instance.overTimeProjectItem,
+    };
+
+_$OvertimeProjectItemImpl _$$OvertimeProjectItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$OvertimeProjectItemImpl(
+      id: (json['ID'] as num).toInt(),
+      code: json['Code'] as String?,
+      mission: json['Mission'] as String?,
+      percentageActual: (json['PercentageActual'] as num?)?.toDouble(),
+      planStartDate: json['PlanStartDate'] == null
+          ? null
+          : DateTime.parse(json['PlanStartDate'] as String),
+      planEndDate: json['PlanEndDate'] == null
+          ? null
+          : DateTime.parse(json['PlanEndDate'] as String),
+      totalDayPlan: (json['TotalDayPlan'] as num?)?.toDouble(),
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      isCheckedToday: (json['IsCheckedToday'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$OvertimeProjectItemImplToJson(
+        _$OvertimeProjectItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'Mission': instance.mission,
+      'PercentageActual': instance.percentageActual,
+      'PlanStartDate': instance.planStartDate?.toIso8601String(),
+      'PlanEndDate': instance.planEndDate?.toIso8601String(),
+      'TotalDayPlan': instance.totalDayPlan,
+      'EmployeeID': instance.employeeId,
+      'IsCheckedToday': instance.isCheckedToday,
     };
 
 _$FillApproverItemImpl _$$FillApproverItemImplFromJson(

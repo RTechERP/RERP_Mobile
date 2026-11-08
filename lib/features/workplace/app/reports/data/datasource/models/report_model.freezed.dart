@@ -4203,6 +4203,825 @@ abstract class _ProjectItemResponse implements ProjectItemResponse {
       throw _privateConstructorUsedError;
 }
 
+OvertimeRecord _$OvertimeRecordFromJson(Map<String, dynamic> json) {
+  return _OvertimeRecord.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OvertimeRecord {
+  @JsonKey(name: 'ID')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedID')
+  int? get approvedId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateRegister')
+  DateTime? get dateRegister => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TimeStart')
+  DateTime? get timeStart => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EndTime')
+  DateTime? get endTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TimeReality')
+  double? get timeReality => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Location')
+  int? get location => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TypeID')
+  int? get typeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectItemID')
+  int? get projectItemId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Overnight')
+  bool? get overnight => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CostOvernight')
+  double? get costOvernight => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Reason')
+  String? get reason => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  /// Cờ phát sinh của ca làm thêm.
+  @JsonKey(name: 'IsProblem')
+  bool? get isProblem => throw _privateConstructorUsedError;
+
+  /// Cờ duyệt của người duyệt (trưởng phòng / đội trưởng).
+  @JsonKey(name: 'IsApproved')
+  bool? get isApproved => throw _privateConstructorUsedError;
+
+  /// Cờ duyệt của HR.
+  @JsonKey(name: 'IsApprovedHR')
+  bool? get isApprovedHR => throw _privateConstructorUsedError;
+
+  /// Cờ duyệt của ban giám đốc (có thể `null` với bản ghi cũ).
+  @JsonKey(name: 'IsApprovedBGD')
+  bool? get isApprovedBGD => throw _privateConstructorUsedError;
+
+  /// ID người duyệt HR.
+  @JsonKey(name: 'ApprovedHR')
+  int? get approvedHR => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OvertimeRecordCopyWith<OvertimeRecord> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OvertimeRecordCopyWith<$Res> {
+  factory $OvertimeRecordCopyWith(
+          OvertimeRecord value, $Res Function(OvertimeRecord) then) =
+      _$OvertimeRecordCopyWithImpl<$Res, OvertimeRecord>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'ApprovedID') int? approvedId,
+      @JsonKey(name: 'DateRegister') DateTime? dateRegister,
+      @JsonKey(name: 'TimeStart') DateTime? timeStart,
+      @JsonKey(name: 'EndTime') DateTime? endTime,
+      @JsonKey(name: 'TimeReality') double? timeReality,
+      @JsonKey(name: 'Location') int? location,
+      @JsonKey(name: 'TypeID') int? typeId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProjectItemID') int? projectItemId,
+      @JsonKey(name: 'Overnight') bool? overnight,
+      @JsonKey(name: 'CostOvernight') double? costOvernight,
+      @JsonKey(name: 'Reason') String? reason,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'IsProblem') bool? isProblem,
+      @JsonKey(name: 'IsApproved') bool? isApproved,
+      @JsonKey(name: 'IsApprovedHR') bool? isApprovedHR,
+      @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBGD,
+      @JsonKey(name: 'ApprovedHR') int? approvedHR});
+}
+
+/// @nodoc
+class _$OvertimeRecordCopyWithImpl<$Res, $Val extends OvertimeRecord>
+    implements $OvertimeRecordCopyWith<$Res> {
+  _$OvertimeRecordCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? employeeId = freezed,
+    Object? approvedId = freezed,
+    Object? dateRegister = freezed,
+    Object? timeStart = freezed,
+    Object? endTime = freezed,
+    Object? timeReality = freezed,
+    Object? location = freezed,
+    Object? typeId = freezed,
+    Object? projectId = freezed,
+    Object? projectItemId = freezed,
+    Object? overnight = freezed,
+    Object? costOvernight = freezed,
+    Object? reason = freezed,
+    Object? isDeleted = freezed,
+    Object? isProblem = freezed,
+    Object? isApproved = freezed,
+    Object? isApprovedHR = freezed,
+    Object? isApprovedBGD = freezed,
+    Object? approvedHR = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedId: freezed == approvedId
+          ? _value.approvedId
+          : approvedId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dateRegister: freezed == dateRegister
+          ? _value.dateRegister
+          : dateRegister // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      timeStart: freezed == timeStart
+          ? _value.timeStart
+          : timeStart // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endTime: freezed == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      timeReality: freezed == timeReality
+          ? _value.timeReality
+          : timeReality // ignore: cast_nullable_to_non_nullable
+              as double?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as int?,
+      typeId: freezed == typeId
+          ? _value.typeId
+          : typeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectItemId: freezed == projectItemId
+          ? _value.projectItemId
+          : projectItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      overnight: freezed == overnight
+          ? _value.overnight
+          : overnight // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      costOvernight: freezed == costOvernight
+          ? _value.costOvernight
+          : costOvernight // ignore: cast_nullable_to_non_nullable
+              as double?,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isProblem: freezed == isProblem
+          ? _value.isProblem
+          : isProblem // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isApproved: freezed == isApproved
+          ? _value.isApproved
+          : isApproved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isApprovedHR: freezed == isApprovedHR
+          ? _value.isApprovedHR
+          : isApprovedHR // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isApprovedBGD: freezed == isApprovedBGD
+          ? _value.isApprovedBGD
+          : isApprovedBGD // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      approvedHR: freezed == approvedHR
+          ? _value.approvedHR
+          : approvedHR // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$OvertimeRecordImplCopyWith<$Res>
+    implements $OvertimeRecordCopyWith<$Res> {
+  factory _$$OvertimeRecordImplCopyWith(_$OvertimeRecordImpl value,
+          $Res Function(_$OvertimeRecordImpl) then) =
+      __$$OvertimeRecordImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'ApprovedID') int? approvedId,
+      @JsonKey(name: 'DateRegister') DateTime? dateRegister,
+      @JsonKey(name: 'TimeStart') DateTime? timeStart,
+      @JsonKey(name: 'EndTime') DateTime? endTime,
+      @JsonKey(name: 'TimeReality') double? timeReality,
+      @JsonKey(name: 'Location') int? location,
+      @JsonKey(name: 'TypeID') int? typeId,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProjectItemID') int? projectItemId,
+      @JsonKey(name: 'Overnight') bool? overnight,
+      @JsonKey(name: 'CostOvernight') double? costOvernight,
+      @JsonKey(name: 'Reason') String? reason,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'IsProblem') bool? isProblem,
+      @JsonKey(name: 'IsApproved') bool? isApproved,
+      @JsonKey(name: 'IsApprovedHR') bool? isApprovedHR,
+      @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBGD,
+      @JsonKey(name: 'ApprovedHR') int? approvedHR});
+}
+
+/// @nodoc
+class __$$OvertimeRecordImplCopyWithImpl<$Res>
+    extends _$OvertimeRecordCopyWithImpl<$Res, _$OvertimeRecordImpl>
+    implements _$$OvertimeRecordImplCopyWith<$Res> {
+  __$$OvertimeRecordImplCopyWithImpl(
+      _$OvertimeRecordImpl _value, $Res Function(_$OvertimeRecordImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? employeeId = freezed,
+    Object? approvedId = freezed,
+    Object? dateRegister = freezed,
+    Object? timeStart = freezed,
+    Object? endTime = freezed,
+    Object? timeReality = freezed,
+    Object? location = freezed,
+    Object? typeId = freezed,
+    Object? projectId = freezed,
+    Object? projectItemId = freezed,
+    Object? overnight = freezed,
+    Object? costOvernight = freezed,
+    Object? reason = freezed,
+    Object? isDeleted = freezed,
+    Object? isProblem = freezed,
+    Object? isApproved = freezed,
+    Object? isApprovedHR = freezed,
+    Object? isApprovedBGD = freezed,
+    Object? approvedHR = freezed,
+  }) {
+    return _then(_$OvertimeRecordImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approvedId: freezed == approvedId
+          ? _value.approvedId
+          : approvedId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dateRegister: freezed == dateRegister
+          ? _value.dateRegister
+          : dateRegister // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      timeStart: freezed == timeStart
+          ? _value.timeStart
+          : timeStart // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endTime: freezed == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      timeReality: freezed == timeReality
+          ? _value.timeReality
+          : timeReality // ignore: cast_nullable_to_non_nullable
+              as double?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as int?,
+      typeId: freezed == typeId
+          ? _value.typeId
+          : typeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectItemId: freezed == projectItemId
+          ? _value.projectItemId
+          : projectItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      overnight: freezed == overnight
+          ? _value.overnight
+          : overnight // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      costOvernight: freezed == costOvernight
+          ? _value.costOvernight
+          : costOvernight // ignore: cast_nullable_to_non_nullable
+              as double?,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isProblem: freezed == isProblem
+          ? _value.isProblem
+          : isProblem // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isApproved: freezed == isApproved
+          ? _value.isApproved
+          : isApproved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isApprovedHR: freezed == isApprovedHR
+          ? _value.isApprovedHR
+          : isApprovedHR // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isApprovedBGD: freezed == isApprovedBGD
+          ? _value.isApprovedBGD
+          : isApprovedBGD // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      approvedHR: freezed == approvedHR
+          ? _value.approvedHR
+          : approvedHR // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$OvertimeRecordImpl implements _OvertimeRecord {
+  const _$OvertimeRecordImpl(
+      {@JsonKey(name: 'ID') required this.id,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'ApprovedID') this.approvedId,
+      @JsonKey(name: 'DateRegister') this.dateRegister,
+      @JsonKey(name: 'TimeStart') this.timeStart,
+      @JsonKey(name: 'EndTime') this.endTime,
+      @JsonKey(name: 'TimeReality') this.timeReality,
+      @JsonKey(name: 'Location') this.location,
+      @JsonKey(name: 'TypeID') this.typeId,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'ProjectItemID') this.projectItemId,
+      @JsonKey(name: 'Overnight') this.overnight,
+      @JsonKey(name: 'CostOvernight') this.costOvernight,
+      @JsonKey(name: 'Reason') this.reason,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'IsProblem') this.isProblem,
+      @JsonKey(name: 'IsApproved') this.isApproved,
+      @JsonKey(name: 'IsApprovedHR') this.isApprovedHR,
+      @JsonKey(name: 'IsApprovedBGD') this.isApprovedBGD,
+      @JsonKey(name: 'ApprovedHR') this.approvedHR});
+
+  factory _$OvertimeRecordImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OvertimeRecordImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int id;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'ApprovedID')
+  final int? approvedId;
+  @override
+  @JsonKey(name: 'DateRegister')
+  final DateTime? dateRegister;
+  @override
+  @JsonKey(name: 'TimeStart')
+  final DateTime? timeStart;
+  @override
+  @JsonKey(name: 'EndTime')
+  final DateTime? endTime;
+  @override
+  @JsonKey(name: 'TimeReality')
+  final double? timeReality;
+  @override
+  @JsonKey(name: 'Location')
+  final int? location;
+  @override
+  @JsonKey(name: 'TypeID')
+  final int? typeId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+  @override
+  @JsonKey(name: 'ProjectItemID')
+  final int? projectItemId;
+  @override
+  @JsonKey(name: 'Overnight')
+  final bool? overnight;
+  @override
+  @JsonKey(name: 'CostOvernight')
+  final double? costOvernight;
+  @override
+  @JsonKey(name: 'Reason')
+  final String? reason;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  /// Cờ phát sinh của ca làm thêm.
+  @override
+  @JsonKey(name: 'IsProblem')
+  final bool? isProblem;
+
+  /// Cờ duyệt của người duyệt (trưởng phòng / đội trưởng).
+  @override
+  @JsonKey(name: 'IsApproved')
+  final bool? isApproved;
+
+  /// Cờ duyệt của HR.
+  @override
+  @JsonKey(name: 'IsApprovedHR')
+  final bool? isApprovedHR;
+
+  /// Cờ duyệt của ban giám đốc (có thể `null` với bản ghi cũ).
+  @override
+  @JsonKey(name: 'IsApprovedBGD')
+  final bool? isApprovedBGD;
+
+  /// ID người duyệt HR.
+  @override
+  @JsonKey(name: 'ApprovedHR')
+  final int? approvedHR;
+
+  @override
+  String toString() {
+    return 'OvertimeRecord(id: $id, employeeId: $employeeId, approvedId: $approvedId, dateRegister: $dateRegister, timeStart: $timeStart, endTime: $endTime, timeReality: $timeReality, location: $location, typeId: $typeId, projectId: $projectId, projectItemId: $projectItemId, overnight: $overnight, costOvernight: $costOvernight, reason: $reason, isDeleted: $isDeleted, isProblem: $isProblem, isApproved: $isApproved, isApprovedHR: $isApprovedHR, isApprovedBGD: $isApprovedBGD, approvedHR: $approvedHR)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OvertimeRecordImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.approvedId, approvedId) ||
+                other.approvedId == approvedId) &&
+            (identical(other.dateRegister, dateRegister) ||
+                other.dateRegister == dateRegister) &&
+            (identical(other.timeStart, timeStart) ||
+                other.timeStart == timeStart) &&
+            (identical(other.endTime, endTime) || other.endTime == endTime) &&
+            (identical(other.timeReality, timeReality) ||
+                other.timeReality == timeReality) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.typeId, typeId) || other.typeId == typeId) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.projectItemId, projectItemId) ||
+                other.projectItemId == projectItemId) &&
+            (identical(other.overnight, overnight) ||
+                other.overnight == overnight) &&
+            (identical(other.costOvernight, costOvernight) ||
+                other.costOvernight == costOvernight) &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.isProblem, isProblem) ||
+                other.isProblem == isProblem) &&
+            (identical(other.isApproved, isApproved) ||
+                other.isApproved == isApproved) &&
+            (identical(other.isApprovedHR, isApprovedHR) ||
+                other.isApprovedHR == isApprovedHR) &&
+            (identical(other.isApprovedBGD, isApprovedBGD) ||
+                other.isApprovedBGD == isApprovedBGD) &&
+            (identical(other.approvedHR, approvedHR) ||
+                other.approvedHR == approvedHR));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        employeeId,
+        approvedId,
+        dateRegister,
+        timeStart,
+        endTime,
+        timeReality,
+        location,
+        typeId,
+        projectId,
+        projectItemId,
+        overnight,
+        costOvernight,
+        reason,
+        isDeleted,
+        isProblem,
+        isApproved,
+        isApprovedHR,
+        isApprovedBGD,
+        approvedHR
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OvertimeRecordImplCopyWith<_$OvertimeRecordImpl> get copyWith =>
+      __$$OvertimeRecordImplCopyWithImpl<_$OvertimeRecordImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OvertimeRecordImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OvertimeRecord implements OvertimeRecord {
+  const factory _OvertimeRecord(
+          {@JsonKey(name: 'ID') required final int id,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'ApprovedID') final int? approvedId,
+          @JsonKey(name: 'DateRegister') final DateTime? dateRegister,
+          @JsonKey(name: 'TimeStart') final DateTime? timeStart,
+          @JsonKey(name: 'EndTime') final DateTime? endTime,
+          @JsonKey(name: 'TimeReality') final double? timeReality,
+          @JsonKey(name: 'Location') final int? location,
+          @JsonKey(name: 'TypeID') final int? typeId,
+          @JsonKey(name: 'ProjectID') final int? projectId,
+          @JsonKey(name: 'ProjectItemID') final int? projectItemId,
+          @JsonKey(name: 'Overnight') final bool? overnight,
+          @JsonKey(name: 'CostOvernight') final double? costOvernight,
+          @JsonKey(name: 'Reason') final String? reason,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+          @JsonKey(name: 'IsProblem') final bool? isProblem,
+          @JsonKey(name: 'IsApproved') final bool? isApproved,
+          @JsonKey(name: 'IsApprovedHR') final bool? isApprovedHR,
+          @JsonKey(name: 'IsApprovedBGD') final bool? isApprovedBGD,
+          @JsonKey(name: 'ApprovedHR') final int? approvedHR}) =
+      _$OvertimeRecordImpl;
+
+  factory _OvertimeRecord.fromJson(Map<String, dynamic> json) =
+      _$OvertimeRecordImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int get id;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'ApprovedID')
+  int? get approvedId;
+  @override
+  @JsonKey(name: 'DateRegister')
+  DateTime? get dateRegister;
+  @override
+  @JsonKey(name: 'TimeStart')
+  DateTime? get timeStart;
+  @override
+  @JsonKey(name: 'EndTime')
+  DateTime? get endTime;
+  @override
+  @JsonKey(name: 'TimeReality')
+  double? get timeReality;
+  @override
+  @JsonKey(name: 'Location')
+  int? get location;
+  @override
+  @JsonKey(name: 'TypeID')
+  int? get typeId;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(name: 'ProjectItemID')
+  int? get projectItemId;
+  @override
+  @JsonKey(name: 'Overnight')
+  bool? get overnight;
+  @override
+  @JsonKey(name: 'CostOvernight')
+  double? get costOvernight;
+  @override
+  @JsonKey(name: 'Reason')
+  String? get reason;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+
+  /// Cờ phát sinh của ca làm thêm.
+  @JsonKey(name: 'IsProblem')
+  bool? get isProblem;
+  @override
+
+  /// Cờ duyệt của người duyệt (trưởng phòng / đội trưởng).
+  @JsonKey(name: 'IsApproved')
+  bool? get isApproved;
+  @override
+
+  /// Cờ duyệt của HR.
+  @JsonKey(name: 'IsApprovedHR')
+  bool? get isApprovedHR;
+  @override
+
+  /// Cờ duyệt của ban giám đốc (có thể `null` với bản ghi cũ).
+  @JsonKey(name: 'IsApprovedBGD')
+  bool? get isApprovedBGD;
+  @override
+
+  /// ID người duyệt HR.
+  @JsonKey(name: 'ApprovedHR')
+  int? get approvedHR;
+  @override
+  @JsonKey(ignore: true)
+  _$$OvertimeRecordImplCopyWith<_$OvertimeRecordImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ApproveInfo _$ApproveInfoFromJson(Map<String, dynamic> json) {
+  return _ApproveInfo.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ApproveInfo {
+  @JsonKey(name: 'ApproveID')
+  int? get approveId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApproveName')
+  String? get approveName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ApproveInfoCopyWith<ApproveInfo> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ApproveInfoCopyWith<$Res> {
+  factory $ApproveInfoCopyWith(
+          ApproveInfo value, $Res Function(ApproveInfo) then) =
+      _$ApproveInfoCopyWithImpl<$Res, ApproveInfo>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ApproveID') int? approveId,
+      @JsonKey(name: 'ApproveName') String? approveName});
+}
+
+/// @nodoc
+class _$ApproveInfoCopyWithImpl<$Res, $Val extends ApproveInfo>
+    implements $ApproveInfoCopyWith<$Res> {
+  _$ApproveInfoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? approveId = freezed,
+    Object? approveName = freezed,
+  }) {
+    return _then(_value.copyWith(
+      approveId: freezed == approveId
+          ? _value.approveId
+          : approveId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approveName: freezed == approveName
+          ? _value.approveName
+          : approveName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ApproveInfoImplCopyWith<$Res>
+    implements $ApproveInfoCopyWith<$Res> {
+  factory _$$ApproveInfoImplCopyWith(
+          _$ApproveInfoImpl value, $Res Function(_$ApproveInfoImpl) then) =
+      __$$ApproveInfoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ApproveID') int? approveId,
+      @JsonKey(name: 'ApproveName') String? approveName});
+}
+
+/// @nodoc
+class __$$ApproveInfoImplCopyWithImpl<$Res>
+    extends _$ApproveInfoCopyWithImpl<$Res, _$ApproveInfoImpl>
+    implements _$$ApproveInfoImplCopyWith<$Res> {
+  __$$ApproveInfoImplCopyWithImpl(
+      _$ApproveInfoImpl _value, $Res Function(_$ApproveInfoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? approveId = freezed,
+    Object? approveName = freezed,
+  }) {
+    return _then(_$ApproveInfoImpl(
+      approveId: freezed == approveId
+          ? _value.approveId
+          : approveId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      approveName: freezed == approveName
+          ? _value.approveName
+          : approveName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ApproveInfoImpl implements _ApproveInfo {
+  const _$ApproveInfoImpl(
+      {@JsonKey(name: 'ApproveID') this.approveId,
+      @JsonKey(name: 'ApproveName') this.approveName});
+
+  factory _$ApproveInfoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApproveInfoImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ApproveID')
+  final int? approveId;
+  @override
+  @JsonKey(name: 'ApproveName')
+  final String? approveName;
+
+  @override
+  String toString() {
+    return 'ApproveInfo(approveId: $approveId, approveName: $approveName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApproveInfoImpl &&
+            (identical(other.approveId, approveId) ||
+                other.approveId == approveId) &&
+            (identical(other.approveName, approveName) ||
+                other.approveName == approveName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, approveId, approveName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApproveInfoImplCopyWith<_$ApproveInfoImpl> get copyWith =>
+      __$$ApproveInfoImplCopyWithImpl<_$ApproveInfoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ApproveInfoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ApproveInfo implements ApproveInfo {
+  const factory _ApproveInfo(
+          {@JsonKey(name: 'ApproveID') final int? approveId,
+          @JsonKey(name: 'ApproveName') final String? approveName}) =
+      _$ApproveInfoImpl;
+
+  factory _ApproveInfo.fromJson(Map<String, dynamic> json) =
+      _$ApproveInfoImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ApproveID')
+  int? get approveId;
+  @override
+  @JsonKey(name: 'ApproveName')
+  String? get approveName;
+  @override
+  @JsonKey(ignore: true)
+  _$$ApproveInfoImplCopyWith<_$ApproveInfoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 SaveReportTechRequest _$SaveReportTechRequestFromJson(
     Map<String, dynamic> json) {
   return _SaveReportTechRequest.fromJson(json);
@@ -26671,5 +27490,630 @@ abstract class _AccountantDetailItem implements AccountantDetailItem {
   @override
   @JsonKey(ignore: true)
   _$$AccountantDetailItemImplCopyWith<_$AccountantDetailItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ProjectHistoryProblem _$ProjectHistoryProblemFromJson(
+    Map<String, dynamic> json) {
+  return _ProjectHistoryProblem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectHistoryProblem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ContentError')
+  String? get contentError => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Reason')
+  String? get reason => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Remedies')
+  String? get remedies => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IssueConclusion')
+  String? get issueConclusion => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateProblem')
+  DateTime? get dateProblem => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateImplementation')
+  DateTime? get dateImplementation => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatorID')
+  int? get creatorId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PerformerID')
+  int? get performerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PriorityLevel')
+  int? get priorityLevel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StatusProblem')
+  int? get statusProblem => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IssueLogType')
+  int? get issueLogType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApproved_PM')
+  bool? get isApprovedPm => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateApproved_PM')
+  DateTime? get dateApprovedPm => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApproved_TP')
+  bool? get isApprovedTp => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateApproved_TP')
+  DateTime? get dateApprovedTp => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApproved_PP')
+  bool? get isApprovedPp => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateApproved_PP')
+  DateTime? get dateApprovedPp => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProjectHistoryProblemCopyWith<ProjectHistoryProblem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectHistoryProblemCopyWith<$Res> {
+  factory $ProjectHistoryProblemCopyWith(ProjectHistoryProblem value,
+          $Res Function(ProjectHistoryProblem) then) =
+      _$ProjectHistoryProblemCopyWithImpl<$Res, ProjectHistoryProblem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'ContentError') String? contentError,
+      @JsonKey(name: 'Reason') String? reason,
+      @JsonKey(name: 'Remedies') String? remedies,
+      @JsonKey(name: 'IssueConclusion') String? issueConclusion,
+      @JsonKey(name: 'DateProblem') DateTime? dateProblem,
+      @JsonKey(name: 'DateImplementation') DateTime? dateImplementation,
+      @JsonKey(name: 'CreatorID') int? creatorId,
+      @JsonKey(name: 'PerformerID') int? performerId,
+      @JsonKey(name: 'PriorityLevel') int? priorityLevel,
+      @JsonKey(name: 'StatusProblem') int? statusProblem,
+      @JsonKey(name: 'IssueLogType') int? issueLogType,
+      @JsonKey(name: 'IsApproved_PM') bool? isApprovedPm,
+      @JsonKey(name: 'DateApproved_PM') DateTime? dateApprovedPm,
+      @JsonKey(name: 'IsApproved_TP') bool? isApprovedTp,
+      @JsonKey(name: 'DateApproved_TP') DateTime? dateApprovedTp,
+      @JsonKey(name: 'IsApproved_PP') bool? isApprovedPp,
+      @JsonKey(name: 'DateApproved_PP') DateTime? dateApprovedPp});
+}
+
+/// @nodoc
+class _$ProjectHistoryProblemCopyWithImpl<$Res,
+        $Val extends ProjectHistoryProblem>
+    implements $ProjectHistoryProblemCopyWith<$Res> {
+  _$ProjectHistoryProblemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectId = freezed,
+    Object? stt = freezed,
+    Object? contentError = freezed,
+    Object? reason = freezed,
+    Object? remedies = freezed,
+    Object? issueConclusion = freezed,
+    Object? dateProblem = freezed,
+    Object? dateImplementation = freezed,
+    Object? creatorId = freezed,
+    Object? performerId = freezed,
+    Object? priorityLevel = freezed,
+    Object? statusProblem = freezed,
+    Object? issueLogType = freezed,
+    Object? isApprovedPm = freezed,
+    Object? dateApprovedPm = freezed,
+    Object? isApprovedTp = freezed,
+    Object? dateApprovedTp = freezed,
+    Object? isApprovedPp = freezed,
+    Object? dateApprovedPp = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      contentError: freezed == contentError
+          ? _value.contentError
+          : contentError // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remedies: freezed == remedies
+          ? _value.remedies
+          : remedies // ignore: cast_nullable_to_non_nullable
+              as String?,
+      issueConclusion: freezed == issueConclusion
+          ? _value.issueConclusion
+          : issueConclusion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateProblem: freezed == dateProblem
+          ? _value.dateProblem
+          : dateProblem // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      dateImplementation: freezed == dateImplementation
+          ? _value.dateImplementation
+          : dateImplementation // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      creatorId: freezed == creatorId
+          ? _value.creatorId
+          : creatorId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      performerId: freezed == performerId
+          ? _value.performerId
+          : performerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      priorityLevel: freezed == priorityLevel
+          ? _value.priorityLevel
+          : priorityLevel // ignore: cast_nullable_to_non_nullable
+              as int?,
+      statusProblem: freezed == statusProblem
+          ? _value.statusProblem
+          : statusProblem // ignore: cast_nullable_to_non_nullable
+              as int?,
+      issueLogType: freezed == issueLogType
+          ? _value.issueLogType
+          : issueLogType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApprovedPm: freezed == isApprovedPm
+          ? _value.isApprovedPm
+          : isApprovedPm // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedPm: freezed == dateApprovedPm
+          ? _value.dateApprovedPm
+          : dateApprovedPm // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApprovedTp: freezed == isApprovedTp
+          ? _value.isApprovedTp
+          : isApprovedTp // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedTp: freezed == dateApprovedTp
+          ? _value.dateApprovedTp
+          : dateApprovedTp // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApprovedPp: freezed == isApprovedPp
+          ? _value.isApprovedPp
+          : isApprovedPp // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedPp: freezed == dateApprovedPp
+          ? _value.dateApprovedPp
+          : dateApprovedPp // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectHistoryProblemImplCopyWith<$Res>
+    implements $ProjectHistoryProblemCopyWith<$Res> {
+  factory _$$ProjectHistoryProblemImplCopyWith(
+          _$ProjectHistoryProblemImpl value,
+          $Res Function(_$ProjectHistoryProblemImpl) then) =
+      __$$ProjectHistoryProblemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'ContentError') String? contentError,
+      @JsonKey(name: 'Reason') String? reason,
+      @JsonKey(name: 'Remedies') String? remedies,
+      @JsonKey(name: 'IssueConclusion') String? issueConclusion,
+      @JsonKey(name: 'DateProblem') DateTime? dateProblem,
+      @JsonKey(name: 'DateImplementation') DateTime? dateImplementation,
+      @JsonKey(name: 'CreatorID') int? creatorId,
+      @JsonKey(name: 'PerformerID') int? performerId,
+      @JsonKey(name: 'PriorityLevel') int? priorityLevel,
+      @JsonKey(name: 'StatusProblem') int? statusProblem,
+      @JsonKey(name: 'IssueLogType') int? issueLogType,
+      @JsonKey(name: 'IsApproved_PM') bool? isApprovedPm,
+      @JsonKey(name: 'DateApproved_PM') DateTime? dateApprovedPm,
+      @JsonKey(name: 'IsApproved_TP') bool? isApprovedTp,
+      @JsonKey(name: 'DateApproved_TP') DateTime? dateApprovedTp,
+      @JsonKey(name: 'IsApproved_PP') bool? isApprovedPp,
+      @JsonKey(name: 'DateApproved_PP') DateTime? dateApprovedPp});
+}
+
+/// @nodoc
+class __$$ProjectHistoryProblemImplCopyWithImpl<$Res>
+    extends _$ProjectHistoryProblemCopyWithImpl<$Res,
+        _$ProjectHistoryProblemImpl>
+    implements _$$ProjectHistoryProblemImplCopyWith<$Res> {
+  __$$ProjectHistoryProblemImplCopyWithImpl(_$ProjectHistoryProblemImpl _value,
+      $Res Function(_$ProjectHistoryProblemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectId = freezed,
+    Object? stt = freezed,
+    Object? contentError = freezed,
+    Object? reason = freezed,
+    Object? remedies = freezed,
+    Object? issueConclusion = freezed,
+    Object? dateProblem = freezed,
+    Object? dateImplementation = freezed,
+    Object? creatorId = freezed,
+    Object? performerId = freezed,
+    Object? priorityLevel = freezed,
+    Object? statusProblem = freezed,
+    Object? issueLogType = freezed,
+    Object? isApprovedPm = freezed,
+    Object? dateApprovedPm = freezed,
+    Object? isApprovedTp = freezed,
+    Object? dateApprovedTp = freezed,
+    Object? isApprovedPp = freezed,
+    Object? dateApprovedPp = freezed,
+  }) {
+    return _then(_$ProjectHistoryProblemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      contentError: freezed == contentError
+          ? _value.contentError
+          : contentError // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remedies: freezed == remedies
+          ? _value.remedies
+          : remedies // ignore: cast_nullable_to_non_nullable
+              as String?,
+      issueConclusion: freezed == issueConclusion
+          ? _value.issueConclusion
+          : issueConclusion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateProblem: freezed == dateProblem
+          ? _value.dateProblem
+          : dateProblem // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      dateImplementation: freezed == dateImplementation
+          ? _value.dateImplementation
+          : dateImplementation // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      creatorId: freezed == creatorId
+          ? _value.creatorId
+          : creatorId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      performerId: freezed == performerId
+          ? _value.performerId
+          : performerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      priorityLevel: freezed == priorityLevel
+          ? _value.priorityLevel
+          : priorityLevel // ignore: cast_nullable_to_non_nullable
+              as int?,
+      statusProblem: freezed == statusProblem
+          ? _value.statusProblem
+          : statusProblem // ignore: cast_nullable_to_non_nullable
+              as int?,
+      issueLogType: freezed == issueLogType
+          ? _value.issueLogType
+          : issueLogType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isApprovedPm: freezed == isApprovedPm
+          ? _value.isApprovedPm
+          : isApprovedPm // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedPm: freezed == dateApprovedPm
+          ? _value.dateApprovedPm
+          : dateApprovedPm // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApprovedTp: freezed == isApprovedTp
+          ? _value.isApprovedTp
+          : isApprovedTp // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedTp: freezed == dateApprovedTp
+          ? _value.dateApprovedTp
+          : dateApprovedTp // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isApprovedPp: freezed == isApprovedPp
+          ? _value.isApprovedPp
+          : isApprovedPp // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateApprovedPp: freezed == dateApprovedPp
+          ? _value.dateApprovedPp
+          : dateApprovedPp // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectHistoryProblemImpl implements _ProjectHistoryProblem {
+  const _$ProjectHistoryProblemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'ContentError') this.contentError,
+      @JsonKey(name: 'Reason') this.reason,
+      @JsonKey(name: 'Remedies') this.remedies,
+      @JsonKey(name: 'IssueConclusion') this.issueConclusion,
+      @JsonKey(name: 'DateProblem') this.dateProblem,
+      @JsonKey(name: 'DateImplementation') this.dateImplementation,
+      @JsonKey(name: 'CreatorID') this.creatorId,
+      @JsonKey(name: 'PerformerID') this.performerId,
+      @JsonKey(name: 'PriorityLevel') this.priorityLevel,
+      @JsonKey(name: 'StatusProblem') this.statusProblem,
+      @JsonKey(name: 'IssueLogType') this.issueLogType,
+      @JsonKey(name: 'IsApproved_PM') this.isApprovedPm,
+      @JsonKey(name: 'DateApproved_PM') this.dateApprovedPm,
+      @JsonKey(name: 'IsApproved_TP') this.isApprovedTp,
+      @JsonKey(name: 'DateApproved_TP') this.dateApprovedTp,
+      @JsonKey(name: 'IsApproved_PP') this.isApprovedPp,
+      @JsonKey(name: 'DateApproved_PP') this.dateApprovedPp});
+
+  factory _$ProjectHistoryProblemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectHistoryProblemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'ContentError')
+  final String? contentError;
+  @override
+  @JsonKey(name: 'Reason')
+  final String? reason;
+  @override
+  @JsonKey(name: 'Remedies')
+  final String? remedies;
+  @override
+  @JsonKey(name: 'IssueConclusion')
+  final String? issueConclusion;
+  @override
+  @JsonKey(name: 'DateProblem')
+  final DateTime? dateProblem;
+  @override
+  @JsonKey(name: 'DateImplementation')
+  final DateTime? dateImplementation;
+  @override
+  @JsonKey(name: 'CreatorID')
+  final int? creatorId;
+  @override
+  @JsonKey(name: 'PerformerID')
+  final int? performerId;
+  @override
+  @JsonKey(name: 'PriorityLevel')
+  final int? priorityLevel;
+  @override
+  @JsonKey(name: 'StatusProblem')
+  final int? statusProblem;
+  @override
+  @JsonKey(name: 'IssueLogType')
+  final int? issueLogType;
+  @override
+  @JsonKey(name: 'IsApproved_PM')
+  final bool? isApprovedPm;
+  @override
+  @JsonKey(name: 'DateApproved_PM')
+  final DateTime? dateApprovedPm;
+  @override
+  @JsonKey(name: 'IsApproved_TP')
+  final bool? isApprovedTp;
+  @override
+  @JsonKey(name: 'DateApproved_TP')
+  final DateTime? dateApprovedTp;
+  @override
+  @JsonKey(name: 'IsApproved_PP')
+  final bool? isApprovedPp;
+  @override
+  @JsonKey(name: 'DateApproved_PP')
+  final DateTime? dateApprovedPp;
+
+  @override
+  String toString() {
+    return 'ProjectHistoryProblem(id: $id, projectId: $projectId, stt: $stt, contentError: $contentError, reason: $reason, remedies: $remedies, issueConclusion: $issueConclusion, dateProblem: $dateProblem, dateImplementation: $dateImplementation, creatorId: $creatorId, performerId: $performerId, priorityLevel: $priorityLevel, statusProblem: $statusProblem, issueLogType: $issueLogType, isApprovedPm: $isApprovedPm, dateApprovedPm: $dateApprovedPm, isApprovedTp: $isApprovedTp, dateApprovedTp: $dateApprovedTp, isApprovedPp: $isApprovedPp, dateApprovedPp: $dateApprovedPp)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectHistoryProblemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.contentError, contentError) ||
+                other.contentError == contentError) &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.remedies, remedies) ||
+                other.remedies == remedies) &&
+            (identical(other.issueConclusion, issueConclusion) ||
+                other.issueConclusion == issueConclusion) &&
+            (identical(other.dateProblem, dateProblem) ||
+                other.dateProblem == dateProblem) &&
+            (identical(other.dateImplementation, dateImplementation) ||
+                other.dateImplementation == dateImplementation) &&
+            (identical(other.creatorId, creatorId) ||
+                other.creatorId == creatorId) &&
+            (identical(other.performerId, performerId) ||
+                other.performerId == performerId) &&
+            (identical(other.priorityLevel, priorityLevel) ||
+                other.priorityLevel == priorityLevel) &&
+            (identical(other.statusProblem, statusProblem) ||
+                other.statusProblem == statusProblem) &&
+            (identical(other.issueLogType, issueLogType) ||
+                other.issueLogType == issueLogType) &&
+            (identical(other.isApprovedPm, isApprovedPm) ||
+                other.isApprovedPm == isApprovedPm) &&
+            (identical(other.dateApprovedPm, dateApprovedPm) ||
+                other.dateApprovedPm == dateApprovedPm) &&
+            (identical(other.isApprovedTp, isApprovedTp) ||
+                other.isApprovedTp == isApprovedTp) &&
+            (identical(other.dateApprovedTp, dateApprovedTp) ||
+                other.dateApprovedTp == dateApprovedTp) &&
+            (identical(other.isApprovedPp, isApprovedPp) ||
+                other.isApprovedPp == isApprovedPp) &&
+            (identical(other.dateApprovedPp, dateApprovedPp) ||
+                other.dateApprovedPp == dateApprovedPp));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        projectId,
+        stt,
+        contentError,
+        reason,
+        remedies,
+        issueConclusion,
+        dateProblem,
+        dateImplementation,
+        creatorId,
+        performerId,
+        priorityLevel,
+        statusProblem,
+        issueLogType,
+        isApprovedPm,
+        dateApprovedPm,
+        isApprovedTp,
+        dateApprovedTp,
+        isApprovedPp,
+        dateApprovedPp
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectHistoryProblemImplCopyWith<_$ProjectHistoryProblemImpl>
+      get copyWith => __$$ProjectHistoryProblemImplCopyWithImpl<
+          _$ProjectHistoryProblemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectHistoryProblemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectHistoryProblem implements ProjectHistoryProblem {
+  const factory _ProjectHistoryProblem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'ProjectID') final int? projectId,
+      @JsonKey(name: 'STT') final int? stt,
+      @JsonKey(name: 'ContentError') final String? contentError,
+      @JsonKey(name: 'Reason') final String? reason,
+      @JsonKey(name: 'Remedies') final String? remedies,
+      @JsonKey(name: 'IssueConclusion') final String? issueConclusion,
+      @JsonKey(name: 'DateProblem') final DateTime? dateProblem,
+      @JsonKey(name: 'DateImplementation') final DateTime? dateImplementation,
+      @JsonKey(name: 'CreatorID') final int? creatorId,
+      @JsonKey(name: 'PerformerID') final int? performerId,
+      @JsonKey(name: 'PriorityLevel') final int? priorityLevel,
+      @JsonKey(name: 'StatusProblem') final int? statusProblem,
+      @JsonKey(name: 'IssueLogType') final int? issueLogType,
+      @JsonKey(name: 'IsApproved_PM') final bool? isApprovedPm,
+      @JsonKey(name: 'DateApproved_PM') final DateTime? dateApprovedPm,
+      @JsonKey(name: 'IsApproved_TP') final bool? isApprovedTp,
+      @JsonKey(name: 'DateApproved_TP') final DateTime? dateApprovedTp,
+      @JsonKey(name: 'IsApproved_PP') final bool? isApprovedPp,
+      @JsonKey(name: 'DateApproved_PP')
+      final DateTime? dateApprovedPp}) = _$ProjectHistoryProblemImpl;
+
+  factory _ProjectHistoryProblem.fromJson(Map<String, dynamic> json) =
+      _$ProjectHistoryProblemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'ContentError')
+  String? get contentError;
+  @override
+  @JsonKey(name: 'Reason')
+  String? get reason;
+  @override
+  @JsonKey(name: 'Remedies')
+  String? get remedies;
+  @override
+  @JsonKey(name: 'IssueConclusion')
+  String? get issueConclusion;
+  @override
+  @JsonKey(name: 'DateProblem')
+  DateTime? get dateProblem;
+  @override
+  @JsonKey(name: 'DateImplementation')
+  DateTime? get dateImplementation;
+  @override
+  @JsonKey(name: 'CreatorID')
+  int? get creatorId;
+  @override
+  @JsonKey(name: 'PerformerID')
+  int? get performerId;
+  @override
+  @JsonKey(name: 'PriorityLevel')
+  int? get priorityLevel;
+  @override
+  @JsonKey(name: 'StatusProblem')
+  int? get statusProblem;
+  @override
+  @JsonKey(name: 'IssueLogType')
+  int? get issueLogType;
+  @override
+  @JsonKey(name: 'IsApproved_PM')
+  bool? get isApprovedPm;
+  @override
+  @JsonKey(name: 'DateApproved_PM')
+  DateTime? get dateApprovedPm;
+  @override
+  @JsonKey(name: 'IsApproved_TP')
+  bool? get isApprovedTp;
+  @override
+  @JsonKey(name: 'DateApproved_TP')
+  DateTime? get dateApprovedTp;
+  @override
+  @JsonKey(name: 'IsApproved_PP')
+  bool? get isApprovedPp;
+  @override
+  @JsonKey(name: 'DateApproved_PP')
+  DateTime? get dateApprovedPp;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProjectHistoryProblemImplCopyWith<_$ProjectHistoryProblemImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

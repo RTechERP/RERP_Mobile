@@ -39,6 +39,8 @@ abstract class _$TechStateCWProxy {
 
   TechState locationType(String locationType);
 
+  TechState siteLocation(String siteLocation);
+
   TechState location(String? location);
 
   TechState backlog(String? backlog);
@@ -105,6 +107,31 @@ abstract class _$TechStateCWProxy {
 
   TechState copyError(String? copyError);
 
+  TechState dailyOvertimes(List<OvertimeSession> dailyOvertimes);
+
+  TechState deletedOvertimes(List<OvertimeSession> deletedOvertimes);
+
+  TechState defaultApproveId(int? defaultApproveId);
+
+  TechState approvers(List<ApproverItem> approvers);
+
+  TechState overtimeTypes(List<OvertimeType> overtimeTypes);
+
+  TechState isProjectItemRequired(bool isProjectItemRequired);
+
+  TechState currentReportDate(DateTime? currentReportDate);
+
+  TechState ineligibleProjectItemIds(Set<int> ineligibleProjectItemIds);
+
+  TechState pendingProjectItemEditId(int? pendingProjectItemEditId);
+
+  TechState historyProblems(
+      Map<int, List<ProjectHistoryProblem>> historyProblems);
+
+  TechState loadingHistoryProblemIds(Set<int> loadingHistoryProblemIds);
+
+  TechState autoOpenOvertimeIndex(int? autoOpenOvertimeIndex);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TechState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -128,6 +155,7 @@ abstract class _$TechStateCWProxy {
     DateTime? dateEnd,
     String? keyword,
     String? locationType,
+    String? siteLocation,
     String? location,
     String? backlog,
     String? problem,
@@ -161,6 +189,18 @@ abstract class _$TechStateCWProxy {
     int? departmentId,
     int? employeeID,
     String? copyError,
+    List<OvertimeSession>? dailyOvertimes,
+    List<OvertimeSession>? deletedOvertimes,
+    int? defaultApproveId,
+    List<ApproverItem>? approvers,
+    List<OvertimeType>? overtimeTypes,
+    bool? isProjectItemRequired,
+    DateTime? currentReportDate,
+    Set<int>? ineligibleProjectItemIds,
+    int? pendingProjectItemEditId,
+    Map<int, List<ProjectHistoryProblem>>? historyProblems,
+    Set<int>? loadingHistoryProblemIds,
+    int? autoOpenOvertimeIndex,
   });
 }
 
@@ -224,6 +264,10 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
   @override
   TechState locationType(String locationType) =>
       this(locationType: locationType);
+
+  @override
+  TechState siteLocation(String siteLocation) =>
+      this(siteLocation: siteLocation);
 
   @override
   TechState location(String? location) => this(location: location);
@@ -341,6 +385,55 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
   TechState copyError(String? copyError) => this(copyError: copyError);
 
   @override
+  TechState dailyOvertimes(List<OvertimeSession> dailyOvertimes) =>
+      this(dailyOvertimes: dailyOvertimes);
+
+  @override
+  TechState deletedOvertimes(List<OvertimeSession> deletedOvertimes) =>
+      this(deletedOvertimes: deletedOvertimes);
+
+  @override
+  TechState defaultApproveId(int? defaultApproveId) =>
+      this(defaultApproveId: defaultApproveId);
+
+  @override
+  TechState approvers(List<ApproverItem> approvers) =>
+      this(approvers: approvers);
+
+  @override
+  TechState overtimeTypes(List<OvertimeType> overtimeTypes) =>
+      this(overtimeTypes: overtimeTypes);
+
+  @override
+  TechState isProjectItemRequired(bool isProjectItemRequired) =>
+      this(isProjectItemRequired: isProjectItemRequired);
+
+  @override
+  TechState currentReportDate(DateTime? currentReportDate) =>
+      this(currentReportDate: currentReportDate);
+
+  @override
+  TechState ineligibleProjectItemIds(Set<int> ineligibleProjectItemIds) =>
+      this(ineligibleProjectItemIds: ineligibleProjectItemIds);
+
+  @override
+  TechState pendingProjectItemEditId(int? pendingProjectItemEditId) =>
+      this(pendingProjectItemEditId: pendingProjectItemEditId);
+
+  @override
+  TechState historyProblems(
+          Map<int, List<ProjectHistoryProblem>> historyProblems) =>
+      this(historyProblems: historyProblems);
+
+  @override
+  TechState loadingHistoryProblemIds(Set<int> loadingHistoryProblemIds) =>
+      this(loadingHistoryProblemIds: loadingHistoryProblemIds);
+
+  @override
+  TechState autoOpenOvertimeIndex(int? autoOpenOvertimeIndex) =>
+      this(autoOpenOvertimeIndex: autoOpenOvertimeIndex);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `TechState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -365,6 +458,7 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
     Object? dateEnd = const $CopyWithPlaceholder(),
     Object? keyword = const $CopyWithPlaceholder(),
     Object? locationType = const $CopyWithPlaceholder(),
+    Object? siteLocation = const $CopyWithPlaceholder(),
     Object? location = const $CopyWithPlaceholder(),
     Object? backlog = const $CopyWithPlaceholder(),
     Object? problem = const $CopyWithPlaceholder(),
@@ -398,6 +492,18 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
     Object? departmentId = const $CopyWithPlaceholder(),
     Object? employeeID = const $CopyWithPlaceholder(),
     Object? copyError = const $CopyWithPlaceholder(),
+    Object? dailyOvertimes = const $CopyWithPlaceholder(),
+    Object? deletedOvertimes = const $CopyWithPlaceholder(),
+    Object? defaultApproveId = const $CopyWithPlaceholder(),
+    Object? approvers = const $CopyWithPlaceholder(),
+    Object? overtimeTypes = const $CopyWithPlaceholder(),
+    Object? isProjectItemRequired = const $CopyWithPlaceholder(),
+    Object? currentReportDate = const $CopyWithPlaceholder(),
+    Object? ineligibleProjectItemIds = const $CopyWithPlaceholder(),
+    Object? pendingProjectItemEditId = const $CopyWithPlaceholder(),
+    Object? historyProblems = const $CopyWithPlaceholder(),
+    Object? loadingHistoryProblemIds = const $CopyWithPlaceholder(),
+    Object? autoOpenOvertimeIndex = const $CopyWithPlaceholder(),
   }) {
     return TechState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -467,6 +573,11 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
               ? _value.locationType
               // ignore: cast_nullable_to_non_nullable
               : locationType as String,
+      siteLocation:
+          siteLocation == const $CopyWithPlaceholder() || siteLocation == null
+              ? _value.siteLocation
+              // ignore: cast_nullable_to_non_nullable
+              : siteLocation as String,
       location: location == const $CopyWithPlaceholder()
           ? _value.location
           // ignore: cast_nullable_to_non_nullable
@@ -608,6 +719,66 @@ class _$TechStateCWProxyImpl implements _$TechStateCWProxy {
           ? _value.copyError
           // ignore: cast_nullable_to_non_nullable
           : copyError as String?,
+      dailyOvertimes: dailyOvertimes == const $CopyWithPlaceholder() ||
+              dailyOvertimes == null
+          ? _value.dailyOvertimes
+          // ignore: cast_nullable_to_non_nullable
+          : dailyOvertimes as List<OvertimeSession>,
+      deletedOvertimes: deletedOvertimes == const $CopyWithPlaceholder() ||
+              deletedOvertimes == null
+          ? _value.deletedOvertimes
+          // ignore: cast_nullable_to_non_nullable
+          : deletedOvertimes as List<OvertimeSession>,
+      defaultApproveId: defaultApproveId == const $CopyWithPlaceholder()
+          ? _value.defaultApproveId
+          // ignore: cast_nullable_to_non_nullable
+          : defaultApproveId as int?,
+      approvers: approvers == const $CopyWithPlaceholder() || approvers == null
+          ? _value.approvers
+          // ignore: cast_nullable_to_non_nullable
+          : approvers as List<ApproverItem>,
+      overtimeTypes:
+          overtimeTypes == const $CopyWithPlaceholder() || overtimeTypes == null
+              ? _value.overtimeTypes
+              // ignore: cast_nullable_to_non_nullable
+              : overtimeTypes as List<OvertimeType>,
+      isProjectItemRequired:
+          isProjectItemRequired == const $CopyWithPlaceholder() ||
+                  isProjectItemRequired == null
+              ? _value.isProjectItemRequired
+              // ignore: cast_nullable_to_non_nullable
+              : isProjectItemRequired as bool,
+      currentReportDate: currentReportDate == const $CopyWithPlaceholder()
+          ? _value.currentReportDate
+          // ignore: cast_nullable_to_non_nullable
+          : currentReportDate as DateTime?,
+      ineligibleProjectItemIds:
+          ineligibleProjectItemIds == const $CopyWithPlaceholder() ||
+                  ineligibleProjectItemIds == null
+              ? _value.ineligibleProjectItemIds
+              // ignore: cast_nullable_to_non_nullable
+              : ineligibleProjectItemIds as Set<int>,
+      pendingProjectItemEditId:
+          pendingProjectItemEditId == const $CopyWithPlaceholder()
+              ? _value.pendingProjectItemEditId
+              // ignore: cast_nullable_to_non_nullable
+              : pendingProjectItemEditId as int?,
+      historyProblems: historyProblems == const $CopyWithPlaceholder() ||
+              historyProblems == null
+          ? _value.historyProblems
+          // ignore: cast_nullable_to_non_nullable
+          : historyProblems as Map<int, List<ProjectHistoryProblem>>,
+      loadingHistoryProblemIds:
+          loadingHistoryProblemIds == const $CopyWithPlaceholder() ||
+                  loadingHistoryProblemIds == null
+              ? _value.loadingHistoryProblemIds
+              // ignore: cast_nullable_to_non_nullable
+              : loadingHistoryProblemIds as Set<int>,
+      autoOpenOvertimeIndex:
+          autoOpenOvertimeIndex == const $CopyWithPlaceholder()
+              ? _value.autoOpenOvertimeIndex
+              // ignore: cast_nullable_to_non_nullable
+              : autoOpenOvertimeIndex as int?,
     );
   }
 }

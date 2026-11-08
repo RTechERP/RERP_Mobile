@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../common/logger/index.dart';
 import '../datasource/models/report_model.dart';
 
-
 class ReportRepository {
   ReportRepository._();
 
@@ -31,9 +30,7 @@ class ReportRepository {
   /// ==========================
   /// GET PROJECT LIST
   /// ==========================
-  static Future<List<ProjectResponse>> getProjects({
-    LogUtils? log,
-  }) async {
+  static Future<List<ProjectResponse>> getProjects({LogUtils? log}) async {
     final prefs = await SharedPreferences.getInstance();
 
     final raw = prefs.getString(_projectKey);

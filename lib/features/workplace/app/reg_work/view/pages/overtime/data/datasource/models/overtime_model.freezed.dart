@@ -2634,8 +2634,44 @@ mixin _$OvertimeDetailItem {
   String? get statusHrText => throw _privateConstructorUsedError;
   @JsonKey(name: 'ProjectID')
   int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectItemID')
+  int? get projectItemId => throw _privateConstructorUsedError;
   @JsonKey(name: 'ApprovedID')
   int? get approvedId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DecilineApprove')
+  int? get declineApprove => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CostOvertime')
+  double? get costOvertime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReasonHREdit')
+  String? get reasonHrEdit => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApprovedBGD')
+  bool? get isApprovedBgd => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedBGDID')
+  int? get approvedBgdId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateApprovedBGD')
+  DateTime? get dateApprovedBgd => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsSeniorApproved')
+  bool? get isSeniorApproved => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ApprovedSeniorID')
+  int? get approvedSeniorId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateApprovedSenitor')
+  DateTime? get dateApprovedSenitor => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ReasonDecilineSenior')
+  String? get reasonDecilineSenior => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DecilineApproveSenior')
+  int? get declineApproveSenior => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2679,7 +2715,25 @@ abstract class $OvertimeDetailItemCopyWith<$Res> {
       @JsonKey(name: 'StatusTBPText') String? statusTbpText,
       @JsonKey(name: 'StatusHRText') String? statusHrText,
       @JsonKey(name: 'ProjectID') int? projectId,
-      @JsonKey(name: 'ApprovedID') int? approvedId});
+      @JsonKey(name: 'ProjectItemID') int? projectItemId,
+      @JsonKey(name: 'ApprovedID') int? approvedId,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'DecilineApprove') int? declineApprove,
+      @JsonKey(name: 'CostOvertime') double? costOvertime,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'ReasonHREdit') String? reasonHrEdit,
+      @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBgd,
+      @JsonKey(name: 'ApprovedBGDID') int? approvedBgdId,
+      @JsonKey(name: 'DateApprovedBGD') DateTime? dateApprovedBgd,
+      @JsonKey(name: 'IsSeniorApproved') bool? isSeniorApproved,
+      @JsonKey(name: 'ApprovedSeniorID') int? approvedSeniorId,
+      @JsonKey(name: 'DateApprovedSenitor') DateTime? dateApprovedSenitor,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
+      @JsonKey(name: 'DecilineApproveSenior') int? declineApproveSenior});
 }
 
 /// @nodoc
@@ -2724,7 +2778,25 @@ class _$OvertimeDetailItemCopyWithImpl<$Res, $Val extends OvertimeDetailItem>
     Object? statusTbpText = freezed,
     Object? statusHrText = freezed,
     Object? projectId = freezed,
+    Object? projectItemId = freezed,
     Object? approvedId = freezed,
+    Object? employeeId = freezed,
+    Object? declineApprove = freezed,
+    Object? costOvertime = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? reasonHrEdit = freezed,
+    Object? isApprovedBgd = freezed,
+    Object? approvedBgdId = freezed,
+    Object? dateApprovedBgd = freezed,
+    Object? isSeniorApproved = freezed,
+    Object? approvedSeniorId = freezed,
+    Object? dateApprovedSenitor = freezed,
+    Object? isDeleted = freezed,
+    Object? reasonDecilineSenior = freezed,
+    Object? declineApproveSenior = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -2843,9 +2915,81 @@ class _$OvertimeDetailItemCopyWithImpl<$Res, $Val extends OvertimeDetailItem>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as int?,
+      projectItemId: freezed == projectItemId
+          ? _value.projectItemId
+          : projectItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
       approvedId: freezed == approvedId
           ? _value.approvedId
           : approvedId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      declineApprove: freezed == declineApprove
+          ? _value.declineApprove
+          : declineApprove // ignore: cast_nullable_to_non_nullable
+              as int?,
+      costOvertime: freezed == costOvertime
+          ? _value.costOvertime
+          : costOvertime // ignore: cast_nullable_to_non_nullable
+              as double?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reasonHrEdit: freezed == reasonHrEdit
+          ? _value.reasonHrEdit
+          : reasonHrEdit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isApprovedBgd: freezed == isApprovedBgd
+          ? _value.isApprovedBgd
+          : isApprovedBgd // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      approvedBgdId: freezed == approvedBgdId
+          ? _value.approvedBgdId
+          : approvedBgdId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dateApprovedBgd: freezed == dateApprovedBgd
+          ? _value.dateApprovedBgd
+          : dateApprovedBgd // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isSeniorApproved: freezed == isSeniorApproved
+          ? _value.isSeniorApproved
+          : isSeniorApproved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      approvedSeniorId: freezed == approvedSeniorId
+          ? _value.approvedSeniorId
+          : approvedSeniorId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dateApprovedSenitor: freezed == dateApprovedSenitor
+          ? _value.dateApprovedSenitor
+          : dateApprovedSenitor // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      reasonDecilineSenior: freezed == reasonDecilineSenior
+          ? _value.reasonDecilineSenior
+          : reasonDecilineSenior // ignore: cast_nullable_to_non_nullable
+              as String?,
+      declineApproveSenior: freezed == declineApproveSenior
+          ? _value.declineApproveSenior
+          : declineApproveSenior // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
   }
@@ -2889,7 +3033,25 @@ abstract class _$$OvertimeDetailItemImplCopyWith<$Res>
       @JsonKey(name: 'StatusTBPText') String? statusTbpText,
       @JsonKey(name: 'StatusHRText') String? statusHrText,
       @JsonKey(name: 'ProjectID') int? projectId,
-      @JsonKey(name: 'ApprovedID') int? approvedId});
+      @JsonKey(name: 'ProjectItemID') int? projectItemId,
+      @JsonKey(name: 'ApprovedID') int? approvedId,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'DecilineApprove') int? declineApprove,
+      @JsonKey(name: 'CostOvertime') double? costOvertime,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'ReasonHREdit') String? reasonHrEdit,
+      @JsonKey(name: 'IsApprovedBGD') bool? isApprovedBgd,
+      @JsonKey(name: 'ApprovedBGDID') int? approvedBgdId,
+      @JsonKey(name: 'DateApprovedBGD') DateTime? dateApprovedBgd,
+      @JsonKey(name: 'IsSeniorApproved') bool? isSeniorApproved,
+      @JsonKey(name: 'ApprovedSeniorID') int? approvedSeniorId,
+      @JsonKey(name: 'DateApprovedSenitor') DateTime? dateApprovedSenitor,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'ReasonDecilineSenior') String? reasonDecilineSenior,
+      @JsonKey(name: 'DecilineApproveSenior') int? declineApproveSenior});
 }
 
 /// @nodoc
@@ -2932,7 +3094,25 @@ class __$$OvertimeDetailItemImplCopyWithImpl<$Res>
     Object? statusTbpText = freezed,
     Object? statusHrText = freezed,
     Object? projectId = freezed,
+    Object? projectItemId = freezed,
     Object? approvedId = freezed,
+    Object? employeeId = freezed,
+    Object? declineApprove = freezed,
+    Object? costOvertime = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+    Object? reasonHrEdit = freezed,
+    Object? isApprovedBgd = freezed,
+    Object? approvedBgdId = freezed,
+    Object? dateApprovedBgd = freezed,
+    Object? isSeniorApproved = freezed,
+    Object? approvedSeniorId = freezed,
+    Object? dateApprovedSenitor = freezed,
+    Object? isDeleted = freezed,
+    Object? reasonDecilineSenior = freezed,
+    Object? declineApproveSenior = freezed,
   }) {
     return _then(_$OvertimeDetailItemImpl(
       id: freezed == id
@@ -3051,9 +3231,81 @@ class __$$OvertimeDetailItemImplCopyWithImpl<$Res>
           ? _value.projectId
           : projectId // ignore: cast_nullable_to_non_nullable
               as int?,
+      projectItemId: freezed == projectItemId
+          ? _value.projectItemId
+          : projectItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
       approvedId: freezed == approvedId
           ? _value.approvedId
           : approvedId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      declineApprove: freezed == declineApprove
+          ? _value.declineApprove
+          : declineApprove // ignore: cast_nullable_to_non_nullable
+              as int?,
+      costOvertime: freezed == costOvertime
+          ? _value.costOvertime
+          : costOvertime // ignore: cast_nullable_to_non_nullable
+              as double?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reasonHrEdit: freezed == reasonHrEdit
+          ? _value.reasonHrEdit
+          : reasonHrEdit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isApprovedBgd: freezed == isApprovedBgd
+          ? _value.isApprovedBgd
+          : isApprovedBgd // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      approvedBgdId: freezed == approvedBgdId
+          ? _value.approvedBgdId
+          : approvedBgdId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dateApprovedBgd: freezed == dateApprovedBgd
+          ? _value.dateApprovedBgd
+          : dateApprovedBgd // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isSeniorApproved: freezed == isSeniorApproved
+          ? _value.isSeniorApproved
+          : isSeniorApproved // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      approvedSeniorId: freezed == approvedSeniorId
+          ? _value.approvedSeniorId
+          : approvedSeniorId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      dateApprovedSenitor: freezed == dateApprovedSenitor
+          ? _value.dateApprovedSenitor
+          : dateApprovedSenitor // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      reasonDecilineSenior: freezed == reasonDecilineSenior
+          ? _value.reasonDecilineSenior
+          : reasonDecilineSenior // ignore: cast_nullable_to_non_nullable
+              as String?,
+      declineApproveSenior: freezed == declineApproveSenior
+          ? _value.declineApproveSenior
+          : declineApproveSenior // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -3092,7 +3344,25 @@ class _$OvertimeDetailItemImpl implements _OvertimeDetailItem {
       @JsonKey(name: 'StatusTBPText') this.statusTbpText,
       @JsonKey(name: 'StatusHRText') this.statusHrText,
       @JsonKey(name: 'ProjectID') this.projectId,
-      @JsonKey(name: 'ApprovedID') this.approvedId});
+      @JsonKey(name: 'ProjectItemID') this.projectItemId,
+      @JsonKey(name: 'ApprovedID') this.approvedId,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'DecilineApprove') this.declineApprove,
+      @JsonKey(name: 'CostOvertime') this.costOvertime,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'ReasonHREdit') this.reasonHrEdit,
+      @JsonKey(name: 'IsApprovedBGD') this.isApprovedBgd,
+      @JsonKey(name: 'ApprovedBGDID') this.approvedBgdId,
+      @JsonKey(name: 'DateApprovedBGD') this.dateApprovedBgd,
+      @JsonKey(name: 'IsSeniorApproved') this.isSeniorApproved,
+      @JsonKey(name: 'ApprovedSeniorID') this.approvedSeniorId,
+      @JsonKey(name: 'DateApprovedSenitor') this.dateApprovedSenitor,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'ReasonDecilineSenior') this.reasonDecilineSenior,
+      @JsonKey(name: 'DecilineApproveSenior') this.declineApproveSenior});
 
   factory _$OvertimeDetailItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$OvertimeDetailItemImplFromJson(json);
@@ -3185,12 +3455,66 @@ class _$OvertimeDetailItemImpl implements _OvertimeDetailItem {
   @JsonKey(name: 'ProjectID')
   final int? projectId;
   @override
+  @JsonKey(name: 'ProjectItemID')
+  final int? projectItemId;
+  @override
   @JsonKey(name: 'ApprovedID')
   final int? approvedId;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'DecilineApprove')
+  final int? declineApprove;
+  @override
+  @JsonKey(name: 'CostOvertime')
+  final double? costOvertime;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'ReasonHREdit')
+  final String? reasonHrEdit;
+  @override
+  @JsonKey(name: 'IsApprovedBGD')
+  final bool? isApprovedBgd;
+  @override
+  @JsonKey(name: 'ApprovedBGDID')
+  final int? approvedBgdId;
+  @override
+  @JsonKey(name: 'DateApprovedBGD')
+  final DateTime? dateApprovedBgd;
+  @override
+  @JsonKey(name: 'IsSeniorApproved')
+  final bool? isSeniorApproved;
+  @override
+  @JsonKey(name: 'ApprovedSeniorID')
+  final int? approvedSeniorId;
+  @override
+  @JsonKey(name: 'DateApprovedSenitor')
+  final DateTime? dateApprovedSenitor;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'ReasonDecilineSenior')
+  final String? reasonDecilineSenior;
+  @override
+  @JsonKey(name: 'DecilineApproveSenior')
+  final int? declineApproveSenior;
 
   @override
   String toString() {
-    return 'OvertimeDetailItem(id: $id, isApprovedTbp: $isApprovedTbp, isApprovedHr: $isApprovedHr, employeeFullName: $employeeFullName, approvedTbp: $approvedTbp, approvedHr: $approvedHr, dateRegister: $dateRegister, typeId: $typeId, timeStart: $timeStart, endTime: $endTime, timeReality: $timeReality, totalTime: $totalTime, location: $location, locationText: $locationText, typeName: $typeName, note: $note, isApprovedText: $isApprovedText, reason: $reason, statusHr: $statusHr, statusTbp: $statusTbp, costOvernight: $costOvernight, projectName: $projectName, reasonDeciline: $reasonDeciline, overnight: $overnight, isProblem: $isProblem, fileName: $fileName, statusTbpText: $statusTbpText, statusHrText: $statusHrText, projectId: $projectId, approvedId: $approvedId)';
+    return 'OvertimeDetailItem(id: $id, isApprovedTbp: $isApprovedTbp, isApprovedHr: $isApprovedHr, employeeFullName: $employeeFullName, approvedTbp: $approvedTbp, approvedHr: $approvedHr, dateRegister: $dateRegister, typeId: $typeId, timeStart: $timeStart, endTime: $endTime, timeReality: $timeReality, totalTime: $totalTime, location: $location, locationText: $locationText, typeName: $typeName, note: $note, isApprovedText: $isApprovedText, reason: $reason, statusHr: $statusHr, statusTbp: $statusTbp, costOvernight: $costOvernight, projectName: $projectName, reasonDeciline: $reasonDeciline, overnight: $overnight, isProblem: $isProblem, fileName: $fileName, statusTbpText: $statusTbpText, statusHrText: $statusHrText, projectId: $projectId, projectItemId: $projectItemId, approvedId: $approvedId, employeeId: $employeeId, declineApprove: $declineApprove, costOvertime: $costOvertime, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy, reasonHrEdit: $reasonHrEdit, isApprovedBgd: $isApprovedBgd, approvedBgdId: $approvedBgdId, dateApprovedBgd: $dateApprovedBgd, isSeniorApproved: $isSeniorApproved, approvedSeniorId: $approvedSeniorId, dateApprovedSenitor: $dateApprovedSenitor, isDeleted: $isDeleted, reasonDecilineSenior: $reasonDecilineSenior, declineApproveSenior: $declineApproveSenior)';
   }
 
   @override
@@ -3251,8 +3575,44 @@ class _$OvertimeDetailItemImpl implements _OvertimeDetailItem {
                 other.statusHrText == statusHrText) &&
             (identical(other.projectId, projectId) ||
                 other.projectId == projectId) &&
+            (identical(other.projectItemId, projectItemId) ||
+                other.projectItemId == projectItemId) &&
             (identical(other.approvedId, approvedId) ||
-                other.approvedId == approvedId));
+                other.approvedId == approvedId) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.declineApprove, declineApprove) ||
+                other.declineApprove == declineApprove) &&
+            (identical(other.costOvertime, costOvertime) ||
+                other.costOvertime == costOvertime) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.reasonHrEdit, reasonHrEdit) ||
+                other.reasonHrEdit == reasonHrEdit) &&
+            (identical(other.isApprovedBgd, isApprovedBgd) ||
+                other.isApprovedBgd == isApprovedBgd) &&
+            (identical(other.approvedBgdId, approvedBgdId) ||
+                other.approvedBgdId == approvedBgdId) &&
+            (identical(other.dateApprovedBgd, dateApprovedBgd) ||
+                other.dateApprovedBgd == dateApprovedBgd) &&
+            (identical(other.isSeniorApproved, isSeniorApproved) ||
+                other.isSeniorApproved == isSeniorApproved) &&
+            (identical(other.approvedSeniorId, approvedSeniorId) ||
+                other.approvedSeniorId == approvedSeniorId) &&
+            (identical(other.dateApprovedSenitor, dateApprovedSenitor) ||
+                other.dateApprovedSenitor == dateApprovedSenitor) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.reasonDecilineSenior, reasonDecilineSenior) ||
+                other.reasonDecilineSenior == reasonDecilineSenior) &&
+            (identical(other.declineApproveSenior, declineApproveSenior) ||
+                other.declineApproveSenior == declineApproveSenior));
   }
 
   @JsonKey(ignore: true)
@@ -3288,7 +3648,25 @@ class _$OvertimeDetailItemImpl implements _OvertimeDetailItem {
         statusTbpText,
         statusHrText,
         projectId,
-        approvedId
+        projectItemId,
+        approvedId,
+        employeeId,
+        declineApprove,
+        costOvertime,
+        createdDate,
+        createdBy,
+        updatedDate,
+        updatedBy,
+        reasonHrEdit,
+        isApprovedBgd,
+        approvedBgdId,
+        dateApprovedBgd,
+        isSeniorApproved,
+        approvedSeniorId,
+        dateApprovedSenitor,
+        isDeleted,
+        reasonDecilineSenior,
+        declineApproveSenior
       ]);
 
   @JsonKey(ignore: true)
@@ -3308,37 +3686,55 @@ class _$OvertimeDetailItemImpl implements _OvertimeDetailItem {
 
 abstract class _OvertimeDetailItem implements OvertimeDetailItem {
   const factory _OvertimeDetailItem(
-          {@JsonKey(name: 'ID') final int? id,
-          @JsonKey(name: 'IsApprovedTBP') final bool? isApprovedTbp,
-          @JsonKey(name: 'IsApprovedHR') final bool? isApprovedHr,
-          @JsonKey(name: 'EmployeeFullName') final String? employeeFullName,
-          @JsonKey(name: 'ApprovedTBP') final String? approvedTbp,
-          @JsonKey(name: 'ApprovedHR') final String? approvedHr,
-          @JsonKey(name: 'DateRegister') final DateTime? dateRegister,
-          @JsonKey(name: 'TypeID') final int? typeId,
-          @JsonKey(name: 'TimeStart') final DateTime? timeStart,
-          @JsonKey(name: 'EndTime') final DateTime? endTime,
-          @JsonKey(name: 'TimeReality') final double? timeReality,
-          @JsonKey(name: 'TotalTime') final double? totalTime,
-          @JsonKey(name: 'Location') final int? location,
-          @JsonKey(name: 'LocationText') final String? locationText,
-          @JsonKey(name: 'TypeName') final String? typeName,
-          @JsonKey(name: 'Note') final String? note,
-          @JsonKey(name: 'IsApprovedText') final String? isApprovedText,
-          @JsonKey(name: 'Reason') final String? reason,
-          @JsonKey(name: 'StatusHR') final int? statusHr,
-          @JsonKey(name: 'StatusTBP') final int? statusTbp,
-          @JsonKey(name: 'CostOvernight') final double? costOvernight,
-          @JsonKey(name: 'ProjectName') final String? projectName,
-          @JsonKey(name: 'ReasonDeciline') final String? reasonDeciline,
-          @JsonKey(name: 'Overnight') final bool? overnight,
-          @JsonKey(name: 'IsProblem') final bool? isProblem,
-          @JsonKey(name: 'FileName') final String? fileName,
-          @JsonKey(name: 'StatusTBPText') final String? statusTbpText,
-          @JsonKey(name: 'StatusHRText') final String? statusHrText,
-          @JsonKey(name: 'ProjectID') final int? projectId,
-          @JsonKey(name: 'ApprovedID') final int? approvedId}) =
-      _$OvertimeDetailItemImpl;
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'IsApprovedTBP') final bool? isApprovedTbp,
+      @JsonKey(name: 'IsApprovedHR') final bool? isApprovedHr,
+      @JsonKey(name: 'EmployeeFullName') final String? employeeFullName,
+      @JsonKey(name: 'ApprovedTBP') final String? approvedTbp,
+      @JsonKey(name: 'ApprovedHR') final String? approvedHr,
+      @JsonKey(name: 'DateRegister') final DateTime? dateRegister,
+      @JsonKey(name: 'TypeID') final int? typeId,
+      @JsonKey(name: 'TimeStart') final DateTime? timeStart,
+      @JsonKey(name: 'EndTime') final DateTime? endTime,
+      @JsonKey(name: 'TimeReality') final double? timeReality,
+      @JsonKey(name: 'TotalTime') final double? totalTime,
+      @JsonKey(name: 'Location') final int? location,
+      @JsonKey(name: 'LocationText') final String? locationText,
+      @JsonKey(name: 'TypeName') final String? typeName,
+      @JsonKey(name: 'Note') final String? note,
+      @JsonKey(name: 'IsApprovedText') final String? isApprovedText,
+      @JsonKey(name: 'Reason') final String? reason,
+      @JsonKey(name: 'StatusHR') final int? statusHr,
+      @JsonKey(name: 'StatusTBP') final int? statusTbp,
+      @JsonKey(name: 'CostOvernight') final double? costOvernight,
+      @JsonKey(name: 'ProjectName') final String? projectName,
+      @JsonKey(name: 'ReasonDeciline') final String? reasonDeciline,
+      @JsonKey(name: 'Overnight') final bool? overnight,
+      @JsonKey(name: 'IsProblem') final bool? isProblem,
+      @JsonKey(name: 'FileName') final String? fileName,
+      @JsonKey(name: 'StatusTBPText') final String? statusTbpText,
+      @JsonKey(name: 'StatusHRText') final String? statusHrText,
+      @JsonKey(name: 'ProjectID') final int? projectId,
+      @JsonKey(name: 'ProjectItemID') final int? projectItemId,
+      @JsonKey(name: 'ApprovedID') final int? approvedId,
+      @JsonKey(name: 'EmployeeID') final int? employeeId,
+      @JsonKey(name: 'DecilineApprove') final int? declineApprove,
+      @JsonKey(name: 'CostOvertime') final double? costOvertime,
+      @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') final String? createdBy,
+      @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+      @JsonKey(name: 'ReasonHREdit') final String? reasonHrEdit,
+      @JsonKey(name: 'IsApprovedBGD') final bool? isApprovedBgd,
+      @JsonKey(name: 'ApprovedBGDID') final int? approvedBgdId,
+      @JsonKey(name: 'DateApprovedBGD') final DateTime? dateApprovedBgd,
+      @JsonKey(name: 'IsSeniorApproved') final bool? isSeniorApproved,
+      @JsonKey(name: 'ApprovedSeniorID') final int? approvedSeniorId,
+      @JsonKey(name: 'DateApprovedSenitor') final DateTime? dateApprovedSenitor,
+      @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+      @JsonKey(name: 'ReasonDecilineSenior') final String? reasonDecilineSenior,
+      @JsonKey(name: 'DecilineApproveSenior')
+      final int? declineApproveSenior}) = _$OvertimeDetailItemImpl;
 
   factory _OvertimeDetailItem.fromJson(Map<String, dynamic> json) =
       _$OvertimeDetailItemImpl.fromJson;
@@ -3431,11 +3827,1331 @@ abstract class _OvertimeDetailItem implements OvertimeDetailItem {
   @JsonKey(name: 'ProjectID')
   int? get projectId;
   @override
+  @JsonKey(name: 'ProjectItemID')
+  int? get projectItemId;
+  @override
   @JsonKey(name: 'ApprovedID')
   int? get approvedId;
   @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'DecilineApprove')
+  int? get declineApprove;
+  @override
+  @JsonKey(name: 'CostOvertime')
+  double? get costOvertime;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'ReasonHREdit')
+  String? get reasonHrEdit;
+  @override
+  @JsonKey(name: 'IsApprovedBGD')
+  bool? get isApprovedBgd;
+  @override
+  @JsonKey(name: 'ApprovedBGDID')
+  int? get approvedBgdId;
+  @override
+  @JsonKey(name: 'DateApprovedBGD')
+  DateTime? get dateApprovedBgd;
+  @override
+  @JsonKey(name: 'IsSeniorApproved')
+  bool? get isSeniorApproved;
+  @override
+  @JsonKey(name: 'ApprovedSeniorID')
+  int? get approvedSeniorId;
+  @override
+  @JsonKey(name: 'DateApprovedSenitor')
+  DateTime? get dateApprovedSenitor;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'ReasonDecilineSenior')
+  String? get reasonDecilineSenior;
+  @override
+  @JsonKey(name: 'DecilineApproveSenior')
+  int? get declineApproveSenior;
+  @override
   @JsonKey(ignore: true)
   _$$OvertimeDetailItemImplCopyWith<_$OvertimeDetailItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+OvertimeProjectItemLink _$OvertimeProjectItemLinkFromJson(
+    Map<String, dynamic> json) {
+  return _OvertimeProjectItemLink.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OvertimeProjectItemLink {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeOvertimeID')
+  int? get employeeOvertimeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectItemID')
+  int? get projectItemId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OvertimeProjectItemLinkCopyWith<OvertimeProjectItemLink> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OvertimeProjectItemLinkCopyWith<$Res> {
+  factory $OvertimeProjectItemLinkCopyWith(OvertimeProjectItemLink value,
+          $Res Function(OvertimeProjectItemLink) then) =
+      _$OvertimeProjectItemLinkCopyWithImpl<$Res, OvertimeProjectItemLink>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'EmployeeOvertimeID') int? employeeOvertimeId,
+      @JsonKey(name: 'ProjectItemID') int? projectItemId,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy});
+}
+
+/// @nodoc
+class _$OvertimeProjectItemLinkCopyWithImpl<$Res,
+        $Val extends OvertimeProjectItemLink>
+    implements $OvertimeProjectItemLinkCopyWith<$Res> {
+  _$OvertimeProjectItemLinkCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? employeeOvertimeId = freezed,
+    Object? projectItemId = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeOvertimeId: freezed == employeeOvertimeId
+          ? _value.employeeOvertimeId
+          : employeeOvertimeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectItemId: freezed == projectItemId
+          ? _value.projectItemId
+          : projectItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$OvertimeProjectItemLinkImplCopyWith<$Res>
+    implements $OvertimeProjectItemLinkCopyWith<$Res> {
+  factory _$$OvertimeProjectItemLinkImplCopyWith(
+          _$OvertimeProjectItemLinkImpl value,
+          $Res Function(_$OvertimeProjectItemLinkImpl) then) =
+      __$$OvertimeProjectItemLinkImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'EmployeeOvertimeID') int? employeeOvertimeId,
+      @JsonKey(name: 'ProjectItemID') int? projectItemId,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy});
+}
+
+/// @nodoc
+class __$$OvertimeProjectItemLinkImplCopyWithImpl<$Res>
+    extends _$OvertimeProjectItemLinkCopyWithImpl<$Res,
+        _$OvertimeProjectItemLinkImpl>
+    implements _$$OvertimeProjectItemLinkImplCopyWith<$Res> {
+  __$$OvertimeProjectItemLinkImplCopyWithImpl(
+      _$OvertimeProjectItemLinkImpl _value,
+      $Res Function(_$OvertimeProjectItemLinkImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? employeeOvertimeId = freezed,
+    Object? projectItemId = freezed,
+    Object? createdDate = freezed,
+    Object? createdBy = freezed,
+    Object? updatedDate = freezed,
+    Object? updatedBy = freezed,
+  }) {
+    return _then(_$OvertimeProjectItemLinkImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeOvertimeId: freezed == employeeOvertimeId
+          ? _value.employeeOvertimeId
+          : employeeOvertimeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectItemId: freezed == projectItemId
+          ? _value.projectItemId
+          : projectItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$OvertimeProjectItemLinkImpl implements _OvertimeProjectItemLink {
+  const _$OvertimeProjectItemLinkImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'EmployeeOvertimeID') this.employeeOvertimeId,
+      @JsonKey(name: 'ProjectItemID') this.projectItemId,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy});
+
+  factory _$OvertimeProjectItemLinkImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OvertimeProjectItemLinkImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'EmployeeOvertimeID')
+  final int? employeeOvertimeId;
+  @override
+  @JsonKey(name: 'ProjectItemID')
+  final int? projectItemId;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+
+  @override
+  String toString() {
+    return 'OvertimeProjectItemLink(id: $id, employeeOvertimeId: $employeeOvertimeId, projectItemId: $projectItemId, createdDate: $createdDate, createdBy: $createdBy, updatedDate: $updatedDate, updatedBy: $updatedBy)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OvertimeProjectItemLinkImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.employeeOvertimeId, employeeOvertimeId) ||
+                other.employeeOvertimeId == employeeOvertimeId) &&
+            (identical(other.projectItemId, projectItemId) ||
+                other.projectItemId == projectItemId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, employeeOvertimeId,
+      projectItemId, createdDate, createdBy, updatedDate, updatedBy);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OvertimeProjectItemLinkImplCopyWith<_$OvertimeProjectItemLinkImpl>
+      get copyWith => __$$OvertimeProjectItemLinkImplCopyWithImpl<
+          _$OvertimeProjectItemLinkImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OvertimeProjectItemLinkImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OvertimeProjectItemLink implements OvertimeProjectItemLink {
+  const factory _OvertimeProjectItemLink(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'EmployeeOvertimeID') final int? employeeOvertimeId,
+          @JsonKey(name: 'ProjectItemID') final int? projectItemId,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy}) =
+      _$OvertimeProjectItemLinkImpl;
+
+  factory _OvertimeProjectItemLink.fromJson(Map<String, dynamic> json) =
+      _$OvertimeProjectItemLinkImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'EmployeeOvertimeID')
+  int? get employeeOvertimeId;
+  @override
+  @JsonKey(name: 'ProjectItemID')
+  int? get projectItemId;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(ignore: true)
+  _$$OvertimeProjectItemLinkImplCopyWith<_$OvertimeProjectItemLinkImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+OvertimeFileItem _$OvertimeFileItemFromJson(Map<String, dynamic> json) {
+  return _OvertimeFileItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OvertimeFileItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeOvertimeID')
+  int? get employeeOvertimeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FileName')
+  String? get fileName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'OriginPath')
+  String? get originPath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ServerPath')
+  String? get serverPath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OvertimeFileItemCopyWith<OvertimeFileItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OvertimeFileItemCopyWith<$Res> {
+  factory $OvertimeFileItemCopyWith(
+          OvertimeFileItem value, $Res Function(OvertimeFileItem) then) =
+      _$OvertimeFileItemCopyWithImpl<$Res, OvertimeFileItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'EmployeeOvertimeID') int? employeeOvertimeId,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'OriginPath') String? originPath,
+      @JsonKey(name: 'ServerPath') String? serverPath,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class _$OvertimeFileItemCopyWithImpl<$Res, $Val extends OvertimeFileItem>
+    implements $OvertimeFileItemCopyWith<$Res> {
+  _$OvertimeFileItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? employeeOvertimeId = freezed,
+    Object? fileName = freezed,
+    Object? originPath = freezed,
+    Object? serverPath = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeOvertimeId: freezed == employeeOvertimeId
+          ? _value.employeeOvertimeId
+          : employeeOvertimeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      originPath: freezed == originPath
+          ? _value.originPath
+          : originPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serverPath: freezed == serverPath
+          ? _value.serverPath
+          : serverPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$OvertimeFileItemImplCopyWith<$Res>
+    implements $OvertimeFileItemCopyWith<$Res> {
+  factory _$$OvertimeFileItemImplCopyWith(_$OvertimeFileItemImpl value,
+          $Res Function(_$OvertimeFileItemImpl) then) =
+      __$$OvertimeFileItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'EmployeeOvertimeID') int? employeeOvertimeId,
+      @JsonKey(name: 'FileName') String? fileName,
+      @JsonKey(name: 'OriginPath') String? originPath,
+      @JsonKey(name: 'ServerPath') String? serverPath,
+      @JsonKey(name: 'CreatedBy') String? createdBy,
+      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+      @JsonKey(name: 'UpdatedBy') String? updatedBy,
+      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class __$$OvertimeFileItemImplCopyWithImpl<$Res>
+    extends _$OvertimeFileItemCopyWithImpl<$Res, _$OvertimeFileItemImpl>
+    implements _$$OvertimeFileItemImplCopyWith<$Res> {
+  __$$OvertimeFileItemImplCopyWithImpl(_$OvertimeFileItemImpl _value,
+      $Res Function(_$OvertimeFileItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? employeeOvertimeId = freezed,
+    Object? fileName = freezed,
+    Object? originPath = freezed,
+    Object? serverPath = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_$OvertimeFileItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      employeeOvertimeId: freezed == employeeOvertimeId
+          ? _value.employeeOvertimeId
+          : employeeOvertimeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileName: freezed == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      originPath: freezed == originPath
+          ? _value.originPath
+          : originPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serverPath: freezed == serverPath
+          ? _value.serverPath
+          : serverPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedBy: freezed == updatedBy
+          ? _value.updatedBy
+          : updatedBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$OvertimeFileItemImpl implements _OvertimeFileItem {
+  const _$OvertimeFileItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'EmployeeOvertimeID') this.employeeOvertimeId,
+      @JsonKey(name: 'FileName') this.fileName,
+      @JsonKey(name: 'OriginPath') this.originPath,
+      @JsonKey(name: 'ServerPath') this.serverPath,
+      @JsonKey(name: 'CreatedBy') this.createdBy,
+      @JsonKey(name: 'CreatedDate') this.createdDate,
+      @JsonKey(name: 'UpdatedBy') this.updatedBy,
+      @JsonKey(name: 'UpdatedDate') this.updatedDate,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
+
+  factory _$OvertimeFileItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OvertimeFileItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'EmployeeOvertimeID')
+  final int? employeeOvertimeId;
+  @override
+  @JsonKey(name: 'FileName')
+  final String? fileName;
+  @override
+  @JsonKey(name: 'OriginPath')
+  final String? originPath;
+  @override
+  @JsonKey(name: 'ServerPath')
+  final String? serverPath;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  @override
+  String toString() {
+    return 'OvertimeFileItem(id: $id, employeeOvertimeId: $employeeOvertimeId, fileName: $fileName, originPath: $originPath, serverPath: $serverPath, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, isDeleted: $isDeleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OvertimeFileItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.employeeOvertimeId, employeeOvertimeId) ||
+                other.employeeOvertimeId == employeeOvertimeId) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
+            (identical(other.originPath, originPath) ||
+                other.originPath == originPath) &&
+            (identical(other.serverPath, serverPath) ||
+                other.serverPath == serverPath) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      employeeOvertimeId,
+      fileName,
+      originPath,
+      serverPath,
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate,
+      isDeleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OvertimeFileItemImplCopyWith<_$OvertimeFileItemImpl> get copyWith =>
+      __$$OvertimeFileItemImplCopyWithImpl<_$OvertimeFileItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OvertimeFileItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OvertimeFileItem implements OvertimeFileItem {
+  const factory _OvertimeFileItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'EmployeeOvertimeID') final int? employeeOvertimeId,
+          @JsonKey(name: 'FileName') final String? fileName,
+          @JsonKey(name: 'OriginPath') final String? originPath,
+          @JsonKey(name: 'ServerPath') final String? serverPath,
+          @JsonKey(name: 'CreatedBy') final String? createdBy,
+          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
+      _$OvertimeFileItemImpl;
+
+  factory _OvertimeFileItem.fromJson(Map<String, dynamic> json) =
+      _$OvertimeFileItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'EmployeeOvertimeID')
+  int? get employeeOvertimeId;
+  @override
+  @JsonKey(name: 'FileName')
+  String? get fileName;
+  @override
+  @JsonKey(name: 'OriginPath')
+  String? get originPath;
+  @override
+  @JsonKey(name: 'ServerPath')
+  String? get serverPath;
+  @override
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  @JsonKey(name: 'CreatedDate')
+  DateTime? get createdDate;
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  DateTime? get updatedDate;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$OvertimeFileItemImplCopyWith<_$OvertimeFileItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+OvertimeDetailResponse _$OvertimeDetailResponseFromJson(
+    Map<String, dynamic> json) {
+  return _OvertimeDetailResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OvertimeDetailResponse {
+  @JsonKey(name: 'employeeOverTime')
+  OvertimeDetailItem? get employeeOvertime =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'overTimeFile')
+  OvertimeFileItem? get overTimeFile => throw _privateConstructorUsedError;
+  @JsonKey(name: 'overTimeProjectItem')
+  OvertimeProjectItemLink? get overTimeProjectItem =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OvertimeDetailResponseCopyWith<OvertimeDetailResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OvertimeDetailResponseCopyWith<$Res> {
+  factory $OvertimeDetailResponseCopyWith(OvertimeDetailResponse value,
+          $Res Function(OvertimeDetailResponse) then) =
+      _$OvertimeDetailResponseCopyWithImpl<$Res, OvertimeDetailResponse>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'employeeOverTime') OvertimeDetailItem? employeeOvertime,
+      @JsonKey(name: 'overTimeFile') OvertimeFileItem? overTimeFile,
+      @JsonKey(name: 'overTimeProjectItem')
+      OvertimeProjectItemLink? overTimeProjectItem});
+
+  $OvertimeDetailItemCopyWith<$Res>? get employeeOvertime;
+  $OvertimeFileItemCopyWith<$Res>? get overTimeFile;
+  $OvertimeProjectItemLinkCopyWith<$Res>? get overTimeProjectItem;
+}
+
+/// @nodoc
+class _$OvertimeDetailResponseCopyWithImpl<$Res,
+        $Val extends OvertimeDetailResponse>
+    implements $OvertimeDetailResponseCopyWith<$Res> {
+  _$OvertimeDetailResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? employeeOvertime = freezed,
+    Object? overTimeFile = freezed,
+    Object? overTimeProjectItem = freezed,
+  }) {
+    return _then(_value.copyWith(
+      employeeOvertime: freezed == employeeOvertime
+          ? _value.employeeOvertime
+          : employeeOvertime // ignore: cast_nullable_to_non_nullable
+              as OvertimeDetailItem?,
+      overTimeFile: freezed == overTimeFile
+          ? _value.overTimeFile
+          : overTimeFile // ignore: cast_nullable_to_non_nullable
+              as OvertimeFileItem?,
+      overTimeProjectItem: freezed == overTimeProjectItem
+          ? _value.overTimeProjectItem
+          : overTimeProjectItem // ignore: cast_nullable_to_non_nullable
+              as OvertimeProjectItemLink?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OvertimeDetailItemCopyWith<$Res>? get employeeOvertime {
+    if (_value.employeeOvertime == null) {
+      return null;
+    }
+
+    return $OvertimeDetailItemCopyWith<$Res>(_value.employeeOvertime!, (value) {
+      return _then(_value.copyWith(employeeOvertime: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OvertimeFileItemCopyWith<$Res>? get overTimeFile {
+    if (_value.overTimeFile == null) {
+      return null;
+    }
+
+    return $OvertimeFileItemCopyWith<$Res>(_value.overTimeFile!, (value) {
+      return _then(_value.copyWith(overTimeFile: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OvertimeProjectItemLinkCopyWith<$Res>? get overTimeProjectItem {
+    if (_value.overTimeProjectItem == null) {
+      return null;
+    }
+
+    return $OvertimeProjectItemLinkCopyWith<$Res>(_value.overTimeProjectItem!,
+        (value) {
+      return _then(_value.copyWith(overTimeProjectItem: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$OvertimeDetailResponseImplCopyWith<$Res>
+    implements $OvertimeDetailResponseCopyWith<$Res> {
+  factory _$$OvertimeDetailResponseImplCopyWith(
+          _$OvertimeDetailResponseImpl value,
+          $Res Function(_$OvertimeDetailResponseImpl) then) =
+      __$$OvertimeDetailResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'employeeOverTime') OvertimeDetailItem? employeeOvertime,
+      @JsonKey(name: 'overTimeFile') OvertimeFileItem? overTimeFile,
+      @JsonKey(name: 'overTimeProjectItem')
+      OvertimeProjectItemLink? overTimeProjectItem});
+
+  @override
+  $OvertimeDetailItemCopyWith<$Res>? get employeeOvertime;
+  @override
+  $OvertimeFileItemCopyWith<$Res>? get overTimeFile;
+  @override
+  $OvertimeProjectItemLinkCopyWith<$Res>? get overTimeProjectItem;
+}
+
+/// @nodoc
+class __$$OvertimeDetailResponseImplCopyWithImpl<$Res>
+    extends _$OvertimeDetailResponseCopyWithImpl<$Res,
+        _$OvertimeDetailResponseImpl>
+    implements _$$OvertimeDetailResponseImplCopyWith<$Res> {
+  __$$OvertimeDetailResponseImplCopyWithImpl(
+      _$OvertimeDetailResponseImpl _value,
+      $Res Function(_$OvertimeDetailResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? employeeOvertime = freezed,
+    Object? overTimeFile = freezed,
+    Object? overTimeProjectItem = freezed,
+  }) {
+    return _then(_$OvertimeDetailResponseImpl(
+      employeeOvertime: freezed == employeeOvertime
+          ? _value.employeeOvertime
+          : employeeOvertime // ignore: cast_nullable_to_non_nullable
+              as OvertimeDetailItem?,
+      overTimeFile: freezed == overTimeFile
+          ? _value.overTimeFile
+          : overTimeFile // ignore: cast_nullable_to_non_nullable
+              as OvertimeFileItem?,
+      overTimeProjectItem: freezed == overTimeProjectItem
+          ? _value.overTimeProjectItem
+          : overTimeProjectItem // ignore: cast_nullable_to_non_nullable
+              as OvertimeProjectItemLink?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$OvertimeDetailResponseImpl implements _OvertimeDetailResponse {
+  const _$OvertimeDetailResponseImpl(
+      {@JsonKey(name: 'employeeOverTime') this.employeeOvertime,
+      @JsonKey(name: 'overTimeFile') this.overTimeFile,
+      @JsonKey(name: 'overTimeProjectItem') this.overTimeProjectItem});
+
+  factory _$OvertimeDetailResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OvertimeDetailResponseImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'employeeOverTime')
+  final OvertimeDetailItem? employeeOvertime;
+  @override
+  @JsonKey(name: 'overTimeFile')
+  final OvertimeFileItem? overTimeFile;
+  @override
+  @JsonKey(name: 'overTimeProjectItem')
+  final OvertimeProjectItemLink? overTimeProjectItem;
+
+  @override
+  String toString() {
+    return 'OvertimeDetailResponse(employeeOvertime: $employeeOvertime, overTimeFile: $overTimeFile, overTimeProjectItem: $overTimeProjectItem)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OvertimeDetailResponseImpl &&
+            (identical(other.employeeOvertime, employeeOvertime) ||
+                other.employeeOvertime == employeeOvertime) &&
+            (identical(other.overTimeFile, overTimeFile) ||
+                other.overTimeFile == overTimeFile) &&
+            (identical(other.overTimeProjectItem, overTimeProjectItem) ||
+                other.overTimeProjectItem == overTimeProjectItem));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, employeeOvertime, overTimeFile, overTimeProjectItem);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OvertimeDetailResponseImplCopyWith<_$OvertimeDetailResponseImpl>
+      get copyWith => __$$OvertimeDetailResponseImplCopyWithImpl<
+          _$OvertimeDetailResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OvertimeDetailResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OvertimeDetailResponse implements OvertimeDetailResponse {
+  const factory _OvertimeDetailResponse(
+          {@JsonKey(name: 'employeeOverTime')
+          final OvertimeDetailItem? employeeOvertime,
+          @JsonKey(name: 'overTimeFile') final OvertimeFileItem? overTimeFile,
+          @JsonKey(name: 'overTimeProjectItem')
+          final OvertimeProjectItemLink? overTimeProjectItem}) =
+      _$OvertimeDetailResponseImpl;
+
+  factory _OvertimeDetailResponse.fromJson(Map<String, dynamic> json) =
+      _$OvertimeDetailResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'employeeOverTime')
+  OvertimeDetailItem? get employeeOvertime;
+  @override
+  @JsonKey(name: 'overTimeFile')
+  OvertimeFileItem? get overTimeFile;
+  @override
+  @JsonKey(name: 'overTimeProjectItem')
+  OvertimeProjectItemLink? get overTimeProjectItem;
+  @override
+  @JsonKey(ignore: true)
+  _$$OvertimeDetailResponseImplCopyWith<_$OvertimeDetailResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+OvertimeProjectItem _$OvertimeProjectItemFromJson(Map<String, dynamic> json) {
+  return _OvertimeProjectItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OvertimeProjectItem {
+  @JsonKey(name: 'ID')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Mission')
+  String? get mission => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PercentageActual')
+  double? get percentageActual => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PlanStartDate')
+  DateTime? get planStartDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'PlanEndDate')
+  DateTime? get planEndDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalDayPlan')
+  double? get totalDayPlan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsCheckedToday')
+  int? get isCheckedToday => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OvertimeProjectItemCopyWith<OvertimeProjectItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OvertimeProjectItemCopyWith<$Res> {
+  factory $OvertimeProjectItemCopyWith(
+          OvertimeProjectItem value, $Res Function(OvertimeProjectItem) then) =
+      _$OvertimeProjectItemCopyWithImpl<$Res, OvertimeProjectItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Mission') String? mission,
+      @JsonKey(name: 'PercentageActual') double? percentageActual,
+      @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
+      @JsonKey(name: 'PlanEndDate') DateTime? planEndDate,
+      @JsonKey(name: 'TotalDayPlan') double? totalDayPlan,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'IsCheckedToday') int? isCheckedToday});
+}
+
+/// @nodoc
+class _$OvertimeProjectItemCopyWithImpl<$Res, $Val extends OvertimeProjectItem>
+    implements $OvertimeProjectItemCopyWith<$Res> {
+  _$OvertimeProjectItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? code = freezed,
+    Object? mission = freezed,
+    Object? percentageActual = freezed,
+    Object? planStartDate = freezed,
+    Object? planEndDate = freezed,
+    Object? totalDayPlan = freezed,
+    Object? employeeId = freezed,
+    Object? isCheckedToday = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mission: freezed == mission
+          ? _value.mission
+          : mission // ignore: cast_nullable_to_non_nullable
+              as String?,
+      percentageActual: freezed == percentageActual
+          ? _value.percentageActual
+          : percentageActual // ignore: cast_nullable_to_non_nullable
+              as double?,
+      planStartDate: freezed == planStartDate
+          ? _value.planStartDate
+          : planStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      planEndDate: freezed == planEndDate
+          ? _value.planEndDate
+          : planEndDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      totalDayPlan: freezed == totalDayPlan
+          ? _value.totalDayPlan
+          : totalDayPlan // ignore: cast_nullable_to_non_nullable
+              as double?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isCheckedToday: freezed == isCheckedToday
+          ? _value.isCheckedToday
+          : isCheckedToday // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$OvertimeProjectItemImplCopyWith<$Res>
+    implements $OvertimeProjectItemCopyWith<$Res> {
+  factory _$$OvertimeProjectItemImplCopyWith(_$OvertimeProjectItemImpl value,
+          $Res Function(_$OvertimeProjectItemImpl) then) =
+      __$$OvertimeProjectItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Mission') String? mission,
+      @JsonKey(name: 'PercentageActual') double? percentageActual,
+      @JsonKey(name: 'PlanStartDate') DateTime? planStartDate,
+      @JsonKey(name: 'PlanEndDate') DateTime? planEndDate,
+      @JsonKey(name: 'TotalDayPlan') double? totalDayPlan,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'IsCheckedToday') int? isCheckedToday});
+}
+
+/// @nodoc
+class __$$OvertimeProjectItemImplCopyWithImpl<$Res>
+    extends _$OvertimeProjectItemCopyWithImpl<$Res, _$OvertimeProjectItemImpl>
+    implements _$$OvertimeProjectItemImplCopyWith<$Res> {
+  __$$OvertimeProjectItemImplCopyWithImpl(_$OvertimeProjectItemImpl _value,
+      $Res Function(_$OvertimeProjectItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? code = freezed,
+    Object? mission = freezed,
+    Object? percentageActual = freezed,
+    Object? planStartDate = freezed,
+    Object? planEndDate = freezed,
+    Object? totalDayPlan = freezed,
+    Object? employeeId = freezed,
+    Object? isCheckedToday = freezed,
+  }) {
+    return _then(_$OvertimeProjectItemImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mission: freezed == mission
+          ? _value.mission
+          : mission // ignore: cast_nullable_to_non_nullable
+              as String?,
+      percentageActual: freezed == percentageActual
+          ? _value.percentageActual
+          : percentageActual // ignore: cast_nullable_to_non_nullable
+              as double?,
+      planStartDate: freezed == planStartDate
+          ? _value.planStartDate
+          : planStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      planEndDate: freezed == planEndDate
+          ? _value.planEndDate
+          : planEndDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      totalDayPlan: freezed == totalDayPlan
+          ? _value.totalDayPlan
+          : totalDayPlan // ignore: cast_nullable_to_non_nullable
+              as double?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isCheckedToday: freezed == isCheckedToday
+          ? _value.isCheckedToday
+          : isCheckedToday // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$OvertimeProjectItemImpl implements _OvertimeProjectItem {
+  const _$OvertimeProjectItemImpl(
+      {@JsonKey(name: 'ID') required this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'Mission') this.mission,
+      @JsonKey(name: 'PercentageActual') this.percentageActual,
+      @JsonKey(name: 'PlanStartDate') this.planStartDate,
+      @JsonKey(name: 'PlanEndDate') this.planEndDate,
+      @JsonKey(name: 'TotalDayPlan') this.totalDayPlan,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'IsCheckedToday') this.isCheckedToday});
+
+  factory _$OvertimeProjectItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OvertimeProjectItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int id;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'Mission')
+  final String? mission;
+  @override
+  @JsonKey(name: 'PercentageActual')
+  final double? percentageActual;
+  @override
+  @JsonKey(name: 'PlanStartDate')
+  final DateTime? planStartDate;
+  @override
+  @JsonKey(name: 'PlanEndDate')
+  final DateTime? planEndDate;
+  @override
+  @JsonKey(name: 'TotalDayPlan')
+  final double? totalDayPlan;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'IsCheckedToday')
+  final int? isCheckedToday;
+
+  @override
+  String toString() {
+    return 'OvertimeProjectItem(id: $id, code: $code, mission: $mission, percentageActual: $percentageActual, planStartDate: $planStartDate, planEndDate: $planEndDate, totalDayPlan: $totalDayPlan, employeeId: $employeeId, isCheckedToday: $isCheckedToday)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OvertimeProjectItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.mission, mission) || other.mission == mission) &&
+            (identical(other.percentageActual, percentageActual) ||
+                other.percentageActual == percentageActual) &&
+            (identical(other.planStartDate, planStartDate) ||
+                other.planStartDate == planStartDate) &&
+            (identical(other.planEndDate, planEndDate) ||
+                other.planEndDate == planEndDate) &&
+            (identical(other.totalDayPlan, totalDayPlan) ||
+                other.totalDayPlan == totalDayPlan) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.isCheckedToday, isCheckedToday) ||
+                other.isCheckedToday == isCheckedToday));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      code,
+      mission,
+      percentageActual,
+      planStartDate,
+      planEndDate,
+      totalDayPlan,
+      employeeId,
+      isCheckedToday);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OvertimeProjectItemImplCopyWith<_$OvertimeProjectItemImpl> get copyWith =>
+      __$$OvertimeProjectItemImplCopyWithImpl<_$OvertimeProjectItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OvertimeProjectItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OvertimeProjectItem implements OvertimeProjectItem {
+  const factory _OvertimeProjectItem(
+          {@JsonKey(name: 'ID') required final int id,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'Mission') final String? mission,
+          @JsonKey(name: 'PercentageActual') final double? percentageActual,
+          @JsonKey(name: 'PlanStartDate') final DateTime? planStartDate,
+          @JsonKey(name: 'PlanEndDate') final DateTime? planEndDate,
+          @JsonKey(name: 'TotalDayPlan') final double? totalDayPlan,
+          @JsonKey(name: 'EmployeeID') final int? employeeId,
+          @JsonKey(name: 'IsCheckedToday') final int? isCheckedToday}) =
+      _$OvertimeProjectItemImpl;
+
+  factory _OvertimeProjectItem.fromJson(Map<String, dynamic> json) =
+      _$OvertimeProjectItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int get id;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'Mission')
+  String? get mission;
+  @override
+  @JsonKey(name: 'PercentageActual')
+  double? get percentageActual;
+  @override
+  @JsonKey(name: 'PlanStartDate')
+  DateTime? get planStartDate;
+  @override
+  @JsonKey(name: 'PlanEndDate')
+  DateTime? get planEndDate;
+  @override
+  @JsonKey(name: 'TotalDayPlan')
+  double? get totalDayPlan;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'IsCheckedToday')
+  int? get isCheckedToday;
+  @override
+  @JsonKey(ignore: true)
+  _$$OvertimeProjectItemImplCopyWith<_$OvertimeProjectItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

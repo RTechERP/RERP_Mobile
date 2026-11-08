@@ -33,7 +33,30 @@ abstract class ReportRepo {
   /// Trả về danh sách ID báo cáo vừa tạo/cập nhật. Nếu response trả về
   /// `status == 1` nhưng `data` rỗng thì coi như lưu thất bại.
   Future<Either<BaseError, List<int>>> saveReportTech({
+    required List<Map<String, dynamic>> payload,
+  });
+
+  /// Lấy ca làm thêm đã đăng ký trong ngày (kèm `ProjectItemID` liên kết).
+  Future<Either<BaseError, List<OvertimeRecord>>> getOvertimeByDate({
+    required DateTime dateRegister,
+    int? employeeId,
+  });
+
+  /// Lưu ca làm thêm kèm liên kết hạng mục công việc.
+  Future<Either<BaseError, void>> saveOvertimeTech({
     required Map<String, dynamic> payload,
+  });
+
+  /// Lấy các phát sinh của một hạng mục công việc.
+  Future<Either<BaseError, List<ProjectHistoryProblem>>>
+  getProjectHistoryProblemByProjectItem({required int projectItemId});
+
+  /// Kiểm tra hạng mục công việc đã đủ thông tin để báo cáo hay chưa.
+  ///
+  /// Trả về `null` khi BE không trả kết quả rõ ràng (lỗi mạng, response lạ) —
+  /// khi đó không được chặn người dùng báo cáo.
+  Future<Either<BaseError, bool?>> checkInformationReport({
+    required int projectTaskId,
   });
 
   /// Gửi mail báo cáo phòng kỹ thuật
@@ -176,7 +199,8 @@ abstract class ReportRepo {
     String filterText,
     int customerId,
     int groupType,
-    int projectId});
+    int projectId,
+  });
 
   Future<Either<BaseError, List<SaleAdminResponse>>> getSaleAdminDailyReport({
     required DateTime dateStart,
@@ -192,7 +216,8 @@ abstract class ReportRepo {
     required Map<String, dynamic> payload,
   });
 
-  Future<Either<BaseError, List<SaleAdminTypeReportResponse>>> getAdminTypeReport();
+  Future<Either<BaseError, List<SaleAdminTypeReportResponse>>>
+  getAdminTypeReport();
   Future<Either<BaseError, List<SaleAdminProjectResponse>>> getAdminProject();
   Future<Either<BaseError, List<SaleAdminCustomerResponse>>> getAdminCustomer();
 
@@ -200,7 +225,9 @@ abstract class ReportRepo {
     required int dailyID,
   });
 
-  Future<Either<BaseError, String>> deleteSaleAdminReport({required int dailyID});
+  Future<Either<BaseError, String>> deleteSaleAdminReport({
+    required int dailyID,
+  });
 
   /// Lấy danh sách báo cáo phòng Kế toán (Accountant)
   Future<Either<BaseError, List<AccountantItem>>> getAccountantReport({
@@ -221,5 +248,7 @@ abstract class ReportRepo {
   Future<Either<BaseError, String>> deleteReportAccounting({required int id});
 
   /// Lấy chi tiết báo cáo phòng Kế toán theo ID
-  Future<Either<BaseError, AccountantItem>> getAccountantById({required int id});
+  Future<Either<BaseError, AccountantItem>> getAccountantById({
+    required int id,
+  });
 }

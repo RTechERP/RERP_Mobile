@@ -60,6 +60,21 @@ class ApiEndPoint {
 
   static const String saveReportTech = '/DailyReportTech/save-report-tech';
 
+  /// Lưu ca làm thêm kèm liên kết hạng mục công việc (ProjectItemID).
+  static const String saveOvertimeTech = '/DailyReportTech/save-overtime-tech';
+
+  /// Lấy ca làm thêm đã đăng ký trong ngày (kèm ProjectItemID).
+  static const String getOvertimeByDate =
+      '/DailyReportTech/get-overtime-by-date';
+
+  /// Lấy các phát sinh của một hạng mục công việc.
+  static const String getProjectHistoryProblemByProjectItem =
+      '/DailyReportTech/get-project-history-problem-by-project-item';
+
+  /// Kiểm tra hạng mục công việc có đủ thông tin để báo cáo hay chưa.
+  static const String checkInformationReport =
+      '/projecttask/check-information-report';
+
   static const String sendMailReport = '/DailyReportTech/send-email-report';
 
   static const String getById = '/DailyReportTech/get-by-id';
@@ -250,6 +265,11 @@ class ApiEndPoint {
   static const String saveOvertime = '/EmployeeOverTime/save-data-employee';
 
   static const String getOvertimeById = '/EmployeeOverTime/get-by-id';
+
+  /// Danh sách departmentID bắt buộc chọn hạng mục công việc khi đăng ký
+  /// làm thêm. Bổ sung cho danh sách hardcode phía app.
+  static const String getDepartmentRequireProjectItem =
+      '/EmployeeOverTime/get-department-require-project-item';
 
   static const String getApproverOvertime = '/EmployeeOverTime/get-approver';
 

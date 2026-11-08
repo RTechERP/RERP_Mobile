@@ -143,7 +143,7 @@ class _TechDetailScreenState
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha:0.06),
+                      color: Colors.black.withValues(alpha: 0.06),
                       blurRadius: 12,
                       offset: const Offset(0, -4),
                     ),
@@ -226,7 +226,7 @@ class _HeaderCard extends StatelessWidget {
         border: Border.all(color: Colors.grey.shade100, width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha:0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -318,10 +318,7 @@ class _HeaderCard extends StatelessWidget {
                           ),
                           const Text(
                             'Hoàn thành',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 8,
-                            ),
+                            style: TextStyle(color: Colors.black, fontSize: 8),
                           ),
                         ],
                       ),
@@ -356,10 +353,7 @@ class _StatBadge extends StatelessWidget {
         const SizedBox(width: 6),
         Text(
           '$label: ',
-          style: const TextStyle(
-            color: Colors.black,
-            fontSize: 13,
-          ),
+          style: const TextStyle(color: Colors.black, fontSize: 13),
         ),
         Flexible(
           child: Text(
@@ -400,7 +394,7 @@ class _SectionCard extends StatelessWidget {
         border: Border.all(color: Colors.grey.shade100, width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha:0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -500,7 +494,7 @@ class _IssueCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(7),
                     decoration: BoxDecoration(
-                      color: AppColors.alert.withValues(alpha:0.1),
+                      color: AppColors.alert.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Icon(
@@ -528,13 +522,29 @@ class _IssueCard extends StatelessWidget {
             child: Column(
               children: [
                 if (backlog.isNotEmpty)
-                  _IssueRow(label: 'Tồn đọng', value: backlog, color: AppColors.warning),
+                  _IssueRow(
+                    label: 'Tồn đọng',
+                    value: backlog,
+                    color: AppColors.warning,
+                  ),
                 if (problem.isNotEmpty)
-                  _IssueRow(label: 'Vấn đề phát sinh', value: problem, color: AppColors.alert),
+                  _IssueRow(
+                    label: 'Vấn đề phát sinh',
+                    value: problem,
+                    color: AppColors.alert,
+                  ),
                 if (problemSolve.isNotEmpty)
-                  _IssueRow(label: 'Giải pháp', value: problemSolve, color: AppColors.success),
+                  _IssueRow(
+                    label: 'Giải pháp',
+                    value: problemSolve,
+                    color: AppColors.success,
+                  ),
                 if (note.isNotEmpty)
-                  _IssueRow(label: 'Ghi chú', value: note, color: AppColors.label),
+                  _IssueRow(
+                    label: 'Ghi chú',
+                    value: note,
+                    color: AppColors.label,
+                  ),
                 if (!_hasAnyIssue)
                   Center(
                     child: Padding(
