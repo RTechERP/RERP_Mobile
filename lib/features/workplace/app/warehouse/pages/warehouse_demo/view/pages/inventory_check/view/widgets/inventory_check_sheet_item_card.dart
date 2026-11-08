@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/data/datasource/models/inventory_check_model.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_difference_chip.dart';
 
 /// Card hiển thị một dòng sản phẩm trong phiếu kiểm kê.
 ///
-/// Bố cục: tên sản phẩm + mã → chip đã kiểm kê → vị trí kho → dải số liệu
-/// (mượn / khách mượn / trong kho / chênh lệch) dạng hàng ngang, không chia ô
-/// box để tránh rối mắt khi danh sách dài.
+/// Bố cục: tên sản phẩm + mã → chip chênh lệch + chip đã kiểm kê → vị trí kho
+/// → dải số liệu (tồn trong kho / đang mượn / khách mượn / chênh lệch) dạng
+/// hàng ngang, không chia ô box để tránh rối mắt khi danh sách dài.
 class InventoryCountSheetItemCard extends StatelessWidget {
   const InventoryCountSheetItemCard({
     super.key,
@@ -94,7 +95,16 @@ class InventoryCountSheetItemCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  _CountedChip(hasCounted: item.hasCounted),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (difference != null) ...[
+                        InventoryCheckDifferenceChip(difference: difference),
+                        const SizedBox(width: 6),
+                      ],
+                      _CountedChip(hasCounted: item.hasCounted),
+                    ],
+                  ),
                 ],
               ),
               const SizedBox(height: 10),
@@ -118,7 +128,14 @@ class InventoryCountSheetItemCard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: _MetricCell(
-                        label: 'Mượn',
+                        label: 'Tồn trong kho',
+                        value: _formatQty(item.numberInStore),
+                      ),
+                    ),
+                    const _MetricDivider(),
+                    Expanded(
+                      child: _MetricCell(
+                        label: 'Đang mượn',
                         value: _formatQty(item.numberBorrowing),
                       ),
                     ),
@@ -127,13 +144,6 @@ class InventoryCountSheetItemCard extends StatelessWidget {
                       child: _MetricCell(
                         label: 'Khách mượn',
                         value: _formatQty(item.customerBorrowedQuantity),
-                      ),
-                    ),
-                    const _MetricDivider(),
-                    Expanded(
-                      child: _MetricCell(
-                        label: 'Trong kho',
-                        value: _formatQty(item.numberInStore),
                       ),
                     ),
                     const _MetricDivider(),

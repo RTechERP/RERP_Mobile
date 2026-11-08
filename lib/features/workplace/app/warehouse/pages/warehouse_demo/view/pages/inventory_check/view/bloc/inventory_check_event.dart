@@ -62,4 +62,21 @@ class InventoryCheckEvent with _$InventoryCheckEvent {
   /// `null` = không lọc theo nhóm sản phẩm.
   const factory InventoryCheckEvent.filterSheetProductGroup(int? groupId) =
       _FilterSheetProductGroup;
+
+  /// Lưu kết quả kiểm kê thực tế cho các dòng sản phẩm trong phiếu.
+  ///
+  /// [changedItems] là danh sách dòng chi tiết cần cập nhật, mỗi dòng gồm
+  /// `ID`, `ProductRTCID`, `QuantityActual`, `Note`.
+  const factory InventoryCheckEvent.saveCountDetails({
+    required int countId,
+    required List<Map<String, dynamic>> changedItems,
+  }) = _SaveCountDetails;
+
+  /// Xác nhận hoàn thành / mở lại một đợt kiểm kê.
+  ///
+  /// [isComplete] = `true` → hoàn thành, `false` → mở lại.
+  const factory InventoryCheckEvent.confirmComplete({
+    required int id,
+    required bool isComplete,
+  }) = _ConfirmComplete;
 }

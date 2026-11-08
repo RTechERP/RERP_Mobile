@@ -73,7 +73,9 @@ class _InventoryCheckScreenState
   @override
   bool listenWhen(InventoryCheckState previous, InventoryCheckState current) {
     return previous.deleteSuccess != current.deleteSuccess ||
-        previous.deleteError != current.deleteError;
+        previous.deleteError != current.deleteError ||
+        previous.confirmCompleteSuccess != current.confirmCompleteSuccess ||
+        previous.confirmCompleteError != current.confirmCompleteError;
   }
 
   @override
@@ -89,6 +91,22 @@ class _InventoryCheckScreenState
     final deleteError = state.deleteError;
     if (deleteError != null && deleteError.isNotEmpty) {
       context.showMessage(deleteError, type: SnackBarType.error);
+      return;
+    }
+
+    // Xác nhận hoàn thành / mở lại đợt kiểm kê thành công → tải lại danh sách.
+    if (state.confirmCompleteSuccess) {
+      context.showMessage(
+        state.confirmCompleteMessage ?? '',
+        type: SnackBarType.success,
+      );
+      bloc.add(const InventoryCheckEvent.fetch());
+      return;
+    }
+
+    final confirmCompleteError = state.confirmCompleteError;
+    if (confirmCompleteError != null && confirmCompleteError.isNotEmpty) {
+      context.showMessage(confirmCompleteError, type: SnackBarType.error);
     }
   }
 
@@ -291,14 +309,17 @@ class _InventoryCheckScreenState
 
   /// Mở menu thao tác khi bấm vào card đợt kiểm kê.
   ///
-  /// Menu gồm: chi tiết, chỉnh sửa, xoá.
+  /// Menu gồm: chi tiết, chỉnh sửa, hoàn thành / mở lại, xoá.
   Future<void> _openMenu(InventoryCountItem item) async {
     final id = item.id;
     if (id == null) return;
 
+    final isComplete = item.isComplete ?? false;
+
     final actionId = await InventoryCheckMenuSheet.show(
       context,
       countCode: item.code,
+      menuItems: InventoryCheckMenuItem.itemsFor(isComplete: isComplete),
     );
     if (!mounted || actionId == null) return;
 
@@ -311,6 +332,12 @@ class _InventoryCheckScreenState
         break;
       case 'delete':
         await _confirmDelete(item);
+        break;
+      case 'complete':
+        await _confirmComplete(item, isComplete: true);
+        break;
+      case 'reopen':
+        await _confirmComplete(item, isComplete: false);
         break;
     }
   }
@@ -328,11 +355,15 @@ class _InventoryCheckScreenState
   }
 
   /// Mở màn chi tiết phiếu kiểm kê (danh sách sản phẩm đã kiểm kê).
+  ///
+  /// Quay lại sẽ tải lại danh sách vì trạng thái hoàn thành có thể đã đổi.
   Future<void> _openSheetScreen(int id) async {
     await context.push<bool>(
       RouteNames.warehouseDemoInventoryCheckSheet,
       extra: id,
     );
+    if (!mounted) return;
+    bloc.add(const InventoryCheckEvent.fetch());
   }
 
   /// Xác nhận xoá đợt kiểm kê — toàn bộ chi tiết kiểm kê liên quan cũng
@@ -351,6 +382,28 @@ class _InventoryCheckScreenState
     if (!mounted || !confirmed) return;
 
     bloc.add(InventoryCheckEvent.delete(id));
+  }
+
+  /// Xác nhận hoàn thành / mở lại đợt kiểm kê.
+  ///
+  /// [isComplete] = `true` → hoàn thành, `false` → mở lại.
+  Future<void> _confirmComplete(
+    InventoryCountItem item, {
+    required bool isComplete,
+  }) async {
+    final id = item.id;
+    if (id == null) return;
+
+    final confirmed = await DialogService.showConfirmInventoryCountComplete(
+      context: context,
+      countCode: item.code ?? '',
+      isComplete: isComplete,
+    );
+    if (!mounted || !confirmed) return;
+
+    bloc.add(
+      InventoryCheckEvent.confirmComplete(id: id, isComplete: isComplete),
+    );
   }
 
   /// Mở bottom sheet chọn khoảng ngày; áp dụng xong sẽ tải lại danh sách.

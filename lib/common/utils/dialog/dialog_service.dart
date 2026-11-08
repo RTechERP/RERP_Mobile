@@ -1042,6 +1042,54 @@ class DialogService {
     );
   }
 
+  /// Dialog xác nhận hoàn thành / mở lại một đợt kiểm kê.
+  ///
+  /// [isComplete] = `true` → xác nhận hoàn thành (cache số lượng tồn kho &
+  /// mượn), `false` → mở lại (số lượng tính động theo dữ liệu kho hiện thời).
+  ///
+  /// Trả về `true` nếu người dùng đồng ý, `false` nếu huỷ.
+  static Future<bool> showConfirmInventoryCountComplete({
+    required BuildContext context,
+    required String countCode,
+    required bool isComplete,
+  }) async {
+    bool confirmed = false;
+
+    final code = countCode.trim();
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: Icon(
+        isComplete ? Icons.task_alt : Icons.restart_alt,
+        size: 64,
+        color: isComplete
+            ? AppColors.stateSuccessColor
+            : AppColors.stateWarningColor,
+      ),
+      title: isComplete ? 'Xác nhận hoàn thành' : 'Mở lại đợt kiểm kê',
+      description: isComplete
+          ? 'Bạn có chắc chắn muốn xác nhận hoàn thành đợt kiểm kê [$code]?\n\n'
+                'Sau khi hoàn thành, số lượng tồn kho và mượn của các sản phẩm '
+                'đã kiểm sẽ được lưu cố định (cache) và không bị biến động '
+                'theo xuất/nhập sau này.'
+          : 'Bạn có chắc muốn mở lại đợt kiểm kê [$code]?\n\n'
+                'Số lượng tồn kho và mượn sẽ được tính động trở lại theo dữ liệu '
+                'kho hiện thời.',
+      contentTopButton: isComplete ? 'Hoàn thành' : 'Mở lại',
+      topButtonFunc: () {
+        confirmed = true;
+        onBack(context);
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        confirmed = false;
+        onBack(context);
+      },
+    );
+
+    return confirmed;
+  }
+
   /// Dialog xác nhận trả bàn test (chỉ áp dụng với phiếu đã duyệt).
   static Future<bool> showConfirmReturn({required BuildContext context}) async {
     bool confirmed = false;

@@ -7,12 +7,14 @@ import 'package:rtc_erp/base/network/errors/extension.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import 'package:rtc_erp/base/widgets/base_widget.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
+import 'package:rtc_erp/common/utils/dialog/dialog_service.dart';
 import 'package:rtc_erp/common/utils/snack_bar_helper.dart' show SnackBarType;
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/data/datasource/models/inventory_check_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/bloc/inventory_check_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_sheet_filter_sheet.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_sheet_item_card.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_sheet_item_detail_sheet.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_sheet_item_edit_sheet.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_sheet_report_card.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_error_view.dart';
 
@@ -48,7 +50,10 @@ class _InventoryCheckSheetScreenState
   @override
   bool listenWhen(InventoryCheckState previous, InventoryCheckState current) {
     return previous.sheet != current.sheet ||
-        previous.message != current.message;
+        previous.message != current.message ||
+        previous.saveCountDetailsSuccess != current.saveCountDetailsSuccess ||
+        previous.confirmCompleteSuccess != current.confirmCompleteSuccess ||
+        previous.confirmCompleteError != current.confirmCompleteError;
   }
 
   @override
@@ -56,6 +61,34 @@ class _InventoryCheckSheetScreenState
     if (state.status == BaseStateStatus.failed &&
         (state.message ?? '').isNotEmpty) {
       context.showMessage(state.message!, type: SnackBarType.error);
+      return;
+    }
+
+    // Lưu kết quả kiểm kê thành công → báo cho người dùng (phiếu đã được
+    // tải lại trong bloc).
+    if (state.saveCountDetailsSuccess) {
+      context.showMessage(
+        'Cập nhật kết quả kiểm kê thành công',
+        type: SnackBarType.success,
+      );
+      return;
+    }
+
+    // Xác nhận hoàn thành / mở lại đợt kiểm kê thành công → tải lại phiếu để
+    // cập nhật trạng thái hiển thị.
+    if (state.confirmCompleteSuccess) {
+      context.showMessage(
+        state.confirmCompleteMessage ?? '',
+        type: SnackBarType.success,
+      );
+      bloc.add(InventoryCheckEvent.fetchSheet(widget.countId));
+      return;
+    }
+
+    final confirmCompleteError = state.confirmCompleteError;
+    if (confirmCompleteError != null && confirmCompleteError.isNotEmpty) {
+      context.showMessage(confirmCompleteError, type: SnackBarType.error);
+      return;
     }
 
     // Nhóm sản phẩm phụ thuộc kho của phiếu → tải lại khi biết kho.
@@ -137,6 +170,15 @@ class _InventoryCheckSheetScreenState
         /// ===== HEADER THÔNG TIN ĐỢT KIỂM KÊ =====
         SliverToBoxAdapter(child: _MasterHeader(master: sheet.master)),
 
+        /// ===== NÚT XÁC NHẬN HOÀN THÀNH / MỞ LẠI =====
+        SliverToBoxAdapter(
+          child: _CompleteActionButton(
+            isComplete: sheet.master?.isComplete ?? false,
+            onPressed: () =>
+                _handleCompleteAction(sheet.master?.isComplete ?? false),
+          ),
+        ),
+
         /// ===== BẢNG BÁO CÁO =====
         SliverToBoxAdapter(
           child: InventoryCheckSheetReportCard(report: state.sheetReport),
@@ -192,7 +234,7 @@ class _InventoryCheckSheetScreenState
                 return InventoryCountSheetItemCard(
                   item: items[index],
                   index: index + 1,
-                  onTap: () => _showItemDetail(items[index]),
+                  onTap: () => _handleItemTap(items[index]),
                 );
               },
             ),
@@ -201,9 +243,64 @@ class _InventoryCheckSheetScreenState
     );
   }
 
-  /// Mở bottom sheet chi tiết một dòng sản phẩm kiểm kê.
-  void _showItemDetail(InventoryCountSheetItem item) {
-    InventoryCheckSheetItemDetailSheet.show(context, item);
+  /// Xử lý nút hoàn thành / mở lại đợt kiểm kê ở AppBar.
+  ///
+  /// [isComplete] = `true` → đang hoàn thành → hiện dialog mở lại.
+  /// `false` → đang kiểm kê → hiện dialog xác nhận hoàn thành.
+  Future<void> _handleCompleteAction(bool isComplete) async {
+    final master = bloc.state.sheet?.master;
+    if (master == null) return;
+
+    final confirmed = await DialogService.showConfirmInventoryCountComplete(
+      context: context,
+      countCode: master.code ?? '',
+      isComplete: !isComplete,
+    );
+    if (!mounted || !confirmed) return;
+
+    bloc.add(
+      InventoryCheckEvent.confirmComplete(
+        id: widget.countId,
+        isComplete: !isComplete,
+      ),
+    );
+  }
+
+  /// Xử lý khi bấm vào card một dòng sản phẩm.
+  ///
+  /// - Đợt kiểm kê đã hoàn thành → mở sheet chi tiết thông tin.
+  /// - Đợt kiểm kê đang thực hiện → mở sheet nhập số lượng thực tế + ghi chú
+  ///   để cập nhật kết quả kiểm kê.
+  void _handleItemTap(InventoryCountSheetItem item) {
+    final isComplete = bloc.state.sheet?.master?.isComplete ?? false;
+    if (isComplete) {
+      InventoryCheckSheetItemDetailSheet.show(context, item);
+      return;
+    }
+    _openEditItemSheet(item);
+  }
+
+  /// Mở bottom sheet nhập số lượng thực tế + ghi chú rồi lưu kết quả kiểm kê.
+  Future<void> _openEditItemSheet(InventoryCountSheetItem item) async {
+    final result = await InventoryCheckSheetItemEditSheet.show(context, item);
+    if (!mounted || result == null) return;
+
+    final productRtcId = item.productRtcId;
+    if (productRtcId == null) return;
+
+    bloc.add(
+      InventoryCheckEvent.saveCountDetails(
+        countId: widget.countId,
+        changedItems: [
+          {
+            'ID': item.id ?? 0,
+            'ProductRTCID': productRtcId,
+            'QuantityActual': result.quantityActual,
+            'Note': result.note,
+          },
+        ],
+      ),
+    );
   }
 
   /// Đang có bộ lọc đang áp dụng hay không.
@@ -314,6 +411,59 @@ class _MasterHeader extends StatelessWidget {
           const SizedBox(width: 10),
           _StatusBadge(isComplete: isComplete),
         ],
+      ),
+    );
+  }
+}
+
+/// Nút xác nhận hoàn thành / mở lại đợt kiểm kê trong header chi tiết.
+///
+/// Đặt ngay dưới header gradient để người dùng thấy rõ thao tác đang có
+/// thể thực hiện với phiếu đang xem.
+class _CompleteActionButton extends StatelessWidget {
+  const _CompleteActionButton({
+    required this.isComplete,
+    required this.onPressed,
+  });
+
+  /// Đợt kiểm kê đã hoàn thành hay chưa.
+  final bool isComplete;
+
+  /// Callback khi bấm nút.
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = isComplete
+        ? AppColors.stateWarningColor
+        : AppColors.stateSuccessColor;
+
+    return Container(
+      margin: const EdgeInsets.fromLTRB(16, 10, 16, 0),
+      width: double.infinity,
+      child: ElevatedButton.icon(
+        onPressed: onPressed,
+        icon: Icon(
+          isComplete ? Icons.restart_alt : Icons.task_alt,
+          size: 18,
+          color: Colors.white,
+        ),
+        label: Text(
+          isComplete ? 'Mở lại đợt kiểm kê' : 'Xác nhận hoàn thành',
+          style: const TextStyle(
+            fontSize: 13.5,
+            fontWeight: FontWeight.w700,
+            color: Colors.white,
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color,
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
       ),
     );
   }

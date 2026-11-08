@@ -175,4 +175,47 @@ class InventoryCheckService extends DioBaseApiService {
       ),
     );
   }
+
+  /// Lưu kết quả kiểm kê thực tế cho các dòng sản phẩm —
+  /// `POST /WarehouseInventoryCount/save-count-details`.
+  ///
+  /// [changedItems] là danh sách dòng chi tiết cần cập nhật, mỗi dòng gồm
+  /// `ID`, `ProductRTCID`, `QuantityActual`, `Note`.
+  ///
+  /// Server trả `data` là danh sách dòng chi tiết vừa được cập nhật.
+  Future<BaseData<bool>> saveCountDetails({
+    required int countId,
+    required List<Map<String, dynamic>> changedItems,
+  }) async {
+    return post<BaseData<bool>>(
+      ApiEndPoint.saveInventoryCountDetails,
+      body: {
+        'WarehouseInventoryCountID': countId,
+        'ChangedItems': changedItems,
+      },
+      parser: (json) => _wrap(json, (data) => data != null),
+    );
+  }
+
+  /// Xác nhận hoàn thành / mở lại một đợt kiểm kê —
+  /// `POST /WarehouseInventoryCount/confirm-complete?id=X&isComplete=true`.
+  ///
+  /// [isComplete] = `true` → hoàn thành (cache số lượng tồn kho & mượn),
+  /// `false` → mở lại (tính động theo dữ liệu kho hiện thời).
+  ///
+  /// Server trả `data` là thông tin đợt kiểm kê sau khi cập nhật.
+  Future<BaseData<InventoryCountDetail>> confirmComplete({
+    required int id,
+    required bool isComplete,
+  }) async {
+    return post<BaseData<InventoryCountDetail>>(
+      ApiEndPoint.confirmCompleteInventoryCount,
+      query: {'id': id, 'isComplete': isComplete},
+      body: const <String, dynamic>{},
+      parser: (json) => _wrap(
+        json,
+        (data) => InventoryCountDetail.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
 }

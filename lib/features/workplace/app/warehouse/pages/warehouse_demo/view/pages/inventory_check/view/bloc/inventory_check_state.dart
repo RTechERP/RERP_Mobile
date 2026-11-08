@@ -102,6 +102,18 @@ class InventoryCheckState extends BaseBlocState {
   /// `null` = không lọc theo nhóm sản phẩm.
   final int? sheetProductGroupId;
 
+  /// Lưu kết quả kiểm kê thực tế thành công.
+  final bool saveCountDetailsSuccess;
+
+  /// Xác nhận hoàn thành / mở lại đợt kiểm kê thành công.
+  final bool confirmCompleteSuccess;
+
+  /// Thông báo thành công khi xác nhận hoàn thành / mở lại đợt kiểm kê.
+  final String? confirmCompleteMessage;
+
+  /// Thông báo lỗi khi xác nhận hoàn thành / mở lại đợt kiểm kê thất bại.
+  final String? confirmCompleteError;
+
   const InventoryCheckState({
     required super.status,
     super.message,
@@ -130,6 +142,10 @@ class InventoryCheckState extends BaseBlocState {
     this.isLoadingProductGroupsRtc = false,
     this.productGroupsRtcWarehouseId,
     this.sheetProductGroupId,
+    this.saveCountDetailsSuccess = false,
+    this.confirmCompleteSuccess = false,
+    this.confirmCompleteMessage,
+    this.confirmCompleteError,
   });
 
   /// Mặc định lọc trong tháng hiện tại.
@@ -267,6 +283,10 @@ class InventoryCheckState extends BaseBlocState {
     isLoadingProductGroupsRtc,
     productGroupsRtcWarehouseId,
     sheetProductGroupId,
+    saveCountDetailsSuccess,
+    confirmCompleteSuccess,
+    confirmCompleteMessage,
+    confirmCompleteError,
   ];
 }
 

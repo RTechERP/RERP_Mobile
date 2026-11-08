@@ -130,4 +130,40 @@ class InventoryCheckRepoImpl implements InventoryCheckRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, bool>> saveCountDetails({
+    required int countId,
+    required List<Map<String, dynamic>> changedItems,
+  }) async {
+    try {
+      final res = await _service.saveCountDetails(
+        countId: countId,
+        changedItems: changedItems,
+      );
+      return right(res.data ?? false);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, InventoryCountDetail>> confirmComplete({
+    required int id,
+    required bool isComplete,
+  }) async {
+    try {
+      final res = await _service.confirmComplete(
+        id: id,
+        isComplete: isComplete,
+      );
+      return right(res.data ?? const InventoryCountDetail());
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

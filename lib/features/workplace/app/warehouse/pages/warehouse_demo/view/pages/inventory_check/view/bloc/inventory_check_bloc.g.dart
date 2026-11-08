@@ -63,6 +63,14 @@ abstract class _$InventoryCheckStateCWProxy {
 
   InventoryCheckState sheetProductGroupId(int? sheetProductGroupId);
 
+  InventoryCheckState saveCountDetailsSuccess(bool saveCountDetailsSuccess);
+
+  InventoryCheckState confirmCompleteSuccess(bool confirmCompleteSuccess);
+
+  InventoryCheckState confirmCompleteMessage(String? confirmCompleteMessage);
+
+  InventoryCheckState confirmCompleteError(String? confirmCompleteError);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `InventoryCheckState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -97,6 +105,10 @@ abstract class _$InventoryCheckStateCWProxy {
     bool? isLoadingProductGroupsRtc,
     int? productGroupsRtcWarehouseId,
     int? sheetProductGroupId,
+    bool? saveCountDetailsSuccess,
+    bool? confirmCompleteSuccess,
+    String? confirmCompleteMessage,
+    String? confirmCompleteError,
   });
 }
 
@@ -213,6 +225,22 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
       this(sheetProductGroupId: sheetProductGroupId);
 
   @override
+  InventoryCheckState saveCountDetailsSuccess(bool saveCountDetailsSuccess) =>
+      this(saveCountDetailsSuccess: saveCountDetailsSuccess);
+
+  @override
+  InventoryCheckState confirmCompleteSuccess(bool confirmCompleteSuccess) =>
+      this(confirmCompleteSuccess: confirmCompleteSuccess);
+
+  @override
+  InventoryCheckState confirmCompleteMessage(String? confirmCompleteMessage) =>
+      this(confirmCompleteMessage: confirmCompleteMessage);
+
+  @override
+  InventoryCheckState confirmCompleteError(String? confirmCompleteError) =>
+      this(confirmCompleteError: confirmCompleteError);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `InventoryCheckState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -248,6 +276,10 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
     Object? isLoadingProductGroupsRtc = const $CopyWithPlaceholder(),
     Object? productGroupsRtcWarehouseId = const $CopyWithPlaceholder(),
     Object? sheetProductGroupId = const $CopyWithPlaceholder(),
+    Object? saveCountDetailsSuccess = const $CopyWithPlaceholder(),
+    Object? confirmCompleteSuccess = const $CopyWithPlaceholder(),
+    Object? confirmCompleteMessage = const $CopyWithPlaceholder(),
+    Object? confirmCompleteError = const $CopyWithPlaceholder(),
   }) {
     return InventoryCheckState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -370,6 +402,27 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
           ? _value.sheetProductGroupId
           // ignore: cast_nullable_to_non_nullable
           : sheetProductGroupId as int?,
+      saveCountDetailsSuccess:
+          saveCountDetailsSuccess == const $CopyWithPlaceholder() ||
+                  saveCountDetailsSuccess == null
+              ? _value.saveCountDetailsSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : saveCountDetailsSuccess as bool,
+      confirmCompleteSuccess:
+          confirmCompleteSuccess == const $CopyWithPlaceholder() ||
+                  confirmCompleteSuccess == null
+              ? _value.confirmCompleteSuccess
+              // ignore: cast_nullable_to_non_nullable
+              : confirmCompleteSuccess as bool,
+      confirmCompleteMessage:
+          confirmCompleteMessage == const $CopyWithPlaceholder()
+              ? _value.confirmCompleteMessage
+              // ignore: cast_nullable_to_non_nullable
+              : confirmCompleteMessage as String?,
+      confirmCompleteError: confirmCompleteError == const $CopyWithPlaceholder()
+          ? _value.confirmCompleteError
+          // ignore: cast_nullable_to_non_nullable
+          : confirmCompleteError as String?,
     );
   }
 }

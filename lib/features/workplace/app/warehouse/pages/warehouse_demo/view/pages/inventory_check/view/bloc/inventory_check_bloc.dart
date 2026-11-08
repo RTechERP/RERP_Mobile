@@ -52,6 +52,10 @@ class InventoryCheckBloc
             ),
         filterSheetProductGroup: (groupId) async =>
             _onFilterSheetProductGroup(emit, groupId: groupId),
+        saveCountDetails: (countId, changedItems) =>
+            _onSaveCountDetails(emit, countId: countId, changedItems: changedItems),
+        confirmComplete: (id, isComplete) =>
+            _onConfirmComplete(emit, id: id, isComplete: isComplete),
       );
     });
   }
@@ -288,6 +292,9 @@ class InventoryCheckBloc
         );
       },
     );
+
+    // Cờ thành công chỉ dùng để báo 1 lần → reset sau khi đã gán.
+    emit(state.copyWith(deleteSuccess: false));
   }
 
   /// Lấy phiếu kiểm kê kèm danh sách sản phẩm đã kiểm kê.
@@ -388,5 +395,112 @@ class InventoryCheckBloc
         );
       },
     );
+  }
+
+  /// Lưu kết quả kiểm kê thực tế cho các dòng sản phẩm trong phiếu.
+  Future<void> _onSaveCountDetails(
+    Emitter<InventoryCheckState> emit, {
+    required int countId,
+    required List<Map<String, dynamic>> changedItems,
+  }) async {
+    // Reset trạng thái lần trước để listener luôn nhận thông báo mới.
+    emit(
+      state.copyWith(
+        saveCountDetailsSuccess: false,
+        status: BaseStateStatus.success,
+        message: null,
+      ),
+    );
+
+    final res = await _repo.saveCountDetails(
+      countId: countId,
+      changedItems: changedItems,
+    );
+
+    var succeeded = false;
+
+    res.fold(
+      (err) {
+        _log.logE('❌ saveCountDetails failed: $err');
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.failed,
+            message: err.getErrorMessage,
+          ),
+        );
+      },
+      (success) {
+        _log.logI('✅ saveCountDetails success - count: ${changedItems.length}');
+        succeeded = success;
+        emit(
+          state.copyWith(
+            saveCountDetailsSuccess: true,
+            status: BaseStateStatus.success,
+            message: null,
+          ),
+        );
+      },
+    );
+
+    if (!succeeded) return;
+
+    // Cờ thành công chỉ dùng để báo 1 lần → reset sau khi đã gán.
+    emit(state.copyWith(saveCountDetailsSuccess: false));
+
+    // Tải lại phiếu để cập nhật số lượng thực tế và chênh lệch.
+    await _onFetchSheet(emit, countId: countId);
+  }
+
+  /// Xác nhận hoàn thành / mở lại một đợt kiểm kê.
+  ///
+  /// [isComplete] = `true` → hoàn thành (cache số lượng tồn kho & mượn),
+  /// `false` → mở lại (số lượng tính động theo dữ liệu kho hiện thời).
+  Future<void> _onConfirmComplete(
+    Emitter<InventoryCheckState> emit, {
+    required int id,
+    required bool isComplete,
+  }) async {
+    // Reset trạng thái lần trước để listener luôn nhận thông báo mới.
+    emit(
+      state.copyWith(
+        confirmCompleteSuccess: false,
+        confirmCompleteMessage: null,
+        confirmCompleteError: null,
+      ),
+    );
+
+    final res = await _repo.confirmComplete(id: id, isComplete: isComplete);
+
+    var succeeded = false;
+
+    res.fold(
+      (err) {
+        _log.logE('❌ confirmComplete failed: $err');
+        emit(
+          state.copyWith(
+            confirmCompleteSuccess: false,
+            confirmCompleteError: err.getErrorMessage,
+          ),
+        );
+      },
+      (detail) {
+        _log.logI('✅ confirmComplete success - id: $id, isComplete: $isComplete');
+        succeeded = true;
+        emit(
+          state.copyWith(
+            confirmCompleteSuccess: true,
+            confirmCompleteMessage: isComplete
+                ? 'Xác nhận hoàn thành đợt kiểm kê thành công!'
+                : 'Mở lại đợt kiểm kê thành công!',
+            confirmCompleteError: null,
+          ),
+        );
+      },
+    );
+
+    if (!succeeded) return;
+
+    // Cờ thành công chỉ dùng để báo 1 lần → reset sau khi đã gán.
+    emit(state.copyWith(confirmCompleteSuccess: false));
   }
 }

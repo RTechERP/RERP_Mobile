@@ -35,6 +35,10 @@ mixin _$InventoryCheckEvent {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,9 @@ mixin _$InventoryCheckEvent {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,6 +81,9 @@ mixin _$InventoryCheckEvent {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -97,6 +107,8 @@ mixin _$InventoryCheckEvent {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -116,6 +128,8 @@ mixin _$InventoryCheckEvent {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -135,6 +149,8 @@ mixin _$InventoryCheckEvent {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -213,6 +229,10 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return fetch();
   }
@@ -236,6 +256,9 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return fetch?.call();
   }
@@ -258,6 +281,9 @@ class _$FetchImpl implements _Fetch {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -287,6 +313,8 @@ class _$FetchImpl implements _Fetch {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return fetch(this);
   }
@@ -309,6 +337,8 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return fetch?.call(this);
   }
@@ -331,6 +361,8 @@ class _$FetchImpl implements _Fetch {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -399,6 +431,10 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return fetchEmployees();
   }
@@ -422,6 +458,9 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return fetchEmployees?.call();
   }
@@ -444,6 +483,9 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -473,6 +515,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return fetchEmployees(this);
   }
@@ -495,6 +539,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return fetchEmployees?.call(this);
   }
@@ -517,6 +563,8 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -611,6 +659,10 @@ class _$SearchImpl implements _Search {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return search(keyword);
   }
@@ -634,6 +686,9 @@ class _$SearchImpl implements _Search {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return search?.call(keyword);
   }
@@ -656,6 +711,9 @@ class _$SearchImpl implements _Search {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -685,6 +743,8 @@ class _$SearchImpl implements _Search {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return search(this);
   }
@@ -707,6 +767,8 @@ class _$SearchImpl implements _Search {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return search?.call(this);
   }
@@ -729,6 +791,8 @@ class _$SearchImpl implements _Search {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -830,6 +894,10 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return selectEmployee(employeeId);
   }
@@ -853,6 +921,9 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return selectEmployee?.call(employeeId);
   }
@@ -875,6 +946,9 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (selectEmployee != null) {
@@ -904,6 +978,8 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return selectEmployee(this);
   }
@@ -926,6 +1002,8 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return selectEmployee?.call(this);
   }
@@ -948,6 +1026,8 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (selectEmployee != null) {
@@ -1050,6 +1130,10 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return changeWarehouseFilter(warehouseId);
   }
@@ -1073,6 +1157,9 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return changeWarehouseFilter?.call(warehouseId);
   }
@@ -1095,6 +1182,9 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (changeWarehouseFilter != null) {
@@ -1124,6 +1214,8 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return changeWarehouseFilter(this);
   }
@@ -1146,6 +1238,8 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return changeWarehouseFilter?.call(this);
   }
@@ -1168,6 +1262,8 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (changeWarehouseFilter != null) {
@@ -1278,6 +1374,10 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -1301,6 +1401,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -1323,6 +1426,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1352,6 +1458,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return changeDateRange(this);
   }
@@ -1374,6 +1482,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return changeDateRange?.call(this);
   }
@@ -1396,6 +1506,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1498,6 +1610,10 @@ class _$GenerateCodeImpl implements _GenerateCode {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return generateCode(date);
   }
@@ -1521,6 +1637,9 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return generateCode?.call(date);
   }
@@ -1543,6 +1662,9 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (generateCode != null) {
@@ -1572,6 +1694,8 @@ class _$GenerateCodeImpl implements _GenerateCode {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return generateCode(this);
   }
@@ -1594,6 +1718,8 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return generateCode?.call(this);
   }
@@ -1616,6 +1742,8 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (generateCode != null) {
@@ -1724,6 +1852,10 @@ class _$SaveImpl implements _Save {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return save(payload);
   }
@@ -1747,6 +1879,9 @@ class _$SaveImpl implements _Save {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return save?.call(payload);
   }
@@ -1769,6 +1904,9 @@ class _$SaveImpl implements _Save {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (save != null) {
@@ -1798,6 +1936,8 @@ class _$SaveImpl implements _Save {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return save(this);
   }
@@ -1820,6 +1960,8 @@ class _$SaveImpl implements _Save {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return save?.call(this);
   }
@@ -1842,6 +1984,8 @@ class _$SaveImpl implements _Save {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (save != null) {
@@ -1941,6 +2085,10 @@ class _$GetByIdImpl implements _GetById {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return getById(id);
   }
@@ -1964,6 +2112,9 @@ class _$GetByIdImpl implements _GetById {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return getById?.call(id);
   }
@@ -1986,6 +2137,9 @@ class _$GetByIdImpl implements _GetById {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (getById != null) {
@@ -2015,6 +2169,8 @@ class _$GetByIdImpl implements _GetById {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return getById(this);
   }
@@ -2037,6 +2193,8 @@ class _$GetByIdImpl implements _GetById {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return getById?.call(this);
   }
@@ -2059,6 +2217,8 @@ class _$GetByIdImpl implements _GetById {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (getById != null) {
@@ -2158,6 +2318,10 @@ class _$DeleteImpl implements _Delete {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return delete(id);
   }
@@ -2181,6 +2345,9 @@ class _$DeleteImpl implements _Delete {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return delete?.call(id);
   }
@@ -2203,6 +2370,9 @@ class _$DeleteImpl implements _Delete {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -2232,6 +2402,8 @@ class _$DeleteImpl implements _Delete {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return delete(this);
   }
@@ -2254,6 +2426,8 @@ class _$DeleteImpl implements _Delete {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return delete?.call(this);
   }
@@ -2276,6 +2450,8 @@ class _$DeleteImpl implements _Delete {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -2375,6 +2551,10 @@ class _$FetchSheetImpl implements _FetchSheet {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return fetchSheet(countId);
   }
@@ -2398,6 +2578,9 @@ class _$FetchSheetImpl implements _FetchSheet {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return fetchSheet?.call(countId);
   }
@@ -2420,6 +2603,9 @@ class _$FetchSheetImpl implements _FetchSheet {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (fetchSheet != null) {
@@ -2449,6 +2635,8 @@ class _$FetchSheetImpl implements _FetchSheet {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return fetchSheet(this);
   }
@@ -2471,6 +2659,8 @@ class _$FetchSheetImpl implements _FetchSheet {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return fetchSheet?.call(this);
   }
@@ -2493,6 +2683,8 @@ class _$FetchSheetImpl implements _FetchSheet {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (fetchSheet != null) {
@@ -2592,6 +2784,10 @@ class _$SearchSheetImpl implements _SearchSheet {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return searchSheet(keyword);
   }
@@ -2615,6 +2811,9 @@ class _$SearchSheetImpl implements _SearchSheet {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return searchSheet?.call(keyword);
   }
@@ -2637,6 +2836,9 @@ class _$SearchSheetImpl implements _SearchSheet {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (searchSheet != null) {
@@ -2666,6 +2868,8 @@ class _$SearchSheetImpl implements _SearchSheet {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return searchSheet(this);
   }
@@ -2688,6 +2892,8 @@ class _$SearchSheetImpl implements _SearchSheet {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return searchSheet?.call(this);
   }
@@ -2710,6 +2916,8 @@ class _$SearchSheetImpl implements _SearchSheet {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (searchSheet != null) {
@@ -2809,6 +3017,10 @@ class _$FilterSheetImpl implements _FilterSheet {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return filterSheet(filter);
   }
@@ -2832,6 +3044,9 @@ class _$FilterSheetImpl implements _FilterSheet {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return filterSheet?.call(filter);
   }
@@ -2854,6 +3069,9 @@ class _$FilterSheetImpl implements _FilterSheet {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (filterSheet != null) {
@@ -2883,6 +3101,8 @@ class _$FilterSheetImpl implements _FilterSheet {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return filterSheet(this);
   }
@@ -2905,6 +3125,8 @@ class _$FilterSheetImpl implements _FilterSheet {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return filterSheet?.call(this);
   }
@@ -2927,6 +3149,8 @@ class _$FilterSheetImpl implements _FilterSheet {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (filterSheet != null) {
@@ -3040,6 +3264,10 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return fetchProductGroupsRtc(warehouseId, warehouseType);
   }
@@ -3063,6 +3291,9 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return fetchProductGroupsRtc?.call(warehouseId, warehouseType);
   }
@@ -3085,6 +3316,9 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (fetchProductGroupsRtc != null) {
@@ -3114,6 +3348,8 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return fetchProductGroupsRtc(this);
   }
@@ -3136,6 +3372,8 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return fetchProductGroupsRtc?.call(this);
   }
@@ -3158,6 +3396,8 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (fetchProductGroupsRtc != null) {
@@ -3264,6 +3504,10 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     required TResult Function(int warehouseId, int warehouseType)
         fetchProductGroupsRtc,
     required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return filterSheetProductGroup(groupId);
   }
@@ -3287,6 +3531,9 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     TResult? Function(int warehouseId, int warehouseType)?
         fetchProductGroupsRtc,
     TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return filterSheetProductGroup?.call(groupId);
   }
@@ -3309,6 +3556,9 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
     TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
     if (filterSheetProductGroup != null) {
@@ -3338,6 +3588,8 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
         fetchProductGroupsRtc,
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return filterSheetProductGroup(this);
   }
@@ -3360,6 +3612,8 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return filterSheetProductGroup?.call(this);
   }
@@ -3382,6 +3636,8 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
     if (filterSheetProductGroup != null) {
@@ -3399,4 +3655,506 @@ abstract class _FilterSheetProductGroup implements InventoryCheckEvent {
   @JsonKey(ignore: true)
   _$$FilterSheetProductGroupImplCopyWith<_$FilterSheetProductGroupImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SaveCountDetailsImplCopyWith<$Res> {
+  factory _$$SaveCountDetailsImplCopyWith(_$SaveCountDetailsImpl value,
+          $Res Function(_$SaveCountDetailsImpl) then) =
+      __$$SaveCountDetailsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int countId, List<Map<String, dynamic>> changedItems});
+}
+
+/// @nodoc
+class __$$SaveCountDetailsImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$SaveCountDetailsImpl>
+    implements _$$SaveCountDetailsImplCopyWith<$Res> {
+  __$$SaveCountDetailsImplCopyWithImpl(_$SaveCountDetailsImpl _value,
+      $Res Function(_$SaveCountDetailsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? countId = null,
+    Object? changedItems = null,
+  }) {
+    return _then(_$SaveCountDetailsImpl(
+      countId: null == countId
+          ? _value.countId
+          : countId // ignore: cast_nullable_to_non_nullable
+              as int,
+      changedItems: null == changedItems
+          ? _value._changedItems
+          : changedItems // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SaveCountDetailsImpl implements _SaveCountDetails {
+  const _$SaveCountDetailsImpl(
+      {required this.countId,
+      required final List<Map<String, dynamic>> changedItems})
+      : _changedItems = changedItems;
+
+  @override
+  final int countId;
+  final List<Map<String, dynamic>> _changedItems;
+  @override
+  List<Map<String, dynamic>> get changedItems {
+    if (_changedItems is EqualUnmodifiableListView) return _changedItems;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_changedItems);
+  }
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.saveCountDetails(countId: $countId, changedItems: $changedItems)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaveCountDetailsImpl &&
+            (identical(other.countId, countId) || other.countId == countId) &&
+            const DeepCollectionEquality()
+                .equals(other._changedItems, _changedItems));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, countId, const DeepCollectionEquality().hash(_changedItems));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SaveCountDetailsImplCopyWith<_$SaveCountDetailsImpl> get copyWith =>
+      __$$SaveCountDetailsImplCopyWithImpl<_$SaveCountDetailsImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
+  }) {
+    return saveCountDetails(countId, changedItems);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
+  }) {
+    return saveCountDetails?.call(countId, changedItems);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (saveCountDetails != null) {
+      return saveCountDetails(countId, changedItems);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
+  }) {
+    return saveCountDetails(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
+  }) {
+    return saveCountDetails?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (saveCountDetails != null) {
+      return saveCountDetails(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SaveCountDetails implements InventoryCheckEvent {
+  const factory _SaveCountDetails(
+          {required final int countId,
+          required final List<Map<String, dynamic>> changedItems}) =
+      _$SaveCountDetailsImpl;
+
+  int get countId;
+  List<Map<String, dynamic>> get changedItems;
+  @JsonKey(ignore: true)
+  _$$SaveCountDetailsImplCopyWith<_$SaveCountDetailsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ConfirmCompleteImplCopyWith<$Res> {
+  factory _$$ConfirmCompleteImplCopyWith(_$ConfirmCompleteImpl value,
+          $Res Function(_$ConfirmCompleteImpl) then) =
+      __$$ConfirmCompleteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id, bool isComplete});
+}
+
+/// @nodoc
+class __$$ConfirmCompleteImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$ConfirmCompleteImpl>
+    implements _$$ConfirmCompleteImplCopyWith<$Res> {
+  __$$ConfirmCompleteImplCopyWithImpl(
+      _$ConfirmCompleteImpl _value, $Res Function(_$ConfirmCompleteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? isComplete = null,
+  }) {
+    return _then(_$ConfirmCompleteImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      isComplete: null == isComplete
+          ? _value.isComplete
+          : isComplete // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ConfirmCompleteImpl implements _ConfirmComplete {
+  const _$ConfirmCompleteImpl({required this.id, required this.isComplete});
+
+  @override
+  final int id;
+  @override
+  final bool isComplete;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.confirmComplete(id: $id, isComplete: $isComplete)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConfirmCompleteImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isComplete, isComplete) ||
+                other.isComplete == isComplete));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, isComplete);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConfirmCompleteImplCopyWith<_$ConfirmCompleteImpl> get copyWith =>
+      __$$ConfirmCompleteImplCopyWithImpl<_$ConfirmCompleteImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(int id, bool isComplete) confirmComplete,
+  }) {
+    return confirmComplete(id, isComplete);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
+  }) {
+    return confirmComplete?.call(id, isComplete);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(int id, bool isComplete)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (confirmComplete != null) {
+      return confirmComplete(id, isComplete);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
+  }) {
+    return confirmComplete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
+  }) {
+    return confirmComplete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (confirmComplete != null) {
+      return confirmComplete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConfirmComplete implements InventoryCheckEvent {
+  const factory _ConfirmComplete(
+      {required final int id,
+      required final bool isComplete}) = _$ConfirmCompleteImpl;
+
+  int get id;
+  bool get isComplete;
+  @JsonKey(ignore: true)
+  _$$ConfirmCompleteImplCopyWith<_$ConfirmCompleteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

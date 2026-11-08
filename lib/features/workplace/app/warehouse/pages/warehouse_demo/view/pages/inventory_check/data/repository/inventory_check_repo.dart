@@ -42,4 +42,21 @@ abstract class InventoryCheckRepo {
     required int warehouseId,
     required int warehouseType,
   });
+
+  /// Lưu kết quả kiểm kê thực tế cho các dòng sản phẩm trong phiếu.
+  ///
+  /// [changedItems] là danh sách dòng chi tiết cần cập nhật, mỗi dòng gồm
+  /// `ID`, `ProductRTCID`, `QuantityActual`, `Note`.
+  Future<Either<BaseError, bool>> saveCountDetails({
+    required int countId,
+    required List<Map<String, dynamic>> changedItems,
+  });
+
+  /// Xác nhận hoàn thành / mở lại một đợt kiểm kê theo [id].
+  ///
+  /// [isComplete] = `true` → hoàn thành, `false` → mở lại.
+  Future<Either<BaseError, InventoryCountDetail>> confirmComplete({
+    required int id,
+    required bool isComplete,
+  });
 }

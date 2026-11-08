@@ -555,6 +555,16 @@ class ApiEndPoint {
   static const String getInventoryCountSheet =
       '/WarehouseInventoryCount/get-inventory-sheet';
 
+  /// Kiểm kê kho — lưu kết quả kiểm kê thực tế của các dòng sản phẩm.
+  /// API: POST /WarehouseInventoryCount/save-count-details
+  static const String saveInventoryCountDetails =
+      '/WarehouseInventoryCount/save-count-details';
+
+  /// Kiểm kê kho — xác nhận hoàn thành / mở lại một đợt kiểm kê.
+  /// API: POST /WarehouseInventoryCount/confirm-complete?id=X&isComplete=true
+  static const String confirmCompleteInventoryCount =
+      '/WarehouseInventoryCount/confirm-complete';
+
   /// Nhóm sản phẩm RTC trong kho — dùng để bổ sung sản phẩm vào phiếu kiểm kê.
   /// API: GET /ProductRTC/product-group-rtc-new?warehouseId=1&isDeleted=false&isVisible=false&warehouseType=1
   static const String getProductGroupRtcNew =

@@ -41,8 +41,41 @@ class InventoryCheckMenuItem {
     color: Color(0xFFE53935),
   );
 
-  /// Danh sách thao tác mặc định của đợt kiểm kê.
-  static const List<InventoryCheckMenuItem> menuItems = [detail, edit, delete];
+  /// Thao tác xác nhận hoàn thành đợt kiểm kê.
+  static const InventoryCheckMenuItem complete = InventoryCheckMenuItem(
+    id: 'complete',
+    name: 'Hoàn thành',
+    icon: Icons.task_alt,
+    color: Color(0xFF33B469),
+  );
+
+  /// Thao tác mở lại đợt kiểm kê đã hoàn thành.
+  static const InventoryCheckMenuItem reopen = InventoryCheckMenuItem(
+    id: 'reopen',
+    name: 'Mở lại',
+    icon: Icons.restart_alt,
+    color: Color(0xFFEBBC2E),
+  );
+
+  /// Danh sách thao tác cho đợt kiểm kê đang thực hiện (chưa hoàn thành).
+  static const List<InventoryCheckMenuItem> menuItems = [
+    detail,
+    edit,
+    complete,
+    delete,
+  ];
+
+  /// Danh sách thao tác cho đợt kiểm kê đã hoàn thành.
+  static const List<InventoryCheckMenuItem> completedMenuItems = [
+    detail,
+    edit,
+    reopen,
+    delete,
+  ];
+
+  /// Danh sách thao tác tương ứng với trạng thái hiện tại của đợt kiểm kê.
+  static List<InventoryCheckMenuItem> itemsFor({required bool isComplete}) =>
+      isComplete ? completedMenuItems : menuItems;
 }
 
 /// Bottom sheet hiển thị menu thao tác của một đợt kiểm kê.
@@ -148,11 +181,12 @@ class InventoryCheckMenuSheet extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                // 3 mục thao tác nên dùng 3 cột cho gọn, không bị to.
-                crossAxisCount: 3,
+                // 4 mục thao tác → 1 hàng 4 cột cho gọn.
+                crossAxisCount: 4,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
-                childAspectRatio: 0.95,
+                // Tỉ lệ thấp để nhãn 2 dòng (vd. "Hoàn thành") không bị tràn.
+                childAspectRatio: 0.68,
               ),
               itemCount: menuItems.length,
               itemBuilder: (context, index) {
