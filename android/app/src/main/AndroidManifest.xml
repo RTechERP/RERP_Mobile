@@ -32,6 +32,18 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
+
+        <!-- Thư viện của máy PDA chứa API quét mã và bảng ánh xạ phím
+             (com.android.decode.BarcodeManager, IKeyRemapManager). -->
+        <uses-library
+            android:name="com.android.device"
+            android:required="false" />
+        <!-- Thư viện chứa giao diện binder của máy quét
+             (IScannerServiceCore, IReadActionListener). -->
+        <uses-library
+            android:name="com.android.interfaces"
+            android:required="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

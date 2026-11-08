@@ -167,6 +167,21 @@ class DialogService {
     );
   }
 
+  /// Dialog thông báo thiết bị hiện tại không phải PDA nên không thao tác
+  /// được chức năng quét bằng phần cứng.
+  static Future<void> showPdaDeviceRequired({required BuildContext context}) {
+    return BaseDialog.oneOptionDialog(
+      context: context,
+      image: const Icon(Icons.qr_code_scanner, size: 56, color: AppColors.main),
+      title: 'Thiết bị không hỗ trợ',
+      description: 'Vui lòng sử dụng thiết bị PDA để thao tác',
+      contentButton: 'Đã hiểu',
+      onTapFunc: () {
+        Navigator.of(context, rootNavigator: true).pop();
+      },
+    );
+  }
+
   /// Dialog bắt buộc cập nhật phiên bản mới.
   /// - Cập nhật ngay: mở store.
   /// - Huỷ: thoát app.

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +9,7 @@ import 'package:rtc_erp/base/network/errors/extension.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import 'package:rtc_erp/base/widgets/base_widget.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
+import 'package:rtc_erp/common/services/device/pda_helper.dart';
 import 'package:rtc_erp/common/utils/dialog/dialog_service.dart';
 import 'package:rtc_erp/common/utils/navigation/navigation_utils.dart';
 import 'package:rtc_erp/common/utils/snack_bar_helper.dart' show SnackBarType;
@@ -16,6 +19,8 @@ import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/vi
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_menu_sheet.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_card.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_filter_sheet.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_scan_sheet.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_scan_status_banner.dart';
 import 'package:rtc_erp/routes/route_names.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_empty_view.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_error_view.dart';
@@ -37,11 +42,32 @@ class _InventoryCheckScreenState
           InventoryCheckState,
           InventoryCheckBloc
         > {
+  /// Subscription nhận kết quả quét từ phần cứng PDA.
+  StreamSubscription<Map<String, dynamic>>? _scanSub;
+
+  /// Chế độ quét đang bật (null = chưa bật chế độ quét nào).
+  InventoryScanMode? _scanMode;
+
+  /// Mã vừa quét gần nhất từ PDA.
+  String? _lastScannedCode;
+
+  /// Thông báo kết quả quét (đang chờ BE chốt flow xử lý).
+  String? _scanMessage;
+
+  /// Số lần quét trong phiên hiện tại.
+  int _scanCount = 0;
+
   @override
   void initState() {
     super.initState();
     bloc.add(const InventoryCheckEvent.fetch());
     bloc.add(const InventoryCheckEvent.fetchEmployees());
+  }
+
+  @override
+  void dispose() {
+    _scanSub?.cancel();
+    super.dispose();
   }
 
   @override
@@ -70,9 +96,15 @@ class _InventoryCheckScreenState
   Widget renderUI(BuildContext context) {
     return BaseScaffold(
       appBar: AppBarCommon(
+        centerTitle: false,
         title: const Text('Kiểm kê kho'),
         onBackTap: () => onBack(context),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.qr_code_scanner),
+            tooltip: 'Quét bằng PDA',
+            onPressed: _handleScanAction,
+          ),
           IconButton(
             icon: const Icon(Icons.calendar_month_outlined),
             tooltip: 'Chọn ngày',
@@ -95,7 +127,21 @@ class _InventoryCheckScreenState
           ),
         ],
       ),
-      body: _buildContent(),
+      body: Column(
+        children: [
+          /// ===== BANNER TRẠNG THÁI QUÉT PDA =====
+          if (_scanMode != null)
+            InventoryCheckScanStatusBanner(
+              mode: _scanMode!,
+              lastCode: _lastScannedCode,
+              scanCount: _scanCount,
+              message: _scanMessage,
+              onClose: _disableScanMode,
+            ),
+
+          Expanded(child: _buildContent()),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.primaryERP,
         foregroundColor: Colors.white,
@@ -165,6 +211,81 @@ class _InventoryCheckScreenState
           },
         ),
       );
+    });
+  }
+
+  /// Xử lý khi bấm action quét bằng PDA.
+  ///
+  /// Kiểm tra thiết bị có phải PDA không:
+  /// - Không phải PDA → hiện dialog yêu cầu dùng thiết bị PDA.
+  /// - Là PDA → cho chọn chế độ quét (sản phẩm / vị trí) rồi bật chế độ quét.
+  Future<void> _handleScanAction() async {
+    final isPda = await PdaHelper.isPdaDevice();
+    if (!mounted) return;
+
+    if (!isPda) {
+      await DialogService.showPdaDeviceRequired(context: context);
+      return;
+    }
+
+    final mode = await InventoryCheckScanSheet.show(context);
+    if (mode == null || !mounted) return;
+
+    _enableScanMode(mode);
+  }
+
+  /// Bật chế độ quét với [mode] và bắt đầu lắng nghe phần cứng PDA.
+  void _enableScanMode(InventoryScanMode mode) {
+    _scanSub?.cancel();
+    setState(() {
+      _scanMode = mode;
+      _lastScannedCode = null;
+      _scanMessage = null;
+      _scanCount = 0;
+    });
+
+    _scanSub = PdaHelper.scanStream.listen((event) {
+      if (!mounted) return;
+
+      // Sự kiện bấm nút quét native — mã quét sẽ đến ở event tiếp theo.
+      if (event.containsKey('keyEvent')) {
+        return;
+      }
+
+      final code = event['code']?.toString().trim();
+      if (code == null || code.isEmpty) return;
+
+      _handleScannedCode(code, event['barcodeType']?.toString());
+    });
+  }
+
+  /// Xử lý mã vừa quét từ PDA.
+  ///
+  /// TODO: chờ BE chốt flow — hiện tại chỉ log + hiển thị mã vừa quét.
+  ///
+  /// [barcodeType] là mã số loại mã của máy quét (ví dụ 11 = Code128).
+  void _handleScannedCode(String code, [String? barcodeType]) {
+    if (!mounted) return;
+
+    debugPrint('[PDA] quét ${_scanMode?.name}: $code (type=$barcodeType)');
+
+    setState(() {
+      _lastScannedCode = code;
+      _scanCount++;
+      _scanMessage = barcodeType == null || barcodeType.isEmpty
+          ? 'Đã quét mã "$code"'
+          : 'Đã quét mã "$code" (loại $barcodeType)';
+    });
+  }
+
+  /// Tắt chế độ quét PDA.
+  void _disableScanMode() {
+    _scanSub?.cancel();
+    _scanSub = null;
+    setState(() {
+      _scanMode = null;
+      _lastScannedCode = null;
+      _scanMessage = null;
     });
   }
 

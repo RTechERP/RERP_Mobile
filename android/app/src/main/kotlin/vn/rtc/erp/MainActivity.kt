@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import android.view.KeyEvent
 import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -31,10 +32,41 @@ class MainActivity : FlutterFragmentActivity() {
         private const val BATTERY_CHANNEL = "vn.rtc.erp/battery"
     }
 
+    /**
+     * Bridge nhận kết quả quét mã từ phần cứng PDA.
+     */
+    private lateinit var scannerBridge: ScannerBridge
+
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         setupCameraMuteChannel(flutterEngine)
         setupBatteryChannel(flutterEngine)
+        setupScannerBridge(flutterEngine)
+    }
+
+    /**
+     * Khởi tạo bridge quét PDA — Flutter lắng nghe qua EventChannel
+     * `vn.rtc.erp/scanner`.
+     */
+    private fun setupScannerBridge(flutterEngine: FlutterEngine) {
+        scannerBridge = ScannerBridge(
+            applicationContext,
+            flutterEngine.dartExecutor.binaryMessenger
+        )
+        scannerBridge.start()
+    }
+
+    /**
+     * Bắt key event nút quét của phần cứng để chuyển tiếp sang Flutter.
+     *
+     * Không nuốt event (trả về false) để hành vi mặc định của hệ thống
+     * không bị đổi.
+     */
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        if (::scannerBridge.isInitialized) {
+            scannerBridge.handleKeyEvent(event)
+        }
+        return super.dispatchKeyEvent(event)
     }
 
     /// Đăng ký method channel để Flutter gọi `muteShutter` khi chụp ảnh.
