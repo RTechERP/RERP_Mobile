@@ -364,7 +364,7 @@ class _ProjectTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final projectCode = (project.projectCode ?? '').trim();
     final projectName = (project.projectName ?? '').trim();
-    final pic = (project.pic ?? '').trim();
+    final PICpic = (project.pic ?? '').trim();
 
     return Container(
       padding: const EdgeInsets.all(14),
@@ -409,33 +409,33 @@ class _ProjectTile extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              const Icon(
-                Icons.person_outline_rounded,
-                size: 14,
-                color: AppColors.gray,
-              ),
-              const SizedBox(width: 6),
-              const Text(
-                'PIC: ',
-                style: TextStyle(fontSize: 12, color: AppColors.gray),
-              ),
-              Expanded(
-                child: Text(
-                  pic.isEmpty ? '-' : pic,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.enableText,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
+          // const SizedBox(height: 10),
+          // Row(
+          //   children: [
+          //     const Icon(
+          //       Icons.person_outline_rounded,
+          //       size: 14,
+          //       color: AppColors.gray,
+          //     ),
+          //     const SizedBox(width: 6),
+          //     const Text(
+          //       'PIC: ',
+          //       style: TextStyle(fontSize: 12, color: AppColors.gray),
+          //     ),
+          //     Expanded(
+          //       child: Text(
+          //         pic.isEmpty ? '-' : pic,
+          //         style: const TextStyle(
+          //           fontSize: 12,
+          //           fontWeight: FontWeight.w600,
+          //           color: AppColors.enableText,
+          //         ),
+          //         maxLines: 1,
+          //         overflow: TextOverflow.ellipsis,
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );

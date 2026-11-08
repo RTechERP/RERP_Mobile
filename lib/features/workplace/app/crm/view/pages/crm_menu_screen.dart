@@ -4,13 +4,17 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../../base/widgets/base_scaffold.dart';
 import '../../../../../../common/app_theme/index.dart';
+import '../../../../../../common/enums/role_enum.dart';
 import '../../../../../../common/services/permissions/role_groups.dart';
+import '../../../../../../common/services/permissions/role_resolver.dart';
 import '../../../../../../common/utils/dialog/index.dart';
 import '../../../../../../common/utils/navigation/navigation_utils.dart';
 import '../../../../../../routes/route_names.dart';
+import '../../../../../auth/data/datasource/models/user_model.dart';
 import '../../../../../auth/data/repository/auth_repository.dart';
 import '../../../../data/datasource/models/index.dart';
 import '../../../../view/widgets/wp_action_card.dart';
+import '../../lead_sale/data/datasource/models/lead_sale_permission.dart';
 
 /// Màn hình menu CRM — lớp menu trung gian trong flow CRM.
 ///
@@ -19,6 +23,9 @@ import '../../../../view/widgets/wp_action_card.dart';
 /// Mục "Lead Marketing" chỉ hiển thị với user có quyền
 /// [PermissionGroups.crmLeadMarketing]; mục "Lead Sale" chỉ hiển thị với user
 /// có quyền [PermissionGroups.crmLeadSale].
+///
+/// Mục "Báo cáo CRM" chỉ hiển thị cho user thuộc nhóm sale, marketing, nhân
+/// viên đặc biệt hoặc admin (xem [_canViewCrmReport]).
 class CrmMenuScreen extends StatefulWidget {
   const CrmMenuScreen({super.key});
 
@@ -29,10 +36,12 @@ class CrmMenuScreen extends StatefulWidget {
 class _CrmMenuScreenState extends State<CrmMenuScreen> {
   /// Tập mã quyền của user hiện tại (vd: `N124`, `N125`).
   Set<String> _permissionCodes = {};
-  
-  /// User hiện tại
-  int? _currentUserId;
-  int? _currentEmployeeId;
+
+  /// User hiện tại (đã cache từ `AuthRepository`).
+  User? _currentUser;
+
+  /// Các role được resolve từ thông tin user hiện tại.
+  Set<AppRole> _roles = {};
 
   @override
   void initState() {
@@ -49,19 +58,36 @@ class _CrmMenuScreenState extends State<CrmMenuScreen> {
           .split(',')
           .map((code) => code.trim())
           .toSet();
-      _currentUserId = user.id;
-      _currentEmployeeId = user.employeeId;
+      _currentUser = user;
+      _roles = RoleResolver.resolve(user);
     });
   }
 
   /// User có ít nhất một mã quyền trong [codes] hay không.
   bool _hasAny(List<String> codes) => codes.any(_permissionCodes.contains);
-  
+
   /// Check quyền xem Nguồn Lead (N124, N131, N127 hoặc EmployeeID=332 hoặc UserID=1425).
   bool get _canViewLeadSource {
     if (_hasAny(PermissionGroups.crmLeadSource)) return true;
-    if (_currentEmployeeId == 332) return true;
-    if (_currentUserId == 1425) return true;
+    if (_currentUser?.employeeId == LeadSalePermission.specialEmployeeId) {
+      return true;
+    }
+    if (_currentUser?.id == LeadSalePermission.specialUserId) return true;
+    return false;
+  }
+
+  /// Check quyền xem "Báo cáo CRM".
+  ///
+  /// Chỉ hiển thị cho user thuộc nhóm sale, marketing, nhân viên đặc biệt
+  /// (EmployeeID = 332 hoặc UserID = 1425) hoặc admin (`User.IsAdmin`).
+  bool get _canViewCrmReport {
+    if (_currentUser?.isAdmin == true) return true;
+    if (_roles.contains(AppRole.sale)) return true;
+    if (_roles.contains(AppRole.marketing)) return true;
+    if (_currentUser?.employeeId == LeadSalePermission.specialEmployeeId) {
+      return true;
+    }
+    if (_currentUser?.id == LeadSalePermission.specialUserId) return true;
     return false;
   }
 
@@ -98,14 +124,15 @@ class _CrmMenuScreenState extends State<CrmMenuScreen> {
 
   /// Danh sách chức năng CRM hiển thị trong menu, đã lọc theo quyền user.
   List<AppItemModel> get _menuItems => [
-    AppItemModel(
-      id: 'crm:dashboard',
-      name: 'crm.dashboard'.tr(),
-      iconCodePoint: Icons.dashboard_outlined.codePoint,
-      iconFontFamily: 'MaterialIcons',
-      tab: 'crm',
-      route: '${RouteNames.crmMenu}/${RouteNames.crmDashboard}',
-    ),
+    if (_canViewCrmReport)
+      AppItemModel(
+        id: 'crm:dashboard',
+        name: 'crm.dashboard'.tr(),
+        iconCodePoint: Icons.dashboard_outlined.codePoint,
+        iconFontFamily: 'MaterialIcons',
+        tab: 'crm',
+        route: '${RouteNames.crmMenu}/${RouteNames.crmDashboard}',
+      ),
     AppItemModel(
       id: 'crm:summary_customer',
       name: 'crm.summary_customer'.tr(),
