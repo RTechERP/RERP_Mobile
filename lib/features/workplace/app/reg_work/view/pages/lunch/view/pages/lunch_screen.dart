@@ -31,7 +31,7 @@ class _LunchScreenState
   DateTime _dateOnly(DateTime date) =>
       DateTime(date.year, date.month, date.day);
 
-  /// Đặt cơm nhanh: sau 10h (theo yêu cầu nghiệp vụ) sẽ khoá nút.
+  /// Đặt cơm nhanh: sau 11h (theo yêu cầu nghiệp vụ) sẽ khoá nút.
   /// Riêng nhân viên đặc biệt (employeeId == 4) luôn được phép đặt nhanh.
   bool _isQuickBookDisabled(int? employeeId) {
     final now = DateTime.now();
@@ -40,7 +40,7 @@ class _LunchScreenState
       todayStart.year,
       todayStart.month,
       todayStart.day,
-      10,
+      11,
       00,
     );
     if (employeeId == 4) return false;
@@ -48,7 +48,7 @@ class _LunchScreenState
   }
 
   Future<void> _quickBookLunch() async {
-    // Lấy employeeId hiện tại để áp dụng đúng rule 10h.
+    // Lấy employeeId hiện tại để áp dụng đúng rule 11h.
     final userRes = await getIt.get<AuthRepo>().getCurrentUser();
     final user = userRes.getOrElse(() => null);
     if (!mounted) return;
@@ -56,7 +56,7 @@ class _LunchScreenState
     if (_isQuickBookDisabled(user?.employeeId)) {
       showMessage(
         context,
-        'Đã quá 10:00, vui lòng đặt cơm trước 10h hàng ngày',
+        'Đã quá 11:00, vui lòng đặt cơm trước 11h hàng ngày',
         type: SnackBarType.error,
       );
       return;
