@@ -80,14 +80,14 @@ class _LunchAddScreenState
       todayStart.year,
       todayStart.month,
       todayStart.day,
-      10,
+      11,
       0,
     );
 
     // Nhân viên đặc biệt luôn được phép lưu.
     if (_currentEmployeeId == 4) return false;
 
-    // Khoá nút Lưu sau 10:00 (theo yêu cầu nghiệp vụ).
+    // Khoá nút Lưu sau 11:00 (theo yêu cầu nghiệp vụ).
     return !now.isBefore(deadline);
   }
 
@@ -167,7 +167,7 @@ class _LunchAddScreenState
                               borderColor: Colors.orange,
                               backgroundColor: const Color(0xFFFFF8E1),
                               child: const Text(
-                                'Vui lòng đặt cơm trước 10h hàng ngày',
+                                'Vui lòng đặt cơm trước 11h hàng ngày',
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500,

@@ -146,11 +146,11 @@ class _LunchDetailScreenState extends BaseState<
       todayStart.year,
       todayStart.month,
       todayStart.day,
-      10,
+      11,
       0,
     );
 
-    // Khóa nút Lưu sau 10:00.
+    // Khóa nút Lưu sau 11:00.
     return !now.isBefore(deadline);
   }
 
