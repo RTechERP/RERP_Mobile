@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -6,11 +8,15 @@ import 'package:rtc_erp/base/bloc/bloc_status.dart';
 import 'package:rtc_erp/base/network/errors/extension.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import 'package:rtc_erp/base/widgets/base_widget.dart';
+import 'package:rtc_erp/base/widgets/qr_barcode_scanner_page.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
+import 'package:rtc_erp/common/services/device/pda_helper.dart';
 import 'package:rtc_erp/common/utils/dialog/dialog_service.dart';
 import 'package:rtc_erp/common/utils/snack_bar_helper.dart' show SnackBarType;
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/data/datasource/models/inventory_check_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/bloc/inventory_check_bloc.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_scan_sheet.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_scan_status_banner.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_sheet_filter_sheet.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_sheet_item_card.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_sheet_item_detail_sheet.dart';
@@ -41,10 +47,19 @@ class _InventoryCheckSheetScreenState
           InventoryCheckState,
           InventoryCheckBloc
         > {
+  /// Subscription nhận kết quả quét từ phần cứng PDA.
+  StreamSubscription<Map<String, dynamic>>? _scanSub;
+
   @override
   void initState() {
     super.initState();
     bloc.add(InventoryCheckEvent.fetchSheet(widget.countId));
+  }
+
+  @override
+  void dispose() {
+    _scanSub?.cancel();
+    super.dispose();
   }
 
   @override
@@ -108,6 +123,7 @@ class _InventoryCheckSheetScreenState
   Widget renderUI(BuildContext context) {
     return BaseScaffold(
       appBar: AppBarCommon(
+        centerTitle: false,
         title: const Text('Chi tiết đợt kiểm kê'),
         onBackTap: () => context.pop(),
         actions: [
@@ -136,7 +152,11 @@ class _InventoryCheckSheetScreenState
             prev.isLoadingSheet != curr.isLoadingSheet ||
             prev.sheetKeyword != curr.sheetKeyword ||
             prev.sheetFilter != curr.sheetFilter ||
-            prev.sheetProductGroupId != curr.sheetProductGroupId,
+            prev.sheetProductGroupId != curr.sheetProductGroupId ||
+            prev.sheetScanMode != curr.sheetScanMode ||
+            prev.sheetScanCode != curr.sheetScanCode ||
+            prev.sheetScanCount != curr.sheetScanCount ||
+            prev.sheetScanMessage != curr.sheetScanMessage,
         builder: (context, state) {
           if (state.isLoadingSheet) {
             return const Center(child: CircularProgressIndicator());
@@ -151,8 +171,40 @@ class _InventoryCheckSheetScreenState
             );
           }
 
-          return _buildContent(context, state, sheet);
+          return Column(
+            children: [
+              /// ===== PANEL TRẠNG THÁI QUÉT =====
+              if (state.sheetScanMode != null)
+                InventoryCheckScanStatusBanner(
+                  mode: state.sheetScanMode!,
+                  lastCode: state.sheetScanCode,
+                  scanCount: state.sheetScanCount,
+                  matchedCount: state.visibleSheetItems.length,
+                  message: state.sheetScanMessage,
+                  onClose: _stopScanMode,
+                ),
+              Expanded(child: _buildContent(context, state, sheet)),
+            ],
+          );
         },
+      ),
+      floatingActionButton: BlocBuilder<InventoryCheckBloc, InventoryCheckState>(
+        bloc: bloc,
+        buildWhen: (prev, curr) => prev.sheetScanMode != curr.sheetScanMode,
+        builder: (context, state) => FloatingActionButton(
+          backgroundColor: state.sheetScanMode == null
+              ? AppColors.primaryERP
+              : AppColors.backgroundLight,
+          foregroundColor: state.sheetScanMode == null
+              ? Colors.white
+              : AppColors.primaryERP,
+          elevation: 4,
+          tooltip: state.sheetScanMode == null
+              ? 'Quét mã'
+              : 'Đổi chế độ quét',
+          onPressed: _handleScanAction,
+          child: const Icon(Icons.qr_code_scanner),
+        ),
       ),
     );
   }
@@ -216,6 +268,40 @@ class _InventoryCheckSheetScreenState
                     color: AppColors.gray,
                   ),
                 ),
+                const Spacer(),
+                if (state.sheetScanCode != null)
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 3,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryERP.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: AppColors.primaryERP.withValues(alpha: 0.3),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(
+                          Icons.filter_alt,
+                          size: 11,
+                          color: AppColors.primaryERP,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          'Lọc theo mã quét',
+                          style: const TextStyle(
+                            fontSize: 10.5,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.primaryERP,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
               ],
             ),
           ),
@@ -223,7 +309,7 @@ class _InventoryCheckSheetScreenState
 
         /// ===== DANH SÁCH SẢN PHẨM =====
         if (items.isEmpty)
-          const SliverToBoxAdapter(child: _EmptyItems())
+          SliverToBoxAdapter(child: _EmptyItems(scanCode: state.sheetScanCode))
         else
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
@@ -309,6 +395,79 @@ class _InventoryCheckSheetScreenState
       state.sheetProductGroupId != null ||
       (state.sheetFilter != null &&
           state.sheetFilter != InventoryCheckSheetFilter.all);
+
+  /// Xử lý khi bấm action quét trong phiếu.
+  ///
+  /// Chọn chế độ quét (sản phẩm / vị trí) rồi:
+  /// - Là PDA → bật chế độ quét liên tục bằng phần cứng.
+  /// - Không phải PDA → dùng camera quét từng mã một.
+  Future<void> _handleScanAction() async {
+    // Đang quét mode cũ → tắt trước khi chọn mode mới.
+    if (bloc.state.sheetScanMode != null) {
+      _stopScanMode();
+    }
+
+    final mode = await InventoryCheckScanSheet.show(context);
+    if (mode == null || !mounted) return;
+
+    final isPda = await PdaHelper.isPdaDevice();
+    if (!mounted) return;
+
+    if (isPda) {
+      _startScanMode(mode);
+      return;
+    }
+
+    bloc.add(InventoryCheckEvent.startSheetScan(mode));
+    await _scanWithCamera(mode);
+  }
+
+  /// Quét bằng camera, mỗi lần quét được thì lọc theo mã và quét tiếp.
+  Future<void> _scanWithCamera(InventoryScanMode mode) async {
+    while (mounted && bloc.state.sheetScanMode == mode) {
+      final code = await QrBarcodeScannerPage.open(
+        context,
+        scanMode: ScanMode.all,
+        title: mode == InventoryScanMode.product
+            ? 'Quét mã sản phẩm'
+            : 'Quét mã vị trí',
+      );
+      if (!mounted) return;
+      if (code == null || code.trim().isEmpty) break;
+
+      bloc.add(InventoryCheckEvent.sheetScanned(code.trim()));
+    }
+  }
+
+  /// Bật chế độ quét [mode] và bắt đầu lắng nghe phần cứng PDA.
+  ///
+  /// - [InventoryScanMode.product] → lọc ra đúng sản phẩm vừa quét.
+  /// - [InventoryScanMode.location] → lọc ra tất cả sản phẩm cùng mã vị trí.
+  void _startScanMode(InventoryScanMode mode) {
+    _scanSub?.cancel();
+    bloc.add(InventoryCheckEvent.startSheetScan(mode));
+
+    _scanSub = PdaHelper.scanStream.listen((event) {
+      if (!mounted) return;
+
+      // Sự kiện bấm nút quét native — mã quét sẽ đến ở event tiếp theo.
+      if (event.containsKey('keyEvent')) {
+        return;
+      }
+
+      final code = event['code']?.toString().trim();
+      if (code == null || code.isEmpty) return;
+
+      bloc.add(InventoryCheckEvent.sheetScanned(code));
+    });
+  }
+
+  /// Tắt chế độ quét PDA và bỏ lọc theo mã quét.
+  void _stopScanMode() {
+    _scanSub?.cancel();
+    _scanSub = null;
+    bloc.add(InventoryCheckEvent.stopSheetScan());
+  }
 
   /// Mở bottom sheet bộ lọc sản phẩm (gồm tìm kiếm, trạng thái, nhóm SP).
   void _showFilterSheet() {
@@ -656,26 +815,46 @@ class _StatusBadge extends StatelessWidget {
 }
 
 /// Trạng thái rỗng khi phiếu không có sản phẩm nào.
+///
+/// [scanCode] khác null = đang lọc theo mã vừa quét nhưng không khớp sản
+/// phẩm nào → hiển thị thông báo phù hợp.
 class _EmptyItems extends StatelessWidget {
-  const _EmptyItems();
+  const _EmptyItems({this.scanCode});
+
+  /// Mã vừa quét đang dùng để lọc (null = không lọc theo quét).
+  final String? scanCode;
 
   @override
   Widget build(BuildContext context) {
+    final isScanning = (scanCode ?? '').isNotEmpty;
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 40, 16, 40),
       child: Column(
         children: [
           Icon(
-            Icons.inventory_2_outlined,
+            isScanning
+                ? Icons.search_off_outlined
+                : Icons.inventory_2_outlined,
             size: 46,
             color: AppColors.gray.withValues(alpha: 0.5),
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Chưa có sản phẩm nào trong phiếu kiểm kê',
-            style: TextStyle(color: AppColors.gray, fontSize: 13),
+          Text(
+            isScanning
+                ? 'Không có sản phẩm nào khớp mã "$scanCode"'
+                : 'Chưa có sản phẩm nào trong phiếu kiểm kê',
+            style: const TextStyle(color: AppColors.gray, fontSize: 13),
             textAlign: TextAlign.center,
           ),
+          if (isScanning) ...[
+            const SizedBox(height: 4),
+            const Text(
+              'Quét mã khác hoặc tắt chế độ quét để xem toàn bộ sản phẩm',
+              style: TextStyle(color: AppColors.gray, fontSize: 11.5),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ],
       ),
     );

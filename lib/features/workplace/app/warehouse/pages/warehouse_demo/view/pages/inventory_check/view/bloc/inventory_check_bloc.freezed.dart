@@ -38,6 +38,11 @@ mixin _$InventoryCheckEvent {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,6 +66,11 @@ mixin _$InventoryCheckEvent {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) =>
       throw _privateConstructorUsedError;
@@ -83,6 +93,11 @@ mixin _$InventoryCheckEvent {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) =>
@@ -108,6 +123,11 @@ mixin _$InventoryCheckEvent {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) =>
       throw _privateConstructorUsedError;
@@ -129,6 +149,11 @@ mixin _$InventoryCheckEvent {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) =>
       throw _privateConstructorUsedError;
@@ -150,6 +175,11 @@ mixin _$InventoryCheckEvent {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) =>
@@ -232,6 +262,11 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return fetch();
@@ -258,6 +293,11 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return fetch?.call();
@@ -283,6 +323,11 @@ class _$FetchImpl implements _Fetch {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -314,6 +359,11 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return fetch(this);
@@ -338,6 +388,11 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return fetch?.call(this);
@@ -362,6 +417,11 @@ class _$FetchImpl implements _Fetch {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -434,6 +494,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return fetchEmployees();
@@ -460,6 +525,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return fetchEmployees?.call();
@@ -485,6 +555,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -516,6 +591,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return fetchEmployees(this);
@@ -540,6 +620,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return fetchEmployees?.call(this);
@@ -564,6 +649,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -662,6 +752,11 @@ class _$SearchImpl implements _Search {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return search(keyword);
@@ -688,6 +783,11 @@ class _$SearchImpl implements _Search {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return search?.call(keyword);
@@ -713,6 +813,11 @@ class _$SearchImpl implements _Search {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -744,6 +849,11 @@ class _$SearchImpl implements _Search {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return search(this);
@@ -768,6 +878,11 @@ class _$SearchImpl implements _Search {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return search?.call(this);
@@ -792,6 +907,11 @@ class _$SearchImpl implements _Search {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -897,6 +1017,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return selectEmployee(employeeId);
@@ -923,6 +1048,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return selectEmployee?.call(employeeId);
@@ -948,6 +1078,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -979,6 +1114,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return selectEmployee(this);
@@ -1003,6 +1143,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return selectEmployee?.call(this);
@@ -1027,6 +1172,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -1133,6 +1283,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return changeWarehouseFilter(warehouseId);
@@ -1159,6 +1314,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return changeWarehouseFilter?.call(warehouseId);
@@ -1184,6 +1344,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -1215,6 +1380,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return changeWarehouseFilter(this);
@@ -1239,6 +1409,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return changeWarehouseFilter?.call(this);
@@ -1263,6 +1438,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -1377,6 +1557,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return changeDateRange(dateStart, dateEnd);
@@ -1403,6 +1588,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
@@ -1428,6 +1618,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -1459,6 +1654,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return changeDateRange(this);
@@ -1483,6 +1683,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return changeDateRange?.call(this);
@@ -1507,6 +1712,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -1613,6 +1823,11 @@ class _$GenerateCodeImpl implements _GenerateCode {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return generateCode(date);
@@ -1639,6 +1854,11 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return generateCode?.call(date);
@@ -1664,6 +1884,11 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -1695,6 +1920,11 @@ class _$GenerateCodeImpl implements _GenerateCode {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return generateCode(this);
@@ -1719,6 +1949,11 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return generateCode?.call(this);
@@ -1743,6 +1978,11 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -1855,6 +2095,11 @@ class _$SaveImpl implements _Save {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return save(payload);
@@ -1881,6 +2126,11 @@ class _$SaveImpl implements _Save {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return save?.call(payload);
@@ -1906,6 +2156,11 @@ class _$SaveImpl implements _Save {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -1937,6 +2192,11 @@ class _$SaveImpl implements _Save {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return save(this);
@@ -1961,6 +2221,11 @@ class _$SaveImpl implements _Save {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return save?.call(this);
@@ -1985,6 +2250,11 @@ class _$SaveImpl implements _Save {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -2088,6 +2358,11 @@ class _$GetByIdImpl implements _GetById {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return getById(id);
@@ -2114,6 +2389,11 @@ class _$GetByIdImpl implements _GetById {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return getById?.call(id);
@@ -2139,6 +2419,11 @@ class _$GetByIdImpl implements _GetById {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -2170,6 +2455,11 @@ class _$GetByIdImpl implements _GetById {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return getById(this);
@@ -2194,6 +2484,11 @@ class _$GetByIdImpl implements _GetById {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return getById?.call(this);
@@ -2218,6 +2513,11 @@ class _$GetByIdImpl implements _GetById {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -2321,6 +2621,11 @@ class _$DeleteImpl implements _Delete {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return delete(id);
@@ -2347,6 +2652,11 @@ class _$DeleteImpl implements _Delete {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return delete?.call(id);
@@ -2372,6 +2682,11 @@ class _$DeleteImpl implements _Delete {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -2403,6 +2718,11 @@ class _$DeleteImpl implements _Delete {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return delete(this);
@@ -2427,6 +2747,11 @@ class _$DeleteImpl implements _Delete {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return delete?.call(this);
@@ -2451,6 +2776,11 @@ class _$DeleteImpl implements _Delete {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -2554,6 +2884,11 @@ class _$FetchSheetImpl implements _FetchSheet {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return fetchSheet(countId);
@@ -2580,6 +2915,11 @@ class _$FetchSheetImpl implements _FetchSheet {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return fetchSheet?.call(countId);
@@ -2605,6 +2945,11 @@ class _$FetchSheetImpl implements _FetchSheet {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -2636,6 +2981,11 @@ class _$FetchSheetImpl implements _FetchSheet {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return fetchSheet(this);
@@ -2660,6 +3010,11 @@ class _$FetchSheetImpl implements _FetchSheet {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return fetchSheet?.call(this);
@@ -2684,6 +3039,11 @@ class _$FetchSheetImpl implements _FetchSheet {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -2787,6 +3147,11 @@ class _$SearchSheetImpl implements _SearchSheet {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return searchSheet(keyword);
@@ -2813,6 +3178,11 @@ class _$SearchSheetImpl implements _SearchSheet {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return searchSheet?.call(keyword);
@@ -2838,6 +3208,11 @@ class _$SearchSheetImpl implements _SearchSheet {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -2869,6 +3244,11 @@ class _$SearchSheetImpl implements _SearchSheet {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return searchSheet(this);
@@ -2893,6 +3273,11 @@ class _$SearchSheetImpl implements _SearchSheet {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return searchSheet?.call(this);
@@ -2917,6 +3302,11 @@ class _$SearchSheetImpl implements _SearchSheet {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -3020,6 +3410,11 @@ class _$FilterSheetImpl implements _FilterSheet {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return filterSheet(filter);
@@ -3046,6 +3441,11 @@ class _$FilterSheetImpl implements _FilterSheet {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return filterSheet?.call(filter);
@@ -3071,6 +3471,11 @@ class _$FilterSheetImpl implements _FilterSheet {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -3102,6 +3507,11 @@ class _$FilterSheetImpl implements _FilterSheet {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return filterSheet(this);
@@ -3126,6 +3536,11 @@ class _$FilterSheetImpl implements _FilterSheet {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return filterSheet?.call(this);
@@ -3150,6 +3565,11 @@ class _$FilterSheetImpl implements _FilterSheet {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -3267,6 +3687,11 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return fetchProductGroupsRtc(warehouseId, warehouseType);
@@ -3293,6 +3718,11 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return fetchProductGroupsRtc?.call(warehouseId, warehouseType);
@@ -3318,6 +3748,11 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -3349,6 +3784,11 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return fetchProductGroupsRtc(this);
@@ -3373,6 +3813,11 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return fetchProductGroupsRtc?.call(this);
@@ -3397,6 +3842,11 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -3507,6 +3957,11 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return filterSheetProductGroup(groupId);
@@ -3533,6 +3988,11 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return filterSheetProductGroup?.call(groupId);
@@ -3558,6 +4018,11 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -3589,6 +4054,11 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return filterSheetProductGroup(this);
@@ -3613,6 +4083,11 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return filterSheetProductGroup?.call(this);
@@ -3637,6 +4112,11 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -3760,6 +4240,11 @@ class _$SaveCountDetailsImpl implements _SaveCountDetails {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return saveCountDetails(countId, changedItems);
@@ -3786,6 +4271,11 @@ class _$SaveCountDetailsImpl implements _SaveCountDetails {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return saveCountDetails?.call(countId, changedItems);
@@ -3811,6 +4301,11 @@ class _$SaveCountDetailsImpl implements _SaveCountDetails {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -3842,6 +4337,11 @@ class _$SaveCountDetailsImpl implements _SaveCountDetails {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return saveCountDetails(this);
@@ -3866,6 +4366,11 @@ class _$SaveCountDetailsImpl implements _SaveCountDetails {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return saveCountDetails?.call(this);
@@ -3890,6 +4395,11 @@ class _$SaveCountDetailsImpl implements _SaveCountDetails {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -3911,6 +4421,1263 @@ abstract class _SaveCountDetails implements InventoryCheckEvent {
   @JsonKey(ignore: true)
   _$$SaveCountDetailsImplCopyWith<_$SaveCountDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FindCountByCodeImplCopyWith<$Res> {
+  factory _$$FindCountByCodeImplCopyWith(_$FindCountByCodeImpl value,
+          $Res Function(_$FindCountByCodeImpl) then) =
+      __$$FindCountByCodeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String code});
+}
+
+/// @nodoc
+class __$$FindCountByCodeImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$FindCountByCodeImpl>
+    implements _$$FindCountByCodeImplCopyWith<$Res> {
+  __$$FindCountByCodeImplCopyWithImpl(
+      _$FindCountByCodeImpl _value, $Res Function(_$FindCountByCodeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = null,
+  }) {
+    return _then(_$FindCountByCodeImpl(
+      null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FindCountByCodeImpl implements _FindCountByCode {
+  const _$FindCountByCodeImpl(this.code);
+
+  @override
+  final String code;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.findCountByCode(code: $code)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FindCountByCodeImpl &&
+            (identical(other.code, code) || other.code == code));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, code);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FindCountByCodeImplCopyWith<_$FindCountByCodeImpl> get copyWith =>
+      __$$FindCountByCodeImplCopyWithImpl<_$FindCountByCodeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
+    required TResult Function(int id, bool isComplete) confirmComplete,
+  }) {
+    return findCountByCode(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
+  }) {
+    return findCountByCode?.call(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
+    TResult Function(int id, bool isComplete)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (findCountByCode != null) {
+      return findCountByCode(code);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
+  }) {
+    return findCountByCode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
+  }) {
+    return findCountByCode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (findCountByCode != null) {
+      return findCountByCode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FindCountByCode implements InventoryCheckEvent {
+  const factory _FindCountByCode(final String code) = _$FindCountByCodeImpl;
+
+  String get code;
+  @JsonKey(ignore: true)
+  _$$FindCountByCodeImplCopyWith<_$FindCountByCodeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearScanCountResultImplCopyWith<$Res> {
+  factory _$$ClearScanCountResultImplCopyWith(_$ClearScanCountResultImpl value,
+          $Res Function(_$ClearScanCountResultImpl) then) =
+      __$$ClearScanCountResultImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearScanCountResultImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$ClearScanCountResultImpl>
+    implements _$$ClearScanCountResultImplCopyWith<$Res> {
+  __$$ClearScanCountResultImplCopyWithImpl(_$ClearScanCountResultImpl _value,
+      $Res Function(_$ClearScanCountResultImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearScanCountResultImpl implements _ClearScanCountResult {
+  const _$ClearScanCountResultImpl();
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.clearScanCountResult()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearScanCountResultImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
+    required TResult Function(int id, bool isComplete) confirmComplete,
+  }) {
+    return clearScanCountResult();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
+  }) {
+    return clearScanCountResult?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
+    TResult Function(int id, bool isComplete)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (clearScanCountResult != null) {
+      return clearScanCountResult();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
+  }) {
+    return clearScanCountResult(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
+  }) {
+    return clearScanCountResult?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (clearScanCountResult != null) {
+      return clearScanCountResult(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearScanCountResult implements InventoryCheckEvent {
+  const factory _ClearScanCountResult() = _$ClearScanCountResultImpl;
+}
+
+/// @nodoc
+abstract class _$$StartSheetScanImplCopyWith<$Res> {
+  factory _$$StartSheetScanImplCopyWith(_$StartSheetScanImpl value,
+          $Res Function(_$StartSheetScanImpl) then) =
+      __$$StartSheetScanImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({InventoryScanMode mode});
+}
+
+/// @nodoc
+class __$$StartSheetScanImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$StartSheetScanImpl>
+    implements _$$StartSheetScanImplCopyWith<$Res> {
+  __$$StartSheetScanImplCopyWithImpl(
+      _$StartSheetScanImpl _value, $Res Function(_$StartSheetScanImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? mode = null,
+  }) {
+    return _then(_$StartSheetScanImpl(
+      null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as InventoryScanMode,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$StartSheetScanImpl implements _StartSheetScan {
+  const _$StartSheetScanImpl(this.mode);
+
+  @override
+  final InventoryScanMode mode;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.startSheetScan(mode: $mode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StartSheetScanImpl &&
+            (identical(other.mode, mode) || other.mode == mode));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, mode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StartSheetScanImplCopyWith<_$StartSheetScanImpl> get copyWith =>
+      __$$StartSheetScanImplCopyWithImpl<_$StartSheetScanImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
+    required TResult Function(int id, bool isComplete) confirmComplete,
+  }) {
+    return startSheetScan(mode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
+  }) {
+    return startSheetScan?.call(mode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
+    TResult Function(int id, bool isComplete)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (startSheetScan != null) {
+      return startSheetScan(mode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
+  }) {
+    return startSheetScan(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
+  }) {
+    return startSheetScan?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (startSheetScan != null) {
+      return startSheetScan(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StartSheetScan implements InventoryCheckEvent {
+  const factory _StartSheetScan(final InventoryScanMode mode) =
+      _$StartSheetScanImpl;
+
+  InventoryScanMode get mode;
+  @JsonKey(ignore: true)
+  _$$StartSheetScanImplCopyWith<_$StartSheetScanImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SheetScannedImplCopyWith<$Res> {
+  factory _$$SheetScannedImplCopyWith(
+          _$SheetScannedImpl value, $Res Function(_$SheetScannedImpl) then) =
+      __$$SheetScannedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String code});
+}
+
+/// @nodoc
+class __$$SheetScannedImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$SheetScannedImpl>
+    implements _$$SheetScannedImplCopyWith<$Res> {
+  __$$SheetScannedImplCopyWithImpl(
+      _$SheetScannedImpl _value, $Res Function(_$SheetScannedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = null,
+  }) {
+    return _then(_$SheetScannedImpl(
+      null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SheetScannedImpl implements _SheetScanned {
+  const _$SheetScannedImpl(this.code);
+
+  @override
+  final String code;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.sheetScanned(code: $code)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SheetScannedImpl &&
+            (identical(other.code, code) || other.code == code));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, code);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SheetScannedImplCopyWith<_$SheetScannedImpl> get copyWith =>
+      __$$SheetScannedImplCopyWithImpl<_$SheetScannedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
+    required TResult Function(int id, bool isComplete) confirmComplete,
+  }) {
+    return sheetScanned(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
+  }) {
+    return sheetScanned?.call(code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
+    TResult Function(int id, bool isComplete)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (sheetScanned != null) {
+      return sheetScanned(code);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
+  }) {
+    return sheetScanned(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
+  }) {
+    return sheetScanned?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (sheetScanned != null) {
+      return sheetScanned(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SheetScanned implements InventoryCheckEvent {
+  const factory _SheetScanned(final String code) = _$SheetScannedImpl;
+
+  String get code;
+  @JsonKey(ignore: true)
+  _$$SheetScannedImplCopyWith<_$SheetScannedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$StopSheetScanImplCopyWith<$Res> {
+  factory _$$StopSheetScanImplCopyWith(
+          _$StopSheetScanImpl value, $Res Function(_$StopSheetScanImpl) then) =
+      __$$StopSheetScanImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StopSheetScanImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$StopSheetScanImpl>
+    implements _$$StopSheetScanImplCopyWith<$Res> {
+  __$$StopSheetScanImplCopyWithImpl(
+      _$StopSheetScanImpl _value, $Res Function(_$StopSheetScanImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$StopSheetScanImpl implements _StopSheetScan {
+  const _$StopSheetScanImpl();
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.stopSheetScan()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StopSheetScanImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
+    required TResult Function(int id, bool isComplete) confirmComplete,
+  }) {
+    return stopSheetScan();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
+  }) {
+    return stopSheetScan?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
+    TResult Function(int id, bool isComplete)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (stopSheetScan != null) {
+      return stopSheetScan();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
+  }) {
+    return stopSheetScan(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
+  }) {
+    return stopSheetScan?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (stopSheetScan != null) {
+      return stopSheetScan(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StopSheetScan implements InventoryCheckEvent {
+  const factory _StopSheetScan() = _$StopSheetScanImpl;
 }
 
 /// @nodoc
@@ -4007,6 +5774,11 @@ class _$ConfirmCompleteImpl implements _ConfirmComplete {
     required TResult Function(
             int countId, List<Map<String, dynamic>> changedItems)
         saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
     required TResult Function(int id, bool isComplete) confirmComplete,
   }) {
     return confirmComplete(id, isComplete);
@@ -4033,6 +5805,11 @@ class _$ConfirmCompleteImpl implements _ConfirmComplete {
     TResult? Function(int? groupId)? filterSheetProductGroup,
     TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
     TResult? Function(int id, bool isComplete)? confirmComplete,
   }) {
     return confirmComplete?.call(id, isComplete);
@@ -4058,6 +5835,11 @@ class _$ConfirmCompleteImpl implements _ConfirmComplete {
     TResult Function(int? groupId)? filterSheetProductGroup,
     TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
         saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
     TResult Function(int id, bool isComplete)? confirmComplete,
     required TResult orElse(),
   }) {
@@ -4089,6 +5871,11 @@ class _$ConfirmCompleteImpl implements _ConfirmComplete {
     required TResult Function(_FilterSheetProductGroup value)
         filterSheetProductGroup,
     required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
     required TResult Function(_ConfirmComplete value) confirmComplete,
   }) {
     return confirmComplete(this);
@@ -4113,6 +5900,11 @@ class _$ConfirmCompleteImpl implements _ConfirmComplete {
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
     TResult? Function(_ConfirmComplete value)? confirmComplete,
   }) {
     return confirmComplete?.call(this);
@@ -4137,6 +5929,11 @@ class _$ConfirmCompleteImpl implements _ConfirmComplete {
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
     TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
     TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
     TResult Function(_ConfirmComplete value)? confirmComplete,
     required TResult orElse(),
   }) {

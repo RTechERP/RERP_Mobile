@@ -72,6 +72,32 @@ class InventoryCheckEvent with _$InventoryCheckEvent {
     required List<Map<String, dynamic>> changedItems,
   }) = _SaveCountDetails;
 
+  /// Tìm đợt kiểm kê theo mã đợt vừa quét (barcode/QR in trên phiếu).
+  ///
+  /// Kết quả trả về qua [InventoryCheckState.openedCountFromScan] để UI mở
+  /// thẳng màn chi tiết phiếu; không tìm thấy thì qua
+  /// [InventoryCheckState.scanCountMessage].
+  const factory InventoryCheckEvent.findCountByCode(String code) =
+      _FindCountByCode;
+
+  /// Xoá cờ đợt kiểm kê đã mở từ quét + thông báo quét (sau khi UI xử lý).
+  const factory InventoryCheckEvent.clearScanCountResult() =
+      _ClearScanCountResult;
+
+  /// Bật chế độ quét PDA trong phiếu kiểm kê.
+  ///
+  /// [mode] = [InventoryScanMode.product] → lọc ra đúng sản phẩm vừa quét.
+  /// [mode] = [InventoryScanMode.location] → lọc ra tất cả sản phẩm cùng mã
+  /// vị trí vừa quét.
+  const factory InventoryCheckEvent.startSheetScan(InventoryScanMode mode) =
+      _StartSheetScan;
+
+  /// Xử lý mã vừa quét trong phiếu kiểm kê.
+  const factory InventoryCheckEvent.sheetScanned(String code) = _SheetScanned;
+
+  /// Tắt chế độ quét PDA trong phiếu kiểm kê và bỏ lọc theo mã quét.
+  const factory InventoryCheckEvent.stopSheetScan() = _StopSheetScan;
+
   /// Xác nhận hoàn thành / mở lại một đợt kiểm kê.
   ///
   /// [isComplete] = `true` → hoàn thành, `false` → mở lại.

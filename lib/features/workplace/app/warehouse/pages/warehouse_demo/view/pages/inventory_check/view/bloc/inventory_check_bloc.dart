@@ -54,6 +54,11 @@ class InventoryCheckBloc
             _onFilterSheetProductGroup(emit, groupId: groupId),
         saveCountDetails: (countId, changedItems) =>
             _onSaveCountDetails(emit, countId: countId, changedItems: changedItems),
+        findCountByCode: (code) => _onFindCountByCode(emit, code: code),
+        clearScanCountResult: () => _onClearScanCountResult(emit),
+        startSheetScan: (mode) => _onStartSheetScan(emit, mode: mode),
+        sheetScanned: (code) => _onSheetScanned(emit, code: code),
+        stopSheetScan: () => _onStopSheetScan(emit),
         confirmComplete: (id, isComplete) =>
             _onConfirmComplete(emit, id: id, isComplete: isComplete),
       );
@@ -449,6 +454,144 @@ class InventoryCheckBloc
 
     // Tải lại phiếu để cập nhật số lượng thực tế và chênh lệch.
     await _onFetchSheet(emit, countId: countId);
+  }
+
+  /// Tìm đợt kiểm kê theo mã đợt vừa quét (barcode/QR in trên phiếu).
+  ///
+  /// Ưu tiên tìm trong danh sách đợt đang hiển thị; nếu không có (đợt nằm
+  /// ngoài khoảng ngày đang lọc) thì tải danh sách rộng hơn để tìm lại.
+  Future<void> _onFindCountByCode(
+    Emitter<InventoryCheckState> emit, {
+    required String code,
+  }) async {
+    final scannedCode = code.trim();
+    if (scannedCode.isEmpty) return;
+
+    final matched = _matchCountByCode(state.items, scannedCode);
+    if (matched != null) {
+      _log.logI('✅ findCountByCode success - code: $scannedCode');
+      emit(state.copyWith(openedCountFromScan: matched, scanCountMessage: null));
+      return;
+    }
+
+    // Đợt kiểm kê có thể nằm ngoài khoảng ngày đang lọc → tải rộng hơn.
+    final res = await _repo.getInventoryCounts(
+      dateStart: _formatApiDate(
+        DateTime.now().subtract(const Duration(days: 365)),
+      ),
+      dateEnd: _formatApiDate(
+        DateTime.now().add(const Duration(days: 365)),
+      ),
+    );
+
+    res.fold(
+      (err) {
+        _log.logE('❌ findCountByCode failed: $err');
+        emit(
+          state.copyWith(
+            openedCountFromScan: null,
+            scanCountMessage: 'Không tìm thấy đợt kiểm kê với mã "$scannedCode"',
+          ),
+        );
+      },
+      (items) {
+        final found = _matchCountByCode(items, scannedCode);
+        if (found == null) {
+          _log.logW('⚠️ findCountByCode not found - code: $scannedCode');
+          emit(
+            state.copyWith(
+              openedCountFromScan: null,
+              scanCountMessage:
+                  'Không tìm thấy đợt kiểm kê với mã "$scannedCode"',
+            ),
+          );
+          return;
+        }
+        _log.logI('✅ findCountByCode success - code: $scannedCode');
+        emit(state.copyWith(openedCountFromScan: found, scanCountMessage: null));
+      },
+    );
+  }
+
+  /// Tìm đợt kiểm kê có mã đợt khớp chính xác [code] (không phân biệt hoa
+  /// thường).
+  InventoryCountItem? _matchCountByCode(
+    List<InventoryCountItem> items,
+    String code,
+  ) {
+    final target = code.toLowerCase();
+    for (final item in items) {
+      if ((item.code ?? '').trim().toLowerCase() == target) return item;
+    }
+    return null;
+  }
+
+  /// Xoá cờ đợt kiểm kê đã mở từ quét + thông báo quét.
+  Future<void> _onClearScanCountResult(Emitter<InventoryCheckState> emit) async {
+    emit(state.copyWith(openedCountFromScan: null, scanCountMessage: null));
+  }
+
+  /// Bật chế độ quét PDA trong phiếu kiểm kê, reset mã quét cũ.
+  Future<void> _onStartSheetScan(
+    Emitter<InventoryCheckState> emit, {
+    required InventoryScanMode mode,
+  }) async {
+    emit(
+      state.copyWith(
+        sheetScanMode: mode,
+        sheetScanCode: null,
+        sheetScanCount: 0,
+        sheetScanMessage: null,
+      ),
+    );
+  }
+
+  /// Xử lý mã vừa quét trong phiếu kiểm kê.
+  ///
+  /// Mã quét được dùng để lọc danh sách sản phẩm:
+  /// - Chế độ sản phẩm → chỉ hiển thị đúng sản phẩm vừa quét.
+  /// - Chế độ vị trí → hiển thị tất cả sản phẩm có cùng mã vị trí.
+  Future<void> _onSheetScanned(
+    Emitter<InventoryCheckState> emit, {
+    required String code,
+  }) async {
+    final mode = state.sheetScanMode;
+    if (mode == null) return;
+
+    final scannedCode = code.trim();
+    if (scannedCode.isEmpty) return;
+
+    // Áp dụng mã quét rồi đếm số dòng khớp để báo kết quả cho người dùng.
+    emit(
+      state.copyWith(
+        sheetScanCode: scannedCode,
+        sheetScanCount: state.sheetScanCount + 1,
+        sheetScanMessage: null,
+      ),
+    );
+
+    final matched = state.visibleSheetItems.length;
+    emit(
+      state.copyWith(
+        sheetScanMessage: matched == 0
+            ? 'Không tìm thấy sản phẩm nào khớp mã "$scannedCode"'
+            : mode == InventoryScanMode.product
+            ? 'Tìm thấy $matched sản phẩm khớp mã "$scannedCode"'
+            : 'Vị trí "$scannedCode" có $matched sản phẩm',
+      ),
+    );
+  }
+
+  /// Tắt chế độ quét PDA trong phiếu kiểm kê và bỏ lọc theo mã quét.
+  Future<void> _onStopSheetScan(Emitter<InventoryCheckState> emit) async {
+    emit(
+      state.copyWith(
+        sheetScanMode: null,
+        sheetScanCode: null,
+        sheetScanCount: 0,
+        sheetScanMessage: null,
+      ),
+    );
   }
 
   /// Xác nhận hoàn thành / mở lại một đợt kiểm kê.

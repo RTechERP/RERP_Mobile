@@ -1,5 +1,17 @@
 part of 'inventory_check_bloc.dart';
 
+/// Chế độ quét mã trong phiếu kiểm kê bằng PDA.
+///
+/// - [product]: quét mã sản phẩm → chỉ hiển thị đúng sản phẩm vừa quét.
+/// - [location]: quét mã vị trí → hiển thị tất cả sản phẩm có cùng mã vị trí.
+enum InventoryScanMode {
+  /// Quét mã của sản phẩm (mã sản phẩm / mã nội bộ / serial).
+  product,
+
+  /// Quét mã của vị trí lưu kho.
+  location,
+}
+
 /// Bộ lọc sắp xếp danh sách sản phẩm trong phiếu kiểm kê.
 enum InventoryCheckSheetFilter {
   /// Hiển thị tất cả sản phẩm.
@@ -105,6 +117,25 @@ class InventoryCheckState extends BaseBlocState {
   /// Lưu kết quả kiểm kê thực tế thành công.
   final bool saveCountDetailsSuccess;
 
+  /// Đợt kiểm kê cần mở sau khi quét mã đợt (one-shot, UI điều hướng rồi
+  /// reset về null để tránh mở lại).
+  final InventoryCountItem? openedCountFromScan;
+
+  /// Thông báo khi quét mã đợt không tìm thấy đợt kiểm kê tương ứng.
+  final String? scanCountMessage;
+
+  /// Chế độ quét PDA đang bật trong phiếu kiểm kê (null = đang tắt).
+  final InventoryScanMode? sheetScanMode;
+
+  /// Mã vừa quét gần nhất trong phiếu kiểm kê (null = chưa quét mã nào).
+  final String? sheetScanCode;
+
+  /// Số lần quét trong phiếu kiểm kê.
+  final int sheetScanCount;
+
+  /// Thông báo kết quả quét gần nhất (khớp / không khớp).
+  final String? sheetScanMessage;
+
   /// Xác nhận hoàn thành / mở lại đợt kiểm kê thành công.
   final bool confirmCompleteSuccess;
 
@@ -143,6 +174,12 @@ class InventoryCheckState extends BaseBlocState {
     this.productGroupsRtcWarehouseId,
     this.sheetProductGroupId,
     this.saveCountDetailsSuccess = false,
+    this.openedCountFromScan,
+    this.scanCountMessage,
+    this.sheetScanMode,
+    this.sheetScanCode,
+    this.sheetScanCount = 0,
+    this.sheetScanMessage,
     this.confirmCompleteSuccess = false,
     this.confirmCompleteMessage,
     this.confirmCompleteError,
@@ -185,16 +222,20 @@ class InventoryCheckState extends BaseBlocState {
   }
 
   /// Danh sách sản phẩm trong phiếu sau khi lọc theo từ khoá
-  /// (mã sản phẩm, mã nội bộ, tên sản phẩm, vị trí kho, nhóm sản phẩm)
-  /// và bộ lọc sắp xếp đang chọn.
+  /// (mã sản phẩm, mã nội bộ, tên sản phẩm, vị trí kho, nhóm sản phẩm),
+  /// bộ lọc sắp xếp đang chọn và mã vừa quét bằng PDA.
+  ///
+  /// Khi quét vị trí, sản phẩm nằm ở **vị trí Modula** được xếp lên đầu,
+  /// sau đó mới tới các sản phẩm khác cùng vị trí.
   List<InventoryCountSheetItem> get visibleSheetItems {
     final items = sheet?.items ?? const <InventoryCountSheetItem>[];
     final keyword = sheetKeyword.toLowerCase().trim();
 
-    return items.where((item) {
+    final filtered = items.where((item) {
       if (!_matchSheetFilter(item)) return false;
       final groupId = sheetProductGroupId;
       if (groupId != null && item.productGroupRtcId != groupId) return false;
+      if (!matchesScanCode(item)) return false;
       if (keyword.isEmpty) return true;
       return (item.productCode ?? '').toLowerCase().contains(keyword) ||
           (item.productCodeRtc ?? '').toLowerCase().contains(keyword) ||
@@ -204,6 +245,54 @@ class InventoryCheckState extends BaseBlocState {
           (item.maker ?? '').toLowerCase().contains(keyword) ||
           (item.serialNumber ?? '').toLowerCase().contains(keyword);
     }).toList();
+
+    if (sheetScanMode == InventoryScanMode.location) {
+      final code = (sheetScanCode ?? '').trim().toLowerCase();
+      if (code.isNotEmpty) {
+        filtered.sort((a, b) {
+          final aModula = _isModulaMatch(a, code) ? 0 : 1;
+          final bModula = _isModulaMatch(b, code) ? 0 : 1;
+          return aModula.compareTo(bModula);
+        });
+      }
+    }
+
+    return filtered;
+  }
+
+  /// Dòng sản phẩm có nằm ở vị trí Modula khớp mã vừa quét hay không.
+  static bool _isModulaMatch(InventoryCountSheetItem item, String code) {
+    return _equalsCode(item.modulaLocationName, code);
+  }
+
+  /// Kiểm tra dòng sản phẩm có khớp mã vừa quét hay không.
+  ///
+  /// - Chế độ [InventoryScanMode.product] → khớp mã sản phẩm (mã sản phẩm,
+  ///   mã nội bộ, serial, part number) → chỉ hiển thị đúng sản phẩm đó.
+  /// - Chế độ [InventoryScanMode.location] → khớp mã vị trí (vị trí lưu kho,
+  ///   địa chỉ ô, vị trí Modula) → hiển thị tất cả sản phẩm cùng vị trí.
+  bool matchesScanCode(InventoryCountSheetItem item) {
+    final mode = sheetScanMode;
+    final code = (sheetScanCode ?? '').trim().toLowerCase();
+    if (mode == null || code.isEmpty) return true;
+
+    switch (mode) {
+      case InventoryScanMode.product:
+        return _equalsCode(item.productCode, code) ||
+            _equalsCode(item.productCodeRtc, code) ||
+            _equalsCode(item.serialNumber, code) ||
+            _equalsCode(item.serial, code) ||
+            _equalsCode(item.partNumber, code);
+      case InventoryScanMode.location:
+        return _equalsCode(item.locationName, code) ||
+            _equalsCode(item.addressBox, code) ||
+            _equalsCode(item.modulaLocationName, code);
+    }
+  }
+
+  /// So khớp chính xác một mã trong sản phẩm với mã vừa quét.
+  static bool _equalsCode(String? value, String code) {
+    return (value ?? '').trim().toLowerCase() == code;
   }
 
   /// Kiểm tra một dòng sản phẩm có khớp bộ lọc sắp xếp đang chọn hay không.
@@ -284,6 +373,12 @@ class InventoryCheckState extends BaseBlocState {
     productGroupsRtcWarehouseId,
     sheetProductGroupId,
     saveCountDetailsSuccess,
+    openedCountFromScan,
+    scanCountMessage,
+    sheetScanMode,
+    sheetScanCode,
+    sheetScanCount,
+    sheetScanMessage,
     confirmCompleteSuccess,
     confirmCompleteMessage,
     confirmCompleteError,
