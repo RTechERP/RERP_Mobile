@@ -111,8 +111,11 @@ class ValidateHelper {
       if (ot < 0) return '${prefix}Số giờ OT không được nhỏ hơn 0';
 
       final percent = getPercent(work);
-      if (percent < 0 || percent > 100) {
-        return '$prefix% Hoàn thành phải từ 0 đến 100';
+      if (percent <= 0) {
+        return '${prefix}Tiến độ phải lớn hơn 0%';
+      }
+      if (percent > 100) {
+        return '${prefix}% Hoàn thành phải từ 0 đến 100';
       }
 
       if (getContent(work).trim().isEmpty) {

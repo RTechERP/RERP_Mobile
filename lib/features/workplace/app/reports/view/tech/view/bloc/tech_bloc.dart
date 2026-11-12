@@ -1638,6 +1638,14 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
           return '${prefix}Tổng số giờ phải từ 0 đến 8 giờ';
         }
 
+        // 2.1) Tiến độ phải lớn hơn 0% (không được gửi báo cáo chưa có tiến độ).
+        if (work.percentComplete <= 0) {
+          return '${prefix}Tiến độ phải lớn hơn 0%';
+        }
+        if (work.percentComplete > 100) {
+          return '${prefix}% Hoàn thành phải từ 0 đến 100';
+        }
+
         // 3) Ca làm thêm mới chỉ được tạo cho [hôm qua, hôm nay].
         final hasNewSession = work.overtimes.any((s) => s.id == 0);
         if (hasNewSession && !_canCreateNewOvertimeOn(reportDate)) {

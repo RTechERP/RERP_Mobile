@@ -383,8 +383,11 @@ class _TechAddWorkItemState extends State<TechAddWorkItem> {
                     return 'Nhập tiến độ';
                   }
                   final percent = double.tryParse(v) ?? 0;
-                  if (percent < 0 || percent > 100) {
-                    return '% Hoàn thành phải từ 0 đến 100';
+                  if (percent <= 0) {
+                    return 'Lớn hơn 0%';
+                  }
+                  if (percent > 100) {
+                    return '% từ 0 đến 100';
                   }
                   return null;
                 },
