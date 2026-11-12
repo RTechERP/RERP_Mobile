@@ -48,6 +48,7 @@ class _SaleGdnScreenState
   /// - Hà Nội → "HN"
   /// - Hồ Chí Minh → "HCM"
   /// - Bắc Ninh → "BN"
+  /// - Đan Phượng → "DP"
   /// Trả về null nếu không khớp để giữ nguyên `warehouseCode` mặc định của bloc.
   static String? _mapAreaIdToWarehouseCode(String? areaId) {
     switch (areaId) {
@@ -57,6 +58,8 @@ class _SaleGdnScreenState
         return 'HCM';
       case 'warehouse_area:bac_ninh':
         return 'BN';
+      case 'warehouse_area:dan_phuong':
+        return 'DP';
       default:
         return null;
     }

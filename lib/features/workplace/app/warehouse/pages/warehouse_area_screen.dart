@@ -24,6 +24,12 @@ class _WarehouseAreaScreenState extends State<WarehouseAreaScreen> {
   List<String> get _allowedAreaIds {
     switch (widget.warehouseType) {
       case WarehouseType.sale:
+        return [
+          'warehouse_area:ha_noi',
+          'warehouse_area:ho_chi_minh',
+          'warehouse_area:bac_ninh',
+          'warehouse_area:dan_phuong',
+        ];
       case WarehouseType.demo:
         return ['warehouse_area:ha_noi', 'warehouse_area:ho_chi_minh', 'warehouse_area:bac_ninh'];
       case WarehouseType.agv:

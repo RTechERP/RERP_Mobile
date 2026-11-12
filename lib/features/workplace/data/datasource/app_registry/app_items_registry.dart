@@ -491,15 +491,15 @@ class AppItemRegistry {
       imageUrl: AppImages.warehouse_BN,
       route: RouteNames.warehouseAgv,
     ),
-    // AppItemModel(
-    //   id: 'warehouse_area:dan_phuong',
-    //   name: 'warehouse.dan_phuong'.tr(),
-    //   iconCodePoint: Icons.warehouse_outlined.codePoint,
-    //   iconFontFamily: 'MaterialIcons',
-    //   tab: 'warehouse',
-    //   imageUrl: AppImages.warehouse_DP,
-    //   route: RouteNames.warehouseProject,
-    // ),
+    AppItemModel(
+      id: 'warehouse_area:dan_phuong',
+      name: 'warehouse.dan_phuong'.tr(),
+      iconCodePoint: Icons.warehouse_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      imageUrl: AppImages.warehouse_DP,
+      route: RouteNames.warehouseSale,
+    ),
   ];
 
   static final List<AppItemModel> warehouse_sale = [
