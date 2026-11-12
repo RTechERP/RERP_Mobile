@@ -688,9 +688,17 @@ class _OvertimeShiftFormState extends State<_OvertimeShiftForm> {
 
   /// Mốc cuối được chọn — 23:59 của ngày báo cáo.
   ///
-  /// Ca làm thêm phải nằm trong ngày báo cáo nên không cho chọn sang ngày khác.
+  /// Ca làm thêm bắt đầu trong ngày báo cáo nên không cho chọn trước ngày đó.
   DateTime get _lastPickableMoment =>
       widget.dayStart.add(const Duration(hours: 23, minutes: 59));
+
+  /// Mốc cuối cho giờ kết thúc — cho phép kéo sang rạng sáng hôm sau.
+  ///
+  /// Ca làm thêm có thể kéo sang ngày hôm sau (VD tới 1h30 sáng hôm sau) nhưng
+  /// vẫn thuộc báo cáo của ngày báo cáo.
+  DateTime get _lastPickableEndMoment => widget.dayStart.add(
+    const Duration(days: 1, hours: OvertimeSession.maxOvertimeOverflowHours),
+  );
 
   /// Hiển thị loại làm thêm (VD: `Ngày thường`).
   static String _typeDisplay(OvertimeType type) => (type.type ?? '').trim();
@@ -827,7 +835,7 @@ class _OvertimeShiftFormState extends State<_OvertimeShiftForm> {
           initialValue: session.endTime,
           initialDate: widget.dayStart,
           firstDate: widget.dayStart,
-          lastDate: _lastPickableMoment,
+          lastDate: _lastPickableEndMoment,
           isRequired: true,
           onChanged: (value) {
             if (value == null) return;

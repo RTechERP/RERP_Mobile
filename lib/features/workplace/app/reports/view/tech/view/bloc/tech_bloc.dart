@@ -405,49 +405,37 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
     List<ProjectResponse> rtcProject,
     Emitter<TechState> emit,
   ) async {
-    var projectList = rtcProject.isNotEmpty ? rtcProject : state.rtcProject;
-
     // Luôn cần thông tin user (employeeID) để tải người duyệt mặc định
     // và ca làm thêm của ngày báo cáo.
     final userRes = await _authRepo.getCurrentUser();
     final user = userRes.getOrElse(() => null);
 
+    // Luôn gọi API lấy danh sách dự án mới nhất — danh sách truyền từ màn
+    // danh sách (`rtcProject`) chỉ là snapshot cũ, dùng nó sẽ làm mất dự án
+    // vừa được tạo. Chỉ fallback về snapshot khi API lỗi.
+    final projectRes = await _reportRepo.getProject();
+    var projectList = projectRes.getOrElse(() => rtcProject);
     if (projectList.isEmpty) {
-      final projectRes = await _reportRepo.getProject();
-      projectList = projectRes.getOrElse(() => []);
-
-      final departRes = await _reportRepo.getDepart();
-      final departs = departRes.getOrElse(() => []);
-
-      emit(
-        state.copyWith(
-          rtcProject: projectList,
-          departs: departs,
-          userId: user?.id,
-          fullName: user?.fullName,
-          departmentId: user?.departmentId,
-          teamId: user?.teamOfUser,
-          employeeID: user?.employeeId,
-          isProjectItemRequired:
-              user != null &&
-              _requiredProjectItemDepartments.contains(user.departmentId),
-        ),
-      );
-    } else {
-      emit(
-        state.copyWith(
-          rtcProject: projectList,
-          userId: user?.id,
-          fullName: user?.fullName,
-          departmentId: user?.departmentId,
-          teamId: user?.teamOfUser,
-          employeeID: user?.employeeId,
-          isProjectItemRequired:
-              user != null &&
-              _requiredProjectItemDepartments.contains(user.departmentId),
-        ),
-      );
+      projectList = rtcProject;
     }
+
+    final departRes = await _reportRepo.getDepart();
+    final departs = departRes.getOrElse(() => []);
+
+    emit(
+      state.copyWith(
+        rtcProject: projectList,
+        departs: departs,
+        userId: user?.id,
+        fullName: user?.fullName,
+        departmentId: user?.departmentId,
+        teamId: user?.teamOfUser,
+        employeeID: user?.employeeId,
+        isProjectItemRequired:
+            user != null &&
+            _requiredProjectItemDepartments.contains(user.departmentId),
+      ),
+    );
 
     if (copyItems.isEmpty) {
       add(const TechEvent.addEmptyProject());
@@ -1389,8 +1377,9 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
   /// - Ca 2: thời điểm hiện tại → hiện tại + 2 giờ.
   /// - Ca 3: giờ kết thúc Ca 2 → `23:59`.
   ///
-  /// Mốc "hiện tại" được quy về ngày báo cáo và giới hạn trong `18:00 - 23:59`
-  /// để ca luôn hợp lệ khi báo cáo cho ngày khác hôm nay.
+  /// Ca làm thêm có thể kéo sang rạng sáng hôm sau (VD tới 1h30) nhưng vẫn
+  /// thuộc báo cáo của ngày báo cáo → khi đang làm tiếp sau nửa đêm, mốc
+  /// "hiện tại" được chiếu sang ngày kế tiếp.
   (DateTime, DateTime) _defaultShiftTimes({
     required DateTime dayStart,
     required int shiftIndex,
@@ -1398,6 +1387,10 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
   }) {
     final dayEnd = dayStart.add(const Duration(hours: 23, minutes: 59));
     final shift1Start = dayStart.add(const Duration(hours: 18));
+    final windowEnd = dayStart.add(
+      const Duration(days: 1, hours: OvertimeSession.maxOvertimeOverflowHours),
+    );
+    final nextDay = dayStart.add(const Duration(days: 1));
 
     final now = DateTime.now();
     var anchor = DateTime(
@@ -1407,8 +1400,20 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       now.hour,
       now.minute,
     );
+
+    // Đang làm tiếp sang rạng sáng hôm sau (báo cáo cho hôm qua) → mốc
+    // "hiện tại" lấy theo ngày kế tiếp.
+    if (!now.isBefore(nextDay) && !now.isAfter(windowEnd)) {
+      anchor = DateTime(
+        nextDay.year,
+        nextDay.month,
+        nextDay.day,
+        now.hour,
+        now.minute,
+      );
+    }
     if (anchor.isBefore(shift1Start)) anchor = shift1Start;
-    if (anchor.isAfter(dayEnd)) anchor = dayEnd;
+    if (anchor.isAfter(windowEnd)) anchor = windowEnd;
 
     DateTime start;
     DateTime end;
@@ -1419,25 +1424,24 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
       end = anchor.isAfter(shift1Start)
           ? anchor
           : shift1Start.add(const Duration(hours: 1));
-      if (end.isAfter(dayEnd)) end = dayEnd;
     } else if (shiftIndex == 1) {
       // Ca 2: hiện tại → hiện tại + 2 giờ.
       start = anchor;
       end = anchor.add(const Duration(hours: 2));
-      if (end.isAfter(dayEnd)) end = dayEnd;
     } else {
-      // Ca 3: lấy giờ kết thúc Ca 2 làm giờ bắt đầu, kết thúc 23:59.
+      // Ca 3: lấy giờ kết thúc Ca 2 làm giờ bắt đầu, kết thúc 23:59 — hoặc
+      // hết khung giờ khi Ca 2 đã kéo sang rạng sáng hôm sau.
       start = previous?.endTime ?? anchor.add(const Duration(hours: 2));
-      if (!start.isBefore(dayEnd)) {
-        start = dayEnd.subtract(const Duration(hours: 1));
-      }
-      end = dayEnd;
+      end = dayEnd.isAfter(start) ? dayEnd : windowEnd;
     }
 
-    // Đảm bảo ca luôn có khoảng thời gian dương trong ngày báo cáo.
+    // Không cho ca vượt quá khung giờ cho phép.
+    if (end.isAfter(windowEnd)) end = windowEnd;
+
+    // Đảm bảo ca luôn có khoảng thời gian dương.
     if (!end.isAfter(start)) {
-      end = dayEnd;
-      start = dayEnd.subtract(const Duration(hours: 1));
+      end = windowEnd;
+      start = windowEnd.subtract(const Duration(hours: 1));
     }
 
     return (start, end);
@@ -1632,6 +1636,14 @@ class TechBloc extends BaseBloc<TechEvent, TechState> {
         // 2) Giờ hành chính: 0 <= TotalHours <= 8.0
         if (work.totalHours < 0 || work.totalHours > 8.0) {
           return '${prefix}Tổng số giờ phải từ 0 đến 8 giờ';
+        }
+
+        // 2.1) Tiến độ phải lớn hơn 0% (không được gửi báo cáo chưa có tiến độ).
+        if (work.percentComplete <= 0) {
+          return '${prefix}Tiến độ phải lớn hơn 0%';
+        }
+        if (work.percentComplete > 100) {
+          return '${prefix}% Hoàn thành phải từ 0 đến 100';
         }
 
         // 3) Ca làm thêm mới chỉ được tạo cho [hôm qua, hôm nay].

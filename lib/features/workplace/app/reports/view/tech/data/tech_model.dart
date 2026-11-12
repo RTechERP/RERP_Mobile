@@ -18,6 +18,12 @@ class OvertimeSession extends Equatable {
   static const String maxShiftsMessage =
       'Thời gian làm thêm được khai báo đã tối đa! Vui lòng khai báo làm đêm';
 
+  /// Số giờ tối đa được kéo sang ngày hôm sau so với ngày báo cáo.
+  ///
+  /// Công việc làm đêm có thể kéo sang rạng sáng hôm sau (VD tới 1h30) nhưng
+  /// vẫn thuộc báo cáo của ngày hôm trước.
+  static const int maxOvertimeOverflowHours = 8;
+
   /// ID bản ghi trên BE. `0` = ca làm thêm mới (chưa lưu).
   final int id;
 
@@ -184,7 +190,8 @@ class OvertimeSession extends Equatable {
 
   /// Kiểm tra tính hợp lệ của 1 ca làm thêm.
   ///
-  /// [reportDate] là ngày báo cáo — ca làm thêm phải nằm trong ngày này.
+  /// [reportDate] là ngày báo cáo — dùng làm mốc để chặn ca quá xa khỏi ngày
+  /// báo cáo (xem bên dưới).
   /// [reason] là lý do làm thêm dùng để validate (mặc định lấy từ session).
   /// Trả về thông báo lỗi, hoặc `null` nếu hợp lệ.
   static String? validate(
@@ -200,18 +207,21 @@ class OvertimeSession extends Equatable {
       return 'Thời gian kết thúc phải lớn hơn thời gian bắt đầu';
     }
 
-    // Ca làm thêm phải nằm trong ngày báo cáo (00:00 - 23:59).
+    // Ca làm thêm được phép kéo sang ngày hôm sau (VD làm tới 1h30 sáng hôm
+    // sau vẫn thuộc công việc của ngày báo cáo) → chỉ chặn khi ca vượt quá
+    // xa khỏi ngày báo cáo.
     final dayStart = DateTime(
       reportDate.year,
       reportDate.month,
       reportDate.day,
     );
-    final dayEnd = dayStart.add(const Duration(days: 1));
+    final allowedEnd = dayStart.add(
+      const Duration(days: 1, hours: maxOvertimeOverflowHours),
+    );
 
     if (session.timeStart!.isBefore(dayStart) ||
-        !session.timeStart!.isBefore(dayEnd) ||
-        !session.endTime!.isBefore(dayEnd)) {
-      return 'Thời gian làm thêm phải nằm trong ngày báo cáo';
+        session.endTime!.isAfter(allowedEnd)) {
+      return 'Thời gian làm thêm không hợp lệ so với ngày báo cáo';
     }
 
     if (session.approvedId <= 0) {
