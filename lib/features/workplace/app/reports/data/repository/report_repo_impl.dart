@@ -10,6 +10,7 @@ import '../../../../../../common/logger/index.dart';
 import '../datasource/models/report_model.dart';
 import '../datasource/service/report_service.dart';
 import 'report_repo.dart';
+import 'report_repository.dart';
 
 @LazySingleton(as: ReportRepo)
 class ReportRepoImpl implements ReportRepo {
@@ -60,12 +61,29 @@ class ReportRepoImpl implements ReportRepo {
   }
 
   /// Danh sách dự án
+  ///
+  /// Luôn gọi API để lấy danh sách mới nhất. Khi lỗi mạng thì fallback về
+  /// cache cục bộ (nếu có) để người dùng vẫn chọn được dự án offline.
+  /// Cache được cập nhật mỗi lần gọi API thành công.
   @override
   Future<Either<BaseError, List<ProjectResponse>>> getProject() async {
     try {
       final res = await _service.getProject();
-      return right(res.data ?? []);
+      final projects = res.data ?? [];
+
+      // Không ghi đè cache bằng list rỗng (lỗi tạm thời) để offline vẫn
+      // có dự án để chọn.
+      if (projects.isNotEmpty) {
+        await ReportRepository.saveProjects(projects: projects);
+      }
+
+      return right(projects);
     } on DioException catch (e) {
+      final cached = await ReportRepository.getProjects();
+      if (cached.isNotEmpty) {
+        return right(cached);
+      }
+
       return left(e.baseError);
     }
   }
