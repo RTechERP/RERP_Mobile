@@ -9,21 +9,17 @@ import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/vi
 
 /// Bottom sheet bộ lọc danh sách sản phẩm của phiếu kiểm kê.
 ///
-/// Gồm: ô tìm kiếm theo từ khoá, choice group chọn trạng thái kiểm kê
-/// (Tất cả / Đã kiểm / Chưa kiểm / Chênh lệch) và ô chọn nhóm sản phẩm (hãng).
-/// Áp dụng xong gọi [onApply] với toàn bộ giá trị đang chọn.
+/// Gồm: choice group chọn trạng thái kiểm kê (Tất cả / Đã kiểm / Chưa kiểm /
+/// Chênh lệch) và ô chọn nhóm sản phẩm (hãng). Tìm kiếm đã chuyển lên icon
+/// tìm kiếm trên AppBar nên không có ở đây.
 class InventoryCheckSheetFilterSheet extends StatefulWidget {
   const InventoryCheckSheetFilterSheet({
     super.key,
-    required this.initialKeyword,
     required this.initialFilter,
     required this.productGroups,
     required this.initialProductGroupId,
     required this.onApply,
   });
-
-  /// Từ khoá đang tìm kiếm.
-  final String initialKeyword;
 
   /// Bộ lọc trạng thái đang được áp dụng.
   final InventoryCheckSheetFilter initialFilter;
@@ -37,7 +33,6 @@ class InventoryCheckSheetFilterSheet extends StatefulWidget {
   /// Áp dụng bộ lọc. [filter] null = không lọc trạng thái (hiển thị tất cả),
   /// [productGroupId] null = không lọc theo nhóm sản phẩm.
   final void Function({
-    required String keyword,
     required InventoryCheckSheetFilter? filter,
     required int? productGroupId,
   })
@@ -46,12 +41,10 @@ class InventoryCheckSheetFilterSheet extends StatefulWidget {
   /// Mở sheet bộ lọc.
   static Future<void> show(
     BuildContext context, {
-    required String initialKeyword,
     required InventoryCheckSheetFilter initialFilter,
     required List<InventoryProductGroupRtc> productGroups,
     required int? initialProductGroupId,
     required void Function({
-      required String keyword,
       required InventoryCheckSheetFilter? filter,
       required int? productGroupId,
     })
@@ -62,7 +55,6 @@ class InventoryCheckSheetFilterSheet extends StatefulWidget {
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (_) => InventoryCheckSheetFilterSheet(
-        initialKeyword: initialKeyword,
         initialFilter: initialFilter,
         productGroups: productGroups,
         initialProductGroupId: initialProductGroupId,
@@ -80,28 +72,19 @@ class _InventoryCheckSheetFilterSheetState
     extends State<InventoryCheckSheetFilterSheet> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
 
-  late final TextEditingController _keywordController;
   late InventoryCheckSheetFilter _filter;
   late int? _productGroupId;
 
   @override
   void initState() {
     super.initState();
-    _keywordController = TextEditingController(text: widget.initialKeyword);
     _filter = widget.initialFilter;
     _productGroupId = widget.initialProductGroupId;
-  }
-
-  @override
-  void dispose() {
-    _keywordController.dispose();
-    super.dispose();
   }
 
   /// Áp dụng bộ lọc và đóng sheet.
   void _apply() {
     widget.onApply(
-      keyword: _keywordController.text.trim(),
       filter: _filter == InventoryCheckSheetFilter.all ? null : _filter,
       productGroupId: _productGroupId,
     );
@@ -188,65 +171,6 @@ class _InventoryCheckSheetFilterSheetState
                   shrinkWrap: true,
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                   children: [
-                    /// ===== TỪ KHOÁ =====
-                    const Text(
-                      'Tìm kiếm theo từ khoá',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.heading,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    TextField(
-                      controller: _keywordController,
-                      textInputAction: TextInputAction.search,
-                      style: const TextStyle(fontSize: 14),
-                      decoration: InputDecoration(
-                        hintText: 'Mã SP, tên SP, vị trí kho...',
-                        hintStyle: const TextStyle(
-                          color: AppColors.hintText,
-                          fontSize: 14,
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.search,
-                          color: AppColors.gray,
-                          size: 20,
-                        ),
-                        prefixIconConstraints: const BoxConstraints(
-                          minWidth: 36,
-                          minHeight: 36,
-                        ),
-                        isDense: true,
-                        filled: true,
-                        fillColor: AppColors.background,
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 12,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: AppColors.borderColor,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: AppColors.borderColor,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: AppColors.primaryERP,
-                            width: 1.5,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-
                     /// ===== NHÓM SẢN PHẨM (HÃNG) =====
                     const Text(
                       'Nhóm sản phẩm',
@@ -348,11 +272,7 @@ class _InventoryCheckSheetFilterSheetState
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () {
-                        widget.onApply(
-                          keyword: '',
-                          filter: null,
-                          productGroupId: null,
-                        );
+                        widget.onApply(filter: null, productGroupId: null);
                         context.pop();
                       },
                       style: OutlinedButton.styleFrom(

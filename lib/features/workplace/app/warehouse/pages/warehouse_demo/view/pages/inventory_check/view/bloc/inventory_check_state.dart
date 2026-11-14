@@ -12,6 +12,73 @@ enum InventoryScanMode {
   location,
 }
 
+/// Nhóm vị trí đang chọn trong card "Tiến độ theo vị trí".
+///
+/// Mỗi nhóm là 1 ô trong card và quyết định cấu trúc danh sách chi tiết
+/// hiển thị bên dưới:
+///
+/// - [noLocation]: sản phẩm chưa có vị trí nào (gom cả vị trí kho lẫn
+///   vị trí Modula).
+/// - [productLocation]: vị trí kho / kệ — hiển thị phẳng, mỗi kệ 1 dòng.
+/// - [modula]: vị trí Modula — hiển thị dạng cây tủ (cha) → ô chi tiết.
+enum InventoryLocationGroup {
+  /// Sản phẩm chưa có vị trí nào (gom cả vị trí kho lẫn vị trí Modula).
+  noLocation,
+
+  /// Vị trí kho / kệ (ProductLocations).
+  productLocation,
+
+  /// Vị trí Modula — 2 cấp: tủ cha → ô chi tiết.
+  modula,
+}
+
+/// Số sản phẩm thuộc từng nhóm vị trí.
+///
+/// Lấy từ chính API `get-inventory-sheet-mobile` nên số hiển thị luôn khớp
+/// với danh sách sản phẩm hiện ra khi bấm vào nhóm tương ứng.
+///
+/// Không lấy từ API `get-location-progress-mobile` vì các dòng `ID = 0` của 3
+/// mảng đếm trùng nhau (ví dụ `ModulaLocationGroups` và `ModulaLocations`
+/// cùng trả về một tập sản phẩm chưa có vị trí Modula).
+class InventoryLocationCounts extends Equatable {
+  const InventoryLocationCounts({
+    this.noLocation = 0,
+    this.noLocationCounted = 0,
+    this.warehouse = 0,
+    this.warehouseCounted = 0,
+    this.modula = 0,
+    this.modulaCounted = 0,
+  });
+
+  /// Số sản phẩm không có cả vị trí kho lẫn vị trí Modula.
+  final int noLocation;
+
+  /// Số sản phẩm không có vị trí nào đã được kiểm.
+  final int noLocationCounted;
+
+  /// Tổng số sản phẩm của đợt kiểm kê.
+  final int warehouse;
+
+  /// Số sản phẩm đã được kiểm.
+  final int warehouseCounted;
+
+  /// Số sản phẩm đang có vị trí Modula.
+  final int modula;
+
+  /// Số sản phẩm có vị trí Modula đã được kiểm.
+  final int modulaCounted;
+
+  @override
+  List<Object?> get props => [
+    noLocation,
+    noLocationCounted,
+    warehouse,
+    warehouseCounted,
+    modula,
+    modulaCounted,
+  ];
+}
+
 /// Bộ lọc sắp xếp danh sách sản phẩm trong phiếu kiểm kê.
 enum InventoryCheckSheetFilter {
   /// Hiển thị tất cả sản phẩm.
@@ -86,6 +153,59 @@ class InventoryCheckState extends BaseBlocState {
 
   /// Phiếu kiểm kê kèm danh sách sản phẩm đã kiểm kê.
   final InventoryCountSheet? sheet;
+
+  /// Toàn bộ sản phẩm của đợt kiểm kê (không lọc theo vị trí).
+  ///
+  /// Dùng làm nguồn đếm cho 3 ô "Tiến độ theo vị trí" — số hiển thị luôn
+  /// khớp với danh sách sản phẩm, không phụ thuộc bộ lọc vị trí đang áp dụng.
+  final List<InventoryCountSheetItem> allSheetItems;
+
+  /// Đang tải số liệu của 3 ô "Tiến độ theo vị trí".
+  ///
+  /// Khi đang tải thì 3 ô hiển thị `--` thay vì `0/0` để không nhầm là
+  /// sản phẩm bằng 0.
+  final bool isLoadingLocationCounts;
+
+  /// Số sản phẩm thuộc từng nhóm vị trí.
+  ///
+  /// Lấy từ chính API `get-inventory-sheet-mobile` nên số hiển thị luôn khớp
+  /// với danh sách sản phẩm hiện ra khi bấm vào nhóm tương ứng.
+  ///
+  /// Không lấy từ API `get-location-progress-mobile` vì các dòng `ID = 0` của 3
+  /// mảng đếm trùng nhau (ví dụ `ModulaLocationGroups` và `ModulaLocations`
+  /// cùng trả về một tập sản phẩm chưa có vị trí Modula).
+  final InventoryLocationCounts locationCounts;
+
+  /// Id đợt kiểm kê đang xem — dùng để tải lại bảng sản phẩm theo vị trí.
+  final int? sheetCountId;
+
+  /// Tiến độ kiểm kê theo vị trí kho & vị trí Modula.
+  final InventoryLocationProgress? locationProgress;
+
+  /// Đang tải tiến độ kiểm kê theo vị trí.
+  final bool isLoadingLocationProgress;
+
+  /// Id vị trí kho đang chọn để lọc sản phẩm.
+  ///
+  /// `null` → không lọc theo vị trí kho.
+  final int? productLocationId;
+
+  /// Id tủ Modula đang chọn để lọc sản phẩm.
+  ///
+  /// `null` → không lọc theo tủ Modula.
+  final int? modulaLocationId;
+
+  /// Id ô Modula chi tiết đang chọn để lọc sản phẩm.
+  ///
+  /// `null` → không lọc theo ô Modula chi tiết.
+  final int? modulaLocationDetailId;
+
+  /// Nhóm vị trí đang chọn trong card "Tiến độ theo vị trí".
+  ///
+  /// Dùng để lọc danh sách sản phẩm theo nhóm: [InventoryLocationGroup.modula]
+  /// lọc ở client (chỉ giữ sản phẩm có vị trí Modula), 2 nhóm còn lại do
+  /// API xử lý qua tham số vị trí.
+  final InventoryLocationGroup? locationScope;
 
   /// Đang tải phiếu kiểm kê chi tiết.
   final bool isLoadingSheet;
@@ -166,6 +286,16 @@ class InventoryCheckState extends BaseBlocState {
     this.deleteSuccess = false,
     this.deleteError,
     this.sheet,
+    this.allSheetItems = const [],
+    this.isLoadingLocationCounts = false,
+    this.locationCounts = const InventoryLocationCounts(),
+    this.sheetCountId,
+    this.locationProgress,
+    this.isLoadingLocationProgress = false,
+    this.productLocationId,
+    this.modulaLocationId,
+    this.modulaLocationDetailId,
+    this.locationScope,
     this.isLoadingSheet = false,
     this.sheetKeyword = '',
     this.sheetFilter,
@@ -221,7 +351,19 @@ class InventoryCheckState extends BaseBlocState {
     }).toList();
   }
 
-  /// Danh sách sản phẩm trong phiếu sau khi lọc theo từ khoá
+  /// Danh sách vị trí kho đang hiển thị.
+  List<InventoryProductLocation> get visibleProductLocations =>
+      locationProgress?.productLocations ?? const [];
+
+  /// Danh sách tủ Modula đang hiển thị.
+  List<InventoryModulaLocationGroup> get visibleModulaLocationGroups =>
+      locationProgress?.modulaLocationGroups ?? const [];
+
+  /// Danh sách ô Modula chi tiết đang hiển thị.
+  List<InventoryModulaLocationDetail> get visibleModulaLocations =>
+      locationProgress?.modulaLocations ?? const [];
+
+  /// Sản phẩm trong phiếu sau khi lọc theo từ khoá
   /// (mã sản phẩm, mã nội bộ, tên sản phẩm, vị trí kho, nhóm sản phẩm),
   /// bộ lọc sắp xếp đang chọn và mã vừa quét bằng PDA.
   ///
@@ -236,14 +378,12 @@ class InventoryCheckState extends BaseBlocState {
       final groupId = sheetProductGroupId;
       if (groupId != null && item.productGroupRtcId != groupId) return false;
       if (!matchesScanCode(item)) return false;
+      if (locationScope == InventoryLocationGroup.modula &&
+          !_hasModulaLocation(item)) {
+        return false;
+      }
       if (keyword.isEmpty) return true;
-      return (item.productCode ?? '').toLowerCase().contains(keyword) ||
-          (item.productCodeRtc ?? '').toLowerCase().contains(keyword) ||
-          (item.productName ?? '').toLowerCase().contains(keyword) ||
-          (item.locationName ?? '').toLowerCase().contains(keyword) ||
-          (item.productGroupName ?? '').toLowerCase().contains(keyword) ||
-          (item.maker ?? '').toLowerCase().contains(keyword) ||
-          (item.serialNumber ?? '').toLowerCase().contains(keyword);
+      return _matchesSheetKeyword(item, keyword);
     }).toList();
 
     if (sheetScanMode == InventoryScanMode.location) {
@@ -263,6 +403,37 @@ class InventoryCheckState extends BaseBlocState {
   /// Dòng sản phẩm có nằm ở vị trí Modula khớp mã vừa quét hay không.
   static bool _isModulaMatch(InventoryCountSheetItem item, String code) {
     return _equalsCode(item.modulaLocationName, code);
+  }
+
+  /// Dòng sản phẩm có đang có vị trí Modula hay không.
+  ///
+  /// Dùng để lọc ở client cho nhóm "Modula" — API không có tham số tương
+  /// đương cho trường hợp "có vị trí Modula" (chỉ có `-1` / `0` / `> 0`).
+  static bool _hasModulaLocation(InventoryCountSheetItem item) {
+    return (item.modulaLocationName ?? '').trim().isNotEmpty;
+  }
+
+  /// So khớp từ khoá với một dòng sản phẩm.
+  ///
+  /// Dùng đúng bộ trường mà API `get-inventory-sheet-mobile` hỗ trợ lọc:
+  /// `ProductCode`, `ProductName`, `ProductCodeRTC`, `Maker`, `AddressBox`,
+  /// `Serial`, `SerialNumber`, `PartNumber`, `LocationName`,
+  /// `ModulaLocationName`, `ProductGroupName`.
+  static bool _matchesSheetKeyword(
+    InventoryCountSheetItem item,
+    String keyword,
+  ) {
+    return (item.productCode ?? '').toLowerCase().contains(keyword) ||
+        (item.productCodeRtc ?? '').toLowerCase().contains(keyword) ||
+        (item.productName ?? '').toLowerCase().contains(keyword) ||
+        (item.maker ?? '').toLowerCase().contains(keyword) ||
+        (item.addressBox ?? '').toLowerCase().contains(keyword) ||
+        (item.serial ?? '').toLowerCase().contains(keyword) ||
+        (item.serialNumber ?? '').toLowerCase().contains(keyword) ||
+        (item.partNumber ?? '').toLowerCase().contains(keyword) ||
+        (item.locationName ?? '').toLowerCase().contains(keyword) ||
+        (item.modulaLocationName ?? '').toLowerCase().contains(keyword) ||
+        (item.productGroupName ?? '').toLowerCase().contains(keyword);
   }
 
   /// Kiểm tra dòng sản phẩm có khớp mã vừa quét hay không.
@@ -365,6 +536,16 @@ class InventoryCheckState extends BaseBlocState {
     deleteSuccess,
     deleteError,
     sheet,
+    allSheetItems,
+    isLoadingLocationCounts,
+    locationCounts,
+    sheetCountId,
+    locationProgress,
+    isLoadingLocationProgress,
+    productLocationId,
+    modulaLocationId,
+    modulaLocationDetailId,
+    locationScope,
     isLoadingSheet,
     sheetKeyword,
     sheetFilter,

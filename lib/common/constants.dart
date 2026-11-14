@@ -555,6 +555,16 @@ class ApiEndPoint {
   static const String getInventoryCountSheet =
       '/WarehouseInventoryCount/get-inventory-sheet';
 
+  /// Kiểm kê kho (mobile) — lấy tiến độ kiểm kê theo vị trí kho & Modula.
+  /// API: GET /WarehouseInventoryCount/get-location-progress-mobile?countId=X
+  static const String getInventoryLocationProgressMobile =
+      '/WarehouseInventoryCount/get-location-progress-mobile';
+
+  /// Kiểm kê kho (mobile) — bảng sản phẩm kiểm kê, lọc theo vị trí.
+  /// API: GET /WarehouseInventoryCount/get-inventory-sheet-mobile?countId=X
+  static const String getInventorySheetMobile =
+      '/WarehouseInventoryCount/get-inventory-sheet-mobile';
+
   /// Kiểm kê kho — lưu kết quả kiểm kê thực tế của các dòng sản phẩm.
   /// API: POST /WarehouseInventoryCount/save-count-details
   static const String saveInventoryCountDetails =

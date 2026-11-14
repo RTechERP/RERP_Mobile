@@ -36,6 +36,28 @@ abstract class InventoryCheckRepo {
     required int countId,
   });
 
+  /// Lấy tiến độ kiểm kê theo vị trí kho & vị trí Modula.
+  ///
+  /// [modulaLocationId] = -1 → tất cả; 0 → "Chưa có vị trí"; > 0 → 1 tủ.
+  Future<Either<BaseError, InventoryLocationProgress>> getLocationProgressMobile({
+    required int countId,
+    int warehouseId = 0,
+    int modulaLocationId = -1,
+    String? keyword,
+  });
+
+  /// Lấy bảng sản phẩm kiểm kê cho mobile, lọc theo vị trí.
+  ///
+  /// Quy ước: `-1` → tất cả, `0` → chưa có vị trí, `> 0` → vị trí cụ thể.
+  Future<Either<BaseError, InventoryCountSheet>> getInventorySheetMobile({
+    required int countId,
+    String? keyword,
+    int? productGroupId,
+    int productLocationId = -1,
+    int modulaLocationId = -1,
+    int modulaLocationDetailId = -1,
+  });
+
   /// Lấy nhóm sản phẩm RTC trong kho để bổ sung sản phẩm vào phiếu kiểm kê.
   Future<Either<BaseError, List<InventoryProductGroupRtc>>>
   getProductGroupRtcNew({

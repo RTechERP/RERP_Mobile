@@ -3270,6 +3270,12 @@ mixin _$InventoryCountSheetItem {
   /// Tồn kho tổng.
   @JsonKey(name: 'InventoryQuantity')
   double? get inventoryQuantity => throw _privateConstructorUsedError;
+
+  /// Id vị trí kho của sản phẩm (0 = chưa có vị trí).
+  ///
+  /// Dùng để gọi API `get-inventory-sheet-mobile` lọc theo vị trí.
+  @JsonKey(name: 'ProductLocationID')
+  int? get productLocationId => throw _privateConstructorUsedError;
   @JsonKey(name: 'UpdatedDate')
   String? get updatedDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'UpdatedBy')
@@ -3319,6 +3325,7 @@ abstract class $InventoryCountSheetItemCopyWith<$Res> {
       @JsonKey(name: 'CustomerBorrowedQuantity')
       double? customerBorrowedQuantity,
       @JsonKey(name: 'InventoryQuantity') double? inventoryQuantity,
+      @JsonKey(name: 'ProductLocationID') int? productLocationId,
       @JsonKey(name: 'UpdatedDate') String? updatedDate,
       @JsonKey(name: 'UpdatedBy') String? updatedBy});
 }
@@ -3366,6 +3373,7 @@ class _$InventoryCountSheetItemCopyWithImpl<$Res,
     Object? borrowedQuantity = freezed,
     Object? customerBorrowedQuantity = freezed,
     Object? inventoryQuantity = freezed,
+    Object? productLocationId = freezed,
     Object? updatedDate = freezed,
     Object? updatedBy = freezed,
   }) {
@@ -3486,6 +3494,10 @@ class _$InventoryCountSheetItemCopyWithImpl<$Res,
           ? _value.inventoryQuantity
           : inventoryQuantity // ignore: cast_nullable_to_non_nullable
               as double?,
+      productLocationId: freezed == productLocationId
+          ? _value.productLocationId
+          : productLocationId // ignore: cast_nullable_to_non_nullable
+              as int?,
       updatedDate: freezed == updatedDate
           ? _value.updatedDate
           : updatedDate // ignore: cast_nullable_to_non_nullable
@@ -3539,6 +3551,7 @@ abstract class _$$InventoryCountSheetItemImplCopyWith<$Res>
       @JsonKey(name: 'CustomerBorrowedQuantity')
       double? customerBorrowedQuantity,
       @JsonKey(name: 'InventoryQuantity') double? inventoryQuantity,
+      @JsonKey(name: 'ProductLocationID') int? productLocationId,
       @JsonKey(name: 'UpdatedDate') String? updatedDate,
       @JsonKey(name: 'UpdatedBy') String? updatedBy});
 }
@@ -3585,6 +3598,7 @@ class __$$InventoryCountSheetItemImplCopyWithImpl<$Res>
     Object? borrowedQuantity = freezed,
     Object? customerBorrowedQuantity = freezed,
     Object? inventoryQuantity = freezed,
+    Object? productLocationId = freezed,
     Object? updatedDate = freezed,
     Object? updatedBy = freezed,
   }) {
@@ -3705,6 +3719,10 @@ class __$$InventoryCountSheetItemImplCopyWithImpl<$Res>
           ? _value.inventoryQuantity
           : inventoryQuantity // ignore: cast_nullable_to_non_nullable
               as double?,
+      productLocationId: freezed == productLocationId
+          ? _value.productLocationId
+          : productLocationId // ignore: cast_nullable_to_non_nullable
+              as int?,
       updatedDate: freezed == updatedDate
           ? _value.updatedDate
           : updatedDate // ignore: cast_nullable_to_non_nullable
@@ -3751,6 +3769,7 @@ class _$InventoryCountSheetItemImpl implements _InventoryCountSheetItem {
       @JsonKey(name: 'BorrowedQuantity') this.borrowedQuantity,
       @JsonKey(name: 'CustomerBorrowedQuantity') this.customerBorrowedQuantity,
       @JsonKey(name: 'InventoryQuantity') this.inventoryQuantity,
+      @JsonKey(name: 'ProductLocationID') this.productLocationId,
       @JsonKey(name: 'UpdatedDate') this.updatedDate,
       @JsonKey(name: 'UpdatedBy') this.updatedBy});
 
@@ -3896,6 +3915,13 @@ class _$InventoryCountSheetItemImpl implements _InventoryCountSheetItem {
   @override
   @JsonKey(name: 'InventoryQuantity')
   final double? inventoryQuantity;
+
+  /// Id vị trí kho của sản phẩm (0 = chưa có vị trí).
+  ///
+  /// Dùng để gọi API `get-inventory-sheet-mobile` lọc theo vị trí.
+  @override
+  @JsonKey(name: 'ProductLocationID')
+  final int? productLocationId;
   @override
   @JsonKey(name: 'UpdatedDate')
   final String? updatedDate;
@@ -3905,7 +3931,7 @@ class _$InventoryCountSheetItemImpl implements _InventoryCountSheetItem {
 
   @override
   String toString() {
-    return 'InventoryCountSheetItem(id: $id, warehouseInventoryCountId: $warehouseInventoryCountId, productRtcId: $productRtcId, productCode: $productCode, productName: $productName, productCodeRtc: $productCodeRtc, maker: $maker, unitName: $unitName, addressBox: $addressBox, locationName: $locationName, serialNumber: $serialNumber, serial: $serial, partNumber: $partNumber, productGroupRtcId: $productGroupRtcId, productGroupName: $productGroupName, modulaLocationName: $modulaLocationName, numberInStore: $numberInStore, inventoryReal: $inventoryReal, numberImport: $numberImport, numberExport: $numberExport, numberBorrowing: $numberBorrowing, quantityExportMuon: $quantityExportMuon, quantityActual: $quantityActual, difference: $difference, note: $note, hasCounted: $hasCounted, borrowedQuantity: $borrowedQuantity, customerBorrowedQuantity: $customerBorrowedQuantity, inventoryQuantity: $inventoryQuantity, updatedDate: $updatedDate, updatedBy: $updatedBy)';
+    return 'InventoryCountSheetItem(id: $id, warehouseInventoryCountId: $warehouseInventoryCountId, productRtcId: $productRtcId, productCode: $productCode, productName: $productName, productCodeRtc: $productCodeRtc, maker: $maker, unitName: $unitName, addressBox: $addressBox, locationName: $locationName, serialNumber: $serialNumber, serial: $serial, partNumber: $partNumber, productGroupRtcId: $productGroupRtcId, productGroupName: $productGroupName, modulaLocationName: $modulaLocationName, numberInStore: $numberInStore, inventoryReal: $inventoryReal, numberImport: $numberImport, numberExport: $numberExport, numberBorrowing: $numberBorrowing, quantityExportMuon: $quantityExportMuon, quantityActual: $quantityActual, difference: $difference, note: $note, hasCounted: $hasCounted, borrowedQuantity: $borrowedQuantity, customerBorrowedQuantity: $customerBorrowedQuantity, inventoryQuantity: $inventoryQuantity, productLocationId: $productLocationId, updatedDate: $updatedDate, updatedBy: $updatedBy)';
   }
 
   @override
@@ -3969,6 +3995,8 @@ class _$InventoryCountSheetItemImpl implements _InventoryCountSheetItem {
                 other.customerBorrowedQuantity == customerBorrowedQuantity) &&
             (identical(other.inventoryQuantity, inventoryQuantity) ||
                 other.inventoryQuantity == inventoryQuantity) &&
+            (identical(other.productLocationId, productLocationId) ||
+                other.productLocationId == productLocationId) &&
             (identical(other.updatedDate, updatedDate) ||
                 other.updatedDate == updatedDate) &&
             (identical(other.updatedBy, updatedBy) ||
@@ -4008,6 +4036,7 @@ class _$InventoryCountSheetItemImpl implements _InventoryCountSheetItem {
         borrowedQuantity,
         customerBorrowedQuantity,
         inventoryQuantity,
+        productLocationId,
         updatedDate,
         updatedBy
       ]);
@@ -4060,6 +4089,7 @@ abstract class _InventoryCountSheetItem implements InventoryCountSheetItem {
           @JsonKey(name: 'CustomerBorrowedQuantity')
           final double? customerBorrowedQuantity,
           @JsonKey(name: 'InventoryQuantity') final double? inventoryQuantity,
+          @JsonKey(name: 'ProductLocationID') final int? productLocationId,
           @JsonKey(name: 'UpdatedDate') final String? updatedDate,
           @JsonKey(name: 'UpdatedBy') final String? updatedBy}) =
       _$InventoryCountSheetItemImpl;
@@ -4207,6 +4237,13 @@ abstract class _InventoryCountSheetItem implements InventoryCountSheetItem {
   @JsonKey(name: 'InventoryQuantity')
   double? get inventoryQuantity;
   @override
+
+  /// Id vị trí kho của sản phẩm (0 = chưa có vị trí).
+  ///
+  /// Dùng để gọi API `get-inventory-sheet-mobile` lọc theo vị trí.
+  @JsonKey(name: 'ProductLocationID')
+  int? get productLocationId;
+  @override
   @JsonKey(name: 'UpdatedDate')
   String? get updatedDate;
   @override
@@ -4215,5 +4252,1634 @@ abstract class _InventoryCountSheetItem implements InventoryCountSheetItem {
   @override
   @JsonKey(ignore: true)
   _$$InventoryCountSheetItemImplCopyWith<_$InventoryCountSheetItemImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+InventoryProductLocation _$InventoryProductLocationFromJson(
+    Map<String, dynamic> json) {
+  return _InventoryProductLocation.fromJson(json);
+}
+
+/// @nodoc
+mixin _$InventoryProductLocation {
+  /// Id vị trí kho (0 = chưa có vị trí).
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+
+  /// Mã vị trí (vd. `K1-T3.1`).
+  @JsonKey(name: 'LocationCode')
+  String? get locationCode => throw _privateConstructorUsedError;
+
+  /// Tên vị trí.
+  @JsonKey(name: 'LocationName')
+  String? get locationName => throw _privateConstructorUsedError;
+
+  /// Tên vị trí cũ (dùng khi vị trí đã được đổi tên).
+  @JsonKey(name: 'OldLocationName')
+  String? get oldLocationName => throw _privateConstructorUsedError;
+
+  /// Id kho chứa vị trí.
+  @JsonKey(name: 'WarehouseID')
+  int? get warehouseId => throw _privateConstructorUsedError;
+
+  /// Loại vị trí (0 = thường, 1 = kệ...).
+  @JsonKey(name: 'LocationType')
+  int? get locationType => throw _privateConstructorUsedError;
+
+  /// Thứ tự hiển thị.
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+
+  /// Tổng số mã sản phẩm thuộc vị trí này trong đợt kiểm kê.
+  @JsonKey(name: 'TotalCount')
+  int get totalCount => throw _privateConstructorUsedError;
+
+  /// Số mã đã kiểm (`QuantityActual` khác null).
+  @JsonKey(name: 'CountedCount')
+  int get countedCount => throw _privateConstructorUsedError;
+
+  /// Số mã chưa kiểm.
+  @JsonKey(name: 'UncountedCount')
+  int get uncountedCount => throw _privateConstructorUsedError;
+
+  /// Vị trí đã kiểm xong hay chưa.
+  @JsonKey(name: 'IsCompleted')
+  bool get isCompleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InventoryProductLocationCopyWith<InventoryProductLocation> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InventoryProductLocationCopyWith<$Res> {
+  factory $InventoryProductLocationCopyWith(InventoryProductLocation value,
+          $Res Function(InventoryProductLocation) then) =
+      _$InventoryProductLocationCopyWithImpl<$Res, InventoryProductLocation>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LocationCode') String? locationCode,
+      @JsonKey(name: 'LocationName') String? locationName,
+      @JsonKey(name: 'OldLocationName') String? oldLocationName,
+      @JsonKey(name: 'WarehouseID') int? warehouseId,
+      @JsonKey(name: 'LocationType') int? locationType,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'TotalCount') int totalCount,
+      @JsonKey(name: 'CountedCount') int countedCount,
+      @JsonKey(name: 'UncountedCount') int uncountedCount,
+      @JsonKey(name: 'IsCompleted') bool isCompleted});
+}
+
+/// @nodoc
+class _$InventoryProductLocationCopyWithImpl<$Res,
+        $Val extends InventoryProductLocation>
+    implements $InventoryProductLocationCopyWith<$Res> {
+  _$InventoryProductLocationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? locationCode = freezed,
+    Object? locationName = freezed,
+    Object? oldLocationName = freezed,
+    Object? warehouseId = freezed,
+    Object? locationType = freezed,
+    Object? stt = freezed,
+    Object? totalCount = null,
+    Object? countedCount = null,
+    Object? uncountedCount = null,
+    Object? isCompleted = null,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      locationCode: freezed == locationCode
+          ? _value.locationCode
+          : locationCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      locationName: freezed == locationName
+          ? _value.locationName
+          : locationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      oldLocationName: freezed == oldLocationName
+          ? _value.oldLocationName
+          : oldLocationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      warehouseId: freezed == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      locationType: freezed == locationType
+          ? _value.locationType
+          : locationType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      countedCount: null == countedCount
+          ? _value.countedCount
+          : countedCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      uncountedCount: null == uncountedCount
+          ? _value.uncountedCount
+          : uncountedCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$InventoryProductLocationImplCopyWith<$Res>
+    implements $InventoryProductLocationCopyWith<$Res> {
+  factory _$$InventoryProductLocationImplCopyWith(
+          _$InventoryProductLocationImpl value,
+          $Res Function(_$InventoryProductLocationImpl) then) =
+      __$$InventoryProductLocationImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'LocationCode') String? locationCode,
+      @JsonKey(name: 'LocationName') String? locationName,
+      @JsonKey(name: 'OldLocationName') String? oldLocationName,
+      @JsonKey(name: 'WarehouseID') int? warehouseId,
+      @JsonKey(name: 'LocationType') int? locationType,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'TotalCount') int totalCount,
+      @JsonKey(name: 'CountedCount') int countedCount,
+      @JsonKey(name: 'UncountedCount') int uncountedCount,
+      @JsonKey(name: 'IsCompleted') bool isCompleted});
+}
+
+/// @nodoc
+class __$$InventoryProductLocationImplCopyWithImpl<$Res>
+    extends _$InventoryProductLocationCopyWithImpl<$Res,
+        _$InventoryProductLocationImpl>
+    implements _$$InventoryProductLocationImplCopyWith<$Res> {
+  __$$InventoryProductLocationImplCopyWithImpl(
+      _$InventoryProductLocationImpl _value,
+      $Res Function(_$InventoryProductLocationImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? locationCode = freezed,
+    Object? locationName = freezed,
+    Object? oldLocationName = freezed,
+    Object? warehouseId = freezed,
+    Object? locationType = freezed,
+    Object? stt = freezed,
+    Object? totalCount = null,
+    Object? countedCount = null,
+    Object? uncountedCount = null,
+    Object? isCompleted = null,
+  }) {
+    return _then(_$InventoryProductLocationImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      locationCode: freezed == locationCode
+          ? _value.locationCode
+          : locationCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      locationName: freezed == locationName
+          ? _value.locationName
+          : locationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      oldLocationName: freezed == oldLocationName
+          ? _value.oldLocationName
+          : oldLocationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      warehouseId: freezed == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      locationType: freezed == locationType
+          ? _value.locationType
+          : locationType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      countedCount: null == countedCount
+          ? _value.countedCount
+          : countedCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      uncountedCount: null == uncountedCount
+          ? _value.uncountedCount
+          : uncountedCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$InventoryProductLocationImpl implements _InventoryProductLocation {
+  const _$InventoryProductLocationImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'LocationCode') this.locationCode,
+      @JsonKey(name: 'LocationName') this.locationName,
+      @JsonKey(name: 'OldLocationName') this.oldLocationName,
+      @JsonKey(name: 'WarehouseID') this.warehouseId,
+      @JsonKey(name: 'LocationType') this.locationType,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'TotalCount') this.totalCount = 0,
+      @JsonKey(name: 'CountedCount') this.countedCount = 0,
+      @JsonKey(name: 'UncountedCount') this.uncountedCount = 0,
+      @JsonKey(name: 'IsCompleted') this.isCompleted = false});
+
+  factory _$InventoryProductLocationImpl.fromJson(Map<String, dynamic> json) =>
+      _$$InventoryProductLocationImplFromJson(json);
+
+  /// Id vị trí kho (0 = chưa có vị trí).
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+
+  /// Mã vị trí (vd. `K1-T3.1`).
+  @override
+  @JsonKey(name: 'LocationCode')
+  final String? locationCode;
+
+  /// Tên vị trí.
+  @override
+  @JsonKey(name: 'LocationName')
+  final String? locationName;
+
+  /// Tên vị trí cũ (dùng khi vị trí đã được đổi tên).
+  @override
+  @JsonKey(name: 'OldLocationName')
+  final String? oldLocationName;
+
+  /// Id kho chứa vị trí.
+  @override
+  @JsonKey(name: 'WarehouseID')
+  final int? warehouseId;
+
+  /// Loại vị trí (0 = thường, 1 = kệ...).
+  @override
+  @JsonKey(name: 'LocationType')
+  final int? locationType;
+
+  /// Thứ tự hiển thị.
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+
+  /// Tổng số mã sản phẩm thuộc vị trí này trong đợt kiểm kê.
+  @override
+  @JsonKey(name: 'TotalCount')
+  final int totalCount;
+
+  /// Số mã đã kiểm (`QuantityActual` khác null).
+  @override
+  @JsonKey(name: 'CountedCount')
+  final int countedCount;
+
+  /// Số mã chưa kiểm.
+  @override
+  @JsonKey(name: 'UncountedCount')
+  final int uncountedCount;
+
+  /// Vị trí đã kiểm xong hay chưa.
+  @override
+  @JsonKey(name: 'IsCompleted')
+  final bool isCompleted;
+
+  @override
+  String toString() {
+    return 'InventoryProductLocation(id: $id, locationCode: $locationCode, locationName: $locationName, oldLocationName: $oldLocationName, warehouseId: $warehouseId, locationType: $locationType, stt: $stt, totalCount: $totalCount, countedCount: $countedCount, uncountedCount: $uncountedCount, isCompleted: $isCompleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InventoryProductLocationImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.locationCode, locationCode) ||
+                other.locationCode == locationCode) &&
+            (identical(other.locationName, locationName) ||
+                other.locationName == locationName) &&
+            (identical(other.oldLocationName, oldLocationName) ||
+                other.oldLocationName == oldLocationName) &&
+            (identical(other.warehouseId, warehouseId) ||
+                other.warehouseId == warehouseId) &&
+            (identical(other.locationType, locationType) ||
+                other.locationType == locationType) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.countedCount, countedCount) ||
+                other.countedCount == countedCount) &&
+            (identical(other.uncountedCount, uncountedCount) ||
+                other.uncountedCount == uncountedCount) &&
+            (identical(other.isCompleted, isCompleted) ||
+                other.isCompleted == isCompleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      locationCode,
+      locationName,
+      oldLocationName,
+      warehouseId,
+      locationType,
+      stt,
+      totalCount,
+      countedCount,
+      uncountedCount,
+      isCompleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InventoryProductLocationImplCopyWith<_$InventoryProductLocationImpl>
+      get copyWith => __$$InventoryProductLocationImplCopyWithImpl<
+          _$InventoryProductLocationImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$InventoryProductLocationImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _InventoryProductLocation implements InventoryProductLocation {
+  const factory _InventoryProductLocation(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'LocationCode') final String? locationCode,
+          @JsonKey(name: 'LocationName') final String? locationName,
+          @JsonKey(name: 'OldLocationName') final String? oldLocationName,
+          @JsonKey(name: 'WarehouseID') final int? warehouseId,
+          @JsonKey(name: 'LocationType') final int? locationType,
+          @JsonKey(name: 'STT') final int? stt,
+          @JsonKey(name: 'TotalCount') final int totalCount,
+          @JsonKey(name: 'CountedCount') final int countedCount,
+          @JsonKey(name: 'UncountedCount') final int uncountedCount,
+          @JsonKey(name: 'IsCompleted') final bool isCompleted}) =
+      _$InventoryProductLocationImpl;
+
+  factory _InventoryProductLocation.fromJson(Map<String, dynamic> json) =
+      _$InventoryProductLocationImpl.fromJson;
+
+  @override
+
+  /// Id vị trí kho (0 = chưa có vị trí).
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+
+  /// Mã vị trí (vd. `K1-T3.1`).
+  @JsonKey(name: 'LocationCode')
+  String? get locationCode;
+  @override
+
+  /// Tên vị trí.
+  @JsonKey(name: 'LocationName')
+  String? get locationName;
+  @override
+
+  /// Tên vị trí cũ (dùng khi vị trí đã được đổi tên).
+  @JsonKey(name: 'OldLocationName')
+  String? get oldLocationName;
+  @override
+
+  /// Id kho chứa vị trí.
+  @JsonKey(name: 'WarehouseID')
+  int? get warehouseId;
+  @override
+
+  /// Loại vị trí (0 = thường, 1 = kệ...).
+  @JsonKey(name: 'LocationType')
+  int? get locationType;
+  @override
+
+  /// Thứ tự hiển thị.
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+
+  /// Tổng số mã sản phẩm thuộc vị trí này trong đợt kiểm kê.
+  @JsonKey(name: 'TotalCount')
+  int get totalCount;
+  @override
+
+  /// Số mã đã kiểm (`QuantityActual` khác null).
+  @JsonKey(name: 'CountedCount')
+  int get countedCount;
+  @override
+
+  /// Số mã chưa kiểm.
+  @JsonKey(name: 'UncountedCount')
+  int get uncountedCount;
+  @override
+
+  /// Vị trí đã kiểm xong hay chưa.
+  @JsonKey(name: 'IsCompleted')
+  bool get isCompleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$InventoryProductLocationImplCopyWith<_$InventoryProductLocationImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+InventoryModulaLocationGroup _$InventoryModulaLocationGroupFromJson(
+    Map<String, dynamic> json) {
+  return _InventoryModulaLocationGroup.fromJson(json);
+}
+
+/// @nodoc
+mixin _$InventoryModulaLocationGroup {
+  /// Id tủ Modula (0 = chưa có vị trí).
+  @JsonKey(name: 'ModulaLocationID')
+  int? get id => throw _privateConstructorUsedError;
+
+  /// Thứ tự hiển thị.
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+
+  /// Mã tủ (vd. `TRAY1`).
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+
+  /// Tên tủ (vd. `Tray 1`).
+  @JsonKey(name: 'Name')
+  String? get name => throw _privateConstructorUsedError;
+
+  /// Tổng số mã sản phẩm thuộc tủ này.
+  @JsonKey(name: 'TotalCount')
+  int get totalCount => throw _privateConstructorUsedError;
+
+  /// Số mã đã kiểm.
+  @JsonKey(name: 'CountedCount')
+  int get countedCount => throw _privateConstructorUsedError;
+
+  /// Số mã chưa kiểm.
+  @JsonKey(name: 'UncountedCount')
+  int get uncountedCount => throw _privateConstructorUsedError;
+
+  /// Tủ đã kiểm xong hay chưa.
+  @JsonKey(name: 'IsCompleted')
+  bool get isCompleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InventoryModulaLocationGroupCopyWith<InventoryModulaLocationGroup>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InventoryModulaLocationGroupCopyWith<$Res> {
+  factory $InventoryModulaLocationGroupCopyWith(
+          InventoryModulaLocationGroup value,
+          $Res Function(InventoryModulaLocationGroup) then) =
+      _$InventoryModulaLocationGroupCopyWithImpl<$Res,
+          InventoryModulaLocationGroup>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ModulaLocationID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'TotalCount') int totalCount,
+      @JsonKey(name: 'CountedCount') int countedCount,
+      @JsonKey(name: 'UncountedCount') int uncountedCount,
+      @JsonKey(name: 'IsCompleted') bool isCompleted});
+}
+
+/// @nodoc
+class _$InventoryModulaLocationGroupCopyWithImpl<$Res,
+        $Val extends InventoryModulaLocationGroup>
+    implements $InventoryModulaLocationGroupCopyWith<$Res> {
+  _$InventoryModulaLocationGroupCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? stt = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? totalCount = null,
+    Object? countedCount = null,
+    Object? uncountedCount = null,
+    Object? isCompleted = null,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      countedCount: null == countedCount
+          ? _value.countedCount
+          : countedCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      uncountedCount: null == uncountedCount
+          ? _value.uncountedCount
+          : uncountedCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$InventoryModulaLocationGroupImplCopyWith<$Res>
+    implements $InventoryModulaLocationGroupCopyWith<$Res> {
+  factory _$$InventoryModulaLocationGroupImplCopyWith(
+          _$InventoryModulaLocationGroupImpl value,
+          $Res Function(_$InventoryModulaLocationGroupImpl) then) =
+      __$$InventoryModulaLocationGroupImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ModulaLocationID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'TotalCount') int totalCount,
+      @JsonKey(name: 'CountedCount') int countedCount,
+      @JsonKey(name: 'UncountedCount') int uncountedCount,
+      @JsonKey(name: 'IsCompleted') bool isCompleted});
+}
+
+/// @nodoc
+class __$$InventoryModulaLocationGroupImplCopyWithImpl<$Res>
+    extends _$InventoryModulaLocationGroupCopyWithImpl<$Res,
+        _$InventoryModulaLocationGroupImpl>
+    implements _$$InventoryModulaLocationGroupImplCopyWith<$Res> {
+  __$$InventoryModulaLocationGroupImplCopyWithImpl(
+      _$InventoryModulaLocationGroupImpl _value,
+      $Res Function(_$InventoryModulaLocationGroupImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? stt = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? totalCount = null,
+    Object? countedCount = null,
+    Object? uncountedCount = null,
+    Object? isCompleted = null,
+  }) {
+    return _then(_$InventoryModulaLocationGroupImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      countedCount: null == countedCount
+          ? _value.countedCount
+          : countedCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      uncountedCount: null == uncountedCount
+          ? _value.uncountedCount
+          : uncountedCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$InventoryModulaLocationGroupImpl
+    implements _InventoryModulaLocationGroup {
+  const _$InventoryModulaLocationGroupImpl(
+      {@JsonKey(name: 'ModulaLocationID') this.id,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'Name') this.name,
+      @JsonKey(name: 'TotalCount') this.totalCount = 0,
+      @JsonKey(name: 'CountedCount') this.countedCount = 0,
+      @JsonKey(name: 'UncountedCount') this.uncountedCount = 0,
+      @JsonKey(name: 'IsCompleted') this.isCompleted = false});
+
+  factory _$InventoryModulaLocationGroupImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$InventoryModulaLocationGroupImplFromJson(json);
+
+  /// Id tủ Modula (0 = chưa có vị trí).
+  @override
+  @JsonKey(name: 'ModulaLocationID')
+  final int? id;
+
+  /// Thứ tự hiển thị.
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+
+  /// Mã tủ (vd. `TRAY1`).
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+
+  /// Tên tủ (vd. `Tray 1`).
+  @override
+  @JsonKey(name: 'Name')
+  final String? name;
+
+  /// Tổng số mã sản phẩm thuộc tủ này.
+  @override
+  @JsonKey(name: 'TotalCount')
+  final int totalCount;
+
+  /// Số mã đã kiểm.
+  @override
+  @JsonKey(name: 'CountedCount')
+  final int countedCount;
+
+  /// Số mã chưa kiểm.
+  @override
+  @JsonKey(name: 'UncountedCount')
+  final int uncountedCount;
+
+  /// Tủ đã kiểm xong hay chưa.
+  @override
+  @JsonKey(name: 'IsCompleted')
+  final bool isCompleted;
+
+  @override
+  String toString() {
+    return 'InventoryModulaLocationGroup(id: $id, stt: $stt, code: $code, name: $name, totalCount: $totalCount, countedCount: $countedCount, uncountedCount: $uncountedCount, isCompleted: $isCompleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InventoryModulaLocationGroupImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.countedCount, countedCount) ||
+                other.countedCount == countedCount) &&
+            (identical(other.uncountedCount, uncountedCount) ||
+                other.uncountedCount == uncountedCount) &&
+            (identical(other.isCompleted, isCompleted) ||
+                other.isCompleted == isCompleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, stt, code, name, totalCount,
+      countedCount, uncountedCount, isCompleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InventoryModulaLocationGroupImplCopyWith<
+          _$InventoryModulaLocationGroupImpl>
+      get copyWith => __$$InventoryModulaLocationGroupImplCopyWithImpl<
+          _$InventoryModulaLocationGroupImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$InventoryModulaLocationGroupImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _InventoryModulaLocationGroup
+    implements InventoryModulaLocationGroup {
+  const factory _InventoryModulaLocationGroup(
+          {@JsonKey(name: 'ModulaLocationID') final int? id,
+          @JsonKey(name: 'STT') final int? stt,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'Name') final String? name,
+          @JsonKey(name: 'TotalCount') final int totalCount,
+          @JsonKey(name: 'CountedCount') final int countedCount,
+          @JsonKey(name: 'UncountedCount') final int uncountedCount,
+          @JsonKey(name: 'IsCompleted') final bool isCompleted}) =
+      _$InventoryModulaLocationGroupImpl;
+
+  factory _InventoryModulaLocationGroup.fromJson(Map<String, dynamic> json) =
+      _$InventoryModulaLocationGroupImpl.fromJson;
+
+  @override
+
+  /// Id tủ Modula (0 = chưa có vị trí).
+  @JsonKey(name: 'ModulaLocationID')
+  int? get id;
+  @override
+
+  /// Thứ tự hiển thị.
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+
+  /// Mã tủ (vd. `TRAY1`).
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+
+  /// Tên tủ (vd. `Tray 1`).
+  @JsonKey(name: 'Name')
+  String? get name;
+  @override
+
+  /// Tổng số mã sản phẩm thuộc tủ này.
+  @JsonKey(name: 'TotalCount')
+  int get totalCount;
+  @override
+
+  /// Số mã đã kiểm.
+  @JsonKey(name: 'CountedCount')
+  int get countedCount;
+  @override
+
+  /// Số mã chưa kiểm.
+  @JsonKey(name: 'UncountedCount')
+  int get uncountedCount;
+  @override
+
+  /// Tủ đã kiểm xong hay chưa.
+  @JsonKey(name: 'IsCompleted')
+  bool get isCompleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$InventoryModulaLocationGroupImplCopyWith<
+          _$InventoryModulaLocationGroupImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+InventoryModulaLocationDetail _$InventoryModulaLocationDetailFromJson(
+    Map<String, dynamic> json) {
+  return _InventoryModulaLocationDetail.fromJson(json);
+}
+
+/// @nodoc
+mixin _$InventoryModulaLocationDetail {
+  /// Id tủ Modula cha.
+  @JsonKey(name: 'ModulaLocationID')
+  int? get modulaLocationId => throw _privateConstructorUsedError;
+
+  /// Thứ tự hiển thị của tủ.
+  @JsonKey(name: 'ModulaSTT')
+  int? get modulaStt => throw _privateConstructorUsedError;
+
+  /// Mã tủ Modula.
+  @JsonKey(name: 'ModulaLocationCode')
+  String? get modulaLocationCode => throw _privateConstructorUsedError;
+
+  /// Tên tủ Modula.
+  @JsonKey(name: 'Name')
+  String? get name => throw _privateConstructorUsedError;
+
+  /// Id ô Modula chi tiết (0 = chưa có vị trí).
+  @JsonKey(name: 'ModulaLocationDetailID')
+  int? get detailId => throw _privateConstructorUsedError;
+
+  /// Thứ tự hiển thị của ô.
+  @JsonKey(name: 'DetailSTT')
+  int? get detailStt => throw _privateConstructorUsedError;
+
+  /// Mã ô Modula (vd. `VT1`).
+  @JsonKey(name: 'ModulaLocationDetailCode')
+  String? get detailCode => throw _privateConstructorUsedError;
+
+  /// Tên ô Modula (vd. `Vị trí 1`).
+  @JsonKey(name: 'ModulaLocationDetailName')
+  String? get detailName => throw _privateConstructorUsedError;
+
+  /// Tên đầy đủ để hiển thị (vd. `Tray 1 - Vị trí 1`).
+  @JsonKey(name: 'LocationName')
+  String? get locationName => throw _privateConstructorUsedError;
+
+  /// Tổng số mã sản phẩm thuộc ô này.
+  @JsonKey(name: 'TotalCount')
+  int get totalCount => throw _privateConstructorUsedError;
+
+  /// Số mã đã kiểm.
+  @JsonKey(name: 'CountedCount')
+  int get countedCount => throw _privateConstructorUsedError;
+
+  /// Số mã chưa kiểm.
+  @JsonKey(name: 'UncountedCount')
+  int get uncountedCount => throw _privateConstructorUsedError;
+
+  /// Ô đã kiểm xong hay chưa.
+  @JsonKey(name: 'IsCompleted')
+  bool get isCompleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InventoryModulaLocationDetailCopyWith<InventoryModulaLocationDetail>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InventoryModulaLocationDetailCopyWith<$Res> {
+  factory $InventoryModulaLocationDetailCopyWith(
+          InventoryModulaLocationDetail value,
+          $Res Function(InventoryModulaLocationDetail) then) =
+      _$InventoryModulaLocationDetailCopyWithImpl<$Res,
+          InventoryModulaLocationDetail>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ModulaLocationID') int? modulaLocationId,
+      @JsonKey(name: 'ModulaSTT') int? modulaStt,
+      @JsonKey(name: 'ModulaLocationCode') String? modulaLocationCode,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'ModulaLocationDetailID') int? detailId,
+      @JsonKey(name: 'DetailSTT') int? detailStt,
+      @JsonKey(name: 'ModulaLocationDetailCode') String? detailCode,
+      @JsonKey(name: 'ModulaLocationDetailName') String? detailName,
+      @JsonKey(name: 'LocationName') String? locationName,
+      @JsonKey(name: 'TotalCount') int totalCount,
+      @JsonKey(name: 'CountedCount') int countedCount,
+      @JsonKey(name: 'UncountedCount') int uncountedCount,
+      @JsonKey(name: 'IsCompleted') bool isCompleted});
+}
+
+/// @nodoc
+class _$InventoryModulaLocationDetailCopyWithImpl<$Res,
+        $Val extends InventoryModulaLocationDetail>
+    implements $InventoryModulaLocationDetailCopyWith<$Res> {
+  _$InventoryModulaLocationDetailCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? modulaLocationId = freezed,
+    Object? modulaStt = freezed,
+    Object? modulaLocationCode = freezed,
+    Object? name = freezed,
+    Object? detailId = freezed,
+    Object? detailStt = freezed,
+    Object? detailCode = freezed,
+    Object? detailName = freezed,
+    Object? locationName = freezed,
+    Object? totalCount = null,
+    Object? countedCount = null,
+    Object? uncountedCount = null,
+    Object? isCompleted = null,
+  }) {
+    return _then(_value.copyWith(
+      modulaLocationId: freezed == modulaLocationId
+          ? _value.modulaLocationId
+          : modulaLocationId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      modulaStt: freezed == modulaStt
+          ? _value.modulaStt
+          : modulaStt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      modulaLocationCode: freezed == modulaLocationCode
+          ? _value.modulaLocationCode
+          : modulaLocationCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detailId: freezed == detailId
+          ? _value.detailId
+          : detailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      detailStt: freezed == detailStt
+          ? _value.detailStt
+          : detailStt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      detailCode: freezed == detailCode
+          ? _value.detailCode
+          : detailCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detailName: freezed == detailName
+          ? _value.detailName
+          : detailName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      locationName: freezed == locationName
+          ? _value.locationName
+          : locationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      countedCount: null == countedCount
+          ? _value.countedCount
+          : countedCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      uncountedCount: null == uncountedCount
+          ? _value.uncountedCount
+          : uncountedCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$InventoryModulaLocationDetailImplCopyWith<$Res>
+    implements $InventoryModulaLocationDetailCopyWith<$Res> {
+  factory _$$InventoryModulaLocationDetailImplCopyWith(
+          _$InventoryModulaLocationDetailImpl value,
+          $Res Function(_$InventoryModulaLocationDetailImpl) then) =
+      __$$InventoryModulaLocationDetailImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ModulaLocationID') int? modulaLocationId,
+      @JsonKey(name: 'ModulaSTT') int? modulaStt,
+      @JsonKey(name: 'ModulaLocationCode') String? modulaLocationCode,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'ModulaLocationDetailID') int? detailId,
+      @JsonKey(name: 'DetailSTT') int? detailStt,
+      @JsonKey(name: 'ModulaLocationDetailCode') String? detailCode,
+      @JsonKey(name: 'ModulaLocationDetailName') String? detailName,
+      @JsonKey(name: 'LocationName') String? locationName,
+      @JsonKey(name: 'TotalCount') int totalCount,
+      @JsonKey(name: 'CountedCount') int countedCount,
+      @JsonKey(name: 'UncountedCount') int uncountedCount,
+      @JsonKey(name: 'IsCompleted') bool isCompleted});
+}
+
+/// @nodoc
+class __$$InventoryModulaLocationDetailImplCopyWithImpl<$Res>
+    extends _$InventoryModulaLocationDetailCopyWithImpl<$Res,
+        _$InventoryModulaLocationDetailImpl>
+    implements _$$InventoryModulaLocationDetailImplCopyWith<$Res> {
+  __$$InventoryModulaLocationDetailImplCopyWithImpl(
+      _$InventoryModulaLocationDetailImpl _value,
+      $Res Function(_$InventoryModulaLocationDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? modulaLocationId = freezed,
+    Object? modulaStt = freezed,
+    Object? modulaLocationCode = freezed,
+    Object? name = freezed,
+    Object? detailId = freezed,
+    Object? detailStt = freezed,
+    Object? detailCode = freezed,
+    Object? detailName = freezed,
+    Object? locationName = freezed,
+    Object? totalCount = null,
+    Object? countedCount = null,
+    Object? uncountedCount = null,
+    Object? isCompleted = null,
+  }) {
+    return _then(_$InventoryModulaLocationDetailImpl(
+      modulaLocationId: freezed == modulaLocationId
+          ? _value.modulaLocationId
+          : modulaLocationId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      modulaStt: freezed == modulaStt
+          ? _value.modulaStt
+          : modulaStt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      modulaLocationCode: freezed == modulaLocationCode
+          ? _value.modulaLocationCode
+          : modulaLocationCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detailId: freezed == detailId
+          ? _value.detailId
+          : detailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      detailStt: freezed == detailStt
+          ? _value.detailStt
+          : detailStt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      detailCode: freezed == detailCode
+          ? _value.detailCode
+          : detailCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detailName: freezed == detailName
+          ? _value.detailName
+          : detailName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      locationName: freezed == locationName
+          ? _value.locationName
+          : locationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      countedCount: null == countedCount
+          ? _value.countedCount
+          : countedCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      uncountedCount: null == uncountedCount
+          ? _value.uncountedCount
+          : uncountedCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$InventoryModulaLocationDetailImpl
+    implements _InventoryModulaLocationDetail {
+  const _$InventoryModulaLocationDetailImpl(
+      {@JsonKey(name: 'ModulaLocationID') this.modulaLocationId,
+      @JsonKey(name: 'ModulaSTT') this.modulaStt,
+      @JsonKey(name: 'ModulaLocationCode') this.modulaLocationCode,
+      @JsonKey(name: 'Name') this.name,
+      @JsonKey(name: 'ModulaLocationDetailID') this.detailId,
+      @JsonKey(name: 'DetailSTT') this.detailStt,
+      @JsonKey(name: 'ModulaLocationDetailCode') this.detailCode,
+      @JsonKey(name: 'ModulaLocationDetailName') this.detailName,
+      @JsonKey(name: 'LocationName') this.locationName,
+      @JsonKey(name: 'TotalCount') this.totalCount = 0,
+      @JsonKey(name: 'CountedCount') this.countedCount = 0,
+      @JsonKey(name: 'UncountedCount') this.uncountedCount = 0,
+      @JsonKey(name: 'IsCompleted') this.isCompleted = false});
+
+  factory _$InventoryModulaLocationDetailImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$InventoryModulaLocationDetailImplFromJson(json);
+
+  /// Id tủ Modula cha.
+  @override
+  @JsonKey(name: 'ModulaLocationID')
+  final int? modulaLocationId;
+
+  /// Thứ tự hiển thị của tủ.
+  @override
+  @JsonKey(name: 'ModulaSTT')
+  final int? modulaStt;
+
+  /// Mã tủ Modula.
+  @override
+  @JsonKey(name: 'ModulaLocationCode')
+  final String? modulaLocationCode;
+
+  /// Tên tủ Modula.
+  @override
+  @JsonKey(name: 'Name')
+  final String? name;
+
+  /// Id ô Modula chi tiết (0 = chưa có vị trí).
+  @override
+  @JsonKey(name: 'ModulaLocationDetailID')
+  final int? detailId;
+
+  /// Thứ tự hiển thị của ô.
+  @override
+  @JsonKey(name: 'DetailSTT')
+  final int? detailStt;
+
+  /// Mã ô Modula (vd. `VT1`).
+  @override
+  @JsonKey(name: 'ModulaLocationDetailCode')
+  final String? detailCode;
+
+  /// Tên ô Modula (vd. `Vị trí 1`).
+  @override
+  @JsonKey(name: 'ModulaLocationDetailName')
+  final String? detailName;
+
+  /// Tên đầy đủ để hiển thị (vd. `Tray 1 - Vị trí 1`).
+  @override
+  @JsonKey(name: 'LocationName')
+  final String? locationName;
+
+  /// Tổng số mã sản phẩm thuộc ô này.
+  @override
+  @JsonKey(name: 'TotalCount')
+  final int totalCount;
+
+  /// Số mã đã kiểm.
+  @override
+  @JsonKey(name: 'CountedCount')
+  final int countedCount;
+
+  /// Số mã chưa kiểm.
+  @override
+  @JsonKey(name: 'UncountedCount')
+  final int uncountedCount;
+
+  /// Ô đã kiểm xong hay chưa.
+  @override
+  @JsonKey(name: 'IsCompleted')
+  final bool isCompleted;
+
+  @override
+  String toString() {
+    return 'InventoryModulaLocationDetail(modulaLocationId: $modulaLocationId, modulaStt: $modulaStt, modulaLocationCode: $modulaLocationCode, name: $name, detailId: $detailId, detailStt: $detailStt, detailCode: $detailCode, detailName: $detailName, locationName: $locationName, totalCount: $totalCount, countedCount: $countedCount, uncountedCount: $uncountedCount, isCompleted: $isCompleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InventoryModulaLocationDetailImpl &&
+            (identical(other.modulaLocationId, modulaLocationId) ||
+                other.modulaLocationId == modulaLocationId) &&
+            (identical(other.modulaStt, modulaStt) ||
+                other.modulaStt == modulaStt) &&
+            (identical(other.modulaLocationCode, modulaLocationCode) ||
+                other.modulaLocationCode == modulaLocationCode) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.detailId, detailId) ||
+                other.detailId == detailId) &&
+            (identical(other.detailStt, detailStt) ||
+                other.detailStt == detailStt) &&
+            (identical(other.detailCode, detailCode) ||
+                other.detailCode == detailCode) &&
+            (identical(other.detailName, detailName) ||
+                other.detailName == detailName) &&
+            (identical(other.locationName, locationName) ||
+                other.locationName == locationName) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.countedCount, countedCount) ||
+                other.countedCount == countedCount) &&
+            (identical(other.uncountedCount, uncountedCount) ||
+                other.uncountedCount == uncountedCount) &&
+            (identical(other.isCompleted, isCompleted) ||
+                other.isCompleted == isCompleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      modulaLocationId,
+      modulaStt,
+      modulaLocationCode,
+      name,
+      detailId,
+      detailStt,
+      detailCode,
+      detailName,
+      locationName,
+      totalCount,
+      countedCount,
+      uncountedCount,
+      isCompleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InventoryModulaLocationDetailImplCopyWith<
+          _$InventoryModulaLocationDetailImpl>
+      get copyWith => __$$InventoryModulaLocationDetailImplCopyWithImpl<
+          _$InventoryModulaLocationDetailImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$InventoryModulaLocationDetailImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _InventoryModulaLocationDetail
+    implements InventoryModulaLocationDetail {
+  const factory _InventoryModulaLocationDetail(
+          {@JsonKey(name: 'ModulaLocationID') final int? modulaLocationId,
+          @JsonKey(name: 'ModulaSTT') final int? modulaStt,
+          @JsonKey(name: 'ModulaLocationCode') final String? modulaLocationCode,
+          @JsonKey(name: 'Name') final String? name,
+          @JsonKey(name: 'ModulaLocationDetailID') final int? detailId,
+          @JsonKey(name: 'DetailSTT') final int? detailStt,
+          @JsonKey(name: 'ModulaLocationDetailCode') final String? detailCode,
+          @JsonKey(name: 'ModulaLocationDetailName') final String? detailName,
+          @JsonKey(name: 'LocationName') final String? locationName,
+          @JsonKey(name: 'TotalCount') final int totalCount,
+          @JsonKey(name: 'CountedCount') final int countedCount,
+          @JsonKey(name: 'UncountedCount') final int uncountedCount,
+          @JsonKey(name: 'IsCompleted') final bool isCompleted}) =
+      _$InventoryModulaLocationDetailImpl;
+
+  factory _InventoryModulaLocationDetail.fromJson(Map<String, dynamic> json) =
+      _$InventoryModulaLocationDetailImpl.fromJson;
+
+  @override
+
+  /// Id tủ Modula cha.
+  @JsonKey(name: 'ModulaLocationID')
+  int? get modulaLocationId;
+  @override
+
+  /// Thứ tự hiển thị của tủ.
+  @JsonKey(name: 'ModulaSTT')
+  int? get modulaStt;
+  @override
+
+  /// Mã tủ Modula.
+  @JsonKey(name: 'ModulaLocationCode')
+  String? get modulaLocationCode;
+  @override
+
+  /// Tên tủ Modula.
+  @JsonKey(name: 'Name')
+  String? get name;
+  @override
+
+  /// Id ô Modula chi tiết (0 = chưa có vị trí).
+  @JsonKey(name: 'ModulaLocationDetailID')
+  int? get detailId;
+  @override
+
+  /// Thứ tự hiển thị của ô.
+  @JsonKey(name: 'DetailSTT')
+  int? get detailStt;
+  @override
+
+  /// Mã ô Modula (vd. `VT1`).
+  @JsonKey(name: 'ModulaLocationDetailCode')
+  String? get detailCode;
+  @override
+
+  /// Tên ô Modula (vd. `Vị trí 1`).
+  @JsonKey(name: 'ModulaLocationDetailName')
+  String? get detailName;
+  @override
+
+  /// Tên đầy đủ để hiển thị (vd. `Tray 1 - Vị trí 1`).
+  @JsonKey(name: 'LocationName')
+  String? get locationName;
+  @override
+
+  /// Tổng số mã sản phẩm thuộc ô này.
+  @JsonKey(name: 'TotalCount')
+  int get totalCount;
+  @override
+
+  /// Số mã đã kiểm.
+  @JsonKey(name: 'CountedCount')
+  int get countedCount;
+  @override
+
+  /// Số mã chưa kiểm.
+  @JsonKey(name: 'UncountedCount')
+  int get uncountedCount;
+  @override
+
+  /// Ô đã kiểm xong hay chưa.
+  @JsonKey(name: 'IsCompleted')
+  bool get isCompleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$InventoryModulaLocationDetailImplCopyWith<
+          _$InventoryModulaLocationDetailImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+InventoryLocationProgress _$InventoryLocationProgressFromJson(
+    Map<String, dynamic> json) {
+  return _InventoryLocationProgress.fromJson(json);
+}
+
+/// @nodoc
+mixin _$InventoryLocationProgress {
+  /// Danh sách vị trí kho / kệ (dòng đầu là ID = 0 "Chưa có vị trí").
+  @JsonKey(name: 'ProductLocations')
+  List<InventoryProductLocation> get productLocations =>
+      throw _privateConstructorUsedError;
+
+  /// Danh sách tủ / tray Modula cha (dòng đầu là ID = 0 "Chưa có vị trí").
+  @JsonKey(name: 'ModulaLocationGroups')
+  List<InventoryModulaLocationGroup> get modulaLocationGroups =>
+      throw _privateConstructorUsedError;
+
+  /// Danh sách ô Modula chi tiết (dòng đầu là ID = 0 "Chưa có vị trí").
+  @JsonKey(name: 'ModulaLocations')
+  List<InventoryModulaLocationDetail> get modulaLocations =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InventoryLocationProgressCopyWith<InventoryLocationProgress> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InventoryLocationProgressCopyWith<$Res> {
+  factory $InventoryLocationProgressCopyWith(InventoryLocationProgress value,
+          $Res Function(InventoryLocationProgress) then) =
+      _$InventoryLocationProgressCopyWithImpl<$Res, InventoryLocationProgress>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ProductLocations')
+      List<InventoryProductLocation> productLocations,
+      @JsonKey(name: 'ModulaLocationGroups')
+      List<InventoryModulaLocationGroup> modulaLocationGroups,
+      @JsonKey(name: 'ModulaLocations')
+      List<InventoryModulaLocationDetail> modulaLocations});
+}
+
+/// @nodoc
+class _$InventoryLocationProgressCopyWithImpl<$Res,
+        $Val extends InventoryLocationProgress>
+    implements $InventoryLocationProgressCopyWith<$Res> {
+  _$InventoryLocationProgressCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? productLocations = null,
+    Object? modulaLocationGroups = null,
+    Object? modulaLocations = null,
+  }) {
+    return _then(_value.copyWith(
+      productLocations: null == productLocations
+          ? _value.productLocations
+          : productLocations // ignore: cast_nullable_to_non_nullable
+              as List<InventoryProductLocation>,
+      modulaLocationGroups: null == modulaLocationGroups
+          ? _value.modulaLocationGroups
+          : modulaLocationGroups // ignore: cast_nullable_to_non_nullable
+              as List<InventoryModulaLocationGroup>,
+      modulaLocations: null == modulaLocations
+          ? _value.modulaLocations
+          : modulaLocations // ignore: cast_nullable_to_non_nullable
+              as List<InventoryModulaLocationDetail>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$InventoryLocationProgressImplCopyWith<$Res>
+    implements $InventoryLocationProgressCopyWith<$Res> {
+  factory _$$InventoryLocationProgressImplCopyWith(
+          _$InventoryLocationProgressImpl value,
+          $Res Function(_$InventoryLocationProgressImpl) then) =
+      __$$InventoryLocationProgressImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ProductLocations')
+      List<InventoryProductLocation> productLocations,
+      @JsonKey(name: 'ModulaLocationGroups')
+      List<InventoryModulaLocationGroup> modulaLocationGroups,
+      @JsonKey(name: 'ModulaLocations')
+      List<InventoryModulaLocationDetail> modulaLocations});
+}
+
+/// @nodoc
+class __$$InventoryLocationProgressImplCopyWithImpl<$Res>
+    extends _$InventoryLocationProgressCopyWithImpl<$Res,
+        _$InventoryLocationProgressImpl>
+    implements _$$InventoryLocationProgressImplCopyWith<$Res> {
+  __$$InventoryLocationProgressImplCopyWithImpl(
+      _$InventoryLocationProgressImpl _value,
+      $Res Function(_$InventoryLocationProgressImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? productLocations = null,
+    Object? modulaLocationGroups = null,
+    Object? modulaLocations = null,
+  }) {
+    return _then(_$InventoryLocationProgressImpl(
+      productLocations: null == productLocations
+          ? _value._productLocations
+          : productLocations // ignore: cast_nullable_to_non_nullable
+              as List<InventoryProductLocation>,
+      modulaLocationGroups: null == modulaLocationGroups
+          ? _value._modulaLocationGroups
+          : modulaLocationGroups // ignore: cast_nullable_to_non_nullable
+              as List<InventoryModulaLocationGroup>,
+      modulaLocations: null == modulaLocations
+          ? _value._modulaLocations
+          : modulaLocations // ignore: cast_nullable_to_non_nullable
+              as List<InventoryModulaLocationDetail>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$InventoryLocationProgressImpl implements _InventoryLocationProgress {
+  const _$InventoryLocationProgressImpl(
+      {@JsonKey(name: 'ProductLocations')
+      final List<InventoryProductLocation> productLocations = const [],
+      @JsonKey(name: 'ModulaLocationGroups')
+      final List<InventoryModulaLocationGroup> modulaLocationGroups = const [],
+      @JsonKey(name: 'ModulaLocations')
+      final List<InventoryModulaLocationDetail> modulaLocations = const []})
+      : _productLocations = productLocations,
+        _modulaLocationGroups = modulaLocationGroups,
+        _modulaLocations = modulaLocations;
+
+  factory _$InventoryLocationProgressImpl.fromJson(Map<String, dynamic> json) =>
+      _$$InventoryLocationProgressImplFromJson(json);
+
+  /// Danh sách vị trí kho / kệ (dòng đầu là ID = 0 "Chưa có vị trí").
+  final List<InventoryProductLocation> _productLocations;
+
+  /// Danh sách vị trí kho / kệ (dòng đầu là ID = 0 "Chưa có vị trí").
+  @override
+  @JsonKey(name: 'ProductLocations')
+  List<InventoryProductLocation> get productLocations {
+    if (_productLocations is EqualUnmodifiableListView)
+      return _productLocations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_productLocations);
+  }
+
+  /// Danh sách tủ / tray Modula cha (dòng đầu là ID = 0 "Chưa có vị trí").
+  final List<InventoryModulaLocationGroup> _modulaLocationGroups;
+
+  /// Danh sách tủ / tray Modula cha (dòng đầu là ID = 0 "Chưa có vị trí").
+  @override
+  @JsonKey(name: 'ModulaLocationGroups')
+  List<InventoryModulaLocationGroup> get modulaLocationGroups {
+    if (_modulaLocationGroups is EqualUnmodifiableListView)
+      return _modulaLocationGroups;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_modulaLocationGroups);
+  }
+
+  /// Danh sách ô Modula chi tiết (dòng đầu là ID = 0 "Chưa có vị trí").
+  final List<InventoryModulaLocationDetail> _modulaLocations;
+
+  /// Danh sách ô Modula chi tiết (dòng đầu là ID = 0 "Chưa có vị trí").
+  @override
+  @JsonKey(name: 'ModulaLocations')
+  List<InventoryModulaLocationDetail> get modulaLocations {
+    if (_modulaLocations is EqualUnmodifiableListView) return _modulaLocations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_modulaLocations);
+  }
+
+  @override
+  String toString() {
+    return 'InventoryLocationProgress(productLocations: $productLocations, modulaLocationGroups: $modulaLocationGroups, modulaLocations: $modulaLocations)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InventoryLocationProgressImpl &&
+            const DeepCollectionEquality()
+                .equals(other._productLocations, _productLocations) &&
+            const DeepCollectionEquality()
+                .equals(other._modulaLocationGroups, _modulaLocationGroups) &&
+            const DeepCollectionEquality()
+                .equals(other._modulaLocations, _modulaLocations));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_productLocations),
+      const DeepCollectionEquality().hash(_modulaLocationGroups),
+      const DeepCollectionEquality().hash(_modulaLocations));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InventoryLocationProgressImplCopyWith<_$InventoryLocationProgressImpl>
+      get copyWith => __$$InventoryLocationProgressImplCopyWithImpl<
+          _$InventoryLocationProgressImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$InventoryLocationProgressImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _InventoryLocationProgress implements InventoryLocationProgress {
+  const factory _InventoryLocationProgress(
+          {@JsonKey(name: 'ProductLocations')
+          final List<InventoryProductLocation> productLocations,
+          @JsonKey(name: 'ModulaLocationGroups')
+          final List<InventoryModulaLocationGroup> modulaLocationGroups,
+          @JsonKey(name: 'ModulaLocations')
+          final List<InventoryModulaLocationDetail> modulaLocations}) =
+      _$InventoryLocationProgressImpl;
+
+  factory _InventoryLocationProgress.fromJson(Map<String, dynamic> json) =
+      _$InventoryLocationProgressImpl.fromJson;
+
+  @override
+
+  /// Danh sách vị trí kho / kệ (dòng đầu là ID = 0 "Chưa có vị trí").
+  @JsonKey(name: 'ProductLocations')
+  List<InventoryProductLocation> get productLocations;
+  @override
+
+  /// Danh sách tủ / tray Modula cha (dòng đầu là ID = 0 "Chưa có vị trí").
+  @JsonKey(name: 'ModulaLocationGroups')
+  List<InventoryModulaLocationGroup> get modulaLocationGroups;
+  @override
+
+  /// Danh sách ô Modula chi tiết (dòng đầu là ID = 0 "Chưa có vị trí").
+  @JsonKey(name: 'ModulaLocations')
+  List<InventoryModulaLocationDetail> get modulaLocations;
+  @override
+  @JsonKey(ignore: true)
+  _$$InventoryLocationProgressImplCopyWith<_$InventoryLocationProgressImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

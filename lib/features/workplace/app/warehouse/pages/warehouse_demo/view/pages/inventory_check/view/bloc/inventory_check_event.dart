@@ -41,6 +41,55 @@ class InventoryCheckEvent with _$InventoryCheckEvent {
   /// Lấy phiếu kiểm kê kèm danh sách sản phẩm đã kiểm kê.
   const factory InventoryCheckEvent.fetchSheet(int countId) = _FetchSheet;
 
+  /// Lấy tiến độ kiểm kê theo vị trí kho & vị trí Modula.
+  ///
+  /// Trả về 3 danh sách: vị trí kho, tủ Modula cha, ô Modula chi tiết —
+  /// mỗi danh sách kèm số tổng / đã kiểm / chưa kiểm.
+  const factory InventoryCheckEvent.fetchLocationProgress({
+    required int countId,
+    @Default(0) int warehouseId,
+    @Default(-1) int modulaLocationId,
+    String? keyword,
+  }) = _FetchLocationProgress;
+
+  /// Chọn nhóm vị trí (1 trong 3 ô của card "Tiến độ theo vị trí") để lọc
+  /// danh sách sản phẩm.
+  ///
+  /// - [InventoryLocationGroup.noLocation] → sản phẩm chưa có vị trí kho lẫn
+  ///   vị trí Modula.
+  /// - [InventoryLocationGroup.productLocation] → toàn bộ sản phẩm của đợt.
+  /// - [InventoryLocationGroup.modula] → sản phẩm đang có vị trí Modula.
+  const factory InventoryCheckEvent.selectLocationScope(
+    InventoryLocationGroup group,
+  ) = _SelectLocationScope;
+
+  /// Chọn vị trí kho để lọc danh sách sản phẩm.
+  ///
+  /// [productLocationId] = `null` → bỏ lọc; `0` → sản phẩm chưa có vị trí;
+  /// `> 0` → vị trí cụ thể.
+  const factory InventoryCheckEvent.selectProductLocation(int? productLocationId) =
+      _SelectProductLocation;
+
+  /// Chọn tủ Modula (tray) để lọc danh sách sản phẩm.
+  ///
+  /// [modulaLocationId] = `null` → bỏ lọc; `0` → chưa có vị trí Modula;
+  /// `> 0` → tủ cụ thể.
+  const factory InventoryCheckEvent.selectModulaLocation(int? modulaLocationId) =
+      _SelectModulaLocation;
+
+  /// Chọn ô Modula chi tiết để lọc danh sách sản phẩm.
+  ///
+  /// Theo quy ước API, khi chọn ô chi tiết thì chỉ truyền
+  /// `modulaLocationDetailId`, còn `modulaLocationId` giữ ở -1 (bỏ lọc).
+  /// `null` → bỏ lọc.
+  const factory InventoryCheckEvent.selectModulaLocationDetail({
+    int? detailId,
+  }) = _SelectModulaLocationDetail;
+
+  /// Bỏ lọc theo vị trí (xem toàn bộ sản phẩm của đợt kiểm kê).
+  const factory InventoryCheckEvent.clearLocationFilter() =
+      _ClearLocationFilter;
+
   /// Tìm kiếm trong danh sách sản phẩm của phiếu (lọc cục bộ).
   const factory InventoryCheckEvent.searchSheet(String keyword) = _SearchSheet;
 

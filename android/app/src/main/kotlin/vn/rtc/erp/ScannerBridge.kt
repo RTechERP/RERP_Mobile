@@ -15,7 +15,6 @@ import android.util.Log
 import android.view.KeyEvent
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.EventChannel
-import java.lang.reflect.Method
 
 /**
  * Bridge kết nối tới phần cứng quét mã của máy PDA Mobydata M93.
@@ -25,12 +24,18 @@ import java.lang.reflect.Method
  * đến app dưới dạng `keyCode = KEYCODE_BARCODE` (1003) kèm `scanCode` gốc.
  *
  * Cơ chế hoạt động:
- * - `KeyboardManager.disableInterception(true)` cho phép phím quét đi tới app
- *   thay vì bị `PhoneWindowManager` hấp thụ. Sau khi tắt hấp thụ, framework
- *   không tự kích hoạt đầu đọc nên app phải tự gọi `pressTrigger()`.
+ * - Phím quét vật lý đến app dưới dạng `keyCode = KEYCODE_BARCODE` (1003)
+ *   kèm `scanCode` gốc. App tự gọi `pressTrigger()` để bật đầu đọc.
  * - Kết quả đọc mã nhận qua listener `IReadActionListener` của service
  *   `scanner`, và qua broadcast của wedge với action
  *   `com.android.decodewedge.decode_action`.
+ *
+ * Lưu ý: không được gọi `KeyboardManager.disableInterception(true)`.
+ * Trên M93, cờ này làm `PhoneWindowManager.interceptKeyBeforeQueueing` và
+ * `interceptKeyBeforeDispatching` return sớm, khiến hệ thống bỏ qua toàn bộ
+ * xử lý policy của `KEYCODE_HOME` / `KEYCODE_POWER` — nút Home và nút Nguồn
+ * vật lý bị liệt cho tới khi reboot. Cờ này nằm trong system service nên
+ * tồn tại xuyên suốt các lần cài đặt app.
  *
  * Flutter lắng nghe qua EventChannel `vn.rtc.erp/scanner`.
  */
@@ -61,8 +66,15 @@ class ScannerBridge(private val context: Context, messenger: BinaryMessenger) {
         private const val DESCRIPTOR_READ_LISTENER =
             "com.android.interfaces.scanner.sdk.decode.IReadActionListener"
 
-        // Lớp quản lý bàn phím của máy PDA, dùng để tắt hấp thụ phím.
-        private const val KEYBOARD_MANAGER_CLASS = "com.android.device.input.KeyboardManager"
+        // Tên system service remap phím của máy PDA (`IKeyRemapManager`).
+        private const val KEY_REMAP_SERVICE = "keboard_remap"
+
+        // Descriptor của interface `IKeyRemapManager`.
+        private const val DESCRIPTOR_KEY_REMAP =
+            "com.android.interfaces.device.IKeyRemapManager"
+
+        // Giao dịch `disableInterception(boolean)` của `IKeyRemapManager`.
+        private const val KEY_REMAP_DISABLE_INTERCEPTION = 11
 
         // Giao dịch `pressTrigger()` — bật đầu đọc mã.
         private const val CORE_PRESS_TRIGGER = 1
@@ -98,9 +110,12 @@ class ScannerBridge(private val context: Context, messenger: BinaryMessenger) {
         // `ILLUM_MODE` — màu LED chiếu sáng: 1 = trắng, 2 = đỏ, 4 = xanh.
         //
         // Đây là bitmask chọn màu chứ không phải công tắc bật/tắt. Đặt 0 sẽ
-        // bị máy bỏ qua, nên đèn được tắt bằng
+        // bị máy bỏ qua, nên đèn được bật/tắt bằng
         // [PROP_SET_CONTROL_ILLULEVEL].
         private const val PROP_ILLUM_MODE = 4
+
+        // Màu LED trắng trong [PROP_ILLUM_MODE].
+        private const val ILLUM_MODE_WHITE = 1
 
         // `SET_CONTROL_ILLULEVEL` — mức sáng của đèn chiếu sáng.
         //
@@ -109,8 +124,11 @@ class ScannerBridge(private val context: Context, messenger: BinaryMessenger) {
         // `illumination_brightness_values` của app ScanSettings của máy).
         private const val PROP_SET_CONTROL_ILLULEVEL = 327713
 
-        // Giá trị của [PROP_SET_CONTROL_ILLULEVEL] tương ứng với đèn tắt.
-        private const val ILLUM_LEVEL_OFF = 512
+        // Giá trị của [PROP_SET_CONTROL_ILLULEVEL] tương ứng với đèn sáng.
+        //
+        // Máy M93 nhận giá trị 1..20 cho các mức sáng. Chọn mức vừa phải để
+        // đọc được mã trong kho tối mà không chói màn hình.
+        private const val ILLUM_LEVEL_ON = 10
 
         // `AUTO_SCAN_ENABLE` — quét liên tục.
         private const val PROP_AUTO_SCAN_ENABLE = 98
@@ -204,32 +222,44 @@ class ScannerBridge(private val context: Context, messenger: BinaryMessenger) {
         })
 
         registerReceiver()
-        disableSystemInterception()
+        restoreSystemKeyInterception()
         connect()
         addReadListener()
         configureSingleShotIntentWedge(DEFAULT_DECODE_ACTION, DEFAULT_DECODE_CATEGORY)
     }
 
     /**
-     * Tắt cơ chế framework hệ thống hấp thụ phím của máy PDA.
+     * Khôi phục chế độ xử lý phím mặc định của hệ thống.
      *
-     * Trên M93, `PhoneWindowManager` chặn các phím quét mã trước khi chúng tới
-     * app. Sau khi tắt hấp thụ, các phím này đi tiếp xuống app và app tự
-     * kích hoạt đầu đọc bằng [pressTrigger].
+     * Các bản build cũ từng gọi `disableInterception(true)` khi app khởi động.
+     * Cờ này nằm trong system service `keboard_remap` nên vẫn còn sau khi app
+     * bị gỡ, khiến `PhoneWindowManager` bỏ qua xử lý policy của
+     * `KEYCODE_HOME` / `KEYCODE_POWER` — nút Home và nút Nguồn vật lý bị liệt.
+     *
+     * Gọi lại với `false` để trả máy về trạng thái mặc định, không cần reboot.
      */
-    private fun disableSystemInterception() {
+    private fun restoreSystemKeyInterception() {
         try {
-            val keyboardManagerClass = Class.forName(KEYBOARD_MANAGER_CLASS)
-            val manager = keyboardManagerClass.getDeclaredConstructor().newInstance()
-            val method: Method = keyboardManagerClass.getMethod(
-                "disableInterception",
-                Boolean::class.javaPrimitiveType
-            )
-            method.invoke(manager, true)
-            Log.i(TAG, "đã tắt hấp thụ phím của hệ thống")
+            val binder = getSystemServiceBinder(KEY_REMAP_SERVICE) ?: return
+            val data = Parcel.obtain()
+            val reply = Parcel.obtain()
+            try {
+                data.writeInterfaceToken(DESCRIPTOR_KEY_REMAP)
+                data.writeInt(0)
+                binder.transact(
+                    KEY_REMAP_DISABLE_INTERCEPTION,
+                    data,
+                    reply,
+                    0
+                )
+                reply.readException()
+                Log.i(TAG, "đã khôi phục xử lý phím mặc định của hệ thống")
+            } finally {
+                data.recycle()
+                reply.recycle()
+            }
         } catch (e: Throwable) {
-            val cause = generateSequence(e.cause) { it.cause }.lastOrNull() ?: e
-            Log.w(TAG, "không tắt được hấp thụ phím: ${cause.javaClass.name}")
+            Log.w(TAG, "không khôi phục được xử lý phím: ${e.message}")
         }
     }
 
@@ -328,9 +358,8 @@ class ScannerBridge(private val context: Context, messenger: BinaryMessenger) {
         // Bật chế độ gửi broadcast.
         setPropertyInt(PROP_WEDGE_INTENT_ENABLE, 1)
 
-        // Tắt đèn chiếu sáng (đèn trắng) của đầu quét: chỉ dùng tia laser
-        // ngắm mã, không làm chói màn hình khi quét.
-        disableIllumination()
+        // Bật đèn chiếu sáng (đèn trắng) của đầu quét.
+        enableIllumination()
 
         // Áp dụng các thay đổi.
         transactInt(SDK_COMMIT_PROPERTIES, DESCRIPTOR_SDK, binder) {}
@@ -372,26 +401,26 @@ class ScannerBridge(private val context: Context, messenger: BinaryMessenger) {
     }
 
     /**
-     * Tắt đèn chiếu sáng của đầu quét, chỉ giữ lại tia laser.
+     * Bật đèn chiếu sáng của đầu quét.
      *
      * Gọi lại mỗi lần bấm nút quét vì máy có thể tự ghi đè lại giá trị
      * này khi kích hoạt đầu đọc, và người dùng có thể đổi cấu hình trong
      * app ScanSettings của máy.
      */
-    private fun disableIllumination() {
+    private fun enableIllumination() {
         val binder = sdkService ?: return
 
-        // Tắt đèn chiếu sáng: mức sáng về giá trị "tắt".
-        setPropertyInt(PROP_SET_CONTROL_ILLULEVEL, ILLUM_LEVEL_OFF)
+        // Chọn đèn trắng.
+        setPropertyInt(PROP_ILLUM_MODE, ILLUM_MODE_WHITE)
 
-        // Không chọn màu LED nào — laser không phụ thuộc vào thuộc tính này.
-        setPropertyInt(PROP_ILLUM_MODE, 0)
+        // Bật đèn ở mức sáng vừa phải.
+        setPropertyInt(PROP_SET_CONTROL_ILLULEVEL, ILLUM_LEVEL_ON)
 
         // `ILLUM_MODE` chỉ có hiệu lực sau khi commit.
         transactInt(SDK_COMMIT_PROPERTIES, DESCRIPTOR_SDK, binder) {}
 
         val level = getPropertyInt(PROP_SET_CONTROL_ILLULEVEL)
-        Log.i(TAG, "đèn chiếu sáng: mức sáng=$level (tắt=$ILLUM_LEVEL_OFF)")
+        Log.i(TAG, "đèn chiếu sáng: mức sáng=$level (bật=$ILLUM_LEVEL_ON)")
     }
 
     /**
@@ -462,14 +491,14 @@ class ScannerBridge(private val context: Context, messenger: BinaryMessenger) {
 
         Log.i(TAG, "nút quét scanCode=${event.scanCode} keyCode=${event.keyCode}")
 
-        // Sau khi tắt hấp thụ phím, không còn ai kích hoạt đầu đọc nên app
-        // phải tự gọi. Nhấn xuống bật, thả tay tắt — đúng như nút vật lý.
+        // Sau khi bấm nút quét, không còn framework tự kích hoạt đầu đọc nên
+        // app phải tự gọi. Nhấn xuống bật, thả tay tắt — đúng như nút vật lý.
         if (event.action == KeyEvent.ACTION_DOWN) {
             // Mở lượt quét mới: mã giống nhau ở lượt sau vẫn được báo.
             scanSession++
             sink?.success(mapOf("keyEvent" to buttonId))
-            // Chỉ dùng tia laser: tắt đèn trắng trước khi bật đầu đọc.
-            disableIllumination()
+            // Bật đèn trắng trước khi bật đầu đọc.
+            enableIllumination()
             pressTrigger()
         } else if (event.action == KeyEvent.ACTION_UP) {
             releaseTrigger()

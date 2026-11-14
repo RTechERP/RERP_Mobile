@@ -225,7 +225,7 @@ class _InventoryCheckSheetItemEditSheetState
           Expanded(
             child: _InfoCell(
               label: 'Khách mượn',
-              value: _formatQty(item.customerBorrowedQuantity),
+              value: _formatQty(item.quantityExportMuon),
             ),
           ),
           Expanded(
@@ -269,10 +269,13 @@ class _InventoryCheckSheetItemEditSheetState
   }
 
   /// Số lượng kỳ vọng của hệ thống = tồn trong kho + đang mượn + khách mượn.
+  ///
+  /// Công thức chênh lệch theo API:
+  /// `Difference = QuantityActual - (NumberInStore + NumberBorrowing + QuantityExportMuon)`.
   static double _expectedQuantity(InventoryCountSheetItem item) {
     return (item.numberInStore +
             item.numberBorrowing +
-            (item.customerBorrowedQuantity ?? 0))
+            item.quantityExportMuon)
         .toDouble();
   }
 

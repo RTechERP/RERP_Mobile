@@ -326,10 +326,174 @@ class InventoryCountSheetItem with _$InventoryCountSheetItem {
     /// Tồn kho tổng.
     @JsonKey(name: 'InventoryQuantity') double? inventoryQuantity,
 
+    /// Id vị trí kho của sản phẩm (0 = chưa có vị trí).
+    ///
+    /// Dùng để gọi API `get-inventory-sheet-mobile` lọc theo vị trí.
+    @JsonKey(name: 'ProductLocationID') int? productLocationId,
+
     @JsonKey(name: 'UpdatedDate') String? updatedDate,
     @JsonKey(name: 'UpdatedBy') String? updatedBy,
   }) = _InventoryCountSheetItem;
 
   factory InventoryCountSheetItem.fromJson(Map<String, dynamic> json) =>
       _$InventoryCountSheetItemFromJson(json);
+}
+
+/// Vị trí kho / kệ trong đợt kiểm kê — trả về từ API
+/// `GET /WarehouseInventoryCount/get-location-progress-mobile`.
+///
+/// Dòng đầu tiên luôn là `ID = 0` — "Chưa có vị trí".
+@freezed
+class InventoryProductLocation with _$InventoryProductLocation {
+  const factory InventoryProductLocation({
+    /// Id vị trí kho (0 = chưa có vị trí).
+    @JsonKey(name: 'ID') int? id,
+
+    /// Mã vị trí (vd. `K1-T3.1`).
+    @JsonKey(name: 'LocationCode') String? locationCode,
+
+    /// Tên vị trí.
+    @JsonKey(name: 'LocationName') String? locationName,
+
+    /// Tên vị trí cũ (dùng khi vị trí đã được đổi tên).
+    @JsonKey(name: 'OldLocationName') String? oldLocationName,
+
+    /// Id kho chứa vị trí.
+    @JsonKey(name: 'WarehouseID') int? warehouseId,
+
+    /// Loại vị trí (0 = thường, 1 = kệ...).
+    @JsonKey(name: 'LocationType') int? locationType,
+
+    /// Thứ tự hiển thị.
+    @JsonKey(name: 'STT') int? stt,
+
+    /// Tổng số mã sản phẩm thuộc vị trí này trong đợt kiểm kê.
+    @JsonKey(name: 'TotalCount') @Default(0) int totalCount,
+
+    /// Số mã đã kiểm (`QuantityActual` khác null).
+    @JsonKey(name: 'CountedCount') @Default(0) int countedCount,
+
+    /// Số mã chưa kiểm.
+    @JsonKey(name: 'UncountedCount') @Default(0) int uncountedCount,
+
+    /// Vị trí đã kiểm xong hay chưa.
+    @JsonKey(name: 'IsCompleted') @Default(false) bool isCompleted,
+  }) = _InventoryProductLocation;
+
+  factory InventoryProductLocation.fromJson(Map<String, dynamic> json) =>
+      _$InventoryProductLocationFromJson(json);
+}
+
+/// Tủ / tray Modula cha — trả về từ API
+/// `GET /WarehouseInventoryCount/get-location-progress-mobile`.
+///
+/// Dòng đầu tiên luôn là `ModulaLocationID = 0` — "Chưa có vị trí".
+@freezed
+class InventoryModulaLocationGroup with _$InventoryModulaLocationGroup {
+  const factory InventoryModulaLocationGroup({
+    /// Id tủ Modula (0 = chưa có vị trí).
+    @JsonKey(name: 'ModulaLocationID') int? id,
+
+    /// Thứ tự hiển thị.
+    @JsonKey(name: 'STT') int? stt,
+
+    /// Mã tủ (vd. `TRAY1`).
+    @JsonKey(name: 'Code') String? code,
+
+    /// Tên tủ (vd. `Tray 1`).
+    @JsonKey(name: 'Name') String? name,
+
+    /// Tổng số mã sản phẩm thuộc tủ này.
+    @JsonKey(name: 'TotalCount') @Default(0) int totalCount,
+
+    /// Số mã đã kiểm.
+    @JsonKey(name: 'CountedCount') @Default(0) int countedCount,
+
+    /// Số mã chưa kiểm.
+    @JsonKey(name: 'UncountedCount') @Default(0) int uncountedCount,
+
+    /// Tủ đã kiểm xong hay chưa.
+    @JsonKey(name: 'IsCompleted') @Default(false) bool isCompleted,
+  }) = _InventoryModulaLocationGroup;
+
+  factory InventoryModulaLocationGroup.fromJson(Map<String, dynamic> json) =>
+      _$InventoryModulaLocationGroupFromJson(json);
+}
+
+/// Ô Modula chi tiết — trả về từ API
+/// `GET /WarehouseInventoryCount/get-location-progress-mobile`.
+///
+/// Dòng đầu tiên luôn là `ModulaLocationDetailID = 0` — "Chưa có vị trí".
+@freezed
+class InventoryModulaLocationDetail with _$InventoryModulaLocationDetail {
+  const factory InventoryModulaLocationDetail({
+    /// Id tủ Modula cha.
+    @JsonKey(name: 'ModulaLocationID') int? modulaLocationId,
+
+    /// Thứ tự hiển thị của tủ.
+    @JsonKey(name: 'ModulaSTT') int? modulaStt,
+
+    /// Mã tủ Modula.
+    @JsonKey(name: 'ModulaLocationCode') String? modulaLocationCode,
+
+    /// Tên tủ Modula.
+    @JsonKey(name: 'Name') String? name,
+
+    /// Id ô Modula chi tiết (0 = chưa có vị trí).
+    @JsonKey(name: 'ModulaLocationDetailID') int? detailId,
+
+    /// Thứ tự hiển thị của ô.
+    @JsonKey(name: 'DetailSTT') int? detailStt,
+
+    /// Mã ô Modula (vd. `VT1`).
+    @JsonKey(name: 'ModulaLocationDetailCode') String? detailCode,
+
+    /// Tên ô Modula (vd. `Vị trí 1`).
+    @JsonKey(name: 'ModulaLocationDetailName') String? detailName,
+
+    /// Tên đầy đủ để hiển thị (vd. `Tray 1 - Vị trí 1`).
+    @JsonKey(name: 'LocationName') String? locationName,
+
+    /// Tổng số mã sản phẩm thuộc ô này.
+    @JsonKey(name: 'TotalCount') @Default(0) int totalCount,
+
+    /// Số mã đã kiểm.
+    @JsonKey(name: 'CountedCount') @Default(0) int countedCount,
+
+    /// Số mã chưa kiểm.
+    @JsonKey(name: 'UncountedCount') @Default(0) int uncountedCount,
+
+    /// Ô đã kiểm xong hay chưa.
+    @JsonKey(name: 'IsCompleted') @Default(false) bool isCompleted,
+  }) = _InventoryModulaLocationDetail;
+
+  factory InventoryModulaLocationDetail.fromJson(Map<String, dynamic> json) =>
+      _$InventoryModulaLocationDetailFromJson(json);
+}
+
+/// Tiến độ kiểm kê theo vị trí — trả về từ API
+/// `GET /WarehouseInventoryCount/get-location-progress-mobile`.
+///
+/// Gồm 3 mảng: vị trí kho, tủ Modula cha và ô Modula chi tiết.
+@freezed
+class InventoryLocationProgress with _$InventoryLocationProgress {
+  const factory InventoryLocationProgress({
+    /// Danh sách vị trí kho / kệ (dòng đầu là ID = 0 "Chưa có vị trí").
+    @JsonKey(name: 'ProductLocations')
+    @Default([])
+    List<InventoryProductLocation> productLocations,
+
+    /// Danh sách tủ / tray Modula cha (dòng đầu là ID = 0 "Chưa có vị trí").
+    @JsonKey(name: 'ModulaLocationGroups')
+    @Default([])
+    List<InventoryModulaLocationGroup> modulaLocationGroups,
+
+    /// Danh sách ô Modula chi tiết (dòng đầu là ID = 0 "Chưa có vị trí").
+    @JsonKey(name: 'ModulaLocations')
+    @Default([])
+    List<InventoryModulaLocationDetail> modulaLocations,
+  }) = _InventoryLocationProgress;
+
+  factory InventoryLocationProgress.fromJson(Map<String, dynamic> json) =>
+      _$InventoryLocationProgressFromJson(json);
 }

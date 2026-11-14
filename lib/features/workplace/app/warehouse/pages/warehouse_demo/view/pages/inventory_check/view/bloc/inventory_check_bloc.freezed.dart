@@ -30,6 +30,14 @@ mixin _$InventoryCheckEvent {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -59,6 +67,14 @@ mixin _$InventoryCheckEvent {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -87,6 +103,14 @@ mixin _$InventoryCheckEvent {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -116,6 +140,15 @@ mixin _$InventoryCheckEvent {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -144,6 +177,13 @@ mixin _$InventoryCheckEvent {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -170,6 +210,13 @@ mixin _$InventoryCheckEvent {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -254,6 +301,14 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -286,6 +341,14 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -317,6 +380,14 @@ class _$FetchImpl implements _Fetch {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -352,6 +423,15 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -383,6 +463,13 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -412,6 +499,13 @@ class _$FetchImpl implements _Fetch {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -486,6 +580,14 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -518,6 +620,14 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -549,6 +659,14 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -584,6 +702,15 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -615,6 +742,13 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -644,6 +778,13 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -744,6 +885,14 @@ class _$SearchImpl implements _Search {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -776,6 +925,14 @@ class _$SearchImpl implements _Search {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -807,6 +964,14 @@ class _$SearchImpl implements _Search {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -842,6 +1007,15 @@ class _$SearchImpl implements _Search {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -873,6 +1047,13 @@ class _$SearchImpl implements _Search {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -902,6 +1083,13 @@ class _$SearchImpl implements _Search {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -1009,6 +1197,14 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -1041,6 +1237,14 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -1072,6 +1276,14 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -1107,6 +1319,15 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -1138,6 +1359,13 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -1167,6 +1395,13 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -1275,6 +1510,14 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -1307,6 +1550,14 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -1338,6 +1589,14 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -1373,6 +1632,15 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -1404,6 +1672,13 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -1433,6 +1708,13 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -1549,6 +1831,14 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -1581,6 +1871,14 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -1612,6 +1910,14 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -1647,6 +1953,15 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -1678,6 +1993,13 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -1707,6 +2029,13 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -1815,6 +2144,14 @@ class _$GenerateCodeImpl implements _GenerateCode {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -1847,6 +2184,14 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -1878,6 +2223,14 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -1913,6 +2266,15 @@ class _$GenerateCodeImpl implements _GenerateCode {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -1944,6 +2306,13 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -1973,6 +2342,13 @@ class _$GenerateCodeImpl implements _GenerateCode {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -2087,6 +2463,14 @@ class _$SaveImpl implements _Save {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -2119,6 +2503,14 @@ class _$SaveImpl implements _Save {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -2150,6 +2542,14 @@ class _$SaveImpl implements _Save {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -2185,6 +2585,15 @@ class _$SaveImpl implements _Save {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -2216,6 +2625,13 @@ class _$SaveImpl implements _Save {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -2245,6 +2661,13 @@ class _$SaveImpl implements _Save {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -2350,6 +2773,14 @@ class _$GetByIdImpl implements _GetById {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -2382,6 +2813,14 @@ class _$GetByIdImpl implements _GetById {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -2413,6 +2852,14 @@ class _$GetByIdImpl implements _GetById {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -2448,6 +2895,15 @@ class _$GetByIdImpl implements _GetById {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -2479,6 +2935,13 @@ class _$GetByIdImpl implements _GetById {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -2508,6 +2971,13 @@ class _$GetByIdImpl implements _GetById {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -2613,6 +3083,14 @@ class _$DeleteImpl implements _Delete {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -2645,6 +3123,14 @@ class _$DeleteImpl implements _Delete {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -2676,6 +3162,14 @@ class _$DeleteImpl implements _Delete {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -2711,6 +3205,15 @@ class _$DeleteImpl implements _Delete {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -2742,6 +3245,13 @@ class _$DeleteImpl implements _Delete {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -2771,6 +3281,13 @@ class _$DeleteImpl implements _Delete {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -2876,6 +3393,14 @@ class _$FetchSheetImpl implements _FetchSheet {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -2908,6 +3433,14 @@ class _$FetchSheetImpl implements _FetchSheet {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -2939,6 +3472,14 @@ class _$FetchSheetImpl implements _FetchSheet {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -2974,6 +3515,15 @@ class _$FetchSheetImpl implements _FetchSheet {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -3005,6 +3555,13 @@ class _$FetchSheetImpl implements _FetchSheet {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -3034,6 +3591,13 @@ class _$FetchSheetImpl implements _FetchSheet {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -3061,6 +3625,1898 @@ abstract class _FetchSheet implements InventoryCheckEvent {
   @JsonKey(ignore: true)
   _$$FetchSheetImplCopyWith<_$FetchSheetImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchLocationProgressImplCopyWith<$Res> {
+  factory _$$FetchLocationProgressImplCopyWith(
+          _$FetchLocationProgressImpl value,
+          $Res Function(_$FetchLocationProgressImpl) then) =
+      __$$FetchLocationProgressImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int countId, int warehouseId, int modulaLocationId, String? keyword});
+}
+
+/// @nodoc
+class __$$FetchLocationProgressImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$FetchLocationProgressImpl>
+    implements _$$FetchLocationProgressImplCopyWith<$Res> {
+  __$$FetchLocationProgressImplCopyWithImpl(_$FetchLocationProgressImpl _value,
+      $Res Function(_$FetchLocationProgressImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? countId = null,
+    Object? warehouseId = null,
+    Object? modulaLocationId = null,
+    Object? keyword = freezed,
+  }) {
+    return _then(_$FetchLocationProgressImpl(
+      countId: null == countId
+          ? _value.countId
+          : countId // ignore: cast_nullable_to_non_nullable
+              as int,
+      warehouseId: null == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as int,
+      modulaLocationId: null == modulaLocationId
+          ? _value.modulaLocationId
+          : modulaLocationId // ignore: cast_nullable_to_non_nullable
+              as int,
+      keyword: freezed == keyword
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchLocationProgressImpl implements _FetchLocationProgress {
+  const _$FetchLocationProgressImpl(
+      {required this.countId,
+      this.warehouseId = 0,
+      this.modulaLocationId = -1,
+      this.keyword});
+
+  @override
+  final int countId;
+  @override
+  @JsonKey()
+  final int warehouseId;
+  @override
+  @JsonKey()
+  final int modulaLocationId;
+  @override
+  final String? keyword;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.fetchLocationProgress(countId: $countId, warehouseId: $warehouseId, modulaLocationId: $modulaLocationId, keyword: $keyword)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchLocationProgressImpl &&
+            (identical(other.countId, countId) || other.countId == countId) &&
+            (identical(other.warehouseId, warehouseId) ||
+                other.warehouseId == warehouseId) &&
+            (identical(other.modulaLocationId, modulaLocationId) ||
+                other.modulaLocationId == modulaLocationId) &&
+            (identical(other.keyword, keyword) || other.keyword == keyword));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, countId, warehouseId, modulaLocationId, keyword);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchLocationProgressImplCopyWith<_$FetchLocationProgressImpl>
+      get copyWith => __$$FetchLocationProgressImplCopyWithImpl<
+          _$FetchLocationProgressImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
+    required TResult Function(int id, bool isComplete) confirmComplete,
+  }) {
+    return fetchLocationProgress(
+        countId, warehouseId, modulaLocationId, keyword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
+  }) {
+    return fetchLocationProgress?.call(
+        countId, warehouseId, modulaLocationId, keyword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
+    TResult Function(int id, bool isComplete)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (fetchLocationProgress != null) {
+      return fetchLocationProgress(
+          countId, warehouseId, modulaLocationId, keyword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
+  }) {
+    return fetchLocationProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
+  }) {
+    return fetchLocationProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (fetchLocationProgress != null) {
+      return fetchLocationProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchLocationProgress implements InventoryCheckEvent {
+  const factory _FetchLocationProgress(
+      {required final int countId,
+      final int warehouseId,
+      final int modulaLocationId,
+      final String? keyword}) = _$FetchLocationProgressImpl;
+
+  int get countId;
+  int get warehouseId;
+  int get modulaLocationId;
+  String? get keyword;
+  @JsonKey(ignore: true)
+  _$$FetchLocationProgressImplCopyWith<_$FetchLocationProgressImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectLocationScopeImplCopyWith<$Res> {
+  factory _$$SelectLocationScopeImplCopyWith(_$SelectLocationScopeImpl value,
+          $Res Function(_$SelectLocationScopeImpl) then) =
+      __$$SelectLocationScopeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({InventoryLocationGroup group});
+}
+
+/// @nodoc
+class __$$SelectLocationScopeImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$SelectLocationScopeImpl>
+    implements _$$SelectLocationScopeImplCopyWith<$Res> {
+  __$$SelectLocationScopeImplCopyWithImpl(_$SelectLocationScopeImpl _value,
+      $Res Function(_$SelectLocationScopeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? group = null,
+  }) {
+    return _then(_$SelectLocationScopeImpl(
+      null == group
+          ? _value.group
+          : group // ignore: cast_nullable_to_non_nullable
+              as InventoryLocationGroup,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectLocationScopeImpl implements _SelectLocationScope {
+  const _$SelectLocationScopeImpl(this.group);
+
+  @override
+  final InventoryLocationGroup group;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.selectLocationScope(group: $group)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectLocationScopeImpl &&
+            (identical(other.group, group) || other.group == group));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, group);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectLocationScopeImplCopyWith<_$SelectLocationScopeImpl> get copyWith =>
+      __$$SelectLocationScopeImplCopyWithImpl<_$SelectLocationScopeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
+    required TResult Function(int id, bool isComplete) confirmComplete,
+  }) {
+    return selectLocationScope(group);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
+  }) {
+    return selectLocationScope?.call(group);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
+    TResult Function(int id, bool isComplete)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (selectLocationScope != null) {
+      return selectLocationScope(group);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
+  }) {
+    return selectLocationScope(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
+  }) {
+    return selectLocationScope?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (selectLocationScope != null) {
+      return selectLocationScope(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectLocationScope implements InventoryCheckEvent {
+  const factory _SelectLocationScope(final InventoryLocationGroup group) =
+      _$SelectLocationScopeImpl;
+
+  InventoryLocationGroup get group;
+  @JsonKey(ignore: true)
+  _$$SelectLocationScopeImplCopyWith<_$SelectLocationScopeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectProductLocationImplCopyWith<$Res> {
+  factory _$$SelectProductLocationImplCopyWith(
+          _$SelectProductLocationImpl value,
+          $Res Function(_$SelectProductLocationImpl) then) =
+      __$$SelectProductLocationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? productLocationId});
+}
+
+/// @nodoc
+class __$$SelectProductLocationImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$SelectProductLocationImpl>
+    implements _$$SelectProductLocationImplCopyWith<$Res> {
+  __$$SelectProductLocationImplCopyWithImpl(_$SelectProductLocationImpl _value,
+      $Res Function(_$SelectProductLocationImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? productLocationId = freezed,
+  }) {
+    return _then(_$SelectProductLocationImpl(
+      freezed == productLocationId
+          ? _value.productLocationId
+          : productLocationId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectProductLocationImpl implements _SelectProductLocation {
+  const _$SelectProductLocationImpl(this.productLocationId);
+
+  @override
+  final int? productLocationId;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.selectProductLocation(productLocationId: $productLocationId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectProductLocationImpl &&
+            (identical(other.productLocationId, productLocationId) ||
+                other.productLocationId == productLocationId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, productLocationId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectProductLocationImplCopyWith<_$SelectProductLocationImpl>
+      get copyWith => __$$SelectProductLocationImplCopyWithImpl<
+          _$SelectProductLocationImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
+    required TResult Function(int id, bool isComplete) confirmComplete,
+  }) {
+    return selectProductLocation(productLocationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
+  }) {
+    return selectProductLocation?.call(productLocationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
+    TResult Function(int id, bool isComplete)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (selectProductLocation != null) {
+      return selectProductLocation(productLocationId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
+  }) {
+    return selectProductLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
+  }) {
+    return selectProductLocation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (selectProductLocation != null) {
+      return selectProductLocation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectProductLocation implements InventoryCheckEvent {
+  const factory _SelectProductLocation(final int? productLocationId) =
+      _$SelectProductLocationImpl;
+
+  int? get productLocationId;
+  @JsonKey(ignore: true)
+  _$$SelectProductLocationImplCopyWith<_$SelectProductLocationImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectModulaLocationImplCopyWith<$Res> {
+  factory _$$SelectModulaLocationImplCopyWith(_$SelectModulaLocationImpl value,
+          $Res Function(_$SelectModulaLocationImpl) then) =
+      __$$SelectModulaLocationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? modulaLocationId});
+}
+
+/// @nodoc
+class __$$SelectModulaLocationImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$SelectModulaLocationImpl>
+    implements _$$SelectModulaLocationImplCopyWith<$Res> {
+  __$$SelectModulaLocationImplCopyWithImpl(_$SelectModulaLocationImpl _value,
+      $Res Function(_$SelectModulaLocationImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? modulaLocationId = freezed,
+  }) {
+    return _then(_$SelectModulaLocationImpl(
+      freezed == modulaLocationId
+          ? _value.modulaLocationId
+          : modulaLocationId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectModulaLocationImpl implements _SelectModulaLocation {
+  const _$SelectModulaLocationImpl(this.modulaLocationId);
+
+  @override
+  final int? modulaLocationId;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.selectModulaLocation(modulaLocationId: $modulaLocationId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectModulaLocationImpl &&
+            (identical(other.modulaLocationId, modulaLocationId) ||
+                other.modulaLocationId == modulaLocationId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, modulaLocationId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectModulaLocationImplCopyWith<_$SelectModulaLocationImpl>
+      get copyWith =>
+          __$$SelectModulaLocationImplCopyWithImpl<_$SelectModulaLocationImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
+    required TResult Function(int id, bool isComplete) confirmComplete,
+  }) {
+    return selectModulaLocation(modulaLocationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
+  }) {
+    return selectModulaLocation?.call(modulaLocationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
+    TResult Function(int id, bool isComplete)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (selectModulaLocation != null) {
+      return selectModulaLocation(modulaLocationId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
+  }) {
+    return selectModulaLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
+  }) {
+    return selectModulaLocation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (selectModulaLocation != null) {
+      return selectModulaLocation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectModulaLocation implements InventoryCheckEvent {
+  const factory _SelectModulaLocation(final int? modulaLocationId) =
+      _$SelectModulaLocationImpl;
+
+  int? get modulaLocationId;
+  @JsonKey(ignore: true)
+  _$$SelectModulaLocationImplCopyWith<_$SelectModulaLocationImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectModulaLocationDetailImplCopyWith<$Res> {
+  factory _$$SelectModulaLocationDetailImplCopyWith(
+          _$SelectModulaLocationDetailImpl value,
+          $Res Function(_$SelectModulaLocationDetailImpl) then) =
+      __$$SelectModulaLocationDetailImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? detailId});
+}
+
+/// @nodoc
+class __$$SelectModulaLocationDetailImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res,
+        _$SelectModulaLocationDetailImpl>
+    implements _$$SelectModulaLocationDetailImplCopyWith<$Res> {
+  __$$SelectModulaLocationDetailImplCopyWithImpl(
+      _$SelectModulaLocationDetailImpl _value,
+      $Res Function(_$SelectModulaLocationDetailImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? detailId = freezed,
+  }) {
+    return _then(_$SelectModulaLocationDetailImpl(
+      detailId: freezed == detailId
+          ? _value.detailId
+          : detailId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectModulaLocationDetailImpl implements _SelectModulaLocationDetail {
+  const _$SelectModulaLocationDetailImpl({this.detailId});
+
+  @override
+  final int? detailId;
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.selectModulaLocationDetail(detailId: $detailId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectModulaLocationDetailImpl &&
+            (identical(other.detailId, detailId) ||
+                other.detailId == detailId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, detailId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectModulaLocationDetailImplCopyWith<_$SelectModulaLocationDetailImpl>
+      get copyWith => __$$SelectModulaLocationDetailImplCopyWithImpl<
+          _$SelectModulaLocationDetailImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
+    required TResult Function(int id, bool isComplete) confirmComplete,
+  }) {
+    return selectModulaLocationDetail(detailId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
+  }) {
+    return selectModulaLocationDetail?.call(detailId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
+    TResult Function(int id, bool isComplete)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (selectModulaLocationDetail != null) {
+      return selectModulaLocationDetail(detailId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
+  }) {
+    return selectModulaLocationDetail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
+  }) {
+    return selectModulaLocationDetail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (selectModulaLocationDetail != null) {
+      return selectModulaLocationDetail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectModulaLocationDetail implements InventoryCheckEvent {
+  const factory _SelectModulaLocationDetail({final int? detailId}) =
+      _$SelectModulaLocationDetailImpl;
+
+  int? get detailId;
+  @JsonKey(ignore: true)
+  _$$SelectModulaLocationDetailImplCopyWith<_$SelectModulaLocationDetailImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearLocationFilterImplCopyWith<$Res> {
+  factory _$$ClearLocationFilterImplCopyWith(_$ClearLocationFilterImpl value,
+          $Res Function(_$ClearLocationFilterImpl) then) =
+      __$$ClearLocationFilterImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearLocationFilterImplCopyWithImpl<$Res>
+    extends _$InventoryCheckEventCopyWithImpl<$Res, _$ClearLocationFilterImpl>
+    implements _$$ClearLocationFilterImplCopyWith<$Res> {
+  __$$ClearLocationFilterImplCopyWithImpl(_$ClearLocationFilterImpl _value,
+      $Res Function(_$ClearLocationFilterImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearLocationFilterImpl implements _ClearLocationFilter {
+  const _$ClearLocationFilterImpl();
+
+  @override
+  String toString() {
+    return 'InventoryCheckEvent.clearLocationFilter()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClearLocationFilterImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+        changeDateRange,
+    required TResult Function(DateTime date) generateCode,
+    required TResult Function(InventoryCountSavePayload payload) save,
+    required TResult Function(int id) getById,
+    required TResult Function(int id) delete,
+    required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
+    required TResult Function(String keyword) searchSheet,
+    required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
+    required TResult Function(int warehouseId, int warehouseType)
+        fetchProductGroupsRtc,
+    required TResult Function(int? groupId) filterSheetProductGroup,
+    required TResult Function(
+            int countId, List<Map<String, dynamic>> changedItems)
+        saveCountDetails,
+    required TResult Function(String code) findCountByCode,
+    required TResult Function() clearScanCountResult,
+    required TResult Function(InventoryScanMode mode) startSheetScan,
+    required TResult Function(String code) sheetScanned,
+    required TResult Function() stopSheetScan,
+    required TResult Function(int id, bool isComplete) confirmComplete,
+  }) {
+    return clearLocationFilter();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(DateTime date)? generateCode,
+    TResult? Function(InventoryCountSavePayload payload)? save,
+    TResult? Function(int id)? getById,
+    TResult? Function(int id)? delete,
+    TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
+    TResult? Function(String keyword)? searchSheet,
+    TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult? Function(int warehouseId, int warehouseType)?
+        fetchProductGroupsRtc,
+    TResult? Function(int? groupId)? filterSheetProductGroup,
+    TResult? Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult? Function(String code)? findCountByCode,
+    TResult? Function()? clearScanCountResult,
+    TResult? Function(InventoryScanMode mode)? startSheetScan,
+    TResult? Function(String code)? sheetScanned,
+    TResult? Function()? stopSheetScan,
+    TResult? Function(int id, bool isComplete)? confirmComplete,
+  }) {
+    return clearLocationFilter?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(DateTime date)? generateCode,
+    TResult Function(InventoryCountSavePayload payload)? save,
+    TResult Function(int id)? getById,
+    TResult Function(int id)? delete,
+    TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
+    TResult Function(String keyword)? searchSheet,
+    TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
+    TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
+    TResult Function(int? groupId)? filterSheetProductGroup,
+    TResult Function(int countId, List<Map<String, dynamic>> changedItems)?
+        saveCountDetails,
+    TResult Function(String code)? findCountByCode,
+    TResult Function()? clearScanCountResult,
+    TResult Function(InventoryScanMode mode)? startSheetScan,
+    TResult Function(String code)? sheetScanned,
+    TResult Function()? stopSheetScan,
+    TResult Function(int id, bool isComplete)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (clearLocationFilter != null) {
+      return clearLocationFilter();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+        changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_GenerateCode value) generateCode,
+    required TResult Function(_Save value) save,
+    required TResult Function(_GetById value) getById,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
+    required TResult Function(_SearchSheet value) searchSheet,
+    required TResult Function(_FilterSheet value) filterSheet,
+    required TResult Function(_FetchProductGroupsRtc value)
+        fetchProductGroupsRtc,
+    required TResult Function(_FilterSheetProductGroup value)
+        filterSheetProductGroup,
+    required TResult Function(_SaveCountDetails value) saveCountDetails,
+    required TResult Function(_FindCountByCode value) findCountByCode,
+    required TResult Function(_ClearScanCountResult value) clearScanCountResult,
+    required TResult Function(_StartSheetScan value) startSheetScan,
+    required TResult Function(_SheetScanned value) sheetScanned,
+    required TResult Function(_StopSheetScan value) stopSheetScan,
+    required TResult Function(_ConfirmComplete value) confirmComplete,
+  }) {
+    return clearLocationFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_GenerateCode value)? generateCode,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_GetById value)? getById,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
+    TResult? Function(_SearchSheet value)? searchSheet,
+    TResult? Function(_FilterSheet value)? filterSheet,
+    TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult? Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult? Function(_SaveCountDetails value)? saveCountDetails,
+    TResult? Function(_FindCountByCode value)? findCountByCode,
+    TResult? Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult? Function(_StartSheetScan value)? startSheetScan,
+    TResult? Function(_SheetScanned value)? sheetScanned,
+    TResult? Function(_StopSheetScan value)? stopSheetScan,
+    TResult? Function(_ConfirmComplete value)? confirmComplete,
+  }) {
+    return clearLocationFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_GenerateCode value)? generateCode,
+    TResult Function(_Save value)? save,
+    TResult Function(_GetById value)? getById,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
+    TResult Function(_SearchSheet value)? searchSheet,
+    TResult Function(_FilterSheet value)? filterSheet,
+    TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
+    TResult Function(_FilterSheetProductGroup value)? filterSheetProductGroup,
+    TResult Function(_SaveCountDetails value)? saveCountDetails,
+    TResult Function(_FindCountByCode value)? findCountByCode,
+    TResult Function(_ClearScanCountResult value)? clearScanCountResult,
+    TResult Function(_StartSheetScan value)? startSheetScan,
+    TResult Function(_SheetScanned value)? sheetScanned,
+    TResult Function(_StopSheetScan value)? stopSheetScan,
+    TResult Function(_ConfirmComplete value)? confirmComplete,
+    required TResult orElse(),
+  }) {
+    if (clearLocationFilter != null) {
+      return clearLocationFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearLocationFilter implements InventoryCheckEvent {
+  const factory _ClearLocationFilter() = _$ClearLocationFilterImpl;
 }
 
 /// @nodoc
@@ -3139,6 +5595,14 @@ class _$SearchSheetImpl implements _SearchSheet {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -3171,6 +5635,14 @@ class _$SearchSheetImpl implements _SearchSheet {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -3202,6 +5674,14 @@ class _$SearchSheetImpl implements _SearchSheet {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -3237,6 +5717,15 @@ class _$SearchSheetImpl implements _SearchSheet {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -3268,6 +5757,13 @@ class _$SearchSheetImpl implements _SearchSheet {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -3297,6 +5793,13 @@ class _$SearchSheetImpl implements _SearchSheet {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -3402,6 +5905,14 @@ class _$FilterSheetImpl implements _FilterSheet {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -3434,6 +5945,14 @@ class _$FilterSheetImpl implements _FilterSheet {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -3465,6 +5984,14 @@ class _$FilterSheetImpl implements _FilterSheet {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -3500,6 +6027,15 @@ class _$FilterSheetImpl implements _FilterSheet {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -3531,6 +6067,13 @@ class _$FilterSheetImpl implements _FilterSheet {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -3560,6 +6103,13 @@ class _$FilterSheetImpl implements _FilterSheet {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -3679,6 +6229,14 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -3711,6 +6269,14 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -3742,6 +6308,14 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -3777,6 +6351,15 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -3808,6 +6391,13 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -3837,6 +6427,13 @@ class _$FetchProductGroupsRtcImpl implements _FetchProductGroupsRtc {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -3949,6 +6546,14 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -3981,6 +6586,14 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -4012,6 +6625,14 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -4047,6 +6668,15 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -4078,6 +6708,13 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -4107,6 +6744,13 @@ class _$FilterSheetProductGroupImpl implements _FilterSheetProductGroup {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -4232,6 +6876,14 @@ class _$SaveCountDetailsImpl implements _SaveCountDetails {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -4264,6 +6916,14 @@ class _$SaveCountDetailsImpl implements _SaveCountDetails {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -4295,6 +6955,14 @@ class _$SaveCountDetailsImpl implements _SaveCountDetails {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -4330,6 +6998,15 @@ class _$SaveCountDetailsImpl implements _SaveCountDetails {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -4361,6 +7038,13 @@ class _$SaveCountDetailsImpl implements _SaveCountDetails {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -4390,6 +7074,13 @@ class _$SaveCountDetailsImpl implements _SaveCountDetails {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -4500,6 +7191,14 @@ class _$FindCountByCodeImpl implements _FindCountByCode {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -4532,6 +7231,14 @@ class _$FindCountByCodeImpl implements _FindCountByCode {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -4563,6 +7270,14 @@ class _$FindCountByCodeImpl implements _FindCountByCode {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -4598,6 +7313,15 @@ class _$FindCountByCodeImpl implements _FindCountByCode {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -4629,6 +7353,13 @@ class _$FindCountByCodeImpl implements _FindCountByCode {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -4658,6 +7389,13 @@ class _$FindCountByCodeImpl implements _FindCountByCode {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -4738,6 +7476,14 @@ class _$ClearScanCountResultImpl implements _ClearScanCountResult {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -4770,6 +7516,14 @@ class _$ClearScanCountResultImpl implements _ClearScanCountResult {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -4801,6 +7555,14 @@ class _$ClearScanCountResultImpl implements _ClearScanCountResult {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -4836,6 +7598,15 @@ class _$ClearScanCountResultImpl implements _ClearScanCountResult {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -4867,6 +7638,13 @@ class _$ClearScanCountResultImpl implements _ClearScanCountResult {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -4896,6 +7674,13 @@ class _$ClearScanCountResultImpl implements _ClearScanCountResult {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -4997,6 +7782,14 @@ class _$StartSheetScanImpl implements _StartSheetScan {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -5029,6 +7822,14 @@ class _$StartSheetScanImpl implements _StartSheetScan {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -5060,6 +7861,14 @@ class _$StartSheetScanImpl implements _StartSheetScan {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -5095,6 +7904,15 @@ class _$StartSheetScanImpl implements _StartSheetScan {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -5126,6 +7944,13 @@ class _$StartSheetScanImpl implements _StartSheetScan {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -5155,6 +7980,13 @@ class _$StartSheetScanImpl implements _StartSheetScan {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -5261,6 +8093,14 @@ class _$SheetScannedImpl implements _SheetScanned {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -5293,6 +8133,14 @@ class _$SheetScannedImpl implements _SheetScanned {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -5324,6 +8172,14 @@ class _$SheetScannedImpl implements _SheetScanned {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -5359,6 +8215,15 @@ class _$SheetScannedImpl implements _SheetScanned {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -5390,6 +8255,13 @@ class _$SheetScannedImpl implements _SheetScanned {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -5419,6 +8291,13 @@ class _$SheetScannedImpl implements _SheetScanned {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -5498,6 +8377,14 @@ class _$StopSheetScanImpl implements _StopSheetScan {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -5530,6 +8417,14 @@ class _$StopSheetScanImpl implements _StopSheetScan {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -5561,6 +8456,14 @@ class _$StopSheetScanImpl implements _StopSheetScan {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -5596,6 +8499,15 @@ class _$StopSheetScanImpl implements _StopSheetScan {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -5627,6 +8539,13 @@ class _$StopSheetScanImpl implements _StopSheetScan {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -5656,6 +8575,13 @@ class _$StopSheetScanImpl implements _StopSheetScan {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -5766,6 +8692,14 @@ class _$ConfirmCompleteImpl implements _ConfirmComplete {
     required TResult Function(int id) getById,
     required TResult Function(int id) delete,
     required TResult Function(int countId) fetchSheet,
+    required TResult Function(
+            int countId, int warehouseId, int modulaLocationId, String? keyword)
+        fetchLocationProgress,
+    required TResult Function(InventoryLocationGroup group) selectLocationScope,
+    required TResult Function(int? productLocationId) selectProductLocation,
+    required TResult Function(int? modulaLocationId) selectModulaLocation,
+    required TResult Function(int? detailId) selectModulaLocationDetail,
+    required TResult Function() clearLocationFilter,
     required TResult Function(String keyword) searchSheet,
     required TResult Function(InventoryCheckSheetFilter? filter) filterSheet,
     required TResult Function(int warehouseId, int warehouseType)
@@ -5798,6 +8732,14 @@ class _$ConfirmCompleteImpl implements _ConfirmComplete {
     TResult? Function(int id)? getById,
     TResult? Function(int id)? delete,
     TResult? Function(int countId)? fetchSheet,
+    TResult? Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult? Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult? Function(int? productLocationId)? selectProductLocation,
+    TResult? Function(int? modulaLocationId)? selectModulaLocation,
+    TResult? Function(int? detailId)? selectModulaLocationDetail,
+    TResult? Function()? clearLocationFilter,
     TResult? Function(String keyword)? searchSheet,
     TResult? Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult? Function(int warehouseId, int warehouseType)?
@@ -5829,6 +8771,14 @@ class _$ConfirmCompleteImpl implements _ConfirmComplete {
     TResult Function(int id)? getById,
     TResult Function(int id)? delete,
     TResult Function(int countId)? fetchSheet,
+    TResult Function(int countId, int warehouseId, int modulaLocationId,
+            String? keyword)?
+        fetchLocationProgress,
+    TResult Function(InventoryLocationGroup group)? selectLocationScope,
+    TResult Function(int? productLocationId)? selectProductLocation,
+    TResult Function(int? modulaLocationId)? selectModulaLocation,
+    TResult Function(int? detailId)? selectModulaLocationDetail,
+    TResult Function()? clearLocationFilter,
     TResult Function(String keyword)? searchSheet,
     TResult Function(InventoryCheckSheetFilter? filter)? filterSheet,
     TResult Function(int warehouseId, int warehouseType)? fetchProductGroupsRtc,
@@ -5864,6 +8814,15 @@ class _$ConfirmCompleteImpl implements _ConfirmComplete {
     required TResult Function(_GetById value) getById,
     required TResult Function(_Delete value) delete,
     required TResult Function(_FetchSheet value) fetchSheet,
+    required TResult Function(_FetchLocationProgress value)
+        fetchLocationProgress,
+    required TResult Function(_SelectLocationScope value) selectLocationScope,
+    required TResult Function(_SelectProductLocation value)
+        selectProductLocation,
+    required TResult Function(_SelectModulaLocation value) selectModulaLocation,
+    required TResult Function(_SelectModulaLocationDetail value)
+        selectModulaLocationDetail,
+    required TResult Function(_ClearLocationFilter value) clearLocationFilter,
     required TResult Function(_SearchSheet value) searchSheet,
     required TResult Function(_FilterSheet value) filterSheet,
     required TResult Function(_FetchProductGroupsRtc value)
@@ -5895,6 +8854,13 @@ class _$ConfirmCompleteImpl implements _ConfirmComplete {
     TResult? Function(_GetById value)? getById,
     TResult? Function(_Delete value)? delete,
     TResult? Function(_FetchSheet value)? fetchSheet,
+    TResult? Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult? Function(_SelectLocationScope value)? selectLocationScope,
+    TResult? Function(_SelectProductLocation value)? selectProductLocation,
+    TResult? Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult? Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult? Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult? Function(_SearchSheet value)? searchSheet,
     TResult? Function(_FilterSheet value)? filterSheet,
     TResult? Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,
@@ -5924,6 +8890,13 @@ class _$ConfirmCompleteImpl implements _ConfirmComplete {
     TResult Function(_GetById value)? getById,
     TResult Function(_Delete value)? delete,
     TResult Function(_FetchSheet value)? fetchSheet,
+    TResult Function(_FetchLocationProgress value)? fetchLocationProgress,
+    TResult Function(_SelectLocationScope value)? selectLocationScope,
+    TResult Function(_SelectProductLocation value)? selectProductLocation,
+    TResult Function(_SelectModulaLocation value)? selectModulaLocation,
+    TResult Function(_SelectModulaLocationDetail value)?
+        selectModulaLocationDetail,
+    TResult Function(_ClearLocationFilter value)? clearLocationFilter,
     TResult Function(_SearchSheet value)? searchSheet,
     TResult Function(_FilterSheet value)? filterSheet,
     TResult Function(_FetchProductGroupsRtc value)? fetchProductGroupsRtc,

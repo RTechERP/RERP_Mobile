@@ -146,6 +146,71 @@ class InventoryCheckService extends DioBaseApiService {
     );
   }
 
+  /// Lấy tiến độ kiểm kê theo vị trí kho & vị trí Modula —
+  /// `GET /WarehouseInventoryCount/get-location-progress-mobile`.
+  ///
+  /// - [countId] bắt buộc (> 0).
+  /// - [warehouseId] = 0 → server tự lấy theo đợt kiểm kê.
+  /// - [modulaLocationId] = -1 → lấy tất cả tủ Modula + dòng "Chưa có vị trí";
+  ///   0 → chỉ dòng "Chưa có vị trí"; > 0 → lọc 1 tủ.
+  /// - [keyword] tìm theo tên/mã trên danh sách Modula và "Chưa có vị trí".
+  Future<BaseData<InventoryLocationProgress>> getLocationProgressMobile({
+    required int countId,
+    int warehouseId = 0,
+    int modulaLocationId = -1,
+    String? keyword,
+  }) async {
+    return get<BaseData<InventoryLocationProgress>>(
+      ApiEndPoint.getInventoryLocationProgressMobile,
+      query: {
+        'countId': countId,
+        'warehouseId': warehouseId,
+        'modulaLocationId': modulaLocationId,
+        if (keyword != null && keyword.isNotEmpty) 'keyword': keyword,
+      },
+      parser: (json) => _wrap(
+        json,
+        (data) =>
+            InventoryLocationProgress.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
+  /// Lấy bảng sản phẩm kiểm kê cho mobile —
+  /// `GET /WarehouseInventoryCount/get-inventory-sheet-mobile`.
+  ///
+  /// Bộ lọc vị trí dùng chung quy ước:
+  /// - `-1` (hoặc không truyền) → lấy tất cả.
+  /// - `0` → chỉ lấy sản phẩm chưa có vị trí tương ứng.
+  /// - `> 0` → chỉ lấy sản phẩm thuộc đúng vị trí đó.
+  ///
+  /// Các tham số lọc ghép theo AND.
+  Future<BaseData<InventoryCountSheet>> getInventorySheetMobile({
+    required int countId,
+    String? keyword,
+    int? productGroupId,
+    int productLocationId = -1,
+    int modulaLocationId = -1,
+    int modulaLocationDetailId = -1,
+  }) async {
+    return get<BaseData<InventoryCountSheet>>(
+      ApiEndPoint.getInventorySheetMobile,
+      query: {
+        'countId': countId,
+        if (keyword != null && keyword.isNotEmpty) 'keyword': keyword,
+        if (productGroupId != null && productGroupId > 0)
+          'productGroupId': productGroupId,
+        'productLocationId': productLocationId,
+        'modulaLocationId': modulaLocationId,
+        'modulaLocationDetailId': modulaLocationDetailId,
+      },
+      parser: (json) => _wrap(
+        json,
+        (data) => InventoryCountSheet.fromJson(data as Map<String, dynamic>),
+      ),
+    );
+  }
+
   /// Lấy nhóm sản phẩm RTC trong kho —
   /// `GET /ProductRTC/product-group-rtc-new?warehouseId=&isDeleted=&isVisible=&warehouseType=`.
   ///

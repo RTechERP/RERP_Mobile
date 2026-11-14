@@ -47,6 +47,28 @@ abstract class _$InventoryCheckStateCWProxy {
 
   InventoryCheckState sheet(InventoryCountSheet? sheet);
 
+  InventoryCheckState allSheetItems(
+      List<InventoryCountSheetItem> allSheetItems);
+
+  InventoryCheckState isLoadingLocationCounts(bool isLoadingLocationCounts);
+
+  InventoryCheckState locationCounts(InventoryLocationCounts locationCounts);
+
+  InventoryCheckState sheetCountId(int? sheetCountId);
+
+  InventoryCheckState locationProgress(
+      InventoryLocationProgress? locationProgress);
+
+  InventoryCheckState isLoadingLocationProgress(bool isLoadingLocationProgress);
+
+  InventoryCheckState productLocationId(int? productLocationId);
+
+  InventoryCheckState modulaLocationId(int? modulaLocationId);
+
+  InventoryCheckState modulaLocationDetailId(int? modulaLocationDetailId);
+
+  InventoryCheckState locationScope(InventoryLocationGroup? locationScope);
+
   InventoryCheckState isLoadingSheet(bool isLoadingSheet);
 
   InventoryCheckState sheetKeyword(String sheetKeyword);
@@ -111,6 +133,16 @@ abstract class _$InventoryCheckStateCWProxy {
     bool? deleteSuccess,
     String? deleteError,
     InventoryCountSheet? sheet,
+    List<InventoryCountSheetItem>? allSheetItems,
+    bool? isLoadingLocationCounts,
+    InventoryLocationCounts? locationCounts,
+    int? sheetCountId,
+    InventoryLocationProgress? locationProgress,
+    bool? isLoadingLocationProgress,
+    int? productLocationId,
+    int? modulaLocationId,
+    int? modulaLocationDetailId,
+    InventoryLocationGroup? locationScope,
     bool? isLoadingSheet,
     String? sheetKeyword,
     InventoryCheckSheetFilter? sheetFilter,
@@ -213,6 +245,49 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
   InventoryCheckState sheet(InventoryCountSheet? sheet) => this(sheet: sheet);
 
   @override
+  InventoryCheckState allSheetItems(
+          List<InventoryCountSheetItem> allSheetItems) =>
+      this(allSheetItems: allSheetItems);
+
+  @override
+  InventoryCheckState isLoadingLocationCounts(bool isLoadingLocationCounts) =>
+      this(isLoadingLocationCounts: isLoadingLocationCounts);
+
+  @override
+  InventoryCheckState locationCounts(InventoryLocationCounts locationCounts) =>
+      this(locationCounts: locationCounts);
+
+  @override
+  InventoryCheckState sheetCountId(int? sheetCountId) =>
+      this(sheetCountId: sheetCountId);
+
+  @override
+  InventoryCheckState locationProgress(
+          InventoryLocationProgress? locationProgress) =>
+      this(locationProgress: locationProgress);
+
+  @override
+  InventoryCheckState isLoadingLocationProgress(
+          bool isLoadingLocationProgress) =>
+      this(isLoadingLocationProgress: isLoadingLocationProgress);
+
+  @override
+  InventoryCheckState productLocationId(int? productLocationId) =>
+      this(productLocationId: productLocationId);
+
+  @override
+  InventoryCheckState modulaLocationId(int? modulaLocationId) =>
+      this(modulaLocationId: modulaLocationId);
+
+  @override
+  InventoryCheckState modulaLocationDetailId(int? modulaLocationDetailId) =>
+      this(modulaLocationDetailId: modulaLocationDetailId);
+
+  @override
+  InventoryCheckState locationScope(InventoryLocationGroup? locationScope) =>
+      this(locationScope: locationScope);
+
+  @override
   InventoryCheckState isLoadingSheet(bool isLoadingSheet) =>
       this(isLoadingSheet: isLoadingSheet);
 
@@ -313,6 +388,16 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
     Object? deleteSuccess = const $CopyWithPlaceholder(),
     Object? deleteError = const $CopyWithPlaceholder(),
     Object? sheet = const $CopyWithPlaceholder(),
+    Object? allSheetItems = const $CopyWithPlaceholder(),
+    Object? isLoadingLocationCounts = const $CopyWithPlaceholder(),
+    Object? locationCounts = const $CopyWithPlaceholder(),
+    Object? sheetCountId = const $CopyWithPlaceholder(),
+    Object? locationProgress = const $CopyWithPlaceholder(),
+    Object? isLoadingLocationProgress = const $CopyWithPlaceholder(),
+    Object? productLocationId = const $CopyWithPlaceholder(),
+    Object? modulaLocationId = const $CopyWithPlaceholder(),
+    Object? modulaLocationDetailId = const $CopyWithPlaceholder(),
+    Object? locationScope = const $CopyWithPlaceholder(),
     Object? isLoadingSheet = const $CopyWithPlaceholder(),
     Object? sheetKeyword = const $CopyWithPlaceholder(),
     Object? sheetFilter = const $CopyWithPlaceholder(),
@@ -418,6 +503,53 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
           ? _value.sheet
           // ignore: cast_nullable_to_non_nullable
           : sheet as InventoryCountSheet?,
+      allSheetItems:
+          allSheetItems == const $CopyWithPlaceholder() || allSheetItems == null
+              ? _value.allSheetItems
+              // ignore: cast_nullable_to_non_nullable
+              : allSheetItems as List<InventoryCountSheetItem>,
+      isLoadingLocationCounts:
+          isLoadingLocationCounts == const $CopyWithPlaceholder() ||
+                  isLoadingLocationCounts == null
+              ? _value.isLoadingLocationCounts
+              // ignore: cast_nullable_to_non_nullable
+              : isLoadingLocationCounts as bool,
+      locationCounts: locationCounts == const $CopyWithPlaceholder() ||
+              locationCounts == null
+          ? _value.locationCounts
+          // ignore: cast_nullable_to_non_nullable
+          : locationCounts as InventoryLocationCounts,
+      sheetCountId: sheetCountId == const $CopyWithPlaceholder()
+          ? _value.sheetCountId
+          // ignore: cast_nullable_to_non_nullable
+          : sheetCountId as int?,
+      locationProgress: locationProgress == const $CopyWithPlaceholder()
+          ? _value.locationProgress
+          // ignore: cast_nullable_to_non_nullable
+          : locationProgress as InventoryLocationProgress?,
+      isLoadingLocationProgress:
+          isLoadingLocationProgress == const $CopyWithPlaceholder() ||
+                  isLoadingLocationProgress == null
+              ? _value.isLoadingLocationProgress
+              // ignore: cast_nullable_to_non_nullable
+              : isLoadingLocationProgress as bool,
+      productLocationId: productLocationId == const $CopyWithPlaceholder()
+          ? _value.productLocationId
+          // ignore: cast_nullable_to_non_nullable
+          : productLocationId as int?,
+      modulaLocationId: modulaLocationId == const $CopyWithPlaceholder()
+          ? _value.modulaLocationId
+          // ignore: cast_nullable_to_non_nullable
+          : modulaLocationId as int?,
+      modulaLocationDetailId:
+          modulaLocationDetailId == const $CopyWithPlaceholder()
+              ? _value.modulaLocationDetailId
+              // ignore: cast_nullable_to_non_nullable
+              : modulaLocationDetailId as int?,
+      locationScope: locationScope == const $CopyWithPlaceholder()
+          ? _value.locationScope
+          // ignore: cast_nullable_to_non_nullable
+          : locationScope as InventoryLocationGroup?,
       isLoadingSheet: isLoadingSheet == const $CopyWithPlaceholder() ||
               isLoadingSheet == null
           ? _value.isLoadingSheet

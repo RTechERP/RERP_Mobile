@@ -109,8 +109,8 @@ class InventoryCountSheetItemCard extends StatelessWidget {
               ),
               const SizedBox(height: 10),
 
-              /// ===== VỊ TRÍ KHO (dạng chip) =====
-              _LocationRow(
+              /// ===== VỊ TRÍ KHO & VỊ TRÍ MODULA =====
+              _LocationSection(
                 locationName: item.locationName,
                 addressBox: item.addressBox,
                 modulaLocationName: item.modulaLocationName,
@@ -143,7 +143,17 @@ class InventoryCountSheetItemCard extends StatelessWidget {
                     Expanded(
                       child: _MetricCell(
                         label: 'Khách mượn',
-                        value: _formatQty(item.customerBorrowedQuantity),
+                        value: _formatQty(item.quantityExportMuon),
+                      ),
+                    ),
+                    const _MetricDivider(),
+                    Expanded(
+                      child: _MetricCell(
+                        label: 'Thực tế',
+                        value: _formatQty(item.quantityActual),
+                        color: item.hasCounted
+                            ? AppColors.secondaryERP
+                            : null,
                       ),
                     ),
                     const _MetricDivider(),
@@ -227,16 +237,22 @@ class _CountedChip extends StatelessWidget {
   }
 }
 
-/// Dòng vị trí lưu kho: vị trí chính + địa chỉ ô + vị trí Modula.
-class _LocationRow extends StatelessWidget {
-  const _LocationRow({
+/// Khu vực vị trí: tách rõ "Vị trí kho" (vị trí lưu kho / địa chỉ ô) và
+/// "Vị trí Modula" (chuỗi các ô Modula của sản phẩm).
+class _LocationSection extends StatelessWidget {
+  const _LocationSection({
     required this.locationName,
     required this.addressBox,
     required this.modulaLocationName,
   });
 
+  /// Tên vị trí kho (kèm QR code) — `LocationName` trong API.
   final String? locationName;
+
+  /// Địa chỉ ô lưu kho — `AddressBox` trong API.
   final String? addressBox;
+
+  /// Chuỗi các vị trí Modula của sản phẩm — `ModulaLocationName` trong API.
   final String? modulaLocationName;
 
   @override
@@ -245,23 +261,84 @@ class _LocationRow extends StatelessWidget {
     final address = (addressBox ?? '').trim();
     final modula = (modulaLocationName ?? '').trim();
 
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        /// ===== VỊ TRÍ KHO =====
+        _LocationLine(
+          icon: Icons.warehouse_outlined,
+          label: 'Vị trí kho',
+          isEmpty: location.isEmpty && address.isEmpty,
+          children: [
+            if (location.isNotEmpty) _LocationChip(text: location),
+            if (address.isNotEmpty) _LocationChip(text: 'Ô: $address'),
+          ],
+        ),
+        const SizedBox(height: 4),
+
+        /// ===== VỊ TRÍ MODULA =====
+        _LocationLine(
+          icon: Icons.grid_view_outlined,
+          label: 'Vị trí Modula',
+          isEmpty: modula.isEmpty,
+          children: [
+            if (modula.isNotEmpty) _LocationChip(text: modula, isModula: true),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+/// Một dòng vị trí: icon + nhãn + các chip bên phải.
+class _LocationLine extends StatelessWidget {
+  const _LocationLine({
+    required this.icon,
+    required this.label,
+    required this.isEmpty,
+    required this.children,
+  });
+
+  /// Icon đại diện nhóm vị trí.
+  final IconData icon;
+
+  /// Nhãn nhóm vị trí.
+  final String label;
+
+  /// Nhóm vị trí không có dữ liệu.
+  final bool isEmpty;
+
+  /// Các chip thông tin vị trí.
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Icon(Icons.place_outlined, size: 14, color: AppColors.gray),
-        const SizedBox(width: 6),
-        Expanded(
-          child: Wrap(
-            spacing: 6,
-            runSpacing: 4,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: [
-              if (location.isNotEmpty)
-                _LocationChip(text: location, isPrimary: true),
-              if (address.isNotEmpty) _LocationChip(text: 'Ô: $address'),
-              if (modula.isNotEmpty) _LocationChip(text: 'Modula: $modula'),
-            ],
+        Icon(icon, size: 13, color: AppColors.gray),
+        const SizedBox(width: 5),
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 10.5,
+            fontWeight: FontWeight.w700,
+            color: AppColors.gray,
           ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: isEmpty
+              ? const Text(
+                  '--',
+                  style: TextStyle(fontSize: 11, color: AppColors.gray),
+                )
+              : Wrap(
+                  spacing: 6,
+                  runSpacing: 4,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: children,
+                ),
         ),
       ],
     );
@@ -270,28 +347,28 @@ class _LocationRow extends StatelessWidget {
 
 /// Chip nhỏ hiển thị thông tin vị trí.
 class _LocationChip extends StatelessWidget {
-  const _LocationChip({required this.text, this.isPrimary = false});
+  const _LocationChip({required this.text, this.isModula = false});
 
   final String text;
 
-  /// Vị trí chính — làm nổi bật hơn các chip phụ.
-  final bool isPrimary;
+  /// Chip vị trí Modula — dùng màu chính của ERP để phân biệt với vị trí kho.
+  final bool isModula;
 
   @override
   Widget build(BuildContext context) {
-    final color = isPrimary ? AppColors.secondaryERP : AppColors.gray;
+    final color = isModula ? AppColors.primaryERP : AppColors.secondaryERP;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: isPrimary ? 0.1 : 0.08),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(6),
       ),
       child: Text(
         text,
         style: TextStyle(
           fontSize: 11,
-          fontWeight: isPrimary ? FontWeight.w700 : FontWeight.w500,
+          fontWeight: FontWeight.w700,
           color: color,
         ),
       ),

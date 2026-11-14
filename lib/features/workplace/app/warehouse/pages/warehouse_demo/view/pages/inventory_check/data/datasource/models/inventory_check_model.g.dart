@@ -285,6 +285,7 @@ _$InventoryCountSheetItemImpl _$$InventoryCountSheetItemImplFromJson(
       customerBorrowedQuantity:
           (json['CustomerBorrowedQuantity'] as num?)?.toDouble(),
       inventoryQuantity: (json['InventoryQuantity'] as num?)?.toDouble(),
+      productLocationId: (json['ProductLocationID'] as num?)?.toInt(),
       updatedDate: json['UpdatedDate'] as String?,
       updatedBy: json['UpdatedBy'] as String?,
     );
@@ -321,6 +322,129 @@ Map<String, dynamic> _$$InventoryCountSheetItemImplToJson(
       'BorrowedQuantity': instance.borrowedQuantity,
       'CustomerBorrowedQuantity': instance.customerBorrowedQuantity,
       'InventoryQuantity': instance.inventoryQuantity,
+      'ProductLocationID': instance.productLocationId,
       'UpdatedDate': instance.updatedDate,
       'UpdatedBy': instance.updatedBy,
+    };
+
+_$InventoryProductLocationImpl _$$InventoryProductLocationImplFromJson(
+        Map<String, dynamic> json) =>
+    _$InventoryProductLocationImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      locationCode: json['LocationCode'] as String?,
+      locationName: json['LocationName'] as String?,
+      oldLocationName: json['OldLocationName'] as String?,
+      warehouseId: (json['WarehouseID'] as num?)?.toInt(),
+      locationType: (json['LocationType'] as num?)?.toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
+      totalCount: (json['TotalCount'] as num?)?.toInt() ?? 0,
+      countedCount: (json['CountedCount'] as num?)?.toInt() ?? 0,
+      uncountedCount: (json['UncountedCount'] as num?)?.toInt() ?? 0,
+      isCompleted: json['IsCompleted'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$$InventoryProductLocationImplToJson(
+        _$InventoryProductLocationImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'LocationCode': instance.locationCode,
+      'LocationName': instance.locationName,
+      'OldLocationName': instance.oldLocationName,
+      'WarehouseID': instance.warehouseId,
+      'LocationType': instance.locationType,
+      'STT': instance.stt,
+      'TotalCount': instance.totalCount,
+      'CountedCount': instance.countedCount,
+      'UncountedCount': instance.uncountedCount,
+      'IsCompleted': instance.isCompleted,
+    };
+
+_$InventoryModulaLocationGroupImpl _$$InventoryModulaLocationGroupImplFromJson(
+        Map<String, dynamic> json) =>
+    _$InventoryModulaLocationGroupImpl(
+      id: (json['ModulaLocationID'] as num?)?.toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      name: json['Name'] as String?,
+      totalCount: (json['TotalCount'] as num?)?.toInt() ?? 0,
+      countedCount: (json['CountedCount'] as num?)?.toInt() ?? 0,
+      uncountedCount: (json['UncountedCount'] as num?)?.toInt() ?? 0,
+      isCompleted: json['IsCompleted'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$$InventoryModulaLocationGroupImplToJson(
+        _$InventoryModulaLocationGroupImpl instance) =>
+    <String, dynamic>{
+      'ModulaLocationID': instance.id,
+      'STT': instance.stt,
+      'Code': instance.code,
+      'Name': instance.name,
+      'TotalCount': instance.totalCount,
+      'CountedCount': instance.countedCount,
+      'UncountedCount': instance.uncountedCount,
+      'IsCompleted': instance.isCompleted,
+    };
+
+_$InventoryModulaLocationDetailImpl
+    _$$InventoryModulaLocationDetailImplFromJson(Map<String, dynamic> json) =>
+        _$InventoryModulaLocationDetailImpl(
+          modulaLocationId: (json['ModulaLocationID'] as num?)?.toInt(),
+          modulaStt: (json['ModulaSTT'] as num?)?.toInt(),
+          modulaLocationCode: json['ModulaLocationCode'] as String?,
+          name: json['Name'] as String?,
+          detailId: (json['ModulaLocationDetailID'] as num?)?.toInt(),
+          detailStt: (json['DetailSTT'] as num?)?.toInt(),
+          detailCode: json['ModulaLocationDetailCode'] as String?,
+          detailName: json['ModulaLocationDetailName'] as String?,
+          locationName: json['LocationName'] as String?,
+          totalCount: (json['TotalCount'] as num?)?.toInt() ?? 0,
+          countedCount: (json['CountedCount'] as num?)?.toInt() ?? 0,
+          uncountedCount: (json['UncountedCount'] as num?)?.toInt() ?? 0,
+          isCompleted: json['IsCompleted'] as bool? ?? false,
+        );
+
+Map<String, dynamic> _$$InventoryModulaLocationDetailImplToJson(
+        _$InventoryModulaLocationDetailImpl instance) =>
+    <String, dynamic>{
+      'ModulaLocationID': instance.modulaLocationId,
+      'ModulaSTT': instance.modulaStt,
+      'ModulaLocationCode': instance.modulaLocationCode,
+      'Name': instance.name,
+      'ModulaLocationDetailID': instance.detailId,
+      'DetailSTT': instance.detailStt,
+      'ModulaLocationDetailCode': instance.detailCode,
+      'ModulaLocationDetailName': instance.detailName,
+      'LocationName': instance.locationName,
+      'TotalCount': instance.totalCount,
+      'CountedCount': instance.countedCount,
+      'UncountedCount': instance.uncountedCount,
+      'IsCompleted': instance.isCompleted,
+    };
+
+_$InventoryLocationProgressImpl _$$InventoryLocationProgressImplFromJson(
+        Map<String, dynamic> json) =>
+    _$InventoryLocationProgressImpl(
+      productLocations: (json['ProductLocations'] as List<dynamic>?)
+              ?.map((e) =>
+                  InventoryProductLocation.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      modulaLocationGroups: (json['ModulaLocationGroups'] as List<dynamic>?)
+              ?.map((e) => InventoryModulaLocationGroup.fromJson(
+                  e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      modulaLocations: (json['ModulaLocations'] as List<dynamic>?)
+              ?.map((e) => InventoryModulaLocationDetail.fromJson(
+                  e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$InventoryLocationProgressImplToJson(
+        _$InventoryLocationProgressImpl instance) =>
+    <String, dynamic>{
+      'ProductLocations': instance.productLocations,
+      'ModulaLocationGroups': instance.modulaLocationGroups,
+      'ModulaLocations': instance.modulaLocations,
     };

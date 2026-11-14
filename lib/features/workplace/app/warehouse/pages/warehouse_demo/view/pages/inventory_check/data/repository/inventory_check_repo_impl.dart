@@ -113,6 +113,54 @@ class InventoryCheckRepoImpl implements InventoryCheckRepo {
   }
 
   @override
+  Future<Either<BaseError, InventoryLocationProgress>> getLocationProgressMobile({
+    required int countId,
+    int warehouseId = 0,
+    int modulaLocationId = -1,
+    String? keyword,
+  }) async {
+    try {
+      final res = await _service.getLocationProgressMobile(
+        countId: countId,
+        warehouseId: warehouseId,
+        modulaLocationId: modulaLocationId,
+        keyword: keyword,
+      );
+      return right(res.data ?? const InventoryLocationProgress());
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, InventoryCountSheet>> getInventorySheetMobile({
+    required int countId,
+    String? keyword,
+    int? productGroupId,
+    int productLocationId = -1,
+    int modulaLocationId = -1,
+    int modulaLocationDetailId = -1,
+  }) async {
+    try {
+      final res = await _service.getInventorySheetMobile(
+        countId: countId,
+        keyword: keyword,
+        productGroupId: productGroupId,
+        productLocationId: productLocationId,
+        modulaLocationId: modulaLocationId,
+        modulaLocationDetailId: modulaLocationDetailId,
+      );
+      return right(res.data ?? const InventoryCountSheet());
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
   Future<Either<BaseError, List<InventoryProductGroupRtc>>>
   getProductGroupRtcNew({
     required int warehouseId,

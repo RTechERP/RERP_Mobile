@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
@@ -42,6 +43,28 @@ class InventoryCheckBloc
         getById: (id) => _onGetById(emit, id: id),
         delete: (id) => _onDelete(emit, id: id),
         fetchSheet: (countId) => _onFetchSheet(emit, countId: countId),
+        fetchLocationProgress: (countId, warehouseId, modulaLocationId, keyword) =>
+            _onFetchLocationProgress(
+              emit,
+              countId: countId,
+              warehouseId: warehouseId,
+              modulaLocationId: modulaLocationId,
+              keyword: keyword,
+            ),
+        selectLocationScope: (group) => _onSelectLocationScope(emit, group),
+        selectProductLocation: (productLocationId) =>
+            _onSelectProductLocation(
+              emit,
+              productLocationId: productLocationId,
+            ),
+        selectModulaLocation: (modulaLocationId) =>
+            _onSelectModulaLocation(
+              emit,
+              modulaLocationId: modulaLocationId,
+            ),
+        selectModulaLocationDetail: (detailId) =>
+            _onSelectModulaLocationDetail(emit, detailId: detailId),
+        clearLocationFilter: () => _onClearLocationFilter(emit),
         searchSheet: (keyword) async => _onSearchSheet(emit, keyword: keyword),
         filterSheet: (filter) async => _onFilterSheet(emit, filter: filter),
         fetchProductGroupsRtc: (warehouseId, warehouseType) =>
@@ -303,6 +326,9 @@ class InventoryCheckBloc
   }
 
   /// Lấy phiếu kiểm kê kèm danh sách sản phẩm đã kiểm kê.
+  ///
+  /// Dùng API `get-inventory-sheet-mobile` để hỗ trợ lọc theo vị trí kho &
+  /// vị trí Modula (mặc định -1 = lấy tất cả).
   Future<void> _onFetchSheet(
     Emitter<InventoryCheckState> emit, {
     required int countId,
@@ -311,24 +337,259 @@ class InventoryCheckBloc
       state.copyWith(
         isLoadingSheet: true,
         sheet: null,
+        sheetCountId: countId,
         sheetKeyword: '',
         sheetFilter: null,
       ),
     );
 
-    final res = await _repo.getInventoryCountSheet(countId: countId);
+    // Tải bảng sản phẩm + đếm số theo 3 nhóm vị trí song song để 3 ô
+    // "Tiến độ theo vị trí" có số liệu ngay khi vào màn.
+    await Future.wait([
+      _fetchSheetMobile(emit, countId: countId),
+      _fetchLocationCounts(emit, countId: countId),
+    ]);
+  }
+
+  /// Lấy tiến độ kiểm kê theo vị trí kho & vị trí Modula.
+  ///
+  /// Trả về 3 danh sách: vị trí kho, tủ Modula cha, ô Modula chi tiết —
+  /// mỗi danh sách kèm số tổng / đã kiểm / chưa kiểm.
+  Future<void> _onFetchLocationProgress(
+    Emitter<InventoryCheckState> emit, {
+    required int countId,
+    int warehouseId = 0,
+    int modulaLocationId = -1,
+    String? keyword,
+  }) async {
+    emit(state.copyWith(isLoadingLocationProgress: true));
+
+    final res = await _repo.getLocationProgressMobile(
+      countId: countId,
+      warehouseId: warehouseId,
+      modulaLocationId: modulaLocationId,
+      keyword: keyword,
+    );
 
     res.fold(
       (err) {
-        _log.logE('❌ getInventoryCountSheet failed: $err');
+        _log.logE('❌ getLocationProgressMobile failed: $err');
+        emit(state.copyWith(isLoadingLocationProgress: false));
+      },
+      (progress) {
+        _log.logI(
+          '✅ getLocationProgressMobile success - '
+          'locations: ${progress.productLocations.length}, '
+          'modulaGroups: ${progress.modulaLocationGroups.length}, '
+          'modulaDetails: ${progress.modulaLocations.length}',
+        );
+        emit(state.copyWith(isLoadingLocationProgress: false, locationProgress: progress));
+      },
+    );
+  }
+
+  /// Chọn nhóm vị trí (1 trong 3 ô của card "Tiến độ theo vị trí") để lọc
+  /// danh sách sản phẩm.
+  ///
+  /// - [InventoryLocationGroup.noLocation] → sản phẩm chưa có vị trí kho lẫn
+  ///   vị trí Modula (API: `productLocationId = 0` + `modulaLocationId = 0`).
+  /// - [InventoryLocationGroup.productLocation] → toàn bộ sản phẩm của đợt.
+  /// - [InventoryLocationGroup.modula] → sản phẩm đang có vị trí Modula.
+  ///
+  /// Nhóm [InventoryLocationGroup.modula] không có tham số API tương ứng
+  /// ("có vị trí Modula"), nên bloc tải toàn bộ sản phẩm rồi lọc ở client
+  /// theo `ModulaLocationName`.
+  Future<void> _onSelectLocationScope(
+    Emitter<InventoryCheckState> emit,
+    InventoryLocationGroup group,
+  ) async {
+    switch (group) {
+      case InventoryLocationGroup.noLocation:
+        emit(
+          state.copyWith(
+            locationScope: group,
+            productLocationId: 0,
+            modulaLocationId: 0,
+            modulaLocationDetailId: null,
+          ),
+        );
+      case InventoryLocationGroup.productLocation:
+        emit(
+          state.copyWith(
+            locationScope: group,
+            productLocationId: null,
+            modulaLocationId: null,
+            modulaLocationDetailId: null,
+          ),
+        );
+      case InventoryLocationGroup.modula:
+        emit(
+          state.copyWith(
+            locationScope: group,
+            productLocationId: null,
+            modulaLocationId: null,
+            modulaLocationDetailId: null,
+          ),
+        );
+    }
+    await _fetchSheetMobile(emit);
+  }
+  /// Chọn vị trí kho → tải lại bảng sản phẩm đã lọc theo vị trí đó.
+  ///
+  /// [productLocationId] = `null` → bỏ lọc vị trí kho.
+  Future<void> _onSelectProductLocation(
+    Emitter<InventoryCheckState> emit, {
+    required int? productLocationId,
+  }) async {
+    emit(
+      state.copyWith(
+        productLocationId: productLocationId,
+        // Chọn vị trí kho thì bỏ lọc Modula (tránh lọc AND quá chặt).
+        modulaLocationId: null,
+        modulaLocationDetailId: null,
+      ),
+    );
+    await _fetchSheetMobile(emit);
+  }
+
+  /// Chọn tủ Modula → tải lại bảng sản phẩm đã lọc theo tủ đó.
+  Future<void> _onSelectModulaLocation(
+    Emitter<InventoryCheckState> emit, {
+    required int? modulaLocationId,
+  }) async {
+    emit(
+      state.copyWith(
+        modulaLocationId: modulaLocationId,
+        // Chọn tủ cha thì bỏ lọc ô chi tiết.
+        modulaLocationDetailId: null,
+        productLocationId: null,
+      ),
+    );
+    await _fetchSheetMobile(emit);
+  }
+
+  /// Chọn ô Modula chi tiết → tải lại bảng sản phẩm đã lọc theo ô đó.
+  ///
+  /// Theo quy ước của API `get-inventory-sheet-mobile`, khi chọn ô chi tiết thì
+  /// chỉ truyền `modulaLocationDetailId`, còn `modulaLocationId` giữ ở -1
+  /// (bỏ lọc). Truyền cả 2 tham số sẽ khiến API ghép điều kiện AND và lọc
+  /// quá chặt.
+  ///
+  /// [detailId] là id ô chi tiết. `null` → bỏ lọc.
+  Future<void> _onSelectModulaLocationDetail(
+    Emitter<InventoryCheckState> emit, {
+    required int? detailId,
+  }) async {
+    emit(
+      state.copyWith(
+        modulaLocationDetailId: detailId,
+        // Chọn ô chi tiết thì bỏ lọc tủ cha và vị trí kho.
+        modulaLocationId: null,
+        productLocationId: null,
+      ),
+    );
+    await _fetchSheetMobile(emit);
+  }
+
+  /// Bỏ lọc theo vị trí → tải lại toàn bộ sản phẩm của đợt.
+  Future<void> _onClearLocationFilter(
+    Emitter<InventoryCheckState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        productLocationId: null,
+        modulaLocationId: null,
+        modulaLocationDetailId: null,
+      ),
+    );
+    await _fetchSheetMobile(emit);
+  }
+
+  /// Tải bảng sản phẩm kiểm kê theo bộ lọc vị trí hiện tại.
+  ///
+  /// Dùng API `get-inventory-sheet-mobile` với quy ước:
+  /// - `null` → -1 (bỏ lọc), `0` → chưa có vị trí, `> 0` → vị trí cụ thể.
+  Future<void> _fetchSheetMobile(
+    Emitter<InventoryCheckState> emit, {
+    int? countId,
+  }) async {
+    final targetCountId = countId ?? state.sheetCountId ?? state.sheet?.master?.id;
+    if (targetCountId == null || targetCountId <= 0) return;
+
+    emit(state.copyWith(isLoadingSheet: true));
+
+    final res = await _repo.getInventorySheetMobile(
+      countId: targetCountId,
+      keyword: state.sheetKeyword.isEmpty ? null : state.sheetKeyword,
+      productGroupId: state.sheetProductGroupId,
+      productLocationId: state.productLocationId ?? -1,
+      modulaLocationId: state.modulaLocationId ?? -1,
+      modulaLocationDetailId: state.modulaLocationDetailId ?? -1,
+    );
+
+    res.fold(
+      (err) {
+        _log.logE('❌ getInventorySheetMobile failed: $err');
         emit(state.copyWith(isLoadingSheet: false));
       },
       (sheet) {
         _log.logI(
-          '✅ getInventoryCountSheet success - items: ${sheet.items.length}',
+          '✅ getInventorySheetMobile success - items: ${sheet.items.length}',
         );
         emit(state.copyWith(isLoadingSheet: false, sheet: sheet));
       },
+    );
+  }
+
+  /// Tải số sản phẩm của 3 nhóm vị trí: Chưa có / Kho / Modula.
+  ///
+  /// Gọi API `get-inventory-sheet-mobile` với từng bộ lọc để số hiển thị khớp
+  /// chính xác với danh sách sản phẩm mà người dùng sẽ thấy khi bấm vào ô.
+  ///
+  /// - Chưa có → `productLocationId=0` + `modulaLocationId=0`.
+  /// - Kho → không lọc (toàn bộ đợt).
+  /// - Modula → `modulaLocationId=0` bị loại, chỉ giữ sản phẩm có vị trí
+  ///   Modula (lọc ở client vì API không có tham số "có vị trí Modula").
+  Future<void> _fetchLocationCounts(
+    Emitter<InventoryCheckState> emit, {
+    required int countId,
+  }) async {
+    emit(state.copyWith(isLoadingLocationCounts: true));
+
+    // 2 request chạy song song: sản phẩm "chưa có vị trí" + toàn bộ đợt.
+    final results = await Future.wait([
+      _repo.getInventorySheetMobile(
+        countId: countId,
+        productLocationId: 0,
+        modulaLocationId: 0,
+      ),
+      _repo.getInventorySheetMobile(countId: countId),
+    ]);
+
+    final noLocationItems = results[0]
+        .getOrElse(() => const InventoryCountSheet())
+        .items;
+    final allItems = results[1].getOrElse(() => const InventoryCountSheet()).items;
+
+    final modulaItems = allItems
+        .where((e) => (e.modulaLocationName ?? '').trim().isNotEmpty)
+        .toList();
+
+    emit(
+      state.copyWith(
+        isLoadingLocationCounts: false,
+        allSheetItems: allItems,
+        locationCounts: InventoryLocationCounts(
+          noLocation: noLocationItems.length,
+          noLocationCounted: noLocationItems
+              .where((e) => e.hasCounted)
+              .length,
+          warehouse: allItems.length,
+          warehouseCounted: allItems.where((e) => e.hasCounted).length,
+          modula: modulaItems.length,
+          modulaCounted: modulaItems.where((e) => e.hasCounted).length,
+        ),
+      ),
     );
   }
 
@@ -454,6 +715,12 @@ class InventoryCheckBloc
 
     // Tải lại phiếu để cập nhật số lượng thực tế và chênh lệch.
     await _onFetchSheet(emit, countId: countId);
+
+    // Đồng bộ lại tiến độ kiểm kê theo vị trí (đã kiểm / chưa kiểm).
+    await _onFetchLocationProgress(emit, countId: countId);
+
+    // Cập nhật số lượng theo 3 nhóm vị trí (đã kiểm / chưa kiểm).
+    await _fetchLocationCounts(emit, countId: countId);
   }
 
   /// Tìm đợt kiểm kê theo mã đợt vừa quét (barcode/QR in trên phiếu).
