@@ -205,10 +205,10 @@ class _InventoryCheckSheetItemEditSheetState
 
   /// Số lượng thực tế đang nhập.
   ///
-  /// `null` = người dùng chưa nhập/quét gì (ô nhập mới mở, đang ở giá trị 0).
-  /// Lần kiểm kê này đếm lại từ đầu nên không cộng dồn vào số liệu cũ của
-  /// server — nếu đã có nháp trong phiếu thì lấy giá trị đã nhập để không mất
-  /// dữ liệu.
+  /// `null` = người dùng chưa nhập/quét gì (dòng chưa kiểm kê, ô nhập mới mở
+  /// ở giá trị 0). Nếu dòng đã kiểm kê rồi thì khởi tạo theo số lượng thực tế
+  /// đã lưu trên card; nếu đã có nháp trong phiếu thì lấy giá trị đã nhập để
+  /// không mất dữ liệu.
   double? _quantity;
 
   /// Mã lần đăng ký của sheet này với controller (dùng khi huỷ đăng ký).
@@ -216,8 +216,7 @@ class _InventoryCheckSheetItemEditSheetState
 
   /// Chênh lệch giữa số lượng thực tế đang nhập và số lượng kỳ vọng.
   ///
-  /// `null` = chưa nhập số lượng → chưa hiển thị chênh lệch (số liệu cũ của
-  /// server không còn liên quan vì lần này đếm lại từ 0).
+  /// `null` = chưa nhập số lượng → chưa hiển thị chênh lệch.
   double? get _difference {
     final quantity = _quantity;
     if (quantity == null) return null;
@@ -228,10 +227,11 @@ class _InventoryCheckSheetItemEditSheetState
   void initState() {
     super.initState();
     final item = widget.item;
-    // Số lượng thực tế luôn bắt đầu từ 0 — người dùng đang đếm lại số lượng
-    // thực tế của sản phẩm này nên không cộng dồn vào số liệu cũ của server.
-    // Nếu đã có nháp trong phiếu thì lấy giá trị đã nhập để không mất dữ liệu.
-    final staged = widget.stagedQuantity;
+    // Số lượng thực tế khởi tạo lấy theo card đang hiển thị:
+    // - đã có nháp trong phiếu → lấy số lượng đã nhập,
+    // - đã kiểm kê rồi (server đã trả kết quả) → lấy số lượng thực tế đã lưu,
+    // - chưa kiểm kê → 0.
+    final staged = widget.stagedQuantity ?? item.quantityActual;
     _quantityController = TextEditingController(text: _formatQty(staged ?? 0));
     _noteController = TextEditingController(
       text: widget.stagedNote ?? item.note ?? '',
