@@ -339,6 +339,27 @@ class InventoryCountSheetItem with _$InventoryCountSheetItem {
       _$InventoryCountSheetItemFromJson(json);
 }
 
+/// Khoá duy nhất của dòng sản phẩm trong nháp kiểm kê.
+///
+/// Không dùng `ID` làm khoá vì API trả `ID = 0` cho mọi sản phẩm chưa từng
+/// được lưu kiểm kê → nhiều dòng sẽ đè lên nhau và hiển thị chung 1 số.
+///
+/// Kết hợp id sản phẩm + id vị trí kho + chuỗi vị trí Modula để mỗi dòng
+/// trong danh sách có khoá riêng.
+extension InventoryCountSheetItemKey on InventoryCountSheetItem {
+  String get stagedKey =>
+      '$productRtcId|${productLocationId ?? 0}|${modulaLocationName ?? ''}';
+}
+
+/// Số lượng kỳ vọng của hệ thống dùng để tính chênh lệch kiểm kê.
+///
+/// Công thức chênh lệch theo API:
+/// `Difference = QuantityActual - (NumberInStore + NumberBorrowing + QuantityExportMuon)`.
+extension InventoryCountSheetItemQuantity on InventoryCountSheetItem {
+  double get expectedQuantity =>
+      (numberInStore + numberBorrowing + quantityExportMuon).toDouble();
+}
+
 /// Vị trí kho / kệ trong đợt kiểm kê — trả về từ API
 /// `GET /WarehouseInventoryCount/get-location-progress-mobile`.
 ///

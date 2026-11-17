@@ -1,17 +1,5 @@
 part of 'inventory_check_bloc.dart';
 
-/// Chế độ quét mã trong phiếu kiểm kê bằng PDA.
-///
-/// - [product]: quét mã sản phẩm → chỉ hiển thị đúng sản phẩm vừa quét.
-/// - [location]: quét mã vị trí → hiển thị tất cả sản phẩm có cùng mã vị trí.
-enum InventoryScanMode {
-  /// Quét mã của sản phẩm (mã sản phẩm / mã nội bộ / serial).
-  product,
-
-  /// Quét mã của vị trí lưu kho.
-  location,
-}
-
 /// Nhóm vị trí đang chọn trong card "Tiến độ theo vị trí".
 ///
 /// Mỗi nhóm là 1 ô trong card và quyết định cấu trúc danh sách chi tiết
@@ -40,6 +28,10 @@ enum InventoryLocationGroup {
 /// Không lấy từ API `get-location-progress-mobile` vì các dòng `ID = 0` của 3
 /// mảng đếm trùng nhau (ví dụ `ModulaLocationGroups` và `ModulaLocations`
 /// cùng trả về một tập sản phẩm chưa có vị trí Modula).
+///
+/// Số "đã kiểm" gộp cả kết quả server đã lưu lẫn các dòng đang có nháp
+/// trong phiếu (xem [InventoryCheckState.stagedCountEdits]) nên số liệu cập
+/// nhật ngay khi người dùng đếm, không cần gọi lại API.
 class InventoryLocationCounts extends Equatable {
   const InventoryLocationCounts({
     this.noLocation = 0,
@@ -77,6 +69,46 @@ class InventoryLocationCounts extends Equatable {
     modula,
     modulaCounted,
   ];
+}
+
+/// Một dòng kiểm kê đã nhập nhưng chưa lưu lên server.
+///
+/// Dùng làm "nháp" cho đến khi người dùng bấm "Xác nhận đã kiểm vị trí" thì
+/// mới gửi toàn bộ lên API `save-count-details`.
+class InventoryCountStagedEdit {
+  const InventoryCountStagedEdit({
+    required this.rowKey,
+    required this.itemId,
+    required this.productRtcId,
+    required this.quantityActual,
+    required this.note,
+  });
+
+  /// Khoá duy nhất của dòng sản phẩm (xem [InventoryCountSheetItem.stagedKey]).
+  ///
+  /// Dùng làm key trong [InventoryCheckState.stagedCountEdits] vì `ID` dòng
+  /// chi tiết có thể = 0 cho nhiều sản phẩm khác nhau.
+  final String rowKey;
+
+  /// Id dòng chi tiết trong phiếu (0 nếu sản phẩm chưa từng được lưu).
+  final int itemId;
+
+  /// Id sản phẩm (theo hệ thống RTC).
+  final int productRtcId;
+
+  /// Số lượng thực tế đã kiểm.
+  final double quantityActual;
+
+  /// Ghi chú kèm theo.
+  final String note;
+
+  /// Payload gửi API `save-count-details`.
+  Map<String, dynamic> toJson() => {
+    'ID': itemId,
+    'ProductRTCID': productRtcId,
+    'QuantityActual': quantityActual,
+    'Note': note,
+  };
 }
 
 /// Bộ lọc sắp xếp danh sách sản phẩm trong phiếu kiểm kê.
@@ -160,21 +192,18 @@ class InventoryCheckState extends BaseBlocState {
   /// khớp với danh sách sản phẩm, không phụ thuộc bộ lọc vị trí đang áp dụng.
   final List<InventoryCountSheetItem> allSheetItems;
 
+  /// Sản phẩm chưa có vị trí kho lẫn vị trí Modula.
+  ///
+  /// Lấy từ API `get-inventory-sheet-mobile` với bộ lọc
+  /// `productLocationId = 0` + `modulaLocationId = 0` để số "Chưa có" khớp
+  /// chính xác với danh sách hiện ra khi bấm ô "Chưa có".
+  final List<InventoryCountSheetItem> noLocationSheetItems;
+
   /// Đang tải số liệu của 3 ô "Tiến độ theo vị trí".
   ///
   /// Khi đang tải thì 3 ô hiển thị `--` thay vì `0/0` để không nhầm là
   /// sản phẩm bằng 0.
   final bool isLoadingLocationCounts;
-
-  /// Số sản phẩm thuộc từng nhóm vị trí.
-  ///
-  /// Lấy từ chính API `get-inventory-sheet-mobile` nên số hiển thị luôn khớp
-  /// với danh sách sản phẩm hiện ra khi bấm vào nhóm tương ứng.
-  ///
-  /// Không lấy từ API `get-location-progress-mobile` vì các dòng `ID = 0` của 3
-  /// mảng đếm trùng nhau (ví dụ `ModulaLocationGroups` và `ModulaLocations`
-  /// cùng trả về một tập sản phẩm chưa có vị trí Modula).
-  final InventoryLocationCounts locationCounts;
 
   /// Id đợt kiểm kê đang xem — dùng để tải lại bảng sản phẩm theo vị trí.
   final int? sheetCountId;
@@ -237,24 +266,29 @@ class InventoryCheckState extends BaseBlocState {
   /// Lưu kết quả kiểm kê thực tế thành công.
   final bool saveCountDetailsSuccess;
 
+  /// Các dòng sản phẩm đã nhập kết quả kiểm kê nhưng chưa lưu lên server.
+  ///
+  /// Key là khoá duy nhất của dòng sản phẩm (xem
+  /// [InventoryCountSheetItem.stagedKey]) — không dùng `ID` dòng chi tiết vì
+  /// API trả `ID = 0` cho mọi sản phẩm chưa từng được lưu kiểm kê.
+  ///
+  /// Giá trị ở đây được gửi lên API `save-count-details` khi người dùng bấm
+  /// "Xác nhận đã kiểm vị trí".
+  final Map<String, InventoryCountStagedEdit> stagedCountEdits;
+
+  /// Khoá của các dòng sản phẩm đã được quét mã trong phiếu (chưa lưu lên
+  /// server).
+  ///
+  /// Dùng để hiển thị chip "Đã quét" và đẩy dòng đã quét xuống cuối danh
+  /// sách — những dòng chưa quét và chưa kiểm nằm lên đầu.
+  final Set<String> scannedItemKeys;
+
   /// Đợt kiểm kê cần mở sau khi quét mã đợt (one-shot, UI điều hướng rồi
   /// reset về null để tránh mở lại).
   final InventoryCountItem? openedCountFromScan;
 
   /// Thông báo khi quét mã đợt không tìm thấy đợt kiểm kê tương ứng.
   final String? scanCountMessage;
-
-  /// Chế độ quét PDA đang bật trong phiếu kiểm kê (null = đang tắt).
-  final InventoryScanMode? sheetScanMode;
-
-  /// Mã vừa quét gần nhất trong phiếu kiểm kê (null = chưa quét mã nào).
-  final String? sheetScanCode;
-
-  /// Số lần quét trong phiếu kiểm kê.
-  final int sheetScanCount;
-
-  /// Thông báo kết quả quét gần nhất (khớp / không khớp).
-  final String? sheetScanMessage;
 
   /// Xác nhận hoàn thành / mở lại đợt kiểm kê thành công.
   final bool confirmCompleteSuccess;
@@ -287,8 +321,8 @@ class InventoryCheckState extends BaseBlocState {
     this.deleteError,
     this.sheet,
     this.allSheetItems = const [],
+    this.noLocationSheetItems = const [],
     this.isLoadingLocationCounts = false,
-    this.locationCounts = const InventoryLocationCounts(),
     this.sheetCountId,
     this.locationProgress,
     this.isLoadingLocationProgress = false,
@@ -304,12 +338,10 @@ class InventoryCheckState extends BaseBlocState {
     this.productGroupsRtcWarehouseId,
     this.sheetProductGroupId,
     this.saveCountDetailsSuccess = false,
+    this.stagedCountEdits = const {},
+    this.scannedItemKeys = const {},
     this.openedCountFromScan,
     this.scanCountMessage,
-    this.sheetScanMode,
-    this.sheetScanCode,
-    this.sheetScanCount = 0,
-    this.sheetScanMessage,
     this.confirmCompleteSuccess = false,
     this.confirmCompleteMessage,
     this.confirmCompleteError,
@@ -363,12 +395,35 @@ class InventoryCheckState extends BaseBlocState {
   List<InventoryModulaLocationDetail> get visibleModulaLocations =>
       locationProgress?.modulaLocations ?? const [];
 
-  /// Sản phẩm trong phiếu sau khi lọc theo từ khoá
-  /// (mã sản phẩm, mã nội bộ, tên sản phẩm, vị trí kho, nhóm sản phẩm),
-  /// bộ lọc sắp xếp đang chọn và mã vừa quét bằng PDA.
+  /// Số sản phẩm thuộc từng nhóm vị trí.
   ///
-  /// Khi quét vị trí, sản phẩm nằm ở **vị trí Modula** được xếp lên đầu,
-  /// sau đó mới tới các sản phẩm khác cùng vị trí.
+  /// Tính từ danh sách sản phẩm đã tải sẵn nên không cần gọi API mỗi lần
+  /// chuyển tab. Số "đã kiểm" gộp cả kết quả đã lưu trên server lẫn các
+  /// dòng đang có nháp trong phiếu (xem [stagedCountEdits]) nên số liệu
+  /// cập nhật ngay khi người dùng đếm.
+  InventoryLocationCounts get locationCounts {
+    final all = allSheetItems;
+    final modula = all.where(_hasModulaLocation).toList();
+
+    return InventoryLocationCounts(
+      noLocation: noLocationSheetItems.length,
+      noLocationCounted: noLocationSheetItems.where(isCounted).length,
+      warehouse: all.length,
+      warehouseCounted: all.where(isCounted).length,
+      modula: modula.length,
+      modulaCounted: modula.where(isCounted).length,
+    );
+  }
+
+  /// Sản phẩm trong phiếu sau khi lọc theo từ khoá (mã sản phẩm, mã nội bộ,
+  /// tên sản phẩm, vị trí kho, nhóm sản phẩm) và bộ lọc trạng thái đang chọn.
+  ///
+  /// Được sắp xếp theo 3 nhóm: sản phẩm **chưa quét & chưa kiểm** nằm trên
+  /// cùng, sản phẩm **đã quét** nằm giữa, sản phẩm **đã kiểm** nằm dưới cùng
+  /// — trong mỗi nhóm giữ nguyên thứ tự API trả về.
+  ///
+  /// Dòng đã nhập số lượng thực tế trong nháp (chưa gửi lên server) cũng được
+  /// coi là đã kiểm nên bị đẩy xuống dưới.
   List<InventoryCountSheetItem> get visibleSheetItems {
     final items = sheet?.items ?? const <InventoryCountSheetItem>[];
     final keyword = sheetKeyword.toLowerCase().trim();
@@ -377,7 +432,6 @@ class InventoryCheckState extends BaseBlocState {
       if (!_matchSheetFilter(item)) return false;
       final groupId = sheetProductGroupId;
       if (groupId != null && item.productGroupRtcId != groupId) return false;
-      if (!matchesScanCode(item)) return false;
       if (locationScope == InventoryLocationGroup.modula &&
           !_hasModulaLocation(item)) {
         return false;
@@ -386,23 +440,46 @@ class InventoryCheckState extends BaseBlocState {
       return _matchesSheetKeyword(item, keyword);
     }).toList();
 
-    if (sheetScanMode == InventoryScanMode.location) {
-      final code = (sheetScanCode ?? '').trim().toLowerCase();
-      if (code.isNotEmpty) {
-        filtered.sort((a, b) {
-          final aModula = _isModulaMatch(a, code) ? 0 : 1;
-          final bModula = _isModulaMatch(b, code) ? 0 : 1;
-          return aModula.compareTo(bModula);
-        });
-      }
-    }
+    // Sắp xếp chưa quét lên đầu, đã quét ở giữa, đã kiểm xuống dưới (giữ thứ
+    // tự cũ trong mỗi nhóm bằng cách so sánh chỉ số khi nhóm bằng nhau).
+    final indexed = filtered.asMap().entries.toList();
+    indexed.sort((a, b) {
+      final aTier = _sortTier(a.value);
+      final bTier = _sortTier(b.value);
+      if (aTier != bTier) return aTier.compareTo(bTier);
+      return a.key.compareTo(b.key);
+    });
 
-    return filtered;
+    return indexed.map((e) => e.value).toList();
   }
 
-  /// Dòng sản phẩm có nằm ở vị trí Modula khớp mã vừa quét hay không.
-  static bool _isModulaMatch(InventoryCountSheetItem item, String code) {
-    return _equalsCode(item.modulaLocationName, code);
+  /// Nhóm hiển thị của một dòng sản phẩm trong danh sách.
+  ///
+  /// 0 = chưa quét & chưa kiểm (lên đầu), 1 = đã quét, 2 = đã kiểm (cuối).
+  int _sortTier(InventoryCountSheetItem item) {
+    if (isCounted(item)) return 2;
+    if (isScanned(item)) return 1;
+    return 0;
+  }
+
+  /// Dòng sản phẩm đã được quét mã hay chưa.
+  bool isScanned(InventoryCountSheetItem item) {
+    return scannedItemKeys.contains(item.stagedKey);
+  }
+
+  /// Số sản phẩm đã kiểm kê trong danh sách đang xem.
+  ///
+  /// Đã kiểm kê khi server đã trả kết quả ([InventoryCountSheetItem.hasCounted])
+  /// hoặc khi người dùng đã nhập/quét số lượng thực tế trong nháp.
+  int get visibleCountedCount => visibleSheetItems.where(isCounted).length;
+
+  /// Dòng sản phẩm đã được kiểm hay chưa.
+  ///
+  /// Đã kiểm khi server đã trả kết quả ([InventoryCountSheetItem.hasCounted])
+  /// hoặc khi người dùng đã nhập số lượng thực tế trong nháp.
+  bool isCounted(InventoryCountSheetItem item) {
+    if (item.hasCounted) return true;
+    return stagedCountEdits.containsKey(item.stagedKey);
   }
 
   /// Dòng sản phẩm có đang có vị trí Modula hay không.
@@ -436,36 +513,6 @@ class InventoryCheckState extends BaseBlocState {
         (item.productGroupName ?? '').toLowerCase().contains(keyword);
   }
 
-  /// Kiểm tra dòng sản phẩm có khớp mã vừa quét hay không.
-  ///
-  /// - Chế độ [InventoryScanMode.product] → khớp mã sản phẩm (mã sản phẩm,
-  ///   mã nội bộ, serial, part number) → chỉ hiển thị đúng sản phẩm đó.
-  /// - Chế độ [InventoryScanMode.location] → khớp mã vị trí (vị trí lưu kho,
-  ///   địa chỉ ô, vị trí Modula) → hiển thị tất cả sản phẩm cùng vị trí.
-  bool matchesScanCode(InventoryCountSheetItem item) {
-    final mode = sheetScanMode;
-    final code = (sheetScanCode ?? '').trim().toLowerCase();
-    if (mode == null || code.isEmpty) return true;
-
-    switch (mode) {
-      case InventoryScanMode.product:
-        return _equalsCode(item.productCode, code) ||
-            _equalsCode(item.productCodeRtc, code) ||
-            _equalsCode(item.serialNumber, code) ||
-            _equalsCode(item.serial, code) ||
-            _equalsCode(item.partNumber, code);
-      case InventoryScanMode.location:
-        return _equalsCode(item.locationName, code) ||
-            _equalsCode(item.addressBox, code) ||
-            _equalsCode(item.modulaLocationName, code);
-    }
-  }
-
-  /// So khớp chính xác một mã trong sản phẩm với mã vừa quét.
-  static bool _equalsCode(String? value, String code) {
-    return (value ?? '').trim().toLowerCase() == code;
-  }
-
   /// Kiểm tra một dòng sản phẩm có khớp bộ lọc sắp xếp đang chọn hay không.
   bool _matchSheetFilter(InventoryCountSheetItem item) {
     switch (sheetFilter) {
@@ -473,45 +520,23 @@ class InventoryCheckState extends BaseBlocState {
       case InventoryCheckSheetFilter.all:
         return true;
       case InventoryCheckSheetFilter.counted:
-        return item.hasCounted;
+        return isCounted(item);
       case InventoryCheckSheetFilter.notCounted:
-        return !item.hasCounted;
+        return !isCounted(item);
       case InventoryCheckSheetFilter.difference:
-        final difference = item.difference;
+        final difference = differenceOf(item);
         return difference != null && difference != 0;
     }
   }
 
-  /// Số liệu báo cáo của phiếu kiểm kê.
+  /// Chênh lệch hiển thị của một dòng sản phẩm.
   ///
-  /// - [total]: tổng số sản phẩm trong phiếu.
-  /// - [counted]: số sản phẩm đã kiểm kê.
-  /// - [notCounted]: số sản phẩm chưa kiểm kê.
-  /// - [matched]: số sản phẩm đã kiểm kê và khớp với tồn kho.
-  /// - [difference]: số sản phẩm có chênh lệch số lượng.
-  InventoryCheckSheetReport get sheetReport {
-    final items = sheet?.items ?? const <InventoryCountSheetItem>[];
-    var counted = 0;
-    var matched = 0;
-    var difference = 0;
-    for (final item in items) {
-      if (!item.hasCounted) continue;
-      counted++;
-      final diff = item.difference;
-      if (diff == null || diff == 0) {
-        matched++;
-      } else {
-        difference++;
-      }
-    }
-
-    return InventoryCheckSheetReport(
-      total: items.length,
-      counted: counted,
-      notCounted: items.length - counted,
-      matched: matched,
-      difference: difference,
-    );
+  /// Nếu dòng đã nhập số lượng thực tế trong nháp thì tính chênh lệch theo số
+  /// lượng vừa nhập, ngược lại lấy chênh lệch do server trả về.
+  double? differenceOf(InventoryCountSheetItem item) {
+    final staged = stagedCountEdits[item.stagedKey];
+    if (staged == null) return item.difference;
+    return staged.quantityActual - item.expectedQuantity;
   }
 
   @override
@@ -537,8 +562,8 @@ class InventoryCheckState extends BaseBlocState {
     deleteError,
     sheet,
     allSheetItems,
+    noLocationSheetItems,
     isLoadingLocationCounts,
-    locationCounts,
     sheetCountId,
     locationProgress,
     isLoadingLocationProgress,
@@ -554,40 +579,12 @@ class InventoryCheckState extends BaseBlocState {
     productGroupsRtcWarehouseId,
     sheetProductGroupId,
     saveCountDetailsSuccess,
+    stagedCountEdits,
+    scannedItemKeys,
     openedCountFromScan,
     scanCountMessage,
-    sheetScanMode,
-    sheetScanCode,
-    sheetScanCount,
-    sheetScanMessage,
     confirmCompleteSuccess,
     confirmCompleteMessage,
     confirmCompleteError,
   ];
-}
-
-/// Số liệu báo cáo của phiếu kiểm kê.
-class InventoryCheckSheetReport {
-  const InventoryCheckSheetReport({
-    required this.total,
-    required this.counted,
-    required this.notCounted,
-    required this.matched,
-    required this.difference,
-  });
-
-  /// Tổng số sản phẩm trong phiếu.
-  final int total;
-
-  /// Số sản phẩm đã kiểm kê.
-  final int counted;
-
-  /// Số sản phẩm chưa kiểm kê.
-  final int notCounted;
-
-  /// Số sản phẩm đã kiểm kê và khớp với tồn kho.
-  final int matched;
-
-  /// Số sản phẩm có chênh lệch số lượng.
-  final int difference;
 }

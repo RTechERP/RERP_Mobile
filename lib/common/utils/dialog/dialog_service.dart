@@ -1042,6 +1042,47 @@ class DialogService {
     );
   }
 
+  /// Dialog xác nhận đã kiểm vị trí — gửi kết quả kiểm kê đã nhập lên server.
+  ///
+  /// [stagedCount] là số sản phẩm đang chờ lưu.
+  ///
+  /// Trả về `true` nếu người dùng đồng ý, `false` nếu huỷ.
+  static Future<bool> showConfirmInventoryCountLocation({
+    required BuildContext context,
+    required String countCode,
+    required int stagedCount,
+  }) async {
+    bool confirmed = false;
+
+    final code = countCode.trim();
+
+    await BaseDialog.twoOptionVerticalDialog(
+      context: context,
+      image: const Icon(
+        Icons.verified_outlined,
+        size: 64,
+        color: AppColors.stateSuccessColor,
+      ),
+      title: 'Xác nhận đã kiểm vị trí',
+      description:
+          'Bạn có chắc chắn muốn lưu kết quả kiểm kê cho [$code]?\n\n'
+          '$stagedCount sản phẩm đã cập nhật số lượng thực tế sẽ được gửi lên '
+          'hệ thống.',
+      contentTopButton: 'Xác nhận',
+      topButtonFunc: () {
+        confirmed = true;
+        onBack(context);
+      },
+      contentBottomButton: 'Huỷ',
+      bottomButtonFunc: () {
+        confirmed = false;
+        onBack(context);
+      },
+    );
+
+    return confirmed;
+  }
+
   /// Dialog xác nhận hoàn thành / mở lại một đợt kiểm kê.
   ///
   /// [isComplete] = `true` → xác nhận hoàn thành (cache số lượng tồn kho &

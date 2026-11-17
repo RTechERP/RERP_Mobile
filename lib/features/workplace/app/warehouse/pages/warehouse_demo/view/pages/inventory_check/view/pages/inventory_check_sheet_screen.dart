@@ -3,12 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:rtc_erp/base/bloc/bloc_status.dart';
 import 'package:rtc_erp/base/network/errors/extension.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import 'package:rtc_erp/base/widgets/base_widget.dart';
-import 'package:rtc_erp/base/widgets/qr_barcode_scanner_page.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
 import 'package:rtc_erp/common/services/device/pda_helper.dart';
 import 'package:rtc_erp/common/utils/dialog/dialog_service.dart';
@@ -17,13 +15,10 @@ import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/vi
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/bloc/inventory_check_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_location_list.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_location_progress_card.dart';
-import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_scan_sheet.dart';
-import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_scan_status_banner.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_sheet_filter_sheet.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_sheet_item_card.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_sheet_item_detail_sheet.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_sheet_item_edit_sheet.dart';
-import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_sheet_report_card.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_error_view.dart';
 
 /// Tab hiển thị trong màn chi tiết đợt kiểm kê.
@@ -58,9 +53,6 @@ class _InventoryCheckSheetScreenState
           InventoryCheckState,
           InventoryCheckBloc
         > {
-  /// Subscription nhận kết quả quét từ phần cứng PDA.
-  StreamSubscription<Map<String, dynamic>>? _scanSub;
-
   /// Đang xem tab nào: vị trí hay sản phẩm.
   ///
   /// Mặc định hiển thị danh sách vị trí; chỉ khi người dùng chọn 1 vị trí
@@ -83,6 +75,26 @@ class _InventoryCheckSheetScreenState
 
   /// Từ khoá tìm kiếm vị trí (lọc cục bộ danh sách vị trí).
   String _locationKeyword = '';
+
+  /// Subscription nhận mã quét từ phần cứng PDA ở tab sản phẩm.
+  ///
+  /// Màn là nguồn quét duy nhất: mỗi mã quét đúng sản phẩm sẽ mở bottom
+  /// sheet của sản phẩm đó (hoặc tăng số lượng nếu sheet đang mở); mã không
+  /// khớp thì hiện thông báo lỗi.
+  StreamSubscription<Map<String, dynamic>>? _scanSub;
+
+  /// Cầu nối điều khiển bottom sheet đang mở trong chế độ quét.
+  final InventoryCheckSheetItemEditController _editController =
+      InventoryCheckSheetItemEditController();
+
+  /// Sản phẩm đang mở bottom sheet trong chế độ quét.
+  InventoryCountSheetItem? _scanSheetItem;
+
+  /// Bottom sheet hiện đang mở (chưa bị đóng).
+  bool _scanSheetOpen = false;
+
+  /// Future hoàn tất khi bottom sheet quét đóng lại.
+  Future<void>? _scanSheetDone;
 
   /// Tên vị trí đang lọc sản phẩm (null = không lọc theo vị trí).
   ///
@@ -123,12 +135,14 @@ class _InventoryCheckSheetScreenState
     }
 
     // Lưu kết quả kiểm kê thành công → báo cho người dùng (phiếu đã được
-    // tải lại trong bloc).
+    // tải lại trong bloc) và quay lại tab vị trí, vị trí đã chọn vẫn giữ.
     if (state.saveCountDetailsSuccess) {
       context.showMessage(
         'Cập nhật kết quả kiểm kê thành công',
         type: SnackBarType.success,
       );
+      // Quay lại tab vị trí, vị trí đang chọn vẫn được giữ nguyên.
+      _switchTab(_SheetTab.locations);
       return;
     }
 
@@ -217,10 +231,9 @@ class _InventoryCheckSheetScreenState
             prev.productLocationId != curr.productLocationId ||
             prev.modulaLocationId != curr.modulaLocationId ||
             prev.modulaLocationDetailId != curr.modulaLocationDetailId ||
-            prev.sheetScanMode != curr.sheetScanMode ||
-            prev.sheetScanCode != curr.sheetScanCode ||
-            prev.sheetScanCount != curr.sheetScanCount ||
-            prev.sheetScanMessage != curr.sheetScanMessage,
+            prev.stagedCountEdits != curr.stagedCountEdits ||
+            prev.scannedItemKeys != curr.scannedItemKeys ||
+            prev.visibleCountedCount != curr.visibleCountedCount,
         builder: (context, state) {
           if (_tab == _SheetTab.locations) {
             return _buildLocationsTab(context, state);
@@ -246,42 +259,12 @@ class _InventoryCheckSheetScreenState
 
           return Column(
             children: [
-              /// ===== PANEL TRẠNG THÁI QUÉT =====
-              if (state.sheetScanMode != null)
-                InventoryCheckScanStatusBanner(
-                  mode: state.sheetScanMode!,
-                  lastCode: state.sheetScanCode,
-                  scanCount: state.sheetScanCount,
-                  matchedCount: state.visibleSheetItems.length,
-                  message: state.sheetScanMessage,
-                  onClose: _stopScanMode,
-                ),
               Expanded(child: _buildContent(context, state, sheet)),
             ],
           );
         },
       ),
-      floatingActionButton: BlocBuilder<InventoryCheckBloc, InventoryCheckState>(
-        bloc: bloc,
-        buildWhen: (prev, curr) => prev.sheetScanMode != curr.sheetScanMode,
-        builder: (context, state) {
-          if (_tab != _SheetTab.products) return const SizedBox.shrink();
-          return FloatingActionButton(
-            backgroundColor: state.sheetScanMode == null
-                ? AppColors.primaryERP
-                : AppColors.backgroundLight,
-            foregroundColor: state.sheetScanMode == null
-                ? Colors.white
-                : AppColors.primaryERP,
-            elevation: 4,
-            tooltip: state.sheetScanMode == null
-                ? 'Quét mã'
-                : 'Đổi chế độ quét',
-            onPressed: _handleScanAction,
-            child: const Icon(Icons.qr_code_scanner),
-          );
-        },
-      ),
+      floatingActionButton: null,
     );
   }
 
@@ -499,8 +482,7 @@ class _InventoryCheckSheetScreenState
   /// Xử lý bấm 1 trong 3 ô của card "Tiến độ theo vị trí".
   ///
   /// - Ô "Chưa có" → nhảy sang tab sản phẩm, lọc sản phẩm chưa có vị trí
-  ///   kho lẫn Modula, mặc định chỉ hiện phần **chưa kiểm** để người dùng
-  ///   biết cần kiểm mã nào.
+  ///   kho lẫn Modula (danh sách tự sắp xếp chưa kiểm lên trước).
   /// - Ô "Kho" / "Modula" → chỉ đổi danh sách vị trí bên dưới, không nhảy tab.
   ///   Người dùng bấm 1 vị trí cụ thể mới lọc sản phẩm.
   void _handleLocationGroupSelected(InventoryLocationGroup group) {
@@ -509,11 +491,6 @@ class _InventoryCheckSheetScreenState
     bloc.add(InventoryCheckEvent.selectLocationScope(group));
 
     if (group == InventoryLocationGroup.noLocation) {
-      bloc.add(
-        const InventoryCheckEvent.filterSheet(
-          InventoryCheckSheetFilter.notCounted,
-        ),
-      );
       setState(() {
         _hasPickedLocation = true;
         _locationFilterLabel = 'Chưa có vị trí';
@@ -592,6 +569,20 @@ class _InventoryCheckSheetScreenState
     }
 
     setState(() => _tab = tab);
+
+    // Vào tab sản phẩm: bắt đầu nghe mã quét từ phần cứng PDA. Danh sách
+    // không lọc trạng thái — đã được sắp xếp sẵn (chưa kiểm ở trên, đã kiểm
+    // ở dưới).
+    if (tab == _SheetTab.products) {
+      bloc.add(const InventoryCheckEvent.filterSheet(null));
+      _startScanListening();
+      return;
+    }
+
+    // Rời khỏi tab sản phẩm → ngừng nghe quét và đóng bottom sheet đang mở
+    // (lưu nháp trước). Số liệu tiến độ theo vị trí không cần gọi lại API vì
+    // đã được cập nhật từ dữ liệu server + nháp trong phiếu.
+    _stopScanListening();
   }
 
   /// Nội dung màn: header thông tin đợt + thanh tìm kiếm + danh sách sản phẩm.
@@ -604,31 +595,19 @@ class _InventoryCheckSheetScreenState
 
     return CustomScrollView(
       slivers: [
-        /// ===== HEADER THÔNG TIN ĐỢT KIỂM KÊ =====
-        SliverToBoxAdapter(child: _MasterHeader(master: sheet.master)),
-
-        /// ===== NÚT XÁC NHẬN HOÀN THÀNH / MỞ LẠI =====
-        SliverToBoxAdapter(
-          child: _CompleteActionButton(
-            isComplete: sheet.master?.isComplete ?? false,
-            onPressed: () =>
-                _handleCompleteAction(sheet.master?.isComplete ?? false),
-          ),
-        ),
-
-        /// ===== BẢNG BÁO CÁO =====
-        SliverToBoxAdapter(
-          child: InventoryCheckSheetReportCard(report: state.sheetReport),
-        ),
-
-        /// ===== THÔNG TIN CHUNG (kho, người kiểm kê, ngày...) =====
-        SliverToBoxAdapter(child: _MasterInfoCard(master: sheet.master)),
-
         /// ===== THANH VỊ TRÍ ĐANG LỌC =====
         SliverToBoxAdapter(
           child: _SelectedLocationBar(
             locationName: _selectedLocationName(),
             onClear: _clearLocationFilter,
+          ),
+        ),
+
+        /// ===== NÚT XÁC NHẬN ĐÃ KIỂM VỊ TRÍ =====
+        SliverToBoxAdapter(
+          child: _ConfirmLocationButton(
+            stagedCount: state.stagedCountEdits.length,
+            onPressed: () => _handleConfirmLocation(),
           ),
         ),
 
@@ -654,7 +633,7 @@ class _InventoryCheckSheetScreenState
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  '(${items.length})',
+                  '(${state.visibleCountedCount}/${items.length})',
                   style: const TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
@@ -662,39 +641,6 @@ class _InventoryCheckSheetScreenState
                   ),
                 ),
                 const Spacer(),
-                if (state.sheetScanCode != null)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 3,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryERP.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: AppColors.primaryERP.withValues(alpha: 0.3),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(
-                          Icons.filter_alt,
-                          size: 11,
-                          color: AppColors.primaryERP,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          'Lọc theo mã quét',
-                          style: const TextStyle(
-                            fontSize: 10.5,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.primaryERP,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                 if (_sheetFilterLabel(state) != null) ...[
                   const SizedBox(width: 6),
                   Container(
@@ -737,7 +683,7 @@ class _InventoryCheckSheetScreenState
 
         /// ===== DANH SÁCH SẢN PHẨM =====
         if (items.isEmpty)
-          SliverToBoxAdapter(child: _EmptyItems(scanCode: state.sheetScanCode))
+          SliverToBoxAdapter(child: const _EmptyItems())
         else
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
@@ -745,10 +691,14 @@ class _InventoryCheckSheetScreenState
               itemCount: items.length,
               separatorBuilder: (_, _) => const SizedBox(height: 10),
               itemBuilder: (context, index) {
+                final item = items[index];
                 return InventoryCountSheetItemCard(
-                  item: items[index],
+                  item: item,
                   index: index + 1,
-                  onTap: () => _handleItemTap(items[index]),
+                  stagedQuantity:
+                      state.stagedCountEdits[item.stagedKey]?.quantityActual,
+                  isScanned: state.isScanned(item),
+                  onTap: () => _handleItemTap(item),
                 );
               },
             ),
@@ -757,25 +707,31 @@ class _InventoryCheckSheetScreenState
     );
   }
 
-  /// Xử lý nút hoàn thành / mở lại đợt kiểm kê ở AppBar.
+  /// Xác nhận đã kiểm vị trí → gửi toàn bộ kết quả đã nhập lên server.
   ///
-  /// [isComplete] = `true` → đang hoàn thành → hiện dialog mở lại.
-  /// `false` → đang kiểm kê → hiện dialog xác nhận hoàn thành.
-  Future<void> _handleCompleteAction(bool isComplete) async {
-    final master = bloc.state.sheet?.master;
-    if (master == null) return;
+  /// Gửi tất cả các dòng đang chờ lưu trong phiếu (nháp), không phụ thuộc
+  /// đang xem vị trí / bộ lọc nào.
+  Future<void> _handleConfirmLocation() async {
+    final staged = bloc.state.stagedCountEdits.values.toList();
+    if (staged.isEmpty) {
+      context.showMessage(
+        'Chưa có sản phẩm nào được cập nhật',
+        type: SnackBarType.info,
+      );
+      return;
+    }
 
-    final confirmed = await DialogService.showConfirmInventoryCountComplete(
+    final confirmed = await DialogService.showConfirmInventoryCountLocation(
       context: context,
-      countCode: master.code ?? '',
-      isComplete: !isComplete,
+      countCode: bloc.state.sheet?.master?.code ?? '',
+      stagedCount: staged.length,
     );
     if (!mounted || !confirmed) return;
 
     bloc.add(
-      InventoryCheckEvent.confirmComplete(
-        id: widget.countId,
-        isComplete: !isComplete,
+      InventoryCheckEvent.saveCountDetails(
+        countId: widget.countId,
+        changedItems: staged.map((edit) => edit.toJson()).toList(),
       ),
     );
   }
@@ -794,27 +750,262 @@ class _InventoryCheckSheetScreenState
     _openEditItemSheet(item);
   }
 
-  /// Mở bottom sheet nhập số lượng thực tế + ghi chú rồi lưu kết quả kiểm kê.
+  /// Mở bottom sheet nhập số lượng thực tế + ghi chú rồi lưu vào nháp.
+  ///
+  /// Nháp chỉ được gửi lên server khi người dùng bấm nút
+  /// "Xác nhận đã kiểm vị trí".
   Future<void> _openEditItemSheet(InventoryCountSheetItem item) async {
-    final result = await InventoryCheckSheetItemEditSheet.show(context, item);
+    final result = await _openItemSheet(item, scanDriven: false);
     if (!mounted || result == null) return;
 
+    _stageCountEdit(item, result);
+
+    context.showMessage(
+      'Đã cập nhật số lượng thực tế — bấm "Xác nhận đã kiểm vị trí" để lưu',
+      type: SnackBarType.success,
+    );
+  }
+
+  /// Mở bottom sheet nhập số lượng cho một sản phẩm.
+  ///
+  /// Màn ngoài luôn là nguồn quét duy nhất: bottom sheet không tự nghe phần cứng
+  /// (tránh đếm trùng 2 lần), mọi lượt quét đều do màn ngoài đẩy vào.
+  ///
+  /// - [scanDriven] = `true` → sheet được mở do 1 lượt quét: lượt quét đó
+  ///   được tính vào số lượng.
+  /// - [scanDriven] = `false` → người dùng tự bấm vào sản phẩm: bỏ các lượt
+  ///   tăng còn dư.
+  ///
+  /// Trả về kết quả nhập của bottom sheet (null = người dùng huỷ).
+  Future<InventoryCountItemEditResult?> _openItemSheet(
+    InventoryCountSheetItem item, {
+    required bool scanDriven,
+  }) {
+    final staged = bloc.state.stagedCountEdits[item.stagedKey];
+    _scanSheetItem = item;
+
+    // Sheet không do màn quét điều khiển → bỏ các lần tăng còn dư.
+    if (!scanDriven) {
+      _editController.resetPending();
+    }
+
+    final completer = Completer<InventoryCountItemEditResult?>();
+    _scanSheetDone = completer.future;
+    _scanSheetOpen = true;
+
+    InventoryCheckSheetItemEditSheet.show(
+      context,
+      item,
+      stagedQuantity: staged?.quantityActual,
+      stagedNote: staged?.note,
+      controller: _editController,
+      onScanned: _markItemScanned,
+    ).then((result) {
+      if (identical(_scanSheetItem, item)) {
+        _scanSheetItem = null;
+      }
+      _scanSheetOpen = false;
+      completer.complete(result);
+    });
+
+    return completer.future;
+  }
+
+  /// Đánh dấu dòng sản phẩm là "đã quét" → hiện chip + đẩy xuống cuối.
+  void _markItemScanned(String rowKey) {
+    bloc.add(InventoryCheckEvent.markItemScanned(rowKey));
+  }
+
+  /// Lưu kết quả kiểm kê của 1 sản phẩm vào nháp trong phiếu.
+  ///
+  /// Nháp chỉ được gửi lên server khi người dùng bấm "Xác nhận đã kiểm vị trí".
+  void _stageCountEdit(
+    InventoryCountSheetItem item,
+    InventoryCountItemEditResult result,
+  ) {
     final productRtcId = item.productRtcId;
     if (productRtcId == null) return;
 
     bloc.add(
-      InventoryCheckEvent.saveCountDetails(
-        countId: widget.countId,
-        changedItems: [
-          {
-            'ID': item.id ?? 0,
-            'ProductRTCID': productRtcId,
-            'QuantityActual': result.quantityActual,
-            'Note': result.note,
-          },
-        ],
+      InventoryCheckEvent.stageCountDetail(
+        InventoryCountStagedEdit(
+          rowKey: item.stagedKey,
+          itemId: item.id ?? 0,
+          productRtcId: productRtcId,
+          quantityActual: result.quantityActual,
+          note: result.note,
+        ),
       ),
     );
+  }
+
+  // ==========================================================================
+  // QUÉT MÃ TỪ PHẦN CỨNG PDA (tab sản phẩm)
+  // ==========================================================================
+
+  /// Bắt đầu nghe mã quét từ phần cứng PDA.
+  ///
+  /// Màn là nguồn quét duy nhất ở tab sản phẩm: mỗi mã quét đúng sản phẩm
+  /// sẽ mở bottom sheet của sản phẩm đó và tự tăng số lượng.
+  void _startScanListening() {
+    if (_scanSub != null) return;
+    _scanSub = PdaHelper.scanStream.listen(_handleScanEvent);
+  }
+
+  /// Ngừng nghe mã quét + đóng bottom sheet đang mở (lưu nháp trước).
+  Future<void> _stopScanListening() async {
+    _scanSub?.cancel();
+    _scanSub = null;
+
+    if (_scanSheetDone == null) return;
+
+    // Lưu nháp sản phẩm đang mở rồi đóng sheet.
+    _saveOpenSheetDraft();
+    await _closeScanSheet();
+  }
+
+  /// Nhận sự kiện quét từ phần cứng PDA.
+  void _handleScanEvent(Map<String, dynamic> event) {
+    if (!mounted) return;
+
+    // Sự kiện bấm nút quét native — mã quét sẽ đến ở event tiếp theo.
+    if (event.containsKey('keyEvent')) return;
+
+    final code = event['code']?.toString().trim();
+    if (code == null || code.isEmpty) return;
+
+    _handleScannedCode(code);
+  }
+
+  /// Xử lý mã vừa quét ở tab sản phẩm.
+  ///
+  /// - Đang mở bottom sheet của đúng sản phẩm → tăng số lượng lên 1.
+  /// - Đang mở bottom sheet của sản phẩm khác → lưu nháp sản phẩm cũ rồi mở
+  ///   bottom sheet của sản phẩm mới (người dùng có thể quay lại sản phẩm cũ
+  ///   sau, số liệu đã lưu trong nháp).
+  /// - Chưa mở bottom sheet nào → mở bottom sheet của sản phẩm vừa quét.
+  /// - Mã không khớp sản phẩm nào trong danh sách → báo lỗi, không mở gì.
+  Future<void> _handleScannedCode(String code) async {
+    final openItem = _scanSheetItem;
+
+    if (openItem != null && _matchesItemCode(openItem, code)) {
+      _markItemScanned(openItem.stagedKey);
+      _editController.increment();
+      return;
+    }
+
+    final target = _findItemByCode(code);
+    if (target == null) {
+      context.showMessage(
+        'Mã "$code" không khớp sản phẩm nào trong danh sách',
+        type: SnackBarType.error,
+      );
+      return;
+    }
+
+    // Lưu nháp sản phẩm đang mở (nếu có số lượng) trước khi chuyển sản phẩm —
+    // số liệu của sản phẩm cũ không bị mất, người dùng quay lại là thấy.
+    final savedQuantity = _saveOpenSheetDraft();
+    await _closeScanSheet();
+
+    if (!mounted) return;
+
+    if (savedQuantity != null && openItem != null) {
+      context.showMessage(
+        'Đã lưu nháp "${openItem.productCode ?? ''}": $savedQuantity — '
+        'chuyển sang "${target.productCode ?? ''}"',
+        type: SnackBarType.info,
+      );
+    }
+
+    await _openScanSheet(target);
+  }
+
+  /// Tìm dòng sản phẩm trong danh sách đang xem khớp mã vừa quét.
+  ///
+  /// Không tìm thấy trả về `null` — người dùng có thể đang lọc theo vị trí
+  /// nên sản phẩm cần kiểm không nằm trong danh sách hiện tại.
+  InventoryCountSheetItem? _findItemByCode(String code) {
+    final target = code.trim().toLowerCase();
+
+    for (final item in bloc.state.visibleSheetItems) {
+      if (_matchesItemCode(item, target)) return item;
+    }
+    return null;
+  }
+
+  /// Mã vừa quét có khớp sản phẩm hay không.
+  ///
+  /// So khớp chính xác với các mã nhận diện của sản phẩm: mã sản phẩm, mã
+  /// nội bộ, serial, serial number và part number.
+  bool _matchesItemCode(InventoryCountSheetItem item, String code) {
+    final target = code.trim().toLowerCase();
+    if (target.isEmpty) return false;
+
+    return _equalsCode(item.productCode, target) ||
+        _equalsCode(item.productCodeRtc, target) ||
+        _equalsCode(item.serialNumber, target) ||
+        _equalsCode(item.serial, target) ||
+        _equalsCode(item.partNumber, target);
+  }
+
+  /// So khớp chính xác một mã trong sản phẩm với mã vừa quét.
+  static bool _equalsCode(String? value, String code) {
+    return (value ?? '').trim().toLowerCase() == code;
+  }
+
+  /// Mở bottom sheet nhập số lượng cho sản phẩm vừa quét (chế độ quét).
+  ///
+  /// Lượt quét đã mở sheet này cũng được tính vào số lượng.
+  Future<void> _openScanSheet(InventoryCountSheetItem item) async {
+    // Huỷ đăng ký callback của sheet vừa đóng (nếu có) — sheet cũ còn sống
+    // tới hết animation đóng nên nếu không huỷ, lượt tăng của sản phẩm mới
+    // sẽ bị sheet cũ nhận mất và sheet mới mở ra vẫn hiển thị 0.
+    _editController.resetAttachment();
+
+    final future = _openItemSheet(item, scanDriven: true);
+
+    // Lượt quét đã mở sheet → cộng 1 (được áp dụng khi sheet mount xong).
+    _markItemScanned(item.stagedKey);
+    _editController.increment();
+
+    final result = await future;
+    if (!mounted || result == null) return;
+
+    _stageCountEdit(item, result);
+  }
+
+  /// Lưu nháp số lượng của sản phẩm đang mở trong bottom sheet.
+  ///
+  /// Trả về số lượng đã lưu (null = sản phẩm đang mở chưa nhập gì).
+  double? _saveOpenSheetDraft() {
+    final item = _scanSheetItem;
+    if (item == null) return null;
+
+    final result = _editController.readResult?.call();
+    if (result == null) return null;
+
+    _stageCountEdit(item, result);
+    return result.quantityActual;
+  }
+
+  /// Đóng bottom sheet đang mở (nếu có) và chờ nó đóng hẳn.
+  Future<void> _closeScanSheet() async {
+    final done = _scanSheetDone;
+    _scanSheetDone = null;
+    _scanSheetItem = null;
+
+    if (done == null) return;
+    if (!mounted) return;
+
+    // Sheet đã đóng (người dùng bấm Lưu / Huỷ) → chỉ cần chờ future hoàn tất.
+    if (!_scanSheetOpen) {
+      await done;
+      return;
+    }
+
+    Navigator.of(context).pop();
+    await done;
   }
 
   /// Đang có bộ lọc đang áp dụng hay không.
@@ -849,79 +1040,6 @@ class _InventoryCheckSheetScreenState
       InventoryCheckSheetFilter.notCounted => 'Chưa kiểm',
       InventoryCheckSheetFilter.difference => 'Chênh lệch',
     };
-  }
-
-  /// Xử lý khi bấm action quét trong phiếu.
-  ///
-  /// Chọn chế độ quét (sản phẩm / vị trí) rồi:
-  /// - Là PDA → bật chế độ quét liên tục bằng phần cứng.
-  /// - Không phải PDA → dùng camera quét từng mã một.
-  Future<void> _handleScanAction() async {
-    // Đang quét mode cũ → tắt trước khi chọn mode mới.
-    if (bloc.state.sheetScanMode != null) {
-      _stopScanMode();
-    }
-
-    final mode = await InventoryCheckScanSheet.show(context);
-    if (mode == null || !mounted) return;
-
-    final isPda = await PdaHelper.isPdaDevice();
-    if (!mounted) return;
-
-    if (isPda) {
-      _startScanMode(mode);
-      return;
-    }
-
-    bloc.add(InventoryCheckEvent.startSheetScan(mode));
-    await _scanWithCamera(mode);
-  }
-
-  /// Quét bằng camera, mỗi lần quét được thì lọc theo mã và quét tiếp.
-  Future<void> _scanWithCamera(InventoryScanMode mode) async {
-    while (mounted && bloc.state.sheetScanMode == mode) {
-      final code = await QrBarcodeScannerPage.open(
-        context,
-        scanMode: ScanMode.all,
-        title: mode == InventoryScanMode.product
-            ? 'Quét mã sản phẩm'
-            : 'Quét mã vị trí',
-      );
-      if (!mounted) return;
-      if (code == null || code.trim().isEmpty) break;
-
-      bloc.add(InventoryCheckEvent.sheetScanned(code.trim()));
-    }
-  }
-
-  /// Bật chế độ quét [mode] và bắt đầu lắng nghe phần cứng PDA.
-  ///
-  /// - [InventoryScanMode.product] → lọc ra đúng sản phẩm vừa quét.
-  /// - [InventoryScanMode.location] → lọc ra tất cả sản phẩm cùng mã vị trí.
-  void _startScanMode(InventoryScanMode mode) {
-    _scanSub?.cancel();
-    bloc.add(InventoryCheckEvent.startSheetScan(mode));
-
-    _scanSub = PdaHelper.scanStream.listen((event) {
-      if (!mounted) return;
-
-      // Sự kiện bấm nút quét native — mã quét sẽ đến ở event tiếp theo.
-      if (event.containsKey('keyEvent')) {
-        return;
-      }
-
-      final code = event['code']?.toString().trim();
-      if (code == null || code.isEmpty) return;
-
-      bloc.add(InventoryCheckEvent.sheetScanned(code));
-    });
-  }
-
-  /// Tắt chế độ quét PDA và bỏ lọc theo mã quét.
-  void _stopScanMode() {
-    _scanSub?.cancel();
-    _scanSub = null;
-    bloc.add(InventoryCheckEvent.stopSheetScan());
   }
 
   /// Mở bottom sheet bộ lọc sản phẩm (trạng thái, nhóm SP).
@@ -1091,121 +1209,34 @@ class _SheetTabButton extends StatelessWidget {
   }
 }
 
-class _MasterHeader extends StatelessWidget {
-  const _MasterHeader({required this.master});
-
-  final InventoryCountSheetMaster? master;
-
-  @override
-  Widget build(BuildContext context) {
-    final m = master;
-    if (m == null) return const SizedBox.shrink();
-
-    final isComplete = m.isComplete ?? false;
-
-    return Container(
-      margin: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-      padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [AppColors.secondaryERP, AppColors.heading],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.secondaryERP.withValues(alpha: 0.22),
-            blurRadius: 14,
-            offset: const Offset(0, 5),
-          ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(9),
-            decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.18),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: const Icon(
-              Icons.assignment_outlined,
-              color: Colors.white,
-              size: 20,
-            ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  _orDash(m.code),
-                  style: const TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w800,
-                    color: Colors.white,
-                    height: 1.25,
-                  ),
-                ),
-                const SizedBox(height: 3),
-                Text(
-                  _orDash(m.name),
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                    height: 1.35,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 10),
-          _StatusBadge(isComplete: isComplete),
-        ],
-      ),
-    );
-  }
-}
-
-/// Nút xác nhận hoàn thành / mở lại đợt kiểm kê trong header chi tiết.
+/// Nút "Xác nhận đã kiểm vị trí" — gửi toàn bộ kết quả đã nhập lên server.
 ///
-/// Đặt ngay dưới header gradient để người dùng thấy rõ thao tác đang có
-/// thể thực hiện với phiếu đang xem.
-class _CompleteActionButton extends StatelessWidget {
-  const _CompleteActionButton({
-    required this.isComplete,
+/// Hiển thị số dòng đang chờ lưu để người dùng biết còn bao nhiêu sản
+/// phẩm chưa được gửi đi.
+class _ConfirmLocationButton extends StatelessWidget {
+  const _ConfirmLocationButton({
+    required this.stagedCount,
     required this.onPressed,
   });
 
-  /// Đợt kiểm kê đã hoàn thành hay chưa.
-  final bool isComplete;
+  /// Số dòng sản phẩm đã nhập nhưng chưa lưu lên server.
+  final int stagedCount;
 
   /// Callback khi bấm nút.
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    final color = isComplete
-        ? AppColors.stateWarningColor
-        : AppColors.stateSuccessColor;
-
     return Container(
       margin: const EdgeInsets.fromLTRB(16, 10, 16, 0),
       width: double.infinity,
       child: ElevatedButton.icon(
         onPressed: onPressed,
-        icon: Icon(
-          isComplete ? Icons.restart_alt : Icons.task_alt,
-          size: 18,
-          color: Colors.white,
-        ),
+        icon: const Icon(Icons.verified_outlined, size: 18, color: Colors.white),
         label: Text(
-          isComplete ? 'Mở lại đợt kiểm kê' : 'Xác nhận hoàn thành',
+          stagedCount > 0
+              ? 'Xác nhận đã kiểm vị trí ($stagedCount)'
+              : 'Xác nhận đã kiểm vị trí',
           style: const TextStyle(
             fontSize: 13.5,
             fontWeight: FontWeight.w700,
@@ -1213,7 +1244,7 @@ class _CompleteActionButton extends StatelessWidget {
           ),
         ),
         style: ElevatedButton.styleFrom(
-          backgroundColor: color,
+          backgroundColor: AppColors.stateSuccessColor,
           elevation: 0,
           padding: const EdgeInsets.symmetric(vertical: 12),
           shape: RoundedRectangleBorder(
@@ -1225,233 +1256,27 @@ class _CompleteActionButton extends StatelessWidget {
   }
 }
 
-/// Card thông tin chung của đợt kiểm kê: kho, người kiểm kê, ngày kiểm kê,
-/// ngày tạo và ghi chú.
-///
-/// Bố cục dạng lưới 2 cột (nhãn nhỏ ở trên, giá trị ở dưới) để giá trị dài
-/// vẫn hiển thị đầy đủ, không bị cắt.
-class _MasterInfoCard extends StatelessWidget {
-  const _MasterInfoCard({required this.master});
-
-  final InventoryCountSheetMaster? master;
-
-  @override
-  Widget build(BuildContext context) {
-    final m = master;
-    if (m == null) return const SizedBox.shrink();
-
-    final note = (m.note ?? '').trim();
-
-    return Container(
-      margin: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: AppColors.borderColor),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          /// ===== TIÊU ĐỀ KHỐI =====
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            decoration: const BoxDecoration(
-              color: AppColors.backgroundLight,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(13)),
-            ),
-            child: const Row(
-              children: [
-                Icon(
-                  Icons.info_outline,
-                  size: 15,
-                  color: AppColors.secondaryERP,
-                ),
-                SizedBox(width: 8),
-                Text(
-                  'Thông tin đợt kiểm kê',
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.enableText,
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          /// ===== LƯỚI THÔNG TIN =====
-          Padding(
-            padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
-            child: Column(
-              children: [
-                _gridRow(
-                  _gridCell('Kho', _orDash(m.warehouseName)),
-                  _gridCell('Người kiểm kê', _employeeLabel(m)),
-                ),
-                _gridRow(
-                  _gridCell('Ngày kiểm kê', _formatDateTime(m.dateCount)),
-                ),
-                if (note.isNotEmpty) _gridRow(_gridCell('Ghi chú', note)),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  /// Hàng lưới thông tin — tối đa 2 ô trên một hàng.
-  ///
-  /// Khi chỉ có 1 ô thì ô đó chiếm toàn bộ chiều rộng, tránh giá trị dài bị
-  /// wrap vô ích.
-  Widget _gridRow(Widget first, [Widget? second]) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(child: first),
-          if (second != null) ...[
-            const SizedBox(width: 14),
-            Expanded(child: second),
-          ],
-        ],
-      ),
-    );
-  }
-
-  /// Một ô trong lưới thông tin: nhãn nhỏ ở trên, giá trị ở dưới.
-  Widget _gridCell(String label, String value) {
-    final isEmpty = value == '--';
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 10.5,
-            fontWeight: FontWeight.w500,
-            color: AppColors.gray,
-            height: 1.3,
-          ),
-        ),
-        const SizedBox(height: 2),
-        Text(
-          value,
-          style: TextStyle(
-            fontSize: 12.5,
-            fontWeight: isEmpty ? FontWeight.w400 : FontWeight.w700,
-            color: isEmpty ? AppColors.disableText : AppColors.enableText,
-            height: 1.35,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-/// Nhãn người kiểm kê kèm mã (nếu có).
-String _employeeLabel(InventoryCountSheetMaster m) {
-  final name = _orDash(m.employeeName);
-  final code = (m.employeeCode ?? '').trim();
-  return code.isEmpty ? name : '$name ($code)';
-}
-
-/// Text hiển thị, `--` nếu rỗng.
-String _orDash(String? value) {
-  final trimmed = (value ?? '').trim();
-  return trimmed.isEmpty ? '--' : trimmed;
-}
-
-/// Format ngày ISO sang `dd/MM/yyyy HH:mm`.
-String _formatDateTime(String? raw) {
-  final date = DateTime.tryParse(raw ?? '');
-  if (date == null) return '--';
-  return DateFormat('dd/MM/yyyy HH:mm').format(date);
-}
-
-/// Badge trạng thái đợt kiểm kê trên nền gradient.
-class _StatusBadge extends StatelessWidget {
-  const _StatusBadge({required this.isComplete});
-
-  final bool isComplete;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.22),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.35)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            isComplete ? Icons.check_circle : Icons.pending_outlined,
-            size: 13,
-            color: Colors.white,
-          ),
-          const SizedBox(width: 5),
-          Text(
-            isComplete ? 'Hoàn thành' : 'Đang kiểm kê',
-            style: const TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-              height: 1.2,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 /// Trạng thái rỗng khi phiếu không có sản phẩm nào.
-///
-/// [scanCode] khác null = đang lọc theo mã vừa quét nhưng không khớp sản
-/// phẩm nào → hiển thị thông báo phù hợp.
 class _EmptyItems extends StatelessWidget {
-  const _EmptyItems({this.scanCode});
-
-  /// Mã vừa quét đang dùng để lọc (null = không lọc theo quét).
-  final String? scanCode;
+  const _EmptyItems();
 
   @override
   Widget build(BuildContext context) {
-    final isScanning = (scanCode ?? '').isNotEmpty;
-
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 40, 16, 40),
       child: Column(
         children: [
-          Icon(
-            isScanning
-                ? Icons.search_off_outlined
-                : Icons.inventory_2_outlined,
+          const Icon(
+            Icons.inventory_2_outlined,
             size: 46,
-            color: AppColors.gray.withValues(alpha: 0.5),
+            color: AppColors.gray,
           ),
           const SizedBox(height: 12),
-          Text(
-            isScanning
-                ? 'Không có sản phẩm nào khớp mã "$scanCode"'
-                : 'Chưa có sản phẩm nào trong phiếu kiểm kê',
-            style: const TextStyle(color: AppColors.gray, fontSize: 13),
+          const Text(
+            'Chưa có sản phẩm nào trong phiếu kiểm kê',
+            style: TextStyle(color: AppColors.gray, fontSize: 13),
             textAlign: TextAlign.center,
           ),
-          if (isScanning) ...[
-            const SizedBox(height: 4),
-            const Text(
-              'Quét mã khác hoặc tắt chế độ quét để xem toàn bộ sản phẩm',
-              style: TextStyle(color: AppColors.gray, fontSize: 11.5),
-              textAlign: TextAlign.center,
-            ),
-          ],
         ],
       ),
     );

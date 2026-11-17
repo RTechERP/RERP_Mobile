@@ -50,9 +50,10 @@ abstract class _$InventoryCheckStateCWProxy {
   InventoryCheckState allSheetItems(
       List<InventoryCountSheetItem> allSheetItems);
 
-  InventoryCheckState isLoadingLocationCounts(bool isLoadingLocationCounts);
+  InventoryCheckState noLocationSheetItems(
+      List<InventoryCountSheetItem> noLocationSheetItems);
 
-  InventoryCheckState locationCounts(InventoryLocationCounts locationCounts);
+  InventoryCheckState isLoadingLocationCounts(bool isLoadingLocationCounts);
 
   InventoryCheckState sheetCountId(int? sheetCountId);
 
@@ -87,18 +88,15 @@ abstract class _$InventoryCheckStateCWProxy {
 
   InventoryCheckState saveCountDetailsSuccess(bool saveCountDetailsSuccess);
 
+  InventoryCheckState stagedCountEdits(
+      Map<String, InventoryCountStagedEdit> stagedCountEdits);
+
+  InventoryCheckState scannedItemKeys(Set<String> scannedItemKeys);
+
   InventoryCheckState openedCountFromScan(
       InventoryCountItem? openedCountFromScan);
 
   InventoryCheckState scanCountMessage(String? scanCountMessage);
-
-  InventoryCheckState sheetScanMode(InventoryScanMode? sheetScanMode);
-
-  InventoryCheckState sheetScanCode(String? sheetScanCode);
-
-  InventoryCheckState sheetScanCount(int sheetScanCount);
-
-  InventoryCheckState sheetScanMessage(String? sheetScanMessage);
 
   InventoryCheckState confirmCompleteSuccess(bool confirmCompleteSuccess);
 
@@ -134,8 +132,8 @@ abstract class _$InventoryCheckStateCWProxy {
     String? deleteError,
     InventoryCountSheet? sheet,
     List<InventoryCountSheetItem>? allSheetItems,
+    List<InventoryCountSheetItem>? noLocationSheetItems,
     bool? isLoadingLocationCounts,
-    InventoryLocationCounts? locationCounts,
     int? sheetCountId,
     InventoryLocationProgress? locationProgress,
     bool? isLoadingLocationProgress,
@@ -151,12 +149,10 @@ abstract class _$InventoryCheckStateCWProxy {
     int? productGroupsRtcWarehouseId,
     int? sheetProductGroupId,
     bool? saveCountDetailsSuccess,
+    Map<String, InventoryCountStagedEdit>? stagedCountEdits,
+    Set<String>? scannedItemKeys,
     InventoryCountItem? openedCountFromScan,
     String? scanCountMessage,
-    InventoryScanMode? sheetScanMode,
-    String? sheetScanCode,
-    int? sheetScanCount,
-    String? sheetScanMessage,
     bool? confirmCompleteSuccess,
     String? confirmCompleteMessage,
     String? confirmCompleteError,
@@ -250,12 +246,13 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
       this(allSheetItems: allSheetItems);
 
   @override
-  InventoryCheckState isLoadingLocationCounts(bool isLoadingLocationCounts) =>
-      this(isLoadingLocationCounts: isLoadingLocationCounts);
+  InventoryCheckState noLocationSheetItems(
+          List<InventoryCountSheetItem> noLocationSheetItems) =>
+      this(noLocationSheetItems: noLocationSheetItems);
 
   @override
-  InventoryCheckState locationCounts(InventoryLocationCounts locationCounts) =>
-      this(locationCounts: locationCounts);
+  InventoryCheckState isLoadingLocationCounts(bool isLoadingLocationCounts) =>
+      this(isLoadingLocationCounts: isLoadingLocationCounts);
 
   @override
   InventoryCheckState sheetCountId(int? sheetCountId) =>
@@ -323,6 +320,15 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
       this(saveCountDetailsSuccess: saveCountDetailsSuccess);
 
   @override
+  InventoryCheckState stagedCountEdits(
+          Map<String, InventoryCountStagedEdit> stagedCountEdits) =>
+      this(stagedCountEdits: stagedCountEdits);
+
+  @override
+  InventoryCheckState scannedItemKeys(Set<String> scannedItemKeys) =>
+      this(scannedItemKeys: scannedItemKeys);
+
+  @override
   InventoryCheckState openedCountFromScan(
           InventoryCountItem? openedCountFromScan) =>
       this(openedCountFromScan: openedCountFromScan);
@@ -330,22 +336,6 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
   @override
   InventoryCheckState scanCountMessage(String? scanCountMessage) =>
       this(scanCountMessage: scanCountMessage);
-
-  @override
-  InventoryCheckState sheetScanMode(InventoryScanMode? sheetScanMode) =>
-      this(sheetScanMode: sheetScanMode);
-
-  @override
-  InventoryCheckState sheetScanCode(String? sheetScanCode) =>
-      this(sheetScanCode: sheetScanCode);
-
-  @override
-  InventoryCheckState sheetScanCount(int sheetScanCount) =>
-      this(sheetScanCount: sheetScanCount);
-
-  @override
-  InventoryCheckState sheetScanMessage(String? sheetScanMessage) =>
-      this(sheetScanMessage: sheetScanMessage);
 
   @override
   InventoryCheckState confirmCompleteSuccess(bool confirmCompleteSuccess) =>
@@ -389,8 +379,8 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
     Object? deleteError = const $CopyWithPlaceholder(),
     Object? sheet = const $CopyWithPlaceholder(),
     Object? allSheetItems = const $CopyWithPlaceholder(),
+    Object? noLocationSheetItems = const $CopyWithPlaceholder(),
     Object? isLoadingLocationCounts = const $CopyWithPlaceholder(),
-    Object? locationCounts = const $CopyWithPlaceholder(),
     Object? sheetCountId = const $CopyWithPlaceholder(),
     Object? locationProgress = const $CopyWithPlaceholder(),
     Object? isLoadingLocationProgress = const $CopyWithPlaceholder(),
@@ -406,12 +396,10 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
     Object? productGroupsRtcWarehouseId = const $CopyWithPlaceholder(),
     Object? sheetProductGroupId = const $CopyWithPlaceholder(),
     Object? saveCountDetailsSuccess = const $CopyWithPlaceholder(),
+    Object? stagedCountEdits = const $CopyWithPlaceholder(),
+    Object? scannedItemKeys = const $CopyWithPlaceholder(),
     Object? openedCountFromScan = const $CopyWithPlaceholder(),
     Object? scanCountMessage = const $CopyWithPlaceholder(),
-    Object? sheetScanMode = const $CopyWithPlaceholder(),
-    Object? sheetScanCode = const $CopyWithPlaceholder(),
-    Object? sheetScanCount = const $CopyWithPlaceholder(),
-    Object? sheetScanMessage = const $CopyWithPlaceholder(),
     Object? confirmCompleteSuccess = const $CopyWithPlaceholder(),
     Object? confirmCompleteMessage = const $CopyWithPlaceholder(),
     Object? confirmCompleteError = const $CopyWithPlaceholder(),
@@ -508,17 +496,18 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
               ? _value.allSheetItems
               // ignore: cast_nullable_to_non_nullable
               : allSheetItems as List<InventoryCountSheetItem>,
+      noLocationSheetItems:
+          noLocationSheetItems == const $CopyWithPlaceholder() ||
+                  noLocationSheetItems == null
+              ? _value.noLocationSheetItems
+              // ignore: cast_nullable_to_non_nullable
+              : noLocationSheetItems as List<InventoryCountSheetItem>,
       isLoadingLocationCounts:
           isLoadingLocationCounts == const $CopyWithPlaceholder() ||
                   isLoadingLocationCounts == null
               ? _value.isLoadingLocationCounts
               // ignore: cast_nullable_to_non_nullable
               : isLoadingLocationCounts as bool,
-      locationCounts: locationCounts == const $CopyWithPlaceholder() ||
-              locationCounts == null
-          ? _value.locationCounts
-          // ignore: cast_nullable_to_non_nullable
-          : locationCounts as InventoryLocationCounts,
       sheetCountId: sheetCountId == const $CopyWithPlaceholder()
           ? _value.sheetCountId
           // ignore: cast_nullable_to_non_nullable
@@ -590,6 +579,16 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
               ? _value.saveCountDetailsSuccess
               // ignore: cast_nullable_to_non_nullable
               : saveCountDetailsSuccess as bool,
+      stagedCountEdits: stagedCountEdits == const $CopyWithPlaceholder() ||
+              stagedCountEdits == null
+          ? _value.stagedCountEdits
+          // ignore: cast_nullable_to_non_nullable
+          : stagedCountEdits as Map<String, InventoryCountStagedEdit>,
+      scannedItemKeys: scannedItemKeys == const $CopyWithPlaceholder() ||
+              scannedItemKeys == null
+          ? _value.scannedItemKeys
+          // ignore: cast_nullable_to_non_nullable
+          : scannedItemKeys as Set<String>,
       openedCountFromScan: openedCountFromScan == const $CopyWithPlaceholder()
           ? _value.openedCountFromScan
           // ignore: cast_nullable_to_non_nullable
@@ -598,23 +597,6 @@ class _$InventoryCheckStateCWProxyImpl implements _$InventoryCheckStateCWProxy {
           ? _value.scanCountMessage
           // ignore: cast_nullable_to_non_nullable
           : scanCountMessage as String?,
-      sheetScanMode: sheetScanMode == const $CopyWithPlaceholder()
-          ? _value.sheetScanMode
-          // ignore: cast_nullable_to_non_nullable
-          : sheetScanMode as InventoryScanMode?,
-      sheetScanCode: sheetScanCode == const $CopyWithPlaceholder()
-          ? _value.sheetScanCode
-          // ignore: cast_nullable_to_non_nullable
-          : sheetScanCode as String?,
-      sheetScanCount: sheetScanCount == const $CopyWithPlaceholder() ||
-              sheetScanCount == null
-          ? _value.sheetScanCount
-          // ignore: cast_nullable_to_non_nullable
-          : sheetScanCount as int,
-      sheetScanMessage: sheetScanMessage == const $CopyWithPlaceholder()
-          ? _value.sheetScanMessage
-          // ignore: cast_nullable_to_non_nullable
-          : sheetScanMessage as String?,
       confirmCompleteSuccess:
           confirmCompleteSuccess == const $CopyWithPlaceholder() ||
                   confirmCompleteSuccess == null

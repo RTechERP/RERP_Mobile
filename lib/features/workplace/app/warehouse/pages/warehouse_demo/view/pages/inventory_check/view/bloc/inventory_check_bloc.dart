@@ -77,11 +77,15 @@ class InventoryCheckBloc
             _onFilterSheetProductGroup(emit, groupId: groupId),
         saveCountDetails: (countId, changedItems) =>
             _onSaveCountDetails(emit, countId: countId, changedItems: changedItems),
+        stageCountDetail: (edit) async =>
+            _onStageCountDetail(emit, edit: edit),
+        unstageCountDetail: (rowKey) async =>
+            _onUnstageCountDetail(emit, rowKey: rowKey),
+        clearStagedCountDetails: () async => _onClearStagedCountDetails(emit),
+        markItemScanned: (rowKey) async =>
+            _onMarkItemScanned(emit, rowKey: rowKey),
         findCountByCode: (code) => _onFindCountByCode(emit, code: code),
         clearScanCountResult: () => _onClearScanCountResult(emit),
-        startSheetScan: (mode) => _onStartSheetScan(emit, mode: mode),
-        sheetScanned: (code) => _onSheetScanned(emit, code: code),
-        stopSheetScan: () => _onStopSheetScan(emit),
         confirmComplete: (id, isComplete) =>
             _onConfirmComplete(emit, id: id, isComplete: isComplete),
       );
@@ -340,6 +344,7 @@ class InventoryCheckBloc
         sheetCountId: countId,
         sheetKeyword: '',
         sheetFilter: null,
+        scannedItemKeys: const {},
       ),
     );
 
@@ -386,6 +391,20 @@ class InventoryCheckBloc
         emit(state.copyWith(isLoadingLocationProgress: false, locationProgress: progress));
       },
     );
+  }
+
+  /// Đồng bộ lại dữ liệu đã kiểm kê sau khi lưu: bảng sản phẩm + tiến độ theo
+  /// vị trí + số sản phẩm 3 nhóm vị trí.
+  ///
+  /// Chỉ gọi khi dữ liệu thực sự thay đổi (lưu kết quả kiểm kê) — không gọi
+  /// mỗi lần chuyển tab để tránh dội request vô ích.
+  Future<void> _reloadAfterSave(
+    Emitter<InventoryCheckState> emit, {
+    required int countId,
+  }) async {
+    await _fetchSheetMobile(emit);
+    await _onFetchLocationProgress(emit, countId: countId);
+    await _fetchLocationCounts(emit, countId: countId);
   }
 
   /// Chọn nhóm vị trí (1 trong 3 ô của card "Tiến độ theo vị trí") để lọc
@@ -541,15 +560,18 @@ class InventoryCheckBloc
     );
   }
 
-  /// Tải số sản phẩm của 3 nhóm vị trí: Chưa có / Kho / Modula.
+  /// Tải danh sách sản phẩm dùng làm nguồn đếm cho 3 ô "Tiến độ theo vị trí".
   ///
   /// Gọi API `get-inventory-sheet-mobile` với từng bộ lọc để số hiển thị khớp
   /// chính xác với danh sách sản phẩm mà người dùng sẽ thấy khi bấm vào ô.
   ///
   /// - Chưa có → `productLocationId=0` + `modulaLocationId=0`.
   /// - Kho → không lọc (toàn bộ đợt).
-  /// - Modula → `modulaLocationId=0` bị loại, chỉ giữ sản phẩm có vị trí
-  ///   Modula (lọc ở client vì API không có tham số "có vị trí Modula").
+  /// - Modula → lọc ở client theo `ModulaLocationName` (API không có tham số
+  ///   "có vị trí Modula").
+  ///
+  /// Chỉ gọi khi dữ liệu thực sự thay đổi (mở màn / lưu kết quả kiểm kê) —
+  /// không gọi mỗi lần chuyển tab để tránh dội request vô ích.
   Future<void> _fetchLocationCounts(
     Emitter<InventoryCheckState> emit, {
     required int countId,
@@ -571,24 +593,11 @@ class InventoryCheckBloc
         .items;
     final allItems = results[1].getOrElse(() => const InventoryCountSheet()).items;
 
-    final modulaItems = allItems
-        .where((e) => (e.modulaLocationName ?? '').trim().isNotEmpty)
-        .toList();
-
     emit(
       state.copyWith(
         isLoadingLocationCounts: false,
         allSheetItems: allItems,
-        locationCounts: InventoryLocationCounts(
-          noLocation: noLocationItems.length,
-          noLocationCounted: noLocationItems
-              .where((e) => e.hasCounted)
-              .length,
-          warehouse: allItems.length,
-          warehouseCounted: allItems.where((e) => e.hasCounted).length,
-          modula: modulaItems.length,
-          modulaCounted: modulaItems.where((e) => e.hasCounted).length,
-        ),
+        noLocationSheetItems: noLocationItems,
       ),
     );
   }
@@ -698,29 +707,78 @@ class InventoryCheckBloc
       (success) {
         _log.logI('✅ saveCountDetails success - count: ${changedItems.length}');
         succeeded = success;
-        emit(
-          state.copyWith(
-            saveCountDetailsSuccess: true,
-            status: BaseStateStatus.success,
-            message: null,
-          ),
-        );
       },
     );
 
     if (!succeeded) return;
 
-    // Cờ thành công chỉ dùng để báo 1 lần → reset sau khi đã gán.
-    emit(state.copyWith(saveCountDetailsSuccess: false));
+    // Đã lưu lên server → xoá nháp để không gửi trùng.
+    emit(
+      state.copyWith(
+        stagedCountEdits: const {},
+        scannedItemKeys: const {},
+      ),
+    );
 
-    // Tải lại phiếu để cập nhật số lượng thực tế và chênh lệch.
-    await _onFetchSheet(emit, countId: countId);
+    // Đồng bộ lại dữ liệu đã kiểm kê: bảng sản phẩm + tiến độ theo vị trí +
+    // số sản phẩm 3 nhóm vị trí (chỉ gọi lúc này vì dữ liệu vừa thay đổi).
+    await _reloadAfterSave(emit, countId: countId);
 
-    // Đồng bộ lại tiến độ kiểm kê theo vị trí (đã kiểm / chưa kiểm).
-    await _onFetchLocationProgress(emit, countId: countId);
+    // Báo thành công → UI chuyển sang tab "Vị trí" (xem `_switchTab`).
+    emit(
+      state.copyWith(
+        saveCountDetailsSuccess: true,
+        status: BaseStateStatus.success,
+        message: null,
+      ),
+    );
+  }
 
-    // Cập nhật số lượng theo 3 nhóm vị trí (đã kiểm / chưa kiểm).
-    await _fetchLocationCounts(emit, countId: countId);
+  /// Cập nhật nháp kết quả kiểm kê của 1 dòng sản phẩm.
+  ///
+  /// Chỉ lưu trong state, chưa gửi lên server — server chỉ nhận dữ liệu khi
+  /// người dùng bấm "Xác nhận đã kiểm vị trí".
+  void _onStageCountDetail(
+    Emitter<InventoryCheckState> emit, {
+    required InventoryCountStagedEdit edit,
+  }) {
+    emit(
+      state.copyWith(
+        stagedCountEdits: {...state.stagedCountEdits, edit.rowKey: edit},
+      ),
+    );
+  }
+
+  /// Xoá nháp của 1 dòng sản phẩm.
+  void _onUnstageCountDetail(
+    Emitter<InventoryCheckState> emit, {
+    required String rowKey,
+  }) {
+    if (!state.stagedCountEdits.containsKey(rowKey)) return;
+
+    final edits = Map<String, InventoryCountStagedEdit>.from(
+      state.stagedCountEdits,
+    )..remove(rowKey);
+    emit(state.copyWith(stagedCountEdits: edits));
+  }
+
+  /// Xoá toàn bộ nháp kết quả kiểm kê.
+  void _onClearStagedCountDetails(Emitter<InventoryCheckState> emit) {
+    if (state.stagedCountEdits.isEmpty) return;
+    emit(state.copyWith(stagedCountEdits: const {}));
+  }
+
+  /// Đánh dấu 1 dòng sản phẩm đã được quét mã.
+  void _onMarkItemScanned(
+    Emitter<InventoryCheckState> emit, {
+    required String rowKey,
+  }) {
+    if (state.scannedItemKeys.contains(rowKey)) return;
+    emit(
+      state.copyWith(
+        scannedItemKeys: {...state.scannedItemKeys, rowKey},
+      ),
+    );
   }
 
   /// Tìm đợt kiểm kê theo mã đợt vừa quét (barcode/QR in trên phiếu).
@@ -796,69 +854,6 @@ class InventoryCheckBloc
   /// Xoá cờ đợt kiểm kê đã mở từ quét + thông báo quét.
   Future<void> _onClearScanCountResult(Emitter<InventoryCheckState> emit) async {
     emit(state.copyWith(openedCountFromScan: null, scanCountMessage: null));
-  }
-
-  /// Bật chế độ quét PDA trong phiếu kiểm kê, reset mã quét cũ.
-  Future<void> _onStartSheetScan(
-    Emitter<InventoryCheckState> emit, {
-    required InventoryScanMode mode,
-  }) async {
-    emit(
-      state.copyWith(
-        sheetScanMode: mode,
-        sheetScanCode: null,
-        sheetScanCount: 0,
-        sheetScanMessage: null,
-      ),
-    );
-  }
-
-  /// Xử lý mã vừa quét trong phiếu kiểm kê.
-  ///
-  /// Mã quét được dùng để lọc danh sách sản phẩm:
-  /// - Chế độ sản phẩm → chỉ hiển thị đúng sản phẩm vừa quét.
-  /// - Chế độ vị trí → hiển thị tất cả sản phẩm có cùng mã vị trí.
-  Future<void> _onSheetScanned(
-    Emitter<InventoryCheckState> emit, {
-    required String code,
-  }) async {
-    final mode = state.sheetScanMode;
-    if (mode == null) return;
-
-    final scannedCode = code.trim();
-    if (scannedCode.isEmpty) return;
-
-    // Áp dụng mã quét rồi đếm số dòng khớp để báo kết quả cho người dùng.
-    emit(
-      state.copyWith(
-        sheetScanCode: scannedCode,
-        sheetScanCount: state.sheetScanCount + 1,
-        sheetScanMessage: null,
-      ),
-    );
-
-    final matched = state.visibleSheetItems.length;
-    emit(
-      state.copyWith(
-        sheetScanMessage: matched == 0
-            ? 'Không tìm thấy sản phẩm nào khớp mã "$scannedCode"'
-            : mode == InventoryScanMode.product
-            ? 'Tìm thấy $matched sản phẩm khớp mã "$scannedCode"'
-            : 'Vị trí "$scannedCode" có $matched sản phẩm',
-      ),
-    );
-  }
-
-  /// Tắt chế độ quét PDA trong phiếu kiểm kê và bỏ lọc theo mã quét.
-  Future<void> _onStopSheetScan(Emitter<InventoryCheckState> emit) async {
-    emit(
-      state.copyWith(
-        sheetScanMode: null,
-        sheetScanCode: null,
-        sheetScanCount: 0,
-        sheetScanMessage: null,
-      ),
-    );
   }
 
   /// Xác nhận hoàn thành / mở lại một đợt kiểm kê.

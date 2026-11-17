@@ -117,8 +117,7 @@ class _InventoryCheckLocationListState
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
       children: const [
         _EmptyHint(
-          'Nhóm "Chưa có" gồm sản phẩm chưa có vị trí kho và chưa có vị trí '
-          'Modula. Bấm ô "Chưa có" ở trên để xem danh sách sản phẩm cần kiểm.',
+          'Nhóm "Chưa có" gồm sản phẩm chưa có vị trí kho và vị trí Modula'
         ),
       ],
     );
@@ -140,7 +139,7 @@ class _InventoryCheckLocationListState
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
       children: [
-        const _SectionLabel('Danh sách vị trí kho'),
+        const _SectionLabel('Danh sách vị trí sản phẩm'),
         const SizedBox(height: 6),
         for (final rack in racks)
           _LocationRow(
@@ -154,7 +153,7 @@ class _InventoryCheckLocationListState
             onTap: () => widget.onSelectProductLocation(rack.id),
           ),
         if (racks.isEmpty && widget.keyword.trim().isNotEmpty)
-          const _EmptyHint('Không tìm thấy vị trí kho phù hợp'),
+          const _EmptyHint('Không tìm thấy vị trí sản phẩm phù hợp'),
       ],
     );
   }
@@ -185,6 +184,8 @@ class _InventoryCheckLocationListState
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
       children: [
+        const _SectionLabel('Danh sách vị trí sản phẩm'),
+        const SizedBox(height: 6),
         for (final tray in trays) _buildTrayNode(tray),
       ],
     );
@@ -318,7 +319,7 @@ class _EmptyHint extends StatelessWidget {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 12.5, color: AppColors.gray),
+          style: const TextStyle(fontSize: 12, color: AppColors.gray),
         ),
       ),
     );

@@ -8,11 +8,17 @@ import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/vi
 /// Bố cục: tên sản phẩm + mã → chip chênh lệch + chip đã kiểm kê → vị trí kho
 /// → dải số liệu (tồn trong kho / đang mượn / khách mượn / chênh lệch) dạng
 /// hàng ngang, không chia ô box để tránh rối mắt khi danh sách dài.
+///
+/// Khi dòng đã có số lượng thực tế nhập trong nháp ([stagedQuantity]) thì chip
+/// "Đã kiểm" và chip chênh lệch được tính theo số lượng vừa nhập — chưa cần
+/// bấm "Xác nhận đã kiểm vị trí" để gửi lên server.
 class InventoryCountSheetItemCard extends StatelessWidget {
   const InventoryCountSheetItemCard({
     super.key,
     required this.item,
     required this.index,
+    this.stagedQuantity,
+    this.isScanned = false,
     this.onTap,
   });
 
@@ -21,12 +27,26 @@ class InventoryCountSheetItemCard extends StatelessWidget {
   /// STT hiển thị trên card.
   final int index;
 
+  /// Số lượng thực tế đã nhập nhưng chưa lưu lên server (null = chưa nhập).
+  final double? stagedQuantity;
+
+  /// Dòng này đã được quét mã (chưa lưu kết quả lên server).
+  final bool isScanned;
+
   /// Bấm vào card → mở sheet chi tiết dòng kiểm kê.
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    final difference = item.difference;
+    final staged = stagedQuantity;
+    final hasStaged = staged != null;
+
+    // Đã nhập số lượng thực tế trong nháp → coi như đã kiểm và tính chênh
+    // lệch theo số lượng vừa nhập.
+    final hasCounted = item.hasCounted || hasStaged;
+    final difference = hasStaged
+        ? staged - item.expectedQuantity
+        : item.difference;
 
     return Material(
       color: AppColors.white,
@@ -102,20 +122,16 @@ class InventoryCountSheetItemCard extends StatelessWidget {
                         InventoryCheckDifferenceChip(difference: difference),
                         const SizedBox(width: 6),
                       ],
-                      _CountedChip(hasCounted: item.hasCounted),
+                      if (isScanned) ...[
+                        const _ScannedChip(),
+                        const SizedBox(width: 6),
+                      ],
+                      _CountedChip(hasCounted: hasCounted),
                     ],
                   ),
                 ],
               ),
               const SizedBox(height: 10),
-
-              /// ===== VỊ TRÍ KHO & VỊ TRÍ MODULA =====
-              _LocationSection(
-                locationName: item.locationName,
-                addressBox: item.addressBox,
-                modulaLocationName: item.modulaLocationName,
-              ),
-              const SizedBox(height: 12),
 
               /// ===== DẢI SỐ LIỆU =====
               Container(
@@ -150,8 +166,12 @@ class InventoryCountSheetItemCard extends StatelessWidget {
                     Expanded(
                       child: _MetricCell(
                         label: 'Thực tế',
-                        value: _formatQty(item.quantityActual),
-                        color: item.hasCounted
+                        value: hasStaged
+                            ? _formatQty(staged)
+                            : _formatQty(item.quantityActual),
+                        color: hasStaged
+                            ? AppColors.primaryERP
+                            : item.hasCounted
                             ? AppColors.secondaryERP
                             : null,
                       ),
@@ -195,6 +215,40 @@ class InventoryCountSheetItemCard extends StatelessWidget {
   }
 }
 
+/// Chip đánh dấu dòng đã quét mã (chưa lưu kết quả lên server).
+class _ScannedChip extends StatelessWidget {
+  const _ScannedChip();
+
+  @override
+  Widget build(BuildContext context) {
+    const color = AppColors.primaryERP;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: color.withValues(alpha: 0.4)),
+      ),
+      child: const Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.qr_code_scanner, size: 12, color: color),
+          SizedBox(width: 4),
+          Text(
+            'Đã quét',
+            style: TextStyle(
+              fontSize: 10.5,
+              fontWeight: FontWeight.w700,
+              color: color,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 /// Chip đánh dấu dòng đã kiểm kê hay chưa.
 class _CountedChip extends StatelessWidget {
   const _CountedChip({required this.hasCounted});
@@ -232,145 +286,6 @@ class _CountedChip extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-/// Khu vực vị trí: tách rõ "Vị trí kho" (vị trí lưu kho / địa chỉ ô) và
-/// "Vị trí Modula" (chuỗi các ô Modula của sản phẩm).
-class _LocationSection extends StatelessWidget {
-  const _LocationSection({
-    required this.locationName,
-    required this.addressBox,
-    required this.modulaLocationName,
-  });
-
-  /// Tên vị trí kho (kèm QR code) — `LocationName` trong API.
-  final String? locationName;
-
-  /// Địa chỉ ô lưu kho — `AddressBox` trong API.
-  final String? addressBox;
-
-  /// Chuỗi các vị trí Modula của sản phẩm — `ModulaLocationName` trong API.
-  final String? modulaLocationName;
-
-  @override
-  Widget build(BuildContext context) {
-    final location = (locationName ?? '').trim();
-    final address = (addressBox ?? '').trim();
-    final modula = (modulaLocationName ?? '').trim();
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        /// ===== VỊ TRÍ KHO =====
-        _LocationLine(
-          icon: Icons.warehouse_outlined,
-          label: 'Vị trí kho',
-          isEmpty: location.isEmpty && address.isEmpty,
-          children: [
-            if (location.isNotEmpty) _LocationChip(text: location),
-            if (address.isNotEmpty) _LocationChip(text: 'Ô: $address'),
-          ],
-        ),
-        const SizedBox(height: 4),
-
-        /// ===== VỊ TRÍ MODULA =====
-        _LocationLine(
-          icon: Icons.grid_view_outlined,
-          label: 'Vị trí Modula',
-          isEmpty: modula.isEmpty,
-          children: [
-            if (modula.isNotEmpty) _LocationChip(text: modula, isModula: true),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-/// Một dòng vị trí: icon + nhãn + các chip bên phải.
-class _LocationLine extends StatelessWidget {
-  const _LocationLine({
-    required this.icon,
-    required this.label,
-    required this.isEmpty,
-    required this.children,
-  });
-
-  /// Icon đại diện nhóm vị trí.
-  final IconData icon;
-
-  /// Nhãn nhóm vị trí.
-  final String label;
-
-  /// Nhóm vị trí không có dữ liệu.
-  final bool isEmpty;
-
-  /// Các chip thông tin vị trí.
-  final List<Widget> children;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Icon(icon, size: 13, color: AppColors.gray),
-        const SizedBox(width: 5),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 10.5,
-            fontWeight: FontWeight.w700,
-            color: AppColors.gray,
-          ),
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: isEmpty
-              ? const Text(
-                  '--',
-                  style: TextStyle(fontSize: 11, color: AppColors.gray),
-                )
-              : Wrap(
-                  spacing: 6,
-                  runSpacing: 4,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: children,
-                ),
-        ),
-      ],
-    );
-  }
-}
-
-/// Chip nhỏ hiển thị thông tin vị trí.
-class _LocationChip extends StatelessWidget {
-  const _LocationChip({required this.text, this.isModula = false});
-
-  final String text;
-
-  /// Chip vị trí Modula — dùng màu chính của ERP để phân biệt với vị trí kho.
-  final bool isModula;
-
-  @override
-  Widget build(BuildContext context) {
-    final color = isModula ? AppColors.primaryERP : AppColors.secondaryERP;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.w700,
-          color: color,
-        ),
       ),
     );
   }

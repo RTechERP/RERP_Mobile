@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
+import 'package:rtc_erp/common/utils/snack_bar_helper.dart';
 import 'package:rtc_erp/common/widgets/form/index.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/data/datasource/models/inventory_check_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/widgets/inventory_check_difference_chip.dart';
+
+import '../../../../../../../../../../../base/network/errors/extension.dart';
 
 /// Kết quả nhập từ bottom sheet cập nhật kết quả kiểm kê.
 class InventoryCountItemEditResult {
@@ -19,28 +22,168 @@ class InventoryCountItemEditResult {
   final String note;
 }
 
+/// Cầu nối để màn ngoài điều khiển bottom sheet nhập số lượng ở tab sản
+/// phẩm.
+///
+/// Màn ngoài dùng controller để:
+/// - đẩy số lần quét vào sheet (sheet tự tăng số lượng và báo kết quả),
+/// - đọc số lượng + ghi chú đang nhập để lưu nháp khi chuyển sang sản phẩm
+///   khác.
+class InventoryCheckSheetItemEditController {
+  /// Bottom sheet đang mở hay không.
+  bool get isOpen => _isOpen;
+  bool _isOpen = false;
+
+  /// Tăng số lượng thực tế của sản phẩm đang mở.
+  void Function()? incrementQuantity;
+
+  /// Đọc số lượng + ghi chú đang nhập (null = chưa nhập gì).
+  InventoryCountItemEditResult? Function()? readResult;
+
+  /// Số lần tăng được gửi trước khi sheet mở (áp dụng ngay khi mở).
+  int _pendingIncrements = 0;
+
+  /// Mã lần đăng ký hiện tại — dùng để sheet cũ không huỷ đăng ký của sheet mới.
+  int _attachmentId = 0;
+
+  /// Màn ngoài gọi để tăng số lượng.
+  ///
+  /// Nếu sheet chưa mở xong thì ghi nhận lại, áp dụng ngay khi sheet mount.
+  void increment() {
+    final callback = incrementQuantity;
+    if (callback == null) {
+      _pendingIncrements++;
+      return;
+    }
+    callback();
+  }
+
+  /// Xoá các lần tăng chưa được áp dụng.
+  void resetPending() {
+    _pendingIncrements = 0;
+  }
+
+  /// Huỷ đăng ký của sheet đang đóng và xoá lượt tăng chờ.
+  ///
+  /// Gọi trước khi mở sheet mới trong chế độ quét nhanh: sheet cũ có thể còn
+  /// giữ callback tăng số lượng (đang chạy animation đóng) → nếu không huỷ,
+  /// lượt tăng của sản phẩm mới sẽ bị sheet cũ nhận mất và sản phẩm mới mở
+  /// ra vẫn là 0.
+  void resetAttachment() {
+    _isOpen = false;
+    incrementQuantity = null;
+    readResult = null;
+    _pendingIncrements = 0;
+  }
+
+  /// Bottom sheet đăng ký callback khi mount.
+  ///
+  /// Trả về mã lần đăng ký — sheet dùng mã này khi huỷ đăng ký để không xoá
+  /// nhầm callback của sheet mới hơn.
+  int _attach({
+    required void Function() increment,
+    required InventoryCountItemEditResult? Function() read,
+  }) {
+    _isOpen = true;
+    _attachmentId++;
+    incrementQuantity = increment;
+    readResult = read;
+
+    final pending = _pendingIncrements;
+    _pendingIncrements = 0;
+    final attachmentId = _attachmentId;
+
+    if (pending > 0) {
+      // Áp dụng sau frame đầu tiên: `_attach` chạy trong `initState` của sheet,
+      // tức đang trong lúc framework build → gọi `increment()` ở đây sẽ
+      // `showTopSnackBar` (insert OverlayEntry) và sinh lỗi
+      // "setState() or markNeedsBuild() called during build".
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        // Sheet đã bị thay thế trong lúc chờ frame → bỏ qua lượt tăng này.
+        if (attachmentId != _attachmentId) return;
+
+        for (var i = 0; i < pending; i++) {
+          increment();
+        }
+      });
+    }
+
+    return _attachmentId;
+  }
+
+  /// Bottom sheet huỷ đăng ký callback khi dispose.
+  ///
+  /// Không xoá [_pendingIncrements] vì lần tăng có thể đã được gửi trước khi
+  /// sheet kịp mount — xoá ở here sẽ làm mất lượt quét đó.
+  ///
+  /// Chỉ huỷ đăng ký khi đây là lần đăng ký mới nhất — trường hợp sheet cũ
+  /// dispose sau khi sheet mới đã mount thì không được xoá callback của sheet
+  /// mới.
+  void _detach(int attachmentId) {
+    if (attachmentId != _attachmentId) return;
+    _isOpen = false;
+    incrementQuantity = null;
+    readResult = null;
+  }
+}
+
 /// Bottom sheet nhập số lượng thực tế và ghi chú cho một dòng sản phẩm trong
 /// phiếu kiểm kê.
 ///
-/// Chỉ dùng khi đợt kiểm kê chưa hoàn thành (`isComplete = false`).
-/// Bấm "Lưu" sẽ trả về [InventoryCountItemEditResult] để màn gọi API
-/// `POST /WarehouseInventoryCount/save-count-details`.
+/// Số lượng được điều khiển bởi màn ngoài (xem
+/// [InventoryCheckSheetItemEditController]) — màn ngoài là nguồn quét duy nhất
+/// nên mỗi lượt quét đúng sản phẩm đang kiểm sẽ tăng số lượng thực tế lên 1.
+///
+/// Bấm "Lưu" sẽ trả về [InventoryCountItemEditResult] để màn nhập vào nháp
+/// (chưa gửi lên server — server chỉ nhận khi bấm "Xác nhận đã kiểm vị trí").
 class InventoryCheckSheetItemEditSheet extends StatefulWidget {
-  const InventoryCheckSheetItemEditSheet({super.key, required this.item});
+  const InventoryCheckSheetItemEditSheet({
+    super.key,
+    required this.item,
+    this.stagedQuantity,
+    this.stagedNote,
+    this.controller,
+    this.onScanned,
+  });
 
   /// Dòng sản phẩm cần cập nhật kết quả kiểm kê.
   final InventoryCountSheetItem item;
 
+  /// Số lượng đã nhập trong nháp (chưa lưu lên server) — hiển thị sẵn.
+  final double? stagedQuantity;
+
+  /// Ghi chú đã nhập trong nháp (chưa lưu lên server) — hiển thị sẵn.
+  final String? stagedNote;
+
+  /// Cầu nối để màn ngoài điều khiển sheet (tăng số lượng khi quét mã).
+  final InventoryCheckSheetItemEditController? controller;
+
+  /// Callback khi quét mã khớp đúng sản phẩm đang kiểm.
+  ///
+  /// Màn ngoài dùng để đánh dấu dòng "đã quét" (chip + đẩy xuống cuối danh
+  /// sách).
+  final void Function(String rowKey)? onScanned;
+
   /// Mở bottom sheet. Trả về kết quả nhập hoặc null nếu người dùng huỷ.
   static Future<InventoryCountItemEditResult?> show(
     BuildContext context,
-    InventoryCountSheetItem item,
-  ) {
+    InventoryCountSheetItem item, {
+    double? stagedQuantity,
+    String? stagedNote,
+    InventoryCheckSheetItemEditController? controller,
+    void Function(String rowKey)? onScanned,
+  }) {
     return showModalBottomSheet<InventoryCountItemEditResult>(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => InventoryCheckSheetItemEditSheet(item: item),
+      builder: (_) => InventoryCheckSheetItemEditSheet(
+        item: item,
+        stagedQuantity: stagedQuantity,
+        stagedNote: stagedNote,
+        controller: controller,
+        onScanned: onScanned,
+      ),
     );
   }
 
@@ -60,34 +203,54 @@ class _InventoryCheckSheetItemEditSheetState
   /// Lỗi hiển thị dưới ô số lượng thực tế.
   String? _quantityError;
 
-  /// Số lượng thực tế đang nhập (null = chưa nhập hợp lệ).
+  /// Số lượng thực tế đang nhập.
   ///
-  /// Dùng để so sánh với số lượng kỳ vọng của hệ thống và hiện chip
-  /// Lệch / Khớp.
+  /// `null` = người dùng chưa nhập/quét gì (ô nhập mới mở, đang ở giá trị 0).
+  /// Lần kiểm kê này đếm lại từ đầu nên không cộng dồn vào số liệu cũ của
+  /// server — nếu đã có nháp trong phiếu thì lấy giá trị đã nhập để không mất
+  /// dữ liệu.
   double? _quantity;
+
+  /// Mã lần đăng ký của sheet này với controller (dùng khi huỷ đăng ký).
+  int? _attachmentId;
 
   /// Chênh lệch giữa số lượng thực tế đang nhập và số lượng kỳ vọng.
   ///
-  /// `null` = chưa nhập số lượng → dùng chênh lệch do server trả về.
+  /// `null` = chưa nhập số lượng → chưa hiển thị chênh lệch (số liệu cũ của
+  /// server không còn liên quan vì lần này đếm lại từ 0).
   double? get _difference {
     final quantity = _quantity;
-    if (quantity == null) return widget.item.difference;
-    return quantity - _expectedQuantity(widget.item);
+    if (quantity == null) return null;
+    return quantity - widget.item.expectedQuantity;
   }
 
   @override
   void initState() {
     super.initState();
     final item = widget.item;
-    _quantityController = TextEditingController(
-      text: item.quantityActual == null ? '' : _formatQty(item.quantityActual!),
+    // Số lượng thực tế luôn bắt đầu từ 0 — người dùng đang đếm lại số lượng
+    // thực tế của sản phẩm này nên không cộng dồn vào số liệu cũ của server.
+    // Nếu đã có nháp trong phiếu thì lấy giá trị đã nhập để không mất dữ liệu.
+    final staged = widget.stagedQuantity;
+    _quantityController = TextEditingController(text: _formatQty(staged ?? 0));
+    _noteController = TextEditingController(
+      text: widget.stagedNote ?? item.note ?? '',
     );
-    _noteController = TextEditingController(text: item.note ?? '');
-    _quantity = item.quantityActual;
+    _quantity = staged;
+
+    // Màn ngoài điều khiển sheet → đăng ký callback.
+    _attachmentId = widget.controller?._attach(
+      increment: _incrementQuantity,
+      read: _readResult,
+    );
   }
 
   @override
   void dispose() {
+    final attachmentId = _attachmentId;
+    if (attachmentId != null) {
+      widget.controller?._detach(attachmentId);
+    }
     _quantityController.dispose();
     _noteController.dispose();
     super.dispose();
@@ -240,43 +403,129 @@ class _InventoryCheckSheetItemEditSheetState
     );
   }
 
-  /// Ô nhập số lượng thực tế.
+  /// Ô nhập số lượng thực tế dạng: nút `-` | giá trị | nút `+`.
+  ///
+  /// Nút `+` / `-` hoạt động ở cả 2 chế độ (quét mã / nhập tay) — mỗi lần
+  /// bấm tăng hoặc giảm số lượng thực tế đúng 1 đơn vị.
   Widget _buildQuantityField() {
-    return TextField(
-      controller: _quantityController,
-      autofocus: true,
-      keyboardType: const TextInputType.numberWithOptions(decimal: true),
-      inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]')),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Số lượng thực tế *',
+          style: TextStyle(
+            fontSize: 11.5,
+            fontWeight: FontWeight.w600,
+            color: AppColors.gray,
+          ),
+        ),
+        const SizedBox(height: 6),
+        Row(
+          children: [
+            _StepButton(
+              icon: Icons.remove,
+              onPressed: () => _changeQuantity(-1),
+            ),
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 8),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(
+                    color: _quantityError != null
+                        ? Colors.redAccent
+                        : AppColors.hintText,
+                    width: 1.4,
+                  ),
+                ),
+                child: TextField(
+                  controller: _quantityController,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.enableText,
+                  ),
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]')),
+                  ],
+                  onChanged: (value) {
+                    final quantity = _parseQty(value);
+                    if (_quantityError == null && quantity == _quantity) return;
+                    setState(() {
+                      _quantity = quantity;
+                      _quantityError = null;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    isDense: true,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 14,
+                    ),
+                    border: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    errorText: _quantityError,
+                  ),
+                ),
+              ),
+            ),
+            _StepButton(icon: Icons.add, onPressed: () => _changeQuantity(1)),
+          ],
+        ),
       ],
-      onChanged: (value) {
-        final quantity = _parseQty(value);
-        if (_quantityError == null && quantity == _quantity) return;
-        setState(() {
-          _quantity = quantity;
-          _quantityError = null;
-        });
-      },
-      decoration: formInputDecoration(
-        context,
-        label: 'Số lượng thực tế',
-        icon: Icons.numbers_outlined,
-        isRequired: true,
-        hasError: _quantityError != null,
-        errorText: _quantityError,
-      ),
     );
   }
 
-  /// Số lượng kỳ vọng của hệ thống = tồn trong kho + đang mượn + khách mượn.
+  /// Tăng / giảm số lượng thực tế theo [delta] đơn vị.
   ///
-  /// Công thức chênh lệch theo API:
-  /// `Difference = QuantityActual - (NumberInStore + NumberBorrowing + QuantityExportMuon)`.
-  static double _expectedQuantity(InventoryCountSheetItem item) {
-    return (item.numberInStore +
-            item.numberBorrowing +
-            item.quantityExportMuon)
-        .toDouble();
+  /// Số lượng luôn tính từ 0 khi chưa có giá trị nào — lần đầu bấm `+` sẽ ra 1.
+  void _changeQuantity(int delta) {
+    final current = _quantity ?? _parseQty(_quantityController.text) ?? 0;
+    final next = current + delta;
+    if (next < 0) return;
+
+    setState(() {
+      _quantity = next;
+      _quantityError = null;
+      _quantityController.text = _formatQty(next);
+    });
+  }
+
+  /// Tăng số lượng thực tế lên 1 đơn vị + cập nhật thông báo kết quả quét.
+  ///
+  /// Dùng chung cho cả quét bằng phần cứng lẫn quét nhanh từ màn ngoài.
+  void _incrementQuantity() {
+    if (!mounted) return;
+
+    final next = (_quantity ?? 0) + 1;
+    setState(() {
+      _quantity = next;
+      _quantityError = null;
+      _quantityController.text = _formatQty(next);
+    });
+    context.showMessage(
+      'Đã cộng 1 "${widget.item.productCode ?? ''}" — số lượng thực tế: $next',
+      type: SnackBarType.success,
+    );
+  }
+
+  /// Đọc số lượng + ghi chú đang nhập (null = người dùng chưa nhập/quét gì).
+  ///
+  /// Màn ngoài dùng để lưu nháp sản phẩm đang mở trước khi chuyển sang sản
+  /// phẩm khác.
+  InventoryCountItemEditResult? _readResult() {
+    final quantity = _quantity;
+    if (quantity == null) return null;
+    return InventoryCountItemEditResult(
+      quantityActual: quantity,
+      note: _noteController.text.trim(),
+    );
   }
 
   /// Màu chênh lệch: xanh khi khớp, đỏ khi lệch, xám khi chưa nhập.
@@ -354,9 +603,14 @@ class _InventoryCheckSheetItemEditSheetState
     );
   }
 
-  /// Validate số lượng thực tế rồi trả kết quả về màn gọi API.
+  /// Validate số lượng thực tế rồi trả kết quả về màn (chỉ lưu giá trị, chưa
+  /// gửi lên server).
+  ///
+  /// Dùng [_quantity] (null khi người dùng chưa nhập/quét gì) để bắt buộc
+  /// nhập liệu trước khi lưu — tránh lưu nhầm 0 cho dòng chưa kiểm. Muốn lưu
+  /// kết quả 0 thì gõ "0" vào ô nhập.
   void _handleSave() {
-    final quantity = _parseQty(_quantityController.text);
+    final quantity = _quantity;
 
     if (quantity == null || quantity < 0) {
       setState(() => _quantityError = 'Vui lòng nhập số lượng thực tế hợp lệ');
@@ -391,13 +645,44 @@ class _InventoryCheckSheetItemEditSheetState
   }
 }
 
+/// Nút tăng / giảm số lượng thực tế.
+class _StepButton extends StatelessWidget {
+  const _StepButton({required this.icon, required this.onPressed});
+
+  /// Icon hiển thị trên nút.
+  final IconData icon;
+
+  /// Callback khi bấm nút.
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: AppColors.primaryERP.withValues(alpha: 0.1),
+      borderRadius: BorderRadius.circular(12),
+      child: InkWell(
+        onTap: onPressed,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          width: 46,
+          height: 46,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: AppColors.primaryERP.withValues(alpha: 0.4),
+            ),
+          ),
+          child: Icon(icon, size: 22, color: AppColors.primaryERP),
+        ),
+      ),
+    );
+  }
+}
+
 /// Một ô thông tin nhỏ trong dải tồn kho.
 class _InfoCell extends StatelessWidget {
-  const _InfoCell({
-    required this.label,
-    required this.value,
-    this.valueColor,
-  });
+  const _InfoCell({required this.label, required this.value, this.valueColor});
 
   final String label;
   final String value;

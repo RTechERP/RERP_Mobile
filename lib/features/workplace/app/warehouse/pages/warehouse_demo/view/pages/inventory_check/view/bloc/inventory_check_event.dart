@@ -121,6 +121,29 @@ class InventoryCheckEvent with _$InventoryCheckEvent {
     required List<Map<String, dynamic>> changedItems,
   }) = _SaveCountDetails;
 
+  /// Cập nhật nháp kết quả kiểm kê của 1 dòng sản phẩm (chưa gửi lên server).
+  ///
+  /// Nháp được giữ trong state đến khi người dùng bấm nút "Xác nhận đã kiểm
+  /// vị trí" thì mới gửi toàn bộ lên API `save-count-details`.
+  const factory InventoryCheckEvent.stageCountDetail(
+    InventoryCountStagedEdit edit,
+  ) = _StageCountDetail;
+
+  /// Xoá nháp của 1 dòng sản phẩm (khi người dùng huỷ nhập).
+  const factory InventoryCheckEvent.unstageCountDetail(String rowKey) =
+      _UnstageCountDetail;
+
+  /// Xoá toàn bộ nháp kết quả kiểm kê (sau khi lưu thành công).
+  const factory InventoryCheckEvent.clearStagedCountDetails() =
+      _ClearStagedCountDetails;
+
+  /// Đánh dấu 1 dòng sản phẩm đã được quét mã trong phiếu.
+  ///
+  /// Dòng đã quét được hiển thị chip "Đã quét" và bị đẩy xuống cuối danh
+  /// sách (sau nhóm chưa quét, trước nhóm đã kiểm).
+  const factory InventoryCheckEvent.markItemScanned(String rowKey) =
+      _MarkItemScanned;
+
   /// Tìm đợt kiểm kê theo mã đợt vừa quét (barcode/QR in trên phiếu).
   ///
   /// Kết quả trả về qua [InventoryCheckState.openedCountFromScan] để UI mở
@@ -132,20 +155,6 @@ class InventoryCheckEvent with _$InventoryCheckEvent {
   /// Xoá cờ đợt kiểm kê đã mở từ quét + thông báo quét (sau khi UI xử lý).
   const factory InventoryCheckEvent.clearScanCountResult() =
       _ClearScanCountResult;
-
-  /// Bật chế độ quét PDA trong phiếu kiểm kê.
-  ///
-  /// [mode] = [InventoryScanMode.product] → lọc ra đúng sản phẩm vừa quét.
-  /// [mode] = [InventoryScanMode.location] → lọc ra tất cả sản phẩm cùng mã
-  /// vị trí vừa quét.
-  const factory InventoryCheckEvent.startSheetScan(InventoryScanMode mode) =
-      _StartSheetScan;
-
-  /// Xử lý mã vừa quét trong phiếu kiểm kê.
-  const factory InventoryCheckEvent.sheetScanned(String code) = _SheetScanned;
-
-  /// Tắt chế độ quét PDA trong phiếu kiểm kê và bỏ lọc theo mã quét.
-  const factory InventoryCheckEvent.stopSheetScan() = _StopSheetScan;
 
   /// Xác nhận hoàn thành / mở lại một đợt kiểm kê.
   ///

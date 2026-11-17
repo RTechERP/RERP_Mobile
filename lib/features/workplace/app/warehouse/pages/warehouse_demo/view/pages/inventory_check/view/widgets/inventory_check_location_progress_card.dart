@@ -56,14 +56,10 @@ class InventoryCheckLocationProgressCard extends StatelessWidget {
           /// ===== TIÊU ĐỀ =====
           const Row(
             children: [
-              Icon(
-                Icons.map_outlined,
-                size: 16,
-                color: AppColors.secondaryERP,
-              ),
+              Icon(Icons.map_outlined, size: 16, color: AppColors.secondaryERP),
               SizedBox(width: 6),
               Text(
-                'Tiến độ theo vị trí',
+                'Vị trí sản phẩm',
                 style: TextStyle(
                   fontSize: 13.5,
                   fontWeight: FontWeight.w700,
@@ -89,9 +85,9 @@ class InventoryCheckLocationProgressCard extends StatelessWidget {
                     total: noLocation,
                     counted: counts.noLocationCounted,
                     isLoading: isLoadingCounts,
-                    isActive:
-                        activeGroup == InventoryLocationGroup.noLocation,
-                    onTap: () => onSelectGroup(InventoryLocationGroup.noLocation),
+                    isActive: activeGroup == InventoryLocationGroup.noLocation,
+                    onTap: () =>
+                        onSelectGroup(InventoryLocationGroup.noLocation),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -198,7 +194,9 @@ class _ScopeTile extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 11.5,
                   fontWeight: FontWeight.w700,
-                  color: isActive ? AppColors.secondaryERP : AppColors.enableText,
+                  color: isActive
+                      ? AppColors.secondaryERP
+                      : AppColors.enableText,
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
