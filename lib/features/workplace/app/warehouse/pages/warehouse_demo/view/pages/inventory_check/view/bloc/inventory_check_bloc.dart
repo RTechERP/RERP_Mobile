@@ -25,6 +25,17 @@ class InventoryCheckBloc
   final InventoryCheckRepo _repo;
   final LogUtils _log;
 
+  /// Mã lần tải bảng sản phẩm gần nhất.
+  ///
+  /// Dùng để loại bỏ kết quả của request cũ: khi người dùng đổi vị trí lúc
+  /// đang tải, request mới (lọc theo vị trí) và request cũ (không lọc) có thể
+  /// hoàn tất sai thứ tự → chỉ giữ kết quả của request mới nhất, nếu không
+  /// danh sách sẽ bị ghi đè bằng dữ liệu của vị trí cũ.
+  int _sheetRequestId = 0;
+
+  /// Mã lần đếm số liệu 3 nhóm vị trí gần nhất (xem [_sheetRequestId]).
+  int _locationCountsRequestId = 0;
+
   InventoryCheckBloc(this._repo, this._log)
     : super(InventoryCheckState.init()) {
     on<InventoryCheckEvent>((event, emit) async {
@@ -535,6 +546,9 @@ class InventoryCheckBloc
     final targetCountId = countId ?? state.sheetCountId ?? state.sheet?.master?.id;
     if (targetCountId == null || targetCountId <= 0) return;
 
+    // Đánh dấu lần tải này → bỏ qua kết quả nếu đã có request mới hơn.
+    final requestId = ++_sheetRequestId;
+
     emit(state.copyWith(isLoadingSheet: true));
 
     final res = await _repo.getInventorySheetMobile(
@@ -545,6 +559,10 @@ class InventoryCheckBloc
       modulaLocationId: state.modulaLocationId ?? -1,
       modulaLocationDetailId: state.modulaLocationDetailId ?? -1,
     );
+
+    // Request mới hơn đã được gửi → kết quả này không còn đúng với bộ lọc
+    // hiện tại, bỏ qua để không ghi đè danh sách đúng bằng dữ liệu cũ.
+    if (requestId != _sheetRequestId) return;
 
     res.fold(
       (err) {
@@ -576,6 +594,9 @@ class InventoryCheckBloc
     Emitter<InventoryCheckState> emit, {
     required int countId,
   }) async {
+    // Đánh dấu lần đếm này → bỏ qua kết quả nếu đã có lần đếm mới hơn.
+    final requestId = ++_locationCountsRequestId;
+
     emit(state.copyWith(isLoadingLocationCounts: true));
 
     // 2 request chạy song song: sản phẩm "chưa có vị trí" + toàn bộ đợt.
@@ -587,6 +608,9 @@ class InventoryCheckBloc
       ),
       _repo.getInventorySheetMobile(countId: countId),
     ]);
+
+    // Đã có lần đếm mới hơn → bỏ qua kết quả cũ.
+    if (requestId != _locationCountsRequestId) return;
 
     final noLocationItems = results[0]
         .getOrElse(() => const InventoryCountSheet())
