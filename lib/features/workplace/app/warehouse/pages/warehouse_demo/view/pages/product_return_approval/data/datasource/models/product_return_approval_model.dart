@@ -214,6 +214,86 @@ class ProductReturnHistoryItem with _$ProductReturnHistoryItem {
       _$ProductReturnHistoryItemFromJson(json);
 }
 
+/// Chi tiết 1 phiếu trả sản phẩm.
+///
+/// Trả về từ API `GET /borrow/get-history-product-rtc-by-id`.
+@freezed
+class ProductReturnHistoryDetail with _$ProductReturnHistoryDetail {
+  const factory ProductReturnHistoryDetail({
+    /// Id phiếu trả sản phẩm — dùng làm `HistoryId` khi duyệt.
+    @JsonKey(name: 'ID') int? id,
+
+    /// Id sản phẩm RTC.
+    @JsonKey(name: 'ProductRTCID') int? productRtcId,
+
+    /// Id QR code sản phẩm.
+    @JsonKey(name: 'ProductRTCQRCodeID') int? productRtcQrCodeId,
+
+    /// Thời điểm mượn (ISO).
+    @JsonKey(name: 'DateBorrow') String? dateBorrow,
+
+    /// Hạn trả dự kiến (ISO).
+    @JsonKey(name: 'DateReturnExpected') String? dateReturnExpected,
+
+    /// Thời điểm trả thực tế (ISO, null = chưa trả).
+    @JsonKey(name: 'DateReturn') String? dateReturn,
+
+    /// Id người mượn.
+    @JsonKey(name: 'PeopleID') int? peopleId,
+
+    /// Dự án sử dụng.
+    @JsonKey(name: 'Project') String? project,
+
+    /// Ghi chú.
+    @JsonKey(name: 'Note') String? note,
+
+    /// Trạng thái phiếu.
+    @JsonKey(name: 'Status') int? status,
+
+    /// Số lượng đã mượn.
+    @JsonKey(name: 'NumberBorrow') double? numberBorrow,
+
+    /// Người tạo bản ghi.
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+
+    /// Thời điểm tạo bản ghi.
+    @JsonKey(name: 'CreatedDate') String? createdDate,
+
+    /// Người cập nhật gần nhất.
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+
+    /// Thời điểm cập nhật gần nhất.
+    @JsonKey(name: 'UpdatedDate') String? updatedDate,
+
+    /// Người quản lý đã xác nhận hay chưa.
+    @JsonKey(name: 'AdminConfirm') @Default(false) bool adminConfirm,
+
+    /// Id phiếu xuất kho liên quan.
+    @JsonKey(name: 'BillExportTechnicalID') int? billExportTechnicalId,
+
+    /// QR code sản phẩm.
+    @JsonKey(name: 'ProductRTCQRCode') String? productRtcQrCode,
+
+    /// Id kho.
+    @JsonKey(name: 'WarehouseID') int? warehouseId,
+
+    /// Bản ghi đã bị xoá hay chưa.
+    @JsonKey(name: 'IsDelete') @Default(false) bool isDelete,
+
+    /// Id vị trí kho.
+    @JsonKey(name: 'ProductLocationID') int? productLocationId,
+
+    /// Trạng thái người mượn.
+    @JsonKey(name: 'StatusPerson') int? statusPerson,
+
+    /// Id phiếu cha (dùng cho phiếu gộp).
+    @JsonKey(name: 'ParentID') int? parentId,
+  }) = _ProductReturnHistoryDetail;
+
+  factory ProductReturnHistoryDetail.fromJson(Map<String, dynamic> json) =>
+      _$ProductReturnHistoryDetailFromJson(json);
+}
+
 /// Các giá trị hiển thị đã được chuẩn hoá từ dữ liệu thô của API.
 extension ProductReturnHistoryItemDisplay on ProductReturnHistoryItem {
   /// Mã vị trí hộp (ô lưu trữ) — ví dụ `K5-T2.3`.

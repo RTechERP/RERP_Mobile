@@ -590,6 +590,15 @@ class ApiEndPoint {
   static const String getBorrowProductHistory =
       '/borrow/get-product-history';
 
+  /// Duyệt trả sản phẩm — chi tiết 1 phiếu trả sản phẩm.
+  /// API: GET /borrow/get-history-product-rtc-by-id?productHistoryID=X
+  static const String getBorrowHistoryProductRtcById =
+      '/borrow/get-history-product-rtc-by-id';
+
+  /// Duyệt trả sản phẩm — duyệt phiếu trả sản phẩm.
+  /// API: POST /borrow/return-productrtc
+  static const String returnBorrowProductRtc = '/borrow/return-productrtc';
+
   // Material Category
   static const String getMaterialCategories = '/MaterialCategory/get-material-categories';
 

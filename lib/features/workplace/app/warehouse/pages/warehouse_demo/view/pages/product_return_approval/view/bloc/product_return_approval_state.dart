@@ -25,6 +25,27 @@ class ProductReturnApprovalState extends BaseBlocState {
   final DateTime? dateStart;
   final DateTime? dateEnd;
 
+  /// Id các phiếu đang được chọn để duyệt.
+  final Set<int> selectedIds;
+
+  /// Đang trong quá trình duyệt các phiếu đã chọn.
+  final bool isApproving;
+
+  /// Tổng số phiếu đang duyệt trong lượt hiện tại (dùng để hiển thị tiến trình).
+  final int approveTotal;
+
+  /// Số phiếu đã duyệt thành công trong lượt hiện tại.
+  final int approvedCount;
+
+  /// Số phiếu duyệt thất bại trong lượt hiện tại.
+  final int failedCount;
+
+  /// Đang tải lại danh sách mà không thay thế list bằng màn loading.
+  final bool isRefreshing;
+
+  /// Số lần duyệt đã hoàn tất — dùng để UI biết khi nào vòng duyệt kết thúc.
+  final int approveRound;
+
   const ProductReturnApprovalState({
     required super.status,
     super.message,
@@ -35,6 +56,13 @@ class ProductReturnApprovalState extends BaseBlocState {
     this.warehouseId,
     this.dateStart,
     this.dateEnd,
+    this.selectedIds = const {},
+    this.isApproving = false,
+    this.approveTotal = 0,
+    this.approvedCount = 0,
+    this.failedCount = 0,
+    this.isRefreshing = false,
+    this.approveRound = 0,
   });
 
   /// Mặc định lọc trong tháng hiện tại.
@@ -83,6 +111,16 @@ class ProductReturnApprovalState extends BaseBlocState {
   bool get hasFilter =>
       searchKeyword.isNotEmpty || employeeId != null || warehouseId != null;
 
+  /// Đã chọn đủ tất cả phiếu đang hiển thị hay chưa.
+  bool get isAllSelected {
+    final visible = visibleItems;
+    if (visible.isEmpty) return false;
+    return visible.every((item) => selectedIds.contains(item.id ?? 0));
+  }
+
+  /// Đang ở chế độ chọn nhiều phiếu hay chưa (có ít nhất 1 phiếu được chọn).
+  bool get isSelectionMode => selectedIds.isNotEmpty;
+
   @override
   List get props => [
     status,
@@ -94,5 +132,12 @@ class ProductReturnApprovalState extends BaseBlocState {
     warehouseId,
     dateStart,
     dateEnd,
+    selectedIds,
+    isApproving,
+    approveTotal,
+    approvedCount,
+    failedCount,
+    isRefreshing,
+    approveRound,
   ];
 }

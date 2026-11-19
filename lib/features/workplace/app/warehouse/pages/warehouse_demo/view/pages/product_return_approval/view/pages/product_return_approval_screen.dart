@@ -4,13 +4,17 @@ import 'package:rtc_erp/base/bloc/bloc_status.dart';
 import 'package:rtc_erp/base/widgets/base_scaffold.dart';
 import 'package:rtc_erp/base/widgets/base_widget.dart';
 import 'package:rtc_erp/common/app_theme/index.dart';
+import 'package:rtc_erp/common/utils/dialog/dialog_service.dart';
 import 'package:rtc_erp/common/utils/navigation/navigation_utils.dart';
+import 'package:rtc_erp/common/utils/snack_bar_helper.dart';
 import 'package:rtc_erp/common/widgets/date_range_picker.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/rental_vehicle/view/widgets/list_header.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/product_return_approval/data/datasource/models/product_return_approval_model.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/product_return_approval/view/bloc/product_return_approval_bloc.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/product_return_approval/view/widgets/product_return_card.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/product_return_approval/view/widgets/product_return_detail_sheet.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/product_return_approval/view/widgets/product_return_filter_sheet.dart';
+import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/view/pages/product_return_approval/view/widgets/product_return_selection_bar.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_empty_view.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/widgets/sale_gdn_error_view.dart';
 
@@ -51,6 +55,28 @@ class _ProductReturnApprovalScreenState
             icon: const Icon(Icons.calendar_month_outlined),
             tooltip: 'Chọn ngày',
             onPressed: _pickDateRange,
+          ),
+          BlocBuilder<ProductReturnApprovalBloc, ProductReturnApprovalState>(
+            bloc: bloc,
+            buildWhen: (prev, curr) =>
+                prev.visibleItems.length != curr.visibleItems.length ||
+                prev.isSelectionMode != curr.isSelectionMode,
+            builder: (context, state) => IconButton(
+              icon: Icon(
+                state.isSelectionMode ? Icons.deselect : Icons.checklist_rtl,
+                color: state.isSelectionMode ? AppColors.primaryERP : null,
+              ),
+              tooltip: state.isSelectionMode
+                  ? 'Bỏ chọn tất cả'
+                  : 'Chọn tất cả phiếu',
+              onPressed: state.visibleItems.isEmpty
+                  ? null
+                  : () => bloc.add(
+                      state.isSelectionMode
+                          ? const ProductReturnApprovalEvent.clearSelection()
+                          : const ProductReturnApprovalEvent.selectAll(),
+                    ),
+            ),
           ),
           BlocBuilder<ProductReturnApprovalBloc, ProductReturnApprovalState>(
             bloc: bloc,
@@ -111,17 +137,98 @@ class _ProductReturnApprovalScreenState
                 separatorBuilder: (_, _) => const SizedBox(height: 10),
                 itemBuilder: (context, index) {
                   final item = items[index];
+                  final id = item.id ?? 0;
                   return ProductReturnCard(
                     item: item,
-                    onTap: () => ProductReturnDetailSheet.show(context, item),
+                    selected: state.selectedIds.contains(id),
+                    selectionEnabled: true,
+                    onToggleSelection: () => bloc.add(
+                      ProductReturnApprovalEvent.toggleSelection(id),
+                    ),
+                    onTap: () => _openDetail(item),
                   );
                 },
               ),
             ),
           ),
+          if (state.isSelectionMode)
+            ProductReturnSelectionBar(
+              selectedCount: state.selectedIds.length,
+              totalCount: items.length,
+              isAllSelected: state.isAllSelected,
+              approveTotal: state.approveTotal,
+              approvedCount: state.approvedCount,
+              onSelectAll: () =>
+                  bloc.add(const ProductReturnApprovalEvent.selectAll()),
+              onClearSelection: () =>
+                  bloc.add(const ProductReturnApprovalEvent.clearSelection()),
+              onApprove: _approveSelected,
+              isApproving: state.isApproving,
+            ),
         ],
       );
     });
+  }
+
+  /// Mở bottom sheet chi tiết. Nếu user bấm "Duyệt phiếu này" → chạy duyệt.
+  Future<void> _openDetail(ProductReturnHistoryItem item) async {
+    final shouldApprove = await ProductReturnDetailSheet.show(context, item);
+    if (!shouldApprove || !mounted) return;
+    await _approveSingle(item);
+  }
+
+  /// Duyệt các phiếu đang chọn (có xác nhận trước).
+  Future<void> _approveSelected() async {
+    final count = bloc.state.selectedIds.length;
+    final confirmed = await DialogService.showConfirmDialog(
+      context: context,
+      title: 'Duyệt trả sản phẩm',
+      message: 'Bạn có muốn duyệt $count phiếu trả sản phẩm này không?',
+    );
+    if (!confirmed || !mounted) return;
+
+    final round = bloc.state.approveRound;
+    bloc.add(const ProductReturnApprovalEvent.approveSelected());
+    // Chờ vòng duyệt kết thúc (số lần duyệt tăng lên).
+    await bloc.stream.firstWhere((s) => s.approveRound > round);
+    if (!mounted) return;
+
+    _showApproveResult();
+  }
+
+  /// Duyệt 1 phiếu (từ bottom sheet chi tiết).
+  Future<void> _approveSingle(ProductReturnHistoryItem item) async {
+    final id = item.id ?? 0;
+    if (id == 0) return;
+
+    final confirmed = await DialogService.showConfirmDialog(
+      context: context,
+      title: 'Duyệt trả sản phẩm',
+      message: 'Bạn có muốn duyệt phiếu trả sản phẩm này không?',
+    );
+    if (!confirmed || !mounted) return;
+
+    final round = bloc.state.approveRound;
+    bloc.add(ProductReturnApprovalEvent.approveSingle(id));
+    await bloc.stream.firstWhere((s) => s.approveRound > round);
+    if (!mounted) return;
+
+    _showApproveResult();
+  }
+
+  /// Hiện thông báo kết quả duyệt.
+  void _showApproveResult() {
+    final state = bloc.state;
+    if (state.failedCount > 0) {
+      showMessage(
+        context,
+        'Duyệt ${state.approvedCount} phiếu thành công, '
+        '${state.failedCount} phiếu thất bại',
+        type: SnackBarType.error,
+      );
+    } else {
+      showMessage(context, 'Đã duyệt ${state.approvedCount} phiếu thành công');
+    }
   }
 
   /// Mở bottom sheet chọn khoảng ngày; áp dụng xong sẽ tải lại danh sách.

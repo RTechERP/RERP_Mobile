@@ -26,6 +26,11 @@ mixin _$ProductReturnApprovalEvent {
     required TResult Function(int? warehouseId) changeWarehouseFilter,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
     changeDateRange,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() selectAll,
+    required TResult Function() clearSelection,
+    required TResult Function() approveSelected,
+    required TResult Function(int id) approveSingle,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
@@ -35,6 +40,11 @@ mixin _$ProductReturnApprovalEvent {
     TResult? Function(int? employeeId)? selectEmployee,
     TResult? Function(int? warehouseId)? changeWarehouseFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? clearSelection,
+    TResult? Function()? approveSelected,
+    TResult? Function(int id)? approveSingle,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
@@ -44,6 +54,11 @@ mixin _$ProductReturnApprovalEvent {
     TResult Function(int? employeeId)? selectEmployee,
     TResult Function(int? warehouseId)? changeWarehouseFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? selectAll,
+    TResult Function()? clearSelection,
+    TResult Function()? approveSelected,
+    TResult Function(int id)? approveSingle,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +70,11 @@ mixin _$ProductReturnApprovalEvent {
     required TResult Function(_ChangeWarehouseFilter value)
     changeWarehouseFilter,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ApproveSingle value) approveSingle,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
@@ -64,6 +84,11 @@ mixin _$ProductReturnApprovalEvent {
     TResult? Function(_SelectEmployee value)? selectEmployee,
     TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ApproveSingle value)? approveSingle,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
@@ -73,6 +98,11 @@ mixin _$ProductReturnApprovalEvent {
     TResult Function(_SelectEmployee value)? selectEmployee,
     TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ApproveSingle value)? approveSingle,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -150,6 +180,11 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(int? warehouseId) changeWarehouseFilter,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
     changeDateRange,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() selectAll,
+    required TResult Function() clearSelection,
+    required TResult Function() approveSelected,
+    required TResult Function(int id) approveSingle,
   }) {
     return fetch();
   }
@@ -163,6 +198,11 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(int? employeeId)? selectEmployee,
     TResult? Function(int? warehouseId)? changeWarehouseFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? clearSelection,
+    TResult? Function()? approveSelected,
+    TResult? Function(int id)? approveSingle,
   }) {
     return fetch?.call();
   }
@@ -176,6 +216,11 @@ class _$FetchImpl implements _Fetch {
     TResult Function(int? employeeId)? selectEmployee,
     TResult Function(int? warehouseId)? changeWarehouseFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? selectAll,
+    TResult Function()? clearSelection,
+    TResult Function()? approveSelected,
+    TResult Function(int id)? approveSingle,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -194,6 +239,11 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(_ChangeWarehouseFilter value)
     changeWarehouseFilter,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ApproveSingle value) approveSingle,
   }) {
     return fetch(this);
   }
@@ -207,6 +257,11 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(_SelectEmployee value)? selectEmployee,
     TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ApproveSingle value)? approveSingle,
   }) {
     return fetch?.call(this);
   }
@@ -220,6 +275,11 @@ class _$FetchImpl implements _Fetch {
     TResult Function(_SelectEmployee value)? selectEmployee,
     TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ApproveSingle value)? approveSingle,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -280,6 +340,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(int? warehouseId) changeWarehouseFilter,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
     changeDateRange,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() selectAll,
+    required TResult Function() clearSelection,
+    required TResult Function() approveSelected,
+    required TResult Function(int id) approveSingle,
   }) {
     return fetchEmployees();
   }
@@ -293,6 +358,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(int? employeeId)? selectEmployee,
     TResult? Function(int? warehouseId)? changeWarehouseFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? clearSelection,
+    TResult? Function()? approveSelected,
+    TResult? Function(int id)? approveSingle,
   }) {
     return fetchEmployees?.call();
   }
@@ -306,6 +376,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(int? employeeId)? selectEmployee,
     TResult Function(int? warehouseId)? changeWarehouseFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? selectAll,
+    TResult Function()? clearSelection,
+    TResult Function()? approveSelected,
+    TResult Function(int id)? approveSingle,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -324,6 +399,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     required TResult Function(_ChangeWarehouseFilter value)
     changeWarehouseFilter,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ApproveSingle value) approveSingle,
   }) {
     return fetchEmployees(this);
   }
@@ -337,6 +417,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult? Function(_SelectEmployee value)? selectEmployee,
     TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ApproveSingle value)? approveSingle,
   }) {
     return fetchEmployees?.call(this);
   }
@@ -350,6 +435,11 @@ class _$FetchEmployeesImpl implements _FetchEmployees {
     TResult Function(_SelectEmployee value)? selectEmployee,
     TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ApproveSingle value)? approveSingle,
     required TResult orElse(),
   }) {
     if (fetchEmployees != null) {
@@ -436,6 +526,11 @@ class _$SearchImpl implements _Search {
     required TResult Function(int? warehouseId) changeWarehouseFilter,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
     changeDateRange,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() selectAll,
+    required TResult Function() clearSelection,
+    required TResult Function() approveSelected,
+    required TResult Function(int id) approveSingle,
   }) {
     return search(keyword);
   }
@@ -449,6 +544,11 @@ class _$SearchImpl implements _Search {
     TResult? Function(int? employeeId)? selectEmployee,
     TResult? Function(int? warehouseId)? changeWarehouseFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? clearSelection,
+    TResult? Function()? approveSelected,
+    TResult? Function(int id)? approveSingle,
   }) {
     return search?.call(keyword);
   }
@@ -462,6 +562,11 @@ class _$SearchImpl implements _Search {
     TResult Function(int? employeeId)? selectEmployee,
     TResult Function(int? warehouseId)? changeWarehouseFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? selectAll,
+    TResult Function()? clearSelection,
+    TResult Function()? approveSelected,
+    TResult Function(int id)? approveSingle,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -480,6 +585,11 @@ class _$SearchImpl implements _Search {
     required TResult Function(_ChangeWarehouseFilter value)
     changeWarehouseFilter,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ApproveSingle value) approveSingle,
   }) {
     return search(this);
   }
@@ -493,6 +603,11 @@ class _$SearchImpl implements _Search {
     TResult? Function(_SelectEmployee value)? selectEmployee,
     TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ApproveSingle value)? approveSingle,
   }) {
     return search?.call(this);
   }
@@ -506,6 +621,11 @@ class _$SearchImpl implements _Search {
     TResult Function(_SelectEmployee value)? selectEmployee,
     TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ApproveSingle value)? approveSingle,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -601,6 +721,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     required TResult Function(int? warehouseId) changeWarehouseFilter,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
     changeDateRange,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() selectAll,
+    required TResult Function() clearSelection,
+    required TResult Function() approveSelected,
+    required TResult Function(int id) approveSingle,
   }) {
     return selectEmployee(employeeId);
   }
@@ -614,6 +739,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult? Function(int? employeeId)? selectEmployee,
     TResult? Function(int? warehouseId)? changeWarehouseFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? clearSelection,
+    TResult? Function()? approveSelected,
+    TResult? Function(int id)? approveSingle,
   }) {
     return selectEmployee?.call(employeeId);
   }
@@ -627,6 +757,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult Function(int? employeeId)? selectEmployee,
     TResult Function(int? warehouseId)? changeWarehouseFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? selectAll,
+    TResult Function()? clearSelection,
+    TResult Function()? approveSelected,
+    TResult Function(int id)? approveSingle,
     required TResult orElse(),
   }) {
     if (selectEmployee != null) {
@@ -645,6 +780,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     required TResult Function(_ChangeWarehouseFilter value)
     changeWarehouseFilter,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ApproveSingle value) approveSingle,
   }) {
     return selectEmployee(this);
   }
@@ -658,6 +798,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult? Function(_SelectEmployee value)? selectEmployee,
     TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ApproveSingle value)? approveSingle,
   }) {
     return selectEmployee?.call(this);
   }
@@ -671,6 +816,11 @@ class _$SelectEmployeeImpl implements _SelectEmployee {
     TResult Function(_SelectEmployee value)? selectEmployee,
     TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ApproveSingle value)? approveSingle,
     required TResult orElse(),
   }) {
     if (selectEmployee != null) {
@@ -771,6 +921,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     required TResult Function(int? warehouseId) changeWarehouseFilter,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
     changeDateRange,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() selectAll,
+    required TResult Function() clearSelection,
+    required TResult Function() approveSelected,
+    required TResult Function(int id) approveSingle,
   }) {
     return changeWarehouseFilter(warehouseId);
   }
@@ -784,6 +939,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult? Function(int? employeeId)? selectEmployee,
     TResult? Function(int? warehouseId)? changeWarehouseFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? clearSelection,
+    TResult? Function()? approveSelected,
+    TResult? Function(int id)? approveSingle,
   }) {
     return changeWarehouseFilter?.call(warehouseId);
   }
@@ -797,6 +957,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult Function(int? employeeId)? selectEmployee,
     TResult Function(int? warehouseId)? changeWarehouseFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? selectAll,
+    TResult Function()? clearSelection,
+    TResult Function()? approveSelected,
+    TResult Function(int id)? approveSingle,
     required TResult orElse(),
   }) {
     if (changeWarehouseFilter != null) {
@@ -815,6 +980,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     required TResult Function(_ChangeWarehouseFilter value)
     changeWarehouseFilter,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ApproveSingle value) approveSingle,
   }) {
     return changeWarehouseFilter(this);
   }
@@ -828,6 +998,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult? Function(_SelectEmployee value)? selectEmployee,
     TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ApproveSingle value)? approveSingle,
   }) {
     return changeWarehouseFilter?.call(this);
   }
@@ -841,6 +1016,11 @@ class _$ChangeWarehouseFilterImpl implements _ChangeWarehouseFilter {
     TResult Function(_SelectEmployee value)? selectEmployee,
     TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ApproveSingle value)? approveSingle,
     required TResult orElse(),
   }) {
     if (changeWarehouseFilter != null) {
@@ -945,6 +1125,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(int? warehouseId) changeWarehouseFilter,
     required TResult Function(DateTime dateStart, DateTime dateEnd)
     changeDateRange,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() selectAll,
+    required TResult Function() clearSelection,
+    required TResult Function() approveSelected,
+    required TResult Function(int id) approveSingle,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -958,6 +1143,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(int? employeeId)? selectEmployee,
     TResult? Function(int? warehouseId)? changeWarehouseFilter,
     TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? clearSelection,
+    TResult? Function()? approveSelected,
+    TResult? Function(int id)? approveSingle,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -971,6 +1161,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(int? employeeId)? selectEmployee,
     TResult Function(int? warehouseId)? changeWarehouseFilter,
     TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? selectAll,
+    TResult Function()? clearSelection,
+    TResult Function()? approveSelected,
+    TResult Function(int id)? approveSingle,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -989,6 +1184,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ChangeWarehouseFilter value)
     changeWarehouseFilter,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ApproveSingle value) approveSingle,
   }) {
     return changeDateRange(this);
   }
@@ -1002,6 +1202,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_SelectEmployee value)? selectEmployee,
     TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ApproveSingle value)? approveSingle,
   }) {
     return changeDateRange?.call(this);
   }
@@ -1015,6 +1220,11 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_SelectEmployee value)? selectEmployee,
     TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ApproveSingle value)? approveSingle,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -1034,5 +1244,872 @@ abstract class _ChangeDateRange implements ProductReturnApprovalEvent {
   DateTime get dateEnd;
   @JsonKey(ignore: true)
   _$$ChangeDateRangeImplCopyWith<_$ChangeDateRangeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ToggleSelectionImplCopyWith<$Res> {
+  factory _$$ToggleSelectionImplCopyWith(
+    _$ToggleSelectionImpl value,
+    $Res Function(_$ToggleSelectionImpl) then,
+  ) = __$$ToggleSelectionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$ToggleSelectionImplCopyWithImpl<$Res>
+    extends
+        _$ProductReturnApprovalEventCopyWithImpl<$Res, _$ToggleSelectionImpl>
+    implements _$$ToggleSelectionImplCopyWith<$Res> {
+  __$$ToggleSelectionImplCopyWithImpl(
+    _$ToggleSelectionImpl _value,
+    $Res Function(_$ToggleSelectionImpl) _then,
+  ) : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? id = null}) {
+    return _then(
+      _$ToggleSelectionImpl(
+        null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$ToggleSelectionImpl implements _ToggleSelection {
+  const _$ToggleSelectionImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'ProductReturnApprovalEvent.toggleSelection(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToggleSelectionImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToggleSelectionImplCopyWith<_$ToggleSelectionImpl> get copyWith =>
+      __$$ToggleSelectionImplCopyWithImpl<_$ToggleSelectionImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+    changeDateRange,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() selectAll,
+    required TResult Function() clearSelection,
+    required TResult Function() approveSelected,
+    required TResult Function(int id) approveSingle,
+  }) {
+    return toggleSelection(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? clearSelection,
+    TResult? Function()? approveSelected,
+    TResult? Function(int id)? approveSingle,
+  }) {
+    return toggleSelection?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? selectAll,
+    TResult Function()? clearSelection,
+    TResult Function()? approveSelected,
+    TResult Function(int id)? approveSingle,
+    required TResult orElse(),
+  }) {
+    if (toggleSelection != null) {
+      return toggleSelection(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+    changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ApproveSingle value) approveSingle,
+  }) {
+    return toggleSelection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ApproveSingle value)? approveSingle,
+  }) {
+    return toggleSelection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ApproveSingle value)? approveSingle,
+    required TResult orElse(),
+  }) {
+    if (toggleSelection != null) {
+      return toggleSelection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ToggleSelection implements ProductReturnApprovalEvent {
+  const factory _ToggleSelection(final int id) = _$ToggleSelectionImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$ToggleSelectionImplCopyWith<_$ToggleSelectionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectAllImplCopyWith<$Res> {
+  factory _$$SelectAllImplCopyWith(
+    _$SelectAllImpl value,
+    $Res Function(_$SelectAllImpl) then,
+  ) = __$$SelectAllImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SelectAllImplCopyWithImpl<$Res>
+    extends _$ProductReturnApprovalEventCopyWithImpl<$Res, _$SelectAllImpl>
+    implements _$$SelectAllImplCopyWith<$Res> {
+  __$$SelectAllImplCopyWithImpl(
+    _$SelectAllImpl _value,
+    $Res Function(_$SelectAllImpl) _then,
+  ) : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SelectAllImpl implements _SelectAll {
+  const _$SelectAllImpl();
+
+  @override
+  String toString() {
+    return 'ProductReturnApprovalEvent.selectAll()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SelectAllImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+    changeDateRange,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() selectAll,
+    required TResult Function() clearSelection,
+    required TResult Function() approveSelected,
+    required TResult Function(int id) approveSingle,
+  }) {
+    return selectAll();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? clearSelection,
+    TResult? Function()? approveSelected,
+    TResult? Function(int id)? approveSingle,
+  }) {
+    return selectAll?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? selectAll,
+    TResult Function()? clearSelection,
+    TResult Function()? approveSelected,
+    TResult Function(int id)? approveSingle,
+    required TResult orElse(),
+  }) {
+    if (selectAll != null) {
+      return selectAll();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+    changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ApproveSingle value) approveSingle,
+  }) {
+    return selectAll(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ApproveSingle value)? approveSingle,
+  }) {
+    return selectAll?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ApproveSingle value)? approveSingle,
+    required TResult orElse(),
+  }) {
+    if (selectAll != null) {
+      return selectAll(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectAll implements ProductReturnApprovalEvent {
+  const factory _SelectAll() = _$SelectAllImpl;
+}
+
+/// @nodoc
+abstract class _$$ClearSelectionImplCopyWith<$Res> {
+  factory _$$ClearSelectionImplCopyWith(
+    _$ClearSelectionImpl value,
+    $Res Function(_$ClearSelectionImpl) then,
+  ) = __$$ClearSelectionImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearSelectionImplCopyWithImpl<$Res>
+    extends _$ProductReturnApprovalEventCopyWithImpl<$Res, _$ClearSelectionImpl>
+    implements _$$ClearSelectionImplCopyWith<$Res> {
+  __$$ClearSelectionImplCopyWithImpl(
+    _$ClearSelectionImpl _value,
+    $Res Function(_$ClearSelectionImpl) _then,
+  ) : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearSelectionImpl implements _ClearSelection {
+  const _$ClearSelectionImpl();
+
+  @override
+  String toString() {
+    return 'ProductReturnApprovalEvent.clearSelection()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearSelectionImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+    changeDateRange,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() selectAll,
+    required TResult Function() clearSelection,
+    required TResult Function() approveSelected,
+    required TResult Function(int id) approveSingle,
+  }) {
+    return clearSelection();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? clearSelection,
+    TResult? Function()? approveSelected,
+    TResult? Function(int id)? approveSingle,
+  }) {
+    return clearSelection?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? selectAll,
+    TResult Function()? clearSelection,
+    TResult Function()? approveSelected,
+    TResult Function(int id)? approveSingle,
+    required TResult orElse(),
+  }) {
+    if (clearSelection != null) {
+      return clearSelection();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+    changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ApproveSingle value) approveSingle,
+  }) {
+    return clearSelection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ApproveSingle value)? approveSingle,
+  }) {
+    return clearSelection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ApproveSingle value)? approveSingle,
+    required TResult orElse(),
+  }) {
+    if (clearSelection != null) {
+      return clearSelection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearSelection implements ProductReturnApprovalEvent {
+  const factory _ClearSelection() = _$ClearSelectionImpl;
+}
+
+/// @nodoc
+abstract class _$$ApproveSelectedImplCopyWith<$Res> {
+  factory _$$ApproveSelectedImplCopyWith(
+    _$ApproveSelectedImpl value,
+    $Res Function(_$ApproveSelectedImpl) then,
+  ) = __$$ApproveSelectedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ApproveSelectedImplCopyWithImpl<$Res>
+    extends
+        _$ProductReturnApprovalEventCopyWithImpl<$Res, _$ApproveSelectedImpl>
+    implements _$$ApproveSelectedImplCopyWith<$Res> {
+  __$$ApproveSelectedImplCopyWithImpl(
+    _$ApproveSelectedImpl _value,
+    $Res Function(_$ApproveSelectedImpl) _then,
+  ) : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ApproveSelectedImpl implements _ApproveSelected {
+  const _$ApproveSelectedImpl();
+
+  @override
+  String toString() {
+    return 'ProductReturnApprovalEvent.approveSelected()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ApproveSelectedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+    changeDateRange,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() selectAll,
+    required TResult Function() clearSelection,
+    required TResult Function() approveSelected,
+    required TResult Function(int id) approveSingle,
+  }) {
+    return approveSelected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? clearSelection,
+    TResult? Function()? approveSelected,
+    TResult? Function(int id)? approveSingle,
+  }) {
+    return approveSelected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? selectAll,
+    TResult Function()? clearSelection,
+    TResult Function()? approveSelected,
+    TResult Function(int id)? approveSingle,
+    required TResult orElse(),
+  }) {
+    if (approveSelected != null) {
+      return approveSelected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+    changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ApproveSingle value) approveSingle,
+  }) {
+    return approveSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ApproveSingle value)? approveSingle,
+  }) {
+    return approveSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ApproveSingle value)? approveSingle,
+    required TResult orElse(),
+  }) {
+    if (approveSelected != null) {
+      return approveSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApproveSelected implements ProductReturnApprovalEvent {
+  const factory _ApproveSelected() = _$ApproveSelectedImpl;
+}
+
+/// @nodoc
+abstract class _$$ApproveSingleImplCopyWith<$Res> {
+  factory _$$ApproveSingleImplCopyWith(
+    _$ApproveSingleImpl value,
+    $Res Function(_$ApproveSingleImpl) then,
+  ) = __$$ApproveSingleImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$ApproveSingleImplCopyWithImpl<$Res>
+    extends _$ProductReturnApprovalEventCopyWithImpl<$Res, _$ApproveSingleImpl>
+    implements _$$ApproveSingleImplCopyWith<$Res> {
+  __$$ApproveSingleImplCopyWithImpl(
+    _$ApproveSingleImpl _value,
+    $Res Function(_$ApproveSingleImpl) _then,
+  ) : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? id = null}) {
+    return _then(
+      _$ApproveSingleImpl(
+        null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$ApproveSingleImpl implements _ApproveSingle {
+  const _$ApproveSingleImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'ProductReturnApprovalEvent.approveSingle(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApproveSingleImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApproveSingleImplCopyWith<_$ApproveSingleImpl> get copyWith =>
+      __$$ApproveSingleImplCopyWithImpl<_$ApproveSingleImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchEmployees,
+    required TResult Function(String keyword) search,
+    required TResult Function(int? employeeId) selectEmployee,
+    required TResult Function(int? warehouseId) changeWarehouseFilter,
+    required TResult Function(DateTime dateStart, DateTime dateEnd)
+    changeDateRange,
+    required TResult Function(int id) toggleSelection,
+    required TResult Function() selectAll,
+    required TResult Function() clearSelection,
+    required TResult Function() approveSelected,
+    required TResult Function(int id) approveSingle,
+  }) {
+    return approveSingle(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchEmployees,
+    TResult? Function(String keyword)? search,
+    TResult? Function(int? employeeId)? selectEmployee,
+    TResult? Function(int? warehouseId)? changeWarehouseFilter,
+    TResult? Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult? Function(int id)? toggleSelection,
+    TResult? Function()? selectAll,
+    TResult? Function()? clearSelection,
+    TResult? Function()? approveSelected,
+    TResult? Function(int id)? approveSingle,
+  }) {
+    return approveSingle?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchEmployees,
+    TResult Function(String keyword)? search,
+    TResult Function(int? employeeId)? selectEmployee,
+    TResult Function(int? warehouseId)? changeWarehouseFilter,
+    TResult Function(DateTime dateStart, DateTime dateEnd)? changeDateRange,
+    TResult Function(int id)? toggleSelection,
+    TResult Function()? selectAll,
+    TResult Function()? clearSelection,
+    TResult Function()? approveSelected,
+    TResult Function(int id)? approveSingle,
+    required TResult orElse(),
+  }) {
+    if (approveSingle != null) {
+      return approveSingle(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchEmployees value) fetchEmployees,
+    required TResult Function(_Search value) search,
+    required TResult Function(_SelectEmployee value) selectEmployee,
+    required TResult Function(_ChangeWarehouseFilter value)
+    changeWarehouseFilter,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ToggleSelection value) toggleSelection,
+    required TResult Function(_SelectAll value) selectAll,
+    required TResult Function(_ClearSelection value) clearSelection,
+    required TResult Function(_ApproveSelected value) approveSelected,
+    required TResult Function(_ApproveSingle value) approveSingle,
+  }) {
+    return approveSingle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchEmployees value)? fetchEmployees,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_SelectEmployee value)? selectEmployee,
+    TResult? Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ToggleSelection value)? toggleSelection,
+    TResult? Function(_SelectAll value)? selectAll,
+    TResult? Function(_ClearSelection value)? clearSelection,
+    TResult? Function(_ApproveSelected value)? approveSelected,
+    TResult? Function(_ApproveSingle value)? approveSingle,
+  }) {
+    return approveSingle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchEmployees value)? fetchEmployees,
+    TResult Function(_Search value)? search,
+    TResult Function(_SelectEmployee value)? selectEmployee,
+    TResult Function(_ChangeWarehouseFilter value)? changeWarehouseFilter,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ToggleSelection value)? toggleSelection,
+    TResult Function(_SelectAll value)? selectAll,
+    TResult Function(_ClearSelection value)? clearSelection,
+    TResult Function(_ApproveSelected value)? approveSelected,
+    TResult Function(_ApproveSingle value)? approveSingle,
+    required TResult orElse(),
+  }) {
+    if (approveSingle != null) {
+      return approveSingle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApproveSingle implements ProductReturnApprovalEvent {
+  const factory _ApproveSingle(final int id) = _$ApproveSingleImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$ApproveSingleImplCopyWith<_$ApproveSingleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

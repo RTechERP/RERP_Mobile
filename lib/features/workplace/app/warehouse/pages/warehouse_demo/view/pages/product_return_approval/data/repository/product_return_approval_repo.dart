@@ -26,4 +26,22 @@ abstract class ProductReturnApprovalRepo {
     int page = 1,
     int size = 9999999,
   });
+
+  /// Lấy chi tiết 1 phiếu trả sản phẩm.
+  ///
+  /// [productHistoryId] id phiếu cần xem chi tiết.
+  Future<Either<BaseError, ProductReturnHistoryDetail>> getHistoryDetail({
+    required int productHistoryId,
+  });
+
+  /// Duyệt phiếu trả sản phẩm.
+  ///
+  /// - [historyId] id phiếu cần duyệt.
+  /// - [isAdmin] duyệt với quyền quản lý.
+  /// - [modulaLocationDetailId] id ô Modula đã kiểm (0 = không xác định).
+  Future<Either<BaseError, int>> approveReturnProduct({
+    required int historyId,
+    bool isAdmin = true,
+    int modulaLocationDetailId = 0,
+  });
 }

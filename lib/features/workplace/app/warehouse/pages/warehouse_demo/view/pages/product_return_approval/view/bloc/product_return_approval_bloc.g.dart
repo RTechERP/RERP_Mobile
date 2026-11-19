@@ -25,6 +25,20 @@ abstract class _$ProductReturnApprovalStateCWProxy {
 
   ProductReturnApprovalState dateEnd(DateTime? dateEnd);
 
+  ProductReturnApprovalState selectedIds(Set<int> selectedIds);
+
+  ProductReturnApprovalState isApproving(bool isApproving);
+
+  ProductReturnApprovalState approveTotal(int approveTotal);
+
+  ProductReturnApprovalState approvedCount(int approvedCount);
+
+  ProductReturnApprovalState failedCount(int failedCount);
+
+  ProductReturnApprovalState isRefreshing(bool isRefreshing);
+
+  ProductReturnApprovalState approveRound(int approveRound);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductReturnApprovalState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -41,6 +55,13 @@ abstract class _$ProductReturnApprovalStateCWProxy {
     int? warehouseId,
     DateTime? dateStart,
     DateTime? dateEnd,
+    Set<int>? selectedIds,
+    bool? isApproving,
+    int? approveTotal,
+    int? approvedCount,
+    int? failedCount,
+    bool? isRefreshing,
+    int? approveRound,
   });
 }
 
@@ -87,6 +108,34 @@ class _$ProductReturnApprovalStateCWProxyImpl
       this(dateEnd: dateEnd);
 
   @override
+  ProductReturnApprovalState selectedIds(Set<int> selectedIds) =>
+      this(selectedIds: selectedIds);
+
+  @override
+  ProductReturnApprovalState isApproving(bool isApproving) =>
+      this(isApproving: isApproving);
+
+  @override
+  ProductReturnApprovalState approveTotal(int approveTotal) =>
+      this(approveTotal: approveTotal);
+
+  @override
+  ProductReturnApprovalState approvedCount(int approvedCount) =>
+      this(approvedCount: approvedCount);
+
+  @override
+  ProductReturnApprovalState failedCount(int failedCount) =>
+      this(failedCount: failedCount);
+
+  @override
+  ProductReturnApprovalState isRefreshing(bool isRefreshing) =>
+      this(isRefreshing: isRefreshing);
+
+  @override
+  ProductReturnApprovalState approveRound(int approveRound) =>
+      this(approveRound: approveRound);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductReturnApprovalState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -103,6 +152,13 @@ class _$ProductReturnApprovalStateCWProxyImpl
     Object? warehouseId = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
+    Object? selectedIds = const $CopyWithPlaceholder(),
+    Object? isApproving = const $CopyWithPlaceholder(),
+    Object? approveTotal = const $CopyWithPlaceholder(),
+    Object? approvedCount = const $CopyWithPlaceholder(),
+    Object? failedCount = const $CopyWithPlaceholder(),
+    Object? isRefreshing = const $CopyWithPlaceholder(),
+    Object? approveRound = const $CopyWithPlaceholder(),
   }) {
     return ProductReturnApprovalState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -142,6 +198,41 @@ class _$ProductReturnApprovalStateCWProxyImpl
           ? _value.dateEnd
           // ignore: cast_nullable_to_non_nullable
           : dateEnd as DateTime?,
+      selectedIds:
+          selectedIds == const $CopyWithPlaceholder() || selectedIds == null
+          ? _value.selectedIds
+          // ignore: cast_nullable_to_non_nullable
+          : selectedIds as Set<int>,
+      isApproving:
+          isApproving == const $CopyWithPlaceholder() || isApproving == null
+          ? _value.isApproving
+          // ignore: cast_nullable_to_non_nullable
+          : isApproving as bool,
+      approveTotal:
+          approveTotal == const $CopyWithPlaceholder() || approveTotal == null
+          ? _value.approveTotal
+          // ignore: cast_nullable_to_non_nullable
+          : approveTotal as int,
+      approvedCount:
+          approvedCount == const $CopyWithPlaceholder() || approvedCount == null
+          ? _value.approvedCount
+          // ignore: cast_nullable_to_non_nullable
+          : approvedCount as int,
+      failedCount:
+          failedCount == const $CopyWithPlaceholder() || failedCount == null
+          ? _value.failedCount
+          // ignore: cast_nullable_to_non_nullable
+          : failedCount as int,
+      isRefreshing:
+          isRefreshing == const $CopyWithPlaceholder() || isRefreshing == null
+          ? _value.isRefreshing
+          // ignore: cast_nullable_to_non_nullable
+          : isRefreshing as bool,
+      approveRound:
+          approveRound == const $CopyWithPlaceholder() || approveRound == null
+          ? _value.approveRound
+          // ignore: cast_nullable_to_non_nullable
+          : approveRound as int,
     );
   }
 }

@@ -319,7 +319,8 @@ class _EmployeePicker extends StatelessWidget {
     final label = selected == null
         ? 'Tất cả nhân viên'
         : '${selected.fullName ?? '--'}'
-              '${(selected.code ?? '').isEmpty ? '' : ' (${selected.code})'}';
+              '${(selected.code ?? '').isEmpty ? '' : ' (${selected.code})'}'
+              '${(selected.departmentName ?? '').trim().isEmpty ? '' : ' · ${selected.departmentName!.trim()}'}';
 
     return InkWell(
       onTap: () => _openEmployeeSheet(context),
@@ -384,6 +385,32 @@ class _EmployeeListSheet extends StatefulWidget {
   State<_EmployeeListSheet> createState() => _EmployeeListSheetState();
 }
 
+/// Một nhóm nhân viên theo phòng ban / nhóm.
+class _EmployeeGroup {
+  const _EmployeeGroup({
+    required this.departmentId,
+    required this.departmentName,
+    required this.teamId,
+    required this.teamName,
+    required this.employees,
+  });
+
+  /// Id phòng ban — dùng để sắp xếp.
+  final int departmentId;
+
+  /// Tên phòng ban.
+  final String departmentName;
+
+  /// Id nhóm — dùng để sắp xếp.
+  final int teamId;
+
+  /// Tên nhóm (null = nhân viên không thuộc nhóm nào trong phòng ban).
+  final String? teamName;
+
+  /// Nhân viên thuộc nhóm.
+  final List<ProductReturnEmployee> employees;
+}
+
 class _EmployeeListSheetState extends State<_EmployeeListSheet> {
   late final TextEditingController _controller;
   String _keyword = '';
@@ -412,9 +439,51 @@ class _EmployeeListSheetState extends State<_EmployeeListSheet> {
     }).toList();
   }
 
+  /// Chia danh sách nhân viên thành các nhóm theo phòng ban → nhóm.
+  ///
+  /// Nhân viên không có phòng ban được xếp vào nhóm "Chưa phân phòng ban".
+  /// Các phòng ban giữ đúng thứ tự xuất hiện đầu tiên trong danh sách API.
+  List<_EmployeeGroup> get _groupedEmployees {
+    // Key = tên phòng ban (đã trim). Map giữ thứ tự chèn → thứ tự xuất hiện.
+    final departments = <String, List<ProductReturnEmployee>>{};
+    for (final employee in _visibleEmployees) {
+      final name = (employee.departmentName ?? '').trim();
+      final key = name.isEmpty ? 'Chưa phân phòng ban' : name;
+      departments.putIfAbsent(key, () => []).add(employee);
+    }
+
+    final groups = <_EmployeeGroup>[];
+    for (final entry in departments.entries) {
+      final employees = entry.value;
+      final departmentId = employees.first.departmentId ?? 0;
+
+      // Trong 1 phòng ban, tách tiếp theo nhóm — giữ thứ tự xuất hiện.
+      final teams = <String, List<ProductReturnEmployee>>{};
+      for (final employee in employees) {
+        final team = (employee.teamName ?? '').trim();
+        teams.putIfAbsent(team, () => []).add(employee);
+      }
+
+      for (final teamEntry in teams.entries) {
+        final teamEmployees = teamEntry.value;
+        final teamName = teamEntry.key;
+        groups.add(
+          _EmployeeGroup(
+            departmentId: departmentId,
+            departmentName: entry.key,
+            teamId: teamEmployees.first.teamId ?? 0,
+            teamName: teamName.isEmpty ? null : teamName,
+            employees: teamEmployees,
+          ),
+        );
+      }
+    }
+    return groups;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final employees = _visibleEmployees;
+    final groups = _groupedEmployees;
 
     return Container(
       constraints: BoxConstraints(
@@ -495,7 +564,7 @@ class _EmployeeListSheetState extends State<_EmployeeListSheet> {
             ),
             const SizedBox(height: 8),
             Flexible(
-              child: employees.isEmpty
+              child: groups.isEmpty
                   ? const Padding(
                       padding: EdgeInsets.all(24),
                       child: Text(
@@ -503,66 +572,15 @@ class _EmployeeListSheetState extends State<_EmployeeListSheet> {
                         style: TextStyle(color: AppColors.gray),
                       ),
                     )
-                  : ListView.separated(
+                  : ListView.builder(
                       shrinkWrap: true,
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      itemCount: employees.length,
-                      separatorBuilder: (_, _) => const Divider(
-                        height: 1,
-                        color: AppColors.borderColor,
-                      ),
+                      padding: const EdgeInsets.only(bottom: 12),
+                      itemCount: groups.length,
                       itemBuilder: (context, index) {
-                        final employee = employees[index];
-                        final isSelected =
-                            employee.employeeId == widget.selectedEmployeeId;
-                        final name = (employee.fullName ?? '').trim();
-                        final subtitle = [
-                          (employee.code ?? '').trim(),
-                          (employee.departmentName ?? '').trim(),
-                          (employee.teamName ?? '').trim(),
-                        ].where((e) => e.isNotEmpty).join(' • ');
-
-                        return ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor: isSelected
-                                ? AppColors.primaryERP
-                                : AppColors.grey_bg,
-                            foregroundColor: isSelected
-                                ? Colors.white
-                                : AppColors.heading,
-                            child: Text(
-                              name.isEmpty ? '?' : name[0].toUpperCase(),
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          title: Text(
-                            name.isEmpty ? '—' : name,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: isSelected
-                                  ? FontWeight.w600
-                                  : FontWeight.w500,
-                              color: AppColors.heading,
-                            ),
-                          ),
-                          subtitle: subtitle.isEmpty
-                              ? null
-                              : Text(
-                                  subtitle,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: AppColors.gray,
-                                  ),
-                                ),
-                          trailing: isSelected
-                              ? const Icon(
-                                  Icons.check_circle,
-                                  color: AppColors.primaryERP,
-                                )
-                              : null,
-                          onTap: () => context.pop(employee),
+                        final group = groups[index];
+                        return _EmployeeGroupSection(
+                          group: group,
+                          selectedEmployeeId: widget.selectedEmployeeId,
                         );
                       },
                     ),
@@ -570,6 +588,164 @@ class _EmployeeListSheetState extends State<_EmployeeListSheet> {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Một nhóm nhân viên theo phòng ban (và nhóm nếu có).
+class _EmployeeGroupSection extends StatelessWidget {
+  const _EmployeeGroupSection({
+    required this.group,
+    required this.selectedEmployeeId,
+  });
+
+  final _EmployeeGroup group;
+  final int? selectedEmployeeId;
+
+  @override
+  Widget build(BuildContext context) {
+    final teamName = group.teamName;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        /// ===== HEADER PHÒNG BAN =====
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 6),
+          child: Row(
+            children: [
+              const Icon(
+                Icons.apartment_outlined,
+                size: 15,
+                color: AppColors.secondaryERP,
+              ),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: Text(
+                        group.departmentName,
+                        style: const TextStyle(
+                          fontSize: 13.5,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.heading,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      '#${group.departmentId}',
+                      style: const TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.gray,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                decoration: BoxDecoration(
+                  color: AppColors.colorMainSecondary,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  '${group.employees.length}',
+                  style: const TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.secondaryERP,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        /// ===== HEADER NHÓM (nếu có) =====
+        if (teamName != null)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.group_outlined,
+                  size: 13,
+                  color: AppColors.gray,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  teamName,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.gray,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+        /// ===== DANH SÁCH NHÂN VIÊN =====
+        for (final employee in group.employees)
+          _EmployeeTile(
+            employee: employee,
+            isSelected: employee.employeeId == selectedEmployeeId,
+          ),
+        const SizedBox(height: 6),
+      ],
+    );
+  }
+}
+
+/// Một dòng nhân viên trong danh sách.
+class _EmployeeTile extends StatelessWidget {
+  const _EmployeeTile({required this.employee, required this.isSelected});
+
+  final ProductReturnEmployee employee;
+  final bool isSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final name = (employee.fullName ?? '').trim();
+    final subtitle = (employee.code ?? '').trim();
+
+    return ListTile(
+      dense: true,
+      visualDensity: VisualDensity.compact,
+      contentPadding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+      leading: CircleAvatar(
+        radius: 17,
+        backgroundColor: isSelected ? AppColors.primaryERP : AppColors.grey_bg,
+        foregroundColor: isSelected ? Colors.white : AppColors.heading,
+        child: Text(
+          name.isEmpty ? '?' : name[0].toUpperCase(),
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+        ),
+      ),
+      title: Text(
+        name.isEmpty ? '—' : name,
+        style: TextStyle(
+          fontSize: 14,
+          fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+          color: AppColors.heading,
+        ),
+      ),
+      subtitle: subtitle.isEmpty
+          ? null
+          : Text(
+              subtitle,
+              style: const TextStyle(fontSize: 12, color: AppColors.gray),
+            ),
+      trailing: isSelected
+          ? const Icon(Icons.check_circle, color: AppColors.primaryERP)
+          : null,
+      onTap: () => context.pop(employee),
     );
   }
 }

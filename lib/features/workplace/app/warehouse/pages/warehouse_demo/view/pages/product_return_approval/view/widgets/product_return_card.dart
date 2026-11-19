@@ -9,13 +9,29 @@ import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_demo/vi
 /// Bố cục: tên sản phẩm + mã → chip trạng thái → người mượn → dự án → bảng
 /// 2×2 (vị trí hộp / vị trí Modula / ngày mượn / hạn trả) → ghi chú.
 class ProductReturnCard extends StatelessWidget {
-  const ProductReturnCard({super.key, required this.item, this.onTap});
+  const ProductReturnCard({
+    super.key,
+    required this.item,
+    this.onTap,
+    this.selected = false,
+    this.selectionEnabled = false,
+    this.onToggleSelection,
+  });
 
   /// Phiếu trả sản phẩm cần hiển thị.
   final ProductReturnHistoryItem item;
 
   /// Bấm vào card → mở chi tiết phiếu.
   final VoidCallback? onTap;
+
+  /// Phiếu đang được chọn để duyệt.
+  final bool selected;
+
+  /// Hiển thị checkbox chọn phiếu hay không.
+  final bool selectionEnabled;
+
+  /// Bấm checkbox → bật/tắt chọn phiếu.
+  final VoidCallback? onToggleSelection;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +46,10 @@ class ProductReturnCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: AppColors.borderColor),
+            border: Border.all(
+              color: selected ? AppColors.primaryERP : AppColors.borderColor,
+              width: selected ? 1.5 : 1,
+            ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -39,6 +58,15 @@ class ProductReturnCard extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  if (selectionEnabled) ...[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 6, top: 1),
+                      child: _SelectionCheckbox(
+                        value: selected,
+                        onTap: onToggleSelection,
+                      ),
+                    ),
+                  ],
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,12 +165,6 @@ class ProductReturnCard extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ),
-                    const SizedBox(height: 10),
-                    _WideMetricCell(
-                      label: 'Ngày trả',
-                      value: _formatDate(item.dateReturn),
-                      valueColor: AppColors.stateSuccessColor,
                     ),
                   ],
                 ),
@@ -269,55 +291,6 @@ class _MetricCell extends StatelessWidget {
   }
 }
 
-/// Ô số liệu chiếm toàn bộ chiều rộng: nhãn ở trên, giá trị ở dưới.
-///
-/// Nội dung căn giữa theo chiều ngang, dùng cho dòng cuối "Ngày trả".
-class _WideMetricCell extends StatelessWidget {
-  const _WideMetricCell({
-    required this.label,
-    required this.value,
-    this.valueColor,
-  });
-
-  final String label;
-  final String value;
-  final Color? valueColor;
-
-  @override
-  Widget build(BuildContext context) {
-    final isEmpty = value == '--';
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 10.5,
-            color: AppColors.gray,
-            height: 1.1,
-          ),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-        const SizedBox(height: 3),
-        Text(
-          value,
-          style: TextStyle(
-            fontSize: 13,
-            fontWeight: FontWeight.w700,
-            color: isEmpty
-                ? AppColors.disableText
-                : (valueColor ?? AppColors.enableText),
-            height: 1.2,
-          ),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ],
-    );
-  }
-}
-
 /// Đường kẻ dọc giữa các ô số liệu.
 class _MetricDivider extends StatelessWidget {
   const _MetricDivider();
@@ -325,6 +298,49 @@ class _MetricDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(width: 1, height: 28, color: AppColors.borderColor);
+  }
+}
+
+/// Ô vuông chọn phiếu (checkbox) ở đầu card khi đang chọn để duyệt.
+///
+/// Kích thước lớn để dễ bấm trên màn hình cảm ứng.
+class _SelectionCheckbox extends StatelessWidget {
+  const _SelectionCheckbox({required this.value, this.onTap});
+
+  /// Đang chọn hay chưa.
+  final bool value;
+
+  /// Bấm để bật/tắt chọn.
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 4),
+        child: Container(
+          width: 28,
+          height: 28,
+          decoration: BoxDecoration(
+            color: value
+                ? AppColors.primaryERP.withValues(alpha: 0.12)
+                : AppColors.white,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: value ? AppColors.primaryERP : AppColors.gray,
+              width: value ? 2 : 1.5,
+            ),
+          ),
+          child: Icon(
+            value ? Icons.check : null,
+            size: 20,
+            color: AppColors.primaryERP,
+          ),
+        ),
+      ),
+    );
   }
 }
 

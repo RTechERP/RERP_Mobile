@@ -61,4 +61,44 @@ class ProductReturnApprovalRepoImpl implements ProductReturnApprovalRepo {
       return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<BaseError, ProductReturnHistoryDetail>> getHistoryDetail({
+    required int productHistoryId,
+  }) async {
+    try {
+      final res = await _service.getHistoryDetail(
+        productHistoryId: productHistoryId,
+      );
+      final detail = res.data;
+      if (detail == null) {
+        return left(BaseError.httpInternalServerError('Không tìm thấy phiếu'));
+      }
+      return right(detail);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<BaseError, int>> approveReturnProduct({
+    required int historyId,
+    bool isAdmin = true,
+    int modulaLocationDetailId = 0,
+  }) async {
+    try {
+      final res = await _service.approveReturnProduct(
+        historyId: historyId,
+        isAdmin: isAdmin,
+        modulaLocationDetailId: modulaLocationDetailId,
+      );
+      return right(res.data ?? historyId);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } catch (e) {
+      return left(BaseError.httpInternalServerError(e.toString()));
+    }
+  }
 }

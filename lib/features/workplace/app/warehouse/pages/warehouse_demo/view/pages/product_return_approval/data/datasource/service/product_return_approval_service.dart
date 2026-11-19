@@ -117,4 +117,72 @@ class ProductReturnApprovalService extends DioBaseApiService {
     }
     return const <dynamic>[];
   }
+
+  /// Lấy chi tiết 1 phiếu trả sản phẩm —
+  /// `GET /borrow/get-history-product-rtc-by-id`.
+  ///
+  /// - [productHistoryId] id phiếu trả sản phẩm cần xem chi tiết.
+  Future<BaseData<ProductReturnHistoryDetail>> getHistoryDetail({
+    required int productHistoryId,
+  }) async {
+    return get<BaseData<ProductReturnHistoryDetail>>(
+      ApiEndPoint.getBorrowHistoryProductRtcById,
+      query: {'productHistoryID': productHistoryId},
+      parser: (json) {
+        final payload = _extractDetail(json);
+        return BaseData<ProductReturnHistoryDetail>()
+          ..data = ProductReturnHistoryDetail.fromJson(payload)
+          ..status = _extractStatus(json);
+      },
+    );
+  }
+
+  /// Duyệt phiếu trả sản phẩm — `POST /borrow/return-productrtc`.
+  ///
+  /// - [historyId] id phiếu cần duyệt (lấy từ API chi tiết).
+  /// - [isAdmin] duyệt với quyền quản lý.
+  /// - [modulaLocationDetailId] id ô Modula đã kiểm (0 = không xác định).
+  Future<BaseData<int>> approveReturnProduct({
+    required int historyId,
+    bool isAdmin = true,
+    int modulaLocationDetailId = 0,
+  }) async {
+    return post<BaseData<int>>(
+      ApiEndPoint.returnBorrowProductRtc,
+      body: {
+        'HistoryId': historyId,
+        'IsAdmin': isAdmin,
+        'ModulaLocationDetailID': modulaLocationDetailId,
+      },
+      parser: (json) {
+        final data = json is Map<String, dynamic> ? json['data'] : null;
+        final id = data is Map<String, dynamic>
+            ? (data['id'] as num?)?.toInt()
+            : (data as num?)?.toInt();
+        return BaseData<int>()
+          ..data = id
+          ..status = _extractStatus(json);
+      },
+    );
+  }
+
+  /// Bóc object chi tiết từ payload (bọc trong `data` hoặc trả trực tiếp).
+  static Map<String, dynamic> _extractDetail(dynamic json) {
+    if (json is Map<String, dynamic>) {
+      final data = json['data'];
+      if (data is Map<String, dynamic>) return data;
+      return json;
+    }
+    return const <String, dynamic>{};
+  }
+
+  /// Lấy `status` từ payload nếu có.
+  static int? _extractStatus(dynamic json) {
+    if (json is Map<String, dynamic>) {
+      final status = json['status'];
+      if (status is num) return status.toInt();
+      if (status is bool) return status ? 1 : 0;
+    }
+    return null;
+  }
 }

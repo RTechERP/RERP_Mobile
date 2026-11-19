@@ -2182,3 +2182,837 @@ abstract class _ProductReturnHistoryItem implements ProductReturnHistoryItem {
   _$$ProductReturnHistoryItemImplCopyWith<_$ProductReturnHistoryItemImpl>
   get copyWith => throw _privateConstructorUsedError;
 }
+
+ProductReturnHistoryDetail _$ProductReturnHistoryDetailFromJson(
+  Map<String, dynamic> json,
+) {
+  return _ProductReturnHistoryDetail.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProductReturnHistoryDetail {
+  /// Id phiếu trả sản phẩm — dùng làm `HistoryId` khi duyệt.
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+
+  /// Id sản phẩm RTC.
+  @JsonKey(name: 'ProductRTCID')
+  int? get productRtcId => throw _privateConstructorUsedError;
+
+  /// Id QR code sản phẩm.
+  @JsonKey(name: 'ProductRTCQRCodeID')
+  int? get productRtcQrCodeId => throw _privateConstructorUsedError;
+
+  /// Thời điểm mượn (ISO).
+  @JsonKey(name: 'DateBorrow')
+  String? get dateBorrow => throw _privateConstructorUsedError;
+
+  /// Hạn trả dự kiến (ISO).
+  @JsonKey(name: 'DateReturnExpected')
+  String? get dateReturnExpected => throw _privateConstructorUsedError;
+
+  /// Thời điểm trả thực tế (ISO, null = chưa trả).
+  @JsonKey(name: 'DateReturn')
+  String? get dateReturn => throw _privateConstructorUsedError;
+
+  /// Id người mượn.
+  @JsonKey(name: 'PeopleID')
+  int? get peopleId => throw _privateConstructorUsedError;
+
+  /// Dự án sử dụng.
+  @JsonKey(name: 'Project')
+  String? get project => throw _privateConstructorUsedError;
+
+  /// Ghi chú.
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+
+  /// Trạng thái phiếu.
+  @JsonKey(name: 'Status')
+  int? get status => throw _privateConstructorUsedError;
+
+  /// Số lượng đã mượn.
+  @JsonKey(name: 'NumberBorrow')
+  double? get numberBorrow => throw _privateConstructorUsedError;
+
+  /// Người tạo bản ghi.
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy => throw _privateConstructorUsedError;
+
+  /// Thời điểm tạo bản ghi.
+  @JsonKey(name: 'CreatedDate')
+  String? get createdDate => throw _privateConstructorUsedError;
+
+  /// Người cập nhật gần nhất.
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy => throw _privateConstructorUsedError;
+
+  /// Thời điểm cập nhật gần nhất.
+  @JsonKey(name: 'UpdatedDate')
+  String? get updatedDate => throw _privateConstructorUsedError;
+
+  /// Người quản lý đã xác nhận hay chưa.
+  @JsonKey(name: 'AdminConfirm')
+  bool get adminConfirm => throw _privateConstructorUsedError;
+
+  /// Id phiếu xuất kho liên quan.
+  @JsonKey(name: 'BillExportTechnicalID')
+  int? get billExportTechnicalId => throw _privateConstructorUsedError;
+
+  /// QR code sản phẩm.
+  @JsonKey(name: 'ProductRTCQRCode')
+  String? get productRtcQrCode => throw _privateConstructorUsedError;
+
+  /// Id kho.
+  @JsonKey(name: 'WarehouseID')
+  int? get warehouseId => throw _privateConstructorUsedError;
+
+  /// Bản ghi đã bị xoá hay chưa.
+  @JsonKey(name: 'IsDelete')
+  bool get isDelete => throw _privateConstructorUsedError;
+
+  /// Id vị trí kho.
+  @JsonKey(name: 'ProductLocationID')
+  int? get productLocationId => throw _privateConstructorUsedError;
+
+  /// Trạng thái người mượn.
+  @JsonKey(name: 'StatusPerson')
+  int? get statusPerson => throw _privateConstructorUsedError;
+
+  /// Id phiếu cha (dùng cho phiếu gộp).
+  @JsonKey(name: 'ParentID')
+  int? get parentId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProductReturnHistoryDetailCopyWith<ProductReturnHistoryDetail>
+  get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProductReturnHistoryDetailCopyWith<$Res> {
+  factory $ProductReturnHistoryDetailCopyWith(
+    ProductReturnHistoryDetail value,
+    $Res Function(ProductReturnHistoryDetail) then,
+  ) =
+      _$ProductReturnHistoryDetailCopyWithImpl<
+        $Res,
+        ProductReturnHistoryDetail
+      >;
+  @useResult
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProductRTCID') int? productRtcId,
+    @JsonKey(name: 'ProductRTCQRCodeID') int? productRtcQrCodeId,
+    @JsonKey(name: 'DateBorrow') String? dateBorrow,
+    @JsonKey(name: 'DateReturnExpected') String? dateReturnExpected,
+    @JsonKey(name: 'DateReturn') String? dateReturn,
+    @JsonKey(name: 'PeopleID') int? peopleId,
+    @JsonKey(name: 'Project') String? project,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'NumberBorrow') double? numberBorrow,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') String? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') String? updatedDate,
+    @JsonKey(name: 'AdminConfirm') bool adminConfirm,
+    @JsonKey(name: 'BillExportTechnicalID') int? billExportTechnicalId,
+    @JsonKey(name: 'ProductRTCQRCode') String? productRtcQrCode,
+    @JsonKey(name: 'WarehouseID') int? warehouseId,
+    @JsonKey(name: 'IsDelete') bool isDelete,
+    @JsonKey(name: 'ProductLocationID') int? productLocationId,
+    @JsonKey(name: 'StatusPerson') int? statusPerson,
+    @JsonKey(name: 'ParentID') int? parentId,
+  });
+}
+
+/// @nodoc
+class _$ProductReturnHistoryDetailCopyWithImpl<
+  $Res,
+  $Val extends ProductReturnHistoryDetail
+>
+    implements $ProductReturnHistoryDetailCopyWith<$Res> {
+  _$ProductReturnHistoryDetailCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? productRtcId = freezed,
+    Object? productRtcQrCodeId = freezed,
+    Object? dateBorrow = freezed,
+    Object? dateReturnExpected = freezed,
+    Object? dateReturn = freezed,
+    Object? peopleId = freezed,
+    Object? project = freezed,
+    Object? note = freezed,
+    Object? status = freezed,
+    Object? numberBorrow = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? adminConfirm = null,
+    Object? billExportTechnicalId = freezed,
+    Object? productRtcQrCode = freezed,
+    Object? warehouseId = freezed,
+    Object? isDelete = null,
+    Object? productLocationId = freezed,
+    Object? statusPerson = freezed,
+    Object? parentId = freezed,
+  }) {
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            productRtcId: freezed == productRtcId
+                ? _value.productRtcId
+                : productRtcId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            productRtcQrCodeId: freezed == productRtcQrCodeId
+                ? _value.productRtcQrCodeId
+                : productRtcQrCodeId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            dateBorrow: freezed == dateBorrow
+                ? _value.dateBorrow
+                : dateBorrow // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            dateReturnExpected: freezed == dateReturnExpected
+                ? _value.dateReturnExpected
+                : dateReturnExpected // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            dateReturn: freezed == dateReturn
+                ? _value.dateReturn
+                : dateReturn // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            peopleId: freezed == peopleId
+                ? _value.peopleId
+                : peopleId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            project: freezed == project
+                ? _value.project
+                : project // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            note: freezed == note
+                ? _value.note
+                : note // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            status: freezed == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            numberBorrow: freezed == numberBorrow
+                ? _value.numberBorrow
+                : numberBorrow // ignore: cast_nullable_to_non_nullable
+                      as double?,
+            createdBy: freezed == createdBy
+                ? _value.createdBy
+                : createdBy // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            createdDate: freezed == createdDate
+                ? _value.createdDate
+                : createdDate // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            updatedBy: freezed == updatedBy
+                ? _value.updatedBy
+                : updatedBy // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            updatedDate: freezed == updatedDate
+                ? _value.updatedDate
+                : updatedDate // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            adminConfirm: null == adminConfirm
+                ? _value.adminConfirm
+                : adminConfirm // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            billExportTechnicalId: freezed == billExportTechnicalId
+                ? _value.billExportTechnicalId
+                : billExportTechnicalId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            productRtcQrCode: freezed == productRtcQrCode
+                ? _value.productRtcQrCode
+                : productRtcQrCode // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            warehouseId: freezed == warehouseId
+                ? _value.warehouseId
+                : warehouseId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            isDelete: null == isDelete
+                ? _value.isDelete
+                : isDelete // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            productLocationId: freezed == productLocationId
+                ? _value.productLocationId
+                : productLocationId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            statusPerson: freezed == statusPerson
+                ? _value.statusPerson
+                : statusPerson // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            parentId: freezed == parentId
+                ? _value.parentId
+                : parentId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$ProductReturnHistoryDetailImplCopyWith<$Res>
+    implements $ProductReturnHistoryDetailCopyWith<$Res> {
+  factory _$$ProductReturnHistoryDetailImplCopyWith(
+    _$ProductReturnHistoryDetailImpl value,
+    $Res Function(_$ProductReturnHistoryDetailImpl) then,
+  ) = __$$ProductReturnHistoryDetailImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProductRTCID') int? productRtcId,
+    @JsonKey(name: 'ProductRTCQRCodeID') int? productRtcQrCodeId,
+    @JsonKey(name: 'DateBorrow') String? dateBorrow,
+    @JsonKey(name: 'DateReturnExpected') String? dateReturnExpected,
+    @JsonKey(name: 'DateReturn') String? dateReturn,
+    @JsonKey(name: 'PeopleID') int? peopleId,
+    @JsonKey(name: 'Project') String? project,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'Status') int? status,
+    @JsonKey(name: 'NumberBorrow') double? numberBorrow,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') String? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') String? updatedDate,
+    @JsonKey(name: 'AdminConfirm') bool adminConfirm,
+    @JsonKey(name: 'BillExportTechnicalID') int? billExportTechnicalId,
+    @JsonKey(name: 'ProductRTCQRCode') String? productRtcQrCode,
+    @JsonKey(name: 'WarehouseID') int? warehouseId,
+    @JsonKey(name: 'IsDelete') bool isDelete,
+    @JsonKey(name: 'ProductLocationID') int? productLocationId,
+    @JsonKey(name: 'StatusPerson') int? statusPerson,
+    @JsonKey(name: 'ParentID') int? parentId,
+  });
+}
+
+/// @nodoc
+class __$$ProductReturnHistoryDetailImplCopyWithImpl<$Res>
+    extends
+        _$ProductReturnHistoryDetailCopyWithImpl<
+          $Res,
+          _$ProductReturnHistoryDetailImpl
+        >
+    implements _$$ProductReturnHistoryDetailImplCopyWith<$Res> {
+  __$$ProductReturnHistoryDetailImplCopyWithImpl(
+    _$ProductReturnHistoryDetailImpl _value,
+    $Res Function(_$ProductReturnHistoryDetailImpl) _then,
+  ) : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? productRtcId = freezed,
+    Object? productRtcQrCodeId = freezed,
+    Object? dateBorrow = freezed,
+    Object? dateReturnExpected = freezed,
+    Object? dateReturn = freezed,
+    Object? peopleId = freezed,
+    Object? project = freezed,
+    Object? note = freezed,
+    Object? status = freezed,
+    Object? numberBorrow = freezed,
+    Object? createdBy = freezed,
+    Object? createdDate = freezed,
+    Object? updatedBy = freezed,
+    Object? updatedDate = freezed,
+    Object? adminConfirm = null,
+    Object? billExportTechnicalId = freezed,
+    Object? productRtcQrCode = freezed,
+    Object? warehouseId = freezed,
+    Object? isDelete = null,
+    Object? productLocationId = freezed,
+    Object? statusPerson = freezed,
+    Object? parentId = freezed,
+  }) {
+    return _then(
+      _$ProductReturnHistoryDetailImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        productRtcId: freezed == productRtcId
+            ? _value.productRtcId
+            : productRtcId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        productRtcQrCodeId: freezed == productRtcQrCodeId
+            ? _value.productRtcQrCodeId
+            : productRtcQrCodeId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        dateBorrow: freezed == dateBorrow
+            ? _value.dateBorrow
+            : dateBorrow // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        dateReturnExpected: freezed == dateReturnExpected
+            ? _value.dateReturnExpected
+            : dateReturnExpected // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        dateReturn: freezed == dateReturn
+            ? _value.dateReturn
+            : dateReturn // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        peopleId: freezed == peopleId
+            ? _value.peopleId
+            : peopleId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        project: freezed == project
+            ? _value.project
+            : project // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        note: freezed == note
+            ? _value.note
+            : note // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        status: freezed == status
+            ? _value.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        numberBorrow: freezed == numberBorrow
+            ? _value.numberBorrow
+            : numberBorrow // ignore: cast_nullable_to_non_nullable
+                  as double?,
+        createdBy: freezed == createdBy
+            ? _value.createdBy
+            : createdBy // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        createdDate: freezed == createdDate
+            ? _value.createdDate
+            : createdDate // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        updatedBy: freezed == updatedBy
+            ? _value.updatedBy
+            : updatedBy // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        updatedDate: freezed == updatedDate
+            ? _value.updatedDate
+            : updatedDate // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        adminConfirm: null == adminConfirm
+            ? _value.adminConfirm
+            : adminConfirm // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        billExportTechnicalId: freezed == billExportTechnicalId
+            ? _value.billExportTechnicalId
+            : billExportTechnicalId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        productRtcQrCode: freezed == productRtcQrCode
+            ? _value.productRtcQrCode
+            : productRtcQrCode // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        warehouseId: freezed == warehouseId
+            ? _value.warehouseId
+            : warehouseId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        isDelete: null == isDelete
+            ? _value.isDelete
+            : isDelete // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        productLocationId: freezed == productLocationId
+            ? _value.productLocationId
+            : productLocationId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        statusPerson: freezed == statusPerson
+            ? _value.statusPerson
+            : statusPerson // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        parentId: freezed == parentId
+            ? _value.parentId
+            : parentId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProductReturnHistoryDetailImpl implements _ProductReturnHistoryDetail {
+  const _$ProductReturnHistoryDetailImpl({
+    @JsonKey(name: 'ID') this.id,
+    @JsonKey(name: 'ProductRTCID') this.productRtcId,
+    @JsonKey(name: 'ProductRTCQRCodeID') this.productRtcQrCodeId,
+    @JsonKey(name: 'DateBorrow') this.dateBorrow,
+    @JsonKey(name: 'DateReturnExpected') this.dateReturnExpected,
+    @JsonKey(name: 'DateReturn') this.dateReturn,
+    @JsonKey(name: 'PeopleID') this.peopleId,
+    @JsonKey(name: 'Project') this.project,
+    @JsonKey(name: 'Note') this.note,
+    @JsonKey(name: 'Status') this.status,
+    @JsonKey(name: 'NumberBorrow') this.numberBorrow,
+    @JsonKey(name: 'CreatedBy') this.createdBy,
+    @JsonKey(name: 'CreatedDate') this.createdDate,
+    @JsonKey(name: 'UpdatedBy') this.updatedBy,
+    @JsonKey(name: 'UpdatedDate') this.updatedDate,
+    @JsonKey(name: 'AdminConfirm') this.adminConfirm = false,
+    @JsonKey(name: 'BillExportTechnicalID') this.billExportTechnicalId,
+    @JsonKey(name: 'ProductRTCQRCode') this.productRtcQrCode,
+    @JsonKey(name: 'WarehouseID') this.warehouseId,
+    @JsonKey(name: 'IsDelete') this.isDelete = false,
+    @JsonKey(name: 'ProductLocationID') this.productLocationId,
+    @JsonKey(name: 'StatusPerson') this.statusPerson,
+    @JsonKey(name: 'ParentID') this.parentId,
+  });
+
+  factory _$ProductReturnHistoryDetailImpl.fromJson(
+    Map<String, dynamic> json,
+  ) => _$$ProductReturnHistoryDetailImplFromJson(json);
+
+  /// Id phiếu trả sản phẩm — dùng làm `HistoryId` khi duyệt.
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+
+  /// Id sản phẩm RTC.
+  @override
+  @JsonKey(name: 'ProductRTCID')
+  final int? productRtcId;
+
+  /// Id QR code sản phẩm.
+  @override
+  @JsonKey(name: 'ProductRTCQRCodeID')
+  final int? productRtcQrCodeId;
+
+  /// Thời điểm mượn (ISO).
+  @override
+  @JsonKey(name: 'DateBorrow')
+  final String? dateBorrow;
+
+  /// Hạn trả dự kiến (ISO).
+  @override
+  @JsonKey(name: 'DateReturnExpected')
+  final String? dateReturnExpected;
+
+  /// Thời điểm trả thực tế (ISO, null = chưa trả).
+  @override
+  @JsonKey(name: 'DateReturn')
+  final String? dateReturn;
+
+  /// Id người mượn.
+  @override
+  @JsonKey(name: 'PeopleID')
+  final int? peopleId;
+
+  /// Dự án sử dụng.
+  @override
+  @JsonKey(name: 'Project')
+  final String? project;
+
+  /// Ghi chú.
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+
+  /// Trạng thái phiếu.
+  @override
+  @JsonKey(name: 'Status')
+  final int? status;
+
+  /// Số lượng đã mượn.
+  @override
+  @JsonKey(name: 'NumberBorrow')
+  final double? numberBorrow;
+
+  /// Người tạo bản ghi.
+  @override
+  @JsonKey(name: 'CreatedBy')
+  final String? createdBy;
+
+  /// Thời điểm tạo bản ghi.
+  @override
+  @JsonKey(name: 'CreatedDate')
+  final String? createdDate;
+
+  /// Người cập nhật gần nhất.
+  @override
+  @JsonKey(name: 'UpdatedBy')
+  final String? updatedBy;
+
+  /// Thời điểm cập nhật gần nhất.
+  @override
+  @JsonKey(name: 'UpdatedDate')
+  final String? updatedDate;
+
+  /// Người quản lý đã xác nhận hay chưa.
+  @override
+  @JsonKey(name: 'AdminConfirm')
+  final bool adminConfirm;
+
+  /// Id phiếu xuất kho liên quan.
+  @override
+  @JsonKey(name: 'BillExportTechnicalID')
+  final int? billExportTechnicalId;
+
+  /// QR code sản phẩm.
+  @override
+  @JsonKey(name: 'ProductRTCQRCode')
+  final String? productRtcQrCode;
+
+  /// Id kho.
+  @override
+  @JsonKey(name: 'WarehouseID')
+  final int? warehouseId;
+
+  /// Bản ghi đã bị xoá hay chưa.
+  @override
+  @JsonKey(name: 'IsDelete')
+  final bool isDelete;
+
+  /// Id vị trí kho.
+  @override
+  @JsonKey(name: 'ProductLocationID')
+  final int? productLocationId;
+
+  /// Trạng thái người mượn.
+  @override
+  @JsonKey(name: 'StatusPerson')
+  final int? statusPerson;
+
+  /// Id phiếu cha (dùng cho phiếu gộp).
+  @override
+  @JsonKey(name: 'ParentID')
+  final int? parentId;
+
+  @override
+  String toString() {
+    return 'ProductReturnHistoryDetail(id: $id, productRtcId: $productRtcId, productRtcQrCodeId: $productRtcQrCodeId, dateBorrow: $dateBorrow, dateReturnExpected: $dateReturnExpected, dateReturn: $dateReturn, peopleId: $peopleId, project: $project, note: $note, status: $status, numberBorrow: $numberBorrow, createdBy: $createdBy, createdDate: $createdDate, updatedBy: $updatedBy, updatedDate: $updatedDate, adminConfirm: $adminConfirm, billExportTechnicalId: $billExportTechnicalId, productRtcQrCode: $productRtcQrCode, warehouseId: $warehouseId, isDelete: $isDelete, productLocationId: $productLocationId, statusPerson: $statusPerson, parentId: $parentId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProductReturnHistoryDetailImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.productRtcId, productRtcId) ||
+                other.productRtcId == productRtcId) &&
+            (identical(other.productRtcQrCodeId, productRtcQrCodeId) ||
+                other.productRtcQrCodeId == productRtcQrCodeId) &&
+            (identical(other.dateBorrow, dateBorrow) ||
+                other.dateBorrow == dateBorrow) &&
+            (identical(other.dateReturnExpected, dateReturnExpected) ||
+                other.dateReturnExpected == dateReturnExpected) &&
+            (identical(other.dateReturn, dateReturn) ||
+                other.dateReturn == dateReturn) &&
+            (identical(other.peopleId, peopleId) ||
+                other.peopleId == peopleId) &&
+            (identical(other.project, project) || other.project == project) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.numberBorrow, numberBorrow) ||
+                other.numberBorrow == numberBorrow) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedBy, updatedBy) ||
+                other.updatedBy == updatedBy) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.adminConfirm, adminConfirm) ||
+                other.adminConfirm == adminConfirm) &&
+            (identical(other.billExportTechnicalId, billExportTechnicalId) ||
+                other.billExportTechnicalId == billExportTechnicalId) &&
+            (identical(other.productRtcQrCode, productRtcQrCode) ||
+                other.productRtcQrCode == productRtcQrCode) &&
+            (identical(other.warehouseId, warehouseId) ||
+                other.warehouseId == warehouseId) &&
+            (identical(other.isDelete, isDelete) ||
+                other.isDelete == isDelete) &&
+            (identical(other.productLocationId, productLocationId) ||
+                other.productLocationId == productLocationId) &&
+            (identical(other.statusPerson, statusPerson) ||
+                other.statusPerson == statusPerson) &&
+            (identical(other.parentId, parentId) ||
+                other.parentId == parentId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+    runtimeType,
+    id,
+    productRtcId,
+    productRtcQrCodeId,
+    dateBorrow,
+    dateReturnExpected,
+    dateReturn,
+    peopleId,
+    project,
+    note,
+    status,
+    numberBorrow,
+    createdBy,
+    createdDate,
+    updatedBy,
+    updatedDate,
+    adminConfirm,
+    billExportTechnicalId,
+    productRtcQrCode,
+    warehouseId,
+    isDelete,
+    productLocationId,
+    statusPerson,
+    parentId,
+  ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProductReturnHistoryDetailImplCopyWith<_$ProductReturnHistoryDetailImpl>
+  get copyWith =>
+      __$$ProductReturnHistoryDetailImplCopyWithImpl<
+        _$ProductReturnHistoryDetailImpl
+      >(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProductReturnHistoryDetailImplToJson(this);
+  }
+}
+
+abstract class _ProductReturnHistoryDetail
+    implements ProductReturnHistoryDetail {
+  const factory _ProductReturnHistoryDetail({
+    @JsonKey(name: 'ID') final int? id,
+    @JsonKey(name: 'ProductRTCID') final int? productRtcId,
+    @JsonKey(name: 'ProductRTCQRCodeID') final int? productRtcQrCodeId,
+    @JsonKey(name: 'DateBorrow') final String? dateBorrow,
+    @JsonKey(name: 'DateReturnExpected') final String? dateReturnExpected,
+    @JsonKey(name: 'DateReturn') final String? dateReturn,
+    @JsonKey(name: 'PeopleID') final int? peopleId,
+    @JsonKey(name: 'Project') final String? project,
+    @JsonKey(name: 'Note') final String? note,
+    @JsonKey(name: 'Status') final int? status,
+    @JsonKey(name: 'NumberBorrow') final double? numberBorrow,
+    @JsonKey(name: 'CreatedBy') final String? createdBy,
+    @JsonKey(name: 'CreatedDate') final String? createdDate,
+    @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') final String? updatedDate,
+    @JsonKey(name: 'AdminConfirm') final bool adminConfirm,
+    @JsonKey(name: 'BillExportTechnicalID') final int? billExportTechnicalId,
+    @JsonKey(name: 'ProductRTCQRCode') final String? productRtcQrCode,
+    @JsonKey(name: 'WarehouseID') final int? warehouseId,
+    @JsonKey(name: 'IsDelete') final bool isDelete,
+    @JsonKey(name: 'ProductLocationID') final int? productLocationId,
+    @JsonKey(name: 'StatusPerson') final int? statusPerson,
+    @JsonKey(name: 'ParentID') final int? parentId,
+  }) = _$ProductReturnHistoryDetailImpl;
+
+  factory _ProductReturnHistoryDetail.fromJson(Map<String, dynamic> json) =
+      _$ProductReturnHistoryDetailImpl.fromJson;
+
+  @override
+  /// Id phiếu trả sản phẩm — dùng làm `HistoryId` khi duyệt.
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  /// Id sản phẩm RTC.
+  @JsonKey(name: 'ProductRTCID')
+  int? get productRtcId;
+  @override
+  /// Id QR code sản phẩm.
+  @JsonKey(name: 'ProductRTCQRCodeID')
+  int? get productRtcQrCodeId;
+  @override
+  /// Thời điểm mượn (ISO).
+  @JsonKey(name: 'DateBorrow')
+  String? get dateBorrow;
+  @override
+  /// Hạn trả dự kiến (ISO).
+  @JsonKey(name: 'DateReturnExpected')
+  String? get dateReturnExpected;
+  @override
+  /// Thời điểm trả thực tế (ISO, null = chưa trả).
+  @JsonKey(name: 'DateReturn')
+  String? get dateReturn;
+  @override
+  /// Id người mượn.
+  @JsonKey(name: 'PeopleID')
+  int? get peopleId;
+  @override
+  /// Dự án sử dụng.
+  @JsonKey(name: 'Project')
+  String? get project;
+  @override
+  /// Ghi chú.
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  /// Trạng thái phiếu.
+  @JsonKey(name: 'Status')
+  int? get status;
+  @override
+  /// Số lượng đã mượn.
+  @JsonKey(name: 'NumberBorrow')
+  double? get numberBorrow;
+  @override
+  /// Người tạo bản ghi.
+  @JsonKey(name: 'CreatedBy')
+  String? get createdBy;
+  @override
+  /// Thời điểm tạo bản ghi.
+  @JsonKey(name: 'CreatedDate')
+  String? get createdDate;
+  @override
+  /// Người cập nhật gần nhất.
+  @JsonKey(name: 'UpdatedBy')
+  String? get updatedBy;
+  @override
+  /// Thời điểm cập nhật gần nhất.
+  @JsonKey(name: 'UpdatedDate')
+  String? get updatedDate;
+  @override
+  /// Người quản lý đã xác nhận hay chưa.
+  @JsonKey(name: 'AdminConfirm')
+  bool get adminConfirm;
+  @override
+  /// Id phiếu xuất kho liên quan.
+  @JsonKey(name: 'BillExportTechnicalID')
+  int? get billExportTechnicalId;
+  @override
+  /// QR code sản phẩm.
+  @JsonKey(name: 'ProductRTCQRCode')
+  String? get productRtcQrCode;
+  @override
+  /// Id kho.
+  @JsonKey(name: 'WarehouseID')
+  int? get warehouseId;
+  @override
+  /// Bản ghi đã bị xoá hay chưa.
+  @JsonKey(name: 'IsDelete')
+  bool get isDelete;
+  @override
+  /// Id vị trí kho.
+  @JsonKey(name: 'ProductLocationID')
+  int? get productLocationId;
+  @override
+  /// Trạng thái người mượn.
+  @JsonKey(name: 'StatusPerson')
+  int? get statusPerson;
+  @override
+  /// Id phiếu cha (dùng cho phiếu gộp).
+  @JsonKey(name: 'ParentID')
+  int? get parentId;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProductReturnHistoryDetailImplCopyWith<_$ProductReturnHistoryDetailImpl>
+  get copyWith => throw _privateConstructorUsedError;
+}
