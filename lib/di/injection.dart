@@ -201,6 +201,10 @@ import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inve
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/data/repository/inventory_check_repo.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/data/repository/inventory_check_repo_impl.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/bloc/inventory_check_bloc.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/product_return_approval/data/datasource/service/product_return_approval_service.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/product_return_approval/data/repository/product_return_approval_repo.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/product_return_approval/data/repository/product_return_approval_repo_impl.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/product_return_approval/view/bloc/product_return_approval_bloc.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/service/sale_gdn_service.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repo_impl.dart';
@@ -401,6 +405,10 @@ void configureDependencies() {
     () => InventoryCheckService(getIt<Dio>()),
   );
 
+  getIt.registerLazySingleton<ProductReturnApprovalService>(
+    () => ProductReturnApprovalService(getIt<Dio>()),
+  );
+
   getIt.registerLazySingleton<SignatureService>(
     () => SignatureService(getIt<Dio>()),
   );
@@ -587,6 +595,10 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<InventoryCheckRepo>(
     () => InventoryCheckRepoImpl(getIt<InventoryCheckService>()),
+  );
+
+  getIt.registerLazySingleton<ProductReturnApprovalRepo>(
+    () => ProductReturnApprovalRepoImpl(getIt<ProductReturnApprovalService>()),
   );
 
   getIt.registerLazySingleton<SignatureRepo>(
@@ -943,6 +955,13 @@ getIt.registerLazySingleton<ApproveBookingGuestHouseBloc>(
   getIt.registerFactory<InventoryCheckBloc>(
     () => InventoryCheckBloc(
       getIt<InventoryCheckRepo>(),
+      getIt<LogUtils>(),
+    ),
+  );
+
+  getIt.registerFactory<ProductReturnApprovalBloc>(
+    () => ProductReturnApprovalBloc(
+      getIt<ProductReturnApprovalRepo>(),
       getIt<LogUtils>(),
     ),
   );

@@ -580,6 +580,16 @@ class ApiEndPoint {
   static const String getProductGroupRtcNew =
       '/ProductRTC/product-group-rtc-new';
 
+  /// Duyệt trả sản phẩm — nhân viên (kèm phòng ban & nhóm) được giao duyệt.
+  /// API: GET /borrow/get-employee-team-and-department
+  static const String getBorrowEmployeeTeamAndDepartment =
+      '/borrow/get-employee-team-and-department';
+
+  /// Duyệt trả sản phẩm — lịch sử mượn / trả sản phẩm.
+  /// API: GET /borrow/get-product-history?keyWords=&dateStart=&dateEnd=&warehouseID=&userID=&status=&isDeleted=&warehouseType=&page=&size=
+  static const String getBorrowProductHistory =
+      '/borrow/get-product-history';
+
   // Material Category
   static const String getMaterialCategories = '/MaterialCategory/get-material-categories';
 

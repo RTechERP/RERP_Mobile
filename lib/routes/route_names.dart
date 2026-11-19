@@ -320,6 +320,8 @@ class RouteNames {
       '/warehouse_demo_inventory_check/edit';
   static const warehouseDemoInventoryCheckSheet =
       '/warehouse_demo_inventory_check/sheet';
+  static const warehouseDemoProductReturnApproval =
+      '/warehouse_demo_product_return_approval';
 
   // Summary Work
   static const summaryWorkLeaving = '/summary-work/leaving';

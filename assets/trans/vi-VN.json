@@ -163,7 +163,8 @@
     "dan_phuong": "Đan Phượng"
   },
   "warehouse_demo": {
-    "inventory_check": "Kiểm kê"
+    "inventory_check": "Kiểm kê",
+    "product_return_approval": "Duyệt trả SP"
   },
   "warehouse_sale": {
     "grn": "Phiếu nhập",

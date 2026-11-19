@@ -540,6 +540,14 @@ class AppItemRegistry {
       tab: 'warehouse',
       route: RouteNames.warehouseDemoInventoryCheck,
     ),
+    AppItemModel(
+      id: 'warehouse_demo:product_return_approval',
+      name: 'warehouse_demo.product_return_approval'.tr(),
+      iconCodePoint: Icons.assignment_turned_in_outlined.codePoint,
+      iconFontFamily: 'MaterialIcons',
+      tab: 'warehouse',
+      route: RouteNames.warehouseDemoProductReturnApproval,
+    ),
   ];
 
   static final List<AppItemModel> all = [

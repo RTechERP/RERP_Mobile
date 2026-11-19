@@ -217,6 +217,7 @@ import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inve
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/pages/inventory_check_edit_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/pages/inventory_check_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/inventory_check/view/pages/inventory_check_sheet_screen.dart';
+import '../features/workplace/app/warehouse/pages/warehouse_demo/view/pages/product_return_approval/view/pages/product_return_approval_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/history_import_export/view/pages/history_import_export_screen.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
 import '../features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/view/pages/sale_gdn_detail_screen.dart';
@@ -1952,6 +1953,12 @@ class AppRouter {
           }
           return InventoryCheckSheetScreen(countId: extra);
         },
+      ),
+
+      // Warehouse Demo - Duyệt trả sản phẩm
+      GoRoute(
+        path: RouteNames.warehouseDemoProductReturnApproval,
+        builder: (context, state) => const ProductReturnApprovalScreen(),
       ),
 
       // Warehouse AGV
