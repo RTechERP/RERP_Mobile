@@ -26,14 +26,18 @@ abstract class _$NewsfeedStateCWProxy {
   NewsfeedState selectedNewsfeed(NewsletterItem? selectedNewsfeed);
 
   NewsfeedState selectedNewsfeedDetail(
-      NewsletterDetailItem? selectedNewsfeedDetail);
+    NewsletterDetailItem? selectedNewsfeedDetail,
+  );
 
   NewsfeedState selectedNewsfeedFiles(
-      List<NewsletterFileItem> selectedNewsfeedFiles);
+    List<NewsletterFileItem> selectedNewsfeedFiles,
+  );
 
   NewsfeedState detailStatus(BaseStateStatus detailStatus);
 
   NewsfeedState detailMessage(String? detailMessage);
+
+  NewsfeedState selectedCategory(NewsletterCategory selectedCategory);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NewsfeedState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -55,6 +59,7 @@ abstract class _$NewsfeedStateCWProxy {
     List<NewsletterFileItem>? selectedNewsfeedFiles,
     BaseStateStatus? detailStatus,
     String? detailMessage,
+    NewsletterCategory? selectedCategory,
   });
 }
 
@@ -99,13 +104,13 @@ class _$NewsfeedStateCWProxyImpl implements _$NewsfeedStateCWProxy {
 
   @override
   NewsfeedState selectedNewsfeedDetail(
-          NewsletterDetailItem? selectedNewsfeedDetail) =>
-      this(selectedNewsfeedDetail: selectedNewsfeedDetail);
+    NewsletterDetailItem? selectedNewsfeedDetail,
+  ) => this(selectedNewsfeedDetail: selectedNewsfeedDetail);
 
   @override
   NewsfeedState selectedNewsfeedFiles(
-          List<NewsletterFileItem> selectedNewsfeedFiles) =>
-      this(selectedNewsfeedFiles: selectedNewsfeedFiles);
+    List<NewsletterFileItem> selectedNewsfeedFiles,
+  ) => this(selectedNewsfeedFiles: selectedNewsfeedFiles);
 
   @override
   NewsfeedState detailStatus(BaseStateStatus detailStatus) =>
@@ -116,7 +121,10 @@ class _$NewsfeedStateCWProxyImpl implements _$NewsfeedStateCWProxy {
       this(detailMessage: detailMessage);
 
   @override
+  NewsfeedState selectedCategory(NewsletterCategory selectedCategory) =>
+      this(selectedCategory: selectedCategory);
 
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `NewsfeedState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -137,6 +145,7 @@ class _$NewsfeedStateCWProxyImpl implements _$NewsfeedStateCWProxy {
     Object? selectedNewsfeedFiles = const $CopyWithPlaceholder(),
     Object? detailStatus = const $CopyWithPlaceholder(),
     Object? detailMessage = const $CopyWithPlaceholder(),
+    Object? selectedCategory = const $CopyWithPlaceholder(),
   }) {
     return NewsfeedState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -157,15 +166,16 @@ class _$NewsfeedStateCWProxyImpl implements _$NewsfeedStateCWProxy {
           : calendar as CalendarItem?,
       selectedMonth:
           selectedMonth == const $CopyWithPlaceholder() || selectedMonth == null
-              ? _value.selectedMonth
-              // ignore: cast_nullable_to_non_nullable
-              : selectedMonth as int,
+          ? _value.selectedMonth
+          // ignore: cast_nullable_to_non_nullable
+          : selectedMonth as int,
       selectedYear:
           selectedYear == const $CopyWithPlaceholder() || selectedYear == null
-              ? _value.selectedYear
-              // ignore: cast_nullable_to_non_nullable
-              : selectedYear as int,
-      calendarStatus: calendarStatus == const $CopyWithPlaceholder() ||
+          ? _value.selectedYear
+          // ignore: cast_nullable_to_non_nullable
+          : selectedYear as int,
+      calendarStatus:
+          calendarStatus == const $CopyWithPlaceholder() ||
               calendarStatus == null
           ? _value.calendarStatus
           // ignore: cast_nullable_to_non_nullable
@@ -180,24 +190,30 @@ class _$NewsfeedStateCWProxyImpl implements _$NewsfeedStateCWProxy {
           : selectedNewsfeed as NewsletterItem?,
       selectedNewsfeedDetail:
           selectedNewsfeedDetail == const $CopyWithPlaceholder()
-              ? _value.selectedNewsfeedDetail
-              // ignore: cast_nullable_to_non_nullable
-              : selectedNewsfeedDetail as NewsletterDetailItem?,
+          ? _value.selectedNewsfeedDetail
+          // ignore: cast_nullable_to_non_nullable
+          : selectedNewsfeedDetail as NewsletterDetailItem?,
       selectedNewsfeedFiles:
           selectedNewsfeedFiles == const $CopyWithPlaceholder() ||
-                  selectedNewsfeedFiles == null
-              ? _value.selectedNewsfeedFiles
-              // ignore: cast_nullable_to_non_nullable
-              : selectedNewsfeedFiles as List<NewsletterFileItem>,
+              selectedNewsfeedFiles == null
+          ? _value.selectedNewsfeedFiles
+          // ignore: cast_nullable_to_non_nullable
+          : selectedNewsfeedFiles as List<NewsletterFileItem>,
       detailStatus:
           detailStatus == const $CopyWithPlaceholder() || detailStatus == null
-              ? _value.detailStatus
-              // ignore: cast_nullable_to_non_nullable
-              : detailStatus as BaseStateStatus,
+          ? _value.detailStatus
+          // ignore: cast_nullable_to_non_nullable
+          : detailStatus as BaseStateStatus,
       detailMessage: detailMessage == const $CopyWithPlaceholder()
           ? _value.detailMessage
           // ignore: cast_nullable_to_non_nullable
           : detailMessage as String?,
+      selectedCategory:
+          selectedCategory == const $CopyWithPlaceholder() ||
+              selectedCategory == null
+          ? _value.selectedCategory
+          // ignore: cast_nullable_to_non_nullable
+          : selectedCategory as NewsletterCategory,
     );
   }
 }

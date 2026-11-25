@@ -11,16 +11,27 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../../../../../base/bloc/index.dart';
 import '../../../../../../../common/app/app_config.dart';
-import '../../../../../../../common/app_theme/app_bar_common.dart';
 import '../../../../../../../common/app_theme/index.dart';
 import '../../../../../../../common/utils/dialog/dialog_service.dart';
 import '../../../../../../../di/injection.dart';
 import '../../../../../../base/network/errors/extension.dart';
 import '../../data/datasource/models/newsfeed_model.dart';
+import '../../data/datasource/models/newsletter_category.dart';
 import '../bloc/newsfeed_bloc.dart';
+import '../widgets/newsfeed_calendar_day_detail_sheet.dart';
+import '../widgets/newsfeed_calendar_month_card.dart';
+import '../widgets/newsfeed_category_tabs.dart';
 import '../widgets/newsfeed_calendar_widgets.dart';
 import '../widgets/newsfeed_html_content_view.dart';
 import '../widgets/newsfeed_month_picker.dart';
+import '../widgets/newsfeed_season_background.dart';
+import '../widgets/newsfeed_season_theme.dart';
+
+/// Tên hai tab chính của màn hình bảng tin.
+const _tabTitles = ['Bảng tin', 'Lịch làm việc'];
+
+/// Biểu tượng đi kèm tên tab, đổi theo tab đang mở.
+const _tabIcons = [Icons.campaign, Icons.calendar_month];
 
 class NewsFeedScreen extends StatelessWidget {
   const NewsFeedScreen({super.key});
@@ -45,9 +56,6 @@ class _NewsFeedViewState extends State<_NewsFeedView>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
   int _currentTabIndex = 0;
-
-  static const _tabTitles = ['Bảng tin', 'Lịch làm việc'];
-  static const _tabIcons = [Icons.campaign, Icons.calendar_month];
 
   @override
   void initState() {
@@ -74,88 +82,150 @@ class _NewsFeedViewState extends State<_NewsFeedView>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF0F2F5),
-      appBar: AppBarCommon(
-        automaticallyImplyLeading: false,
-        centerTitle: false,
-        title: Row(
-          children: [
-            Container(
-              width: 34,
-              height: 34,
-              decoration: BoxDecoration(
-                gradient: AppColors.gradientERP,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x1FEE4623),
-                    blurRadius: 10,
-                    offset: Offset(0, 4),
-                  ),
+    final palette = SeasonPalette.of(seasonOfMonth(DateTime.now().month));
+
+    return SeasonPaletteScope(
+      palette: palette,
+      child: Stack(
+        children: [
+          // Lop nen gradient + quang sang phu toan man hinh ke ca thanh tieu de.
+          Positioned.fill(child: SeasonParticleField(palette: palette)),
+          // `Scaffold` trong suot de nen gradient loai o tren loi len.
+          Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBarCommon(
+              automaticallyImplyLeading: false,
+              centerTitle: false,
+              backgroundColor: Colors.transparent,
+              foregroundColor: palette.onSurface,
+              // Nen kinh mo trang nhu cac the noi dung ben duoi de app bar
+              // dong mau voi phan con lai cua man hinh.
+              backgroundGradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.white.withValues(alpha: 0.1),
+                  palette.surface.withValues(alpha: 0.52),
                 ],
               ),
-              child: Icon(
-                _tabIcons[_currentTabIndex],
-                color: Colors.white,
-                size: 18,
-              ),
-            ),
-            const SizedBox(width: 10),
-            Text(
-              _tabTitles[_currentTabIndex],
-              style: const TextStyle(
-                color: AppColors.heading,
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(58),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppColors.bgCard,
-                borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: const Color(0xFFD9DEEA)),
-              ),
-              child: TabBar(
-                controller: _tabController,
-                indicatorSize: TabBarIndicatorSize.tab,
-                dividerColor: Colors.transparent,
-                labelColor: AppColors.primaryERP,
-                unselectedLabelColor: AppColors.gray,
-                splashBorderRadius: const BorderRadius.all(Radius.circular(14)),
-                indicator: const BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(14)),
-                  border: Border.fromBorderSide(
-                    BorderSide(color: AppColors.primaryERP, width: 1.2),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0x1FEE4623),
-                      blurRadius: 10,
-                      offset: Offset(0, 4),
+              title: Row(
+                children: [
+                  Container(
+                    width: 34,
+                    height: 34,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [palette.primary, palette.secondary],
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: palette.primary.withValues(alpha: 0.30),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                tabs: const [
-                  Tab(text: 'Bảng tin'),
-                  Tab(text: 'Lịch làm việc'),
+                    child: Icon(
+                      _tabIcons[_currentTabIndex],
+                      color: Colors.white,
+                      size: 18,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Flexible(
+                    child: Text(
+                      _tabTitles[_currentTabIndex],
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: palette.onSurface,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
                 ],
               ),
+              bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(58),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.62),
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(
+                        color: Colors.white.withValues(alpha: 0.85),
+                      ),
+                    ),
+                    child: TabBar(
+                      controller: _tabController,
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      dividerColor: Colors.transparent,
+                      labelColor: palette.primary,
+                      unselectedLabelColor: palette.onSurface.withValues(
+                        alpha: 0.55,
+                      ),
+                      splashBorderRadius: const BorderRadius.all(
+                        Radius.circular(14),
+                      ),
+                      indicator: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(14),
+                        ),
+                        border: Border.fromBorderSide(
+                          BorderSide(color: palette.primary, width: 1.2),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: palette.primary.withValues(alpha: 0.16),
+                            blurRadius: 10,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      tabs: const [
+                        Tab(text: 'Bảng tin'),
+                        Tab(text: 'Lịch làm việc'),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            body: TabBarView(
+              controller: _tabController,
+              children: const [_NewsfeedTab(), _WorkingCalendarTab()],
             ),
           ),
-        ),
+          // Hat theo mua ve de len ca man hinh ke ca thanh tieu de.
+          Positioned.fill(child: SeasonParticleLayer(palette: palette)),
+        ],
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: const [_NewsfeedTab(), _WorkingCalendarTab()],
-      ),
+    );
+  }
+}
+
+/// Bộ lọc nhóm tin (HCNS / MKT) hiển thị trên thanh tiêu đề.
+class _CategoryFilter extends StatelessWidget {
+  const _CategoryFilter();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<NewsfeedBloc, NewsfeedState>(
+      buildWhen: (previous, current) =>
+          previous.selectedCategory != current.selectedCategory ||
+          previous.newsfeeds != current.newsfeeds,
+      builder: (context, state) {
+        return NewsfeedCategoryFilter(
+          selected: state.selectedCategory,
+          countOf: state.countOfCategory,
+        );
+      },
     );
   }
 }
@@ -167,9 +237,14 @@ class _NewsfeedTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NewsfeedBloc, NewsfeedState>(
       builder: (context, state) {
+        final palette = SeasonPaletteScope.of(context);
+        final featuredNewsfeeds = state.featuredNewsfeeds;
+
         if (state.status == BaseStateStatus.loading &&
             state.newsfeeds.isEmpty) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(
+            child: CircularProgressIndicator(color: palette.primary),
+          );
         }
 
         if (state.status == BaseStateStatus.failed && state.newsfeeds.isEmpty) {
@@ -185,22 +260,20 @@ class _NewsfeedTab extends StatelessWidget {
         }
 
         return RefreshIndicator(
-          color: AppColors.primaryERP,
+          color: palette.primary,
           onRefresh: () async {
             context.read<NewsfeedBloc>().add(const NewsfeedEvent.refresh());
           },
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            itemCount: state.newsfeeds.length + 1,
-            separatorBuilder: (_, index) => index == 0
-                ? const SizedBox(height: 10)
-                : const SizedBox(height: 12),
+            itemCount: featuredNewsfeeds.length + 1,
+            separatorBuilder: (_, _) => const SizedBox(height: 12),
             itemBuilder: (context, index) {
               if (index == 0) {
-                return const _SectionHeader();
+                return _SectionHeader(category: state.selectedCategory);
               }
 
-              final item = state.newsfeeds[index - 1];
+              final item = featuredNewsfeeds[index - 1];
               return _FeedCard(item: item);
             },
           ),
@@ -218,13 +291,14 @@ class _WorkingCalendarTab extends StatelessWidget {
     return BlocBuilder<NewsfeedBloc, NewsfeedState>(
       builder: (context, state) {
         final monthDate = DateTime(state.selectedYear, state.selectedMonth);
-        final holidaysByDay = {
-          for (final holiday in state.holidays)
-            if (holiday.holidayDate != null) holiday.holidayDate!.day: holiday,
-        };
+        final holidaysByDay = state.holidaysByDay;
+        final companyEventsByDay = state.companyEventsByDay;
+        final workSaturdayDays = state.workSaturdayDays;
+        final offSaturdayDays = state.offSaturdayDays;
+        final palette = SeasonPaletteScope.of(context);
 
         return RefreshIndicator(
-          color: AppColors.primaryERP,
+          color: palette.primary,
           onRefresh: () async {
             context.read<NewsfeedBloc>().add(
               const NewsfeedEvent.refreshCalendar(),
@@ -234,36 +308,6 @@ class _WorkingCalendarTab extends StatelessWidget {
             physics: const AlwaysScrollableScrollPhysics(),
             padding: const EdgeInsets.all(16),
             children: [
-              CalendarToolbar(
-                selectedMonth: state.selectedMonth,
-                selectedYear: state.selectedYear,
-                onPreviousMonth: () {
-                  final previous = DateTime(
-                    state.selectedYear,
-                    state.selectedMonth - 1,
-                  );
-                  context.read<NewsfeedBloc>().add(
-                    NewsfeedEvent.changeCalendarMonth(
-                      month: previous.month,
-                      year: previous.year,
-                    ),
-                  );
-                },
-                onNextMonth: () {
-                  final next = DateTime(
-                    state.selectedYear,
-                    state.selectedMonth + 1,
-                  );
-                  context.read<NewsfeedBloc>().add(
-                    NewsfeedEvent.changeCalendarMonth(
-                      month: next.month,
-                      year: next.year,
-                    ),
-                  );
-                },
-                onPickMonthYear: () => _showMonthYearPicker(context, state),
-              ),
-              const SizedBox(height: 14),
               if (state.calendarStatus == BaseStateStatus.failed &&
                   state.holidays.isEmpty)
                 _NewsfeedError(
@@ -274,12 +318,41 @@ class _WorkingCalendarTab extends StatelessWidget {
                   ),
                 )
               else ...[
-                HolidayLegend(count: state.holidays.length),
+                const HolidayLegend(),
                 const SizedBox(height: 12),
                 CalendarMonthCard(
                   monthDate: monthDate,
                   holidaysByDay: holidaysByDay,
+                  companyEventsByDay: companyEventsByDay,
+                  workSaturdayDays: workSaturdayDays,
+                  offSaturdayDays: offSaturdayDays,
                   isLoading: state.calendarStatus == BaseStateStatus.loading,
+                  onTapDay: (date) => _showDayDetail(context, date, state),
+                  onPreviousMonth: () {
+                    final previous = DateTime(
+                      state.selectedYear,
+                      state.selectedMonth - 1,
+                    );
+                    context.read<NewsfeedBloc>().add(
+                      NewsfeedEvent.changeCalendarMonth(
+                        month: previous.month,
+                        year: previous.year,
+                      ),
+                    );
+                  },
+                  onNextMonth: () {
+                    final next = DateTime(
+                      state.selectedYear,
+                      state.selectedMonth + 1,
+                    );
+                    context.read<NewsfeedBloc>().add(
+                      NewsfeedEvent.changeCalendarMonth(
+                        month: next.month,
+                        year: next.year,
+                      ),
+                    );
+                  },
+                  onPickMonthYear: () => _showMonthYearPicker(context, state),
                 ),
               ],
             ],
@@ -305,6 +378,34 @@ class _WorkingCalendarTab extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  /// Mở chi tiết ngày được chọn: ngày nghỉ và sự kiện công ty của ngày đó.
+  Future<void> _showDayDetail(
+    BuildContext context,
+    DateTime date,
+    NewsfeedState state,
+  ) async {
+    final holidays = state.holidaysByDay[date.day] ?? const <HolidayItem>[];
+    final companyEvents = state.companyEventsByDay[date.day] ?? const [];
+    final isWorkSaturday = state.workSaturdayDays.contains(date.day);
+    final isOffSaturday = state.offSaturdayDays.contains(date.day);
+
+    if (holidays.isEmpty &&
+        companyEvents.isEmpty &&
+        !isWorkSaturday &&
+        !isOffSaturday) {
+      return;
+    }
+
+    await CalendarDayDetailSheet.show(
+      context,
+      date: date,
+      holidays: holidays,
+      companyEvents: companyEvents,
+      isWorkSaturday: isWorkSaturday,
+      isOffSaturday: isOffSaturday,
     );
   }
 }
@@ -351,6 +452,8 @@ class _NewsfeedEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = SeasonPaletteScope.of(context);
+
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -361,32 +464,32 @@ class _NewsfeedEmpty extends StatelessWidget {
               width: 76,
               height: 76,
               decoration: BoxDecoration(
-                color: AppColors.primaryERP.withValues(alpha: 0.08),
+                color: palette.primary.withValues(alpha: 0.10),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.newspaper_outlined,
                 size: 36,
-                color: AppColors.primaryERP,
+                color: palette.primary,
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'Chưa có bản tin nào',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
-                color: AppColors.heading,
+                color: palette.onSurface,
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
+            Text(
               'Bảng tin sẽ hiển thị tại đây khi có nội dung mới được cập nhật.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 14,
                 height: 1.5,
-                color: AppColors.gray,
+                color: palette.onSurface.withValues(alpha: 0.65),
               ),
             ),
           ],
@@ -397,29 +500,35 @@ class _NewsfeedEmpty extends StatelessWidget {
 }
 
 class _SectionHeader extends StatelessWidget {
-  const _SectionHeader();
+  final NewsletterCategory category;
+
+  const _SectionHeader({required this.category});
 
   @override
   Widget build(BuildContext context) {
+    final palette = SeasonPaletteScope.of(context);
+
     return Row(
       children: [
         Container(
           width: 4,
           height: 18,
           decoration: BoxDecoration(
-            color: AppColors.primaryERP,
+            color: palette.primary,
             borderRadius: BorderRadius.circular(999),
           ),
         ),
         const SizedBox(width: 10),
-        const Text(
+        Text(
           'Tin nổi bật',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,
-            color: AppColors.heading,
+            color: palette.onSurface,
           ),
         ),
+        const SizedBox(width: 8),
+        _CategoryFilter(),
       ],
     );
   }
@@ -432,6 +541,8 @@ class _FeedCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = SeasonPaletteScope.of(context);
+
     final label = item.newsletterTypeName?.trim().isNotEmpty == true
         ? item.newsletterTypeName!.trim()
         : 'Bản tin';
@@ -471,8 +582,8 @@ class _FeedCard extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Colors.white.withValues(alpha: 0.82),
-                    Colors.white.withValues(alpha: 0.58),
+                    Colors.white.withValues(alpha: 0.72),
+                    palette.surface.withValues(alpha: 0.42),
                   ],
                 ),
                 border: Border.all(
@@ -481,7 +592,7 @@ class _FeedCard extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: accentColor.withValues(alpha: 0.10),
+                    color: accentColor.withValues(alpha: 0.12),
                     blurRadius: 22,
                     offset: const Offset(0, 10),
                   ),
@@ -621,17 +732,19 @@ class _FeedCardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final palette = SeasonPaletteScope.of(context);
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
       child: Text(
         title,
         maxLines: 3,
         overflow: TextOverflow.ellipsis,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w700,
           height: 1.45,
-          color: AppColors.heading,
+          color: palette.onSurface,
         ),
       ),
     );

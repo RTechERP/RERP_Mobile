@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../../../../../common/app_theme/index.dart';
@@ -23,10 +24,8 @@ class NewsfeedMonthPicker extends StatefulWidget {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => NewsfeedMonthPicker(
-        selectedMonth: selectedMonth,
-        onApply: onApply,
-      ),
+      builder: (_) =>
+          NewsfeedMonthPicker(selectedMonth: selectedMonth, onApply: onApply),
     );
   }
 
@@ -46,7 +45,10 @@ class _NewsfeedMonthPickerState extends State<NewsfeedMonthPicker> {
 
   @override
   Widget build(BuildContext context) {
-    final displayMonth = DateFormat('MMMM yyyy', 'vi_VN').format(_selectedMonth);
+    final displayMonth = DateFormat(
+      'MMMM yyyy',
+      'vi_VN',
+    ).format(_selectedMonth);
 
     return Container(
       decoration: const BoxDecoration(
@@ -81,7 +83,10 @@ class _NewsfeedMonthPickerState extends State<NewsfeedMonthPicker> {
                   ),
                   const Spacer(),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.primaryERP.withValues(alpha: 0.08),
                       borderRadius: BorderRadius.circular(20),
@@ -100,20 +105,30 @@ class _NewsfeedMonthPickerState extends State<NewsfeedMonthPicker> {
             const SizedBox(height: 4),
             SizedBox(
               height: 252,
-              child: SfDateRangePicker(
-                view: DateRangePickerView.year,
-                showNavigationArrow: true,
-                selectionMode: DateRangePickerSelectionMode.single,
-                initialSelectedDate: _selectedMonth,
-                initialDisplayDate: _selectedMonth,
-                allowViewNavigation: false,
-                onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
-                  final date = args.value as DateTime;
-                  setState(() {
-                    _selectedMonth = DateTime(date.year, date.month);
-                  });
-                },
-                monthFormat: 'MM/yyyy',
+              child: SfDateRangePickerTheme(
+                data: SfDateRangePickerThemeData(
+                  // Mặc định theme Material 3 của Syncfusion tô nền lịch bằng
+                  // màu tím nhạt, khác với nền trắng của sheet nên phải ghi đè.
+                  backgroundColor: Colors.white,
+                  headerBackgroundColor: Colors.white,
+                  viewHeaderBackgroundColor: Colors.transparent,
+                ),
+                child: SfDateRangePicker(
+                  view: DateRangePickerView.year,
+                  showNavigationArrow: true,
+                  selectionMode: DateRangePickerSelectionMode.single,
+                  initialSelectedDate: _selectedMonth,
+                  initialDisplayDate: _selectedMonth,
+                  allowViewNavigation: false,
+                  onSelectionChanged:
+                      (DateRangePickerSelectionChangedArgs args) {
+                        final date = args.value as DateTime;
+                        setState(() {
+                          _selectedMonth = DateTime(date.year, date.month);
+                        });
+                      },
+                  monthFormat: 'MM/yyyy',
+                ),
               ),
             ),
             Padding(

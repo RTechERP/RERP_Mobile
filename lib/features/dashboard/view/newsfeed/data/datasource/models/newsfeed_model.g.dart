@@ -32,114 +32,184 @@ _$NewsletterItemImpl _$$NewsletterItemImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$NewsletterItemImplToJson(
-        _$NewsletterItemImpl instance) =>
-    <String, dynamic>{
-      'ID': instance.id,
-      'Code': instance.code,
-      'Title': instance.title,
-      'NewsletterContent': instance.newsletterContent,
-      'Type': instance.type,
-      'Image': instance.image,
-      'CreatedBy': instance.createdBy,
-      'CreatedDate': instance.createdDate?.toIso8601String(),
-      'UpdatedBy': instance.updatedBy,
-      'UpdatedDate': instance.updatedDate?.toIso8601String(),
-      'IsDeleted': instance.isDeleted,
-      'OriginImgPath': instance.originImgPath,
-      'ServerImgPath': instance.serverImgPath,
-      'IsPublish': instance.isPublish,
-      'NewsletterTypeCode': instance.newsletterTypeCode,
-      'NewsletterTypeName': instance.newsletterTypeName,
-      'IsPublishText': instance.isPublishText,
-    };
+  _$NewsletterItemImpl instance,
+) => <String, dynamic>{
+  'ID': instance.id,
+  'Code': instance.code,
+  'Title': instance.title,
+  'NewsletterContent': instance.newsletterContent,
+  'Type': instance.type,
+  'Image': instance.image,
+  'CreatedBy': instance.createdBy,
+  'CreatedDate': instance.createdDate?.toIso8601String(),
+  'UpdatedBy': instance.updatedBy,
+  'UpdatedDate': instance.updatedDate?.toIso8601String(),
+  'IsDeleted': instance.isDeleted,
+  'OriginImgPath': instance.originImgPath,
+  'ServerImgPath': instance.serverImgPath,
+  'IsPublish': instance.isPublish,
+  'NewsletterTypeCode': instance.newsletterTypeCode,
+  'NewsletterTypeName': instance.newsletterTypeName,
+  'IsPublishText': instance.isPublishText,
+};
 
 _$NewsletterDetailItemImpl _$$NewsletterDetailItemImplFromJson(
-        Map<String, dynamic> json) =>
-    _$NewsletterDetailItemImpl(
-      id: (json['ID'] as num?)?.toInt(),
-      code: json['Code'] as String?,
-      title: json['Title'] as String?,
-      newsletterContent: json['NewsletterContent'] as String?,
-      type: (json['Type'] as num?)?.toInt(),
-      image: json['Image'] as String?,
-      createdBy: json['CreatedBy'] as String?,
-      createdDate: json['CreatedDate'] == null
-          ? null
-          : DateTime.parse(json['CreatedDate'] as String),
-      updatedBy: json['UpdatedBy'] as String?,
-      updatedDate: json['UpdatedDate'] == null
-          ? null
-          : DateTime.parse(json['UpdatedDate'] as String),
-      isDeleted: json['IsDeleted'] as bool?,
-      originImgPath: json['OriginImgPath'] as String?,
-      serverImgPath: json['ServerImgPath'] as String?,
-      isPublish: json['IsPublish'] as bool?,
-    );
+  Map<String, dynamic> json,
+) => _$NewsletterDetailItemImpl(
+  id: (json['ID'] as num?)?.toInt(),
+  code: json['Code'] as String?,
+  title: json['Title'] as String?,
+  newsletterContent: json['NewsletterContent'] as String?,
+  type: (json['Type'] as num?)?.toInt(),
+  image: json['Image'] as String?,
+  createdBy: json['CreatedBy'] as String?,
+  createdDate: json['CreatedDate'] == null
+      ? null
+      : DateTime.parse(json['CreatedDate'] as String),
+  updatedBy: json['UpdatedBy'] as String?,
+  updatedDate: json['UpdatedDate'] == null
+      ? null
+      : DateTime.parse(json['UpdatedDate'] as String),
+  isDeleted: json['IsDeleted'] as bool?,
+  originImgPath: json['OriginImgPath'] as String?,
+  serverImgPath: json['ServerImgPath'] as String?,
+  isPublish: json['IsPublish'] as bool?,
+);
 
 Map<String, dynamic> _$$NewsletterDetailItemImplToJson(
-        _$NewsletterDetailItemImpl instance) =>
-    <String, dynamic>{
-      'ID': instance.id,
-      'Code': instance.code,
-      'Title': instance.title,
-      'NewsletterContent': instance.newsletterContent,
-      'Type': instance.type,
-      'Image': instance.image,
-      'CreatedBy': instance.createdBy,
-      'CreatedDate': instance.createdDate?.toIso8601String(),
-      'UpdatedBy': instance.updatedBy,
-      'UpdatedDate': instance.updatedDate?.toIso8601String(),
-      'IsDeleted': instance.isDeleted,
-      'OriginImgPath': instance.originImgPath,
-      'ServerImgPath': instance.serverImgPath,
-      'IsPublish': instance.isPublish,
-    };
+  _$NewsletterDetailItemImpl instance,
+) => <String, dynamic>{
+  'ID': instance.id,
+  'Code': instance.code,
+  'Title': instance.title,
+  'NewsletterContent': instance.newsletterContent,
+  'Type': instance.type,
+  'Image': instance.image,
+  'CreatedBy': instance.createdBy,
+  'CreatedDate': instance.createdDate?.toIso8601String(),
+  'UpdatedBy': instance.updatedBy,
+  'UpdatedDate': instance.updatedDate?.toIso8601String(),
+  'IsDeleted': instance.isDeleted,
+  'OriginImgPath': instance.originImgPath,
+  'ServerImgPath': instance.serverImgPath,
+  'IsPublish': instance.isPublish,
+};
 
 _$NewsletterFileItemImpl _$$NewsletterFileItemImplFromJson(
-        Map<String, dynamic> json) =>
-    _$NewsletterFileItemImpl(
-      id: (json['ID'] as num?)?.toInt(),
-      newsletterId: (json['NewsletterID'] as num?)?.toInt(),
-      fileName: json['FileName'] as String?,
-      originPath: json['OriginPath'] as String?,
-      serverPath: json['ServerPath'] as String?,
-      createdBy: json['CreatedBy'] as String?,
-      createdDate: json['CreatedDate'] == null
-          ? null
-          : DateTime.parse(json['CreatedDate'] as String),
-      updatedBy: json['UpdatedBy'] as String?,
-      updatedDate: json['UpdatedDate'] == null
-          ? null
-          : DateTime.parse(json['UpdatedDate'] as String),
-      isDeleted: json['IsDeleted'] as bool?,
-    );
+  Map<String, dynamic> json,
+) => _$NewsletterFileItemImpl(
+  id: (json['ID'] as num?)?.toInt(),
+  newsletterId: (json['NewsletterID'] as num?)?.toInt(),
+  fileName: json['FileName'] as String?,
+  originPath: json['OriginPath'] as String?,
+  serverPath: json['ServerPath'] as String?,
+  createdBy: json['CreatedBy'] as String?,
+  createdDate: json['CreatedDate'] == null
+      ? null
+      : DateTime.parse(json['CreatedDate'] as String),
+  updatedBy: json['UpdatedBy'] as String?,
+  updatedDate: json['UpdatedDate'] == null
+      ? null
+      : DateTime.parse(json['UpdatedDate'] as String),
+  isDeleted: json['IsDeleted'] as bool?,
+);
 
 Map<String, dynamic> _$$NewsletterFileItemImplToJson(
-        _$NewsletterFileItemImpl instance) =>
-    <String, dynamic>{
-      'ID': instance.id,
-      'NewsletterID': instance.newsletterId,
-      'FileName': instance.fileName,
-      'OriginPath': instance.originPath,
-      'ServerPath': instance.serverPath,
-      'CreatedBy': instance.createdBy,
-      'CreatedDate': instance.createdDate?.toIso8601String(),
-      'UpdatedBy': instance.updatedBy,
-      'UpdatedDate': instance.updatedDate?.toIso8601String(),
-      'IsDeleted': instance.isDeleted,
-    };
+  _$NewsletterFileItemImpl instance,
+) => <String, dynamic>{
+  'ID': instance.id,
+  'NewsletterID': instance.newsletterId,
+  'FileName': instance.fileName,
+  'OriginPath': instance.originPath,
+  'ServerPath': instance.serverPath,
+  'CreatedBy': instance.createdBy,
+  'CreatedDate': instance.createdDate?.toIso8601String(),
+  'UpdatedBy': instance.updatedBy,
+  'UpdatedDate': instance.updatedDate?.toIso8601String(),
+  'IsDeleted': instance.isDeleted,
+};
 
 _$CalendarItemImpl _$$CalendarItemImplFromJson(Map<String, dynamic> json) =>
     _$CalendarItemImpl(
       holidays: (json['holidays'] as List<dynamic>?)
           ?.map((e) => HolidayItem.fromJson(e as Map<String, dynamic>))
           .toList(),
+      scheduleWorkSaturdays: (json['scheduleWorkSaturdays'] as List<dynamic>?)
+          ?.map(
+            (e) => ScheduleWorkSaturdayItem.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+      companyEvents: (json['companyEvents'] as List<dynamic>?)
+          ?.map((e) => CompanyEventItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$CalendarItemImplToJson(_$CalendarItemImpl instance) =>
     <String, dynamic>{
       'holidays': instance.holidays,
+      'scheduleWorkSaturdays': instance.scheduleWorkSaturdays,
+      'companyEvents': instance.companyEvents,
     };
+
+_$CompanyEventItemImpl _$$CompanyEventItemImplFromJson(
+  Map<String, dynamic> json,
+) => _$CompanyEventItemImpl(
+  id: (json['ID'] as num?)?.toInt(),
+  eventDate: json['EventDate'] == null
+      ? null
+      : DateTime.parse(json['EventDate'] as String),
+  yearValue: (json['YearValue'] as num?)?.toInt(),
+  monthValue: (json['MonthValue'] as num?)?.toInt(),
+  dayValue: (json['DayValue'] as num?)?.toInt(),
+  note: json['Note'] as String?,
+  companyEventTypeId: (json['CompanyEventTypeID'] as num?)?.toInt(),
+  name: json['Name'] as String?,
+  code: json['Code'] as String?,
+  typeText: json['TypeText'] as String?,
+);
+
+Map<String, dynamic> _$$CompanyEventItemImplToJson(
+  _$CompanyEventItemImpl instance,
+) => <String, dynamic>{
+  'ID': instance.id,
+  'EventDate': instance.eventDate?.toIso8601String(),
+  'YearValue': instance.yearValue,
+  'MonthValue': instance.monthValue,
+  'DayValue': instance.dayValue,
+  'Note': instance.note,
+  'CompanyEventTypeID': instance.companyEventTypeId,
+  'Name': instance.name,
+  'Code': instance.code,
+  'TypeText': instance.typeText,
+};
+
+_$ScheduleWorkSaturdayItemImpl _$$ScheduleWorkSaturdayItemImplFromJson(
+  Map<String, dynamic> json,
+) => _$ScheduleWorkSaturdayItemImpl(
+  id: (json['ID'] as num?)?.toInt(),
+  dateValue: json['DateValue'] == null
+      ? null
+      : DateTime.parse(json['DateValue'] as String),
+  status: json['Status'] as bool?,
+  workDay: (json['WorkDay'] as num?)?.toInt(),
+  workMonth: (json['WorkMonth'] as num?)?.toInt(),
+  workYear: (json['WorkYear'] as num?)?.toInt(),
+  isApproved: json['IsApproved'] as bool?,
+  note: json['Note'] as String?,
+);
+
+Map<String, dynamic> _$$ScheduleWorkSaturdayItemImplToJson(
+  _$ScheduleWorkSaturdayItemImpl instance,
+) => <String, dynamic>{
+  'ID': instance.id,
+  'DateValue': instance.dateValue?.toIso8601String(),
+  'Status': instance.status,
+  'WorkDay': instance.workDay,
+  'WorkMonth': instance.workMonth,
+  'WorkYear': instance.workYear,
+  'IsApproved': instance.isApproved,
+  'Note': instance.note,
+};
 
 _$HolidayItemImpl _$$HolidayItemImplFromJson(Map<String, dynamic> json) =>
     _$HolidayItemImpl(

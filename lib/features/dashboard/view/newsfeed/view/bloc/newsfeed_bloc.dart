@@ -7,6 +7,7 @@ import '../../../../../../../base/bloc/index.dart';
 import '../../../../../../../base/network/errors/extension.dart';
 import '../../../../../../../common/logger/index.dart';
 import '../../data/datasource/models/newsfeed_model.dart';
+import '../../data/datasource/models/newsletter_category.dart';
 import '../../data/repository/newsfeed_repo.dart';
 
 part 'newsfeed_event.dart';
@@ -29,11 +30,8 @@ class NewsfeedBloc extends BaseBloc<NewsfeedEvent, NewsfeedState> {
           month: state.selectedMonth,
           year: state.selectedYear,
         ),
-        changeCalendarMonth: (month, year) => _loadCalendar(
-          emit,
-          month: month,
-          year: year,
-        ),
+        changeCalendarMonth: (month, year) =>
+            _loadCalendar(emit, month: month, year: year),
         refreshCalendar: () => _loadCalendar(
           emit,
           month: state.selectedMonth,
@@ -41,6 +39,7 @@ class NewsfeedBloc extends BaseBloc<NewsfeedEvent, NewsfeedState> {
         ),
         loadNewsfeedDetail: (item) => _loadNewsfeedDetail(emit, item: item),
         clearNewsfeedDetail: () => _clearNewsfeedDetail(emit),
+        changeCategory: (category) => _changeCategory(emit, category: category),
       );
     });
   }
@@ -92,7 +91,9 @@ class NewsfeedBloc extends BaseBloc<NewsfeedEvent, NewsfeedState> {
       state.copyWith(
         selectedMonth: month,
         selectedYear: year,
-        calendarStatus: showLoading ? BaseStateStatus.loading : state.calendarStatus,
+        calendarStatus: showLoading
+            ? BaseStateStatus.loading
+            : state.calendarStatus,
         calendarMessage: null,
       ),
     );
@@ -204,5 +205,17 @@ class NewsfeedBloc extends BaseBloc<NewsfeedEvent, NewsfeedState> {
         detailMessage: null,
       ),
     );
+  }
+
+  /// Đổi nhóm tin đang xem ở tab "Tin nổi bật".
+  ///
+  /// Chỉ đổi lọc trên client vì API `/newsletter/get-limit-newsletter` trả về
+  /// toàn bộ danh sách kèm `NewsletterTypeCode` của mỗi tin.
+  Future<void> _changeCategory(
+    Emitter<NewsfeedState> emit, {
+    required NewsletterCategory category,
+  }) async {
+    if (state.selectedCategory == category) return;
+    emit(state.copyWith(selectedCategory: category));
   }
 }

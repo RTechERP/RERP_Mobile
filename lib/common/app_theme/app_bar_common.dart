@@ -7,6 +7,13 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
   final bool centerTitle;
   final bool automaticallyImplyLeading;
   final PreferredSizeWidget? bottom;
+  final Color backgroundColor;
+  final Color? foregroundColor;
+
+  /// Gradient nền thanh tiêu đề. Khi có giá trị, nó được ưu tiên hơn
+  /// [backgroundColor].
+  final Gradient? backgroundGradient;
+
   const AppBarCommon({
     super.key,
     this.title,
@@ -15,6 +22,9 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
     this.centerTitle = true,
     this.automaticallyImplyLeading = true,
     this.bottom,
+    this.backgroundColor = Colors.white,
+    this.foregroundColor,
+    this.backgroundGradient,
   });
 
   @override
@@ -26,8 +36,12 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: automaticallyImplyLeading,
       elevation: 0,
       scrolledUnderElevation: 0,
-      backgroundColor: Colors.white,
-      surfaceTintColor: Colors.white,
+      backgroundColor: backgroundColor,
+      foregroundColor: foregroundColor,
+      surfaceTintColor: backgroundColor,
+      flexibleSpace: backgroundGradient == null
+          ? null
+          : Container(decoration: BoxDecoration(gradient: backgroundGradient)),
       leading: (automaticallyImplyLeading && onBackTap != null)
           ? IconButton(
               icon: const Icon(Icons.arrow_back_ios_new),
