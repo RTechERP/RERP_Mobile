@@ -171,7 +171,6 @@ DateTime _normalizeToMinute(DateTime dt) =>
       final approverRes = await _workTripRepo.getApprover();
       final typeRes = await _workTripRepo.getWorkTripType();
       final vehicleRes = await _workTripRepo.getWorkTripVehicleType();
-      final projectRes = await _workTripRepo.getWorkTripProject();
       final fillApproverRes = await _workTripRepo.getFillApprover(
         employeeID: employeeId,
         tableName: 'EmployeeBussiness',
@@ -184,26 +183,33 @@ DateTime _normalizeToMinute(DateTime dt) =>
       vehicleRes.fold(
           (l) => _log.logE('getWorkTripVehicleType failed: $l'),
           (r) => vehicles = r);
-      projectRes.fold(
-          (l) => _log.logE('getWorkTripProject failed: $l'),
-          (r) => projects = r);
       fillApproverRes.fold(
           (l) => _log.logE('getFillApprover failed: $l'),
           (r) => fillApprover = r);
-
-      await WorkTripRepository.saveInitAddCache(
-        employeeId: employeeId,
-        approvers: approvers,
-        projects: projects,
-        types: types,
-        vehicles: vehicles,
-        fillApprover: fillApprover,
-        log: _log,
-      );
     }
 
+    // Luôn gọi API lấy danh sách dự án mới nhất — cache chỉ dùng làm
+    // fallback khi API lỗi, tránh mất dự án vừa được tạo.
+    final projectRes = await _workTripRepo.getWorkTripProject();
+    projectRes.fold(
+        (l) => _log.logE('getWorkTripProject failed: $l'),
+        (r) => projects = r);
+
+    await WorkTripRepository.saveInitAddCache(
+      employeeId: employeeId,
+      approvers: approvers,
+      projects: projects,
+      types: types,
+      vehicles: vehicles,
+      fillApprover: fillApprover,
+      log: _log,
+    );
+
     // Emit lookup data vào state nếu chưa có hoặc cache miss (force update)
-    if (approvers.isNotEmpty || types.isNotEmpty || vehicles.isNotEmpty) {
+    if (approvers.isNotEmpty ||
+        types.isNotEmpty ||
+        vehicles.isNotEmpty ||
+        projects.isNotEmpty) {
       emit(state.copyWith(
         approvers: approvers,
         workTripProjects: projects,
@@ -253,7 +259,6 @@ DateTime _normalizeToMinute(DateTime dt) =>
           approvers = cached.approvers;
           types = cached.types;
           vehicles = cached.vehicles;
-          projects = cached.projects;
           fillApprover = cached.fillApprover;
         } else {
           _log.logI('WorkTripBloc initAdd: cache miss — calling API');
@@ -261,7 +266,6 @@ DateTime _normalizeToMinute(DateTime dt) =>
           final approverRes = await _workTripRepo.getApprover();
           final typeRes = await _workTripRepo.getWorkTripType();
           final vehicleRes = await _workTripRepo.getWorkTripVehicleType();
-          final projectRes = await _workTripRepo.getWorkTripProject();
           final fillApproverRes = await _workTripRepo.getFillApprover(
             employeeID: user.employeeId,
             tableName: 'EmployeeBussiness',
@@ -273,22 +277,26 @@ DateTime _normalizeToMinute(DateTime dt) =>
               (r) => types = r);
           vehicleRes.fold((l) => _log.logE('getVehicle failed: $l'),
               (r) => vehicles = r);
-          projectRes.fold((l) => _log.logE('getProject failed: $l'),
-              (r) => projects = r);
           fillApproverRes.fold((l) => _log.logE('getFillApprover failed: $l'),
               (r) => fillApprover = r);
-
-          await WorkTripRepository.saveInitAddCache(
-            employeeId: user.employeeId,
-            approvers: approvers,
-            projects: projects,
-            types: types,
-            vehicles: vehicles,
-            fillApprover: fillApprover,
-            log: _log,
-          );
         }
       }
+
+      // Luôn gọi API lấy danh sách dự án mới nhất — cache chỉ dùng làm
+      // fallback khi API lỗi, tránh mất dự án vừa được tạo.
+      final projectRes = await _workTripRepo.getWorkTripProject();
+      projectRes.fold((l) => _log.logE('getProject failed: $l'),
+          (r) => projects = r);
+
+      await WorkTripRepository.saveInitAddCache(
+        employeeId: user.employeeId,
+        approvers: approvers,
+        projects: projects,
+        types: types,
+        vehicles: vehicles,
+        fillApprover: fillApprover,
+        log: _log,
+      );
 
       // Luôn tải danh sách department IDs từ API
       if (saleDepartmentIds.isEmpty) {

@@ -8,6 +8,9 @@ import 'package:rtc_erp/base/network/errors/extension.dart';
 
 import '../../../../common/logger/index.dart';
 import '../../../../di/injection.dart';
+import '../../../workplace/app/reg_general/view/pages/booking_vehicle/data/repository/booking_vehicle_repository.dart';
+import '../../../workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/repository/sale_gdn_repository.dart';
+import '../../../workplace/data/repository/project_cache_repository.dart';
 import '../datasource/models/user_model.dart';
 import 'auth_repo.dart';
 
@@ -274,8 +277,19 @@ class AuthRepository {
   }
 
   /// Xóa toàn bộ auth data (token + user) khỏi SharedPreferences.
+  ///
+  /// Đồng thời xóa cache dự án của mọi chức năng để không sót dữ liệu của
+  /// user trước cho user sau khi đăng nhập lại.
   static Future<void> clearAll({LogUtils? log}) async {
     await clearToken(log: log);
     await clearUser(log: log);
+
+    // Xoá cache dự án của tất cả các chức năng (tech, reg_general, reg_work).
+    await ProjectCacheRepository.clearAllProjects(log: log);
+
+    // Xoá in-memory cache (RAM) — SharedPreferences đã xoá nhưng các biến
+    // static vẫn giữ list của user trước.
+    BookingVehicleRepository.clearInMemoryCache();
+    await SaleGdnRepository.clearLookupCache(log: log);
   }
 }

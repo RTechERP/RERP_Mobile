@@ -1,14 +1,14 @@
-import 'dart:convert';
-
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../../../common/logger/index.dart';
+import '../../../../data/repository/project_cache_repository.dart';
 import '../datasource/models/report_model.dart';
 
+/// Cache danh sách dự án cho feature Reports (tech / ad / agv).
+///
+/// Dùng chung [ProjectCacheRepository] với các chức năng khác để cache có
+/// một nguồn quản lý duy nhất — key `cached_projects` được khai báo trong
+/// [ProjectCacheKeys] để xoá tập trung khi đăng xuất.
 class ReportRepository {
   ReportRepository._();
-
-  static const _projectKey = 'cached_projects';
 
   /// ==========================
   /// SAVE PROJECT LIST
@@ -17,12 +17,11 @@ class ReportRepository {
     required List<ProjectResponse> projects,
     LogUtils? log,
   }) async {
-    final prefs = await SharedPreferences.getInstance();
-
-    final jsonList = projects.map((e) => e.toJson()).toList();
-    final raw = jsonEncode(jsonList);
-
-    await prefs.setString(_projectKey, raw);
+    await ProjectCacheRepository.saveProjects(
+      cacheKey: ProjectCacheKeys.reports,
+      projects: projects,
+      toJson: (e) => e.toJson(),
+    );
 
     log?.logI('Projects saved: ${projects.length}');
   }
@@ -31,35 +30,26 @@ class ReportRepository {
   /// GET PROJECT LIST
   /// ==========================
   static Future<List<ProjectResponse>> getProjects({LogUtils? log}) async {
-    final prefs = await SharedPreferences.getInstance();
+    final projects = await ProjectCacheRepository.getProjects(
+      cacheKey: ProjectCacheKeys.reports,
+      fromJson: ProjectResponse.fromJson,
+    );
 
-    final raw = prefs.getString(_projectKey);
-    if (raw == null || raw.isEmpty) {
+    if (projects.isEmpty) {
       log?.logW('No cached projects found');
-      return [];
-    }
-
-    try {
-      final List list = jsonDecode(raw);
-      final projects = list
-          .map((e) => ProjectResponse.fromJson(e as Map<String, dynamic>))
-          .toList();
-
+    } else {
       log?.logI('Projects loaded: ${projects.length}');
-      return projects;
-    } catch (e) {
-      log?.logE('Parse cached projects failed: $e');
-      return [];
     }
+    return projects;
   }
 
   /// ==========================
   /// CLEAR PROJECT CACHE
   /// ==========================
   static Future<void> clearProjects({LogUtils? log}) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_projectKey);
-
-    log?.logI('Projects cache cleared');
+    await ProjectCacheRepository.clearProjects(
+      cacheKey: ProjectCacheKeys.reports,
+      log: log,
+    );
   }
 }

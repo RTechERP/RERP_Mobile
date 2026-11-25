@@ -126,14 +126,6 @@ class WorkCategoryBloc extends BaseBloc<WorkCategoryEvent, WorkCategoryState> {
   }
 
   Future<void> _onInitAdd(Emitter<WorkCategoryState> emit) async {
-    if (state.assigners.isNotEmpty &&
-        state.projects.isNotEmpty &&
-        state.projectTypes.isNotEmpty) {
-      _log.logI('ℹ️ WorkCategoryBloc initAdd skipped: data already cached');
-      emit(state.copyWith(status: BaseStateStatus.success));
-      return;
-    }
-
     if (_isInitAddInFlight) {
       _log.logI('ℹ️ WorkCategoryBloc initAdd skipped: request in-flight');
       return;
@@ -158,81 +150,72 @@ class WorkCategoryBloc extends BaseBloc<WorkCategoryEvent, WorkCategoryState> {
       final cachedAssigners = await localStorage.get<String>(
         PrefKeys.workAssigners,
       );
-      final cachedProjects = await localStorage.get<String>(
-        PrefKeys.workProjects,
-      );
       final cachedProjectTypes = await localStorage.get<String>(
         PrefKeys.workProjectTypes,
       );
 
-      if (cachedAssigners != null &&
-          cachedProjects != null &&
-          cachedProjectTypes != null) {
+      var assigners = <WorkAssignItem>[];
+      int? defaultAssignerId;
+      var projectTypes = <WorkProjectTypeItem>[];
+      String? errorMsg;
+
+      // Assigner + loại hạng mục dùng cache cục bộ (không phải dự án).
+      if (cachedAssigners != null && cachedProjectTypes != null) {
         try {
           final assignerResponse = WorkAssignResponse.fromJson(
             jsonDecode(cachedAssigners),
           );
-          final projectList = (jsonDecode(cachedProjects) as List)
-              .map((e) => WorkProjectItem.fromJson(e as Map<String, dynamic>))
-              .toList();
           final projectTypeList = (jsonDecode(cachedProjectTypes) as List)
               .map(
                 (e) => WorkProjectTypeItem.fromJson(e as Map<String, dynamic>),
               )
               .toList();
 
-          _log.logI('✅ WorkCategoryBloc initAdd success from local cache');
-          emit(
-            state.copyWith(
-              status: BaseStateStatus.success,
-              assigners: assignerResponse.rows,
-              defaultAssignerId: assignerResponse.employeeRequest,
-              projects: projectList,
-              projectTypes: projectTypeList,
-              employeeId: user.employeeId,
-              loginName: user.loginName,
-            ),
-          );
-          return;
+          assigners = assignerResponse.rows;
+          defaultAssignerId = assignerResponse.employeeRequest;
+          projectTypes = projectTypeList;
         } catch (e) {
           _log.logE('Error decoding cache: $e');
         }
       }
 
-      final futureAssigner = _workCategoryRepo.getAssigner();
-      final futureProject = _workCategoryRepo.getWorkProject();
-      final futureProjectType = _workCategoryRepo.getWorkProjectType();
-
-      await Future.wait([futureAssigner, futureProject, futureProjectType]);
-
-      final assignerRes = await futureAssigner;
-      final projectRes = await futureProject;
-      final projectTypeRes = await futureProjectType;
-
-      var assigners = <WorkAssignItem>[];
-      int? defaultAssignerId;
-      var projects = <WorkProjectItem>[];
-      var projectTypes = <WorkProjectTypeItem>[];
-      String? errorMsg;
-
-      assignerRes.fold((l) => errorMsg = l.getErrorMessage, (r) {
-        assigners = r.rows;
-        defaultAssignerId = r.employeeRequest;
-        localStorage.save(PrefKeys.workAssigners, jsonEncode(r.toJson()));
-      });
-      if (errorMsg != null) {
-        _log.logE('❌ WorkCategoryBloc initAdd getAssigner failed: $errorMsg');
-        emit(state.copyWith(status: BaseStateStatus.failed, message: errorMsg));
-        return;
+      if (assigners.isEmpty) {
+        final assignerRes = await _workCategoryRepo.getAssigner();
+        assignerRes.fold((l) => errorMsg = l.getErrorMessage, (r) {
+          assigners = r.rows;
+          defaultAssignerId = r.employeeRequest;
+          localStorage.save(PrefKeys.workAssigners, jsonEncode(r.toJson()));
+        });
+        if (errorMsg != null) {
+          _log.logE('❌ WorkCategoryBloc initAdd getAssigner failed: $errorMsg');
+          emit(state.copyWith(status: BaseStateStatus.failed, message: errorMsg));
+          return;
+        }
       }
 
-      projectRes.fold((l) => errorMsg = l.getErrorMessage, (r) {
-        projects = r;
-        localStorage.save(
-          PrefKeys.workProjects,
-          jsonEncode(r.map((e) => e.toJson()).toList()),
-        );
-      });
+      if (projectTypes.isEmpty) {
+        final projectTypeRes = await _workCategoryRepo.getWorkProjectType();
+        projectTypeRes.fold((l) => errorMsg = l.getErrorMessage, (r) {
+          projectTypes = r;
+          localStorage.save(
+            PrefKeys.workProjectTypes,
+            jsonEncode(r.map((e) => e.toJson()).toList()),
+          );
+        });
+        if (errorMsg != null) {
+          _log.logE(
+            '❌ WorkCategoryBloc initAdd getWorkProjectType failed: $errorMsg',
+          );
+          emit(state.copyWith(status: BaseStateStatus.failed, message: errorMsg));
+          return;
+        }
+      }
+
+      // Luôn gọi API lấy danh sách dự án mới nhất — cache chỉ dùng làm
+      // fallback khi API lỗi, tránh mất dự án vừa được tạo.
+      final projectRes = await _workCategoryRepo.getWorkProject();
+      var projects = <WorkProjectItem>[];
+      projectRes.fold((l) => errorMsg = l.getErrorMessage, (r) => projects = r);
       if (errorMsg != null) {
         _log.logE(
           '❌ WorkCategoryBloc initAdd getWorkProject failed: $errorMsg',
@@ -240,21 +223,10 @@ class WorkCategoryBloc extends BaseBloc<WorkCategoryEvent, WorkCategoryState> {
         emit(state.copyWith(status: BaseStateStatus.failed, message: errorMsg));
         return;
       }
-
-      projectTypeRes.fold((l) => errorMsg = l.getErrorMessage, (r) {
-        projectTypes = r;
-        localStorage.save(
-          PrefKeys.workProjectTypes,
-          jsonEncode(r.map((e) => e.toJson()).toList()),
-        );
-      });
-      if (errorMsg != null) {
-        _log.logE(
-          '❌ WorkCategoryBloc initAdd getWorkProjectType failed: $errorMsg',
-        );
-        emit(state.copyWith(status: BaseStateStatus.failed, message: errorMsg));
-        return;
-      }
+      localStorage.save(
+        PrefKeys.workProjects,
+        jsonEncode(projects.map((e) => e.toJson()).toList()),
+      );
 
       _log.logI('✅ WorkCategoryBloc initAdd success');
       emit(

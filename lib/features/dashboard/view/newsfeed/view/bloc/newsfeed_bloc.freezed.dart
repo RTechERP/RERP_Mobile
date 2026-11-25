@@ -12,8 +12,7 @@ part of 'newsfeed_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$NewsfeedEvent {
@@ -27,7 +26,8 @@ mixin _$NewsfeedEvent {
     required TResult Function(NewsletterItem item) loadNewsfeedDetail,
     required TResult Function() clearNewsfeedDetail,
     required TResult Function(NewsletterCategory category) changeCategory,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
@@ -38,7 +38,8 @@ mixin _$NewsfeedEvent {
     TResult? Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult? Function()? clearNewsfeedDetail,
     TResult? Function(NewsletterCategory category)? changeCategory,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
@@ -50,7 +51,8 @@ mixin _$NewsfeedEvent {
     TResult Function()? clearNewsfeedDetail,
     TResult Function(NewsletterCategory category)? changeCategory,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
@@ -61,7 +63,8 @@ mixin _$NewsfeedEvent {
     required TResult Function(_LoadNewsfeedDetail value) loadNewsfeedDetail,
     required TResult Function(_ClearNewsfeedDetail value) clearNewsfeedDetail,
     required TResult Function(_ChangeCategory value) changeCategory,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
@@ -72,7 +75,8 @@ mixin _$NewsfeedEvent {
     TResult? Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult? Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
     TResult? Function(_ChangeCategory value)? changeCategory,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
@@ -84,15 +88,15 @@ mixin _$NewsfeedEvent {
     TResult Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
     TResult Function(_ChangeCategory value)? changeCategory,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $NewsfeedEventCopyWith<$Res> {
   factory $NewsfeedEventCopyWith(
-    NewsfeedEvent value,
-    $Res Function(NewsfeedEvent) then,
-  ) = _$NewsfeedEventCopyWithImpl<$Res, NewsfeedEvent>;
+          NewsfeedEvent value, $Res Function(NewsfeedEvent) then) =
+      _$NewsfeedEventCopyWithImpl<$Res, NewsfeedEvent>;
 }
 
 /// @nodoc
@@ -109,9 +113,8 @@ class _$NewsfeedEventCopyWithImpl<$Res, $Val extends NewsfeedEvent>
 /// @nodoc
 abstract class _$$InitImplCopyWith<$Res> {
   factory _$$InitImplCopyWith(
-    _$InitImpl value,
-    $Res Function(_$InitImpl) then,
-  ) = __$$InitImplCopyWithImpl<$Res>;
+          _$InitImpl value, $Res Function(_$InitImpl) then) =
+      __$$InitImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -119,7 +122,7 @@ class __$$InitImplCopyWithImpl<$Res>
     extends _$NewsfeedEventCopyWithImpl<$Res, _$InitImpl>
     implements _$$InitImplCopyWith<$Res> {
   __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
-    : super(_value, _then);
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -247,9 +250,8 @@ abstract class _Init implements NewsfeedEvent {
 /// @nodoc
 abstract class _$$RefreshImplCopyWith<$Res> {
   factory _$$RefreshImplCopyWith(
-    _$RefreshImpl value,
-    $Res Function(_$RefreshImpl) then,
-  ) = __$$RefreshImplCopyWithImpl<$Res>;
+          _$RefreshImpl value, $Res Function(_$RefreshImpl) then) =
+      __$$RefreshImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -257,9 +259,8 @@ class __$$RefreshImplCopyWithImpl<$Res>
     extends _$NewsfeedEventCopyWithImpl<$Res, _$RefreshImpl>
     implements _$$RefreshImplCopyWith<$Res> {
   __$$RefreshImplCopyWithImpl(
-    _$RefreshImpl _value,
-    $Res Function(_$RefreshImpl) _then,
-  ) : super(_value, _then);
+      _$RefreshImpl _value, $Res Function(_$RefreshImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -387,9 +388,8 @@ abstract class _Refresh implements NewsfeedEvent {
 /// @nodoc
 abstract class _$$LoadCalendarImplCopyWith<$Res> {
   factory _$$LoadCalendarImplCopyWith(
-    _$LoadCalendarImpl value,
-    $Res Function(_$LoadCalendarImpl) then,
-  ) = __$$LoadCalendarImplCopyWithImpl<$Res>;
+          _$LoadCalendarImpl value, $Res Function(_$LoadCalendarImpl) then) =
+      __$$LoadCalendarImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -397,9 +397,8 @@ class __$$LoadCalendarImplCopyWithImpl<$Res>
     extends _$NewsfeedEventCopyWithImpl<$Res, _$LoadCalendarImpl>
     implements _$$LoadCalendarImplCopyWith<$Res> {
   __$$LoadCalendarImplCopyWithImpl(
-    _$LoadCalendarImpl _value,
-    $Res Function(_$LoadCalendarImpl) _then,
-  ) : super(_value, _then);
+      _$LoadCalendarImpl _value, $Res Function(_$LoadCalendarImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -526,10 +525,9 @@ abstract class _LoadCalendar implements NewsfeedEvent {
 
 /// @nodoc
 abstract class _$$ChangeCalendarMonthImplCopyWith<$Res> {
-  factory _$$ChangeCalendarMonthImplCopyWith(
-    _$ChangeCalendarMonthImpl value,
-    $Res Function(_$ChangeCalendarMonthImpl) then,
-  ) = __$$ChangeCalendarMonthImplCopyWithImpl<$Res>;
+  factory _$$ChangeCalendarMonthImplCopyWith(_$ChangeCalendarMonthImpl value,
+          $Res Function(_$ChangeCalendarMonthImpl) then) =
+      __$$ChangeCalendarMonthImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int month, int year});
 }
@@ -538,26 +536,26 @@ abstract class _$$ChangeCalendarMonthImplCopyWith<$Res> {
 class __$$ChangeCalendarMonthImplCopyWithImpl<$Res>
     extends _$NewsfeedEventCopyWithImpl<$Res, _$ChangeCalendarMonthImpl>
     implements _$$ChangeCalendarMonthImplCopyWith<$Res> {
-  __$$ChangeCalendarMonthImplCopyWithImpl(
-    _$ChangeCalendarMonthImpl _value,
-    $Res Function(_$ChangeCalendarMonthImpl) _then,
-  ) : super(_value, _then);
+  __$$ChangeCalendarMonthImplCopyWithImpl(_$ChangeCalendarMonthImpl _value,
+      $Res Function(_$ChangeCalendarMonthImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? month = null, Object? year = null}) {
-    return _then(
-      _$ChangeCalendarMonthImpl(
-        month: null == month
-            ? _value.month
-            : month // ignore: cast_nullable_to_non_nullable
-                  as int,
-        year: null == year
-            ? _value.year
-            : year // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+  $Res call({
+    Object? month = null,
+    Object? year = null,
+  }) {
+    return _then(_$ChangeCalendarMonthImpl(
+      month: null == month
+          ? _value.month
+          : month // ignore: cast_nullable_to_non_nullable
+              as int,
+      year: null == year
+          ? _value.year
+          : year // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
@@ -593,9 +591,7 @@ class _$ChangeCalendarMonthImpl implements _ChangeCalendarMonth {
   @pragma('vm:prefer-inline')
   _$$ChangeCalendarMonthImplCopyWith<_$ChangeCalendarMonthImpl> get copyWith =>
       __$$ChangeCalendarMonthImplCopyWithImpl<_$ChangeCalendarMonthImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -697,10 +693,9 @@ class _$ChangeCalendarMonthImpl implements _ChangeCalendarMonth {
 }
 
 abstract class _ChangeCalendarMonth implements NewsfeedEvent {
-  const factory _ChangeCalendarMonth({
-    required final int month,
-    required final int year,
-  }) = _$ChangeCalendarMonthImpl;
+  const factory _ChangeCalendarMonth(
+      {required final int month,
+      required final int year}) = _$ChangeCalendarMonthImpl;
 
   int get month;
   int get year;
@@ -711,10 +706,9 @@ abstract class _ChangeCalendarMonth implements NewsfeedEvent {
 
 /// @nodoc
 abstract class _$$RefreshCalendarImplCopyWith<$Res> {
-  factory _$$RefreshCalendarImplCopyWith(
-    _$RefreshCalendarImpl value,
-    $Res Function(_$RefreshCalendarImpl) then,
-  ) = __$$RefreshCalendarImplCopyWithImpl<$Res>;
+  factory _$$RefreshCalendarImplCopyWith(_$RefreshCalendarImpl value,
+          $Res Function(_$RefreshCalendarImpl) then) =
+      __$$RefreshCalendarImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -722,9 +716,8 @@ class __$$RefreshCalendarImplCopyWithImpl<$Res>
     extends _$NewsfeedEventCopyWithImpl<$Res, _$RefreshCalendarImpl>
     implements _$$RefreshCalendarImplCopyWith<$Res> {
   __$$RefreshCalendarImplCopyWithImpl(
-    _$RefreshCalendarImpl _value,
-    $Res Function(_$RefreshCalendarImpl) _then,
-  ) : super(_value, _then);
+      _$RefreshCalendarImpl _value, $Res Function(_$RefreshCalendarImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -851,10 +844,9 @@ abstract class _RefreshCalendar implements NewsfeedEvent {
 
 /// @nodoc
 abstract class _$$LoadNewsfeedDetailImplCopyWith<$Res> {
-  factory _$$LoadNewsfeedDetailImplCopyWith(
-    _$LoadNewsfeedDetailImpl value,
-    $Res Function(_$LoadNewsfeedDetailImpl) then,
-  ) = __$$LoadNewsfeedDetailImplCopyWithImpl<$Res>;
+  factory _$$LoadNewsfeedDetailImplCopyWith(_$LoadNewsfeedDetailImpl value,
+          $Res Function(_$LoadNewsfeedDetailImpl) then) =
+      __$$LoadNewsfeedDetailImplCopyWithImpl<$Res>;
   @useResult
   $Res call({NewsletterItem item});
 
@@ -865,22 +857,21 @@ abstract class _$$LoadNewsfeedDetailImplCopyWith<$Res> {
 class __$$LoadNewsfeedDetailImplCopyWithImpl<$Res>
     extends _$NewsfeedEventCopyWithImpl<$Res, _$LoadNewsfeedDetailImpl>
     implements _$$LoadNewsfeedDetailImplCopyWith<$Res> {
-  __$$LoadNewsfeedDetailImplCopyWithImpl(
-    _$LoadNewsfeedDetailImpl _value,
-    $Res Function(_$LoadNewsfeedDetailImpl) _then,
-  ) : super(_value, _then);
+  __$$LoadNewsfeedDetailImplCopyWithImpl(_$LoadNewsfeedDetailImpl _value,
+      $Res Function(_$LoadNewsfeedDetailImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? item = null}) {
-    return _then(
-      _$LoadNewsfeedDetailImpl(
-        item: null == item
-            ? _value.item
-            : item // ignore: cast_nullable_to_non_nullable
-                  as NewsletterItem,
-      ),
-    );
+  $Res call({
+    Object? item = null,
+  }) {
+    return _then(_$LoadNewsfeedDetailImpl(
+      item: null == item
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as NewsletterItem,
+    ));
   }
 
   @override
@@ -921,9 +912,7 @@ class _$LoadNewsfeedDetailImpl implements _LoadNewsfeedDetail {
   @pragma('vm:prefer-inline')
   _$$LoadNewsfeedDetailImplCopyWith<_$LoadNewsfeedDetailImpl> get copyWith =>
       __$$LoadNewsfeedDetailImplCopyWithImpl<_$LoadNewsfeedDetailImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1036,20 +1025,18 @@ abstract class _LoadNewsfeedDetail implements NewsfeedEvent {
 
 /// @nodoc
 abstract class _$$ClearNewsfeedDetailImplCopyWith<$Res> {
-  factory _$$ClearNewsfeedDetailImplCopyWith(
-    _$ClearNewsfeedDetailImpl value,
-    $Res Function(_$ClearNewsfeedDetailImpl) then,
-  ) = __$$ClearNewsfeedDetailImplCopyWithImpl<$Res>;
+  factory _$$ClearNewsfeedDetailImplCopyWith(_$ClearNewsfeedDetailImpl value,
+          $Res Function(_$ClearNewsfeedDetailImpl) then) =
+      __$$ClearNewsfeedDetailImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$ClearNewsfeedDetailImplCopyWithImpl<$Res>
     extends _$NewsfeedEventCopyWithImpl<$Res, _$ClearNewsfeedDetailImpl>
     implements _$$ClearNewsfeedDetailImplCopyWith<$Res> {
-  __$$ClearNewsfeedDetailImplCopyWithImpl(
-    _$ClearNewsfeedDetailImpl _value,
-    $Res Function(_$ClearNewsfeedDetailImpl) _then,
-  ) : super(_value, _then);
+  __$$ClearNewsfeedDetailImplCopyWithImpl(_$ClearNewsfeedDetailImpl _value,
+      $Res Function(_$ClearNewsfeedDetailImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1177,10 +1164,9 @@ abstract class _ClearNewsfeedDetail implements NewsfeedEvent {
 
 /// @nodoc
 abstract class _$$ChangeCategoryImplCopyWith<$Res> {
-  factory _$$ChangeCategoryImplCopyWith(
-    _$ChangeCategoryImpl value,
-    $Res Function(_$ChangeCategoryImpl) then,
-  ) = __$$ChangeCategoryImplCopyWithImpl<$Res>;
+  factory _$$ChangeCategoryImplCopyWith(_$ChangeCategoryImpl value,
+          $Res Function(_$ChangeCategoryImpl) then) =
+      __$$ChangeCategoryImplCopyWithImpl<$Res>;
   @useResult
   $Res call({NewsletterCategory category});
 }
@@ -1190,21 +1176,20 @@ class __$$ChangeCategoryImplCopyWithImpl<$Res>
     extends _$NewsfeedEventCopyWithImpl<$Res, _$ChangeCategoryImpl>
     implements _$$ChangeCategoryImplCopyWith<$Res> {
   __$$ChangeCategoryImplCopyWithImpl(
-    _$ChangeCategoryImpl _value,
-    $Res Function(_$ChangeCategoryImpl) _then,
-  ) : super(_value, _then);
+      _$ChangeCategoryImpl _value, $Res Function(_$ChangeCategoryImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? category = null}) {
-    return _then(
-      _$ChangeCategoryImpl(
-        category: null == category
-            ? _value.category
-            : category // ignore: cast_nullable_to_non_nullable
-                  as NewsletterCategory,
-      ),
-    );
+  $Res call({
+    Object? category = null,
+  }) {
+    return _then(_$ChangeCategoryImpl(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as NewsletterCategory,
+    ));
   }
 }
 
@@ -1238,9 +1223,7 @@ class _$ChangeCategoryImpl implements _ChangeCategory {
   @pragma('vm:prefer-inline')
   _$$ChangeCategoryImplCopyWith<_$ChangeCategoryImpl> get copyWith =>
       __$$ChangeCategoryImplCopyWithImpl<_$ChangeCategoryImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   @optionalTypeArgs

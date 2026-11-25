@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../../../../../common/logger/index.dart';
+import '../../../../../../../../../features/workplace/data/repository/project_cache_repository.dart';
 import '../datasource/models/booking_vehicle_model.dart';
 
 class BookingVehicleRepository {
@@ -10,9 +11,9 @@ class BookingVehicleRepository {
 
   // Bump khi đổi model/payload mapping để auto invalidate cache cũ.
   static const _cacheVersion = 2;
-  static const _initAddCacheKey = 'booking_vehicle_init_add_cache_v1';
+  static const _initAddCacheKey = ProjectCacheKeys.bookingVehicleInitAdd;
   static const _currentUserCacheKey = 'booking_vehicle_current_user_cache_v1';
-  static const _projectsCacheKey = 'booking_vehicle_projects_cache_v1';
+  static const _projectsCacheKey = ProjectCacheKeys.bookingVehicleProjects;
   static const _approversCacheKey = 'booking_vehicle_approvers_cache_v1';
   static const _employeesCacheKey = 'booking_vehicle_employees_cache_v1';
 
@@ -311,6 +312,17 @@ class BookingVehicleRepository {
     _cachedProjects = const [];
     _projectsCacheLoaded = true; // đã "loaded", chỉ là rỗng
     log?.logI('Booking vehicle projects cache cleared');
+  }
+
+  /// Xoá in-memory cache (RAM) của feature — gọi khi logout để không giữ
+  /// dữ liệu của user trước trong bộ nhớ.
+  static void clearInMemoryCache() {
+    _cachedProjects = const [];
+    _cachedApprovers = const [];
+    _cachedEmployees = const [];
+    _projectsCacheLoaded = false;
+    _approversCacheLoaded = false;
+    _employeesCacheLoaded = false;
   }
 
   //---(Approvers persistence)---//

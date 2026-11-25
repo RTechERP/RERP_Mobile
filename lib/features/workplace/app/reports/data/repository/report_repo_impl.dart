@@ -62,8 +62,9 @@ class ReportRepoImpl implements ReportRepo {
 
   /// Danh sách dự án
   ///
-  /// Luôn gọi API để lấy danh sách mới nhất. Khi lỗi mạng thì fallback về
-  /// cache cục bộ (nếu có) để người dùng vẫn chọn được dự án offline.
+  /// Luôn gọi API để lấy danh sách mới nhất. Khi API lỗi mạng **hoặc** trả
+  /// về rỗng thì fallback về cache cục bộ (nếu có) để người dùng vẫn chọn
+  /// được dự án offline.
   /// Cache được cập nhật mỗi lần gọi API thành công.
   @override
   Future<Either<BaseError, List<ProjectResponse>>> getProject() async {
@@ -71,10 +72,16 @@ class ReportRepoImpl implements ReportRepo {
       final res = await _service.getProject();
       final projects = res.data ?? [];
 
-      // Không ghi đè cache bằng list rỗng (lỗi tạm thời) để offline vẫn
-      // có dự án để chọn.
       if (projects.isNotEmpty) {
         await ReportRepository.saveProjects(projects: projects);
+        return right(projects);
+      }
+
+      // API trả về rỗng → fallback về cache, tránh mất dự án vừa được tạo
+      // (BE có thể trả rỗng tạm thời).
+      final cached = await ReportRepository.getProjects();
+      if (cached.isNotEmpty) {
+        return right(cached);
       }
 
       return right(projects);
@@ -85,6 +92,14 @@ class ReportRepoImpl implements ReportRepo {
       }
 
       return left(e.baseError);
+    } catch (e) {
+      // Response lỗi shape (thiếu field bắt buộc) → throw TypeError khi parse.
+      final cached = await ReportRepository.getProjects();
+      if (cached.isNotEmpty) {
+        return right(cached);
+      }
+
+      return left(BaseError.httpInternalServerError(e.toString()));
     }
   }
 

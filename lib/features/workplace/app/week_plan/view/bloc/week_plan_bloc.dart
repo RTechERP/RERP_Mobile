@@ -9,6 +9,7 @@ import '../../../../../../../../../common/local_data/index.dart';
 import '../../../../../../../../../common/logger/index.dart';
 import '../../../../../../base/bloc/index.dart';
 import '../../../../../../base/network/errors/extension.dart';
+import '../../../../data/repository/project_cache_repository.dart';
 import '../../data/datasource/models/week_plan_model.dart';
 import '../../data/repository/week_plan_repo.dart';
 import '../../../../../auth/data/repository/auth_repo.dart';
@@ -20,7 +21,7 @@ part 'week_plan_state.dart';
 part 'week_plan_bloc.g.dart';
 part 'week_plan_bloc.freezed.dart';
 
-const _kProjectsCacheKey = 'weekplan_projects_cache';
+const _kProjectsCacheKey = ProjectCacheKeys.weekPlan;
 
 @injectable
 class WeekPlanBloc extends BaseBloc<WeekPlanEvent, WeekPlanState> {

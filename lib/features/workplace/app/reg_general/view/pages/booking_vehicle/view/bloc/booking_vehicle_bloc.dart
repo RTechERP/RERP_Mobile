@@ -562,7 +562,7 @@ class BookingVehicleBloc
     }
 
     // Đọc project + approvers + employees từ in-memory cache (đã được preload từ màn list).
-    final projects = BookingVehicleRepository.projectsSync;
+    var projects = BookingVehicleRepository.projectsSync;
     final approvers = BookingVehicleRepository.approversSync;
     final employees = BookingVehicleRepository.employeesSync;
 
@@ -574,7 +574,6 @@ class BookingVehicleBloc
         initAddCache.provinceDeparture.isNotEmpty;
 
     if (restValid &&
-        projects.isNotEmpty &&
         approvers.isNotEmpty &&
         employees.isNotEmpty) {
       _log.logI('✅ initAdd cache hit for user=$employeeId');
@@ -592,6 +591,17 @@ class BookingVehicleBloc
       );
       // Vẫn đảm bảo gọi getDepartmentIds nếu chưa có trong state.
       await _loadSaleDepartmentIdsIfNeeded();
+      // Danh sách dự án luôn gọi lại API để lấy dự án mới nhất — cache chỉ
+      // làm fallback khi API lỗi (xử lý trong repository).
+      final freshProjects = await _bookingVehicleRepo.getProject();
+      final projectList = freshProjects.getOrElse(() => projects);
+      if (projectList.isNotEmpty) {
+        await BookingVehicleRepository.saveProjectsCache(
+          projects: projectList,
+          log: _log,
+        );
+        emit(state.copyWith(projects: projectList));
+      }
       return;
     }
 
@@ -606,9 +616,10 @@ class BookingVehicleBloc
       final currentEmployeeFut =
           _bookingVehicleRepo.getEmployeeById(employeeId: employeeId);
 
+      // Danh sách dự án luôn gọi lại API để lấy dự án mới nhất — cache chỉ
+      // làm fallback khi API lỗi (xử lý trong repository).
+      final projectsFut = _bookingVehicleRepo.getProject();
       // Fallback nếu cache rỗng (chỉ các lookup đã tách cache riêng).
-      final projectsFut =
-          projects.isEmpty ? _bookingVehicleRepo.getProject() : null;
       final approversFut =
           approvers.isEmpty ? _bookingVehicleRepo.getApprover() : null;
       final employeesFut =
@@ -638,18 +649,16 @@ class BookingVehicleBloc
         (r) => currentEmployee = r,
       );
 
-      if (projectsFut != null) {
-        final projectsRes = await projectsFut;
-        projectsRes.fold(
-          (l) => _log.logE('getProject failed: $l'),
-          (r) => fetchedProjects = r,
+      final projectsRes = await projectsFut;
+      projectsRes.fold(
+        (l) => _log.logE('getProject failed: $l'),
+        (r) => fetchedProjects = r,
+      );
+      if (fetchedProjects.isNotEmpty) {
+        await BookingVehicleRepository.saveProjectsCache(
+          projects: fetchedProjects,
+          log: _log,
         );
-        if (fetchedProjects.isNotEmpty) {
-          await BookingVehicleRepository.saveProjectsCache(
-            projects: fetchedProjects,
-            log: _log,
-          );
-        }
       }
 
       if (approversFut != null) {
