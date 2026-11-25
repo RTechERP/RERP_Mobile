@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../../../../../common/logger/index.dart';
+import '../../../../../../../../../features/workplace/data/repository/project_cache_repository.dart';
 import '../datasource/models/leave_model.dart';
 
 /// Repository lưu trữ local cho feature Leave — dùng [SharedPreferences]
@@ -16,7 +17,7 @@ class LeaveRepository {
 
   // Bump khi đổi model/payload mapping để auto invalidate cache cũ.
   static const _cacheVersion = 1;
-  static const _initAddCacheKeyPrefix = 'leave_init_add_cache_v1';
+  static const _initAddCacheKeyPrefix = ProjectCacheKeys.leaveInitAddPrefix;
 
   static String _initAddCacheKey(int employeeId) =>
       '${_initAddCacheKeyPrefix}_$employeeId';

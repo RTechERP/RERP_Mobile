@@ -12,7 +12,8 @@ part of 'newsfeed_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 NewsletterItem _$NewsletterItemFromJson(Map<String, dynamic> json) {
   return _NewsletterItem.fromJson(json);
@@ -64,27 +65,29 @@ mixin _$NewsletterItem {
 /// @nodoc
 abstract class $NewsletterItemCopyWith<$Res> {
   factory $NewsletterItemCopyWith(
-          NewsletterItem value, $Res Function(NewsletterItem) then) =
-      _$NewsletterItemCopyWithImpl<$Res, NewsletterItem>;
+    NewsletterItem value,
+    $Res Function(NewsletterItem) then,
+  ) = _$NewsletterItemCopyWithImpl<$Res, NewsletterItem>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'Code') String? code,
-      @JsonKey(name: 'Title') String? title,
-      @JsonKey(name: 'NewsletterContent') String? newsletterContent,
-      @JsonKey(name: 'Type') int? type,
-      @JsonKey(name: 'Image') String? image,
-      @JsonKey(name: 'CreatedBy') String? createdBy,
-      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
-      @JsonKey(name: 'UpdatedBy') String? updatedBy,
-      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
-      @JsonKey(name: 'IsDeleted') bool? isDeleted,
-      @JsonKey(name: 'OriginImgPath') String? originImgPath,
-      @JsonKey(name: 'ServerImgPath') String? serverImgPath,
-      @JsonKey(name: 'IsPublish') bool? isPublish,
-      @JsonKey(name: 'NewsletterTypeCode') String? newsletterTypeCode,
-      @JsonKey(name: 'NewsletterTypeName') String? newsletterTypeName,
-      @JsonKey(name: 'IsPublishText') String? isPublishText});
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Title') String? title,
+    @JsonKey(name: 'NewsletterContent') String? newsletterContent,
+    @JsonKey(name: 'Type') int? type,
+    @JsonKey(name: 'Image') String? image,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'OriginImgPath') String? originImgPath,
+    @JsonKey(name: 'ServerImgPath') String? serverImgPath,
+    @JsonKey(name: 'IsPublish') bool? isPublish,
+    @JsonKey(name: 'NewsletterTypeCode') String? newsletterTypeCode,
+    @JsonKey(name: 'NewsletterTypeName') String? newsletterTypeName,
+    @JsonKey(name: 'IsPublishText') String? isPublishText,
+  });
 }
 
 /// @nodoc
@@ -118,105 +121,110 @@ class _$NewsletterItemCopyWithImpl<$Res, $Val extends NewsletterItem>
     Object? newsletterTypeName = freezed,
     Object? isPublishText = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      newsletterContent: freezed == newsletterContent
-          ? _value.newsletterContent
-          : newsletterContent // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as int?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedBy: freezed == updatedBy
-          ? _value.updatedBy
-          : updatedBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _value.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      isDeleted: freezed == isDeleted
-          ? _value.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      originImgPath: freezed == originImgPath
-          ? _value.originImgPath
-          : originImgPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      serverImgPath: freezed == serverImgPath
-          ? _value.serverImgPath
-          : serverImgPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isPublish: freezed == isPublish
-          ? _value.isPublish
-          : isPublish // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      newsletterTypeCode: freezed == newsletterTypeCode
-          ? _value.newsletterTypeCode
-          : newsletterTypeCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      newsletterTypeName: freezed == newsletterTypeName
-          ? _value.newsletterTypeName
-          : newsletterTypeName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isPublishText: freezed == isPublishText
-          ? _value.isPublishText
-          : isPublishText // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            code: freezed == code
+                ? _value.code
+                : code // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            title: freezed == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            newsletterContent: freezed == newsletterContent
+                ? _value.newsletterContent
+                : newsletterContent // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            type: freezed == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            image: freezed == image
+                ? _value.image
+                : image // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            createdBy: freezed == createdBy
+                ? _value.createdBy
+                : createdBy // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            createdDate: freezed == createdDate
+                ? _value.createdDate
+                : createdDate // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            updatedBy: freezed == updatedBy
+                ? _value.updatedBy
+                : updatedBy // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            updatedDate: freezed == updatedDate
+                ? _value.updatedDate
+                : updatedDate // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            isDeleted: freezed == isDeleted
+                ? _value.isDeleted
+                : isDeleted // ignore: cast_nullable_to_non_nullable
+                      as bool?,
+            originImgPath: freezed == originImgPath
+                ? _value.originImgPath
+                : originImgPath // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            serverImgPath: freezed == serverImgPath
+                ? _value.serverImgPath
+                : serverImgPath // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            isPublish: freezed == isPublish
+                ? _value.isPublish
+                : isPublish // ignore: cast_nullable_to_non_nullable
+                      as bool?,
+            newsletterTypeCode: freezed == newsletterTypeCode
+                ? _value.newsletterTypeCode
+                : newsletterTypeCode // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            newsletterTypeName: freezed == newsletterTypeName
+                ? _value.newsletterTypeName
+                : newsletterTypeName // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            isPublishText: freezed == isPublishText
+                ? _value.isPublishText
+                : isPublishText // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$NewsletterItemImplCopyWith<$Res>
     implements $NewsletterItemCopyWith<$Res> {
-  factory _$$NewsletterItemImplCopyWith(_$NewsletterItemImpl value,
-          $Res Function(_$NewsletterItemImpl) then) =
-      __$$NewsletterItemImplCopyWithImpl<$Res>;
+  factory _$$NewsletterItemImplCopyWith(
+    _$NewsletterItemImpl value,
+    $Res Function(_$NewsletterItemImpl) then,
+  ) = __$$NewsletterItemImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'Code') String? code,
-      @JsonKey(name: 'Title') String? title,
-      @JsonKey(name: 'NewsletterContent') String? newsletterContent,
-      @JsonKey(name: 'Type') int? type,
-      @JsonKey(name: 'Image') String? image,
-      @JsonKey(name: 'CreatedBy') String? createdBy,
-      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
-      @JsonKey(name: 'UpdatedBy') String? updatedBy,
-      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
-      @JsonKey(name: 'IsDeleted') bool? isDeleted,
-      @JsonKey(name: 'OriginImgPath') String? originImgPath,
-      @JsonKey(name: 'ServerImgPath') String? serverImgPath,
-      @JsonKey(name: 'IsPublish') bool? isPublish,
-      @JsonKey(name: 'NewsletterTypeCode') String? newsletterTypeCode,
-      @JsonKey(name: 'NewsletterTypeName') String? newsletterTypeName,
-      @JsonKey(name: 'IsPublishText') String? isPublishText});
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Title') String? title,
+    @JsonKey(name: 'NewsletterContent') String? newsletterContent,
+    @JsonKey(name: 'Type') int? type,
+    @JsonKey(name: 'Image') String? image,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'OriginImgPath') String? originImgPath,
+    @JsonKey(name: 'ServerImgPath') String? serverImgPath,
+    @JsonKey(name: 'IsPublish') bool? isPublish,
+    @JsonKey(name: 'NewsletterTypeCode') String? newsletterTypeCode,
+    @JsonKey(name: 'NewsletterTypeName') String? newsletterTypeName,
+    @JsonKey(name: 'IsPublishText') String? isPublishText,
+  });
 }
 
 /// @nodoc
@@ -224,8 +232,9 @@ class __$$NewsletterItemImplCopyWithImpl<$Res>
     extends _$NewsletterItemCopyWithImpl<$Res, _$NewsletterItemImpl>
     implements _$$NewsletterItemImplCopyWith<$Res> {
   __$$NewsletterItemImplCopyWithImpl(
-      _$NewsletterItemImpl _value, $Res Function(_$NewsletterItemImpl) _then)
-      : super(_value, _then);
+    _$NewsletterItemImpl _value,
+    $Res Function(_$NewsletterItemImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -248,100 +257,103 @@ class __$$NewsletterItemImplCopyWithImpl<$Res>
     Object? newsletterTypeName = freezed,
     Object? isPublishText = freezed,
   }) {
-    return _then(_$NewsletterItemImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      newsletterContent: freezed == newsletterContent
-          ? _value.newsletterContent
-          : newsletterContent // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as int?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedBy: freezed == updatedBy
-          ? _value.updatedBy
-          : updatedBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _value.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      isDeleted: freezed == isDeleted
-          ? _value.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      originImgPath: freezed == originImgPath
-          ? _value.originImgPath
-          : originImgPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      serverImgPath: freezed == serverImgPath
-          ? _value.serverImgPath
-          : serverImgPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isPublish: freezed == isPublish
-          ? _value.isPublish
-          : isPublish // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      newsletterTypeCode: freezed == newsletterTypeCode
-          ? _value.newsletterTypeCode
-          : newsletterTypeCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      newsletterTypeName: freezed == newsletterTypeName
-          ? _value.newsletterTypeName
-          : newsletterTypeName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isPublishText: freezed == isPublishText
-          ? _value.isPublishText
-          : isPublishText // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$NewsletterItemImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        code: freezed == code
+            ? _value.code
+            : code // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        title: freezed == title
+            ? _value.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        newsletterContent: freezed == newsletterContent
+            ? _value.newsletterContent
+            : newsletterContent // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        type: freezed == type
+            ? _value.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        image: freezed == image
+            ? _value.image
+            : image // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        createdBy: freezed == createdBy
+            ? _value.createdBy
+            : createdBy // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        createdDate: freezed == createdDate
+            ? _value.createdDate
+            : createdDate // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        updatedBy: freezed == updatedBy
+            ? _value.updatedBy
+            : updatedBy // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        updatedDate: freezed == updatedDate
+            ? _value.updatedDate
+            : updatedDate // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        isDeleted: freezed == isDeleted
+            ? _value.isDeleted
+            : isDeleted // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        originImgPath: freezed == originImgPath
+            ? _value.originImgPath
+            : originImgPath // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        serverImgPath: freezed == serverImgPath
+            ? _value.serverImgPath
+            : serverImgPath // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        isPublish: freezed == isPublish
+            ? _value.isPublish
+            : isPublish // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        newsletterTypeCode: freezed == newsletterTypeCode
+            ? _value.newsletterTypeCode
+            : newsletterTypeCode // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        newsletterTypeName: freezed == newsletterTypeName
+            ? _value.newsletterTypeName
+            : newsletterTypeName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        isPublishText: freezed == isPublishText
+            ? _value.isPublishText
+            : isPublishText // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$NewsletterItemImpl implements _NewsletterItem {
-  const _$NewsletterItemImpl(
-      {@JsonKey(name: 'ID') this.id,
-      @JsonKey(name: 'Code') this.code,
-      @JsonKey(name: 'Title') this.title,
-      @JsonKey(name: 'NewsletterContent') this.newsletterContent,
-      @JsonKey(name: 'Type') this.type,
-      @JsonKey(name: 'Image') this.image,
-      @JsonKey(name: 'CreatedBy') this.createdBy,
-      @JsonKey(name: 'CreatedDate') this.createdDate,
-      @JsonKey(name: 'UpdatedBy') this.updatedBy,
-      @JsonKey(name: 'UpdatedDate') this.updatedDate,
-      @JsonKey(name: 'IsDeleted') this.isDeleted,
-      @JsonKey(name: 'OriginImgPath') this.originImgPath,
-      @JsonKey(name: 'ServerImgPath') this.serverImgPath,
-      @JsonKey(name: 'IsPublish') this.isPublish,
-      @JsonKey(name: 'NewsletterTypeCode') this.newsletterTypeCode,
-      @JsonKey(name: 'NewsletterTypeName') this.newsletterTypeName,
-      @JsonKey(name: 'IsPublishText') this.isPublishText});
+  const _$NewsletterItemImpl({
+    @JsonKey(name: 'ID') this.id,
+    @JsonKey(name: 'Code') this.code,
+    @JsonKey(name: 'Title') this.title,
+    @JsonKey(name: 'NewsletterContent') this.newsletterContent,
+    @JsonKey(name: 'Type') this.type,
+    @JsonKey(name: 'Image') this.image,
+    @JsonKey(name: 'CreatedBy') this.createdBy,
+    @JsonKey(name: 'CreatedDate') this.createdDate,
+    @JsonKey(name: 'UpdatedBy') this.updatedBy,
+    @JsonKey(name: 'UpdatedDate') this.updatedDate,
+    @JsonKey(name: 'IsDeleted') this.isDeleted,
+    @JsonKey(name: 'OriginImgPath') this.originImgPath,
+    @JsonKey(name: 'ServerImgPath') this.serverImgPath,
+    @JsonKey(name: 'IsPublish') this.isPublish,
+    @JsonKey(name: 'NewsletterTypeCode') this.newsletterTypeCode,
+    @JsonKey(name: 'NewsletterTypeName') this.newsletterTypeName,
+    @JsonKey(name: 'IsPublishText') this.isPublishText,
+  });
 
   factory _$NewsletterItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsletterItemImplFromJson(json);
@@ -442,60 +454,61 @@ class _$NewsletterItemImpl implements _NewsletterItem {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      code,
-      title,
-      newsletterContent,
-      type,
-      image,
-      createdBy,
-      createdDate,
-      updatedBy,
-      updatedDate,
-      isDeleted,
-      originImgPath,
-      serverImgPath,
-      isPublish,
-      newsletterTypeCode,
-      newsletterTypeName,
-      isPublishText);
+    runtimeType,
+    id,
+    code,
+    title,
+    newsletterContent,
+    type,
+    image,
+    createdBy,
+    createdDate,
+    updatedBy,
+    updatedDate,
+    isDeleted,
+    originImgPath,
+    serverImgPath,
+    isPublish,
+    newsletterTypeCode,
+    newsletterTypeName,
+    isPublishText,
+  );
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$NewsletterItemImplCopyWith<_$NewsletterItemImpl> get copyWith =>
       __$$NewsletterItemImplCopyWithImpl<_$NewsletterItemImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$NewsletterItemImplToJson(
-      this,
-    );
+    return _$$NewsletterItemImplToJson(this);
   }
 }
 
 abstract class _NewsletterItem implements NewsletterItem {
-  const factory _NewsletterItem(
-          {@JsonKey(name: 'ID') final int? id,
-          @JsonKey(name: 'Code') final String? code,
-          @JsonKey(name: 'Title') final String? title,
-          @JsonKey(name: 'NewsletterContent') final String? newsletterContent,
-          @JsonKey(name: 'Type') final int? type,
-          @JsonKey(name: 'Image') final String? image,
-          @JsonKey(name: 'CreatedBy') final String? createdBy,
-          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
-          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
-          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
-          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
-          @JsonKey(name: 'OriginImgPath') final String? originImgPath,
-          @JsonKey(name: 'ServerImgPath') final String? serverImgPath,
-          @JsonKey(name: 'IsPublish') final bool? isPublish,
-          @JsonKey(name: 'NewsletterTypeCode') final String? newsletterTypeCode,
-          @JsonKey(name: 'NewsletterTypeName') final String? newsletterTypeName,
-          @JsonKey(name: 'IsPublishText') final String? isPublishText}) =
-      _$NewsletterItemImpl;
+  const factory _NewsletterItem({
+    @JsonKey(name: 'ID') final int? id,
+    @JsonKey(name: 'Code') final String? code,
+    @JsonKey(name: 'Title') final String? title,
+    @JsonKey(name: 'NewsletterContent') final String? newsletterContent,
+    @JsonKey(name: 'Type') final int? type,
+    @JsonKey(name: 'Image') final String? image,
+    @JsonKey(name: 'CreatedBy') final String? createdBy,
+    @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+    @JsonKey(name: 'OriginImgPath') final String? originImgPath,
+    @JsonKey(name: 'ServerImgPath') final String? serverImgPath,
+    @JsonKey(name: 'IsPublish') final bool? isPublish,
+    @JsonKey(name: 'NewsletterTypeCode') final String? newsletterTypeCode,
+    @JsonKey(name: 'NewsletterTypeName') final String? newsletterTypeName,
+    @JsonKey(name: 'IsPublishText') final String? isPublishText,
+  }) = _$NewsletterItemImpl;
 
   factory _NewsletterItem.fromJson(Map<String, dynamic> json) =
       _$NewsletterItemImpl.fromJson;
@@ -600,30 +613,34 @@ mixin _$NewsletterDetailItem {
 
 /// @nodoc
 abstract class $NewsletterDetailItemCopyWith<$Res> {
-  factory $NewsletterDetailItemCopyWith(NewsletterDetailItem value,
-          $Res Function(NewsletterDetailItem) then) =
-      _$NewsletterDetailItemCopyWithImpl<$Res, NewsletterDetailItem>;
+  factory $NewsletterDetailItemCopyWith(
+    NewsletterDetailItem value,
+    $Res Function(NewsletterDetailItem) then,
+  ) = _$NewsletterDetailItemCopyWithImpl<$Res, NewsletterDetailItem>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'Code') String? code,
-      @JsonKey(name: 'Title') String? title,
-      @JsonKey(name: 'NewsletterContent') String? newsletterContent,
-      @JsonKey(name: 'Type') int? type,
-      @JsonKey(name: 'Image') String? image,
-      @JsonKey(name: 'CreatedBy') String? createdBy,
-      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
-      @JsonKey(name: 'UpdatedBy') String? updatedBy,
-      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
-      @JsonKey(name: 'IsDeleted') bool? isDeleted,
-      @JsonKey(name: 'OriginImgPath') String? originImgPath,
-      @JsonKey(name: 'ServerImgPath') String? serverImgPath,
-      @JsonKey(name: 'IsPublish') bool? isPublish});
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Title') String? title,
+    @JsonKey(name: 'NewsletterContent') String? newsletterContent,
+    @JsonKey(name: 'Type') int? type,
+    @JsonKey(name: 'Image') String? image,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'OriginImgPath') String? originImgPath,
+    @JsonKey(name: 'ServerImgPath') String? serverImgPath,
+    @JsonKey(name: 'IsPublish') bool? isPublish,
+  });
 }
 
 /// @nodoc
-class _$NewsletterDetailItemCopyWithImpl<$Res,
-        $Val extends NewsletterDetailItem>
+class _$NewsletterDetailItemCopyWithImpl<
+  $Res,
+  $Val extends NewsletterDetailItem
+>
     implements $NewsletterDetailItemCopyWith<$Res> {
   _$NewsletterDetailItemCopyWithImpl(this._value, this._then);
 
@@ -650,99 +667,105 @@ class _$NewsletterDetailItemCopyWithImpl<$Res,
     Object? serverImgPath = freezed,
     Object? isPublish = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      newsletterContent: freezed == newsletterContent
-          ? _value.newsletterContent
-          : newsletterContent // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as int?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedBy: freezed == updatedBy
-          ? _value.updatedBy
-          : updatedBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _value.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      isDeleted: freezed == isDeleted
-          ? _value.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      originImgPath: freezed == originImgPath
-          ? _value.originImgPath
-          : originImgPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      serverImgPath: freezed == serverImgPath
-          ? _value.serverImgPath
-          : serverImgPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isPublish: freezed == isPublish
-          ? _value.isPublish
-          : isPublish // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            code: freezed == code
+                ? _value.code
+                : code // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            title: freezed == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            newsletterContent: freezed == newsletterContent
+                ? _value.newsletterContent
+                : newsletterContent // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            type: freezed == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            image: freezed == image
+                ? _value.image
+                : image // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            createdBy: freezed == createdBy
+                ? _value.createdBy
+                : createdBy // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            createdDate: freezed == createdDate
+                ? _value.createdDate
+                : createdDate // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            updatedBy: freezed == updatedBy
+                ? _value.updatedBy
+                : updatedBy // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            updatedDate: freezed == updatedDate
+                ? _value.updatedDate
+                : updatedDate // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            isDeleted: freezed == isDeleted
+                ? _value.isDeleted
+                : isDeleted // ignore: cast_nullable_to_non_nullable
+                      as bool?,
+            originImgPath: freezed == originImgPath
+                ? _value.originImgPath
+                : originImgPath // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            serverImgPath: freezed == serverImgPath
+                ? _value.serverImgPath
+                : serverImgPath // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            isPublish: freezed == isPublish
+                ? _value.isPublish
+                : isPublish // ignore: cast_nullable_to_non_nullable
+                      as bool?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$NewsletterDetailItemImplCopyWith<$Res>
     implements $NewsletterDetailItemCopyWith<$Res> {
-  factory _$$NewsletterDetailItemImplCopyWith(_$NewsletterDetailItemImpl value,
-          $Res Function(_$NewsletterDetailItemImpl) then) =
-      __$$NewsletterDetailItemImplCopyWithImpl<$Res>;
+  factory _$$NewsletterDetailItemImplCopyWith(
+    _$NewsletterDetailItemImpl value,
+    $Res Function(_$NewsletterDetailItemImpl) then,
+  ) = __$$NewsletterDetailItemImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'Code') String? code,
-      @JsonKey(name: 'Title') String? title,
-      @JsonKey(name: 'NewsletterContent') String? newsletterContent,
-      @JsonKey(name: 'Type') int? type,
-      @JsonKey(name: 'Image') String? image,
-      @JsonKey(name: 'CreatedBy') String? createdBy,
-      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
-      @JsonKey(name: 'UpdatedBy') String? updatedBy,
-      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
-      @JsonKey(name: 'IsDeleted') bool? isDeleted,
-      @JsonKey(name: 'OriginImgPath') String? originImgPath,
-      @JsonKey(name: 'ServerImgPath') String? serverImgPath,
-      @JsonKey(name: 'IsPublish') bool? isPublish});
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Title') String? title,
+    @JsonKey(name: 'NewsletterContent') String? newsletterContent,
+    @JsonKey(name: 'Type') int? type,
+    @JsonKey(name: 'Image') String? image,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'OriginImgPath') String? originImgPath,
+    @JsonKey(name: 'ServerImgPath') String? serverImgPath,
+    @JsonKey(name: 'IsPublish') bool? isPublish,
+  });
 }
 
 /// @nodoc
 class __$$NewsletterDetailItemImplCopyWithImpl<$Res>
     extends _$NewsletterDetailItemCopyWithImpl<$Res, _$NewsletterDetailItemImpl>
     implements _$$NewsletterDetailItemImplCopyWith<$Res> {
-  __$$NewsletterDetailItemImplCopyWithImpl(_$NewsletterDetailItemImpl _value,
-      $Res Function(_$NewsletterDetailItemImpl) _then)
-      : super(_value, _then);
+  __$$NewsletterDetailItemImplCopyWithImpl(
+    _$NewsletterDetailItemImpl _value,
+    $Res Function(_$NewsletterDetailItemImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -762,85 +785,88 @@ class __$$NewsletterDetailItemImplCopyWithImpl<$Res>
     Object? serverImgPath = freezed,
     Object? isPublish = freezed,
   }) {
-    return _then(_$NewsletterDetailItemImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      newsletterContent: freezed == newsletterContent
-          ? _value.newsletterContent
-          : newsletterContent // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as int?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedBy: freezed == updatedBy
-          ? _value.updatedBy
-          : updatedBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _value.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      isDeleted: freezed == isDeleted
-          ? _value.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      originImgPath: freezed == originImgPath
-          ? _value.originImgPath
-          : originImgPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      serverImgPath: freezed == serverImgPath
-          ? _value.serverImgPath
-          : serverImgPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isPublish: freezed == isPublish
-          ? _value.isPublish
-          : isPublish // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _$NewsletterDetailItemImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        code: freezed == code
+            ? _value.code
+            : code // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        title: freezed == title
+            ? _value.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        newsletterContent: freezed == newsletterContent
+            ? _value.newsletterContent
+            : newsletterContent // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        type: freezed == type
+            ? _value.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        image: freezed == image
+            ? _value.image
+            : image // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        createdBy: freezed == createdBy
+            ? _value.createdBy
+            : createdBy // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        createdDate: freezed == createdDate
+            ? _value.createdDate
+            : createdDate // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        updatedBy: freezed == updatedBy
+            ? _value.updatedBy
+            : updatedBy // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        updatedDate: freezed == updatedDate
+            ? _value.updatedDate
+            : updatedDate // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        isDeleted: freezed == isDeleted
+            ? _value.isDeleted
+            : isDeleted // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        originImgPath: freezed == originImgPath
+            ? _value.originImgPath
+            : originImgPath // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        serverImgPath: freezed == serverImgPath
+            ? _value.serverImgPath
+            : serverImgPath // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        isPublish: freezed == isPublish
+            ? _value.isPublish
+            : isPublish // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$NewsletterDetailItemImpl implements _NewsletterDetailItem {
-  const _$NewsletterDetailItemImpl(
-      {@JsonKey(name: 'ID') this.id,
-      @JsonKey(name: 'Code') this.code,
-      @JsonKey(name: 'Title') this.title,
-      @JsonKey(name: 'NewsletterContent') this.newsletterContent,
-      @JsonKey(name: 'Type') this.type,
-      @JsonKey(name: 'Image') this.image,
-      @JsonKey(name: 'CreatedBy') this.createdBy,
-      @JsonKey(name: 'CreatedDate') this.createdDate,
-      @JsonKey(name: 'UpdatedBy') this.updatedBy,
-      @JsonKey(name: 'UpdatedDate') this.updatedDate,
-      @JsonKey(name: 'IsDeleted') this.isDeleted,
-      @JsonKey(name: 'OriginImgPath') this.originImgPath,
-      @JsonKey(name: 'ServerImgPath') this.serverImgPath,
-      @JsonKey(name: 'IsPublish') this.isPublish});
+  const _$NewsletterDetailItemImpl({
+    @JsonKey(name: 'ID') this.id,
+    @JsonKey(name: 'Code') this.code,
+    @JsonKey(name: 'Title') this.title,
+    @JsonKey(name: 'NewsletterContent') this.newsletterContent,
+    @JsonKey(name: 'Type') this.type,
+    @JsonKey(name: 'Image') this.image,
+    @JsonKey(name: 'CreatedBy') this.createdBy,
+    @JsonKey(name: 'CreatedDate') this.createdDate,
+    @JsonKey(name: 'UpdatedBy') this.updatedBy,
+    @JsonKey(name: 'UpdatedDate') this.updatedDate,
+    @JsonKey(name: 'IsDeleted') this.isDeleted,
+    @JsonKey(name: 'OriginImgPath') this.originImgPath,
+    @JsonKey(name: 'ServerImgPath') this.serverImgPath,
+    @JsonKey(name: 'IsPublish') this.isPublish,
+  });
 
   factory _$NewsletterDetailItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsletterDetailItemImplFromJson(json);
@@ -926,55 +952,56 @@ class _$NewsletterDetailItemImpl implements _NewsletterDetailItem {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      code,
-      title,
-      newsletterContent,
-      type,
-      image,
-      createdBy,
-      createdDate,
-      updatedBy,
-      updatedDate,
-      isDeleted,
-      originImgPath,
-      serverImgPath,
-      isPublish);
+    runtimeType,
+    id,
+    code,
+    title,
+    newsletterContent,
+    type,
+    image,
+    createdBy,
+    createdDate,
+    updatedBy,
+    updatedDate,
+    isDeleted,
+    originImgPath,
+    serverImgPath,
+    isPublish,
+  );
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$NewsletterDetailItemImplCopyWith<_$NewsletterDetailItemImpl>
-      get copyWith =>
-          __$$NewsletterDetailItemImplCopyWithImpl<_$NewsletterDetailItemImpl>(
-              this, _$identity);
+  get copyWith =>
+      __$$NewsletterDetailItemImplCopyWithImpl<_$NewsletterDetailItemImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$NewsletterDetailItemImplToJson(
-      this,
-    );
+    return _$$NewsletterDetailItemImplToJson(this);
   }
 }
 
 abstract class _NewsletterDetailItem implements NewsletterDetailItem {
-  const factory _NewsletterDetailItem(
-          {@JsonKey(name: 'ID') final int? id,
-          @JsonKey(name: 'Code') final String? code,
-          @JsonKey(name: 'Title') final String? title,
-          @JsonKey(name: 'NewsletterContent') final String? newsletterContent,
-          @JsonKey(name: 'Type') final int? type,
-          @JsonKey(name: 'Image') final String? image,
-          @JsonKey(name: 'CreatedBy') final String? createdBy,
-          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
-          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
-          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
-          @JsonKey(name: 'IsDeleted') final bool? isDeleted,
-          @JsonKey(name: 'OriginImgPath') final String? originImgPath,
-          @JsonKey(name: 'ServerImgPath') final String? serverImgPath,
-          @JsonKey(name: 'IsPublish') final bool? isPublish}) =
-      _$NewsletterDetailItemImpl;
+  const factory _NewsletterDetailItem({
+    @JsonKey(name: 'ID') final int? id,
+    @JsonKey(name: 'Code') final String? code,
+    @JsonKey(name: 'Title') final String? title,
+    @JsonKey(name: 'NewsletterContent') final String? newsletterContent,
+    @JsonKey(name: 'Type') final int? type,
+    @JsonKey(name: 'Image') final String? image,
+    @JsonKey(name: 'CreatedBy') final String? createdBy,
+    @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+    @JsonKey(name: 'OriginImgPath') final String? originImgPath,
+    @JsonKey(name: 'ServerImgPath') final String? serverImgPath,
+    @JsonKey(name: 'IsPublish') final bool? isPublish,
+  }) = _$NewsletterDetailItemImpl;
 
   factory _NewsletterDetailItem.fromJson(Map<String, dynamic> json) =
       _$NewsletterDetailItemImpl.fromJson;
@@ -1024,7 +1051,7 @@ abstract class _NewsletterDetailItem implements NewsletterDetailItem {
   @override
   @JsonKey(ignore: true)
   _$$NewsletterDetailItemImplCopyWith<_$NewsletterDetailItemImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 NewsletterFileItem _$NewsletterFileItemFromJson(Map<String, dynamic> json) {
@@ -1063,20 +1090,22 @@ mixin _$NewsletterFileItem {
 /// @nodoc
 abstract class $NewsletterFileItemCopyWith<$Res> {
   factory $NewsletterFileItemCopyWith(
-          NewsletterFileItem value, $Res Function(NewsletterFileItem) then) =
-      _$NewsletterFileItemCopyWithImpl<$Res, NewsletterFileItem>;
+    NewsletterFileItem value,
+    $Res Function(NewsletterFileItem) then,
+  ) = _$NewsletterFileItemCopyWithImpl<$Res, NewsletterFileItem>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'NewsletterID') int? newsletterId,
-      @JsonKey(name: 'FileName') String? fileName,
-      @JsonKey(name: 'OriginPath') String? originPath,
-      @JsonKey(name: 'ServerPath') String? serverPath,
-      @JsonKey(name: 'CreatedBy') String? createdBy,
-      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
-      @JsonKey(name: 'UpdatedBy') String? updatedBy,
-      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
-      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'NewsletterID') int? newsletterId,
+    @JsonKey(name: 'FileName') String? fileName,
+    @JsonKey(name: 'OriginPath') String? originPath,
+    @JsonKey(name: 'ServerPath') String? serverPath,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  });
 }
 
 /// @nodoc
@@ -1103,79 +1132,85 @@ class _$NewsletterFileItemCopyWithImpl<$Res, $Val extends NewsletterFileItem>
     Object? updatedDate = freezed,
     Object? isDeleted = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      newsletterId: freezed == newsletterId
-          ? _value.newsletterId
-          : newsletterId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fileName: freezed == fileName
-          ? _value.fileName
-          : fileName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      originPath: freezed == originPath
-          ? _value.originPath
-          : originPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      serverPath: freezed == serverPath
-          ? _value.serverPath
-          : serverPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedBy: freezed == updatedBy
-          ? _value.updatedBy
-          : updatedBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _value.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      isDeleted: freezed == isDeleted
-          ? _value.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            newsletterId: freezed == newsletterId
+                ? _value.newsletterId
+                : newsletterId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            fileName: freezed == fileName
+                ? _value.fileName
+                : fileName // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            originPath: freezed == originPath
+                ? _value.originPath
+                : originPath // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            serverPath: freezed == serverPath
+                ? _value.serverPath
+                : serverPath // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            createdBy: freezed == createdBy
+                ? _value.createdBy
+                : createdBy // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            createdDate: freezed == createdDate
+                ? _value.createdDate
+                : createdDate // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            updatedBy: freezed == updatedBy
+                ? _value.updatedBy
+                : updatedBy // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            updatedDate: freezed == updatedDate
+                ? _value.updatedDate
+                : updatedDate // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            isDeleted: freezed == isDeleted
+                ? _value.isDeleted
+                : isDeleted // ignore: cast_nullable_to_non_nullable
+                      as bool?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$NewsletterFileItemImplCopyWith<$Res>
     implements $NewsletterFileItemCopyWith<$Res> {
-  factory _$$NewsletterFileItemImplCopyWith(_$NewsletterFileItemImpl value,
-          $Res Function(_$NewsletterFileItemImpl) then) =
-      __$$NewsletterFileItemImplCopyWithImpl<$Res>;
+  factory _$$NewsletterFileItemImplCopyWith(
+    _$NewsletterFileItemImpl value,
+    $Res Function(_$NewsletterFileItemImpl) then,
+  ) = __$$NewsletterFileItemImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'NewsletterID') int? newsletterId,
-      @JsonKey(name: 'FileName') String? fileName,
-      @JsonKey(name: 'OriginPath') String? originPath,
-      @JsonKey(name: 'ServerPath') String? serverPath,
-      @JsonKey(name: 'CreatedBy') String? createdBy,
-      @JsonKey(name: 'CreatedDate') DateTime? createdDate,
-      @JsonKey(name: 'UpdatedBy') String? updatedBy,
-      @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
-      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'NewsletterID') int? newsletterId,
+    @JsonKey(name: 'FileName') String? fileName,
+    @JsonKey(name: 'OriginPath') String? originPath,
+    @JsonKey(name: 'ServerPath') String? serverPath,
+    @JsonKey(name: 'CreatedBy') String? createdBy,
+    @JsonKey(name: 'CreatedDate') DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  });
 }
 
 /// @nodoc
 class __$$NewsletterFileItemImplCopyWithImpl<$Res>
     extends _$NewsletterFileItemCopyWithImpl<$Res, _$NewsletterFileItemImpl>
     implements _$$NewsletterFileItemImplCopyWith<$Res> {
-  __$$NewsletterFileItemImplCopyWithImpl(_$NewsletterFileItemImpl _value,
-      $Res Function(_$NewsletterFileItemImpl) _then)
-      : super(_value, _then);
+  __$$NewsletterFileItemImplCopyWithImpl(
+    _$NewsletterFileItemImpl _value,
+    $Res Function(_$NewsletterFileItemImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -1191,65 +1226,68 @@ class __$$NewsletterFileItemImplCopyWithImpl<$Res>
     Object? updatedDate = freezed,
     Object? isDeleted = freezed,
   }) {
-    return _then(_$NewsletterFileItemImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      newsletterId: freezed == newsletterId
-          ? _value.newsletterId
-          : newsletterId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fileName: freezed == fileName
-          ? _value.fileName
-          : fileName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      originPath: freezed == originPath
-          ? _value.originPath
-          : originPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      serverPath: freezed == serverPath
-          ? _value.serverPath
-          : serverPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdBy: freezed == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedBy: freezed == updatedBy
-          ? _value.updatedBy
-          : updatedBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _value.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      isDeleted: freezed == isDeleted
-          ? _value.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
+    return _then(
+      _$NewsletterFileItemImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        newsletterId: freezed == newsletterId
+            ? _value.newsletterId
+            : newsletterId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        fileName: freezed == fileName
+            ? _value.fileName
+            : fileName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        originPath: freezed == originPath
+            ? _value.originPath
+            : originPath // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        serverPath: freezed == serverPath
+            ? _value.serverPath
+            : serverPath // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        createdBy: freezed == createdBy
+            ? _value.createdBy
+            : createdBy // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        createdDate: freezed == createdDate
+            ? _value.createdDate
+            : createdDate // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        updatedBy: freezed == updatedBy
+            ? _value.updatedBy
+            : updatedBy // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        updatedDate: freezed == updatedDate
+            ? _value.updatedDate
+            : updatedDate // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        isDeleted: freezed == isDeleted
+            ? _value.isDeleted
+            : isDeleted // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$NewsletterFileItemImpl implements _NewsletterFileItem {
-  const _$NewsletterFileItemImpl(
-      {@JsonKey(name: 'ID') this.id,
-      @JsonKey(name: 'NewsletterID') this.newsletterId,
-      @JsonKey(name: 'FileName') this.fileName,
-      @JsonKey(name: 'OriginPath') this.originPath,
-      @JsonKey(name: 'ServerPath') this.serverPath,
-      @JsonKey(name: 'CreatedBy') this.createdBy,
-      @JsonKey(name: 'CreatedDate') this.createdDate,
-      @JsonKey(name: 'UpdatedBy') this.updatedBy,
-      @JsonKey(name: 'UpdatedDate') this.updatedDate,
-      @JsonKey(name: 'IsDeleted') this.isDeleted});
+  const _$NewsletterFileItemImpl({
+    @JsonKey(name: 'ID') this.id,
+    @JsonKey(name: 'NewsletterID') this.newsletterId,
+    @JsonKey(name: 'FileName') this.fileName,
+    @JsonKey(name: 'OriginPath') this.originPath,
+    @JsonKey(name: 'ServerPath') this.serverPath,
+    @JsonKey(name: 'CreatedBy') this.createdBy,
+    @JsonKey(name: 'CreatedDate') this.createdDate,
+    @JsonKey(name: 'UpdatedBy') this.updatedBy,
+    @JsonKey(name: 'UpdatedDate') this.updatedDate,
+    @JsonKey(name: 'IsDeleted') this.isDeleted,
+  });
 
   factory _$NewsletterFileItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsletterFileItemImplFromJson(json);
@@ -1319,46 +1357,47 @@ class _$NewsletterFileItemImpl implements _NewsletterFileItem {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      newsletterId,
-      fileName,
-      originPath,
-      serverPath,
-      createdBy,
-      createdDate,
-      updatedBy,
-      updatedDate,
-      isDeleted);
+    runtimeType,
+    id,
+    newsletterId,
+    fileName,
+    originPath,
+    serverPath,
+    createdBy,
+    createdDate,
+    updatedBy,
+    updatedDate,
+    isDeleted,
+  );
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$NewsletterFileItemImplCopyWith<_$NewsletterFileItemImpl> get copyWith =>
       __$$NewsletterFileItemImplCopyWithImpl<_$NewsletterFileItemImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$NewsletterFileItemImplToJson(
-      this,
-    );
+    return _$$NewsletterFileItemImplToJson(this);
   }
 }
 
 abstract class _NewsletterFileItem implements NewsletterFileItem {
-  const factory _NewsletterFileItem(
-          {@JsonKey(name: 'ID') final int? id,
-          @JsonKey(name: 'NewsletterID') final int? newsletterId,
-          @JsonKey(name: 'FileName') final String? fileName,
-          @JsonKey(name: 'OriginPath') final String? originPath,
-          @JsonKey(name: 'ServerPath') final String? serverPath,
-          @JsonKey(name: 'CreatedBy') final String? createdBy,
-          @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
-          @JsonKey(name: 'UpdatedBy') final String? updatedBy,
-          @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
-          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
-      _$NewsletterFileItemImpl;
+  const factory _NewsletterFileItem({
+    @JsonKey(name: 'ID') final int? id,
+    @JsonKey(name: 'NewsletterID') final int? newsletterId,
+    @JsonKey(name: 'FileName') final String? fileName,
+    @JsonKey(name: 'OriginPath') final String? originPath,
+    @JsonKey(name: 'ServerPath') final String? serverPath,
+    @JsonKey(name: 'CreatedBy') final String? createdBy,
+    @JsonKey(name: 'CreatedDate') final DateTime? createdDate,
+    @JsonKey(name: 'UpdatedBy') final String? updatedBy,
+    @JsonKey(name: 'UpdatedDate') final DateTime? updatedDate,
+    @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+  }) = _$NewsletterFileItemImpl;
 
   factory _NewsletterFileItem.fromJson(Map<String, dynamic> json) =
       _$NewsletterFileItemImpl.fromJson;
@@ -1407,6 +1446,12 @@ CalendarItem _$CalendarItemFromJson(Map<String, dynamic> json) {
 mixin _$CalendarItem {
   @JsonKey(name: 'holidays')
   List<HolidayItem>? get holidays => throw _privateConstructorUsedError;
+  @JsonKey(name: 'scheduleWorkSaturdays')
+  List<ScheduleWorkSaturdayItem>? get scheduleWorkSaturdays =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'companyEvents')
+  List<CompanyEventItem>? get companyEvents =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1417,10 +1462,16 @@ mixin _$CalendarItem {
 /// @nodoc
 abstract class $CalendarItemCopyWith<$Res> {
   factory $CalendarItemCopyWith(
-          CalendarItem value, $Res Function(CalendarItem) then) =
-      _$CalendarItemCopyWithImpl<$Res, CalendarItem>;
+    CalendarItem value,
+    $Res Function(CalendarItem) then,
+  ) = _$CalendarItemCopyWithImpl<$Res, CalendarItem>;
   @useResult
-  $Res call({@JsonKey(name: 'holidays') List<HolidayItem>? holidays});
+  $Res call({
+    @JsonKey(name: 'holidays') List<HolidayItem>? holidays,
+    @JsonKey(name: 'scheduleWorkSaturdays')
+    List<ScheduleWorkSaturdayItem>? scheduleWorkSaturdays,
+    @JsonKey(name: 'companyEvents') List<CompanyEventItem>? companyEvents,
+  });
 }
 
 /// @nodoc
@@ -1437,13 +1488,26 @@ class _$CalendarItemCopyWithImpl<$Res, $Val extends CalendarItem>
   @override
   $Res call({
     Object? holidays = freezed,
+    Object? scheduleWorkSaturdays = freezed,
+    Object? companyEvents = freezed,
   }) {
-    return _then(_value.copyWith(
-      holidays: freezed == holidays
-          ? _value.holidays
-          : holidays // ignore: cast_nullable_to_non_nullable
-              as List<HolidayItem>?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            holidays: freezed == holidays
+                ? _value.holidays
+                : holidays // ignore: cast_nullable_to_non_nullable
+                      as List<HolidayItem>?,
+            scheduleWorkSaturdays: freezed == scheduleWorkSaturdays
+                ? _value.scheduleWorkSaturdays
+                : scheduleWorkSaturdays // ignore: cast_nullable_to_non_nullable
+                      as List<ScheduleWorkSaturdayItem>?,
+            companyEvents: freezed == companyEvents
+                ? _value.companyEvents
+                : companyEvents // ignore: cast_nullable_to_non_nullable
+                      as List<CompanyEventItem>?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -1451,11 +1515,17 @@ class _$CalendarItemCopyWithImpl<$Res, $Val extends CalendarItem>
 abstract class _$$CalendarItemImplCopyWith<$Res>
     implements $CalendarItemCopyWith<$Res> {
   factory _$$CalendarItemImplCopyWith(
-          _$CalendarItemImpl value, $Res Function(_$CalendarItemImpl) then) =
-      __$$CalendarItemImplCopyWithImpl<$Res>;
+    _$CalendarItemImpl value,
+    $Res Function(_$CalendarItemImpl) then,
+  ) = __$$CalendarItemImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'holidays') List<HolidayItem>? holidays});
+  $Res call({
+    @JsonKey(name: 'holidays') List<HolidayItem>? holidays,
+    @JsonKey(name: 'scheduleWorkSaturdays')
+    List<ScheduleWorkSaturdayItem>? scheduleWorkSaturdays,
+    @JsonKey(name: 'companyEvents') List<CompanyEventItem>? companyEvents,
+  });
 }
 
 /// @nodoc
@@ -1463,29 +1533,47 @@ class __$$CalendarItemImplCopyWithImpl<$Res>
     extends _$CalendarItemCopyWithImpl<$Res, _$CalendarItemImpl>
     implements _$$CalendarItemImplCopyWith<$Res> {
   __$$CalendarItemImplCopyWithImpl(
-      _$CalendarItemImpl _value, $Res Function(_$CalendarItemImpl) _then)
-      : super(_value, _then);
+    _$CalendarItemImpl _value,
+    $Res Function(_$CalendarItemImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? holidays = freezed,
+    Object? scheduleWorkSaturdays = freezed,
+    Object? companyEvents = freezed,
   }) {
-    return _then(_$CalendarItemImpl(
-      holidays: freezed == holidays
-          ? _value._holidays
-          : holidays // ignore: cast_nullable_to_non_nullable
-              as List<HolidayItem>?,
-    ));
+    return _then(
+      _$CalendarItemImpl(
+        holidays: freezed == holidays
+            ? _value._holidays
+            : holidays // ignore: cast_nullable_to_non_nullable
+                  as List<HolidayItem>?,
+        scheduleWorkSaturdays: freezed == scheduleWorkSaturdays
+            ? _value._scheduleWorkSaturdays
+            : scheduleWorkSaturdays // ignore: cast_nullable_to_non_nullable
+                  as List<ScheduleWorkSaturdayItem>?,
+        companyEvents: freezed == companyEvents
+            ? _value._companyEvents
+            : companyEvents // ignore: cast_nullable_to_non_nullable
+                  as List<CompanyEventItem>?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$CalendarItemImpl implements _CalendarItem {
-  const _$CalendarItemImpl(
-      {@JsonKey(name: 'holidays') final List<HolidayItem>? holidays})
-      : _holidays = holidays;
+  const _$CalendarItemImpl({
+    @JsonKey(name: 'holidays') final List<HolidayItem>? holidays,
+    @JsonKey(name: 'scheduleWorkSaturdays')
+    final List<ScheduleWorkSaturdayItem>? scheduleWorkSaturdays,
+    @JsonKey(name: 'companyEvents') final List<CompanyEventItem>? companyEvents,
+  }) : _holidays = holidays,
+       _scheduleWorkSaturdays = scheduleWorkSaturdays,
+       _companyEvents = companyEvents;
 
   factory _$CalendarItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$CalendarItemImplFromJson(json);
@@ -1501,9 +1589,32 @@ class _$CalendarItemImpl implements _CalendarItem {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<ScheduleWorkSaturdayItem>? _scheduleWorkSaturdays;
+  @override
+  @JsonKey(name: 'scheduleWorkSaturdays')
+  List<ScheduleWorkSaturdayItem>? get scheduleWorkSaturdays {
+    final value = _scheduleWorkSaturdays;
+    if (value == null) return null;
+    if (_scheduleWorkSaturdays is EqualUnmodifiableListView)
+      return _scheduleWorkSaturdays;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<CompanyEventItem>? _companyEvents;
+  @override
+  @JsonKey(name: 'companyEvents')
+  List<CompanyEventItem>? get companyEvents {
+    final value = _companyEvents;
+    if (value == null) return null;
+    if (_companyEvents is EqualUnmodifiableListView) return _companyEvents;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'CalendarItem(holidays: $holidays)';
+    return 'CalendarItem(holidays: $holidays, scheduleWorkSaturdays: $scheduleWorkSaturdays, companyEvents: $companyEvents)';
   }
 
   @override
@@ -1511,13 +1622,25 @@ class _$CalendarItemImpl implements _CalendarItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CalendarItemImpl &&
-            const DeepCollectionEquality().equals(other._holidays, _holidays));
+            const DeepCollectionEquality().equals(other._holidays, _holidays) &&
+            const DeepCollectionEquality().equals(
+              other._scheduleWorkSaturdays,
+              _scheduleWorkSaturdays,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._companyEvents,
+              _companyEvents,
+            ));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_holidays));
+  int get hashCode => Object.hash(
+    runtimeType,
+    const DeepCollectionEquality().hash(_holidays),
+    const DeepCollectionEquality().hash(_scheduleWorkSaturdays),
+    const DeepCollectionEquality().hash(_companyEvents),
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -1527,16 +1650,17 @@ class _$CalendarItemImpl implements _CalendarItem {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CalendarItemImplToJson(
-      this,
-    );
+    return _$$CalendarItemImplToJson(this);
   }
 }
 
 abstract class _CalendarItem implements CalendarItem {
-  const factory _CalendarItem(
-          {@JsonKey(name: 'holidays') final List<HolidayItem>? holidays}) =
-      _$CalendarItemImpl;
+  const factory _CalendarItem({
+    @JsonKey(name: 'holidays') final List<HolidayItem>? holidays,
+    @JsonKey(name: 'scheduleWorkSaturdays')
+    final List<ScheduleWorkSaturdayItem>? scheduleWorkSaturdays,
+    @JsonKey(name: 'companyEvents') final List<CompanyEventItem>? companyEvents,
+  }) = _$CalendarItemImpl;
 
   factory _CalendarItem.fromJson(Map<String, dynamic> json) =
       _$CalendarItemImpl.fromJson;
@@ -1545,9 +1669,736 @@ abstract class _CalendarItem implements CalendarItem {
   @JsonKey(name: 'holidays')
   List<HolidayItem>? get holidays;
   @override
+  @JsonKey(name: 'scheduleWorkSaturdays')
+  List<ScheduleWorkSaturdayItem>? get scheduleWorkSaturdays;
+  @override
+  @JsonKey(name: 'companyEvents')
+  List<CompanyEventItem>? get companyEvents;
+  @override
   @JsonKey(ignore: true)
   _$$CalendarItemImplCopyWith<_$CalendarItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+CompanyEventItem _$CompanyEventItemFromJson(Map<String, dynamic> json) {
+  return _CompanyEventItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CompanyEventItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EventDate')
+  DateTime? get eventDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'YearValue')
+  int? get yearValue => throw _privateConstructorUsedError;
+  @JsonKey(name: 'MonthValue')
+  int? get monthValue => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DayValue')
+  int? get dayValue => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CompanyEventTypeID')
+  int? get companyEventTypeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Name')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TypeText')
+  String? get typeText => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CompanyEventItemCopyWith<CompanyEventItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CompanyEventItemCopyWith<$Res> {
+  factory $CompanyEventItemCopyWith(
+    CompanyEventItem value,
+    $Res Function(CompanyEventItem) then,
+  ) = _$CompanyEventItemCopyWithImpl<$Res, CompanyEventItem>;
+  @useResult
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'EventDate') DateTime? eventDate,
+    @JsonKey(name: 'YearValue') int? yearValue,
+    @JsonKey(name: 'MonthValue') int? monthValue,
+    @JsonKey(name: 'DayValue') int? dayValue,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'CompanyEventTypeID') int? companyEventTypeId,
+    @JsonKey(name: 'Name') String? name,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'TypeText') String? typeText,
+  });
+}
+
+/// @nodoc
+class _$CompanyEventItemCopyWithImpl<$Res, $Val extends CompanyEventItem>
+    implements $CompanyEventItemCopyWith<$Res> {
+  _$CompanyEventItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? eventDate = freezed,
+    Object? yearValue = freezed,
+    Object? monthValue = freezed,
+    Object? dayValue = freezed,
+    Object? note = freezed,
+    Object? companyEventTypeId = freezed,
+    Object? name = freezed,
+    Object? code = freezed,
+    Object? typeText = freezed,
+  }) {
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            eventDate: freezed == eventDate
+                ? _value.eventDate
+                : eventDate // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            yearValue: freezed == yearValue
+                ? _value.yearValue
+                : yearValue // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            monthValue: freezed == monthValue
+                ? _value.monthValue
+                : monthValue // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            dayValue: freezed == dayValue
+                ? _value.dayValue
+                : dayValue // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            note: freezed == note
+                ? _value.note
+                : note // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            companyEventTypeId: freezed == companyEventTypeId
+                ? _value.companyEventTypeId
+                : companyEventTypeId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            name: freezed == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            code: freezed == code
+                ? _value.code
+                : code // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            typeText: freezed == typeText
+                ? _value.typeText
+                : typeText // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$CompanyEventItemImplCopyWith<$Res>
+    implements $CompanyEventItemCopyWith<$Res> {
+  factory _$$CompanyEventItemImplCopyWith(
+    _$CompanyEventItemImpl value,
+    $Res Function(_$CompanyEventItemImpl) then,
+  ) = __$$CompanyEventItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'EventDate') DateTime? eventDate,
+    @JsonKey(name: 'YearValue') int? yearValue,
+    @JsonKey(name: 'MonthValue') int? monthValue,
+    @JsonKey(name: 'DayValue') int? dayValue,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'CompanyEventTypeID') int? companyEventTypeId,
+    @JsonKey(name: 'Name') String? name,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'TypeText') String? typeText,
+  });
+}
+
+/// @nodoc
+class __$$CompanyEventItemImplCopyWithImpl<$Res>
+    extends _$CompanyEventItemCopyWithImpl<$Res, _$CompanyEventItemImpl>
+    implements _$$CompanyEventItemImplCopyWith<$Res> {
+  __$$CompanyEventItemImplCopyWithImpl(
+    _$CompanyEventItemImpl _value,
+    $Res Function(_$CompanyEventItemImpl) _then,
+  ) : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? eventDate = freezed,
+    Object? yearValue = freezed,
+    Object? monthValue = freezed,
+    Object? dayValue = freezed,
+    Object? note = freezed,
+    Object? companyEventTypeId = freezed,
+    Object? name = freezed,
+    Object? code = freezed,
+    Object? typeText = freezed,
+  }) {
+    return _then(
+      _$CompanyEventItemImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        eventDate: freezed == eventDate
+            ? _value.eventDate
+            : eventDate // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        yearValue: freezed == yearValue
+            ? _value.yearValue
+            : yearValue // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        monthValue: freezed == monthValue
+            ? _value.monthValue
+            : monthValue // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        dayValue: freezed == dayValue
+            ? _value.dayValue
+            : dayValue // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        note: freezed == note
+            ? _value.note
+            : note // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        companyEventTypeId: freezed == companyEventTypeId
+            ? _value.companyEventTypeId
+            : companyEventTypeId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        name: freezed == name
+            ? _value.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        code: freezed == code
+            ? _value.code
+            : code // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        typeText: freezed == typeText
+            ? _value.typeText
+            : typeText // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CompanyEventItemImpl implements _CompanyEventItem {
+  const _$CompanyEventItemImpl({
+    @JsonKey(name: 'ID') this.id,
+    @JsonKey(name: 'EventDate') this.eventDate,
+    @JsonKey(name: 'YearValue') this.yearValue,
+    @JsonKey(name: 'MonthValue') this.monthValue,
+    @JsonKey(name: 'DayValue') this.dayValue,
+    @JsonKey(name: 'Note') this.note,
+    @JsonKey(name: 'CompanyEventTypeID') this.companyEventTypeId,
+    @JsonKey(name: 'Name') this.name,
+    @JsonKey(name: 'Code') this.code,
+    @JsonKey(name: 'TypeText') this.typeText,
+  });
+
+  factory _$CompanyEventItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CompanyEventItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'EventDate')
+  final DateTime? eventDate;
+  @override
+  @JsonKey(name: 'YearValue')
+  final int? yearValue;
+  @override
+  @JsonKey(name: 'MonthValue')
+  final int? monthValue;
+  @override
+  @JsonKey(name: 'DayValue')
+  final int? dayValue;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'CompanyEventTypeID')
+  final int? companyEventTypeId;
+  @override
+  @JsonKey(name: 'Name')
+  final String? name;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'TypeText')
+  final String? typeText;
+
+  @override
+  String toString() {
+    return 'CompanyEventItem(id: $id, eventDate: $eventDate, yearValue: $yearValue, monthValue: $monthValue, dayValue: $dayValue, note: $note, companyEventTypeId: $companyEventTypeId, name: $name, code: $code, typeText: $typeText)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CompanyEventItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.eventDate, eventDate) ||
+                other.eventDate == eventDate) &&
+            (identical(other.yearValue, yearValue) ||
+                other.yearValue == yearValue) &&
+            (identical(other.monthValue, monthValue) ||
+                other.monthValue == monthValue) &&
+            (identical(other.dayValue, dayValue) ||
+                other.dayValue == dayValue) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.companyEventTypeId, companyEventTypeId) ||
+                other.companyEventTypeId == companyEventTypeId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.typeText, typeText) ||
+                other.typeText == typeText));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    eventDate,
+    yearValue,
+    monthValue,
+    dayValue,
+    note,
+    companyEventTypeId,
+    name,
+    code,
+    typeText,
+  );
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CompanyEventItemImplCopyWith<_$CompanyEventItemImpl> get copyWith =>
+      __$$CompanyEventItemImplCopyWithImpl<_$CompanyEventItemImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CompanyEventItemImplToJson(this);
+  }
+}
+
+abstract class _CompanyEventItem implements CompanyEventItem {
+  const factory _CompanyEventItem({
+    @JsonKey(name: 'ID') final int? id,
+    @JsonKey(name: 'EventDate') final DateTime? eventDate,
+    @JsonKey(name: 'YearValue') final int? yearValue,
+    @JsonKey(name: 'MonthValue') final int? monthValue,
+    @JsonKey(name: 'DayValue') final int? dayValue,
+    @JsonKey(name: 'Note') final String? note,
+    @JsonKey(name: 'CompanyEventTypeID') final int? companyEventTypeId,
+    @JsonKey(name: 'Name') final String? name,
+    @JsonKey(name: 'Code') final String? code,
+    @JsonKey(name: 'TypeText') final String? typeText,
+  }) = _$CompanyEventItemImpl;
+
+  factory _CompanyEventItem.fromJson(Map<String, dynamic> json) =
+      _$CompanyEventItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'EventDate')
+  DateTime? get eventDate;
+  @override
+  @JsonKey(name: 'YearValue')
+  int? get yearValue;
+  @override
+  @JsonKey(name: 'MonthValue')
+  int? get monthValue;
+  @override
+  @JsonKey(name: 'DayValue')
+  int? get dayValue;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'CompanyEventTypeID')
+  int? get companyEventTypeId;
+  @override
+  @JsonKey(name: 'Name')
+  String? get name;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'TypeText')
+  String? get typeText;
+  @override
+  @JsonKey(ignore: true)
+  _$$CompanyEventItemImplCopyWith<_$CompanyEventItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ScheduleWorkSaturdayItem _$ScheduleWorkSaturdayItemFromJson(
+  Map<String, dynamic> json,
+) {
+  return _ScheduleWorkSaturdayItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ScheduleWorkSaturdayItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DateValue')
+  DateTime? get dateValue => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Status')
+  bool? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'WorkDay')
+  int? get workDay => throw _privateConstructorUsedError;
+  @JsonKey(name: 'WorkMonth')
+  int? get workMonth => throw _privateConstructorUsedError;
+  @JsonKey(name: 'WorkYear')
+  int? get workYear => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsApproved')
+  bool? get isApproved => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ScheduleWorkSaturdayItemCopyWith<ScheduleWorkSaturdayItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ScheduleWorkSaturdayItemCopyWith<$Res> {
+  factory $ScheduleWorkSaturdayItemCopyWith(
+    ScheduleWorkSaturdayItem value,
+    $Res Function(ScheduleWorkSaturdayItem) then,
+  ) = _$ScheduleWorkSaturdayItemCopyWithImpl<$Res, ScheduleWorkSaturdayItem>;
+  @useResult
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'DateValue') DateTime? dateValue,
+    @JsonKey(name: 'Status') bool? status,
+    @JsonKey(name: 'WorkDay') int? workDay,
+    @JsonKey(name: 'WorkMonth') int? workMonth,
+    @JsonKey(name: 'WorkYear') int? workYear,
+    @JsonKey(name: 'IsApproved') bool? isApproved,
+    @JsonKey(name: 'Note') String? note,
+  });
+}
+
+/// @nodoc
+class _$ScheduleWorkSaturdayItemCopyWithImpl<
+  $Res,
+  $Val extends ScheduleWorkSaturdayItem
+>
+    implements $ScheduleWorkSaturdayItemCopyWith<$Res> {
+  _$ScheduleWorkSaturdayItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? dateValue = freezed,
+    Object? status = freezed,
+    Object? workDay = freezed,
+    Object? workMonth = freezed,
+    Object? workYear = freezed,
+    Object? isApproved = freezed,
+    Object? note = freezed,
+  }) {
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            dateValue: freezed == dateValue
+                ? _value.dateValue
+                : dateValue // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            status: freezed == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                      as bool?,
+            workDay: freezed == workDay
+                ? _value.workDay
+                : workDay // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            workMonth: freezed == workMonth
+                ? _value.workMonth
+                : workMonth // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            workYear: freezed == workYear
+                ? _value.workYear
+                : workYear // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            isApproved: freezed == isApproved
+                ? _value.isApproved
+                : isApproved // ignore: cast_nullable_to_non_nullable
+                      as bool?,
+            note: freezed == note
+                ? _value.note
+                : note // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
+  }
+}
+
+/// @nodoc
+abstract class _$$ScheduleWorkSaturdayItemImplCopyWith<$Res>
+    implements $ScheduleWorkSaturdayItemCopyWith<$Res> {
+  factory _$$ScheduleWorkSaturdayItemImplCopyWith(
+    _$ScheduleWorkSaturdayItemImpl value,
+    $Res Function(_$ScheduleWorkSaturdayItemImpl) then,
+  ) = __$$ScheduleWorkSaturdayItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'DateValue') DateTime? dateValue,
+    @JsonKey(name: 'Status') bool? status,
+    @JsonKey(name: 'WorkDay') int? workDay,
+    @JsonKey(name: 'WorkMonth') int? workMonth,
+    @JsonKey(name: 'WorkYear') int? workYear,
+    @JsonKey(name: 'IsApproved') bool? isApproved,
+    @JsonKey(name: 'Note') String? note,
+  });
+}
+
+/// @nodoc
+class __$$ScheduleWorkSaturdayItemImplCopyWithImpl<$Res>
+    extends
+        _$ScheduleWorkSaturdayItemCopyWithImpl<
+          $Res,
+          _$ScheduleWorkSaturdayItemImpl
+        >
+    implements _$$ScheduleWorkSaturdayItemImplCopyWith<$Res> {
+  __$$ScheduleWorkSaturdayItemImplCopyWithImpl(
+    _$ScheduleWorkSaturdayItemImpl _value,
+    $Res Function(_$ScheduleWorkSaturdayItemImpl) _then,
+  ) : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? dateValue = freezed,
+    Object? status = freezed,
+    Object? workDay = freezed,
+    Object? workMonth = freezed,
+    Object? workYear = freezed,
+    Object? isApproved = freezed,
+    Object? note = freezed,
+  }) {
+    return _then(
+      _$ScheduleWorkSaturdayItemImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        dateValue: freezed == dateValue
+            ? _value.dateValue
+            : dateValue // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        status: freezed == status
+            ? _value.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        workDay: freezed == workDay
+            ? _value.workDay
+            : workDay // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        workMonth: freezed == workMonth
+            ? _value.workMonth
+            : workMonth // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        workYear: freezed == workYear
+            ? _value.workYear
+            : workYear // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        isApproved: freezed == isApproved
+            ? _value.isApproved
+            : isApproved // ignore: cast_nullable_to_non_nullable
+                  as bool?,
+        note: freezed == note
+            ? _value.note
+            : note // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ScheduleWorkSaturdayItemImpl implements _ScheduleWorkSaturdayItem {
+  const _$ScheduleWorkSaturdayItemImpl({
+    @JsonKey(name: 'ID') this.id,
+    @JsonKey(name: 'DateValue') this.dateValue,
+    @JsonKey(name: 'Status') this.status,
+    @JsonKey(name: 'WorkDay') this.workDay,
+    @JsonKey(name: 'WorkMonth') this.workMonth,
+    @JsonKey(name: 'WorkYear') this.workYear,
+    @JsonKey(name: 'IsApproved') this.isApproved,
+    @JsonKey(name: 'Note') this.note,
+  });
+
+  factory _$ScheduleWorkSaturdayItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ScheduleWorkSaturdayItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'DateValue')
+  final DateTime? dateValue;
+  @override
+  @JsonKey(name: 'Status')
+  final bool? status;
+  @override
+  @JsonKey(name: 'WorkDay')
+  final int? workDay;
+  @override
+  @JsonKey(name: 'WorkMonth')
+  final int? workMonth;
+  @override
+  @JsonKey(name: 'WorkYear')
+  final int? workYear;
+  @override
+  @JsonKey(name: 'IsApproved')
+  final bool? isApproved;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+
+  @override
+  String toString() {
+    return 'ScheduleWorkSaturdayItem(id: $id, dateValue: $dateValue, status: $status, workDay: $workDay, workMonth: $workMonth, workYear: $workYear, isApproved: $isApproved, note: $note)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ScheduleWorkSaturdayItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.dateValue, dateValue) ||
+                other.dateValue == dateValue) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.workDay, workDay) || other.workDay == workDay) &&
+            (identical(other.workMonth, workMonth) ||
+                other.workMonth == workMonth) &&
+            (identical(other.workYear, workYear) ||
+                other.workYear == workYear) &&
+            (identical(other.isApproved, isApproved) ||
+                other.isApproved == isApproved) &&
+            (identical(other.note, note) || other.note == note));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    dateValue,
+    status,
+    workDay,
+    workMonth,
+    workYear,
+    isApproved,
+    note,
+  );
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ScheduleWorkSaturdayItemImplCopyWith<_$ScheduleWorkSaturdayItemImpl>
+  get copyWith =>
+      __$$ScheduleWorkSaturdayItemImplCopyWithImpl<
+        _$ScheduleWorkSaturdayItemImpl
+      >(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ScheduleWorkSaturdayItemImplToJson(this);
+  }
+}
+
+abstract class _ScheduleWorkSaturdayItem implements ScheduleWorkSaturdayItem {
+  const factory _ScheduleWorkSaturdayItem({
+    @JsonKey(name: 'ID') final int? id,
+    @JsonKey(name: 'DateValue') final DateTime? dateValue,
+    @JsonKey(name: 'Status') final bool? status,
+    @JsonKey(name: 'WorkDay') final int? workDay,
+    @JsonKey(name: 'WorkMonth') final int? workMonth,
+    @JsonKey(name: 'WorkYear') final int? workYear,
+    @JsonKey(name: 'IsApproved') final bool? isApproved,
+    @JsonKey(name: 'Note') final String? note,
+  }) = _$ScheduleWorkSaturdayItemImpl;
+
+  factory _ScheduleWorkSaturdayItem.fromJson(Map<String, dynamic> json) =
+      _$ScheduleWorkSaturdayItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'DateValue')
+  DateTime? get dateValue;
+  @override
+  @JsonKey(name: 'Status')
+  bool? get status;
+  @override
+  @JsonKey(name: 'WorkDay')
+  int? get workDay;
+  @override
+  @JsonKey(name: 'WorkMonth')
+  int? get workMonth;
+  @override
+  @JsonKey(name: 'WorkYear')
+  int? get workYear;
+  @override
+  @JsonKey(name: 'IsApproved')
+  bool? get isApproved;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(ignore: true)
+  _$$ScheduleWorkSaturdayItemImplCopyWith<_$ScheduleWorkSaturdayItemImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 HolidayItem _$HolidayItemFromJson(Map<String, dynamic> json) {
@@ -1588,21 +2439,23 @@ mixin _$HolidayItem {
 /// @nodoc
 abstract class $HolidayItemCopyWith<$Res> {
   factory $HolidayItemCopyWith(
-          HolidayItem value, $Res Function(HolidayItem) then) =
-      _$HolidayItemCopyWithImpl<$Res, HolidayItem>;
+    HolidayItem value,
+    $Res Function(HolidayItem) then,
+  ) = _$HolidayItemCopyWithImpl<$Res, HolidayItem>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'HolidayDate') DateTime? holidayDate,
-      @JsonKey(name: 'HolidayYear') int? holidayYear,
-      @JsonKey(name: 'HolidayMonth') int? holidayMonth,
-      @JsonKey(name: 'HolidayDay') int? holidayDay,
-      @JsonKey(name: 'DayValue') String? dayValue,
-      @JsonKey(name: 'HolidayName') String? holidayName,
-      @JsonKey(name: 'HolidayCode') String? holidayCode,
-      @JsonKey(name: 'Note') String? note,
-      @JsonKey(name: 'TypeHoliday') int? typeHoliday,
-      @JsonKey(name: 'TypeHolidayText') String? typeHolidayText});
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'HolidayDate') DateTime? holidayDate,
+    @JsonKey(name: 'HolidayYear') int? holidayYear,
+    @JsonKey(name: 'HolidayMonth') int? holidayMonth,
+    @JsonKey(name: 'HolidayDay') int? holidayDay,
+    @JsonKey(name: 'DayValue') String? dayValue,
+    @JsonKey(name: 'HolidayName') String? holidayName,
+    @JsonKey(name: 'HolidayCode') String? holidayCode,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'TypeHoliday') int? typeHoliday,
+    @JsonKey(name: 'TypeHolidayText') String? typeHolidayText,
+  });
 }
 
 /// @nodoc
@@ -1630,52 +2483,55 @@ class _$HolidayItemCopyWithImpl<$Res, $Val extends HolidayItem>
     Object? typeHoliday = freezed,
     Object? typeHolidayText = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      holidayDate: freezed == holidayDate
-          ? _value.holidayDate
-          : holidayDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      holidayYear: freezed == holidayYear
-          ? _value.holidayYear
-          : holidayYear // ignore: cast_nullable_to_non_nullable
-              as int?,
-      holidayMonth: freezed == holidayMonth
-          ? _value.holidayMonth
-          : holidayMonth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      holidayDay: freezed == holidayDay
-          ? _value.holidayDay
-          : holidayDay // ignore: cast_nullable_to_non_nullable
-              as int?,
-      dayValue: freezed == dayValue
-          ? _value.dayValue
-          : dayValue // ignore: cast_nullable_to_non_nullable
-              as String?,
-      holidayName: freezed == holidayName
-          ? _value.holidayName
-          : holidayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      holidayCode: freezed == holidayCode
-          ? _value.holidayCode
-          : holidayCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      note: freezed == note
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String?,
-      typeHoliday: freezed == typeHoliday
-          ? _value.typeHoliday
-          : typeHoliday // ignore: cast_nullable_to_non_nullable
-              as int?,
-      typeHolidayText: freezed == typeHolidayText
-          ? _value.typeHolidayText
-          : typeHolidayText // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            holidayDate: freezed == holidayDate
+                ? _value.holidayDate
+                : holidayDate // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            holidayYear: freezed == holidayYear
+                ? _value.holidayYear
+                : holidayYear // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            holidayMonth: freezed == holidayMonth
+                ? _value.holidayMonth
+                : holidayMonth // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            holidayDay: freezed == holidayDay
+                ? _value.holidayDay
+                : holidayDay // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            dayValue: freezed == dayValue
+                ? _value.dayValue
+                : dayValue // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            holidayName: freezed == holidayName
+                ? _value.holidayName
+                : holidayName // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            holidayCode: freezed == holidayCode
+                ? _value.holidayCode
+                : holidayCode // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            note: freezed == note
+                ? _value.note
+                : note // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            typeHoliday: freezed == typeHoliday
+                ? _value.typeHoliday
+                : typeHoliday // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            typeHolidayText: freezed == typeHolidayText
+                ? _value.typeHolidayText
+                : typeHolidayText // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -1683,22 +2539,24 @@ class _$HolidayItemCopyWithImpl<$Res, $Val extends HolidayItem>
 abstract class _$$HolidayItemImplCopyWith<$Res>
     implements $HolidayItemCopyWith<$Res> {
   factory _$$HolidayItemImplCopyWith(
-          _$HolidayItemImpl value, $Res Function(_$HolidayItemImpl) then) =
-      __$$HolidayItemImplCopyWithImpl<$Res>;
+    _$HolidayItemImpl value,
+    $Res Function(_$HolidayItemImpl) then,
+  ) = __$$HolidayItemImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'ID') int? id,
-      @JsonKey(name: 'HolidayDate') DateTime? holidayDate,
-      @JsonKey(name: 'HolidayYear') int? holidayYear,
-      @JsonKey(name: 'HolidayMonth') int? holidayMonth,
-      @JsonKey(name: 'HolidayDay') int? holidayDay,
-      @JsonKey(name: 'DayValue') String? dayValue,
-      @JsonKey(name: 'HolidayName') String? holidayName,
-      @JsonKey(name: 'HolidayCode') String? holidayCode,
-      @JsonKey(name: 'Note') String? note,
-      @JsonKey(name: 'TypeHoliday') int? typeHoliday,
-      @JsonKey(name: 'TypeHolidayText') String? typeHolidayText});
+  $Res call({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'HolidayDate') DateTime? holidayDate,
+    @JsonKey(name: 'HolidayYear') int? holidayYear,
+    @JsonKey(name: 'HolidayMonth') int? holidayMonth,
+    @JsonKey(name: 'HolidayDay') int? holidayDay,
+    @JsonKey(name: 'DayValue') String? dayValue,
+    @JsonKey(name: 'HolidayName') String? holidayName,
+    @JsonKey(name: 'HolidayCode') String? holidayCode,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'TypeHoliday') int? typeHoliday,
+    @JsonKey(name: 'TypeHolidayText') String? typeHolidayText,
+  });
 }
 
 /// @nodoc
@@ -1706,8 +2564,9 @@ class __$$HolidayItemImplCopyWithImpl<$Res>
     extends _$HolidayItemCopyWithImpl<$Res, _$HolidayItemImpl>
     implements _$$HolidayItemImplCopyWith<$Res> {
   __$$HolidayItemImplCopyWithImpl(
-      _$HolidayItemImpl _value, $Res Function(_$HolidayItemImpl) _then)
-      : super(_value, _then);
+    _$HolidayItemImpl _value,
+    $Res Function(_$HolidayItemImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -1724,70 +2583,73 @@ class __$$HolidayItemImplCopyWithImpl<$Res>
     Object? typeHoliday = freezed,
     Object? typeHolidayText = freezed,
   }) {
-    return _then(_$HolidayItemImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      holidayDate: freezed == holidayDate
-          ? _value.holidayDate
-          : holidayDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      holidayYear: freezed == holidayYear
-          ? _value.holidayYear
-          : holidayYear // ignore: cast_nullable_to_non_nullable
-              as int?,
-      holidayMonth: freezed == holidayMonth
-          ? _value.holidayMonth
-          : holidayMonth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      holidayDay: freezed == holidayDay
-          ? _value.holidayDay
-          : holidayDay // ignore: cast_nullable_to_non_nullable
-              as int?,
-      dayValue: freezed == dayValue
-          ? _value.dayValue
-          : dayValue // ignore: cast_nullable_to_non_nullable
-              as String?,
-      holidayName: freezed == holidayName
-          ? _value.holidayName
-          : holidayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      holidayCode: freezed == holidayCode
-          ? _value.holidayCode
-          : holidayCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      note: freezed == note
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String?,
-      typeHoliday: freezed == typeHoliday
-          ? _value.typeHoliday
-          : typeHoliday // ignore: cast_nullable_to_non_nullable
-              as int?,
-      typeHolidayText: freezed == typeHolidayText
-          ? _value.typeHolidayText
-          : typeHolidayText // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$HolidayItemImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        holidayDate: freezed == holidayDate
+            ? _value.holidayDate
+            : holidayDate // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        holidayYear: freezed == holidayYear
+            ? _value.holidayYear
+            : holidayYear // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        holidayMonth: freezed == holidayMonth
+            ? _value.holidayMonth
+            : holidayMonth // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        holidayDay: freezed == holidayDay
+            ? _value.holidayDay
+            : holidayDay // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        dayValue: freezed == dayValue
+            ? _value.dayValue
+            : dayValue // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        holidayName: freezed == holidayName
+            ? _value.holidayName
+            : holidayName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        holidayCode: freezed == holidayCode
+            ? _value.holidayCode
+            : holidayCode // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        note: freezed == note
+            ? _value.note
+            : note // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        typeHoliday: freezed == typeHoliday
+            ? _value.typeHoliday
+            : typeHoliday // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        typeHolidayText: freezed == typeHolidayText
+            ? _value.typeHolidayText
+            : typeHolidayText // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$HolidayItemImpl implements _HolidayItem {
-  const _$HolidayItemImpl(
-      {@JsonKey(name: 'ID') this.id,
-      @JsonKey(name: 'HolidayDate') this.holidayDate,
-      @JsonKey(name: 'HolidayYear') this.holidayYear,
-      @JsonKey(name: 'HolidayMonth') this.holidayMonth,
-      @JsonKey(name: 'HolidayDay') this.holidayDay,
-      @JsonKey(name: 'DayValue') this.dayValue,
-      @JsonKey(name: 'HolidayName') this.holidayName,
-      @JsonKey(name: 'HolidayCode') this.holidayCode,
-      @JsonKey(name: 'Note') this.note,
-      @JsonKey(name: 'TypeHoliday') this.typeHoliday,
-      @JsonKey(name: 'TypeHolidayText') this.typeHolidayText});
+  const _$HolidayItemImpl({
+    @JsonKey(name: 'ID') this.id,
+    @JsonKey(name: 'HolidayDate') this.holidayDate,
+    @JsonKey(name: 'HolidayYear') this.holidayYear,
+    @JsonKey(name: 'HolidayMonth') this.holidayMonth,
+    @JsonKey(name: 'HolidayDay') this.holidayDay,
+    @JsonKey(name: 'DayValue') this.dayValue,
+    @JsonKey(name: 'HolidayName') this.holidayName,
+    @JsonKey(name: 'HolidayCode') this.holidayCode,
+    @JsonKey(name: 'Note') this.note,
+    @JsonKey(name: 'TypeHoliday') this.typeHoliday,
+    @JsonKey(name: 'TypeHolidayText') this.typeHolidayText,
+  });
 
   factory _$HolidayItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$HolidayItemImplFromJson(json);
@@ -1861,18 +2723,19 @@ class _$HolidayItemImpl implements _HolidayItem {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      holidayDate,
-      holidayYear,
-      holidayMonth,
-      holidayDay,
-      dayValue,
-      holidayName,
-      holidayCode,
-      note,
-      typeHoliday,
-      typeHolidayText);
+    runtimeType,
+    id,
+    holidayDate,
+    holidayYear,
+    holidayMonth,
+    holidayDay,
+    dayValue,
+    holidayName,
+    holidayCode,
+    note,
+    typeHoliday,
+    typeHolidayText,
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -1882,26 +2745,24 @@ class _$HolidayItemImpl implements _HolidayItem {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$HolidayItemImplToJson(
-      this,
-    );
+    return _$$HolidayItemImplToJson(this);
   }
 }
 
 abstract class _HolidayItem implements HolidayItem {
-  const factory _HolidayItem(
-          {@JsonKey(name: 'ID') final int? id,
-          @JsonKey(name: 'HolidayDate') final DateTime? holidayDate,
-          @JsonKey(name: 'HolidayYear') final int? holidayYear,
-          @JsonKey(name: 'HolidayMonth') final int? holidayMonth,
-          @JsonKey(name: 'HolidayDay') final int? holidayDay,
-          @JsonKey(name: 'DayValue') final String? dayValue,
-          @JsonKey(name: 'HolidayName') final String? holidayName,
-          @JsonKey(name: 'HolidayCode') final String? holidayCode,
-          @JsonKey(name: 'Note') final String? note,
-          @JsonKey(name: 'TypeHoliday') final int? typeHoliday,
-          @JsonKey(name: 'TypeHolidayText') final String? typeHolidayText}) =
-      _$HolidayItemImpl;
+  const factory _HolidayItem({
+    @JsonKey(name: 'ID') final int? id,
+    @JsonKey(name: 'HolidayDate') final DateTime? holidayDate,
+    @JsonKey(name: 'HolidayYear') final int? holidayYear,
+    @JsonKey(name: 'HolidayMonth') final int? holidayMonth,
+    @JsonKey(name: 'HolidayDay') final int? holidayDay,
+    @JsonKey(name: 'DayValue') final String? dayValue,
+    @JsonKey(name: 'HolidayName') final String? holidayName,
+    @JsonKey(name: 'HolidayCode') final String? holidayCode,
+    @JsonKey(name: 'Note') final String? note,
+    @JsonKey(name: 'TypeHoliday') final int? typeHoliday,
+    @JsonKey(name: 'TypeHolidayText') final String? typeHolidayText,
+  }) = _$HolidayItemImpl;
 
   factory _HolidayItem.fromJson(Map<String, dynamic> json) =
       _$HolidayItemImpl.fromJson;

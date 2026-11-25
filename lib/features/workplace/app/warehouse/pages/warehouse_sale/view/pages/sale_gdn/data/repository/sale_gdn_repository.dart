@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:rtc_erp/common/logger/index.dart';
 import 'package:rtc_erp/features/workplace/app/warehouse/pages/warehouse_sale/view/pages/sale_gdn/data/datasource/models/sale_gdn_model.dart';
+import 'package:rtc_erp/features/workplace/data/repository/project_cache_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Lookup data cache for SaleGDN.
@@ -13,7 +14,7 @@ class SaleGdnRepository {
   // =========================================================================
 
   static const _cacheVersion = 1;
-  static const _lookupCacheKey = 'sale_gdn_lookup_cache_v1';
+  static const _lookupCacheKey = ProjectCacheKeys.saleGdnLookup;
 
   // =========================================================================
   // In-memory cache for lookup data

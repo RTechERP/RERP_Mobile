@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../../../../../common/logger/index.dart';
+import '../../../../../../../../../features/workplace/data/repository/project_cache_repository.dart';
 import '../datasource/models/test_table_model.dart';
 
 /// Repository lưu trữ local cho lookup data của feature TestTable — dùng
@@ -20,7 +21,7 @@ class TestTableRepository {
 
   // Bump khi đổi model/payload mapping để auto invalidate cache cũ.
   static const _cacheVersion = 1;
-  static const _lookupCacheKeyPrefix = 'test_table_lookup_cache_v1';
+  static const _lookupCacheKeyPrefix = ProjectCacheKeys.testTableLookupPrefix;
 
   static String _lookupCacheKey(int employeeId) =>
       '${_lookupCacheKeyPrefix}_$employeeId';

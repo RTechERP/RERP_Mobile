@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../../../../../base/network/errors/error.dart';
 import '../../../../../../../../../base/network/errors/extension.dart';
+import 'package:rtc_erp/features/workplace/data/repository/project_cache_repository.dart';
 import '../datasource/models/test_table_model.dart';
 import '../datasource/service/test_table_service.dart';
 import 'test_table_repo.dart';
@@ -14,6 +15,9 @@ class TestTableRepoImpl implements TestTableRepo {
   final TestTableService _service;
 
   TestTableRepoImpl(this._service);
+
+  /// Key cache danh sách dự án — riêng cho chức năng Bàn nhập.
+  static const _projectsCacheKey = ProjectCacheKeys.testTable;
 
   @override
   Future<Either<BaseError, List<TestCardDetail>>> getTestCardDetails({
@@ -105,18 +109,42 @@ class TestTableRepoImpl implements TestTableRepo {
 
   @override
   Future<Either<BaseError, List<ProjectItem>>> getProjectItem() async {
+    BaseError? failure;
+    List<ProjectItem>? projects;
+
     try {
       final res = await _service.getProjectItem();
       if (res.status == 1 && res.data != null) {
-        return right(res.data!);
+        projects = res.data!;
       } else {
-        return left(
-          BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
-        );
+        failure =
+            BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra');
       }
     } on DioException catch (e) {
-      return left(e.baseError);
+      failure = e.baseError;
+    } catch (e) {
+      // Response lỗi shape (thiếu field bắt buộc) → throw TypeError khi parse.
+      failure = BaseError.httpInternalServerError(e.toString());
     }
+
+    if (projects != null && projects.isNotEmpty) {
+      await ProjectCacheRepository.saveProjects(
+        cacheKey: _projectsCacheKey,
+        projects: projects,
+        toJson: (e) => e.toJson(),
+      );
+      return right(projects);
+    }
+
+    // API lỗi hoặc trả về rỗng → fallback về cache để người dùng vẫn chọn
+    // được dự án.
+    final cached = await ProjectCacheRepository.getProjects(
+      cacheKey: _projectsCacheKey,
+      fromJson: ProjectItem.fromJson,
+    );
+    if (cached.isNotEmpty) return right(cached);
+
+    return left(failure ?? BaseError.httpInternalServerError('Có lỗi xảy ra'));
   }
 
   @override

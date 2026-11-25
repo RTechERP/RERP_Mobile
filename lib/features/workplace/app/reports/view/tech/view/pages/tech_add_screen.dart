@@ -721,6 +721,7 @@ class _TechAddScreenState
               }
 
               if (state.submitSuccess == true) {
+                setState(() => _hasSubmitError = false);
                 if (context.mounted) {
                   final formState = _screenFormKey.currentState;
                   final pickedDate =

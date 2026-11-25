@@ -8,6 +8,7 @@ import 'package:rtc_erp/base/network/errors/error.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/rental_vehicle/data/datasource/models/rental_vehicle_model.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/rental_vehicle/data/repository/rental_vehicle_repo.dart';
 import 'package:rtc_erp/base/network/errors/extension.dart';
+import 'package:rtc_erp/features/workplace/data/repository/project_cache_repository.dart';
 import '../datasource/service/rental_vehicle_service.dart';
 
 @LazySingleton(as: RentalVehicleRepo)
@@ -15,6 +16,9 @@ class RentalVehicleRepoImpl implements RentalVehicleRepo {
   final RentalVehicleService _service;
 
   RentalVehicleRepoImpl(this._service);
+
+  /// Key cache danh sách dự án — riêng cho chức năng Thuê xe tải.
+  static const _projectsCacheKey = ProjectCacheKeys.rentalVehicle;
 
   @override
   Future<Either<BaseError, List<RentalVehicleItem>>> searchRentalVehicle({
@@ -83,19 +87,45 @@ class RentalVehicleRepoImpl implements RentalVehicleRepo {
 
   @override
   Future<Either<BaseError, List<RentalVehicleProject>>> getProjects() async {
+    BaseError? failure;
+    List<RentalVehicleProject>? projects;
+
     try {
       final res = await _service.getProjects();
-      if (res.status == 1 && res.data != null) return right(res.data!);
-      return left(
-        BaseError.httpInternalServerError(
+      if (res.status == 1 && res.data != null) {
+        projects = res.data!;
+      } else {
+        failure = BaseError.httpInternalServerError(
           res.message ?? res.msg ?? 'Không tải được danh sách dự án',
-        ),
-      );
+        );
+      }
     } on DioException catch (e) {
-      return left(e.baseError);
+      failure = e.baseError;
     } catch (e) {
-      return left(BaseError.httpInternalServerError(e.toString()));
+      failure = BaseError.httpInternalServerError(e.toString());
     }
+
+    if (projects != null && projects.isNotEmpty) {
+      await ProjectCacheRepository.saveProjects(
+        cacheKey: _projectsCacheKey,
+        projects: projects,
+        toJson: (e) => e.toJson(),
+      );
+      return right(projects);
+    }
+
+    // API lỗi hoặc trả về rỗng → fallback về cache để người dùng vẫn chọn
+    // được dự án.
+    final cached = await ProjectCacheRepository.getProjects(
+      cacheKey: _projectsCacheKey,
+      fromJson: RentalVehicleProject.fromJson,
+    );
+    if (cached.isNotEmpty) return right(cached);
+
+    return left(
+      failure ??
+          BaseError.httpInternalServerError('Không tải được danh sách dự án'),
+    );
   }
 
   @override

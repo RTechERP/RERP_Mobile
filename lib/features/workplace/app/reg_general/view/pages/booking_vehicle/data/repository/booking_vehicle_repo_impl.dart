@@ -6,6 +6,7 @@ import 'package:rtc_erp/base/network/errors/error.dart';
 import 'package:rtc_erp/features/workplace/app/reg_general/view/pages/booking_vehicle/data/datasource/models/booking_vehicle_model.dart';
 
 import '../../../../../../../../../base/network/errors/extension.dart';
+import 'package:rtc_erp/features/workplace/data/repository/project_cache_repository.dart';
 import '../datasource/service/booking_vehicle_service.dart';
 import 'booking_vehicle_repo.dart';
 
@@ -14,6 +15,9 @@ class BookingVehicleRepoImpl implements BookingVehicleRepo {
   final BookingVehicleService _service;
 
   BookingVehicleRepoImpl(this._service);
+
+  /// Key cache danh sách dự án — riêng cho chức năng Đặt xe.
+  static const _projectsCacheKey = ProjectCacheKeys.bookingVehicle;
 
   @override
   Future<Either<BaseError, List<BookingVehicleItem>>> getBookingVehicle({
@@ -90,12 +94,37 @@ class BookingVehicleRepoImpl implements BookingVehicleRepo {
 
   @override
   Future<Either<BaseError, List<BookingVehicleProjectItem>>> getProject() async {
+    BaseError? failure;
+    List<BookingVehicleProjectItem>? projects;
+
     try {
       final res = await _service.getProject();
-      return right(res.data ?? []);
+      projects = res.data ?? [];
     } on DioException catch (e) {
-      return left(e.baseError);
+      failure = e.baseError;
+    } catch (e) {
+      // Response lỗi shape (thiếu field bắt buộc) → throw TypeError khi parse.
+      failure = BaseError.httpInternalServerError(e.toString());
     }
+
+    if (projects != null && projects.isNotEmpty) {
+      await ProjectCacheRepository.saveProjects(
+        cacheKey: _projectsCacheKey,
+        projects: projects,
+        toJson: (e) => e.toJson(),
+      );
+      return right(projects);
+    }
+
+    // API lỗi hoặc trả về rỗng → fallback về cache để người dùng vẫn chọn
+    // được dự án.
+    final cached = await ProjectCacheRepository.getProjects(
+      cacheKey: _projectsCacheKey,
+      fromJson: BookingVehicleProjectItem.fromJson,
+    );
+    if (cached.isNotEmpty) return right(cached);
+
+    return left(failure ?? BaseError.httpInternalServerError('Có lỗi xảy ra'));
   }
 
   @override

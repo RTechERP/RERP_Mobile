@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/errors/error.dart';
 
 import '../../../../../../../../../base/network/errors/extension.dart';
+import 'package:rtc_erp/features/workplace/data/repository/project_cache_repository.dart';
 import '../datasource/models/booking_guest_house_model.dart';
 import '../datasource/service/booking_guest_house_service.dart';
 import 'booking_guest_house_repo.dart';
@@ -16,6 +17,9 @@ class BookingGuestHouseRepoImpl implements BookingGuestHouseRepo {
   final BookingGuestHouseService _service;
 
   BookingGuestHouseRepoImpl(this._service);
+
+  /// Key cache danh sách dự án — riêng cho chức năng Đặt phòng nhà nghỉ.
+  static const _projectsCacheKey = ProjectCacheKeys.bookingGuestHouse;
 
   @override
   Future<Either<BaseError, List<BookingGuestHouseItem>>> getBookingGuestHouse({
@@ -51,21 +55,45 @@ class BookingGuestHouseRepoImpl implements BookingGuestHouseRepo {
 
   @override
   Future<Either<BaseError, List<ProjectFilterItem>>> getProjects() async {
+    BaseError? failure;
+    List<ProjectFilterItem>? projects;
+
     try {
       final res = await _service.getProjects();
       if (res.status == 1 && res.data != null) {
-        return right(res.data!);
-      }
-      return left(
-        BaseError.httpInternalServerError(
+        projects = res.data!;
+      } else {
+        failure = BaseError.httpInternalServerError(
           res.message ?? res.msg ?? 'Không thể tải danh sách dự án',
-        ),
-      );
+        );
+      }
     } on DioException catch (e) {
-      return left(e.baseError);
+      failure = e.baseError;
     } catch (e) {
-      return left(BaseError.httpInternalServerError(e.toString()));
+      failure = BaseError.httpInternalServerError(e.toString());
     }
+
+    if (projects != null && projects.isNotEmpty) {
+      await ProjectCacheRepository.saveProjects(
+        cacheKey: _projectsCacheKey,
+        projects: projects,
+        toJson: (e) => e.toJson(),
+      );
+      return right(projects);
+    }
+
+    // API lỗi hoặc trả về rỗng → fallback về cache để người dùng vẫn chọn
+    // được dự án.
+    final cached = await ProjectCacheRepository.getProjects(
+      cacheKey: _projectsCacheKey,
+      fromJson: ProjectFilterItem.fromJson,
+    );
+    if (cached.isNotEmpty) return right(cached);
+
+    return left(
+      failure ??
+          BaseError.httpInternalServerError('Không thể tải danh sách dự án'),
+    );
   }
 
   @override

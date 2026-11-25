@@ -25,6 +25,7 @@ mixin _$NewsfeedEvent {
     required TResult Function() refreshCalendar,
     required TResult Function(NewsletterItem item) loadNewsfeedDetail,
     required TResult Function() clearNewsfeedDetail,
+    required TResult Function(NewsletterCategory category) changeCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,6 +37,7 @@ mixin _$NewsfeedEvent {
     TResult? Function()? refreshCalendar,
     TResult? Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult? Function()? clearNewsfeedDetail,
+    TResult? Function(NewsletterCategory category)? changeCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +49,7 @@ mixin _$NewsfeedEvent {
     TResult Function()? refreshCalendar,
     TResult Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult Function()? clearNewsfeedDetail,
+    TResult Function(NewsletterCategory category)? changeCategory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +62,7 @@ mixin _$NewsfeedEvent {
     required TResult Function(_RefreshCalendar value) refreshCalendar,
     required TResult Function(_LoadNewsfeedDetail value) loadNewsfeedDetail,
     required TResult Function(_ClearNewsfeedDetail value) clearNewsfeedDetail,
+    required TResult Function(_ChangeCategory value) changeCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +74,7 @@ mixin _$NewsfeedEvent {
     TResult? Function(_RefreshCalendar value)? refreshCalendar,
     TResult? Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult? Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult? Function(_ChangeCategory value)? changeCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +86,7 @@ mixin _$NewsfeedEvent {
     TResult Function(_RefreshCalendar value)? refreshCalendar,
     TResult Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult Function(_ChangeCategory value)? changeCategory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -148,6 +154,7 @@ class _$InitImpl implements _Init {
     required TResult Function() refreshCalendar,
     required TResult Function(NewsletterItem item) loadNewsfeedDetail,
     required TResult Function() clearNewsfeedDetail,
+    required TResult Function(NewsletterCategory category) changeCategory,
   }) {
     return init();
   }
@@ -162,6 +169,7 @@ class _$InitImpl implements _Init {
     TResult? Function()? refreshCalendar,
     TResult? Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult? Function()? clearNewsfeedDetail,
+    TResult? Function(NewsletterCategory category)? changeCategory,
   }) {
     return init?.call();
   }
@@ -176,6 +184,7 @@ class _$InitImpl implements _Init {
     TResult Function()? refreshCalendar,
     TResult Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult Function()? clearNewsfeedDetail,
+    TResult Function(NewsletterCategory category)? changeCategory,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -194,6 +203,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_RefreshCalendar value) refreshCalendar,
     required TResult Function(_LoadNewsfeedDetail value) loadNewsfeedDetail,
     required TResult Function(_ClearNewsfeedDetail value) clearNewsfeedDetail,
+    required TResult Function(_ChangeCategory value) changeCategory,
   }) {
     return init(this);
   }
@@ -208,6 +218,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_RefreshCalendar value)? refreshCalendar,
     TResult? Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult? Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult? Function(_ChangeCategory value)? changeCategory,
   }) {
     return init?.call(this);
   }
@@ -222,6 +233,7 @@ class _$InitImpl implements _Init {
     TResult Function(_RefreshCalendar value)? refreshCalendar,
     TResult Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult Function(_ChangeCategory value)? changeCategory,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -280,6 +292,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function() refreshCalendar,
     required TResult Function(NewsletterItem item) loadNewsfeedDetail,
     required TResult Function() clearNewsfeedDetail,
+    required TResult Function(NewsletterCategory category) changeCategory,
   }) {
     return refresh();
   }
@@ -294,6 +307,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function()? refreshCalendar,
     TResult? Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult? Function()? clearNewsfeedDetail,
+    TResult? Function(NewsletterCategory category)? changeCategory,
   }) {
     return refresh?.call();
   }
@@ -308,6 +322,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function()? refreshCalendar,
     TResult Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult Function()? clearNewsfeedDetail,
+    TResult Function(NewsletterCategory category)? changeCategory,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -326,6 +341,7 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_RefreshCalendar value) refreshCalendar,
     required TResult Function(_LoadNewsfeedDetail value) loadNewsfeedDetail,
     required TResult Function(_ClearNewsfeedDetail value) clearNewsfeedDetail,
+    required TResult Function(_ChangeCategory value) changeCategory,
   }) {
     return refresh(this);
   }
@@ -340,6 +356,7 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_RefreshCalendar value)? refreshCalendar,
     TResult? Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult? Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult? Function(_ChangeCategory value)? changeCategory,
   }) {
     return refresh?.call(this);
   }
@@ -354,6 +371,7 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_RefreshCalendar value)? refreshCalendar,
     TResult Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult Function(_ChangeCategory value)? changeCategory,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -412,6 +430,7 @@ class _$LoadCalendarImpl implements _LoadCalendar {
     required TResult Function() refreshCalendar,
     required TResult Function(NewsletterItem item) loadNewsfeedDetail,
     required TResult Function() clearNewsfeedDetail,
+    required TResult Function(NewsletterCategory category) changeCategory,
   }) {
     return loadCalendar();
   }
@@ -426,6 +445,7 @@ class _$LoadCalendarImpl implements _LoadCalendar {
     TResult? Function()? refreshCalendar,
     TResult? Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult? Function()? clearNewsfeedDetail,
+    TResult? Function(NewsletterCategory category)? changeCategory,
   }) {
     return loadCalendar?.call();
   }
@@ -440,6 +460,7 @@ class _$LoadCalendarImpl implements _LoadCalendar {
     TResult Function()? refreshCalendar,
     TResult Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult Function()? clearNewsfeedDetail,
+    TResult Function(NewsletterCategory category)? changeCategory,
     required TResult orElse(),
   }) {
     if (loadCalendar != null) {
@@ -458,6 +479,7 @@ class _$LoadCalendarImpl implements _LoadCalendar {
     required TResult Function(_RefreshCalendar value) refreshCalendar,
     required TResult Function(_LoadNewsfeedDetail value) loadNewsfeedDetail,
     required TResult Function(_ClearNewsfeedDetail value) clearNewsfeedDetail,
+    required TResult Function(_ChangeCategory value) changeCategory,
   }) {
     return loadCalendar(this);
   }
@@ -472,6 +494,7 @@ class _$LoadCalendarImpl implements _LoadCalendar {
     TResult? Function(_RefreshCalendar value)? refreshCalendar,
     TResult? Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult? Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult? Function(_ChangeCategory value)? changeCategory,
   }) {
     return loadCalendar?.call(this);
   }
@@ -486,6 +509,7 @@ class _$LoadCalendarImpl implements _LoadCalendar {
     TResult Function(_RefreshCalendar value)? refreshCalendar,
     TResult Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult Function(_ChangeCategory value)? changeCategory,
     required TResult orElse(),
   }) {
     if (loadCalendar != null) {
@@ -579,6 +603,7 @@ class _$ChangeCalendarMonthImpl implements _ChangeCalendarMonth {
     required TResult Function() refreshCalendar,
     required TResult Function(NewsletterItem item) loadNewsfeedDetail,
     required TResult Function() clearNewsfeedDetail,
+    required TResult Function(NewsletterCategory category) changeCategory,
   }) {
     return changeCalendarMonth(month, year);
   }
@@ -593,6 +618,7 @@ class _$ChangeCalendarMonthImpl implements _ChangeCalendarMonth {
     TResult? Function()? refreshCalendar,
     TResult? Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult? Function()? clearNewsfeedDetail,
+    TResult? Function(NewsletterCategory category)? changeCategory,
   }) {
     return changeCalendarMonth?.call(month, year);
   }
@@ -607,6 +633,7 @@ class _$ChangeCalendarMonthImpl implements _ChangeCalendarMonth {
     TResult Function()? refreshCalendar,
     TResult Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult Function()? clearNewsfeedDetail,
+    TResult Function(NewsletterCategory category)? changeCategory,
     required TResult orElse(),
   }) {
     if (changeCalendarMonth != null) {
@@ -625,6 +652,7 @@ class _$ChangeCalendarMonthImpl implements _ChangeCalendarMonth {
     required TResult Function(_RefreshCalendar value) refreshCalendar,
     required TResult Function(_LoadNewsfeedDetail value) loadNewsfeedDetail,
     required TResult Function(_ClearNewsfeedDetail value) clearNewsfeedDetail,
+    required TResult Function(_ChangeCategory value) changeCategory,
   }) {
     return changeCalendarMonth(this);
   }
@@ -639,6 +667,7 @@ class _$ChangeCalendarMonthImpl implements _ChangeCalendarMonth {
     TResult? Function(_RefreshCalendar value)? refreshCalendar,
     TResult? Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult? Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult? Function(_ChangeCategory value)? changeCategory,
   }) {
     return changeCalendarMonth?.call(this);
   }
@@ -653,6 +682,7 @@ class _$ChangeCalendarMonthImpl implements _ChangeCalendarMonth {
     TResult Function(_RefreshCalendar value)? refreshCalendar,
     TResult Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult Function(_ChangeCategory value)? changeCategory,
     required TResult orElse(),
   }) {
     if (changeCalendarMonth != null) {
@@ -719,6 +749,7 @@ class _$RefreshCalendarImpl implements _RefreshCalendar {
     required TResult Function() refreshCalendar,
     required TResult Function(NewsletterItem item) loadNewsfeedDetail,
     required TResult Function() clearNewsfeedDetail,
+    required TResult Function(NewsletterCategory category) changeCategory,
   }) {
     return refreshCalendar();
   }
@@ -733,6 +764,7 @@ class _$RefreshCalendarImpl implements _RefreshCalendar {
     TResult? Function()? refreshCalendar,
     TResult? Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult? Function()? clearNewsfeedDetail,
+    TResult? Function(NewsletterCategory category)? changeCategory,
   }) {
     return refreshCalendar?.call();
   }
@@ -747,6 +779,7 @@ class _$RefreshCalendarImpl implements _RefreshCalendar {
     TResult Function()? refreshCalendar,
     TResult Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult Function()? clearNewsfeedDetail,
+    TResult Function(NewsletterCategory category)? changeCategory,
     required TResult orElse(),
   }) {
     if (refreshCalendar != null) {
@@ -765,6 +798,7 @@ class _$RefreshCalendarImpl implements _RefreshCalendar {
     required TResult Function(_RefreshCalendar value) refreshCalendar,
     required TResult Function(_LoadNewsfeedDetail value) loadNewsfeedDetail,
     required TResult Function(_ClearNewsfeedDetail value) clearNewsfeedDetail,
+    required TResult Function(_ChangeCategory value) changeCategory,
   }) {
     return refreshCalendar(this);
   }
@@ -779,6 +813,7 @@ class _$RefreshCalendarImpl implements _RefreshCalendar {
     TResult? Function(_RefreshCalendar value)? refreshCalendar,
     TResult? Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult? Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult? Function(_ChangeCategory value)? changeCategory,
   }) {
     return refreshCalendar?.call(this);
   }
@@ -793,6 +828,7 @@ class _$RefreshCalendarImpl implements _RefreshCalendar {
     TResult Function(_RefreshCalendar value)? refreshCalendar,
     TResult Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult Function(_ChangeCategory value)? changeCategory,
     required TResult orElse(),
   }) {
     if (refreshCalendar != null) {
@@ -888,6 +924,7 @@ class _$LoadNewsfeedDetailImpl implements _LoadNewsfeedDetail {
     required TResult Function() refreshCalendar,
     required TResult Function(NewsletterItem item) loadNewsfeedDetail,
     required TResult Function() clearNewsfeedDetail,
+    required TResult Function(NewsletterCategory category) changeCategory,
   }) {
     return loadNewsfeedDetail(item);
   }
@@ -902,6 +939,7 @@ class _$LoadNewsfeedDetailImpl implements _LoadNewsfeedDetail {
     TResult? Function()? refreshCalendar,
     TResult? Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult? Function()? clearNewsfeedDetail,
+    TResult? Function(NewsletterCategory category)? changeCategory,
   }) {
     return loadNewsfeedDetail?.call(item);
   }
@@ -916,6 +954,7 @@ class _$LoadNewsfeedDetailImpl implements _LoadNewsfeedDetail {
     TResult Function()? refreshCalendar,
     TResult Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult Function()? clearNewsfeedDetail,
+    TResult Function(NewsletterCategory category)? changeCategory,
     required TResult orElse(),
   }) {
     if (loadNewsfeedDetail != null) {
@@ -934,6 +973,7 @@ class _$LoadNewsfeedDetailImpl implements _LoadNewsfeedDetail {
     required TResult Function(_RefreshCalendar value) refreshCalendar,
     required TResult Function(_LoadNewsfeedDetail value) loadNewsfeedDetail,
     required TResult Function(_ClearNewsfeedDetail value) clearNewsfeedDetail,
+    required TResult Function(_ChangeCategory value) changeCategory,
   }) {
     return loadNewsfeedDetail(this);
   }
@@ -948,6 +988,7 @@ class _$LoadNewsfeedDetailImpl implements _LoadNewsfeedDetail {
     TResult? Function(_RefreshCalendar value)? refreshCalendar,
     TResult? Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult? Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult? Function(_ChangeCategory value)? changeCategory,
   }) {
     return loadNewsfeedDetail?.call(this);
   }
@@ -962,6 +1003,7 @@ class _$LoadNewsfeedDetailImpl implements _LoadNewsfeedDetail {
     TResult Function(_RefreshCalendar value)? refreshCalendar,
     TResult Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult Function(_ChangeCategory value)? changeCategory,
     required TResult orElse(),
   }) {
     if (loadNewsfeedDetail != null) {
@@ -1027,6 +1069,7 @@ class _$ClearNewsfeedDetailImpl implements _ClearNewsfeedDetail {
     required TResult Function() refreshCalendar,
     required TResult Function(NewsletterItem item) loadNewsfeedDetail,
     required TResult Function() clearNewsfeedDetail,
+    required TResult Function(NewsletterCategory category) changeCategory,
   }) {
     return clearNewsfeedDetail();
   }
@@ -1041,6 +1084,7 @@ class _$ClearNewsfeedDetailImpl implements _ClearNewsfeedDetail {
     TResult? Function()? refreshCalendar,
     TResult? Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult? Function()? clearNewsfeedDetail,
+    TResult? Function(NewsletterCategory category)? changeCategory,
   }) {
     return clearNewsfeedDetail?.call();
   }
@@ -1055,6 +1099,7 @@ class _$ClearNewsfeedDetailImpl implements _ClearNewsfeedDetail {
     TResult Function()? refreshCalendar,
     TResult Function(NewsletterItem item)? loadNewsfeedDetail,
     TResult Function()? clearNewsfeedDetail,
+    TResult Function(NewsletterCategory category)? changeCategory,
     required TResult orElse(),
   }) {
     if (clearNewsfeedDetail != null) {
@@ -1073,6 +1118,7 @@ class _$ClearNewsfeedDetailImpl implements _ClearNewsfeedDetail {
     required TResult Function(_RefreshCalendar value) refreshCalendar,
     required TResult Function(_LoadNewsfeedDetail value) loadNewsfeedDetail,
     required TResult Function(_ClearNewsfeedDetail value) clearNewsfeedDetail,
+    required TResult Function(_ChangeCategory value) changeCategory,
   }) {
     return clearNewsfeedDetail(this);
   }
@@ -1087,6 +1133,7 @@ class _$ClearNewsfeedDetailImpl implements _ClearNewsfeedDetail {
     TResult? Function(_RefreshCalendar value)? refreshCalendar,
     TResult? Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult? Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult? Function(_ChangeCategory value)? changeCategory,
   }) {
     return clearNewsfeedDetail?.call(this);
   }
@@ -1101,6 +1148,7 @@ class _$ClearNewsfeedDetailImpl implements _ClearNewsfeedDetail {
     TResult Function(_RefreshCalendar value)? refreshCalendar,
     TResult Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
     TResult Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult Function(_ChangeCategory value)? changeCategory,
     required TResult orElse(),
   }) {
     if (clearNewsfeedDetail != null) {
@@ -1112,4 +1160,176 @@ class _$ClearNewsfeedDetailImpl implements _ClearNewsfeedDetail {
 
 abstract class _ClearNewsfeedDetail implements NewsfeedEvent {
   const factory _ClearNewsfeedDetail() = _$ClearNewsfeedDetailImpl;
+}
+
+/// @nodoc
+abstract class _$$ChangeCategoryImplCopyWith<$Res> {
+  factory _$$ChangeCategoryImplCopyWith(_$ChangeCategoryImpl value,
+          $Res Function(_$ChangeCategoryImpl) then) =
+      __$$ChangeCategoryImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({NewsletterCategory category});
+}
+
+/// @nodoc
+class __$$ChangeCategoryImplCopyWithImpl<$Res>
+    extends _$NewsfeedEventCopyWithImpl<$Res, _$ChangeCategoryImpl>
+    implements _$$ChangeCategoryImplCopyWith<$Res> {
+  __$$ChangeCategoryImplCopyWithImpl(
+      _$ChangeCategoryImpl _value, $Res Function(_$ChangeCategoryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+  }) {
+    return _then(_$ChangeCategoryImpl(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as NewsletterCategory,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeCategoryImpl implements _ChangeCategory {
+  const _$ChangeCategoryImpl({required this.category});
+
+  @override
+  final NewsletterCategory category;
+
+  @override
+  String toString() {
+    return 'NewsfeedEvent.changeCategory(category: $category)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeCategoryImpl &&
+            (identical(other.category, category) ||
+                other.category == category));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, category);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeCategoryImplCopyWith<_$ChangeCategoryImpl> get copyWith =>
+      __$$ChangeCategoryImplCopyWithImpl<_$ChangeCategoryImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function() loadCalendar,
+    required TResult Function(int month, int year) changeCalendarMonth,
+    required TResult Function() refreshCalendar,
+    required TResult Function(NewsletterItem item) loadNewsfeedDetail,
+    required TResult Function() clearNewsfeedDetail,
+    required TResult Function(NewsletterCategory category) changeCategory,
+  }) {
+    return changeCategory(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function()? loadCalendar,
+    TResult? Function(int month, int year)? changeCalendarMonth,
+    TResult? Function()? refreshCalendar,
+    TResult? Function(NewsletterItem item)? loadNewsfeedDetail,
+    TResult? Function()? clearNewsfeedDetail,
+    TResult? Function(NewsletterCategory category)? changeCategory,
+  }) {
+    return changeCategory?.call(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function()? loadCalendar,
+    TResult Function(int month, int year)? changeCalendarMonth,
+    TResult Function()? refreshCalendar,
+    TResult Function(NewsletterItem item)? loadNewsfeedDetail,
+    TResult Function()? clearNewsfeedDetail,
+    TResult Function(NewsletterCategory category)? changeCategory,
+    required TResult orElse(),
+  }) {
+    if (changeCategory != null) {
+      return changeCategory(category);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_LoadCalendar value) loadCalendar,
+    required TResult Function(_ChangeCalendarMonth value) changeCalendarMonth,
+    required TResult Function(_RefreshCalendar value) refreshCalendar,
+    required TResult Function(_LoadNewsfeedDetail value) loadNewsfeedDetail,
+    required TResult Function(_ClearNewsfeedDetail value) clearNewsfeedDetail,
+    required TResult Function(_ChangeCategory value) changeCategory,
+  }) {
+    return changeCategory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_LoadCalendar value)? loadCalendar,
+    TResult? Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult? Function(_RefreshCalendar value)? refreshCalendar,
+    TResult? Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
+    TResult? Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult? Function(_ChangeCategory value)? changeCategory,
+  }) {
+    return changeCategory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_LoadCalendar value)? loadCalendar,
+    TResult Function(_ChangeCalendarMonth value)? changeCalendarMonth,
+    TResult Function(_RefreshCalendar value)? refreshCalendar,
+    TResult Function(_LoadNewsfeedDetail value)? loadNewsfeedDetail,
+    TResult Function(_ClearNewsfeedDetail value)? clearNewsfeedDetail,
+    TResult Function(_ChangeCategory value)? changeCategory,
+    required TResult orElse(),
+  }) {
+    if (changeCategory != null) {
+      return changeCategory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeCategory implements NewsfeedEvent {
+  const factory _ChangeCategory({required final NewsletterCategory category}) =
+      _$ChangeCategoryImpl;
+
+  NewsletterCategory get category;
+  @JsonKey(ignore: true)
+  _$$ChangeCategoryImplCopyWith<_$ChangeCategoryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

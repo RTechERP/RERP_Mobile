@@ -21,9 +21,7 @@ class NewsfeedService extends DioBaseApiService {
     );
   }
 
-  Future<BaseData<NewsletterDetailItem>> getNewsfeedDetail({
-    required int id,
-  }) {
+  Future<BaseData<NewsletterDetailItem>> getNewsfeedDetail({required int id}) {
     return post<BaseData<NewsletterDetailItem>>(
       ApiEndPoint.getNewsletterById,
       query: {'id': id},

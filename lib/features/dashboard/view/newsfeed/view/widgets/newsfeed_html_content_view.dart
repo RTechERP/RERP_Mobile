@@ -11,7 +11,10 @@ class NewsfeedHtmlHelper {
     }
 
     final normalized = _normalizeHtml(content);
-    final hasHtmlTag = RegExp(r'<\s*html[\s>]', caseSensitive: false).hasMatch(normalized);
+    final hasHtmlTag = RegExp(
+      r'<\s*html[\s>]',
+      caseSensitive: false,
+    ).hasMatch(normalized);
     if (hasHtmlTag) {
       return normalized;
     }
@@ -98,7 +101,8 @@ class NewsfeedHtmlContentView extends StatefulWidget {
   final Color backgroundColor;
 
   @override
-  State<NewsfeedHtmlContentView> createState() => _NewsfeedHtmlContentViewState();
+  State<NewsfeedHtmlContentView> createState() =>
+      _NewsfeedHtmlContentViewState();
 }
 
 class _NewsfeedHtmlContentViewState extends State<NewsfeedHtmlContentView> {
@@ -131,7 +135,9 @@ class _NewsfeedHtmlContentViewState extends State<NewsfeedHtmlContentView> {
         _isLoading = true;
         _contentHeight = 1;
       });
-      _controller.loadHtmlString(NewsfeedHtmlHelper.buildHtmlDocument(widget.html));
+      _controller.loadHtmlString(
+        NewsfeedHtmlHelper.buildHtmlDocument(widget.html),
+      );
     }
   }
 

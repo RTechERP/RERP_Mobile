@@ -50,6 +50,8 @@ class OvertimeSlipFormFields extends StatelessWidget {
     this.isProjectRequired = true,
     this.isProjectItemRequired = true,
     this.hasProjectSelected = false,
+    this.timeStartPickerKey,
+    this.timeEndPickerKey,
   });
 
   final String slipKey;
@@ -93,6 +95,14 @@ class OvertimeSlipFormFields extends StatelessWidget {
 
   /// Đã chọn dự án hay chưa — quyết định có cho mở sheet hạng mục.
   final bool hasProjectSelected;
+
+  /// Key của picker "Từ" — parent dùng để đẩy giá trị mới khi ngày đăng ký
+  /// thay đổi (picker không tự đồng bộ khi `initialValue` đổi).
+  final GlobalKey<FormDateTimePickerState>? timeStartPickerKey;
+
+  /// Key của picker "Đến" — parent dùng để đẩy giá trị mới khi ngày đăng ký
+  /// thay đổi (picker không tự đồng bộ khi `initialValue` đổi).
+  final GlobalKey<FormDateTimePickerState>? timeEndPickerKey;
 
   /// Format double: bỏ ".0" nếu chẵn, hiện 1 chữ số thập phân nếu lẻ.
   static String _fmtDouble(double h) {
@@ -185,6 +195,7 @@ class OvertimeSlipFormFields extends StatelessWidget {
 
           // Thời gian bắt đầu
           FormDateTimePicker(
+            key: timeStartPickerKey,
             nameForm: 'ot_slip_${slipKey}_time_start',
             nameTimePicker: 'ot_slip_${slipKey}_time_start_inner',
             label: 'Từ',
@@ -210,6 +221,7 @@ class OvertimeSlipFormFields extends StatelessWidget {
 
           // Thời gian kết thúc
           FormDateTimePicker(
+            key: timeEndPickerKey,
             nameForm: 'ot_slip_${slipKey}_time_end',
             nameTimePicker: 'ot_slip_${slipKey}_time_end_inner',
             label: 'Đến',
