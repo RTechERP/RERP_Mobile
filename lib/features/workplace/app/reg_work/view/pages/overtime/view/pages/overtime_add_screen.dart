@@ -40,6 +40,31 @@ class _OvertimeAddScreenPageState
   late final List<String> _slipKeys;
   int _selectedSlipIndex = 0;
 
+  /// Key của picker "Từ"/"Đến" theo từng phiếu — dùng để đẩy lại giá trị
+  /// khi ngày đăng ký thay đổi (picker không tự đồng bộ khi `initialValue` đổi).
+  final Map<String, GlobalKey<FormDateTimePickerState>> _timeStartPickerKeys = {};
+  final Map<String, GlobalKey<FormDateTimePickerState>> _timeEndPickerKeys = {};
+
+  /// Giờ bắt đầu mặc định của từng phiếu, cố định theo ngày tạo phiếu.
+  ///
+  /// Giữ giá trị này bất biến để `initialValue` của picker không đổi theo ngày
+  /// đăng ký — nếu không, `FormDateTimePicker.didUpdateWidget` sẽ tự ghi đè
+  /// giờ đã chọn của người dùng. Việc dời ngày do [_onDateRegisterChanged] đảm
+  /// nhiệm (giữ giờ phút, chỉ đổi ngày).
+  final Map<String, DateTime> _slipDefaultStarts = {};
+
+  GlobalKey<FormDateTimePickerState> _timeStartPickerKey(String slipKey) =>
+      _timeStartPickerKeys.putIfAbsent(
+        slipKey,
+        () => GlobalKey<FormDateTimePickerState>(),
+      );
+
+  GlobalKey<FormDateTimePickerState> _timeEndPickerKey(String slipKey) =>
+      _timeEndPickerKeys.putIfAbsent(
+        slipKey,
+        () => GlobalKey<FormDateTimePickerState>(),
+      );
+
   /// Predicate để giới hạn ngày đăng ký chỉ có hôm qua và hôm nay.
   bool _isYesterdayOrToday(DateTime day) {
     final d = DateTime(day.year, day.month, day.day);
@@ -53,6 +78,7 @@ class _OvertimeAddScreenPageState
     _todayStart = DateTime(now.year, now.month, now.day);
     _yesterdayStart = _todayStart.subtract(const Duration(days: 1));
     _slipKeys = ['k_${now.millisecondsSinceEpoch}'];
+    _slipDefaultStarts[_slipKeys.first] = _defaultStartOn(_todayStart);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
@@ -75,17 +101,89 @@ class _OvertimeAddScreenPageState
     return _todayStart;
   }
 
-  DateTime _defaultSlipTimeStart() {
-    final base = _getDateRegister();
-    return DateTime(base.year, base.month, base.day, 18, 0);
+  /// Giờ bắt đầu mặc định (18:00) của một ngày.
+  DateTime _defaultStartOn(DateTime day) =>
+      DateTime(day.year, day.month, day.day, 18, 0);
+
+  /// Giờ bắt đầu mặc định của phiếu — cố định theo ngày tạo phiếu nên không
+  /// bị `initialValue` ghi đè khi ngày đăng ký thay đổi.
+  DateTime _defaultSlipTimeStart(String slipKey) =>
+      _slipDefaultStarts[slipKey] ?? _defaultStartOn(_getDateRegister());
+
+  /// Khi đổi "Ngày đăng ký" → dời "Từ"/"Đến" của mọi phiếu sang ngày mới,
+  /// giữ nguyên giờ phút đã chọn.
+  ///
+  /// "Đến" được dịch theo **độ lệch ngày so với "Từ"** để ca làm qua nửa đêm
+  /// (vd. 23:00 hôm nay → 01:30 hôm sau) vẫn giữ đúng quan hệ qua đêm.
+  ///
+  /// Picker không tự cập nhật khi `initialValue` đổi nên phải đẩy giá trị qua
+  /// `pickerKey.setValue()` (gọi `didChange` cho cả field ngoài/lồng kèm
+  /// `setState` để TextField chắc chắn rebuild).
+  void _onDateRegisterChanged(DateTime? date) {
+    if (date == null) return;
+
+    final dayStart = DateTime(date.year, date.month, date.day);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+
+      // Gom giá trị mới trước rồi mới ghi — tránh đọc field sau khi đã ghi ở
+      // phiếu trước (mỗi lần ghi kích hoạt rebuild).
+      final shifted = <String, (DateTime, DateTime?)>{};
+      for (final key in _slipKeys) {
+        final ts = _getSlipTimeStart(key);
+        final te = _formKey.currentState
+            ?.fields['ot_slip_${key}_time_end']
+            ?.value as DateTime?;
+
+        final newStart = ts == null
+            ? _defaultStartOn(dayStart)
+            : DateTime(
+                dayStart.year,
+                dayStart.month,
+                dayStart.day,
+                ts.hour,
+                ts.minute,
+              );
+
+        // Độ lệch ngày của "Đến" so với "Từ" (0 = cùng ngày, 1 = qua đêm).
+        final dayOffset =
+            (ts == null || te == null) ? 0 : _dayDiff(te, ts);
+        final newEnd = te == null
+            ? null
+            : DateTime(
+                newStart.year,
+                newStart.month,
+                newStart.day + dayOffset,
+                te.hour,
+                te.minute,
+              );
+        shifted[key] = (newStart, newEnd);
+      }
+
+      for (final entry in shifted.entries) {
+        _timeStartPickerKey(entry.key).currentState?.setValue(entry.value.$1);
+        _timeEndPickerKey(entry.key).currentState?.setValue(entry.value.$2);
+      }
+
+      if (mounted) setState(() {});
+    });
+  }
+
+  /// Số ngày lệch giữa hai mốc thời gian (`to` so với `from`).
+  int _dayDiff(DateTime to, DateTime from) {
+    final a = DateTime(to.year, to.month, to.day);
+    final b = DateTime(from.year, from.month, from.day);
+    return a.difference(b).inDays;
   }
 
   // ── Tab helpers ───────────────────────────────────────────────────────
   void _addSlip() {
     setState(() {
-      _slipKeys.add(
-        'k_${DateTime.now().microsecondsSinceEpoch}_${_slipKeys.length}',
-      );
+      final key =
+          'k_${DateTime.now().microsecondsSinceEpoch}_${_slipKeys.length}';
+      _slipKeys.add(key);
+      // Phiếu mới dùng giờ bắt đầu mặc định trên ngày đăng ký hiện tại.
+      _slipDefaultStarts[key] = _defaultStartOn(_getDateRegister());
       _selectedSlipIndex = _slipKeys.length - 1;
     });
   }
@@ -95,7 +193,8 @@ class _OvertimeAddScreenPageState
       return;
     }
     setState(() {
-      _slipKeys.removeAt(index);
+      final removedKey = _slipKeys.removeAt(index);
+      _slipDefaultStarts.remove(removedKey);
       if (_selectedSlipIndex >= _slipKeys.length) {
         _selectedSlipIndex = _slipKeys.length - 1;
       } else if (index < _selectedSlipIndex) {
@@ -588,6 +687,7 @@ class _OvertimeAddScreenPageState
                                             ? AutovalidateMode.onUserInteraction
                                             : AutovalidateMode.disabled,
                                         isRequired: true,
+                                        onChanged: _onDateRegisterChanged,
                                         validator: (v) {
                                           if (v == null) return 'Vui lòng chọn ngày đăng ký';
                                           return null;
@@ -707,7 +807,7 @@ class _OvertimeAddScreenPageState
                                               computedHours:
                                                   _computeSlipHours(key),
                                               initialTimeStart:
-                                                  _defaultSlipTimeStart(),
+                                                  _defaultSlipTimeStart(key),
                                               onTimeStartChanged:
                                                   _onSlipTimeStartChanged,
                                               onEndTimeChanged:
@@ -720,6 +820,10 @@ class _OvertimeAddScreenPageState
                                                   state.isProjectItemRequired,
                                               hasProjectSelected:
                                                   _getSlipProjectId(key) != null,
+                                              timeStartPickerKey:
+                                                  _timeStartPickerKey(key),
+                                              timeEndPickerKey:
+                                                  _timeEndPickerKey(key),
                                             ),
                                         ],
                                       ),
