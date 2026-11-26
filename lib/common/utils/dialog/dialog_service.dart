@@ -19,6 +19,7 @@ import '../../../features/workplace/app/reg_work/view/pages/work_trip/data/datas
 import '../../../features/workplace/app/reg_work/view/pages/work_trip/view/widgets/work_trip_add_constants.dart';
 import '../../../features/workplace/app/reg_work/view/pages/work_trip/view/widgets/work_trip_vehicle_dialog.dart';
 import '../../../features/workplace/app/reports/view/tech/view/bloc/tech_bloc.dart';
+import '../../../features/workplace/app/reports/view/tech/view/widgets/tech_hours_rule_content.dart';
 import '../../../routes/route_names.dart';
 import '../../app_theme/index.dart';
 import '../../common_ui.dart';
@@ -1616,6 +1617,33 @@ class DialogService {
       },
       bottomButtonFunc: () {
         onBack(context);
+      },
+    );
+  }
+
+  /// Hiển thị thông báo quy định điền giờ hành chính / giờ OT.
+  /// Dùng cho màn tạo báo cáo để nhắc người dùng không cộng dồn giờ OT
+  /// vào ô "Số giờ".
+  static Future<void> showNotificationWorkingHoursRule({
+    required BuildContext context,
+    VoidCallback? onConfirm,
+  }) {
+    return BaseDialog.oneOptionDialog(
+      context: context,
+      image: const Icon(
+        Icons.schedule_outlined,
+        size: 44,
+        color: AppColors.primaryERP,
+      ),
+      title: 'Quy định điền giờ',
+      descriptionWidget: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 420),
+        child: const TechHoursRuleContent(),
+      ),
+      contentButton: 'Đã hiểu',
+      onTapFunc: () {
+        onBack(context);
+        onConfirm?.call();
       },
     );
   }

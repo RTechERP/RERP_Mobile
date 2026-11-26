@@ -21,6 +21,7 @@ import '../bloc/tech_bloc.dart';
 import '../widgets/tech_admin_hours_chip.dart';
 import '../widgets/tech_edit_work_item.dart';
 import '../widgets/tech_history_problems_card.dart';
+import '../widgets/tech_hours_rule_button.dart';
 
 class TechEditScreen extends StatefulWidget {
   final int dailyId;
@@ -143,6 +144,15 @@ class _TechEditScreenState
                     ),
                   ),
                 ),
+                // Nút mở thông báo quy định điền giờ.
+                TechHoursRuleButton(
+                  onPressed: () {
+                    DialogService.showNotificationWorkingHoursRule(
+                      context: context,
+                    );
+                  },
+                ),
+                const SizedBox(width: 8),
               ],
             ),
             body: BlocBuilder<TechBloc, TechState>(
