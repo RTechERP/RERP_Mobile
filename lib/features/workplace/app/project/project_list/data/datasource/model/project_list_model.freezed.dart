@@ -1612,3 +1612,1700 @@ abstract class _ProjectItem implements ProjectItem {
   _$$ProjectItemImplCopyWith<_$ProjectItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+CustomerItem _$CustomerItemFromJson(Map<String, dynamic> json) {
+  return _CustomerItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CustomerItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CustomerCode')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CustomerName')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CustomerShortName')
+  String? get shortName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Address')
+  String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Phone')
+  String? get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Email')
+  String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ContactName')
+  String? get contactName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ContactPhone')
+  String? get contactPhone => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ContactEmail')
+  String? get contactEmail => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxCode')
+  String? get taxCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Province')
+  String? get province => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CustomerItemCopyWith<CustomerItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CustomerItemCopyWith<$Res> {
+  factory $CustomerItemCopyWith(
+          CustomerItem value, $Res Function(CustomerItem) then) =
+      _$CustomerItemCopyWithImpl<$Res, CustomerItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'CustomerCode') String? code,
+      @JsonKey(name: 'CustomerName') String? name,
+      @JsonKey(name: 'CustomerShortName') String? shortName,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'Phone') String? phone,
+      @JsonKey(name: 'Email') String? email,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'TaxCode') String? taxCode,
+      @JsonKey(name: 'Province') String? province});
+}
+
+/// @nodoc
+class _$CustomerItemCopyWithImpl<$Res, $Val extends CustomerItem>
+    implements $CustomerItemCopyWith<$Res> {
+  _$CustomerItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? shortName = freezed,
+    Object? address = freezed,
+    Object? phone = freezed,
+    Object? email = freezed,
+    Object? contactName = freezed,
+    Object? contactPhone = freezed,
+    Object? contactEmail = freezed,
+    Object? taxCode = freezed,
+    Object? province = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shortName: freezed == shortName
+          ? _value.shortName
+          : shortName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxCode: freezed == taxCode
+          ? _value.taxCode
+          : taxCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      province: freezed == province
+          ? _value.province
+          : province // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CustomerItemImplCopyWith<$Res>
+    implements $CustomerItemCopyWith<$Res> {
+  factory _$$CustomerItemImplCopyWith(
+          _$CustomerItemImpl value, $Res Function(_$CustomerItemImpl) then) =
+      __$$CustomerItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'CustomerCode') String? code,
+      @JsonKey(name: 'CustomerName') String? name,
+      @JsonKey(name: 'CustomerShortName') String? shortName,
+      @JsonKey(name: 'Address') String? address,
+      @JsonKey(name: 'Phone') String? phone,
+      @JsonKey(name: 'Email') String? email,
+      @JsonKey(name: 'ContactName') String? contactName,
+      @JsonKey(name: 'ContactPhone') String? contactPhone,
+      @JsonKey(name: 'ContactEmail') String? contactEmail,
+      @JsonKey(name: 'TaxCode') String? taxCode,
+      @JsonKey(name: 'Province') String? province});
+}
+
+/// @nodoc
+class __$$CustomerItemImplCopyWithImpl<$Res>
+    extends _$CustomerItemCopyWithImpl<$Res, _$CustomerItemImpl>
+    implements _$$CustomerItemImplCopyWith<$Res> {
+  __$$CustomerItemImplCopyWithImpl(
+      _$CustomerItemImpl _value, $Res Function(_$CustomerItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? shortName = freezed,
+    Object? address = freezed,
+    Object? phone = freezed,
+    Object? email = freezed,
+    Object? contactName = freezed,
+    Object? contactPhone = freezed,
+    Object? contactEmail = freezed,
+    Object? taxCode = freezed,
+    Object? province = freezed,
+  }) {
+    return _then(_$CustomerItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shortName: freezed == shortName
+          ? _value.shortName
+          : shortName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactName: freezed == contactName
+          ? _value.contactName
+          : contactName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactPhone: freezed == contactPhone
+          ? _value.contactPhone
+          : contactPhone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contactEmail: freezed == contactEmail
+          ? _value.contactEmail
+          : contactEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxCode: freezed == taxCode
+          ? _value.taxCode
+          : taxCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      province: freezed == province
+          ? _value.province
+          : province // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CustomerItemImpl implements _CustomerItem {
+  const _$CustomerItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'CustomerCode') this.code,
+      @JsonKey(name: 'CustomerName') this.name,
+      @JsonKey(name: 'CustomerShortName') this.shortName,
+      @JsonKey(name: 'Address') this.address,
+      @JsonKey(name: 'Phone') this.phone,
+      @JsonKey(name: 'Email') this.email,
+      @JsonKey(name: 'ContactName') this.contactName,
+      @JsonKey(name: 'ContactPhone') this.contactPhone,
+      @JsonKey(name: 'ContactEmail') this.contactEmail,
+      @JsonKey(name: 'TaxCode') this.taxCode,
+      @JsonKey(name: 'Province') this.province});
+
+  factory _$CustomerItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CustomerItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'CustomerCode')
+  final String? code;
+  @override
+  @JsonKey(name: 'CustomerName')
+  final String? name;
+  @override
+  @JsonKey(name: 'CustomerShortName')
+  final String? shortName;
+  @override
+  @JsonKey(name: 'Address')
+  final String? address;
+  @override
+  @JsonKey(name: 'Phone')
+  final String? phone;
+  @override
+  @JsonKey(name: 'Email')
+  final String? email;
+  @override
+  @JsonKey(name: 'ContactName')
+  final String? contactName;
+  @override
+  @JsonKey(name: 'ContactPhone')
+  final String? contactPhone;
+  @override
+  @JsonKey(name: 'ContactEmail')
+  final String? contactEmail;
+  @override
+  @JsonKey(name: 'TaxCode')
+  final String? taxCode;
+  @override
+  @JsonKey(name: 'Province')
+  final String? province;
+
+  @override
+  String toString() {
+    return 'CustomerItem(id: $id, code: $code, name: $name, shortName: $shortName, address: $address, phone: $phone, email: $email, contactName: $contactName, contactPhone: $contactPhone, contactEmail: $contactEmail, taxCode: $taxCode, province: $province)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CustomerItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.shortName, shortName) ||
+                other.shortName == shortName) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.contactName, contactName) ||
+                other.contactName == contactName) &&
+            (identical(other.contactPhone, contactPhone) ||
+                other.contactPhone == contactPhone) &&
+            (identical(other.contactEmail, contactEmail) ||
+                other.contactEmail == contactEmail) &&
+            (identical(other.taxCode, taxCode) || other.taxCode == taxCode) &&
+            (identical(other.province, province) ||
+                other.province == province));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      code,
+      name,
+      shortName,
+      address,
+      phone,
+      email,
+      contactName,
+      contactPhone,
+      contactEmail,
+      taxCode,
+      province);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CustomerItemImplCopyWith<_$CustomerItemImpl> get copyWith =>
+      __$$CustomerItemImplCopyWithImpl<_$CustomerItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CustomerItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CustomerItem implements CustomerItem {
+  const factory _CustomerItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'CustomerCode') final String? code,
+      @JsonKey(name: 'CustomerName') final String? name,
+      @JsonKey(name: 'CustomerShortName') final String? shortName,
+      @JsonKey(name: 'Address') final String? address,
+      @JsonKey(name: 'Phone') final String? phone,
+      @JsonKey(name: 'Email') final String? email,
+      @JsonKey(name: 'ContactName') final String? contactName,
+      @JsonKey(name: 'ContactPhone') final String? contactPhone,
+      @JsonKey(name: 'ContactEmail') final String? contactEmail,
+      @JsonKey(name: 'TaxCode') final String? taxCode,
+      @JsonKey(name: 'Province') final String? province}) = _$CustomerItemImpl;
+
+  factory _CustomerItem.fromJson(Map<String, dynamic> json) =
+      _$CustomerItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'CustomerCode')
+  String? get code;
+  @override
+  @JsonKey(name: 'CustomerName')
+  String? get name;
+  @override
+  @JsonKey(name: 'CustomerShortName')
+  String? get shortName;
+  @override
+  @JsonKey(name: 'Address')
+  String? get address;
+  @override
+  @JsonKey(name: 'Phone')
+  String? get phone;
+  @override
+  @JsonKey(name: 'Email')
+  String? get email;
+  @override
+  @JsonKey(name: 'ContactName')
+  String? get contactName;
+  @override
+  @JsonKey(name: 'ContactPhone')
+  String? get contactPhone;
+  @override
+  @JsonKey(name: 'ContactEmail')
+  String? get contactEmail;
+  @override
+  @JsonKey(name: 'TaxCode')
+  String? get taxCode;
+  @override
+  @JsonKey(name: 'Province')
+  String? get province;
+  @override
+  @JsonKey(ignore: true)
+  _$$CustomerItemImplCopyWith<_$CustomerItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProjectTypeItem _$ProjectTypeItemFromJson(Map<String, dynamic> json) {
+  return _ProjectTypeItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectTypeItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTypeCode')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTypeName')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ParentID')
+  int? get parentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsHide')
+  bool? get isHide => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProjectTypeItemCopyWith<ProjectTypeItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectTypeItemCopyWith<$Res> {
+  factory $ProjectTypeItemCopyWith(
+          ProjectTypeItem value, $Res Function(ProjectTypeItem) then) =
+      _$ProjectTypeItemCopyWithImpl<$Res, ProjectTypeItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectTypeCode') String? code,
+      @JsonKey(name: 'ProjectTypeName') String? name,
+      @JsonKey(name: 'ParentID') int? parentId,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'IsHide') bool? isHide});
+}
+
+/// @nodoc
+class _$ProjectTypeItemCopyWithImpl<$Res, $Val extends ProjectTypeItem>
+    implements $ProjectTypeItemCopyWith<$Res> {
+  _$ProjectTypeItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? parentId = freezed,
+    Object? departmentId = freezed,
+    Object? isDeleted = freezed,
+    Object? isHide = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parentId: freezed == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isHide: freezed == isHide
+          ? _value.isHide
+          : isHide // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectTypeItemImplCopyWith<$Res>
+    implements $ProjectTypeItemCopyWith<$Res> {
+  factory _$$ProjectTypeItemImplCopyWith(_$ProjectTypeItemImpl value,
+          $Res Function(_$ProjectTypeItemImpl) then) =
+      __$$ProjectTypeItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectTypeCode') String? code,
+      @JsonKey(name: 'ProjectTypeName') String? name,
+      @JsonKey(name: 'ParentID') int? parentId,
+      @JsonKey(name: 'DepartmentID') int? departmentId,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted,
+      @JsonKey(name: 'IsHide') bool? isHide});
+}
+
+/// @nodoc
+class __$$ProjectTypeItemImplCopyWithImpl<$Res>
+    extends _$ProjectTypeItemCopyWithImpl<$Res, _$ProjectTypeItemImpl>
+    implements _$$ProjectTypeItemImplCopyWith<$Res> {
+  __$$ProjectTypeItemImplCopyWithImpl(
+      _$ProjectTypeItemImpl _value, $Res Function(_$ProjectTypeItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? parentId = freezed,
+    Object? departmentId = freezed,
+    Object? isDeleted = freezed,
+    Object? isHide = freezed,
+  }) {
+    return _then(_$ProjectTypeItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parentId: freezed == parentId
+          ? _value.parentId
+          : parentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isHide: freezed == isHide
+          ? _value.isHide
+          : isHide // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectTypeItemImpl implements _ProjectTypeItem {
+  const _$ProjectTypeItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProjectTypeCode') this.code,
+      @JsonKey(name: 'ProjectTypeName') this.name,
+      @JsonKey(name: 'ParentID') this.parentId,
+      @JsonKey(name: 'DepartmentID') this.departmentId,
+      @JsonKey(name: 'IsDeleted') this.isDeleted,
+      @JsonKey(name: 'IsHide') this.isHide});
+
+  factory _$ProjectTypeItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectTypeItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProjectTypeCode')
+  final String? code;
+  @override
+  @JsonKey(name: 'ProjectTypeName')
+  final String? name;
+  @override
+  @JsonKey(name: 'ParentID')
+  final int? parentId;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'IsHide')
+  final bool? isHide;
+
+  @override
+  String toString() {
+    return 'ProjectTypeItem(id: $id, code: $code, name: $name, parentId: $parentId, departmentId: $departmentId, isDeleted: $isDeleted, isHide: $isHide)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectTypeItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.parentId, parentId) ||
+                other.parentId == parentId) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.isHide, isHide) || other.isHide == isHide));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, id, code, name, parentId, departmentId, isDeleted, isHide);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectTypeItemImplCopyWith<_$ProjectTypeItemImpl> get copyWith =>
+      __$$ProjectTypeItemImplCopyWithImpl<_$ProjectTypeItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectTypeItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectTypeItem implements ProjectTypeItem {
+  const factory _ProjectTypeItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'ProjectTypeCode') final String? code,
+      @JsonKey(name: 'ProjectTypeName') final String? name,
+      @JsonKey(name: 'ParentID') final int? parentId,
+      @JsonKey(name: 'DepartmentID') final int? departmentId,
+      @JsonKey(name: 'IsDeleted') final bool? isDeleted,
+      @JsonKey(name: 'IsHide') final bool? isHide}) = _$ProjectTypeItemImpl;
+
+  factory _ProjectTypeItem.fromJson(Map<String, dynamic> json) =
+      _$ProjectTypeItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProjectTypeCode')
+  String? get code;
+  @override
+  @JsonKey(name: 'ProjectTypeName')
+  String? get name;
+  @override
+  @JsonKey(name: 'ParentID')
+  int? get parentId;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(name: 'IsHide')
+  bool? get isHide;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProjectTypeItemImplCopyWith<_$ProjectTypeItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+PmItem _$PmItemFromJson(Map<String, dynamic> json) {
+  return _PmItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PmItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaxCompanyID')
+  int? get taxCompanyId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PmItemCopyWith<PmItem> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PmItemCopyWith<$Res> {
+  factory $PmItemCopyWith(PmItem value, $Res Function(PmItem) then) =
+      _$PmItemCopyWithImpl<$Res, PmItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'TaxCompanyID') int? taxCompanyId,
+      @JsonKey(name: 'DepartmentID') int? departmentId});
+}
+
+/// @nodoc
+class _$PmItemCopyWithImpl<$Res, $Val extends PmItem>
+    implements $PmItemCopyWith<$Res> {
+  _$PmItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? fullName = freezed,
+    Object? departmentName = freezed,
+    Object? employeeId = freezed,
+    Object? taxCompanyId = freezed,
+    Object? departmentId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      taxCompanyId: freezed == taxCompanyId
+          ? _value.taxCompanyId
+          : taxCompanyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PmItemImplCopyWith<$Res> implements $PmItemCopyWith<$Res> {
+  factory _$$PmItemImplCopyWith(
+          _$PmItemImpl value, $Res Function(_$PmItemImpl) then) =
+      __$$PmItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'TaxCompanyID') int? taxCompanyId,
+      @JsonKey(name: 'DepartmentID') int? departmentId});
+}
+
+/// @nodoc
+class __$$PmItemImplCopyWithImpl<$Res>
+    extends _$PmItemCopyWithImpl<$Res, _$PmItemImpl>
+    implements _$$PmItemImplCopyWith<$Res> {
+  __$$PmItemImplCopyWithImpl(
+      _$PmItemImpl _value, $Res Function(_$PmItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? fullName = freezed,
+    Object? departmentName = freezed,
+    Object? employeeId = freezed,
+    Object? taxCompanyId = freezed,
+    Object? departmentId = freezed,
+  }) {
+    return _then(_$PmItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      taxCompanyId: freezed == taxCompanyId
+          ? _value.taxCompanyId
+          : taxCompanyId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PmItemImpl implements _PmItem {
+  const _$PmItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'TaxCompanyID') this.taxCompanyId,
+      @JsonKey(name: 'DepartmentID') this.departmentId});
+
+  factory _$PmItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PmItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'TaxCompanyID')
+  final int? taxCompanyId;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+
+  @override
+  String toString() {
+    return 'PmItem(id: $id, code: $code, fullName: $fullName, departmentName: $departmentName, employeeId: $employeeId, taxCompanyId: $taxCompanyId, departmentId: $departmentId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PmItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.taxCompanyId, taxCompanyId) ||
+                other.taxCompanyId == taxCompanyId) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, code, fullName,
+      departmentName, employeeId, taxCompanyId, departmentId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PmItemImplCopyWith<_$PmItemImpl> get copyWith =>
+      __$$PmItemImplCopyWithImpl<_$PmItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PmItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PmItem implements PmItem {
+  const factory _PmItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'Code') final String? code,
+      @JsonKey(name: 'FullName') final String? fullName,
+      @JsonKey(name: 'DepartmentName') final String? departmentName,
+      @JsonKey(name: 'EmployeeID') final int? employeeId,
+      @JsonKey(name: 'TaxCompanyID') final int? taxCompanyId,
+      @JsonKey(name: 'DepartmentID') final int? departmentId}) = _$PmItemImpl;
+
+  factory _PmItem.fromJson(Map<String, dynamic> json) = _$PmItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'TaxCompanyID')
+  int? get taxCompanyId;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(ignore: true)
+  _$$PmItemImplCopyWith<_$PmItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+UserItem _$UserItemFromJson(Map<String, dynamic> json) {
+  return _UserItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$UserItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'FullName')
+  String? get fullName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserItemCopyWith<UserItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserItemCopyWith<$Res> {
+  factory $UserItemCopyWith(UserItem value, $Res Function(UserItem) then) =
+      _$UserItemCopyWithImpl<$Res, UserItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'DepartmentID') int? departmentId});
+}
+
+/// @nodoc
+class _$UserItemCopyWithImpl<$Res, $Val extends UserItem>
+    implements $UserItemCopyWith<$Res> {
+  _$UserItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? fullName = freezed,
+    Object? departmentName = freezed,
+    Object? employeeId = freezed,
+    Object? departmentId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$UserItemImplCopyWith<$Res>
+    implements $UserItemCopyWith<$Res> {
+  factory _$$UserItemImplCopyWith(
+          _$UserItemImpl value, $Res Function(_$UserItemImpl) then) =
+      __$$UserItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'FullName') String? fullName,
+      @JsonKey(name: 'DepartmentName') String? departmentName,
+      @JsonKey(name: 'EmployeeID') int? employeeId,
+      @JsonKey(name: 'DepartmentID') int? departmentId});
+}
+
+/// @nodoc
+class __$$UserItemImplCopyWithImpl<$Res>
+    extends _$UserItemCopyWithImpl<$Res, _$UserItemImpl>
+    implements _$$UserItemImplCopyWith<$Res> {
+  __$$UserItemImplCopyWithImpl(
+      _$UserItemImpl _value, $Res Function(_$UserItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? code = freezed,
+    Object? fullName = freezed,
+    Object? departmentName = freezed,
+    Object? employeeId = freezed,
+    Object? departmentId = freezed,
+  }) {
+    return _then(_$UserItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      employeeId: freezed == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$UserItemImpl implements _UserItem {
+  const _$UserItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'FullName') this.fullName,
+      @JsonKey(name: 'DepartmentName') this.departmentName,
+      @JsonKey(name: 'EmployeeID') this.employeeId,
+      @JsonKey(name: 'DepartmentID') this.departmentId});
+
+  factory _$UserItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'FullName')
+  final String? fullName;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  final String? departmentName;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  final int? employeeId;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  final int? departmentId;
+
+  @override
+  String toString() {
+    return 'UserItem(id: $id, code: $code, fullName: $fullName, departmentName: $departmentName, employeeId: $employeeId, departmentId: $departmentId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, code, fullName,
+      departmentName, employeeId, departmentId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserItemImplCopyWith<_$UserItemImpl> get copyWith =>
+      __$$UserItemImplCopyWithImpl<_$UserItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UserItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _UserItem implements UserItem {
+  const factory _UserItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'Code') final String? code,
+      @JsonKey(name: 'FullName') final String? fullName,
+      @JsonKey(name: 'DepartmentName') final String? departmentName,
+      @JsonKey(name: 'EmployeeID') final int? employeeId,
+      @JsonKey(name: 'DepartmentID') final int? departmentId}) = _$UserItemImpl;
+
+  factory _UserItem.fromJson(Map<String, dynamic> json) =
+      _$UserItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'FullName')
+  String? get fullName;
+  @override
+  @JsonKey(name: 'DepartmentName')
+  String? get departmentName;
+  @override
+  @JsonKey(name: 'EmployeeID')
+  int? get employeeId;
+  @override
+  @JsonKey(name: 'DepartmentID')
+  int? get departmentId;
+  @override
+  @JsonKey(ignore: true)
+  _$$UserItemImplCopyWith<_$UserItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProjectStatusItem _$ProjectStatusItemFromJson(Map<String, dynamic> json) {
+  return _ProjectStatusItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectStatusItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'StatusName')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProjectStatusItemCopyWith<ProjectStatusItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectStatusItemCopyWith<$Res> {
+  factory $ProjectStatusItemCopyWith(
+          ProjectStatusItem value, $Res Function(ProjectStatusItem) then) =
+      _$ProjectStatusItemCopyWithImpl<$Res, ProjectStatusItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'StatusName') String? name,
+      @JsonKey(name: 'STT') int? stt});
+}
+
+/// @nodoc
+class _$ProjectStatusItemCopyWithImpl<$Res, $Val extends ProjectStatusItem>
+    implements $ProjectStatusItemCopyWith<$Res> {
+  _$ProjectStatusItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? stt = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectStatusItemImplCopyWith<$Res>
+    implements $ProjectStatusItemCopyWith<$Res> {
+  factory _$$ProjectStatusItemImplCopyWith(_$ProjectStatusItemImpl value,
+          $Res Function(_$ProjectStatusItemImpl) then) =
+      __$$ProjectStatusItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'StatusName') String? name,
+      @JsonKey(name: 'STT') int? stt});
+}
+
+/// @nodoc
+class __$$ProjectStatusItemImplCopyWithImpl<$Res>
+    extends _$ProjectStatusItemCopyWithImpl<$Res, _$ProjectStatusItemImpl>
+    implements _$$ProjectStatusItemImplCopyWith<$Res> {
+  __$$ProjectStatusItemImplCopyWithImpl(_$ProjectStatusItemImpl _value,
+      $Res Function(_$ProjectStatusItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? stt = freezed,
+  }) {
+    return _then(_$ProjectStatusItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectStatusItemImpl implements _ProjectStatusItem {
+  const _$ProjectStatusItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'StatusName') this.name,
+      @JsonKey(name: 'STT') this.stt});
+
+  factory _$ProjectStatusItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectStatusItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'StatusName')
+  final String? name;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+
+  @override
+  String toString() {
+    return 'ProjectStatusItem(id: $id, name: $name, stt: $stt)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectStatusItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.stt, stt) || other.stt == stt));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name, stt);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectStatusItemImplCopyWith<_$ProjectStatusItemImpl> get copyWith =>
+      __$$ProjectStatusItemImplCopyWithImpl<_$ProjectStatusItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectStatusItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectStatusItem implements ProjectStatusItem {
+  const factory _ProjectStatusItem(
+      {@JsonKey(name: 'ID') final int? id,
+      @JsonKey(name: 'StatusName') final String? name,
+      @JsonKey(name: 'STT') final int? stt}) = _$ProjectStatusItemImpl;
+
+  factory _ProjectStatusItem.fromJson(Map<String, dynamic> json) =
+      _$ProjectStatusItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'StatusName')
+  String? get name;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProjectStatusItemImplCopyWith<_$ProjectStatusItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+BusinessFieldItem _$BusinessFieldItemFromJson(Map<String, dynamic> json) {
+  return _BusinessFieldItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BusinessFieldItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'STT')
+  int? get stt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Name')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Note')
+  String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BusinessFieldItemCopyWith<BusinessFieldItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BusinessFieldItemCopyWith<$Res> {
+  factory $BusinessFieldItemCopyWith(
+          BusinessFieldItem value, $Res Function(BusinessFieldItem) then) =
+      _$BusinessFieldItemCopyWithImpl<$Res, BusinessFieldItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class _$BusinessFieldItemCopyWithImpl<$Res, $Val extends BusinessFieldItem>
+    implements $BusinessFieldItemCopyWith<$Res> {
+  _$BusinessFieldItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? stt = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? note = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BusinessFieldItemImplCopyWith<$Res>
+    implements $BusinessFieldItemCopyWith<$Res> {
+  factory _$$BusinessFieldItemImplCopyWith(_$BusinessFieldItemImpl value,
+          $Res Function(_$BusinessFieldItemImpl) then) =
+      __$$BusinessFieldItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'STT') int? stt,
+      @JsonKey(name: 'Code') String? code,
+      @JsonKey(name: 'Name') String? name,
+      @JsonKey(name: 'Note') String? note,
+      @JsonKey(name: 'IsDeleted') bool? isDeleted});
+}
+
+/// @nodoc
+class __$$BusinessFieldItemImplCopyWithImpl<$Res>
+    extends _$BusinessFieldItemCopyWithImpl<$Res, _$BusinessFieldItemImpl>
+    implements _$$BusinessFieldItemImplCopyWith<$Res> {
+  __$$BusinessFieldItemImplCopyWithImpl(_$BusinessFieldItemImpl _value,
+      $Res Function(_$BusinessFieldItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? stt = freezed,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? note = freezed,
+    Object? isDeleted = freezed,
+  }) {
+    return _then(_$BusinessFieldItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      stt: freezed == stt
+          ? _value.stt
+          : stt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BusinessFieldItemImpl implements _BusinessFieldItem {
+  const _$BusinessFieldItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'STT') this.stt,
+      @JsonKey(name: 'Code') this.code,
+      @JsonKey(name: 'Name') this.name,
+      @JsonKey(name: 'Note') this.note,
+      @JsonKey(name: 'IsDeleted') this.isDeleted});
+
+  factory _$BusinessFieldItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BusinessFieldItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'STT')
+  final int? stt;
+  @override
+  @JsonKey(name: 'Code')
+  final String? code;
+  @override
+  @JsonKey(name: 'Name')
+  final String? name;
+  @override
+  @JsonKey(name: 'Note')
+  final String? note;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  final bool? isDeleted;
+
+  @override
+  String toString() {
+    return 'BusinessFieldItem(id: $id, stt: $stt, code: $code, name: $name, note: $note, isDeleted: $isDeleted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BusinessFieldItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.stt, stt) || other.stt == stt) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, stt, code, name, note, isDeleted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BusinessFieldItemImplCopyWith<_$BusinessFieldItemImpl> get copyWith =>
+      __$$BusinessFieldItemImplCopyWithImpl<_$BusinessFieldItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BusinessFieldItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BusinessFieldItem implements BusinessFieldItem {
+  const factory _BusinessFieldItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'STT') final int? stt,
+          @JsonKey(name: 'Code') final String? code,
+          @JsonKey(name: 'Name') final String? name,
+          @JsonKey(name: 'Note') final String? note,
+          @JsonKey(name: 'IsDeleted') final bool? isDeleted}) =
+      _$BusinessFieldItemImpl;
+
+  factory _BusinessFieldItem.fromJson(Map<String, dynamic> json) =
+      _$BusinessFieldItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'STT')
+  int? get stt;
+  @override
+  @JsonKey(name: 'Code')
+  String? get code;
+  @override
+  @JsonKey(name: 'Name')
+  String? get name;
+  @override
+  @JsonKey(name: 'Note')
+  String? get note;
+  @override
+  @JsonKey(name: 'IsDeleted')
+  bool? get isDeleted;
+  @override
+  @JsonKey(ignore: true)
+  _$$BusinessFieldItemImplCopyWith<_$BusinessFieldItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

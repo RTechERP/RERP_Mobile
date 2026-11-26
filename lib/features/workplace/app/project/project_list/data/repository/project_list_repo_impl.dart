@@ -8,6 +8,7 @@ import '../datasource/model/project_list_model.dart';
 import '../datasource/service/project_list_service.dart';
 import 'project_list_repo.dart';
 
+/// Triển khai [ProjectListRepo] - chỉ làm cầu nối service, không thêm logic.
 @LazySingleton(as: ProjectListRepo)
 class ProjectListRepoImpl implements ProjectListRepo {
   final ProjectListService _service;
@@ -28,6 +29,40 @@ class ProjectListRepoImpl implements ProjectListRepo {
           BaseError.httpInternalServerError(res.message ?? 'Có lỗi xảy ra'),
         );
       }
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<CustomerItem>>> getCustomers() =>
+      _call(_service.getCustomers);
+
+  @override
+  Future<Either<BaseError, List<ProjectTypeItem>>> getProjectTypes() =>
+      _call(_service.getProjectTypes);
+
+  @override
+  Future<Either<BaseError, List<ProjectStatusItem>>> getProjectStatuses() =>
+      _call(_service.getProjectStatuses);
+
+  @override
+  Future<Either<BaseError, List<BusinessFieldItem>>> getBusinessFields() =>
+      _call(_service.getBusinessFields);
+
+  @override
+  Future<Either<BaseError, List<PmItem>>> getPms() => _call(_service.getPms);
+
+  @override
+  Future<Either<BaseError, List<UserItem>>> getUsers() => _call(_service.getUsers);
+
+  /// Gọi API và bọc kết quả, lỗi mạng trả về [BaseError].
+  Future<Either<BaseError, List<T>>> _call<T>(
+    Future<List<T>> Function() fetch,
+  ) async {
+    try {
+      final res = await fetch();
+      return right(res);
     } on DioException catch (e) {
       return left(e.baseError);
     }

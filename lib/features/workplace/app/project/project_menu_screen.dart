@@ -18,36 +18,45 @@ class ProjectMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseScaffold(
       appBar: AppBarCommon(
-        title: const Text('Dự án'),
+        title: Text(
+          'Dự án',
+          style: AppStyles.headingTitle2,
+        ),
         onBackTap: () => context.pop(),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 12),
-        child: Column(
-          children: [
-            WpActionCard(
-              onItemTap: (item) {
-                final route = item.route;
-                if (route == null || route.isEmpty) {
-                  DialogService.showProcessing(context: context);
-                  return;
-                }
-                context.push('${RouteNames.projectMenu}/${RouteNames.projectList}');
-              },
-              title: 'project.menu'.tr(),
-              expandable: true,
-              collapsedItemCount: 11,
-              items: [
-                AppItemModel(
-                  id: 'project_list',
-                  iconCodePoint: Icons.task_alt.codePoint,
-                  name: 'project.project_list'.tr(),
-                  imageUrl: AppImages.warehouse_project,
-                  route: RouteNames.projectList,
+      body: Padding(
+        padding: const EdgeInsets.only(top: 16),
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Column(
+              children: [
+                WpActionCard(
+                  title: 'project.menu'.tr(),
+                  expandable: true,
+                  collapsedItemCount: 11,
+                  items: [
+                    AppItemModel(
+                      id: 'project_list',
+                      iconCodePoint: Icons.task_alt.codePoint,
+                      name: 'project.project_list'.tr(),
+                      imageUrl: AppImages.warehouse_project,
+                      route: RouteNames.projectList,
+                    ),
+                  ],
+                  onItemTap: (item) {
+                    final route = item.route;
+                    if (route == null || route.isEmpty) {
+                      DialogService.showProcessing(context: context);
+                      return;
+                    }
+                    context.push(
+                      '${RouteNames.projectMenu}/${RouteNames.projectList}',
+                    );
+                  },
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );

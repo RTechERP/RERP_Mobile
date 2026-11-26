@@ -76,7 +76,112 @@ class ProjectItem with _$ProjectItem {
       _$ProjectItemFromJson(json);
 }
 
+/// Khách hàng. API: GET /project/get-customers
+@freezed
+class CustomerItem with _$CustomerItem {
+  const factory CustomerItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'CustomerCode') String? code,
+    @JsonKey(name: 'CustomerName') String? name,
+    @JsonKey(name: 'CustomerShortName') String? shortName,
+    @JsonKey(name: 'Address') String? address,
+    @JsonKey(name: 'Phone') String? phone,
+    @JsonKey(name: 'Email') String? email,
+    @JsonKey(name: 'ContactName') String? contactName,
+    @JsonKey(name: 'ContactPhone') String? contactPhone,
+    @JsonKey(name: 'ContactEmail') String? contactEmail,
+    @JsonKey(name: 'TaxCode') String? taxCode,
+    @JsonKey(name: 'Province') String? province,
+  }) = _CustomerItem;
+
+  factory CustomerItem.fromJson(Map<String, dynamic> json) =>
+      _$CustomerItemFromJson(json);
+}
+
+/// Kiểu dự án. API: GET /project/get-project-types
+@freezed
+class ProjectTypeItem with _$ProjectTypeItem {
+  const factory ProjectTypeItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProjectTypeCode') String? code,
+    @JsonKey(name: 'ProjectTypeName') String? name,
+    @JsonKey(name: 'ParentID') int? parentId,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+    @JsonKey(name: 'IsHide') bool? isHide,
+  }) = _ProjectTypeItem;
+
+  factory ProjectTypeItem.fromJson(Map<String, dynamic> json) =>
+      _$ProjectTypeItemFromJson(json);
+}
+
+/// PM. API: GET /project/get-pms
+@freezed
+class PmItem with _$PmItem {
+  const factory PmItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'TaxCompanyID') int? taxCompanyId,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+  }) = _PmItem;
+
+  factory PmItem.fromJson(Map<String, dynamic> json) =>
+      _$PmItemFromJson(json);
+}
+
+/// Nhân sự (kỹ thuật & sale). API: GET /project/get-users
+@freezed
+class UserItem with _$UserItem {
+  const factory UserItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'FullName') String? fullName,
+    @JsonKey(name: 'DepartmentName') String? departmentName,
+    @JsonKey(name: 'EmployeeID') int? employeeId,
+    @JsonKey(name: 'DepartmentID') int? departmentId,
+  }) = _UserItem;
+
+  factory UserItem.fromJson(Map<String, dynamic> json) =>
+      _$UserItemFromJson(json);
+}
+
+/// Trạng thái dự án. API: GET /project/get-project-status
+@freezed
+class ProjectStatusItem with _$ProjectStatusItem {
+  const factory ProjectStatusItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'StatusName') String? name,
+    @JsonKey(name: 'STT') int? stt,
+  }) = _ProjectStatusItem;
+
+  factory ProjectStatusItem.fromJson(Map<String, dynamic> json) =>
+      _$ProjectStatusItemFromJson(json);
+}
+
+/// Lĩnh vực (business field) của dự án. API: GET /project/get-business-fields
+@freezed
+class BusinessFieldItem with _$BusinessFieldItem {
+  const factory BusinessFieldItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'STT') int? stt,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'Name') String? name,
+    @JsonKey(name: 'Note') String? note,
+    @JsonKey(name: 'IsDeleted') bool? isDeleted,
+  }) = _BusinessFieldItem;
+
+  factory BusinessFieldItem.fromJson(Map<String, dynamic> json) =>
+      _$BusinessFieldItemFromJson(json);
+}
+
 /// Tham số filter cho API get-projects.
+///
+/// Lưu ý: `projectType` và `projectStatus` phải gửi chuỗi rỗng khi không
+/// lọc - API hiểu `0` là một giá trị lọc hợp lệ nên sẽ trả về tập kết quả
+/// khác (chỉ dự án chưa có kiểu / chưa có trạng thái).
 class ProjectListParams {
   final int page;
   final int size;
@@ -90,8 +195,13 @@ class ProjectListParams {
   final int userTechId;
   final int pmId;
   final int globalUserId;
-  final int bussinessFieldId;
   final String projectStatus;
+
+  /// ID lĩnh vực của dự án - khớp với `bussinessFieldID`.
+  ///
+  /// Gửi `0` khi không lọc (API hiểu `0` là "tất cả" cho param này).
+  final int businessFieldId;
+
   final bool isAGV;
 
   ProjectListParams({
@@ -107,8 +217,8 @@ class ProjectListParams {
     this.userTechId = 0,
     this.pmId = 0,
     this.globalUserId = 0,
-    this.bussinessFieldId = 0,
     this.projectStatus = '',
+    this.businessFieldId = 0,
     this.isAGV = true,
   }) : dateTimeE = dateTimeE ?? _now();
 
@@ -130,8 +240,8 @@ class ProjectListParams {
         'userTechID': userTechId,
         'pmID': pmId,
         'globalUserID': globalUserId,
-        'bussinessFieldID': bussinessFieldId,
         'projectStatus': projectStatus,
+        'bussinessFieldID': businessFieldId,
         'isAGV': isAGV,
       };
 }

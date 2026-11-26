@@ -19,6 +19,20 @@ abstract class _$ProjectListStateCWProxy {
 
   ProjectListState dateEnd(DateTime? dateEnd);
 
+  ProjectListState filters(ProjectFilters filters);
+
+  ProjectListState customers(List<CustomerItem> customers);
+
+  ProjectListState projectTypes(List<ProjectTypeItem> projectTypes);
+
+  ProjectListState statuses(List<ProjectStatusItem> statuses);
+
+  ProjectListState users(List<UserItem> users);
+
+  ProjectListState pms(List<PmItem> pms);
+
+  ProjectListState businessFields(List<BusinessFieldItem> businessFields);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProjectListState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -32,6 +46,13 @@ abstract class _$ProjectListStateCWProxy {
     String? searchKeyword,
     DateTime? dateStart,
     DateTime? dateEnd,
+    ProjectFilters? filters,
+    List<CustomerItem>? customers,
+    List<ProjectTypeItem>? projectTypes,
+    List<ProjectStatusItem>? statuses,
+    List<UserItem>? users,
+    List<PmItem>? pms,
+    List<BusinessFieldItem>? businessFields,
   });
 }
 
@@ -62,6 +83,31 @@ class _$ProjectListStateCWProxyImpl implements _$ProjectListStateCWProxy {
   ProjectListState dateEnd(DateTime? dateEnd) => this(dateEnd: dateEnd);
 
   @override
+  ProjectListState filters(ProjectFilters filters) => this(filters: filters);
+
+  @override
+  ProjectListState customers(List<CustomerItem> customers) =>
+      this(customers: customers);
+
+  @override
+  ProjectListState projectTypes(List<ProjectTypeItem> projectTypes) =>
+      this(projectTypes: projectTypes);
+
+  @override
+  ProjectListState statuses(List<ProjectStatusItem> statuses) =>
+      this(statuses: statuses);
+
+  @override
+  ProjectListState users(List<UserItem> users) => this(users: users);
+
+  @override
+  ProjectListState pms(List<PmItem> pms) => this(pms: pms);
+
+  @override
+  ProjectListState businessFields(List<BusinessFieldItem> businessFields) =>
+      this(businessFields: businessFields);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProjectListState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -76,6 +122,13 @@ class _$ProjectListStateCWProxyImpl implements _$ProjectListStateCWProxy {
     Object? searchKeyword = const $CopyWithPlaceholder(),
     Object? dateStart = const $CopyWithPlaceholder(),
     Object? dateEnd = const $CopyWithPlaceholder(),
+    Object? filters = const $CopyWithPlaceholder(),
+    Object? customers = const $CopyWithPlaceholder(),
+    Object? projectTypes = const $CopyWithPlaceholder(),
+    Object? statuses = const $CopyWithPlaceholder(),
+    Object? users = const $CopyWithPlaceholder(),
+    Object? pms = const $CopyWithPlaceholder(),
+    Object? businessFields = const $CopyWithPlaceholder(),
   }) {
     return ProjectListState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -103,6 +156,36 @@ class _$ProjectListStateCWProxyImpl implements _$ProjectListStateCWProxy {
           ? _value.dateEnd
           // ignore: cast_nullable_to_non_nullable
           : dateEnd as DateTime?,
+      filters: filters == const $CopyWithPlaceholder() || filters == null
+          ? _value.filters
+          // ignore: cast_nullable_to_non_nullable
+          : filters as ProjectFilters,
+      customers: customers == const $CopyWithPlaceholder() || customers == null
+          ? _value.customers
+          // ignore: cast_nullable_to_non_nullable
+          : customers as List<CustomerItem>,
+      projectTypes:
+          projectTypes == const $CopyWithPlaceholder() || projectTypes == null
+              ? _value.projectTypes
+              // ignore: cast_nullable_to_non_nullable
+              : projectTypes as List<ProjectTypeItem>,
+      statuses: statuses == const $CopyWithPlaceholder() || statuses == null
+          ? _value.statuses
+          // ignore: cast_nullable_to_non_nullable
+          : statuses as List<ProjectStatusItem>,
+      users: users == const $CopyWithPlaceholder() || users == null
+          ? _value.users
+          // ignore: cast_nullable_to_non_nullable
+          : users as List<UserItem>,
+      pms: pms == const $CopyWithPlaceholder() || pms == null
+          ? _value.pms
+          // ignore: cast_nullable_to_non_nullable
+          : pms as List<PmItem>,
+      businessFields: businessFields == const $CopyWithPlaceholder() ||
+              businessFields == null
+          ? _value.businessFields
+          // ignore: cast_nullable_to_non_nullable
+          : businessFields as List<BusinessFieldItem>,
     );
   }
 }

@@ -14,4 +14,15 @@ class ProjectListEvent with _$ProjectListEvent {
     DateTime? dateStart,
     DateTime? dateEnd,
   }) = _ChangeDateRange;
+
+  /// Áp dụng bộ lọc mới và tải lại danh sách.
+  const factory ProjectListEvent.applyFilters({
+    required ProjectFilters filters,
+  }) = _ApplyFilters;
+
+  /// Xoá toàn bộ tiêu chí lọc và tải lại danh sách.
+  const factory ProjectListEvent.clearFilters() = _ClearFilters;
+
+  /// Tải lại dữ liệu lookup cho bộ lọc (khách hàng, trạng thái, nhân sự).
+  const factory ProjectListEvent.reloadLookups() = _ReloadLookups;
 }

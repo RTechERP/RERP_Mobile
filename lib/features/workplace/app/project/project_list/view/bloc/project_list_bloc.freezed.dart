@@ -24,6 +24,9 @@ mixin _$ProjectListEvent {
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
+    required TResult Function(ProjectFilters filters) applyFilters,
+    required TResult Function() clearFilters,
+    required TResult Function() reloadLookups,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,6 +36,9 @@ mixin _$ProjectListEvent {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(ProjectFilters filters)? applyFilters,
+    TResult? Function()? clearFilters,
+    TResult? Function()? reloadLookups,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +48,9 @@ mixin _$ProjectListEvent {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(ProjectFilters filters)? applyFilters,
+    TResult Function()? clearFilters,
+    TResult Function()? reloadLookups,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +61,9 @@ mixin _$ProjectListEvent {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ApplyFilters value) applyFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ReloadLookups value) reloadLookups,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +73,9 @@ mixin _$ProjectListEvent {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ApplyFilters value)? applyFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ReloadLookups value)? reloadLookups,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +85,9 @@ mixin _$ProjectListEvent {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ApplyFilters value)? applyFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ReloadLookups value)? reloadLookups,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,6 +154,9 @@ class _$InitImpl implements _Init {
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
+    required TResult Function(ProjectFilters filters) applyFilters,
+    required TResult Function() clearFilters,
+    required TResult Function() reloadLookups,
   }) {
     return init();
   }
@@ -148,6 +169,9 @@ class _$InitImpl implements _Init {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(ProjectFilters filters)? applyFilters,
+    TResult? Function()? clearFilters,
+    TResult? Function()? reloadLookups,
   }) {
     return init?.call();
   }
@@ -160,6 +184,9 @@ class _$InitImpl implements _Init {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(ProjectFilters filters)? applyFilters,
+    TResult Function()? clearFilters,
+    TResult Function()? reloadLookups,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -176,6 +203,9 @@ class _$InitImpl implements _Init {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ApplyFilters value) applyFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ReloadLookups value) reloadLookups,
   }) {
     return init(this);
   }
@@ -188,6 +218,9 @@ class _$InitImpl implements _Init {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ApplyFilters value)? applyFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ReloadLookups value)? reloadLookups,
   }) {
     return init?.call(this);
   }
@@ -200,6 +233,9 @@ class _$InitImpl implements _Init {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ApplyFilters value)? applyFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ReloadLookups value)? reloadLookups,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -257,6 +293,9 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
+    required TResult Function(ProjectFilters filters) applyFilters,
+    required TResult Function() clearFilters,
+    required TResult Function() reloadLookups,
   }) {
     return refresh();
   }
@@ -269,6 +308,9 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(ProjectFilters filters)? applyFilters,
+    TResult? Function()? clearFilters,
+    TResult? Function()? reloadLookups,
   }) {
     return refresh?.call();
   }
@@ -281,6 +323,9 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(ProjectFilters filters)? applyFilters,
+    TResult Function()? clearFilters,
+    TResult Function()? reloadLookups,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -297,6 +342,9 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ApplyFilters value) applyFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ReloadLookups value) reloadLookups,
   }) {
     return refresh(this);
   }
@@ -309,6 +357,9 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ApplyFilters value)? applyFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ReloadLookups value)? reloadLookups,
   }) {
     return refresh?.call(this);
   }
@@ -321,6 +372,9 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ApplyFilters value)? applyFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ReloadLookups value)? reloadLookups,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -404,6 +458,9 @@ class _$SearchImpl implements _Search {
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
+    required TResult Function(ProjectFilters filters) applyFilters,
+    required TResult Function() clearFilters,
+    required TResult Function() reloadLookups,
   }) {
     return search(keyword);
   }
@@ -416,6 +473,9 @@ class _$SearchImpl implements _Search {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(ProjectFilters filters)? applyFilters,
+    TResult? Function()? clearFilters,
+    TResult? Function()? reloadLookups,
   }) {
     return search?.call(keyword);
   }
@@ -428,6 +488,9 @@ class _$SearchImpl implements _Search {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(ProjectFilters filters)? applyFilters,
+    TResult Function()? clearFilters,
+    TResult Function()? reloadLookups,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -444,6 +507,9 @@ class _$SearchImpl implements _Search {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ApplyFilters value) applyFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ReloadLookups value) reloadLookups,
   }) {
     return search(this);
   }
@@ -456,6 +522,9 @@ class _$SearchImpl implements _Search {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ApplyFilters value)? applyFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ReloadLookups value)? reloadLookups,
   }) {
     return search?.call(this);
   }
@@ -468,6 +537,9 @@ class _$SearchImpl implements _Search {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ApplyFilters value)? applyFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ReloadLookups value)? reloadLookups,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -556,6 +628,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
+    required TResult Function(ProjectFilters filters) applyFilters,
+    required TResult Function() clearFilters,
+    required TResult Function() reloadLookups,
   }) {
     return changeKeyword(keyword);
   }
@@ -568,6 +643,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(ProjectFilters filters)? applyFilters,
+    TResult? Function()? clearFilters,
+    TResult? Function()? reloadLookups,
   }) {
     return changeKeyword?.call(keyword);
   }
@@ -580,6 +658,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(ProjectFilters filters)? applyFilters,
+    TResult Function()? clearFilters,
+    TResult Function()? reloadLookups,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -596,6 +677,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ApplyFilters value) applyFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ReloadLookups value) reloadLookups,
   }) {
     return changeKeyword(this);
   }
@@ -608,6 +692,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ApplyFilters value)? applyFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ReloadLookups value)? reloadLookups,
   }) {
     return changeKeyword?.call(this);
   }
@@ -620,6 +707,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ApplyFilters value)? applyFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ReloadLookups value)? reloadLookups,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -719,6 +809,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(String keyword) changeKeyword,
     required TResult Function(DateTime? dateStart, DateTime? dateEnd)
         changeDateRange,
+    required TResult Function(ProjectFilters filters) applyFilters,
+    required TResult Function() clearFilters,
+    required TResult Function() reloadLookups,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -731,6 +824,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(String? keyword)? search,
     TResult? Function(String keyword)? changeKeyword,
     TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(ProjectFilters filters)? applyFilters,
+    TResult? Function()? clearFilters,
+    TResult? Function()? reloadLookups,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -743,6 +839,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(String? keyword)? search,
     TResult Function(String keyword)? changeKeyword,
     TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(ProjectFilters filters)? applyFilters,
+    TResult Function()? clearFilters,
+    TResult Function()? reloadLookups,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -759,6 +858,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_Search value) search,
     required TResult Function(_ChangeKeyword value) changeKeyword,
     required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ApplyFilters value) applyFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ReloadLookups value) reloadLookups,
   }) {
     return changeDateRange(this);
   }
@@ -771,6 +873,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_Search value)? search,
     TResult? Function(_ChangeKeyword value)? changeKeyword,
     TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ApplyFilters value)? applyFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ReloadLookups value)? reloadLookups,
   }) {
     return changeDateRange?.call(this);
   }
@@ -783,6 +888,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_Search value)? search,
     TResult Function(_ChangeKeyword value)? changeKeyword,
     TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ApplyFilters value)? applyFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ReloadLookups value)? reloadLookups,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -802,4 +910,453 @@ abstract class _ChangeDateRange implements ProjectListEvent {
   @JsonKey(ignore: true)
   _$$ChangeDateRangeImplCopyWith<_$ChangeDateRangeImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ApplyFiltersImplCopyWith<$Res> {
+  factory _$$ApplyFiltersImplCopyWith(
+          _$ApplyFiltersImpl value, $Res Function(_$ApplyFiltersImpl) then) =
+      __$$ApplyFiltersImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ProjectFilters filters});
+}
+
+/// @nodoc
+class __$$ApplyFiltersImplCopyWithImpl<$Res>
+    extends _$ProjectListEventCopyWithImpl<$Res, _$ApplyFiltersImpl>
+    implements _$$ApplyFiltersImplCopyWith<$Res> {
+  __$$ApplyFiltersImplCopyWithImpl(
+      _$ApplyFiltersImpl _value, $Res Function(_$ApplyFiltersImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filters = null,
+  }) {
+    return _then(_$ApplyFiltersImpl(
+      filters: null == filters
+          ? _value.filters
+          : filters // ignore: cast_nullable_to_non_nullable
+              as ProjectFilters,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ApplyFiltersImpl implements _ApplyFilters {
+  const _$ApplyFiltersImpl({required this.filters});
+
+  @override
+  final ProjectFilters filters;
+
+  @override
+  String toString() {
+    return 'ProjectListEvent.applyFilters(filters: $filters)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApplyFiltersImpl &&
+            (identical(other.filters, filters) || other.filters == filters));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filters);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApplyFiltersImplCopyWith<_$ApplyFiltersImpl> get copyWith =>
+      __$$ApplyFiltersImplCopyWithImpl<_$ApplyFiltersImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(ProjectFilters filters) applyFilters,
+    required TResult Function() clearFilters,
+    required TResult Function() reloadLookups,
+  }) {
+    return applyFilters(filters);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(ProjectFilters filters)? applyFilters,
+    TResult? Function()? clearFilters,
+    TResult? Function()? reloadLookups,
+  }) {
+    return applyFilters?.call(filters);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(ProjectFilters filters)? applyFilters,
+    TResult Function()? clearFilters,
+    TResult Function()? reloadLookups,
+    required TResult orElse(),
+  }) {
+    if (applyFilters != null) {
+      return applyFilters(filters);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ApplyFilters value) applyFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ReloadLookups value) reloadLookups,
+  }) {
+    return applyFilters(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ApplyFilters value)? applyFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ReloadLookups value)? reloadLookups,
+  }) {
+    return applyFilters?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ApplyFilters value)? applyFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ReloadLookups value)? reloadLookups,
+    required TResult orElse(),
+  }) {
+    if (applyFilters != null) {
+      return applyFilters(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApplyFilters implements ProjectListEvent {
+  const factory _ApplyFilters({required final ProjectFilters filters}) =
+      _$ApplyFiltersImpl;
+
+  ProjectFilters get filters;
+  @JsonKey(ignore: true)
+  _$$ApplyFiltersImplCopyWith<_$ApplyFiltersImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearFiltersImplCopyWith<$Res> {
+  factory _$$ClearFiltersImplCopyWith(
+          _$ClearFiltersImpl value, $Res Function(_$ClearFiltersImpl) then) =
+      __$$ClearFiltersImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearFiltersImplCopyWithImpl<$Res>
+    extends _$ProjectListEventCopyWithImpl<$Res, _$ClearFiltersImpl>
+    implements _$$ClearFiltersImplCopyWith<$Res> {
+  __$$ClearFiltersImplCopyWithImpl(
+      _$ClearFiltersImpl _value, $Res Function(_$ClearFiltersImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearFiltersImpl implements _ClearFilters {
+  const _$ClearFiltersImpl();
+
+  @override
+  String toString() {
+    return 'ProjectListEvent.clearFilters()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearFiltersImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(ProjectFilters filters) applyFilters,
+    required TResult Function() clearFilters,
+    required TResult Function() reloadLookups,
+  }) {
+    return clearFilters();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(ProjectFilters filters)? applyFilters,
+    TResult? Function()? clearFilters,
+    TResult? Function()? reloadLookups,
+  }) {
+    return clearFilters?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(ProjectFilters filters)? applyFilters,
+    TResult Function()? clearFilters,
+    TResult Function()? reloadLookups,
+    required TResult orElse(),
+  }) {
+    if (clearFilters != null) {
+      return clearFilters();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ApplyFilters value) applyFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ReloadLookups value) reloadLookups,
+  }) {
+    return clearFilters(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ApplyFilters value)? applyFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ReloadLookups value)? reloadLookups,
+  }) {
+    return clearFilters?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ApplyFilters value)? applyFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ReloadLookups value)? reloadLookups,
+    required TResult orElse(),
+  }) {
+    if (clearFilters != null) {
+      return clearFilters(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearFilters implements ProjectListEvent {
+  const factory _ClearFilters() = _$ClearFiltersImpl;
+}
+
+/// @nodoc
+abstract class _$$ReloadLookupsImplCopyWith<$Res> {
+  factory _$$ReloadLookupsImplCopyWith(
+          _$ReloadLookupsImpl value, $Res Function(_$ReloadLookupsImpl) then) =
+      __$$ReloadLookupsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ReloadLookupsImplCopyWithImpl<$Res>
+    extends _$ProjectListEventCopyWithImpl<$Res, _$ReloadLookupsImpl>
+    implements _$$ReloadLookupsImplCopyWith<$Res> {
+  __$$ReloadLookupsImplCopyWithImpl(
+      _$ReloadLookupsImpl _value, $Res Function(_$ReloadLookupsImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ReloadLookupsImpl implements _ReloadLookups {
+  const _$ReloadLookupsImpl();
+
+  @override
+  String toString() {
+    return 'ProjectListEvent.reloadLookups()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ReloadLookupsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(ProjectFilters filters) applyFilters,
+    required TResult Function() clearFilters,
+    required TResult Function() reloadLookups,
+  }) {
+    return reloadLookups();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(ProjectFilters filters)? applyFilters,
+    TResult? Function()? clearFilters,
+    TResult? Function()? reloadLookups,
+  }) {
+    return reloadLookups?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(ProjectFilters filters)? applyFilters,
+    TResult Function()? clearFilters,
+    TResult Function()? reloadLookups,
+    required TResult orElse(),
+  }) {
+    if (reloadLookups != null) {
+      return reloadLookups();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ApplyFilters value) applyFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ReloadLookups value) reloadLookups,
+  }) {
+    return reloadLookups(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ApplyFilters value)? applyFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ReloadLookups value)? reloadLookups,
+  }) {
+    return reloadLookups?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ApplyFilters value)? applyFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ReloadLookups value)? reloadLookups,
+    required TResult orElse(),
+  }) {
+    if (reloadLookups != null) {
+      return reloadLookups(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ReloadLookups implements ProjectListEvent {
+  const factory _ReloadLookups() = _$ReloadLookupsImpl;
 }

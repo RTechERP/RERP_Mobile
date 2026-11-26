@@ -133,3 +133,138 @@ Map<String, dynamic> _$$ProjectItemImplToJson(_$ProjectItemImpl instance) =>
       'PriotityText': instance.priotityText,
       'ProjectRequestID': instance.projectRequestId,
     };
+
+_$CustomerItemImpl _$$CustomerItemImplFromJson(Map<String, dynamic> json) =>
+    _$CustomerItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['CustomerCode'] as String?,
+      name: json['CustomerName'] as String?,
+      shortName: json['CustomerShortName'] as String?,
+      address: json['Address'] as String?,
+      phone: json['Phone'] as String?,
+      email: json['Email'] as String?,
+      contactName: json['ContactName'] as String?,
+      contactPhone: json['ContactPhone'] as String?,
+      contactEmail: json['ContactEmail'] as String?,
+      taxCode: json['TaxCode'] as String?,
+      province: json['Province'] as String?,
+    );
+
+Map<String, dynamic> _$$CustomerItemImplToJson(_$CustomerItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'CustomerCode': instance.code,
+      'CustomerName': instance.name,
+      'CustomerShortName': instance.shortName,
+      'Address': instance.address,
+      'Phone': instance.phone,
+      'Email': instance.email,
+      'ContactName': instance.contactName,
+      'ContactPhone': instance.contactPhone,
+      'ContactEmail': instance.contactEmail,
+      'TaxCode': instance.taxCode,
+      'Province': instance.province,
+    };
+
+_$ProjectTypeItemImpl _$$ProjectTypeItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProjectTypeItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['ProjectTypeCode'] as String?,
+      name: json['ProjectTypeName'] as String?,
+      parentId: (json['ParentID'] as num?)?.toInt(),
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+      isDeleted: json['IsDeleted'] as bool?,
+      isHide: json['IsHide'] as bool?,
+    );
+
+Map<String, dynamic> _$$ProjectTypeItemImplToJson(
+        _$ProjectTypeItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProjectTypeCode': instance.code,
+      'ProjectTypeName': instance.name,
+      'ParentID': instance.parentId,
+      'DepartmentID': instance.departmentId,
+      'IsDeleted': instance.isDeleted,
+      'IsHide': instance.isHide,
+    };
+
+_$PmItemImpl _$$PmItemImplFromJson(Map<String, dynamic> json) => _$PmItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      fullName: json['FullName'] as String?,
+      departmentName: json['DepartmentName'] as String?,
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      taxCompanyId: (json['TaxCompanyID'] as num?)?.toInt(),
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$PmItemImplToJson(_$PmItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'FullName': instance.fullName,
+      'DepartmentName': instance.departmentName,
+      'EmployeeID': instance.employeeId,
+      'TaxCompanyID': instance.taxCompanyId,
+      'DepartmentID': instance.departmentId,
+    };
+
+_$UserItemImpl _$$UserItemImplFromJson(Map<String, dynamic> json) =>
+    _$UserItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      fullName: json['FullName'] as String?,
+      departmentName: json['DepartmentName'] as String?,
+      employeeId: (json['EmployeeID'] as num?)?.toInt(),
+      departmentId: (json['DepartmentID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$UserItemImplToJson(_$UserItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'FullName': instance.fullName,
+      'DepartmentName': instance.departmentName,
+      'EmployeeID': instance.employeeId,
+      'DepartmentID': instance.departmentId,
+    };
+
+_$ProjectStatusItemImpl _$$ProjectStatusItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProjectStatusItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      name: json['StatusName'] as String?,
+      stt: (json['STT'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$ProjectStatusItemImplToJson(
+        _$ProjectStatusItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'StatusName': instance.name,
+      'STT': instance.stt,
+    };
+
+_$BusinessFieldItemImpl _$$BusinessFieldItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BusinessFieldItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      stt: (json['STT'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      name: json['Name'] as String?,
+      note: json['Note'] as String?,
+      isDeleted: json['IsDeleted'] as bool?,
+    );
+
+Map<String, dynamic> _$$BusinessFieldItemImplToJson(
+        _$BusinessFieldItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'STT': instance.stt,
+      'Code': instance.code,
+      'Name': instance.name,
+      'Note': instance.note,
+      'IsDeleted': instance.isDeleted,
+    };

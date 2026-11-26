@@ -536,8 +536,18 @@ class ApiEndPoint {
   /// Danh sách khách hàng. API: GET /project/get-customers
   static const String getProjectCustomers = '/project/get-customers';
 
-  /// Loại dự án (project type base). API: GET /get-project-type-bases
-  static const String getProjectTypeBases = '/get-project-type-bases';
+  /// Loại dự án (project type base). API: GET /project/get-project-type-bases
+  static const String getProjectTypeBases = '/project/get-project-type-bases';
+
+  /// Lĩnh vực khách hàng. API: GET /project/get-customer-industries
+  static const String getProjectCustomerIndustries =
+      '/project/get-customer-industries';
+
+  /// Nhân sự (kỹ thuật & sale). API: GET /project/get-users
+  static const String getProjectUsers = '/project/get-users';
+
+  /// Kiểu dự án. API: GET /project/get-project-types
+  static const String getProjectTypes = '/project/get-project-types';
 
   /// Danh sách PM. API: GET /project/get-pms
   static const String getProjectPms = '/project/get-pms';
@@ -545,9 +555,8 @@ class ApiEndPoint {
   /// Trạng thái dự án. API: GET /project/get-project-status
   static const String getProjectStatuses = '/project/get-project-status';
 
-  /// Lĩnh vực khách hàng. API: GET /project/get-customer-industries
-  static const String getProjectCustomerIndustries =
-      '/project/get-customer-industries';
+  /// Lĩnh vực (business field) của dự án. API: GET /project/get-business-fields
+  static const String getProjectBusinessFields = '/project/get-business-fields';
 
   /// User-team. API: GET /project/get-user-teams
   static const String getProjectUserTeams = '/project/get-user-teams';
