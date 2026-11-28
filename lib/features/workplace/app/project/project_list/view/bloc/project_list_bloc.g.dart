@@ -33,6 +33,18 @@ abstract class _$ProjectListStateCWProxy {
 
   ProjectListState businessFields(List<BusinessFieldItem> businessFields);
 
+  ProjectListState firms(List<FirmBase> firms);
+
+  ProjectListState industries(List<CustomerIndustry> industries);
+
+  ProjectListState projectTypeBases(List<ProjectTypeBase> projectTypeBases);
+
+  ProjectListState priorityTypes(List<ProjectPriorityType> priorityTypes);
+
+  ProjectListState generatedProjectCode(String? generatedProjectCode);
+
+  ProjectListState isGeneratingCode(bool isGeneratingCode);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProjectListState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -53,6 +65,12 @@ abstract class _$ProjectListStateCWProxy {
     List<UserItem>? users,
     List<PmItem>? pms,
     List<BusinessFieldItem>? businessFields,
+    List<FirmBase>? firms,
+    List<CustomerIndustry>? industries,
+    List<ProjectTypeBase>? projectTypeBases,
+    List<ProjectPriorityType>? priorityTypes,
+    String? generatedProjectCode,
+    bool? isGeneratingCode,
   });
 }
 
@@ -108,6 +126,29 @@ class _$ProjectListStateCWProxyImpl implements _$ProjectListStateCWProxy {
       this(businessFields: businessFields);
 
   @override
+  ProjectListState firms(List<FirmBase> firms) => this(firms: firms);
+
+  @override
+  ProjectListState industries(List<CustomerIndustry> industries) =>
+      this(industries: industries);
+
+  @override
+  ProjectListState projectTypeBases(List<ProjectTypeBase> projectTypeBases) =>
+      this(projectTypeBases: projectTypeBases);
+
+  @override
+  ProjectListState priorityTypes(List<ProjectPriorityType> priorityTypes) =>
+      this(priorityTypes: priorityTypes);
+
+  @override
+  ProjectListState generatedProjectCode(String? generatedProjectCode) =>
+      this(generatedProjectCode: generatedProjectCode);
+
+  @override
+  ProjectListState isGeneratingCode(bool isGeneratingCode) =>
+      this(isGeneratingCode: isGeneratingCode);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProjectListState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -129,6 +170,12 @@ class _$ProjectListStateCWProxyImpl implements _$ProjectListStateCWProxy {
     Object? users = const $CopyWithPlaceholder(),
     Object? pms = const $CopyWithPlaceholder(),
     Object? businessFields = const $CopyWithPlaceholder(),
+    Object? firms = const $CopyWithPlaceholder(),
+    Object? industries = const $CopyWithPlaceholder(),
+    Object? projectTypeBases = const $CopyWithPlaceholder(),
+    Object? priorityTypes = const $CopyWithPlaceholder(),
+    Object? generatedProjectCode = const $CopyWithPlaceholder(),
+    Object? isGeneratingCode = const $CopyWithPlaceholder(),
   }) {
     return ProjectListState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -186,6 +233,34 @@ class _$ProjectListStateCWProxyImpl implements _$ProjectListStateCWProxy {
           ? _value.businessFields
           // ignore: cast_nullable_to_non_nullable
           : businessFields as List<BusinessFieldItem>,
+      firms: firms == const $CopyWithPlaceholder() || firms == null
+          ? _value.firms
+          // ignore: cast_nullable_to_non_nullable
+          : firms as List<FirmBase>,
+      industries:
+          industries == const $CopyWithPlaceholder() || industries == null
+              ? _value.industries
+              // ignore: cast_nullable_to_non_nullable
+              : industries as List<CustomerIndustry>,
+      projectTypeBases: projectTypeBases == const $CopyWithPlaceholder() ||
+              projectTypeBases == null
+          ? _value.projectTypeBases
+          // ignore: cast_nullable_to_non_nullable
+          : projectTypeBases as List<ProjectTypeBase>,
+      priorityTypes:
+          priorityTypes == const $CopyWithPlaceholder() || priorityTypes == null
+              ? _value.priorityTypes
+              // ignore: cast_nullable_to_non_nullable
+              : priorityTypes as List<ProjectPriorityType>,
+      generatedProjectCode: generatedProjectCode == const $CopyWithPlaceholder()
+          ? _value.generatedProjectCode
+          // ignore: cast_nullable_to_non_nullable
+          : generatedProjectCode as String?,
+      isGeneratingCode: isGeneratingCode == const $CopyWithPlaceholder() ||
+              isGeneratingCode == null
+          ? _value.isGeneratingCode
+          // ignore: cast_nullable_to_non_nullable
+          : isGeneratingCode as bool,
     );
   }
 }

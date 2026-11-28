@@ -25,4 +25,13 @@ class ProjectListEvent with _$ProjectListEvent {
 
   /// Tải lại dữ liệu lookup cho bộ lọc (khách hàng, trạng thái, nhân sự).
   const factory ProjectListEvent.reloadLookups() = _ReloadLookups;
+
+  /// Sinh mã dự án tự động từ tên viết tắt khách hàng và kiểu dự án.
+  const factory ProjectListEvent.generateProjectCode({
+    required String customerShortName,
+    required int projectType,
+  }) = _GenerateProjectCode;
+
+  /// Xoá mã dự án đã sinh (dùng khi đổi khách hàng hoặc kiểu dự án).
+  const factory ProjectListEvent.clearGeneratedCode() = _ClearGeneratedCode;
 }

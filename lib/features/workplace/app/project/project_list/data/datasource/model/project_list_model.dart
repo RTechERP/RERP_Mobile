@@ -68,6 +68,7 @@ class ProjectItem with _$ProjectItem {
     @JsonKey(name: 'RealityProjectEndDate') dynamic realityProjectEndDate,
     @JsonKey(name: 'RowNum') int? rowNum,
     @JsonKey(name: 'PriotityText') double? priotityText,
+
     /// ID của yêu cầu dự án - dùng để gọi API giải pháp.
     @JsonKey(name: 'ProjectRequestID') int? projectRequestId,
   }) = _ProjectItem;
@@ -92,10 +93,27 @@ class CustomerItem with _$CustomerItem {
     @JsonKey(name: 'ContactEmail') String? contactEmail,
     @JsonKey(name: 'TaxCode') String? taxCode,
     @JsonKey(name: 'Province') String? province,
+
+    /// ID lĩnh vực khách hàng - dùng để map tự động lĩnh vực khi tạo dự án.
+    @JsonKey(name: 'CustomerIndustriesID') int? industriesId,
   }) = _CustomerItem;
 
   factory CustomerItem.fromJson(Map<String, dynamic> json) =>
       _$CustomerItemFromJson(json);
+}
+
+/// Hiển thị khách hàng.
+extension CustomerItemDisplay on CustomerItem {
+  /// Tên hiển thị gọn: `CustomerShortName - CustomerName`.
+  ///
+  /// Bỏ qua phần nào bị trống.
+  String get displayLabel {
+    final short = (shortName ?? '').trim();
+    final full = (name ?? '').trim();
+    if (short.isEmpty) return full;
+    if (full.isEmpty) return short;
+    return '$short - $full';
+  }
 }
 
 /// Kiểu dự án. API: GET /project/get-project-types
@@ -115,6 +133,44 @@ class ProjectTypeItem with _$ProjectTypeItem {
       _$ProjectTypeItemFromJson(json);
 }
 
+/// Kiểu dự án (danh sách cơ bản). API: GET /project/get-project-type-bases
+///
+/// ID của danh sách này là tham số `projectType` dùng để sinh mã dự án
+/// (POST /project/get-project-code-modal).
+@freezed
+class ProjectTypeBase with _$ProjectTypeBase {
+  const factory ProjectTypeBase({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProjectTypeCode') String? code,
+    @JsonKey(name: 'ProjectTypeName') String? name,
+  }) = _ProjectTypeBase;
+
+  factory ProjectTypeBase.fromJson(Map<String, dynamic> json) =>
+      _$ProjectTypeBaseFromJson(json);
+}
+
+/// Danh sách kiểu dự án dùng cố định trong form tạo dự án.
+///
+/// ID gán theo thứ tự trong danh sách và là tham số `projectType` khi gọi
+/// API sinh mã dự án (POST /project/get-project-code-modal).
+class ProjectTypeOption {
+  final int id;
+  final String name;
+
+  const ProjectTypeOption({required this.id, required this.name});
+}
+
+/// Danh sách kiểu dự án cố định.
+const List<ProjectTypeOption> kProjectTypeOptions = [
+  ProjectTypeOption(id: 1, name: 'Dự án'),
+  ProjectTypeOption(id: 2, name: 'Thương mại'),
+  ProjectTypeOption(id: 3, name: 'Phim'),
+  ProjectTypeOption(id: 4, name: 'Nội bộ'),
+  ProjectTypeOption(id: 5, name: 'Training'),
+  ProjectTypeOption(id: 6, name: 'Nghiên cứu & phát triển'),
+  ProjectTypeOption(id: 7, name: 'Khác'),
+];
+
 /// PM. API: GET /project/get-pms
 @freezed
 class PmItem with _$PmItem {
@@ -128,8 +184,7 @@ class PmItem with _$PmItem {
     @JsonKey(name: 'DepartmentID') int? departmentId,
   }) = _PmItem;
 
-  factory PmItem.fromJson(Map<String, dynamic> json) =>
-      _$PmItemFromJson(json);
+  factory PmItem.fromJson(Map<String, dynamic> json) => _$PmItemFromJson(json);
 }
 
 /// Nhân sự (kỹ thuật & sale). API: GET /project/get-users
@@ -175,6 +230,51 @@ class BusinessFieldItem with _$BusinessFieldItem {
 
   factory BusinessFieldItem.fromJson(Map<String, dynamic> json) =>
       _$BusinessFieldItemFromJson(json);
+}
+
+/// Hãng. API: GET /project/get-firm-bases
+@freezed
+class FirmBase with _$FirmBase {
+  const factory FirmBase({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'FirmCode') String? code,
+    @JsonKey(name: 'FirmName') String? name,
+  }) = _FirmBase;
+
+  factory FirmBase.fromJson(Map<String, dynamic> json) =>
+      _$FirmBaseFromJson(json);
+}
+
+/// Lĩnh vực khách hàng. API: GET /project/get-customer-industries
+@freezed
+class CustomerIndustry with _$CustomerIndustry {
+  const factory CustomerIndustry({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'IndustriesNameVI') String? nameVI,
+    @JsonKey(name: 'IndustriesNameEN') String? nameEN,
+    @JsonKey(name: 'Descriptions') String? descriptions,
+    @JsonKey(name: 'NumberOrder') int? numberOrder,
+  }) = _CustomerIndustry;
+
+  factory CustomerIndustry.fromJson(Map<String, dynamic> json) =>
+      _$CustomerIndustryFromJson(json);
+}
+
+/// Mốc ưu tiên của dự án. API: GET /project/get-priority-type
+@freezed
+class ProjectPriorityType with _$ProjectPriorityType {
+  const factory ProjectPriorityType({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'Code') String? code,
+    @JsonKey(name: 'ProjectCheckpoint') String? checkpoint,
+    @JsonKey(name: 'Rate') double? rate,
+    @JsonKey(name: 'Score') int? score,
+    @JsonKey(name: 'Priority') double? priority,
+    @JsonKey(name: 'ParentID') int? parentId,
+  }) = _ProjectPriorityType;
+
+  factory ProjectPriorityType.fromJson(Map<String, dynamic> json) =>
+      _$ProjectPriorityTypeFromJson(json);
 }
 
 /// Tham số filter cho API get-projects.
@@ -228,20 +328,20 @@ class ProjectListParams {
   }
 
   Map<String, dynamic> toQueryParams() => {
-        'page': page,
-        'size': size,
-        'dateTimeS': dateTimeS,
-        'dateTimeE': dateTimeE,
-        'keyword': keyword,
-        'customerID': customerId,
-        'saleID': saleId,
-        'projectType': projectType,
-        'leaderID': leaderId,
-        'userTechID': userTechId,
-        'pmID': pmId,
-        'globalUserID': globalUserId,
-        'projectStatus': projectStatus,
-        'bussinessFieldID': businessFieldId,
-        'isAGV': isAGV,
-      };
+    'page': page,
+    'size': size,
+    'dateTimeS': dateTimeS,
+    'dateTimeE': dateTimeE,
+    'keyword': keyword,
+    'customerID': customerId,
+    'saleID': saleId,
+    'projectType': projectType,
+    'leaderID': leaderId,
+    'userTechID': userTechId,
+    'pmID': pmId,
+    'globalUserID': globalUserId,
+    'projectStatus': projectStatus,
+    'bussinessFieldID': businessFieldId,
+    'isAGV': isAGV,
+  };
 }

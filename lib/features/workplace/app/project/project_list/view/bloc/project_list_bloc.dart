@@ -26,10 +26,13 @@ class ProjectListBloc extends BaseBloc<ProjectListEvent, ProjectListState> {
   final LogUtils _log;
   final ProjectListRepo _repo;
 
-  ProjectListBloc(
-    this._repo,
-    this._log,
-  ) : super(ProjectListState.init()) {
+  /// Theo dõi request sinh mã dự án đang chạy.
+  ///
+  /// Khi người dùng đổi khách hàng hoặc kiểu dự án, request cũ bị vô hiệu
+  /// hoá để mã sinh ra sau đó không ghi đè giá trị mới.
+  final _CodeRequestTracker _codeRequestId = _CodeRequestTracker();
+
+  ProjectListBloc(this._repo, this._log) : super(ProjectListState.init()) {
     on<ProjectListEvent>((event, emit) async {
       await event.when(
         init: () => _onInit(emit),
@@ -41,6 +44,13 @@ class ProjectListBloc extends BaseBloc<ProjectListEvent, ProjectListState> {
         applyFilters: (filters) => _onApplyFilters(emit, filters: filters),
         clearFilters: () => _onClearFilters(emit),
         reloadLookups: () => _onReloadLookups(emit),
+        generateProjectCode: (customerShortName, projectType) =>
+            _onGenerateProjectCode(
+              emit,
+              customerShortName: customerShortName,
+              projectType: projectType,
+            ),
+        clearGeneratedCode: () => _onClearGeneratedCode(emit),
       );
     });
   }
@@ -83,10 +93,12 @@ class ProjectListBloc extends BaseBloc<ProjectListEvent, ProjectListState> {
     Emitter<ProjectListState> emit, {
     String? keyword,
   }) async {
-    emit(state.copyWith(
-      status: BaseStateStatus.loading,
-      searchKeyword: keyword ?? state.searchKeyword,
-    ));
+    emit(
+      state.copyWith(
+        status: BaseStateStatus.loading,
+        searchKeyword: keyword ?? state.searchKeyword,
+      ),
+    );
 
     await _fetchProjects(emit, 'search');
   }
@@ -121,57 +133,175 @@ class ProjectListBloc extends BaseBloc<ProjectListEvent, ProjectListState> {
   }
 
   /// Tải lại dữ liệu lookup cho bộ lọc mà không tải lại danh sách dự án.
+  ///
+  /// Dùng cho cả bộ lọc và form tạo dự án.
   Future<void> _onReloadLookups(Emitter<ProjectListState> emit) async {
     await _loadLookups(emit);
   }
 
+  /// Sinh mã dự án tự động từ tên viết tắt khách hàng và kiểu dự án.
+  Future<void> _onGenerateProjectCode(
+    Emitter<ProjectListState> emit, {
+    required String customerShortName,
+    required int projectType,
+  }) async {
+    final session = _codeRequestId.start();
+    emit(state.copyWith(isGeneratingCode: true, message: null));
+
+    final res = await _repo.generateProjectCode(
+      customerShortName: customerShortName,
+      projectType: projectType,
+    );
+
+    await res.fold(
+      (l) async {
+        _log.logE('ProjectList generateProjectCode failed: $l');
+        emit(
+          state.copyWith(
+            isGeneratingCode: false,
+            status: BaseStateStatus.failed,
+            message: l.getErrorMessage,
+          ),
+        );
+      },
+      (r) async {
+        _log.logI('ProjectList generateProjectCode success: $r');
+
+        /// Nếu người dùng đã đổi khách hàng/kiểu dự án trong lúc chờ API thì
+        /// mã vừa sinh không còn đúng - bỏ qua để không ghi đè giá trị mới.
+        if (session != _codeRequestId.activeSession) return;
+
+        emit(
+          state.copyWith(
+            isGeneratingCode: false,
+            status: BaseStateStatus.success,
+            generatedProjectCode: r,
+          ),
+        );
+      },
+    );
+  }
+
+  /// Xoá mã dự án đã sinh.
+  ///
+  /// Đánh dấu các request đang chạy là không còn hợp lệ để mã sinh ra sau
+  /// đó không ghi đè giá trị đã xoá.
+  Future<void> _onClearGeneratedCode(Emitter<ProjectListState> emit) async {
+    _codeRequestId.invalidate();
+
+    /// Dùng `copyWith.generatedProjectCode(null)` vì `copyWith` dạng
+    /// thường của `copy_with_extension` bỏ qua giá trị `null`.
+    emit(
+      state.copyWith
+          .generatedProjectCode(null)
+          .copyWith(isGeneratingCode: false),
+    );
+  }
+
   /// Tải song song dữ liệu lookup cho bộ lọc. Từng API được bọc riêng để một
   /// API lỗi không làm mất các API còn lại.
+  ///
+  /// Mỗi API được emit riêng ngay khi nó trả về, không chờ tất cả 10 API.
+  /// Nếu chờ tất cả thì một API chậm sẽ khiến form tạo dự án trống hoàn toàn
+  /// và người dùng không chọn được khách hàng / kiểu dự án.
   Future<void> _loadLookups(Emitter<ProjectListState> emit) async {
-    Future<List<T>> safe<T>(
-      Future<Either<BaseError, List<T>>> Function() fetch,
-      List<T> fallback,
-      String name,
-    ) async {
-      try {
-        final res = await fetch();
-        return res.fold(
-          (l) {
-            _log.logE('ProjectList lookup $name failed: $l');
-            return fallback;
-          },
-          (r) {
-            _log.logI('ProjectList lookup $name: ${r.length} items');
-            return r;
-          },
-        );
-      } catch (e) {
-        _log.logE('ProjectList lookup $name threw: $e');
-        return fallback;
-      }
-    }
-
-    final results = await Future.wait<dynamic>([
-      safe(_repo.getCustomers, state.customers, 'customers'),
-      safe(_repo.getProjectTypes, state.projectTypes, 'projectTypes'),
-      safe(_repo.getProjectStatuses, state.statuses, 'statuses'),
-      safe(_repo.getUsers, state.users, 'users'),
-      safe(_repo.getPms, state.pms, 'pms'),
-      safe(_repo.getBusinessFields, state.businessFields, 'businessFields'),
+    await Future.wait<void>([
+      _loadOne(
+        emit,
+        _repo.getCustomers,
+        'customers',
+        (s, list) => s.copyWith(customers: list.cast<CustomerItem>()),
+      ),
+      _loadOne(
+        emit,
+        _repo.getProjectTypes,
+        'projectTypes',
+        (s, list) => s.copyWith(projectTypes: list.cast<ProjectTypeItem>()),
+      ),
+      _loadOne(
+        emit,
+        _repo.getProjectStatuses,
+        'statuses',
+        (s, list) => s.copyWith(statuses: list.cast<ProjectStatusItem>()),
+      ),
+      _loadOne(
+        emit,
+        _repo.getUsers,
+        'users',
+        (s, list) => s.copyWith(users: list.cast<UserItem>()),
+      ),
+      _loadOne(
+        emit,
+        _repo.getPms,
+        'pms',
+        (s, list) => s.copyWith(pms: list.cast<PmItem>()),
+      ),
+      _loadOne(
+        emit,
+        _repo.getBusinessFields,
+        'businessFields',
+        (s, list) => s.copyWith(businessFields: list.cast<BusinessFieldItem>()),
+      ),
+      _loadOne(
+        emit,
+        _repo.getFirmBases,
+        'firms',
+        (s, list) => s.copyWith(firms: list.cast<FirmBase>()),
+      ),
+      _loadOne(
+        emit,
+        _repo.getCustomerIndustries,
+        'industries',
+        (s, list) => s.copyWith(industries: list.cast<CustomerIndustry>()),
+      ),
+      _loadOne(
+        emit,
+        _repo.getProjectTypeBases,
+        'projectTypeBases',
+        (s, list) =>
+            s.copyWith(projectTypeBases: list.cast<ProjectTypeBase>()),
+      ),
+      _loadOne(
+        emit,
+        _repo.getPriorityTypes,
+        'priorityTypes',
+        (s, list) =>
+            s.copyWith(priorityTypes: list.cast<ProjectPriorityType>()),
+      ),
     ]);
+  }
 
-    emit(state.copyWith(
-      customers: (results[0] as List).cast<CustomerItem>(),
-      projectTypes: (results[1] as List).cast<ProjectTypeItem>(),
-      statuses: (results[2] as List).cast<ProjectStatusItem>(),
-      users: (results[3] as List).cast<UserItem>(),
-      pms: (results[4] as List).cast<PmItem>(),
-      businessFields: (results[5] as List).cast<BusinessFieldItem>(),
-    ));
+  /// Gọi 1 API lookup và emit kết quả ngay khi API đó trả về.
+  ///
+  /// [buildState] nhận state hiện tại cùng kết quả API để tạo state mới,
+  /// giữ nguyên các lookup đã tải xong trước đó.
+  Future<void> _loadOne<T>(
+    Emitter<ProjectListState> emit,
+    Future<Either<BaseError, List<T>>> Function() fetch,
+    String name,
+    ProjectListState Function(ProjectListState state, List<T> list) buildState,
+  ) async {
+    try {
+      final res = await fetch();
+      await res.fold(
+        (l) async {
+          _log.logE('ProjectList lookup $name failed: $l');
+        },
+        (r) async {
+          _log.logI('ProjectList lookup $name: ${r.length} items');
+          emit(buildState(state, r));
+        },
+      );
+    } catch (e) {
+      _log.logE('ProjectList lookup $name threw: $e');
+    }
   }
 
   /// Gọi API danh sách dự án theo bộ tham số hiện tại.
-  Future<void> _fetchProjects(Emitter<ProjectListState> emit, String tag) async {
+  Future<void> _fetchProjects(
+    Emitter<ProjectListState> emit,
+    String tag,
+  ) async {
     final params = _buildParams();
 
     final res = await _repo.getProjects(params: params);
@@ -179,18 +309,41 @@ class ProjectListBloc extends BaseBloc<ProjectListEvent, ProjectListState> {
     await res.fold(
       (l) async {
         _log.logE('ProjectListBloc $tag failed: $l');
-        emit(state.copyWith(
-          status: BaseStateStatus.failed,
-          message: l.getErrorMessage,
-        ));
+        emit(
+          state.copyWith(
+            status: BaseStateStatus.failed,
+            message: l.getErrorMessage,
+          ),
+        );
       },
       (r) async {
         _log.logI('ProjectListBloc $tag success: ${r.length} projects');
-        emit(state.copyWith(
-          status: BaseStateStatus.success,
-          projects: r,
-        ));
+        emit(state.copyWith(status: BaseStateStatus.success, projects: r));
       },
     );
   }
+}
+
+/// Theo dõi tính hợp lệ của request sinh mã dự án.
+///
+/// Mỗi lần bắt đầu sinh mã, [_start] tạo ra một "phiên" mới. Khi người
+/// dùng đổi khách hàng / kiểu dự án, [_invalidate] vô hiệu hoá phiên hiện
+/// tại để kết quả của request đang chạy bị bỏ qua khi về tới.
+class _CodeRequestTracker {
+  int _session = 0;
+  int _activeSession = 0;
+
+  /// Bắt đầu phiên sinh mã mới và trả về token của phiên đó.
+  int start() {
+    _activeSession = ++_session;
+    return _activeSession;
+  }
+
+  /// Vô hiệu hoá phiên hiện tại.
+  void invalidate() {
+    _activeSession = 0;
+  }
+
+  /// Token của phiên đang chạy - dùng để so sánh với token của request.
+  int get activeSession => _activeSession;
 }

@@ -479,7 +479,8 @@ class ApiEndPoint {
   static const String updateStatusReceive = '/billexport/status-receive';
 
   // Material Category
-  static const String getMaterialCategories = '/MaterialCategory/get-material-categories';
+  static const String getMaterialCategories =
+      '/MaterialCategory/get-material-categories';
 
   /// Lấy chi tiết phiếu card theo registrationId.
   /// API: GET /ESLRegistration/get-details?registrationId=X.
@@ -558,18 +559,13 @@ class ApiEndPoint {
   /// Lĩnh vực (business field) của dự án. API: GET /project/get-business-fields
   static const String getProjectBusinessFields = '/project/get-business-fields';
 
-  /// User-team. API: GET /project/get-user-teams
-  static const String getProjectUserTeams = '/project/get-user-teams';
+  /// Sinh mã dự án tự động. API: POST /project/get-project-code-modal
+  ///
+  /// Payload: `{ projectId, customerShortName, projectType }`.
+  static const String getProjectCodeModal = '/project/get-project-code-modal';
 
-  /// Danh sách dự án (modal). API: GET /project/get-project-modal
-  static const String getProjectModal = '/project/get-project-modal';
-
-  /// Loại ứng dụng. API: GET /project/get-application-types
-  static const String getProjectApplicationTypes =
-      '/project/get-application-types';
-
-  /// Công nghệ. API: GET /project/get-technologies
-  static const String getProjectTechnologies = '/project/get-technologies';
+  /// Các mốc ưu tiên của dự án. API: GET /project/get-priority-type
+  static const String getProjectPriorityType = '/project/get-priority-type';
 
   // Project Worker - Solution
   static const String getSolution = '/projectworker/get-solution';

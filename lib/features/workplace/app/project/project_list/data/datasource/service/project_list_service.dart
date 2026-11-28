@@ -7,8 +7,9 @@ import '../model/project_list_model.dart';
 
 /// Service cung cấp dữ liệu cho màn danh sách dự án.
 ///
-/// Gồm API danh sách dự án và các API lookup phục vụ bộ lọc
-/// (khách hàng, kiểu dự án, trạng thái, nhân sự, lĩnh vực).
+/// Gồm API danh sách dự án và các API lookup phục vụ bộ lọc và form
+/// tạo dự án (khách hàng, kiểu dự án, trạng thái, nhân sự, lĩnh vực,
+/// hãng, lĩnh vực khách hàng).
 @injectable
 class ProjectListService extends DioBaseApiService {
   ProjectListService(super.dio);
@@ -20,17 +21,14 @@ class ProjectListService extends DioBaseApiService {
     return get<BaseData<List<ProjectItem>>>(
       ApiEndPoint.getProjects,
       query: params.toQueryParams(),
-      parser: (json) => BaseData<List<ProjectItem>>.fromJson(
-        json,
-        (data) {
-          if (data is! Map<String, dynamic>) return <ProjectItem>[];
-          final projectList = data['project'] as List?;
-          if (projectList == null) return <ProjectItem>[];
-          return projectList
-              .map((e) => ProjectItem.fromJson(e as Map<String, dynamic>))
-              .toList();
-        },
-      ),
+      parser: (json) => BaseData<List<ProjectItem>>.fromJson(json, (data) {
+        if (data is! Map<String, dynamic>) return <ProjectItem>[];
+        final projectList = data['project'] as List?;
+        if (projectList == null) return <ProjectItem>[];
+        return projectList
+            .map((e) => ProjectItem.fromJson(e as Map<String, dynamic>))
+            .toList();
+      }),
     );
   }
 
@@ -68,18 +66,73 @@ class ProjectListService extends DioBaseApiService {
 
   /// GET /project/get-pms
   Future<List<PmItem>> getPms() {
-    return _getList<PmItem>(
-      ApiEndPoint.getProjectPms,
-      PmItem.fromJson,
-    );
+    return _getList<PmItem>(ApiEndPoint.getProjectPms, PmItem.fromJson);
   }
 
   /// GET /project/get-users
   Future<List<UserItem>> getUsers() {
-    return _getList<UserItem>(
-      ApiEndPoint.getProjectUsers,
-      UserItem.fromJson,
+    return _getList<UserItem>(ApiEndPoint.getProjectUsers, UserItem.fromJson);
+  }
+
+  /// GET /project/get-firm-bases
+  Future<List<FirmBase>> getFirmBases() {
+    return _getList<FirmBase>(
+      ApiEndPoint.getProjectFirmBases,
+      FirmBase.fromJson,
     );
+  }
+
+  /// GET /project/get-customer-industries
+  Future<List<CustomerIndustry>> getCustomerIndustries() {
+    return _getList<CustomerIndustry>(
+      ApiEndPoint.getProjectCustomerIndustries,
+      CustomerIndustry.fromJson,
+    );
+  }
+
+  /// GET /project/get-project-type-bases
+  Future<List<ProjectTypeBase>> getProjectTypeBases() {
+    return _getList<ProjectTypeBase>(
+      ApiEndPoint.getProjectTypeBases,
+      ProjectTypeBase.fromJson,
+    );
+  }
+
+  /// GET /project/get-priority-type
+  Future<List<ProjectPriorityType>> getPriorityTypes() {
+    return _getList<ProjectPriorityType>(
+      ApiEndPoint.getProjectPriorityType,
+      ProjectPriorityType.fromJson,
+    );
+  }
+
+  /// POST /project/get-project-code-modal - sinh mã dự án tự động.
+  ///
+  /// [customerShortName] là tên viết tắt của khách hàng, [projectType] là
+  /// ID kiểu dự án. Trả về mã dự án hoặc `null` nếu API lỗi.
+  Future<String?> generateProjectCode({
+    required String customerShortName,
+    required int projectType,
+  }) async {
+    final result = await post<BaseData<String>>(
+      ApiEndPoint.getProjectCodeModal,
+      body: {
+        'projectId': 0,
+        'customerShortName': customerShortName,
+        'projectType': projectType,
+      },
+      parser: (json) => BaseData<String>.fromJson(
+        json as Map<String, dynamic>,
+        (data) => data is String ? data : '',
+      ),
+    );
+
+    /// API trả `status: 1` khi thành công, `data` là chuỗi mã dự án.
+    if (result.status != 1) return null;
+
+    final code = result.data?.trim();
+    if (code == null || code.isEmpty) return null;
+    return code;
   }
 
   /// Helper chung: GET 1 endpoint trả về List, parse qua parser.
@@ -111,24 +164,19 @@ class ProjectListService extends DioBaseApiService {
       );
     }
 
-    return BaseData<List<T>>.fromJson(
-      json as Map<String, dynamic>,
-      (data) {
-        if (data is List) {
-          return data
-              .map((e) => fromJson(e as Map<String, dynamic>))
-              .toList();
-        }
-        if (data is Map) {
-          final items = (data as Map<String, dynamic>).values
-              .whereType<List>()
-              .expand((e) => e)
-              .map((e) => fromJson(e as Map<String, dynamic>))
-              .toList();
-          if (items.isNotEmpty) return items;
-        }
-        return <T>[];
-      },
-    );
+    return BaseData<List<T>>.fromJson(json as Map<String, dynamic>, (data) {
+      if (data is List) {
+        return data.map((e) => fromJson(e as Map<String, dynamic>)).toList();
+      }
+      if (data is Map) {
+        final items = (data as Map<String, dynamic>).values
+            .whereType<List>()
+            .expand((e) => e)
+            .map((e) => fromJson(e as Map<String, dynamic>))
+            .toList();
+        if (items.isNotEmpty) return items;
+      }
+      return <T>[];
+    });
   }
 }

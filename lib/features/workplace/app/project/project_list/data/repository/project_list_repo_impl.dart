@@ -54,7 +54,45 @@ class ProjectListRepoImpl implements ProjectListRepo {
   Future<Either<BaseError, List<PmItem>>> getPms() => _call(_service.getPms);
 
   @override
-  Future<Either<BaseError, List<UserItem>>> getUsers() => _call(_service.getUsers);
+  Future<Either<BaseError, List<UserItem>>> getUsers() =>
+      _call(_service.getUsers);
+
+  @override
+  Future<Either<BaseError, List<FirmBase>>> getFirmBases() =>
+      _call(_service.getFirmBases);
+
+  @override
+  Future<Either<BaseError, List<CustomerIndustry>>> getCustomerIndustries() =>
+      _call(_service.getCustomerIndustries);
+
+  @override
+  Future<Either<BaseError, List<ProjectTypeBase>>> getProjectTypeBases() =>
+      _call(_service.getProjectTypeBases);
+
+  @override
+  Future<Either<BaseError, List<ProjectPriorityType>>> getPriorityTypes() =>
+      _call(_service.getPriorityTypes);
+
+  @override
+  Future<Either<BaseError, String>> generateProjectCode({
+    required String customerShortName,
+    required int projectType,
+  }) async {
+    try {
+      final code = await _service.generateProjectCode(
+        customerShortName: customerShortName,
+        projectType: projectType,
+      );
+      if (code == null) {
+        return left(
+          BaseError.httpInternalServerError('Không sinh được mã dự án'),
+        );
+      }
+      return right(code);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    }
+  }
 
   /// Gọi API và bọc kết quả, lỗi mạng trả về [BaseError].
   Future<Either<BaseError, List<T>>> _call<T>(

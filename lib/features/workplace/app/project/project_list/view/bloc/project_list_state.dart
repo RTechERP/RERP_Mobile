@@ -50,14 +50,14 @@ class ProjectFilters extends Equatable {
 
   /// Số tiêu chí đang được áp dụng.
   int get activeCount => [
-        customerId,
-        projectType,
-        projectStatus,
-        saleId,
-        techId,
-        pmId,
-        businessFieldId,
-      ].where((v) => v != null).length;
+    customerId,
+    projectType,
+    projectStatus,
+    saleId,
+    techId,
+    pmId,
+    businessFieldId,
+  ].where((v) => v != null).length;
 
   /// Bản sao với các tiêu chí đã thay đổi, giữ nguyên tiêu chí còn lại.
   ProjectFilters copyWith({
@@ -90,14 +90,14 @@ class ProjectFilters extends Equatable {
 
   @override
   List<Object?> get props => [
-        customerId,
-        projectType,
-        projectStatus,
-        saleId,
-        techId,
-        pmId,
-        businessFieldId,
-      ];
+    customerId,
+    projectType,
+    projectStatus,
+    saleId,
+    techId,
+    pmId,
+    businessFieldId,
+  ];
 }
 
 /// Marker để phân biệt "không truyền" với "truyền null" trong [ProjectFilters.copyWith].
@@ -113,13 +113,27 @@ class ProjectListState extends BaseBlocState {
   /// Bộ lọc đang áp dụng (khách hàng, kiểu dự án, trạng thái, nhân sự...).
   final ProjectFilters filters;
 
-  /// Dữ liệu lookup cho bộ lọc.
+  /// Dữ liệu lookup cho bộ lọc và form tạo dự án.
   final List<CustomerItem> customers;
   final List<ProjectTypeItem> projectTypes;
   final List<ProjectStatusItem> statuses;
   final List<UserItem> users;
   final List<PmItem> pms;
   final List<BusinessFieldItem> businessFields;
+  final List<FirmBase> firms;
+  final List<CustomerIndustry> industries;
+
+  /// Kiểu dự án cơ bản - dùng làm danh sách cho ô "Lĩnh vực".
+  final List<ProjectTypeBase> projectTypeBases;
+
+  /// Các mốc ưu tiên của dự án.
+  final List<ProjectPriorityType> priorityTypes;
+
+  /// Mã dự án vừa được sinh tự động.
+  final String? generatedProjectCode;
+
+  /// Đang gọi API sinh mã dự án hay không.
+  final bool isGeneratingCode;
 
   const ProjectListState({
     required super.status,
@@ -135,13 +149,19 @@ class ProjectListState extends BaseBlocState {
     this.users = const [],
     this.pms = const [],
     this.businessFields = const [],
+    this.firms = const [],
+    this.industries = const [],
+    this.projectTypeBases = const [],
+    this.priorityTypes = const [],
+    this.generatedProjectCode,
+    this.isGeneratingCode = false,
   });
 
   factory ProjectListState.init() => const ProjectListState(
-        status: BaseStateStatus.init,
-        projects: [],
-        searchKeyword: '',
-      );
+    status: BaseStateStatus.init,
+    projects: [],
+    searchKeyword: '',
+  );
 
   List<ProjectItem> get filteredProjects {
     if (searchKeyword.isEmpty) return projects;
@@ -232,18 +252,24 @@ class ProjectListState extends BaseBlocState {
 
   @override
   List get props => [
-        status,
-        message,
-        projects,
-        searchKeyword,
-        dateStart,
-        dateEnd,
-        filters,
-        customers,
-        projectTypes,
-        statuses,
-        users,
-        pms,
-        businessFields,
-      ];
+    status,
+    message,
+    projects,
+    searchKeyword,
+    dateStart,
+    dateEnd,
+    filters,
+    customers,
+    projectTypes,
+    statuses,
+    users,
+    pms,
+    businessFields,
+    firms,
+        industries,
+        projectTypeBases,
+        priorityTypes,
+    generatedProjectCode,
+    isGeneratingCode,
+  ];
 }

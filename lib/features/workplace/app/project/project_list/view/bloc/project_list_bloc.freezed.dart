@@ -27,6 +27,9 @@ mixin _$ProjectListEvent {
     required TResult Function(ProjectFilters filters) applyFilters,
     required TResult Function() clearFilters,
     required TResult Function() reloadLookups,
+    required TResult Function(String customerShortName, int projectType)
+        generateProjectCode,
+    required TResult Function() clearGeneratedCode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,6 +42,9 @@ mixin _$ProjectListEvent {
     TResult? Function(ProjectFilters filters)? applyFilters,
     TResult? Function()? clearFilters,
     TResult? Function()? reloadLookups,
+    TResult? Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult? Function()? clearGeneratedCode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +57,9 @@ mixin _$ProjectListEvent {
     TResult Function(ProjectFilters filters)? applyFilters,
     TResult Function()? clearFilters,
     TResult Function()? reloadLookups,
+    TResult Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult Function()? clearGeneratedCode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +73,8 @@ mixin _$ProjectListEvent {
     required TResult Function(_ApplyFilters value) applyFilters,
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ReloadLookups value) reloadLookups,
+    required TResult Function(_GenerateProjectCode value) generateProjectCode,
+    required TResult Function(_ClearGeneratedCode value) clearGeneratedCode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +87,8 @@ mixin _$ProjectListEvent {
     TResult? Function(_ApplyFilters value)? applyFilters,
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ReloadLookups value)? reloadLookups,
+    TResult? Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult? Function(_ClearGeneratedCode value)? clearGeneratedCode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -88,6 +101,8 @@ mixin _$ProjectListEvent {
     TResult Function(_ApplyFilters value)? applyFilters,
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ReloadLookups value)? reloadLookups,
+    TResult Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult Function(_ClearGeneratedCode value)? clearGeneratedCode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -157,6 +172,9 @@ class _$InitImpl implements _Init {
     required TResult Function(ProjectFilters filters) applyFilters,
     required TResult Function() clearFilters,
     required TResult Function() reloadLookups,
+    required TResult Function(String customerShortName, int projectType)
+        generateProjectCode,
+    required TResult Function() clearGeneratedCode,
   }) {
     return init();
   }
@@ -172,6 +190,9 @@ class _$InitImpl implements _Init {
     TResult? Function(ProjectFilters filters)? applyFilters,
     TResult? Function()? clearFilters,
     TResult? Function()? reloadLookups,
+    TResult? Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult? Function()? clearGeneratedCode,
   }) {
     return init?.call();
   }
@@ -187,6 +208,9 @@ class _$InitImpl implements _Init {
     TResult Function(ProjectFilters filters)? applyFilters,
     TResult Function()? clearFilters,
     TResult Function()? reloadLookups,
+    TResult Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult Function()? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -206,6 +230,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_ApplyFilters value) applyFilters,
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ReloadLookups value) reloadLookups,
+    required TResult Function(_GenerateProjectCode value) generateProjectCode,
+    required TResult Function(_ClearGeneratedCode value) clearGeneratedCode,
   }) {
     return init(this);
   }
@@ -221,6 +247,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_ApplyFilters value)? applyFilters,
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ReloadLookups value)? reloadLookups,
+    TResult? Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult? Function(_ClearGeneratedCode value)? clearGeneratedCode,
   }) {
     return init?.call(this);
   }
@@ -236,6 +264,8 @@ class _$InitImpl implements _Init {
     TResult Function(_ApplyFilters value)? applyFilters,
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ReloadLookups value)? reloadLookups,
+    TResult Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult Function(_ClearGeneratedCode value)? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -296,6 +326,9 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(ProjectFilters filters) applyFilters,
     required TResult Function() clearFilters,
     required TResult Function() reloadLookups,
+    required TResult Function(String customerShortName, int projectType)
+        generateProjectCode,
+    required TResult Function() clearGeneratedCode,
   }) {
     return refresh();
   }
@@ -311,6 +344,9 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(ProjectFilters filters)? applyFilters,
     TResult? Function()? clearFilters,
     TResult? Function()? reloadLookups,
+    TResult? Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult? Function()? clearGeneratedCode,
   }) {
     return refresh?.call();
   }
@@ -326,6 +362,9 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(ProjectFilters filters)? applyFilters,
     TResult Function()? clearFilters,
     TResult Function()? reloadLookups,
+    TResult Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult Function()? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -345,6 +384,8 @@ class _$RefreshImpl implements _Refresh {
     required TResult Function(_ApplyFilters value) applyFilters,
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ReloadLookups value) reloadLookups,
+    required TResult Function(_GenerateProjectCode value) generateProjectCode,
+    required TResult Function(_ClearGeneratedCode value) clearGeneratedCode,
   }) {
     return refresh(this);
   }
@@ -360,6 +401,8 @@ class _$RefreshImpl implements _Refresh {
     TResult? Function(_ApplyFilters value)? applyFilters,
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ReloadLookups value)? reloadLookups,
+    TResult? Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult? Function(_ClearGeneratedCode value)? clearGeneratedCode,
   }) {
     return refresh?.call(this);
   }
@@ -375,6 +418,8 @@ class _$RefreshImpl implements _Refresh {
     TResult Function(_ApplyFilters value)? applyFilters,
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ReloadLookups value)? reloadLookups,
+    TResult Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult Function(_ClearGeneratedCode value)? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -461,6 +506,9 @@ class _$SearchImpl implements _Search {
     required TResult Function(ProjectFilters filters) applyFilters,
     required TResult Function() clearFilters,
     required TResult Function() reloadLookups,
+    required TResult Function(String customerShortName, int projectType)
+        generateProjectCode,
+    required TResult Function() clearGeneratedCode,
   }) {
     return search(keyword);
   }
@@ -476,6 +524,9 @@ class _$SearchImpl implements _Search {
     TResult? Function(ProjectFilters filters)? applyFilters,
     TResult? Function()? clearFilters,
     TResult? Function()? reloadLookups,
+    TResult? Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult? Function()? clearGeneratedCode,
   }) {
     return search?.call(keyword);
   }
@@ -491,6 +542,9 @@ class _$SearchImpl implements _Search {
     TResult Function(ProjectFilters filters)? applyFilters,
     TResult Function()? clearFilters,
     TResult Function()? reloadLookups,
+    TResult Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult Function()? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -510,6 +564,8 @@ class _$SearchImpl implements _Search {
     required TResult Function(_ApplyFilters value) applyFilters,
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ReloadLookups value) reloadLookups,
+    required TResult Function(_GenerateProjectCode value) generateProjectCode,
+    required TResult Function(_ClearGeneratedCode value) clearGeneratedCode,
   }) {
     return search(this);
   }
@@ -525,6 +581,8 @@ class _$SearchImpl implements _Search {
     TResult? Function(_ApplyFilters value)? applyFilters,
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ReloadLookups value)? reloadLookups,
+    TResult? Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult? Function(_ClearGeneratedCode value)? clearGeneratedCode,
   }) {
     return search?.call(this);
   }
@@ -540,6 +598,8 @@ class _$SearchImpl implements _Search {
     TResult Function(_ApplyFilters value)? applyFilters,
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ReloadLookups value)? reloadLookups,
+    TResult Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult Function(_ClearGeneratedCode value)? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -631,6 +691,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(ProjectFilters filters) applyFilters,
     required TResult Function() clearFilters,
     required TResult Function() reloadLookups,
+    required TResult Function(String customerShortName, int projectType)
+        generateProjectCode,
+    required TResult Function() clearGeneratedCode,
   }) {
     return changeKeyword(keyword);
   }
@@ -646,6 +709,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(ProjectFilters filters)? applyFilters,
     TResult? Function()? clearFilters,
     TResult? Function()? reloadLookups,
+    TResult? Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult? Function()? clearGeneratedCode,
   }) {
     return changeKeyword?.call(keyword);
   }
@@ -661,6 +727,9 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(ProjectFilters filters)? applyFilters,
     TResult Function()? clearFilters,
     TResult Function()? reloadLookups,
+    TResult Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult Function()? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -680,6 +749,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     required TResult Function(_ApplyFilters value) applyFilters,
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ReloadLookups value) reloadLookups,
+    required TResult Function(_GenerateProjectCode value) generateProjectCode,
+    required TResult Function(_ClearGeneratedCode value) clearGeneratedCode,
   }) {
     return changeKeyword(this);
   }
@@ -695,6 +766,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult? Function(_ApplyFilters value)? applyFilters,
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ReloadLookups value)? reloadLookups,
+    TResult? Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult? Function(_ClearGeneratedCode value)? clearGeneratedCode,
   }) {
     return changeKeyword?.call(this);
   }
@@ -710,6 +783,8 @@ class _$ChangeKeywordImpl implements _ChangeKeyword {
     TResult Function(_ApplyFilters value)? applyFilters,
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ReloadLookups value)? reloadLookups,
+    TResult Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult Function(_ClearGeneratedCode value)? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (changeKeyword != null) {
@@ -812,6 +887,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(ProjectFilters filters) applyFilters,
     required TResult Function() clearFilters,
     required TResult Function() reloadLookups,
+    required TResult Function(String customerShortName, int projectType)
+        generateProjectCode,
+    required TResult Function() clearGeneratedCode,
   }) {
     return changeDateRange(dateStart, dateEnd);
   }
@@ -827,6 +905,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(ProjectFilters filters)? applyFilters,
     TResult? Function()? clearFilters,
     TResult? Function()? reloadLookups,
+    TResult? Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult? Function()? clearGeneratedCode,
   }) {
     return changeDateRange?.call(dateStart, dateEnd);
   }
@@ -842,6 +923,9 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(ProjectFilters filters)? applyFilters,
     TResult Function()? clearFilters,
     TResult Function()? reloadLookups,
+    TResult Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult Function()? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -861,6 +945,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     required TResult Function(_ApplyFilters value) applyFilters,
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ReloadLookups value) reloadLookups,
+    required TResult Function(_GenerateProjectCode value) generateProjectCode,
+    required TResult Function(_ClearGeneratedCode value) clearGeneratedCode,
   }) {
     return changeDateRange(this);
   }
@@ -876,6 +962,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult? Function(_ApplyFilters value)? applyFilters,
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ReloadLookups value)? reloadLookups,
+    TResult? Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult? Function(_ClearGeneratedCode value)? clearGeneratedCode,
   }) {
     return changeDateRange?.call(this);
   }
@@ -891,6 +979,8 @@ class _$ChangeDateRangeImpl implements _ChangeDateRange {
     TResult Function(_ApplyFilters value)? applyFilters,
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ReloadLookups value)? reloadLookups,
+    TResult Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult Function(_ClearGeneratedCode value)? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (changeDateRange != null) {
@@ -985,6 +1075,9 @@ class _$ApplyFiltersImpl implements _ApplyFilters {
     required TResult Function(ProjectFilters filters) applyFilters,
     required TResult Function() clearFilters,
     required TResult Function() reloadLookups,
+    required TResult Function(String customerShortName, int projectType)
+        generateProjectCode,
+    required TResult Function() clearGeneratedCode,
   }) {
     return applyFilters(filters);
   }
@@ -1000,6 +1093,9 @@ class _$ApplyFiltersImpl implements _ApplyFilters {
     TResult? Function(ProjectFilters filters)? applyFilters,
     TResult? Function()? clearFilters,
     TResult? Function()? reloadLookups,
+    TResult? Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult? Function()? clearGeneratedCode,
   }) {
     return applyFilters?.call(filters);
   }
@@ -1015,6 +1111,9 @@ class _$ApplyFiltersImpl implements _ApplyFilters {
     TResult Function(ProjectFilters filters)? applyFilters,
     TResult Function()? clearFilters,
     TResult Function()? reloadLookups,
+    TResult Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult Function()? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (applyFilters != null) {
@@ -1034,6 +1133,8 @@ class _$ApplyFiltersImpl implements _ApplyFilters {
     required TResult Function(_ApplyFilters value) applyFilters,
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ReloadLookups value) reloadLookups,
+    required TResult Function(_GenerateProjectCode value) generateProjectCode,
+    required TResult Function(_ClearGeneratedCode value) clearGeneratedCode,
   }) {
     return applyFilters(this);
   }
@@ -1049,6 +1150,8 @@ class _$ApplyFiltersImpl implements _ApplyFilters {
     TResult? Function(_ApplyFilters value)? applyFilters,
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ReloadLookups value)? reloadLookups,
+    TResult? Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult? Function(_ClearGeneratedCode value)? clearGeneratedCode,
   }) {
     return applyFilters?.call(this);
   }
@@ -1064,6 +1167,8 @@ class _$ApplyFiltersImpl implements _ApplyFilters {
     TResult Function(_ApplyFilters value)? applyFilters,
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ReloadLookups value)? reloadLookups,
+    TResult Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult Function(_ClearGeneratedCode value)? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (applyFilters != null) {
@@ -1130,6 +1235,9 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(ProjectFilters filters) applyFilters,
     required TResult Function() clearFilters,
     required TResult Function() reloadLookups,
+    required TResult Function(String customerShortName, int projectType)
+        generateProjectCode,
+    required TResult Function() clearGeneratedCode,
   }) {
     return clearFilters();
   }
@@ -1145,6 +1253,9 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(ProjectFilters filters)? applyFilters,
     TResult? Function()? clearFilters,
     TResult? Function()? reloadLookups,
+    TResult? Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult? Function()? clearGeneratedCode,
   }) {
     return clearFilters?.call();
   }
@@ -1160,6 +1271,9 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(ProjectFilters filters)? applyFilters,
     TResult Function()? clearFilters,
     TResult Function()? reloadLookups,
+    TResult Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult Function()? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (clearFilters != null) {
@@ -1179,6 +1293,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(_ApplyFilters value) applyFilters,
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ReloadLookups value) reloadLookups,
+    required TResult Function(_GenerateProjectCode value) generateProjectCode,
+    required TResult Function(_ClearGeneratedCode value) clearGeneratedCode,
   }) {
     return clearFilters(this);
   }
@@ -1194,6 +1310,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(_ApplyFilters value)? applyFilters,
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ReloadLookups value)? reloadLookups,
+    TResult? Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult? Function(_ClearGeneratedCode value)? clearGeneratedCode,
   }) {
     return clearFilters?.call(this);
   }
@@ -1209,6 +1327,8 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(_ApplyFilters value)? applyFilters,
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ReloadLookups value)? reloadLookups,
+    TResult Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult Function(_ClearGeneratedCode value)? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (clearFilters != null) {
@@ -1269,6 +1389,9 @@ class _$ReloadLookupsImpl implements _ReloadLookups {
     required TResult Function(ProjectFilters filters) applyFilters,
     required TResult Function() clearFilters,
     required TResult Function() reloadLookups,
+    required TResult Function(String customerShortName, int projectType)
+        generateProjectCode,
+    required TResult Function() clearGeneratedCode,
   }) {
     return reloadLookups();
   }
@@ -1284,6 +1407,9 @@ class _$ReloadLookupsImpl implements _ReloadLookups {
     TResult? Function(ProjectFilters filters)? applyFilters,
     TResult? Function()? clearFilters,
     TResult? Function()? reloadLookups,
+    TResult? Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult? Function()? clearGeneratedCode,
   }) {
     return reloadLookups?.call();
   }
@@ -1299,6 +1425,9 @@ class _$ReloadLookupsImpl implements _ReloadLookups {
     TResult Function(ProjectFilters filters)? applyFilters,
     TResult Function()? clearFilters,
     TResult Function()? reloadLookups,
+    TResult Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult Function()? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (reloadLookups != null) {
@@ -1318,6 +1447,8 @@ class _$ReloadLookupsImpl implements _ReloadLookups {
     required TResult Function(_ApplyFilters value) applyFilters,
     required TResult Function(_ClearFilters value) clearFilters,
     required TResult Function(_ReloadLookups value) reloadLookups,
+    required TResult Function(_GenerateProjectCode value) generateProjectCode,
+    required TResult Function(_ClearGeneratedCode value) clearGeneratedCode,
   }) {
     return reloadLookups(this);
   }
@@ -1333,6 +1464,8 @@ class _$ReloadLookupsImpl implements _ReloadLookups {
     TResult? Function(_ApplyFilters value)? applyFilters,
     TResult? Function(_ClearFilters value)? clearFilters,
     TResult? Function(_ReloadLookups value)? reloadLookups,
+    TResult? Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult? Function(_ClearGeneratedCode value)? clearGeneratedCode,
   }) {
     return reloadLookups?.call(this);
   }
@@ -1348,6 +1481,8 @@ class _$ReloadLookupsImpl implements _ReloadLookups {
     TResult Function(_ApplyFilters value)? applyFilters,
     TResult Function(_ClearFilters value)? clearFilters,
     TResult Function(_ReloadLookups value)? reloadLookups,
+    TResult Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult Function(_ClearGeneratedCode value)? clearGeneratedCode,
     required TResult orElse(),
   }) {
     if (reloadLookups != null) {
@@ -1359,4 +1494,358 @@ class _$ReloadLookupsImpl implements _ReloadLookups {
 
 abstract class _ReloadLookups implements ProjectListEvent {
   const factory _ReloadLookups() = _$ReloadLookupsImpl;
+}
+
+/// @nodoc
+abstract class _$$GenerateProjectCodeImplCopyWith<$Res> {
+  factory _$$GenerateProjectCodeImplCopyWith(_$GenerateProjectCodeImpl value,
+          $Res Function(_$GenerateProjectCodeImpl) then) =
+      __$$GenerateProjectCodeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String customerShortName, int projectType});
+}
+
+/// @nodoc
+class __$$GenerateProjectCodeImplCopyWithImpl<$Res>
+    extends _$ProjectListEventCopyWithImpl<$Res, _$GenerateProjectCodeImpl>
+    implements _$$GenerateProjectCodeImplCopyWith<$Res> {
+  __$$GenerateProjectCodeImplCopyWithImpl(_$GenerateProjectCodeImpl _value,
+      $Res Function(_$GenerateProjectCodeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? customerShortName = null,
+    Object? projectType = null,
+  }) {
+    return _then(_$GenerateProjectCodeImpl(
+      customerShortName: null == customerShortName
+          ? _value.customerShortName
+          : customerShortName // ignore: cast_nullable_to_non_nullable
+              as String,
+      projectType: null == projectType
+          ? _value.projectType
+          : projectType // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GenerateProjectCodeImpl implements _GenerateProjectCode {
+  const _$GenerateProjectCodeImpl(
+      {required this.customerShortName, required this.projectType});
+
+  @override
+  final String customerShortName;
+  @override
+  final int projectType;
+
+  @override
+  String toString() {
+    return 'ProjectListEvent.generateProjectCode(customerShortName: $customerShortName, projectType: $projectType)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GenerateProjectCodeImpl &&
+            (identical(other.customerShortName, customerShortName) ||
+                other.customerShortName == customerShortName) &&
+            (identical(other.projectType, projectType) ||
+                other.projectType == projectType));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, customerShortName, projectType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GenerateProjectCodeImplCopyWith<_$GenerateProjectCodeImpl> get copyWith =>
+      __$$GenerateProjectCodeImplCopyWithImpl<_$GenerateProjectCodeImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(ProjectFilters filters) applyFilters,
+    required TResult Function() clearFilters,
+    required TResult Function() reloadLookups,
+    required TResult Function(String customerShortName, int projectType)
+        generateProjectCode,
+    required TResult Function() clearGeneratedCode,
+  }) {
+    return generateProjectCode(customerShortName, projectType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(ProjectFilters filters)? applyFilters,
+    TResult? Function()? clearFilters,
+    TResult? Function()? reloadLookups,
+    TResult? Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult? Function()? clearGeneratedCode,
+  }) {
+    return generateProjectCode?.call(customerShortName, projectType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(ProjectFilters filters)? applyFilters,
+    TResult Function()? clearFilters,
+    TResult Function()? reloadLookups,
+    TResult Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult Function()? clearGeneratedCode,
+    required TResult orElse(),
+  }) {
+    if (generateProjectCode != null) {
+      return generateProjectCode(customerShortName, projectType);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ApplyFilters value) applyFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ReloadLookups value) reloadLookups,
+    required TResult Function(_GenerateProjectCode value) generateProjectCode,
+    required TResult Function(_ClearGeneratedCode value) clearGeneratedCode,
+  }) {
+    return generateProjectCode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ApplyFilters value)? applyFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ReloadLookups value)? reloadLookups,
+    TResult? Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult? Function(_ClearGeneratedCode value)? clearGeneratedCode,
+  }) {
+    return generateProjectCode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ApplyFilters value)? applyFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ReloadLookups value)? reloadLookups,
+    TResult Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult Function(_ClearGeneratedCode value)? clearGeneratedCode,
+    required TResult orElse(),
+  }) {
+    if (generateProjectCode != null) {
+      return generateProjectCode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GenerateProjectCode implements ProjectListEvent {
+  const factory _GenerateProjectCode(
+      {required final String customerShortName,
+      required final int projectType}) = _$GenerateProjectCodeImpl;
+
+  String get customerShortName;
+  int get projectType;
+  @JsonKey(ignore: true)
+  _$$GenerateProjectCodeImplCopyWith<_$GenerateProjectCodeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClearGeneratedCodeImplCopyWith<$Res> {
+  factory _$$ClearGeneratedCodeImplCopyWith(_$ClearGeneratedCodeImpl value,
+          $Res Function(_$ClearGeneratedCodeImpl) then) =
+      __$$ClearGeneratedCodeImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearGeneratedCodeImplCopyWithImpl<$Res>
+    extends _$ProjectListEventCopyWithImpl<$Res, _$ClearGeneratedCodeImpl>
+    implements _$$ClearGeneratedCodeImplCopyWith<$Res> {
+  __$$ClearGeneratedCodeImplCopyWithImpl(_$ClearGeneratedCodeImpl _value,
+      $Res Function(_$ClearGeneratedCodeImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearGeneratedCodeImpl implements _ClearGeneratedCode {
+  const _$ClearGeneratedCodeImpl();
+
+  @override
+  String toString() {
+    return 'ProjectListEvent.clearGeneratedCode()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearGeneratedCodeImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() refresh,
+    required TResult Function(String? keyword) search,
+    required TResult Function(String keyword) changeKeyword,
+    required TResult Function(DateTime? dateStart, DateTime? dateEnd)
+        changeDateRange,
+    required TResult Function(ProjectFilters filters) applyFilters,
+    required TResult Function() clearFilters,
+    required TResult Function() reloadLookups,
+    required TResult Function(String customerShortName, int projectType)
+        generateProjectCode,
+    required TResult Function() clearGeneratedCode,
+  }) {
+    return clearGeneratedCode();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? refresh,
+    TResult? Function(String? keyword)? search,
+    TResult? Function(String keyword)? changeKeyword,
+    TResult? Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult? Function(ProjectFilters filters)? applyFilters,
+    TResult? Function()? clearFilters,
+    TResult? Function()? reloadLookups,
+    TResult? Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult? Function()? clearGeneratedCode,
+  }) {
+    return clearGeneratedCode?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? refresh,
+    TResult Function(String? keyword)? search,
+    TResult Function(String keyword)? changeKeyword,
+    TResult Function(DateTime? dateStart, DateTime? dateEnd)? changeDateRange,
+    TResult Function(ProjectFilters filters)? applyFilters,
+    TResult Function()? clearFilters,
+    TResult Function()? reloadLookups,
+    TResult Function(String customerShortName, int projectType)?
+        generateProjectCode,
+    TResult Function()? clearGeneratedCode,
+    required TResult orElse(),
+  }) {
+    if (clearGeneratedCode != null) {
+      return clearGeneratedCode();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_Search value) search,
+    required TResult Function(_ChangeKeyword value) changeKeyword,
+    required TResult Function(_ChangeDateRange value) changeDateRange,
+    required TResult Function(_ApplyFilters value) applyFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_ReloadLookups value) reloadLookups,
+    required TResult Function(_GenerateProjectCode value) generateProjectCode,
+    required TResult Function(_ClearGeneratedCode value) clearGeneratedCode,
+  }) {
+    return clearGeneratedCode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ChangeKeyword value)? changeKeyword,
+    TResult? Function(_ChangeDateRange value)? changeDateRange,
+    TResult? Function(_ApplyFilters value)? applyFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_ReloadLookups value)? reloadLookups,
+    TResult? Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult? Function(_ClearGeneratedCode value)? clearGeneratedCode,
+  }) {
+    return clearGeneratedCode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_Search value)? search,
+    TResult Function(_ChangeKeyword value)? changeKeyword,
+    TResult Function(_ChangeDateRange value)? changeDateRange,
+    TResult Function(_ApplyFilters value)? applyFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_ReloadLookups value)? reloadLookups,
+    TResult Function(_GenerateProjectCode value)? generateProjectCode,
+    TResult Function(_ClearGeneratedCode value)? clearGeneratedCode,
+    required TResult orElse(),
+  }) {
+    if (clearGeneratedCode != null) {
+      return clearGeneratedCode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearGeneratedCode implements ProjectListEvent {
+  const factory _ClearGeneratedCode() = _$ClearGeneratedCodeImpl;
 }

@@ -8,6 +8,12 @@ import '../../extensions/number_extension.dart';
 class FormReadonlyField extends StatelessWidget {
   final String name;
   final String? label;
+
+  /// Label dạng widget - dùng khi cần tô màu riêng cho từng phần của label
+  /// (ví dụ: dấu `*` màu đỏ).
+  ///
+  /// Nếu có giá trị này thì [label] bị bỏ qua.
+  final Widget? labelWidget;
   final IconData? icon;
   final String? hintText;
   final dynamic initialValue;
@@ -19,6 +25,7 @@ class FormReadonlyField extends StatelessWidget {
     super.key,
     required this.name,
     this.label,
+    this.labelWidget,
     this.icon,
     this.hintText,
     this.initialValue,
@@ -53,7 +60,8 @@ class FormReadonlyField extends StatelessWidget {
             initialValue: display.isNotEmpty ? display : (hintText ?? ''),
             readOnly: true, // 🔒 không cho sửa
             decoration: InputDecoration(
-              labelText: label,
+              label: labelWidget,
+              labelText: labelWidget == null ? label : null,
               hintText: hintText,
               prefixIcon: icon != null ? Icon(icon, size: 20) : null,
               filled: true,

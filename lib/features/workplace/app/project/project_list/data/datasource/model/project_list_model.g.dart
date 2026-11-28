@@ -148,6 +148,7 @@ _$CustomerItemImpl _$$CustomerItemImplFromJson(Map<String, dynamic> json) =>
       contactEmail: json['ContactEmail'] as String?,
       taxCode: json['TaxCode'] as String?,
       province: json['Province'] as String?,
+      industriesId: (json['CustomerIndustriesID'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$CustomerItemImplToJson(_$CustomerItemImpl instance) =>
@@ -164,6 +165,7 @@ Map<String, dynamic> _$$CustomerItemImplToJson(_$CustomerItemImpl instance) =>
       'ContactEmail': instance.contactEmail,
       'TaxCode': instance.taxCode,
       'Province': instance.province,
+      'CustomerIndustriesID': instance.industriesId,
     };
 
 _$ProjectTypeItemImpl _$$ProjectTypeItemImplFromJson(
@@ -188,6 +190,22 @@ Map<String, dynamic> _$$ProjectTypeItemImplToJson(
       'DepartmentID': instance.departmentId,
       'IsDeleted': instance.isDeleted,
       'IsHide': instance.isHide,
+    };
+
+_$ProjectTypeBaseImpl _$$ProjectTypeBaseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProjectTypeBaseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['ProjectTypeCode'] as String?,
+      name: json['ProjectTypeName'] as String?,
+    );
+
+Map<String, dynamic> _$$ProjectTypeBaseImplToJson(
+        _$ProjectTypeBaseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProjectTypeCode': instance.code,
+      'ProjectTypeName': instance.name,
     };
 
 _$PmItemImpl _$$PmItemImplFromJson(Map<String, dynamic> json) => _$PmItemImpl(
@@ -267,4 +285,62 @@ Map<String, dynamic> _$$BusinessFieldItemImplToJson(
       'Name': instance.name,
       'Note': instance.note,
       'IsDeleted': instance.isDeleted,
+    };
+
+_$FirmBaseImpl _$$FirmBaseImplFromJson(Map<String, dynamic> json) =>
+    _$FirmBaseImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['FirmCode'] as String?,
+      name: json['FirmName'] as String?,
+    );
+
+Map<String, dynamic> _$$FirmBaseImplToJson(_$FirmBaseImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'FirmCode': instance.code,
+      'FirmName': instance.name,
+    };
+
+_$CustomerIndustryImpl _$$CustomerIndustryImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CustomerIndustryImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      nameVI: json['IndustriesNameVI'] as String?,
+      nameEN: json['IndustriesNameEN'] as String?,
+      descriptions: json['Descriptions'] as String?,
+      numberOrder: (json['NumberOrder'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$CustomerIndustryImplToJson(
+        _$CustomerIndustryImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'IndustriesNameVI': instance.nameVI,
+      'IndustriesNameEN': instance.nameEN,
+      'Descriptions': instance.descriptions,
+      'NumberOrder': instance.numberOrder,
+    };
+
+_$ProjectPriorityTypeImpl _$$ProjectPriorityTypeImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProjectPriorityTypeImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      code: json['Code'] as String?,
+      checkpoint: json['ProjectCheckpoint'] as String?,
+      rate: (json['Rate'] as num?)?.toDouble(),
+      score: (json['Score'] as num?)?.toInt(),
+      priority: (json['Priority'] as num?)?.toDouble(),
+      parentId: (json['ParentID'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$ProjectPriorityTypeImplToJson(
+        _$ProjectPriorityTypeImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'Code': instance.code,
+      'ProjectCheckpoint': instance.checkpoint,
+      'Rate': instance.rate,
+      'Score': instance.score,
+      'Priority': instance.priority,
+      'ParentID': instance.parentId,
     };

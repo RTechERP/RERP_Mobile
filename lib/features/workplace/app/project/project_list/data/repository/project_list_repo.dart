@@ -5,7 +5,8 @@ import '../datasource/model/project_list_model.dart';
 
 /// Repository cho màn danh sách dự án.
 ///
-/// Gồm API danh sách dự án và các API lookup phục vụ bộ lọc.
+/// Gồm API danh sách dự án và các API lookup phục vụ bộ lọc và form
+/// tạo dự án.
 abstract class ProjectListRepo {
   /// Lấy danh sách dự án theo bộ tham số.
   Future<Either<BaseError, List<ProjectItem>>> getProjects({
@@ -29,4 +30,22 @@ abstract class ProjectListRepo {
 
   /// Lấy danh sách nhân sự (kỹ thuật & sale).
   Future<Either<BaseError, List<UserItem>>> getUsers();
+
+  /// Lấy danh sách hãng (dùng cho form tạo dự án).
+  Future<Either<BaseError, List<FirmBase>>> getFirmBases();
+
+  /// Lấy danh sách lĩnh vực khách hàng (dùng cho form tạo dự án).
+  Future<Either<BaseError, List<CustomerIndustry>>> getCustomerIndustries();
+
+  /// Lấy danh sách kiểu dự án cơ bản (dùng làm danh sách cho ô lĩnh vực).
+  Future<Either<BaseError, List<ProjectTypeBase>>> getProjectTypeBases();
+
+  /// Lấy danh sách mốc ưu tiên của dự án.
+  Future<Either<BaseError, List<ProjectPriorityType>>> getPriorityTypes();
+
+  /// Sinh mã dự án tự động từ tên viết tắt khách hàng và kiểu dự án.
+  Future<Either<BaseError, String>> generateProjectCode({
+    required String customerShortName,
+    required int projectType,
+  });
 }
