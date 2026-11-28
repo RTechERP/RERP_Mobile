@@ -260,7 +260,8 @@ class CustomerIndustry with _$CustomerIndustry {
       _$CustomerIndustryFromJson(json);
 }
 
-/// Mốc ưu tiên của dự án. API: GET /project/get-priority-type
+/// Mốc ưu tiên của dự án (dạng cây cha - con).
+/// API: GET /project/get-project-priority-modal?projectId=0
 @freezed
 class ProjectPriorityType with _$ProjectPriorityType {
   const factory ProjectPriorityType({

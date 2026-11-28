@@ -40,8 +40,9 @@ abstract class ProjectListRepo {
   /// Lấy danh sách kiểu dự án cơ bản (dùng làm danh sách cho ô lĩnh vực).
   Future<Either<BaseError, List<ProjectTypeBase>>> getProjectTypeBases();
 
-  /// Lấy danh sách mốc ưu tiên của dự án.
-  Future<Either<BaseError, List<ProjectPriorityType>>> getPriorityTypes();
+  /// Lấy danh sách mốc ưu tiên của dự án dạng cây (cha - con).
+  Future<Either<BaseError, List<ProjectPriorityType>>>
+      getProjectPriorityModal();
 
   /// Sinh mã dự án tự động từ tên viết tắt khách hàng và kiểu dự án.
   Future<Either<BaseError, String>> generateProjectCode({

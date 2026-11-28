@@ -70,8 +70,8 @@ class ProjectListRepoImpl implements ProjectListRepo {
       _call(_service.getProjectTypeBases);
 
   @override
-  Future<Either<BaseError, List<ProjectPriorityType>>> getPriorityTypes() =>
-      _call(_service.getPriorityTypes);
+  Future<Either<BaseError, List<ProjectPriorityType>>>
+      getProjectPriorityModal() => _call(_service.getProjectPriorityModal);
 
   @override
   Future<Either<BaseError, String>> generateProjectCode({

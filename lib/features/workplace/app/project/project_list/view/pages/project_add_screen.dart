@@ -16,6 +16,7 @@ import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../../../../../../../../../di/injection.dart';
 import '../../data/datasource/model/project_list_model.dart';
 import '../bloc/project_list_bloc.dart';
+import '../widgets/project_priority_sheet.dart';
 
 /// Màn hình tạo dự án - thu thập thông tin dự án mới.
 ///
@@ -28,7 +29,8 @@ import '../bloc/project_list_bloc.dart';
 /// - Mã dự án: sinh tự động qua API `get-project-code-modal`.
 /// - Lĩnh vực khách hàng & Lĩnh vực End User: map theo lĩnh vực của
 ///   khách hàng đã chọn.
-/// - Mức ưu tiên: hiển thị danh sách mốc ưu tiên từ API `get-priority-type`.
+/// - Mức ưu tiên: chọn trong sheet cây cha - con, lấy từ API
+///   `get-project-priority-modal`.
 class ProjectAddScreen extends StatelessWidget {
   const ProjectAddScreen({super.key});
 
@@ -200,6 +202,39 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
       items: items,
       displayText: displayText,
       onSelected: onSelected,
+    );
+  }
+
+  /// Mở sheet chọn mức ưu tiên dạng cây cha - con.
+  ///
+  /// Khi bấm "Lưu" trong sheet, tổng điểm ưu tiên được truyền ra ngoài và
+  /// hiển thị ở ô "Mức ưu tiên".
+  ///
+  /// Mỗi lần mở là một lần chọn mới - không giữ lại các mốc đã tick lần
+  /// trước, nên không cộng dồn vào giá trị cũ.
+  Future<void> _openPrioritySheet(
+    List<ProjectPriorityType> priorityTypes,
+  ) async {
+    if (priorityTypes.isEmpty) {
+      context.showMessage(
+        'Danh sách mức ưu tiên chưa sẵn sàng, đang tải lại...',
+        type: SnackBarType.info,
+      );
+      context.read<ProjectListBloc>().add(
+        const ProjectListEvent.reloadLookups(),
+      );
+      return;
+    }
+
+    await openProjectPrioritySheet(
+      context: context,
+      items: priorityTypes,
+      onConfirm: (selectedIds, total) {
+        _setFieldValue(
+          _f.priority,
+          total == 0 ? null : formatPriorityValue(total),
+        );
+      },
     );
   }
 
@@ -549,11 +584,32 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
                                   ),
                             ),
 
-                            /// Mức ưu tiên - disable, tạm để trống chờ tích hợp.
-                            _readonlyField(
-                              fieldName: _f.priority,
-                              label: 'Mức ưu tiên',
-                              icon: Icons.priority_high,
+                            /// Mức ưu tiên - bấm vào mở sheet chọn dạng cây
+                            /// cha - con, hiển thị tổng điểm ưu tiên.
+                            BlocSelector<
+                              ProjectListBloc,
+                              ProjectListState,
+                              List<ProjectPriorityType>
+                            >(
+                              selector: (s) => s.priorityTypes,
+                              builder: (context, priorityTypes) =>
+                                  GestureDetector(
+                                    onTap: () =>
+                                        _openPrioritySheet(priorityTypes),
+                                    child: AbsorbPointer(
+                                      child: FormInputField(
+                                        readOnly: true,
+                                        nameForm: _f.priority,
+                                        nameTextField: '${_f.priority}_tf',
+                                        label: 'Mức ưu tiên',
+                                        icon: Icons.priority_high,
+                                        suffixIcon: const Icon(
+                                          Icons.keyboard_arrow_down,
+                                          color: AppColors.gray,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                             ),
                           ]),
                         ),

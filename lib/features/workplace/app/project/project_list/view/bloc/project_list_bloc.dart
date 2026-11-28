@@ -263,7 +263,7 @@ class ProjectListBloc extends BaseBloc<ProjectListEvent, ProjectListState> {
       ),
       _loadOne(
         emit,
-        _repo.getPriorityTypes,
+        _repo.getProjectPriorityModal,
         'priorityTypes',
         (s, list) =>
             s.copyWith(priorityTypes: list.cast<ProjectPriorityType>()),

@@ -564,8 +564,10 @@ class ApiEndPoint {
   /// Payload: `{ projectId, customerShortName, projectType }`.
   static const String getProjectCodeModal = '/project/get-project-code-modal';
 
-  /// Các mốc ưu tiên của dự án. API: GET /project/get-priority-type
-  static const String getProjectPriorityType = '/project/get-priority-type';
+  /// Các mốc ưu tiên của dự án dạng cây (cha - con).
+  /// API: GET /project/get-project-priority-modal?projectId=0
+  static const String getProjectPriorityModal =
+      '/project/get-project-priority-modal';
 
   // Project Worker - Solution
   static const String getSolution = '/projectworker/get-solution';

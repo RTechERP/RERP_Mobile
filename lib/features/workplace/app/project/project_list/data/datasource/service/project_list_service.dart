@@ -98,12 +98,29 @@ class ProjectListService extends DioBaseApiService {
     );
   }
 
-  /// GET /project/get-priority-type
-  Future<List<ProjectPriorityType>> getPriorityTypes() {
-    return _getList<ProjectPriorityType>(
-      ApiEndPoint.getProjectPriorityType,
-      ProjectPriorityType.fromJson,
+  /// GET /project/get-project-priority-modal?projectId=0
+  ///
+  /// Trả về danh sách mốc ưu tiên dạng cây: `data.prjPriority` gồm các mốc
+  /// cha (`ParentID = 0`) và mốc con (`ParentID` trỏ tới mốc cha).
+  Future<List<ProjectPriorityType>> getProjectPriorityModal() async {
+    final result = await get<BaseData<List<ProjectPriorityType>>>(
+      ApiEndPoint.getProjectPriorityModal,
+      query: {'projectId': 0},
+      parser: (json) => BaseData<List<ProjectPriorityType>>.fromJson(
+        json as Map<String, dynamic>,
+        (data) {
+          if (data is! Map<String, dynamic>) return <ProjectPriorityType>[];
+          final list = data['prjPriority'];
+          if (list is! List) return <ProjectPriorityType>[];
+          return list
+              .map(
+                (e) => ProjectPriorityType.fromJson(e as Map<String, dynamic>),
+              )
+              .toList();
+        },
+      ),
     );
+    return result.data ?? <ProjectPriorityType>[];
   }
 
   /// POST /project/get-project-code-modal - sinh mã dự án tự động.
