@@ -227,6 +227,9 @@ class ProjectListBloc extends BaseBloc<ProjectListEvent, ProjectListState> {
       ),
     );
 
+    /// Log payload gửi đi để tiện tra cứu khi debug.
+    print('ProjectList saveProject payload: ${payload.toJson()}');
+    _log.logI('ProjectList saveProject payload: ${payload.toJson()}');
     final saveRes = await _repo.saveProject(payload: payload);
 
     final projectId = await saveRes.fold(

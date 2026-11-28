@@ -97,6 +97,9 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
   int? _selectedTechnicalId;
 
   /// Id PM đang chọn.
+  ///
+  /// API `save-project` nhận `EmployeeID` của PM (giống `pmID` của API danh
+  /// sách), nên lưu `EmployeeID` thay vì `ID`.
   int? _selectedPmId;
 
   /// Chèn SizedBox(height: [_gap]) giữa các widget con để các field không dính sát nhau.
@@ -480,10 +483,12 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
 
   /// Định dạng ngày của form sang ISO 8601 theo chuẩn API.
   ///
-  /// Form lưu ngày ở dạng `dd/MM/yyyy` nên cần parse lại trước khi gửi.
+  /// Giờ được chuẩn hoá về `00:00:00` để khớp với các ngày do date picker
+  /// trả về (payload web cũng gửi `00:00:00.000` cho các mốc ngày).
   String? _formatIsoDate(dynamic value) {
     if (value is! DateTime) return null;
-    return ConvertDateHelper.toLocalIso8601(value);
+    final dateOnly = DateTime(value.year, value.month, value.day);
+    return ConvertDateHelper.toLocalIso8601(dateOnly);
   }
 
   @override
@@ -831,7 +836,8 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
                                         .trim(),
                                 sheetTitle: 'Chọn PM',
                                 groupBy: (e) => (e.departmentName ?? '').trim(),
-                                onSelected: (e) => _selectedPmId = e.id,
+                                onSelected: (e) =>
+                                    _selectedPmId = e.employeeId ?? e.id,
                               ),
                             ),
 

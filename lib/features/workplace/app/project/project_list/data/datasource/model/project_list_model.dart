@@ -167,7 +167,7 @@ const List<ProjectTypeOption> kProjectTypeOptions = [
   ProjectTypeOption(id: 3, name: 'Phim'),
   ProjectTypeOption(id: 4, name: 'Nội bộ'),
   ProjectTypeOption(id: 5, name: 'Training'),
-  ProjectTypeOption(id: 6, name: 'Nghiên cứu & phát triển'),
+  ProjectTypeOption(id: 6, name: 'Nghiên cứu & Phát triển'),
   ProjectTypeOption(id: 7, name: 'Khác'),
 ];
 
