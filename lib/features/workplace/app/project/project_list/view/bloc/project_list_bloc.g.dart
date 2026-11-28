@@ -45,6 +45,12 @@ abstract class _$ProjectListStateCWProxy {
 
   ProjectListState isGeneratingCode(bool isGeneratingCode);
 
+  ProjectListState isSaving(bool isSaving);
+
+  ProjectListState savedProjectId(int? savedProjectId);
+
+  ProjectListState saveSuccessMessage(String? saveSuccessMessage);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProjectListState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -71,6 +77,9 @@ abstract class _$ProjectListStateCWProxy {
     List<ProjectPriorityType>? priorityTypes,
     String? generatedProjectCode,
     bool? isGeneratingCode,
+    bool? isSaving,
+    int? savedProjectId,
+    String? saveSuccessMessage,
   });
 }
 
@@ -149,6 +158,17 @@ class _$ProjectListStateCWProxyImpl implements _$ProjectListStateCWProxy {
       this(isGeneratingCode: isGeneratingCode);
 
   @override
+  ProjectListState isSaving(bool isSaving) => this(isSaving: isSaving);
+
+  @override
+  ProjectListState savedProjectId(int? savedProjectId) =>
+      this(savedProjectId: savedProjectId);
+
+  @override
+  ProjectListState saveSuccessMessage(String? saveSuccessMessage) =>
+      this(saveSuccessMessage: saveSuccessMessage);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProjectListState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -176,6 +196,9 @@ class _$ProjectListStateCWProxyImpl implements _$ProjectListStateCWProxy {
     Object? priorityTypes = const $CopyWithPlaceholder(),
     Object? generatedProjectCode = const $CopyWithPlaceholder(),
     Object? isGeneratingCode = const $CopyWithPlaceholder(),
+    Object? isSaving = const $CopyWithPlaceholder(),
+    Object? savedProjectId = const $CopyWithPlaceholder(),
+    Object? saveSuccessMessage = const $CopyWithPlaceholder(),
   }) {
     return ProjectListState(
       status: status == const $CopyWithPlaceholder() || status == null
@@ -261,6 +284,18 @@ class _$ProjectListStateCWProxyImpl implements _$ProjectListStateCWProxy {
           ? _value.isGeneratingCode
           // ignore: cast_nullable_to_non_nullable
           : isGeneratingCode as bool,
+      isSaving: isSaving == const $CopyWithPlaceholder() || isSaving == null
+          ? _value.isSaving
+          // ignore: cast_nullable_to_non_nullable
+          : isSaving as bool,
+      savedProjectId: savedProjectId == const $CopyWithPlaceholder()
+          ? _value.savedProjectId
+          // ignore: cast_nullable_to_non_nullable
+          : savedProjectId as int?,
+      saveSuccessMessage: saveSuccessMessage == const $CopyWithPlaceholder()
+          ? _value.saveSuccessMessage
+          // ignore: cast_nullable_to_non_nullable
+          : saveSuccessMessage as String?,
     );
   }
 }

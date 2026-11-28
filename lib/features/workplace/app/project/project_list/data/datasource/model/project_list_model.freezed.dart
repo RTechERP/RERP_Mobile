@@ -4247,3 +4247,783 @@ abstract class _ProjectPriorityType implements ProjectPriorityType {
   _$$ProjectPriorityTypeImplCopyWith<_$ProjectPriorityTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+ProjectSaveResult _$ProjectSaveResultFromJson(Map<String, dynamic> json) {
+  return _ProjectSaveResult.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectSaveResult {
+  @JsonKey(name: 'project')
+  ProjectSaveProject? get project => throw _privateConstructorUsedError;
+  @JsonKey(name: 'selectedProjectTypeLink')
+  List<dynamic>? get selectedProjectTypeLink =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProjectSaveResultCopyWith<ProjectSaveResult> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectSaveResultCopyWith<$Res> {
+  factory $ProjectSaveResultCopyWith(
+          ProjectSaveResult value, $Res Function(ProjectSaveResult) then) =
+      _$ProjectSaveResultCopyWithImpl<$Res, ProjectSaveResult>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'project') ProjectSaveProject? project,
+      @JsonKey(name: 'selectedProjectTypeLink')
+      List<dynamic>? selectedProjectTypeLink});
+
+  $ProjectSaveProjectCopyWith<$Res>? get project;
+}
+
+/// @nodoc
+class _$ProjectSaveResultCopyWithImpl<$Res, $Val extends ProjectSaveResult>
+    implements $ProjectSaveResultCopyWith<$Res> {
+  _$ProjectSaveResultCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? project = freezed,
+    Object? selectedProjectTypeLink = freezed,
+  }) {
+    return _then(_value.copyWith(
+      project: freezed == project
+          ? _value.project
+          : project // ignore: cast_nullable_to_non_nullable
+              as ProjectSaveProject?,
+      selectedProjectTypeLink: freezed == selectedProjectTypeLink
+          ? _value.selectedProjectTypeLink
+          : selectedProjectTypeLink // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectSaveProjectCopyWith<$Res>? get project {
+    if (_value.project == null) {
+      return null;
+    }
+
+    return $ProjectSaveProjectCopyWith<$Res>(_value.project!, (value) {
+      return _then(_value.copyWith(project: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectSaveResultImplCopyWith<$Res>
+    implements $ProjectSaveResultCopyWith<$Res> {
+  factory _$$ProjectSaveResultImplCopyWith(_$ProjectSaveResultImpl value,
+          $Res Function(_$ProjectSaveResultImpl) then) =
+      __$$ProjectSaveResultImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'project') ProjectSaveProject? project,
+      @JsonKey(name: 'selectedProjectTypeLink')
+      List<dynamic>? selectedProjectTypeLink});
+
+  @override
+  $ProjectSaveProjectCopyWith<$Res>? get project;
+}
+
+/// @nodoc
+class __$$ProjectSaveResultImplCopyWithImpl<$Res>
+    extends _$ProjectSaveResultCopyWithImpl<$Res, _$ProjectSaveResultImpl>
+    implements _$$ProjectSaveResultImplCopyWith<$Res> {
+  __$$ProjectSaveResultImplCopyWithImpl(_$ProjectSaveResultImpl _value,
+      $Res Function(_$ProjectSaveResultImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? project = freezed,
+    Object? selectedProjectTypeLink = freezed,
+  }) {
+    return _then(_$ProjectSaveResultImpl(
+      project: freezed == project
+          ? _value.project
+          : project // ignore: cast_nullable_to_non_nullable
+              as ProjectSaveProject?,
+      selectedProjectTypeLink: freezed == selectedProjectTypeLink
+          ? _value._selectedProjectTypeLink
+          : selectedProjectTypeLink // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectSaveResultImpl implements _ProjectSaveResult {
+  const _$ProjectSaveResultImpl(
+      {@JsonKey(name: 'project') this.project,
+      @JsonKey(name: 'selectedProjectTypeLink')
+      final List<dynamic>? selectedProjectTypeLink})
+      : _selectedProjectTypeLink = selectedProjectTypeLink;
+
+  factory _$ProjectSaveResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectSaveResultImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'project')
+  final ProjectSaveProject? project;
+  final List<dynamic>? _selectedProjectTypeLink;
+  @override
+  @JsonKey(name: 'selectedProjectTypeLink')
+  List<dynamic>? get selectedProjectTypeLink {
+    final value = _selectedProjectTypeLink;
+    if (value == null) return null;
+    if (_selectedProjectTypeLink is EqualUnmodifiableListView)
+      return _selectedProjectTypeLink;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'ProjectSaveResult(project: $project, selectedProjectTypeLink: $selectedProjectTypeLink)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectSaveResultImpl &&
+            (identical(other.project, project) || other.project == project) &&
+            const DeepCollectionEquality().equals(
+                other._selectedProjectTypeLink, _selectedProjectTypeLink));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, project,
+      const DeepCollectionEquality().hash(_selectedProjectTypeLink));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectSaveResultImplCopyWith<_$ProjectSaveResultImpl> get copyWith =>
+      __$$ProjectSaveResultImplCopyWithImpl<_$ProjectSaveResultImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectSaveResultImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectSaveResult implements ProjectSaveResult {
+  const factory _ProjectSaveResult(
+      {@JsonKey(name: 'project') final ProjectSaveProject? project,
+      @JsonKey(name: 'selectedProjectTypeLink')
+      final List<dynamic>? selectedProjectTypeLink}) = _$ProjectSaveResultImpl;
+
+  factory _ProjectSaveResult.fromJson(Map<String, dynamic> json) =
+      _$ProjectSaveResultImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'project')
+  ProjectSaveProject? get project;
+  @override
+  @JsonKey(name: 'selectedProjectTypeLink')
+  List<dynamic>? get selectedProjectTypeLink;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProjectSaveResultImplCopyWith<_$ProjectSaveResultImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProjectSaveProject _$ProjectSaveProjectFromJson(Map<String, dynamic> json) {
+  return _ProjectSaveProject.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectSaveProject {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'CustomerID')
+  int? get customerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectName')
+  String? get projectName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Priotity')
+  double? get priority => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TypeProject')
+  int? get typeProject => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProjectSaveProjectCopyWith<ProjectSaveProject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectSaveProjectCopyWith<$Res> {
+  factory $ProjectSaveProjectCopyWith(
+          ProjectSaveProject value, $Res Function(ProjectSaveProject) then) =
+      _$ProjectSaveProjectCopyWithImpl<$Res, ProjectSaveProject>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectName') String? projectName,
+      @JsonKey(name: 'Priotity') double? priority,
+      @JsonKey(name: 'TypeProject') int? typeProject});
+}
+
+/// @nodoc
+class _$ProjectSaveProjectCopyWithImpl<$Res, $Val extends ProjectSaveProject>
+    implements $ProjectSaveProjectCopyWith<$Res> {
+  _$ProjectSaveProjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? customerId = freezed,
+    Object? projectCode = freezed,
+    Object? projectName = freezed,
+    Object? priority = freezed,
+    Object? typeProject = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      priority: freezed == priority
+          ? _value.priority
+          : priority // ignore: cast_nullable_to_non_nullable
+              as double?,
+      typeProject: freezed == typeProject
+          ? _value.typeProject
+          : typeProject // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectSaveProjectImplCopyWith<$Res>
+    implements $ProjectSaveProjectCopyWith<$Res> {
+  factory _$$ProjectSaveProjectImplCopyWith(_$ProjectSaveProjectImpl value,
+          $Res Function(_$ProjectSaveProjectImpl) then) =
+      __$$ProjectSaveProjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'CustomerID') int? customerId,
+      @JsonKey(name: 'ProjectCode') String? projectCode,
+      @JsonKey(name: 'ProjectName') String? projectName,
+      @JsonKey(name: 'Priotity') double? priority,
+      @JsonKey(name: 'TypeProject') int? typeProject});
+}
+
+/// @nodoc
+class __$$ProjectSaveProjectImplCopyWithImpl<$Res>
+    extends _$ProjectSaveProjectCopyWithImpl<$Res, _$ProjectSaveProjectImpl>
+    implements _$$ProjectSaveProjectImplCopyWith<$Res> {
+  __$$ProjectSaveProjectImplCopyWithImpl(_$ProjectSaveProjectImpl _value,
+      $Res Function(_$ProjectSaveProjectImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? customerId = freezed,
+    Object? projectCode = freezed,
+    Object? projectName = freezed,
+    Object? priority = freezed,
+    Object? typeProject = freezed,
+  }) {
+    return _then(_$ProjectSaveProjectImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      customerId: freezed == customerId
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectCode: freezed == projectCode
+          ? _value.projectCode
+          : projectCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      projectName: freezed == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      priority: freezed == priority
+          ? _value.priority
+          : priority // ignore: cast_nullable_to_non_nullable
+              as double?,
+      typeProject: freezed == typeProject
+          ? _value.typeProject
+          : typeProject // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectSaveProjectImpl implements _ProjectSaveProject {
+  const _$ProjectSaveProjectImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'CustomerID') this.customerId,
+      @JsonKey(name: 'ProjectCode') this.projectCode,
+      @JsonKey(name: 'ProjectName') this.projectName,
+      @JsonKey(name: 'Priotity') this.priority,
+      @JsonKey(name: 'TypeProject') this.typeProject});
+
+  factory _$ProjectSaveProjectImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectSaveProjectImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'CustomerID')
+  final int? customerId;
+  @override
+  @JsonKey(name: 'ProjectCode')
+  final String? projectCode;
+  @override
+  @JsonKey(name: 'ProjectName')
+  final String? projectName;
+  @override
+  @JsonKey(name: 'Priotity')
+  final double? priority;
+  @override
+  @JsonKey(name: 'TypeProject')
+  final int? typeProject;
+
+  @override
+  String toString() {
+    return 'ProjectSaveProject(id: $id, customerId: $customerId, projectCode: $projectCode, projectName: $projectName, priority: $priority, typeProject: $typeProject)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectSaveProjectImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.customerId, customerId) ||
+                other.customerId == customerId) &&
+            (identical(other.projectCode, projectCode) ||
+                other.projectCode == projectCode) &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName) &&
+            (identical(other.priority, priority) ||
+                other.priority == priority) &&
+            (identical(other.typeProject, typeProject) ||
+                other.typeProject == typeProject));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, customerId, projectCode,
+      projectName, priority, typeProject);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectSaveProjectImplCopyWith<_$ProjectSaveProjectImpl> get copyWith =>
+      __$$ProjectSaveProjectImplCopyWithImpl<_$ProjectSaveProjectImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectSaveProjectImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectSaveProject implements ProjectSaveProject {
+  const factory _ProjectSaveProject(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'CustomerID') final int? customerId,
+          @JsonKey(name: 'ProjectCode') final String? projectCode,
+          @JsonKey(name: 'ProjectName') final String? projectName,
+          @JsonKey(name: 'Priotity') final double? priority,
+          @JsonKey(name: 'TypeProject') final int? typeProject}) =
+      _$ProjectSaveProjectImpl;
+
+  factory _ProjectSaveProject.fromJson(Map<String, dynamic> json) =
+      _$ProjectSaveProjectImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'CustomerID')
+  int? get customerId;
+  @override
+  @JsonKey(name: 'ProjectCode')
+  String? get projectCode;
+  @override
+  @JsonKey(name: 'ProjectName')
+  String? get projectName;
+  @override
+  @JsonKey(name: 'Priotity')
+  double? get priority;
+  @override
+  @JsonKey(name: 'TypeProject')
+  int? get typeProject;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProjectSaveProjectImplCopyWith<_$ProjectSaveProjectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProjectGateItem _$ProjectGateItemFromJson(Map<String, dynamic> json) {
+  return _ProjectGateItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectGateItem {
+  @JsonKey(name: 'ID')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectID')
+  int? get projectId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectGateID')
+  int? get projectGateId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'GateCode')
+  String? get gateCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'GateName')
+  String? get gateName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SortOrder')
+  int? get sortOrder => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ProjectTaskID')
+  int? get projectTaskId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TaskCode')
+  String? get taskCode => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProjectGateItemCopyWith<ProjectGateItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectGateItemCopyWith<$Res> {
+  factory $ProjectGateItemCopyWith(
+          ProjectGateItem value, $Res Function(ProjectGateItem) then) =
+      _$ProjectGateItemCopyWithImpl<$Res, ProjectGateItem>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProjectGateID') int? projectGateId,
+      @JsonKey(name: 'GateCode') String? gateCode,
+      @JsonKey(name: 'GateName') String? gateName,
+      @JsonKey(name: 'SortOrder') int? sortOrder,
+      @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+      @JsonKey(name: 'TaskCode') String? taskCode});
+}
+
+/// @nodoc
+class _$ProjectGateItemCopyWithImpl<$Res, $Val extends ProjectGateItem>
+    implements $ProjectGateItemCopyWith<$Res> {
+  _$ProjectGateItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectId = freezed,
+    Object? projectGateId = freezed,
+    Object? gateCode = freezed,
+    Object? gateName = freezed,
+    Object? sortOrder = freezed,
+    Object? projectTaskId = freezed,
+    Object? taskCode = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectGateId: freezed == projectGateId
+          ? _value.projectGateId
+          : projectGateId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      gateCode: freezed == gateCode
+          ? _value.gateCode
+          : gateCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gateName: freezed == gateName
+          ? _value.gateName
+          : gateName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sortOrder: freezed == sortOrder
+          ? _value.sortOrder
+          : sortOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskId: freezed == projectTaskId
+          ? _value.projectTaskId
+          : projectTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      taskCode: freezed == taskCode
+          ? _value.taskCode
+          : taskCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectGateItemImplCopyWith<$Res>
+    implements $ProjectGateItemCopyWith<$Res> {
+  factory _$$ProjectGateItemImplCopyWith(_$ProjectGateItemImpl value,
+          $Res Function(_$ProjectGateItemImpl) then) =
+      __$$ProjectGateItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ID') int? id,
+      @JsonKey(name: 'ProjectID') int? projectId,
+      @JsonKey(name: 'ProjectGateID') int? projectGateId,
+      @JsonKey(name: 'GateCode') String? gateCode,
+      @JsonKey(name: 'GateName') String? gateName,
+      @JsonKey(name: 'SortOrder') int? sortOrder,
+      @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+      @JsonKey(name: 'TaskCode') String? taskCode});
+}
+
+/// @nodoc
+class __$$ProjectGateItemImplCopyWithImpl<$Res>
+    extends _$ProjectGateItemCopyWithImpl<$Res, _$ProjectGateItemImpl>
+    implements _$$ProjectGateItemImplCopyWith<$Res> {
+  __$$ProjectGateItemImplCopyWithImpl(
+      _$ProjectGateItemImpl _value, $Res Function(_$ProjectGateItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? projectId = freezed,
+    Object? projectGateId = freezed,
+    Object? gateCode = freezed,
+    Object? gateName = freezed,
+    Object? sortOrder = freezed,
+    Object? projectTaskId = freezed,
+    Object? taskCode = freezed,
+  }) {
+    return _then(_$ProjectGateItemImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectId: freezed == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectGateId: freezed == projectGateId
+          ? _value.projectGateId
+          : projectGateId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      gateCode: freezed == gateCode
+          ? _value.gateCode
+          : gateCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gateName: freezed == gateName
+          ? _value.gateName
+          : gateName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sortOrder: freezed == sortOrder
+          ? _value.sortOrder
+          : sortOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
+      projectTaskId: freezed == projectTaskId
+          ? _value.projectTaskId
+          : projectTaskId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      taskCode: freezed == taskCode
+          ? _value.taskCode
+          : taskCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectGateItemImpl implements _ProjectGateItem {
+  const _$ProjectGateItemImpl(
+      {@JsonKey(name: 'ID') this.id,
+      @JsonKey(name: 'ProjectID') this.projectId,
+      @JsonKey(name: 'ProjectGateID') this.projectGateId,
+      @JsonKey(name: 'GateCode') this.gateCode,
+      @JsonKey(name: 'GateName') this.gateName,
+      @JsonKey(name: 'SortOrder') this.sortOrder,
+      @JsonKey(name: 'ProjectTaskID') this.projectTaskId,
+      @JsonKey(name: 'TaskCode') this.taskCode});
+
+  factory _$ProjectGateItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectGateItemImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'ID')
+  final int? id;
+  @override
+  @JsonKey(name: 'ProjectID')
+  final int? projectId;
+  @override
+  @JsonKey(name: 'ProjectGateID')
+  final int? projectGateId;
+  @override
+  @JsonKey(name: 'GateCode')
+  final String? gateCode;
+  @override
+  @JsonKey(name: 'GateName')
+  final String? gateName;
+  @override
+  @JsonKey(name: 'SortOrder')
+  final int? sortOrder;
+  @override
+  @JsonKey(name: 'ProjectTaskID')
+  final int? projectTaskId;
+  @override
+  @JsonKey(name: 'TaskCode')
+  final String? taskCode;
+
+  @override
+  String toString() {
+    return 'ProjectGateItem(id: $id, projectId: $projectId, projectGateId: $projectGateId, gateCode: $gateCode, gateName: $gateName, sortOrder: $sortOrder, projectTaskId: $projectTaskId, taskCode: $taskCode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectGateItemImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.projectGateId, projectGateId) ||
+                other.projectGateId == projectGateId) &&
+            (identical(other.gateCode, gateCode) ||
+                other.gateCode == gateCode) &&
+            (identical(other.gateName, gateName) ||
+                other.gateName == gateName) &&
+            (identical(other.sortOrder, sortOrder) ||
+                other.sortOrder == sortOrder) &&
+            (identical(other.projectTaskId, projectTaskId) ||
+                other.projectTaskId == projectTaskId) &&
+            (identical(other.taskCode, taskCode) ||
+                other.taskCode == taskCode));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, projectId, projectGateId,
+      gateCode, gateName, sortOrder, projectTaskId, taskCode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectGateItemImplCopyWith<_$ProjectGateItemImpl> get copyWith =>
+      __$$ProjectGateItemImplCopyWithImpl<_$ProjectGateItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectGateItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectGateItem implements ProjectGateItem {
+  const factory _ProjectGateItem(
+          {@JsonKey(name: 'ID') final int? id,
+          @JsonKey(name: 'ProjectID') final int? projectId,
+          @JsonKey(name: 'ProjectGateID') final int? projectGateId,
+          @JsonKey(name: 'GateCode') final String? gateCode,
+          @JsonKey(name: 'GateName') final String? gateName,
+          @JsonKey(name: 'SortOrder') final int? sortOrder,
+          @JsonKey(name: 'ProjectTaskID') final int? projectTaskId,
+          @JsonKey(name: 'TaskCode') final String? taskCode}) =
+      _$ProjectGateItemImpl;
+
+  factory _ProjectGateItem.fromJson(Map<String, dynamic> json) =
+      _$ProjectGateItemImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'ID')
+  int? get id;
+  @override
+  @JsonKey(name: 'ProjectID')
+  int? get projectId;
+  @override
+  @JsonKey(name: 'ProjectGateID')
+  int? get projectGateId;
+  @override
+  @JsonKey(name: 'GateCode')
+  String? get gateCode;
+  @override
+  @JsonKey(name: 'GateName')
+  String? get gateName;
+  @override
+  @JsonKey(name: 'SortOrder')
+  int? get sortOrder;
+  @override
+  @JsonKey(name: 'ProjectTaskID')
+  int? get projectTaskId;
+  @override
+  @JsonKey(name: 'TaskCode')
+  String? get taskCode;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProjectGateItemImplCopyWith<_$ProjectGateItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

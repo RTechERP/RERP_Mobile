@@ -569,6 +569,17 @@ class ApiEndPoint {
   static const String getProjectPriorityModal =
       '/project/get-project-priority-modal';
 
+  /// Lưu dự án (thêm mới / cập nhật). API: POST /project/save-project
+  static const String saveProject = '/project/save-project';
+
+  /// Khởi tạo Master Timeline và công việc cho dự án.
+  /// API: POST /ProjectGateStepLink/InitMasterTimeline/{projectId}
+  static const String initMasterTimeline =
+      '/ProjectGateStepLink/InitMasterTimeline';
+
+  /// Tạo cây dự án (loại dự án liên quan). API: POST /project/create-tree-v2
+  static const String createProjectTree = '/project/create-tree-v2';
+
   // Project Worker - Solution
   static const String getSolution = '/projectworker/get-solution';
 

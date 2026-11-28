@@ -49,4 +49,20 @@ abstract class ProjectListRepo {
     required String customerShortName,
     required int projectType,
   });
+
+  /// Lưu dự án (thêm mới / cập nhật).
+  Future<Either<BaseError, ProjectSaveResult>> saveProject({
+    required ProjectSavePayload payload,
+  });
+
+  /// Khởi tạo Master Timeline và công việc cho dự án vừa tạo.
+  Future<Either<BaseError, List<ProjectGateItem>>> initMasterTimeline({
+    required int projectId,
+  });
+
+  /// Tạo cây dự án cho loại dự án đã chọn.
+  Future<Either<BaseError, void>> createProjectTree({
+    required int projectId,
+    required List<int> selectedProjectTypeIds,
+  });
 }

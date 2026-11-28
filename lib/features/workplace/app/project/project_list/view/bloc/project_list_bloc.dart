@@ -51,6 +51,11 @@ class ProjectListBloc extends BaseBloc<ProjectListEvent, ProjectListState> {
               projectType: projectType,
             ),
         clearGeneratedCode: () => _onClearGeneratedCode(emit),
+        saveProject: (payload, selectedProjectTypeIds) => _onSaveProject(
+          emit,
+          payload: payload,
+          selectedProjectTypeIds: selectedProjectTypeIds,
+        ),
       );
     });
   }
@@ -195,6 +200,90 @@ class ProjectListBloc extends BaseBloc<ProjectListEvent, ProjectListState> {
       state.copyWith
           .generatedProjectCode(null)
           .copyWith(isGeneratingCode: false),
+    );
+  }
+
+  /// Lưu dự án, sau đó khởi tạo Master Timeline (link Gate) và tạo cây dự án.
+  ///
+  /// Flow:
+  /// 1. `POST /project/save-project` - tạo dự án, lấy `data.project.ID`.
+  /// 2. Nếu bước 1 thành công và có ID dự án thì gọi
+  ///    `POST /ProjectGateStepLink/InitMasterTimeline/{projectId}`.
+  /// 3. Nếu bước 2 thành công thì gọi `POST /project/create-tree-v2` để tạo
+  ///    cây dự án cho các loại dự án đã chọn.
+  ///
+  /// Bước 2 và 3 chạy ngầm - lỗi của chúng không làm hỏng kết quả lưu vì dự
+  /// án đã được tạo, chỉ ghi log lỗi.
+  Future<void> _onSaveProject(
+    Emitter<ProjectListState> emit, {
+    required ProjectSavePayload payload,
+    List<int> selectedProjectTypeIds = const [],
+  }) async {
+    emit(
+      state.copyWith(
+        isSaving: true,
+        status: BaseStateStatus.loading,
+        message: null,
+      ),
+    );
+
+    final saveRes = await _repo.saveProject(payload: payload);
+
+    final projectId = await saveRes.fold(
+      (l) async {
+        _log.logE('ProjectList saveProject failed: $l');
+        emit(
+          state.copyWith(
+            isSaving: false,
+            status: BaseStateStatus.failed,
+            message: l.getErrorMessage,
+          ),
+        );
+        return null;
+      },
+      (r) async => r.project?.id,
+    );
+
+    if (projectId == null) return;
+
+    /// Đã tạo được dự án - khởi tạo Master Timeline (link Gate).
+    final gateRes = await _repo.initMasterTimeline(projectId: projectId);
+    final isGateLinked = await gateRes.fold(
+      (l) async {
+        _log.logE('ProjectList initMasterTimeline failed: $l');
+        return false;
+      },
+      (r) async {
+        _log.logI(
+          'ProjectList initMasterTimeline success: ${r.length} gates',
+        );
+        return true;
+      },
+    );
+
+    /// Link Gate thành công mới tạo cây dự án.
+    if (isGateLinked) {
+      final treeRes = await _repo.createProjectTree(
+        projectId: projectId,
+        selectedProjectTypeIds: selectedProjectTypeIds,
+      );
+      await treeRes.fold(
+        (l) async {
+          _log.logE('ProjectList createProjectTree failed: $l');
+        },
+        (r) async {
+          _log.logI('ProjectList createProjectTree success');
+        },
+      );
+    }
+
+    emit(
+      state.copyWith(
+        isSaving: false,
+        status: BaseStateStatus.success,
+        savedProjectId: projectId,
+        saveSuccessMessage: 'Lưu dự án thành công',
+      ),
     );
   }
 

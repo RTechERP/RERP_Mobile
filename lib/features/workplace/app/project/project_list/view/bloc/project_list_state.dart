@@ -135,6 +135,15 @@ class ProjectListState extends BaseBlocState {
   /// Đang gọi API sinh mã dự án hay không.
   final bool isGeneratingCode;
 
+  /// Đang lưu dự án (và khởi tạo Gate) hay không.
+  final bool isSaving;
+
+  /// ID dự án vừa lưu thành công - dùng để điều hướng.
+  final int? savedProjectId;
+
+  /// Thông báo thành công sau khi lưu dự án.
+  final String? saveSuccessMessage;
+
   const ProjectListState({
     required super.status,
     super.message,
@@ -155,6 +164,9 @@ class ProjectListState extends BaseBlocState {
     this.priorityTypes = const [],
     this.generatedProjectCode,
     this.isGeneratingCode = false,
+    this.isSaving = false,
+    this.savedProjectId,
+    this.saveSuccessMessage,
   });
 
   factory ProjectListState.init() => const ProjectListState(
@@ -269,7 +281,10 @@ class ProjectListState extends BaseBlocState {
         industries,
         projectTypeBases,
         priorityTypes,
-    generatedProjectCode,
+        generatedProjectCode,
     isGeneratingCode,
+    isSaving,
+    savedProjectId,
+    saveSuccessMessage,
   ];
 }

@@ -346,3 +346,219 @@ class ProjectListParams {
     'isAGV': isAGV,
   };
 }
+
+/// Payload lưu dự án. API: POST /project/save-project
+///
+/// Cấu trúc payload gồm 5 phần: `projectStatusOld`, `project`,
+/// `projectStatusLog`, `followProjectBase`, `projectTypeLinks`, `projectUsers`
+/// và `listPriorities`.
+class ProjectSavePayload {
+  /// ID trạng thái cũ - 0 khi tạo mới.
+  final int projectStatusOld;
+
+  /// Thông tin dự án.
+  final ProjectSaveInfo project;
+
+  /// Log trạng thái dự án.
+  final ProjectStatusLog projectStatusLog;
+
+  /// Thông tin dự kiến / thực tế của dự án.
+  final FollowProjectBase followProjectBase;
+
+  /// Danh sách liên kết kiểu dự án (để trống khi tạo mới).
+  final List<Map<String, dynamic>> projectTypeLinks;
+
+  /// Danh sách user phụ trách (để trống khi tạo mới).
+  final List<Map<String, dynamic>> projectUsers;
+
+  /// Danh sách mốc ưu tiên đã chọn.
+  final List<Map<String, dynamic>> listPriorities;
+
+  const ProjectSavePayload({
+    required this.projectStatusOld,
+    required this.project,
+    required this.projectStatusLog,
+    required this.followProjectBase,
+    this.projectTypeLinks = const [],
+    this.projectUsers = const [],
+    this.listPriorities = const [],
+  });
+
+  /// Chuyển payload thành JSON body gửi API.
+  Map<String, dynamic> toJson() => {
+    'projectStatusOld': projectStatusOld,
+    'project': project.toJson(),
+    'projectStatusLog': projectStatusLog.toJson(),
+    'followProjectBase': followProjectBase.toJson(),
+    'projectTypeLinks': projectTypeLinks,
+    'projectUsers': projectUsers,
+    'listPriorities': listPriorities,
+  };
+}
+
+/// Thông tin cốt lõi của dự án trong payload lưu.
+class ProjectSaveInfo {
+  final int id;
+  final String? projectCode;
+  final String? projectName;
+  final int? projectStatus;
+  final String? note;
+  final int? customerId;
+  final int? userId;
+  final int? userTechnicalId;
+  final String? createdDate;
+  final int? projectManager;
+  final String? currentState;
+  final int? endUser;
+  final double? priority;
+  final int? typeProject;
+
+  const ProjectSaveInfo({
+    this.id = 0,
+    this.projectCode,
+    this.projectName,
+    this.projectStatus,
+    this.note,
+    this.customerId,
+    this.userId,
+    this.userTechnicalId,
+    this.createdDate,
+    this.projectManager,
+    this.currentState,
+    this.endUser,
+    this.priority,
+    this.typeProject,
+  });
+
+  /// Chuyển sang JSON với đúng tên field của API.
+  Map<String, dynamic> toJson() => {
+    'ID': id,
+    'ProjectCode': projectCode,
+    'ProjectName': projectName,
+    'ProjectStatus': projectStatus,
+    'Note': note,
+    'CustomerID': customerId,
+    'UserID': userId,
+    'UserTechnicalID': userTechnicalId,
+    'CreatedDate': createdDate,
+    'ProjectManager': projectManager,
+    'CurrentState': currentState,
+    'EndUser': endUser,
+    'Priotity': priority,
+    'TypeProject': typeProject,
+  };
+}
+
+/// Log trạng thái dự án trong payload lưu.
+class ProjectStatusLog {
+  final int? employeeId;
+  final String? createdBy;
+  final String? updatedBy;
+
+  const ProjectStatusLog({
+    this.employeeId,
+    this.createdBy = '',
+    this.updatedBy = '',
+  });
+
+  /// Chuyển sang JSON với đúng tên field của API.
+  Map<String, dynamic> toJson() => {
+    'EmployeeID': employeeId,
+    'CreatedBy': createdBy ?? '',
+    'UpdatedBy': updatedBy ?? '',
+  };
+}
+
+/// Thông tin dự kiến / thực tế của dự án trong payload lưu.
+class FollowProjectBase {
+  final String? expectedPlanDate;
+  final String? expectedQuotationDate;
+  final String? expectedPoDate;
+  final String? expectedProjectEndDate;
+  final String? realityPlanDate;
+  final String? realityQuotationDate;
+  final String? realityPoDate;
+  final String? realityProjectEndDate;
+  final int? firmBaseId;
+  final int? projectTypeBaseId;
+  final String? projectContactName;
+
+  const FollowProjectBase({
+    this.expectedPlanDate,
+    this.expectedQuotationDate,
+    this.expectedPoDate,
+    this.expectedProjectEndDate,
+    this.realityPlanDate,
+    this.realityQuotationDate,
+    this.realityPoDate,
+    this.realityProjectEndDate,
+    this.firmBaseId,
+    this.projectTypeBaseId,
+    this.projectContactName,
+  });
+
+  /// Chuyển sang JSON với đúng tên field của API.
+  Map<String, dynamic> toJson() => {
+    'ExpectedPlanDate': expectedPlanDate,
+    'ExpectedQuotationDate': expectedQuotationDate,
+    'ExpectedPODate': expectedPoDate,
+    'ExpectedProjectEndDate': expectedProjectEndDate,
+    'RealityPlanDate': realityPlanDate,
+    'RealityQuotationDate': realityQuotationDate,
+    'RealityPODate': realityPoDate,
+    'RealityProjectEndDate': realityProjectEndDate,
+    'FirmBaseID': firmBaseId,
+    'ProjectTypeBaseID': projectTypeBaseId,
+    'ProjectContactName': projectContactName,
+  };
+}
+
+/// Kết quả lưu dự án. API: POST /project/save-project
+///
+/// `data.project.ID` là ID dự án vừa tạo - dùng để gọi API link Gate.
+@freezed
+class ProjectSaveResult with _$ProjectSaveResult {
+  const factory ProjectSaveResult({
+    @JsonKey(name: 'project') ProjectSaveProject? project,
+    @JsonKey(name: 'selectedProjectTypeLink')
+    List<dynamic>? selectedProjectTypeLink,
+  }) = _ProjectSaveResult;
+
+  factory ProjectSaveResult.fromJson(Map<String, dynamic> json) =>
+      _$ProjectSaveResultFromJson(json);
+}
+
+/// Thông tin dự án trả về sau khi lưu.
+@freezed
+class ProjectSaveProject with _$ProjectSaveProject {
+  const factory ProjectSaveProject({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'CustomerID') int? customerId,
+    @JsonKey(name: 'ProjectCode') String? projectCode,
+    @JsonKey(name: 'ProjectName') String? projectName,
+    @JsonKey(name: 'Priotity') double? priority,
+    @JsonKey(name: 'TypeProject') int? typeProject,
+  }) = _ProjectSaveProject;
+
+  factory ProjectSaveProject.fromJson(Map<String, dynamic> json) =>
+      _$ProjectSaveProjectFromJson(json);
+}
+
+/// Một Gate của Master Timeline. API: POST
+/// /ProjectGateStepLink/InitMasterTimeline/{projectId}
+@freezed
+class ProjectGateItem with _$ProjectGateItem {
+  const factory ProjectGateItem({
+    @JsonKey(name: 'ID') int? id,
+    @JsonKey(name: 'ProjectID') int? projectId,
+    @JsonKey(name: 'ProjectGateID') int? projectGateId,
+    @JsonKey(name: 'GateCode') String? gateCode,
+    @JsonKey(name: 'GateName') String? gateName,
+    @JsonKey(name: 'SortOrder') int? sortOrder,
+    @JsonKey(name: 'ProjectTaskID') int? projectTaskId,
+    @JsonKey(name: 'TaskCode') String? taskCode,
+  }) = _ProjectGateItem;
+
+  factory ProjectGateItem.fromJson(Map<String, dynamic> json) =>
+      _$ProjectGateItemFromJson(json);
+}

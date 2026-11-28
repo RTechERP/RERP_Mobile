@@ -344,3 +344,69 @@ Map<String, dynamic> _$$ProjectPriorityTypeImplToJson(
       'Priority': instance.priority,
       'ParentID': instance.parentId,
     };
+
+_$ProjectSaveResultImpl _$$ProjectSaveResultImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProjectSaveResultImpl(
+      project: json['project'] == null
+          ? null
+          : ProjectSaveProject.fromJson(
+              json['project'] as Map<String, dynamic>),
+      selectedProjectTypeLink:
+          json['selectedProjectTypeLink'] as List<dynamic>?,
+    );
+
+Map<String, dynamic> _$$ProjectSaveResultImplToJson(
+        _$ProjectSaveResultImpl instance) =>
+    <String, dynamic>{
+      'project': instance.project,
+      'selectedProjectTypeLink': instance.selectedProjectTypeLink,
+    };
+
+_$ProjectSaveProjectImpl _$$ProjectSaveProjectImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProjectSaveProjectImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      customerId: (json['CustomerID'] as num?)?.toInt(),
+      projectCode: json['ProjectCode'] as String?,
+      projectName: json['ProjectName'] as String?,
+      priority: (json['Priotity'] as num?)?.toDouble(),
+      typeProject: (json['TypeProject'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$ProjectSaveProjectImplToJson(
+        _$ProjectSaveProjectImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'CustomerID': instance.customerId,
+      'ProjectCode': instance.projectCode,
+      'ProjectName': instance.projectName,
+      'Priotity': instance.priority,
+      'TypeProject': instance.typeProject,
+    };
+
+_$ProjectGateItemImpl _$$ProjectGateItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ProjectGateItemImpl(
+      id: (json['ID'] as num?)?.toInt(),
+      projectId: (json['ProjectID'] as num?)?.toInt(),
+      projectGateId: (json['ProjectGateID'] as num?)?.toInt(),
+      gateCode: json['GateCode'] as String?,
+      gateName: json['GateName'] as String?,
+      sortOrder: (json['SortOrder'] as num?)?.toInt(),
+      projectTaskId: (json['ProjectTaskID'] as num?)?.toInt(),
+      taskCode: json['TaskCode'] as String?,
+    );
+
+Map<String, dynamic> _$$ProjectGateItemImplToJson(
+        _$ProjectGateItemImpl instance) =>
+    <String, dynamic>{
+      'ID': instance.id,
+      'ProjectID': instance.projectId,
+      'ProjectGateID': instance.projectGateId,
+      'GateCode': instance.gateCode,
+      'GateName': instance.gateName,
+      'SortOrder': instance.sortOrder,
+      'ProjectTaskID': instance.projectTaskId,
+      'TaskCode': instance.taskCode,
+    };

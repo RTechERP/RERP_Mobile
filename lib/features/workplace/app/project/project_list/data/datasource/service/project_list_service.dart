@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:rtc_erp/base/network/dio/dio_base_api_service.dart';
 
+import '../../../../../../../../../base/network/errors/error.dart';
 import '../../../../../../../../../base/network/models/base_data.dart';
 import '../../../../../../../../../common/constants.dart';
 import '../model/project_list_model.dart';
@@ -150,6 +151,83 @@ class ProjectListService extends DioBaseApiService {
     final code = result.data?.trim();
     if (code == null || code.isEmpty) return null;
     return code;
+  }
+
+  /// POST /project/save-project - lưu dự án (thêm mới / cập nhật).
+  ///
+  /// Trả về kết quả lưu kèm ID dự án vừa tạo.
+  Future<ProjectSaveResult> saveProject({
+    required ProjectSavePayload payload,
+  }) async {
+    final result = await post<BaseData<ProjectSaveResult>>(
+      ApiEndPoint.saveProject,
+      body: payload.toJson(),
+      parser: (json) => BaseData<ProjectSaveResult>.fromJson(
+        json as Map<String, dynamic>,
+        (data) => data is Map<String, dynamic>
+            ? ProjectSaveResult.fromJson(data)
+            : const ProjectSaveResult(),
+      ),
+    );
+
+    if (result.status != 1) {
+      throw BaseError.httpInternalServerError(
+        result.message ?? 'Lưu dự án thất bại',
+      );
+    }
+
+    return result.data ?? const ProjectSaveResult();
+  }
+
+  /// POST /ProjectGateStepLink/InitMasterTimeline/{projectId}
+  ///
+  /// Khởi tạo Master Timeline và công việc cho dự án vừa tạo.
+  Future<List<ProjectGateItem>> initMasterTimeline({
+    required int projectId,
+  }) async {
+    final result = await post<BaseData<List<ProjectGateItem>>>(
+      '${ApiEndPoint.initMasterTimeline}/$projectId',
+      parser: (json) => BaseData<List<ProjectGateItem>>.fromJson(
+        json as Map<String, dynamic>,
+        (data) {
+          if (data is! List) return <ProjectGateItem>[];
+          return data
+              .map((e) => ProjectGateItem.fromJson(e as Map<String, dynamic>))
+              .toList();
+        },
+      ),
+    );
+
+    if (result.status != 1) {
+      throw BaseError.httpInternalServerError(
+        result.message ?? 'Khởi tạo Master Timeline thất bại',
+      );
+    }
+
+    return result.data ?? <ProjectGateItem>[];
+  }
+
+  /// POST /project/create-tree-v2 - tạo cây dự án cho loại dự án đã chọn.
+  ///
+  /// [selectedProjectTypeIds] là danh sách ID loại dự án được chọn.
+  Future<void> createProjectTree({
+    required int projectId,
+    required List<int> selectedProjectTypeIds,
+  }) async {
+    final result = await post<BaseData<void>>(
+      ApiEndPoint.createProjectTree,
+      body: {
+        'ProjectId': projectId,
+        'SelectedProjectTypeIds': selectedProjectTypeIds,
+      },
+      parser: (json) => BaseData<void>.fromJson(json as Map<String, dynamic>, (_) {}),
+    );
+
+    if (result.status != 1) {
+      throw BaseError.httpInternalServerError(
+        result.message ?? 'Tạo cây dự án thất bại',
+      );
+    }
   }
 
   /// Helper chung: GET 1 endpoint trả về List, parse qua parser.

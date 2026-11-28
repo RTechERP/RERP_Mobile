@@ -34,4 +34,13 @@ class ProjectListEvent with _$ProjectListEvent {
 
   /// Xoá mã dự án đã sinh (dùng khi đổi khách hàng hoặc kiểu dự án).
   const factory ProjectListEvent.clearGeneratedCode() = _ClearGeneratedCode;
+
+  /// Lưu dự án. Nếu thành công sẽ tự gọi tiếp API link Gate
+  /// (InitMasterTimeline) với ID dự án vừa tạo, sau đó tạo cây dự án.
+  const factory ProjectListEvent.saveProject({
+    required ProjectSavePayload payload,
+
+    /// Danh sách ID loại dự án đã chọn - dùng cho API tạo cây dự án.
+    @Default(<int>[]) List<int> selectedProjectTypeIds,
+  }) = _SaveProject;
 }

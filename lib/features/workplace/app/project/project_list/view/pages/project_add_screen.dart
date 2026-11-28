@@ -14,6 +14,7 @@ import '../../../../../../../../../common/helpers/index.dart';
 import '../../../../../../../../../common/utils/snack_bar_helper.dart';
 import '../../../../../../../../../common/widgets/form/index.dart';
 import '../../../../../../../../../../di/injection.dart';
+import '../../../../../../../../../features/auth/data/repository/auth_repository.dart';
 import '../../data/datasource/model/project_list_model.dart';
 import '../bloc/project_list_bloc.dart';
 import '../widgets/project_priority_sheet.dart';
@@ -75,6 +76,28 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
   ///
   /// Mặc định là phần tử đầu tiên của [kProjectTypeOptions] ("Dự án").
   ProjectTypeOption? _selectedTypeOption = kProjectTypeOptions.first;
+
+  /// Id của các mốc ưu tiên đã chọn trong sheet - dùng để tạo
+  /// `listPriorities` khi lưu dự án.
+  Set<int> _selectedPriorityIds = <int>{};
+
+  /// Id trạng thái dự án đang chọn.
+  int? _selectedStatusId;
+
+  /// Id hãng đang chọn.
+  int? _selectedFirmId;
+
+  /// Id loại dự án đang chọn (ô "Loại").
+  int? _selectedTypeBaseId;
+
+  /// Id nhân sự sale đang chọn.
+  int? _selectedSaleId;
+
+  /// Id nhân sự kỹ thuật đang chọn.
+  int? _selectedTechnicalId;
+
+  /// Id PM đang chọn.
+  int? _selectedPmId;
 
   /// Chèn SizedBox(height: [_gap]) giữa các widget con để các field không dính sát nhau.
   List<Widget> _spaced(List<Widget> children) {
@@ -230,6 +253,9 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
       context: context,
       items: priorityTypes,
       onConfirm: (selectedIds, total) {
+        setState(() {
+          _selectedPriorityIds = selectedIds;
+        });
         _setFieldValue(
           _f.priority,
           total == 0 ? null : formatPriorityValue(total),
@@ -349,12 +375,115 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
 
     final values = formState.value;
 
-    // Gọi API tạo dự án ở đây (chưa có trong task này).
-    debugPrint('ProjectAdd values: $values');
+    context.read<ProjectListBloc>().add(
+      ProjectListEvent.saveProject(
+        payload: await _buildSavePayload(values),
+        selectedProjectTypeIds: _selectedTypeBaseId == null
+            ? const []
+            : [_selectedTypeBaseId!],
+      ),
+    );
+  }
 
-    if (!mounted) return;
-    context.showMessage('Lưu dự án thành công', type: SnackBarType.success);
-    context.pop(true);
+  /// Dựng payload lưu dự án từ giá trị form hiện tại.
+  ///
+  /// Ánh xạ theo body API `POST /project/save-project`:
+  /// - `project`: thông tin dự án (khách hàng, sale, kỹ thuật, PM, ưu tiên...).
+  /// - `projectStatusLog`: log trạng thái với `EmployeeID` của user đang đăng
+  ///   nhập.
+  /// - `followProjectBase`: các mốc ngày dự kiến / thực tế + hãng + loại dự
+  ///   án + người liên hệ.
+  /// - `listPriorities`: các mốc ưu tiên đã chọn.
+  Future<ProjectSavePayload> _buildSavePayload(
+    Map<String, dynamic> values,
+  ) async {
+    final customer = _selectedCustomer;
+    final priority = _parseDouble(values[_f.priority]);
+
+    return ProjectSavePayload(
+      /// Tạo mới nên trạng thái cũ bằng 0.
+      projectStatusOld: 0,
+      project: ProjectSaveInfo(
+        projectCode: values[_f.projectCode] as String?,
+        projectName: values[_f.projectName] as String?,
+        projectStatus: _selectedStatusId ?? 1,
+        note: values[_f.note] as String?,
+        customerId: customer?.id,
+        userId: _selectedSaleId,
+        userTechnicalId: _selectedTechnicalId,
+        createdDate: _formatIsoDate(values[_f.createdDate]),
+        projectManager: _selectedPmId,
+        currentState: values[_f.currentState] as String?,
+        endUser: customer?.id,
+        priority: priority,
+        typeProject: _selectedTypeOption?.id,
+      ),
+      projectStatusLog: ProjectStatusLog(
+        employeeId: await _currentEmployeeId(),
+        createdBy: '',
+        updatedBy: '',
+      ),
+      followProjectBase: FollowProjectBase(
+        expectedPlanDate: _formatIsoDate(values[_f.expectedPlanStart]),
+        expectedQuotationDate: _formatIsoDate(values[_f.expectedQuoteStart]),
+        expectedPoDate: _formatIsoDate(values[_f.expectedPoStart]),
+        expectedProjectEndDate: _formatIsoDate(values[_f.expectedEnd]),
+        realityPlanDate: _formatIsoDate(values[_f.actualPlanStart]),
+        realityQuotationDate: _formatIsoDate(values[_f.actualQuoteStart]),
+        realityPoDate: _formatIsoDate(values[_f.actualPoStart]),
+        realityProjectEndDate: _formatIsoDate(values[_f.actualEnd]),
+        firmBaseId: _selectedFirmId,
+        projectTypeBaseId: _selectedTypeBaseId,
+        projectContactName: values[_f.pic] as String?,
+      ),
+      listPriorities: _buildListPriorities(),
+    );
+  }
+
+  /// Dựng danh sách mốc ưu tiên đã chọn theo format `listPriorities`.
+  List<Map<String, dynamic>> _buildListPriorities() {
+    if (_selectedPriorityIds.isEmpty) return const [];
+
+    final priorityTypes = context.read<ProjectListBloc>().state.priorityTypes;
+
+    return priorityTypes
+        .where((e) => e.id != null && _selectedPriorityIds.contains(e.id))
+        .map(
+          (e) => {
+            'ProjectTypeLinkID': 0,
+            'ID': e.id,
+            'LeaderID': 0,
+            'Selected': true,
+            'projectTypeID': e.id,
+            'ApplicationTypeIDs': <int>[],
+            'TechnologyIDs': <int>[],
+            'LeaderIDs': <int>[],
+          },
+        )
+        .toList();
+  }
+
+  /// `EmployeeID` của user đang đăng nhập - dùng cho log trạng thái.
+  ///
+  /// Đọc từ cache local (SharedPreferences) nên không cần `AuthBloc` trong cây
+  /// widget của màn tạo dự án.
+  Future<int?> _currentEmployeeId() async {
+    final user = await AuthRepository.getCurrentUser();
+    return user?.employeeId;
+  }
+
+  /// Parse giá trị số từ form, trả về `null` nếu không hợp lệ.
+  double? _parseDouble(dynamic value) {
+    if (value == null) return null;
+    return double.tryParse(value.toString());
+  }
+
+  /// Định dạng ngày của form sang ISO 8601 theo chuẩn API.
+  ///
+  /// Form lưu ngày ở dạng `dd/MM/yyyy` nên cần parse lại trước khi gửi.
+  String? _formatIsoDate(dynamic value) {
+    if (value is! DateTime) return null;
+    return ConvertDateHelper.toLocalIso8601(value);
   }
 
   @override
@@ -365,8 +494,20 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
       listenWhen: (prev, curr) =>
           prev.generatedProjectCode != curr.generatedProjectCode ||
           prev.industries != curr.industries ||
+          prev.savedProjectId != curr.savedProjectId ||
           (prev.status != curr.status && curr.status == BaseStateStatus.failed),
       listener: (context, state) {
+        /// Lưu dự án thành công (đã gọi cả link Gate) - báo và đóng form.
+        final savedId = state.savedProjectId;
+        if (savedId != null) {
+          context.showMessage(
+            state.saveSuccessMessage ?? 'Lưu dự án thành công',
+            type: SnackBarType.success,
+          );
+          context.pop(true);
+          return;
+        }
+
         /// Lookup lĩnh vực có thể tải về sau khi người dùng đã chọn khách
         /// hàng - cần map lại để các field lĩnh vực hiển thị đúng.
         _applyIndustryValues(state.industries);
@@ -547,6 +688,8 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
                                     options: firms,
                                     displayText: (e) => e.name ?? '',
                                     sheetTitle: 'Chọn hãng',
+                                    onSelected: (e) =>
+                                        _selectedFirmId = e.id,
                                   ),
                             ),
                             BlocSelector<
@@ -564,6 +707,8 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
                                     options: types,
                                     displayText: (e) => e.name ?? '',
                                     sheetTitle: 'Chọn loại',
+                                    onSelected: (e) =>
+                                        _selectedTypeBaseId = e.id,
                                   ),
                             ),
                             BlocSelector<
@@ -581,6 +726,8 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
                                     options: statuses,
                                     displayText: (e) => e.name ?? '',
                                     sheetTitle: 'Chọn trạng thái',
+                                    onSelected: (e) =>
+                                        _selectedStatusId = e.id,
                                   ),
                             ),
 
@@ -641,6 +788,7 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
                                     sheetTitle: 'Chọn Sale',
                                     groupBy: (e) =>
                                         (e.departmentName ?? '').trim(),
+                                    onSelected: (e) => _selectedSaleId = e.id,
                                   ),
                             ),
                             BlocSelector<
@@ -662,6 +810,8 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
                                     sheetTitle: 'Chọn Kỹ thuật',
                                     groupBy: (e) =>
                                         (e.departmentName ?? '').trim(),
+                                    onSelected: (e) =>
+                                        _selectedTechnicalId = e.id,
                                   ),
                             ),
                             BlocSelector<
@@ -681,6 +831,7 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
                                         .trim(),
                                 sheetTitle: 'Chọn PM',
                                 groupBy: (e) => (e.departmentName ?? '').trim(),
+                                onSelected: (e) => _selectedPmId = e.id,
                               ),
                             ),
 
@@ -844,7 +995,11 @@ class _ProjectAddViewState extends State<_ProjectAddView> {
               Container(
                 color: Colors.white,
                 padding: const EdgeInsets.all(16),
-                child: FormActions(mode: FormActionMode.add, onSubmit: _submit),
+                child: FormActions(
+                  mode: FormActionMode.add,
+                  submitEnabled: !state.isSaving,
+                  onSubmit: _submit,
+                ),
               ),
             ],
           ),

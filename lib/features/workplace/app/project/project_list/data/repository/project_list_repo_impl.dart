@@ -94,6 +94,52 @@ class ProjectListRepoImpl implements ProjectListRepo {
     }
   }
 
+  @override
+  Future<Either<BaseError, ProjectSaveResult>> saveProject({
+    required ProjectSavePayload payload,
+  }) async {
+    try {
+      final res = await _service.saveProject(payload: payload);
+      return right(res);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } on BaseError catch (e) {
+      return left(e);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, List<ProjectGateItem>>> initMasterTimeline({
+    required int projectId,
+  }) async {
+    try {
+      final res = await _service.initMasterTimeline(projectId: projectId);
+      return right(res);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } on BaseError catch (e) {
+      return left(e);
+    }
+  }
+
+  @override
+  Future<Either<BaseError, void>> createProjectTree({
+    required int projectId,
+    required List<int> selectedProjectTypeIds,
+  }) async {
+    try {
+      await _service.createProjectTree(
+        projectId: projectId,
+        selectedProjectTypeIds: selectedProjectTypeIds,
+      );
+      return right(null);
+    } on DioException catch (e) {
+      return left(e.baseError);
+    } on BaseError catch (e) {
+      return left(e);
+    }
+  }
+
   /// Gọi API và bọc kết quả, lỗi mạng trả về [BaseError].
   Future<Either<BaseError, List<T>>> _call<T>(
     Future<List<T>> Function() fetch,
